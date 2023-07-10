@@ -195,6 +195,15 @@ export namespace chat_v1 {
     userMention?: Schema$UserMentionMetadata;
   }
   /**
+   * A GIF image that's specified by a URL.
+   */
+  export interface Schema$AttachedGif {
+    /**
+     * Output only. The URL that hosts the GIF image.
+     */
+    uri?: string | null;
+  }
+  /**
    * An attachment in Google Chat.
    */
   export interface Schema$Attachment {
@@ -1436,6 +1445,10 @@ export namespace chat_v1 {
      */
     argumentText?: string | null;
     /**
+     * Output only. GIF images that are attached to the message.
+     */
+    attachedGifs?: Schema$AttachedGif[];
+    /**
      * User-uploaded attachment.
      */
     attachment?: Schema$Attachment[];
@@ -1448,7 +1461,7 @@ export namespace chat_v1 {
      */
     cardsV2?: Schema$CardWithId[];
     /**
-     * A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. Assigning a custom name lets a Chat app recall the message without saving the message `name` from the [response body](/chat/api/reference/rest/v1/spaces.messages/get#response-body) returned when creating the message. Assigning a custom name doesn't replace the generated `name` field, the message's resource name. Instead, it sets the custom name as the `clientAssignedMessageId` field, which you can reference while processing later operations, like updating or deleting the message. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     * A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. Assigning a custom name lets a Chat app recall the message without saving the message `name` from the [response body](/chat/api/reference/rest/v1/spaces.messages/get#response-body) returned when creating the message. Assigning a custom name doesn't replace the generated `name` field, the message's resource name. Instead, it sets the custom name as the `clientAssignedMessageId` field, which you can reference while processing later operations, like updating or deleting the message. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
      */
     clientAssignedMessageId?: string | null;
     /**
@@ -1483,6 +1496,10 @@ export namespace chat_v1 {
      * Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
      */
     name?: string | null;
+    /**
+     * Output only. Information about a message that's quoted by a Google Chat user in a space. Google Chat users can quote a message to reply to it.
+     */
+    quotedMessageMetadata?: Schema$QuotedMessageMetadata;
     /**
      * Output only. The user who created the message. If your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users), the output populates the [user](https://developers.google.com/chat/api/reference/rest/v1/User) `name` and `type`.
      */
@@ -1529,6 +1546,19 @@ export namespace chat_v1 {
      * The URL to open.
      */
     url?: string | null;
+  }
+  /**
+   * Information about a quoted message.
+   */
+  export interface Schema$QuotedMessageMetadata {
+    /**
+     * Output only. The timestamp when the quoted message was created or when the quoted message was last updated.
+     */
+    lastUpdateTime?: string | null;
+    /**
+     * Output only. Resource name of the quoted message. Format: `spaces/{space\}/messages/{message\}`
+     */
+    name?: string | null;
   }
   /**
    * A reaction to a message.
@@ -1979,6 +2009,7 @@ export namespace chat_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.import',
      *       'https://www.googleapis.com/auth/chat.messages',
      *       'https://www.googleapis.com/auth/chat.messages.create',
      *     ],
@@ -2177,6 +2208,7 @@ export namespace chat_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.import',
      *       'https://www.googleapis.com/auth/chat.spaces',
      *       'https://www.googleapis.com/auth/chat.spaces.create',
      *     ],
@@ -2330,7 +2362,10 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chat.delete'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.delete',
+     *       'https://www.googleapis.com/auth/chat.import',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2870,7 +2905,10 @@ export namespace chat_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chat.spaces'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.import',
+     *       'https://www.googleapis.com/auth/chat.spaces',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3865,6 +3903,7 @@ export namespace chat_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/chat.bot',
+     *       'https://www.googleapis.com/auth/chat.import',
      *       'https://www.googleapis.com/auth/chat.messages',
      *       'https://www.googleapis.com/auth/chat.messages.create',
      *     ],
@@ -3876,7 +3915,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.create({
-     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. Assigning a custom name lets a a Chat app recall the message without saving the message `name` from the [response body](/chat/api/reference/rest/v1/spaces.messages/get#response-body) returned when creating the message. Assigning a custom name doesn't replace the generated `name` field, the message's resource name. Instead, it sets the custom name as the `clientAssignedMessageId` field, which you can reference while processing later operations, like updating or deleting the message. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. Assigning a custom name lets a a Chat app recall the message without saving the message `name` from the [response body](/chat/api/reference/rest/v1/spaces.messages/get#response-body) returned when creating the message. Assigning a custom name doesn't replace the generated `name` field, the message's resource name. Instead, it sets the custom name as the `clientAssignedMessageId` field, which you can reference while processing later operations, like updating or deleting the message. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
      *     messageId: 'placeholder-value',
      *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
      *     messageReplyOption: 'placeholder-value',
@@ -3894,6 +3933,7 @@ export namespace chat_v1 {
      *       //   "actionResponse": {},
      *       //   "annotations": [],
      *       //   "argumentText": "my_argumentText",
+     *       //   "attachedGifs": [],
      *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "cardsV2": [],
@@ -3906,6 +3946,7 @@ export namespace chat_v1 {
      *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
+     *       //   "quotedMessageMetadata": {},
      *       //   "sender": {},
      *       //   "slashCommand": {},
      *       //   "space": {},
@@ -3922,6 +3963,7 @@ export namespace chat_v1 {
      *   //   "actionResponse": {},
      *   //   "annotations": [],
      *   //   "argumentText": "my_argumentText",
+     *   //   "attachedGifs": [],
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
@@ -3934,6 +3976,7 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
+     *   //   "quotedMessageMetadata": {},
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -4054,6 +4097,7 @@ export namespace chat_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/chat.bot',
+     *       'https://www.googleapis.com/auth/chat.import',
      *       'https://www.googleapis.com/auth/chat.messages',
      *     ],
      *   });
@@ -4194,7 +4238,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.get({
-     *     // Required. Resource name of the message to retrieve. Format: `spaces/{space\}/messages/{message\}` If the message begins with `client-`, then it has a custom name assigned by a Chat app that created it with the Chat REST API. That Chat app (but not others) can pass the custom name to get, update, or delete the message. To learn more, see [create and name a message] (https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     *     // Required. Resource name of the message to retrieve. Format: `spaces/{space\}/messages/{message\}` If the message begins with `client-`, then it has a custom name assigned by a Chat app that created it with the Chat REST API. That Chat app (but not others) can pass the custom name to get, update, or delete the message. To learn more, see [create and name a message] (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
      *     name: 'spaces/my-space/messages/my-message',
      *   });
      *   console.log(res.data);
@@ -4204,6 +4248,7 @@ export namespace chat_v1 {
      *   //   "actionResponse": {},
      *   //   "annotations": [],
      *   //   "argumentText": "my_argumentText",
+     *   //   "attachedGifs": [],
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
@@ -4216,6 +4261,7 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
+     *   //   "quotedMessageMetadata": {},
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -4332,6 +4378,7 @@ export namespace chat_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.import',
      *       'https://www.googleapis.com/auth/chat.messages',
      *       'https://www.googleapis.com/auth/chat.messages.readonly',
      *     ],
@@ -4481,6 +4528,7 @@ export namespace chat_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/chat.bot',
+     *       'https://www.googleapis.com/auth/chat.import',
      *       'https://www.googleapis.com/auth/chat.messages',
      *     ],
      *   });
@@ -4491,7 +4539,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.patch({
-     *     // Optional. If `true` and the message isn't found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message) or the request fails.
+     *     // Optional. If `true` and the message isn't found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message) or the request fails.
      *     allowMissing: 'placeholder-value',
      *     // Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
      *     name: 'spaces/my-space/messages/my-message',
@@ -4505,6 +4553,7 @@ export namespace chat_v1 {
      *       //   "actionResponse": {},
      *       //   "annotations": [],
      *       //   "argumentText": "my_argumentText",
+     *       //   "attachedGifs": [],
      *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "cardsV2": [],
@@ -4517,6 +4566,7 @@ export namespace chat_v1 {
      *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
+     *       //   "quotedMessageMetadata": {},
      *       //   "sender": {},
      *       //   "slashCommand": {},
      *       //   "space": {},
@@ -4533,6 +4583,7 @@ export namespace chat_v1 {
      *   //   "actionResponse": {},
      *   //   "annotations": [],
      *   //   "argumentText": "my_argumentText",
+     *   //   "attachedGifs": [],
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
@@ -4545,6 +4596,7 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
+     *   //   "quotedMessageMetadata": {},
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -4662,6 +4714,7 @@ export namespace chat_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/chat.bot',
+     *       'https://www.googleapis.com/auth/chat.import',
      *       'https://www.googleapis.com/auth/chat.messages',
      *     ],
      *   });
@@ -4672,7 +4725,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.update({
-     *     // Optional. If `true` and the message isn't found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message) or the request fails.
+     *     // Optional. If `true` and the message isn't found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message) or the request fails.
      *     allowMissing: 'placeholder-value',
      *     // Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
      *     name: 'spaces/my-space/messages/my-message',
@@ -4686,6 +4739,7 @@ export namespace chat_v1 {
      *       //   "actionResponse": {},
      *       //   "annotations": [],
      *       //   "argumentText": "my_argumentText",
+     *       //   "attachedGifs": [],
      *       //   "attachment": [],
      *       //   "cards": [],
      *       //   "cardsV2": [],
@@ -4698,6 +4752,7 @@ export namespace chat_v1 {
      *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "matchedUrl": {},
      *       //   "name": "my_name",
+     *       //   "quotedMessageMetadata": {},
      *       //   "sender": {},
      *       //   "slashCommand": {},
      *       //   "space": {},
@@ -4714,6 +4769,7 @@ export namespace chat_v1 {
      *   //   "actionResponse": {},
      *   //   "annotations": [],
      *   //   "argumentText": "my_argumentText",
+     *   //   "attachedGifs": [],
      *   //   "attachment": [],
      *   //   "cards": [],
      *   //   "cardsV2": [],
@@ -4726,6 +4782,7 @@ export namespace chat_v1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "matchedUrl": {},
      *   //   "name": "my_name",
+     *   //   "quotedMessageMetadata": {},
      *   //   "sender": {},
      *   //   "slashCommand": {},
      *   //   "space": {},
@@ -4827,7 +4884,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Create
     extends StandardParameters {
     /**
-     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. Assigning a custom name lets a a Chat app recall the message without saving the message `name` from the [response body](/chat/api/reference/rest/v1/spaces.messages/get#response-body) returned when creating the message. Assigning a custom name doesn't replace the generated `name` field, the message's resource name. Instead, it sets the custom name as the `clientAssignedMessageId` field, which you can reference while processing later operations, like updating or deleting the message. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. Assigning a custom name lets a a Chat app recall the message without saving the message `name` from the [response body](/chat/api/reference/rest/v1/spaces.messages/get#response-body) returned when creating the message. Assigning a custom name doesn't replace the generated `name` field, the message's resource name. Instead, it sets the custom name as the `clientAssignedMessageId` field, which you can reference while processing later operations, like updating or deleting the message. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
      */
     messageId?: string;
     /**
@@ -4866,7 +4923,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the message to retrieve. Format: `spaces/{space\}/messages/{message\}` If the message begins with `client-`, then it has a custom name assigned by a Chat app that created it with the Chat REST API. That Chat app (but not others) can pass the custom name to get, update, or delete the message. To learn more, see [create and name a message] (https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     * Required. Resource name of the message to retrieve. Format: `spaces/{space\}/messages/{message\}` If the message begins with `client-`, then it has a custom name assigned by a Chat app that created it with the Chat REST API. That Chat app (but not others) can pass the custom name to get, update, or delete the message. To learn more, see [create and name a message] (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
      */
     name?: string;
   }
@@ -4900,7 +4957,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Patch
     extends StandardParameters {
     /**
-     * Optional. If `true` and the message isn't found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message) or the request fails.
+     * Optional. If `true` and the message isn't found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message) or the request fails.
      */
     allowMissing?: boolean;
     /**
@@ -4920,7 +4977,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Update
     extends StandardParameters {
     /**
-     * Optional. If `true` and the message isn't found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message) or the request fails.
+     * Optional. If `true` and the message isn't found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message) or the request fails.
      */
     allowMissing?: boolean;
     /**
@@ -5111,6 +5168,7 @@ export namespace chat_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.import',
      *       'https://www.googleapis.com/auth/chat.messages',
      *       'https://www.googleapis.com/auth/chat.messages.reactions',
      *       'https://www.googleapis.com/auth/chat.messages.reactions.create',
@@ -5256,6 +5314,7 @@ export namespace chat_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.import',
      *       'https://www.googleapis.com/auth/chat.messages',
      *       'https://www.googleapis.com/auth/chat.messages.reactions',
      *     ],
