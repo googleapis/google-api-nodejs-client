@@ -1735,7 +1735,7 @@
       }
     }
   },
-  "revision": "20230616",
+  "revision": "20230630",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2626,7 +2626,7 @@
         },
         "workingLocationProperties": {
           "$ref": "EventWorkingLocationProperties",
-          "description": "Working Location event data. Read-only. Developer Preview."
+          "description": "Working Location event data. Developer Preview."
         }
       },
       "type": "object"
