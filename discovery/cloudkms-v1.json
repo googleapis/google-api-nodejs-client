@@ -1522,6 +1522,64 @@
                             "https://www.googleapis.com/auth/cloudkms"
                           ]
                         },
+                        "rawDecrypt": {
+                          "description": "Decrypts data that was originally encrypted using a raw cryptographic mechanism. The CryptoKey.purpose must be RAW_ENCRYPT_DECRYPT.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:rawDecrypt",
+                          "httpMethod": "POST",
+                          "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.rawDecrypt",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the CryptoKeyVersion to use for decryption.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+/cryptoKeyVersions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}:rawDecrypt",
+                          "request": {
+                            "$ref": "RawDecryptRequest"
+                          },
+                          "response": {
+                            "$ref": "RawDecryptResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloudkms"
+                          ]
+                        },
+                        "rawEncrypt": {
+                          "description": "Encrypts data using portable cryptographic primitives. Most users should choose Encrypt and Decrypt rather than their raw counterparts. The CryptoKey.purpose must be RAW_ENCRYPT_DECRYPT.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:rawEncrypt",
+                          "httpMethod": "POST",
+                          "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.rawEncrypt",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the CryptoKeyVersion to use for encryption.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+/cryptoKeyVersions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}:rawEncrypt",
+                          "request": {
+                            "$ref": "RawEncryptRequest"
+                          },
+                          "response": {
+                            "$ref": "RawEncryptResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloudkms"
+                          ]
+                        },
                         "restore": {
                           "description": "Restore a CryptoKeyVersion in the DESTROY_SCHEDULED state. Upon restoration of the CryptoKeyVersion, state will be set to DISABLED, and destroy_time will be cleared.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:restore",
@@ -1763,7 +1821,7 @@
       }
     }
   },
-  "revision": "20230421",
+  "revision": "20230625",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -2102,6 +2160,7 @@
             "ENCRYPT_DECRYPT",
             "ASYMMETRIC_SIGN",
             "ASYMMETRIC_DECRYPT",
+            "RAW_ENCRYPT_DECRYPT",
             "MAC"
           ],
           "enumDescriptions": [
@@ -2109,6 +2168,7 @@
             "CryptoKeys with this purpose may be used with Encrypt and Decrypt.",
             "CryptoKeys with this purpose may be used with AsymmetricSign and GetPublicKey.",
             "CryptoKeys with this purpose may be used with AsymmetricDecrypt and GetPublicKey.",
+            "CryptoKeys with this purpose may be used with RawEncrypt and RawDecrypt. This purpose is meant to be used for interoperable symmetric encryption and does not support automatic CryptoKey rotation.",
             "CryptoKeys with this purpose may be used with MacSign."
           ],
           "type": "string"
@@ -2134,6 +2194,8 @@
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
             "GOOGLE_SYMMETRIC_ENCRYPTION",
+            "AES_128_GCM",
+            "AES_256_GCM",
             "RSA_SIGN_PSS_2048_SHA256",
             "RSA_SIGN_PSS_3072_SHA256",
             "RSA_SIGN_PSS_4096_SHA256",
@@ -2165,6 +2227,8 @@
           "enumDescriptions": [
             "Not specified.",
             "Creates symmetric encryption keys.",
+            "AES-GCM (Galois Counter Mode) using 128-bit keys.",
+            "AES-GCM (Galois Counter Mode) using 256-bit keys.",
             "RSASSA-PSS 2048 bit key with a SHA256 digest.",
             "RSASSA-PSS 3072 bit key with a SHA256 digest.",
             "RSASSA-PSS 4096 bit key with a SHA256 digest.",
@@ -2326,6 +2390,8 @@
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
             "GOOGLE_SYMMETRIC_ENCRYPTION",
+            "AES_128_GCM",
+            "AES_256_GCM",
             "RSA_SIGN_PSS_2048_SHA256",
             "RSA_SIGN_PSS_3072_SHA256",
             "RSA_SIGN_PSS_4096_SHA256",
@@ -2357,6 +2423,8 @@
           "enumDescriptions": [
             "Not specified.",
             "Creates symmetric encryption keys.",
+            "AES-GCM (Galois Counter Mode) using 128-bit keys.",
+            "AES-GCM (Galois Counter Mode) using 256-bit keys.",
             "RSASSA-PSS 2048 bit key with a SHA256 digest.",
             "RSASSA-PSS 3072 bit key with a SHA256 digest.",
             "RSASSA-PSS 4096 bit key with a SHA256 digest.",
@@ -2733,6 +2801,8 @@
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
             "GOOGLE_SYMMETRIC_ENCRYPTION",
+            "AES_128_GCM",
+            "AES_256_GCM",
             "RSA_SIGN_PSS_2048_SHA256",
             "RSA_SIGN_PSS_3072_SHA256",
             "RSA_SIGN_PSS_4096_SHA256",
@@ -2764,6 +2834,8 @@
           "enumDescriptions": [
             "Not specified.",
             "Creates symmetric encryption keys.",
+            "AES-GCM (Galois Counter Mode) using 128-bit keys.",
+            "AES-GCM (Galois Counter Mode) using 256-bit keys.",
             "RSASSA-PSS 2048 bit key with a SHA256 digest.",
             "RSASSA-PSS 3072 bit key with a SHA256 digest.",
             "RSASSA-PSS 4096 bit key with a SHA256 digest.",
@@ -3323,6 +3395,8 @@
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
             "GOOGLE_SYMMETRIC_ENCRYPTION",
+            "AES_128_GCM",
+            "AES_256_GCM",
             "RSA_SIGN_PSS_2048_SHA256",
             "RSA_SIGN_PSS_3072_SHA256",
             "RSA_SIGN_PSS_4096_SHA256",
@@ -3354,6 +3428,8 @@
           "enumDescriptions": [
             "Not specified.",
             "Creates symmetric encryption keys.",
+            "AES-GCM (Galois Counter Mode) using 128-bit keys.",
+            "AES-GCM (Galois Counter Mode) using 256-bit keys.",
             "RSASSA-PSS 2048 bit key with a SHA256 digest.",
             "RSASSA-PSS 3072 bit key with a SHA256 digest.",
             "RSASSA-PSS 4096 bit key with a SHA256 digest.",
@@ -3414,6 +3490,198 @@
             "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RawDecryptRequest": {
+      "description": "Request message for KeyManagementService.RawDecrypt.",
+      "id": "RawDecryptRequest",
+      "properties": {
+        "additionalAuthenticatedData": {
+          "description": "Optional. Optional data that must match the data originally supplied in RawEncryptRequest.additional_authenticated_data.",
+          "format": "byte",
+          "type": "string"
+        },
+        "additionalAuthenticatedDataCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the RawDecryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(additional_authenticated_data) is equal to additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "ciphertext": {
+          "description": "Required. The encrypted data originally returned in RawEncryptResponse.ciphertext.",
+          "format": "byte",
+          "type": "string"
+        },
+        "ciphertextCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the RawDecryptRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(ciphertext) is equal to ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "initializationVector": {
+          "description": "Required. The initialization vector (IV) used during encryption, which must match the data originally provided in RawEncryptResponse.initialization_vector.",
+          "format": "byte",
+          "type": "string"
+        },
+        "initializationVectorCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the RawDecryptRequest.initialization_vector. If specified, KeyManagementService will verify the integrity of the received initialization_vector using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(initialization_vector) is equal to initialization_vector_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "tagLength": {
+          "description": "The length of the authentication tag that is appended to the end of the ciphertext. If unspecified (0), the default value for the key's algorithm will be used (for AES-GCM, the default value is 16).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RawDecryptResponse": {
+      "description": "Response message for KeyManagementService.RawDecrypt.",
+      "id": "RawDecryptResponse",
+      "properties": {
+        "plaintext": {
+          "description": "The decrypted data.",
+          "format": "byte",
+          "type": "string"
+        },
+        "plaintextCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned RawDecryptResponse.plaintext. An integrity check of plaintext can be performed by computing the CRC32C checksum of plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: receiving this response message indicates that KeyManagementService is able to successfully decrypt the ciphertext. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "protectionLevel": {
+          "description": "The ProtectionLevel of the CryptoKeyVersion used in decryption.",
+          "enum": [
+            "PROTECTION_LEVEL_UNSPECIFIED",
+            "SOFTWARE",
+            "HSM",
+            "EXTERNAL",
+            "EXTERNAL_VPC"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Crypto operations are performed in software.",
+            "Crypto operations are performed in a Hardware Security Module.",
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
+          ],
+          "type": "string"
+        },
+        "verifiedAdditionalAuthenticatedDataCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether RawDecryptRequest.additional_authenticated_data_crc32c was received by KeyManagementService and used for the integrity verification of additional_authenticated_data. A false value of this field indicates either that // RawDecryptRequest.additional_authenticated_data_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set RawDecryptRequest.additional_authenticated_data_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
+        },
+        "verifiedCiphertextCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether RawDecryptRequest.ciphertext_crc32c was received by KeyManagementService and used for the integrity verification of the ciphertext. A false value of this field indicates either that RawDecryptRequest.ciphertext_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set RawDecryptRequest.ciphertext_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
+        },
+        "verifiedInitializationVectorCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether RawDecryptRequest.initialization_vector_crc32c was received by KeyManagementService and used for the integrity verification of initialization_vector. A false value of this field indicates either that RawDecryptRequest.initialization_vector_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set RawDecryptRequest.initialization_vector_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RawEncryptRequest": {
+      "description": "Request message for KeyManagementService.RawEncrypt.",
+      "id": "RawEncryptRequest",
+      "properties": {
+        "additionalAuthenticatedData": {
+          "description": "Optional. Optional data that, if specified, must also be provided during decryption through RawDecryptRequest.additional_authenticated_data. This field may only be used in conjunction with an algorithm that accepts additional authenticated data (for example, AES-GCM). The maximum size depends on the key version's protection_level. For SOFTWARE keys, the plaintext must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.",
+          "format": "byte",
+          "type": "string"
+        },
+        "additionalAuthenticatedDataCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the RawEncryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(additional_authenticated_data) is equal to additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "initializationVector": {
+          "description": "Optional. A customer-supplied initialization vector that will be used for encryption. If it is not provided for AES-CBC and AES-CTR, one will be generated. It will be returned in RawEncryptResponse.initialization_vector.",
+          "format": "byte",
+          "type": "string"
+        },
+        "initializationVectorCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the RawEncryptRequest.initialization_vector. If specified, KeyManagementService will verify the integrity of the received initialization_vector using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(initialization_vector) is equal to initialization_vector_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "plaintext": {
+          "description": "Required. The data to encrypt. Must be no larger than 64KiB. The maximum size depends on the key version's protection_level. For SOFTWARE keys, the plaintext must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.",
+          "format": "byte",
+          "type": "string"
+        },
+        "plaintextCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the RawEncryptRequest.plaintext. If specified, KeyManagementService will verify the integrity of the received plaintext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(plaintext) is equal to plaintext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RawEncryptResponse": {
+      "description": "Response message for KeyManagementService.RawEncrypt.",
+      "id": "RawEncryptResponse",
+      "properties": {
+        "ciphertext": {
+          "description": "The encrypted data. In the case of AES-GCM, the authentication tag is the tag_length bytes at the end of this field.",
+          "format": "byte",
+          "type": "string"
+        },
+        "ciphertextCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned RawEncryptResponse.ciphertext. An integrity check of ciphertext can be performed by computing the CRC32C checksum of ciphertext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "initializationVector": {
+          "description": "The initialization vector (IV) generated by the service during encryption. This value must be stored and provided in RawDecryptRequest.initialization_vector at decryption time.",
+          "format": "byte",
+          "type": "string"
+        },
+        "initializationVectorCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned RawEncryptResponse.initialization_vector. An integrity check of initialization_vector can be performed by computing the CRC32C checksum of initialization_vector and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name of the CryptoKeyVersion used in encryption. Check this field to verify that the intended resource was used for encryption.",
+          "type": "string"
+        },
+        "protectionLevel": {
+          "description": "The ProtectionLevel of the CryptoKeyVersion used in encryption.",
+          "enum": [
+            "PROTECTION_LEVEL_UNSPECIFIED",
+            "SOFTWARE",
+            "HSM",
+            "EXTERNAL",
+            "EXTERNAL_VPC"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Crypto operations are performed in software.",
+            "Crypto operations are performed in a Hardware Security Module.",
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
+          ],
+          "type": "string"
+        },
+        "tagLength": {
+          "description": "The length of the authentication tag that is appended to the end of the ciphertext.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "verifiedAdditionalAuthenticatedDataCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether RawEncryptRequest.additional_authenticated_data_crc32c was received by KeyManagementService and used for the integrity verification of additional_authenticated_data. A false value of this field indicates either that // RawEncryptRequest.additional_authenticated_data_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set RawEncryptRequest.additional_authenticated_data_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
+        },
+        "verifiedInitializationVectorCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether RawEncryptRequest.initialization_vector_crc32c was received by KeyManagementService and used for the integrity verification of initialization_vector. A false value of this field indicates either that RawEncryptRequest.initialization_vector_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set RawEncryptRequest.initialization_vector_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
+        },
+        "verifiedPlaintextCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether RawEncryptRequest.plaintext_crc32c was received by KeyManagementService and used for the integrity verification of the plaintext. A false value of this field indicates either that RawEncryptRequest.plaintext_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set RawEncryptRequest.plaintext_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
         }
       },
       "type": "object"
