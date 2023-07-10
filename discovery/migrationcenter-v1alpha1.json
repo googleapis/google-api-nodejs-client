@@ -2102,7 +2102,7 @@
       }
     }
   },
-  "revision": "20230613",
+  "revision": "20230630",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2639,6 +2639,41 @@
         "series": {
           "description": "Compute Engine machine series.",
           "type": "string"
+        },
+        "storage": {
+          "description": "Compute Engine storage. Never empty.",
+          "items": {
+            "$ref": "ComputeStorageDescriptor"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ComputeStorageDescriptor": {
+      "description": "Compute Engine storage option descriptor.",
+      "id": "ComputeStorageDescriptor",
+      "properties": {
+        "sizeGb": {
+          "description": "Disk size in GiB.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "description": "Disk type backing the storage.",
+          "enum": [
+            "PERSISTENT_DISK_TYPE_UNSPECIFIED",
+            "PERSISTENT_DISK_TYPE_STANDARD",
+            "PERSISTENT_DISK_TYPE_BALANCED",
+            "PERSISTENT_DISK_TYPE_SSD"
+          ],
+          "enumDescriptions": [
+            "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+            "Standard HDD Persistent Disk.",
+            "Balanced Persistent Disk.",
+            "SSD Persistent Disk."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3003,6 +3038,7 @@
           "type": "integer"
         },
         "jobErrors": {
+          "deprecated": true,
           "description": "List of job-level errors. Deprecated, use the job errors under execution_errors instead.",
           "items": {
             "$ref": "ImportError"
@@ -3159,6 +3195,15 @@
             "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
             "IMPORT_JOB_FORMAT_MANUAL_CSV"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Default value.",
@@ -3413,6 +3458,15 @@
             "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
             "IMPORT_JOB_FORMAT_MANUAL_CSV"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Default value.",
             "Configuration management DB format.",
@@ -3509,6 +3563,7 @@
         },
         "gcsPayload": {
           "$ref": "GCSPayloadInfo",
+          "deprecated": true,
           "description": "The payload is in Google Cloud Storage."
         },
         "inlinePayload": {
@@ -3578,6 +3633,7 @@
           "type": "array"
         },
         "rowNumber": {
+          "deprecated": true,
           "description": "The row number where the error was detected.",
           "format": "int32",
           "type": "integer"
@@ -3607,6 +3663,15 @@
             "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
             "IMPORT_JOB_FORMAT_MANUAL_CSV"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Default value.",
@@ -4646,6 +4711,7 @@
       "properties": {
         "assetAge": {
           "$ref": "ReportSummaryChartData",
+          "deprecated": true,
           "description": "Count of assets grouped by age."
         },
         "coreCountHistogram": {
@@ -4658,6 +4724,7 @@
         },
         "memoryUtilization": {
           "$ref": "ReportSummaryChartData",
+          "deprecated": true,
           "description": "Total memory split into Used/Free buckets."
         },
         "memoryUtilizationChart": {
@@ -4674,6 +4741,7 @@
         },
         "storageUtilization": {
           "$ref": "ReportSummaryChartData",
+          "deprecated": true,
           "description": "Total storage split into Used/Free buckets."
         },
         "storageUtilizationChart": {
@@ -4809,10 +4877,12 @@
           "description": "Total monthly cost for this preference set."
         },
         "preferredRegion": {
+          "deprecated": true,
           "description": "Target region for this Preference Set",
           "type": "string"
         },
         "pricingTrack": {
+          "deprecated": true,
           "description": "Text describing the pricing track specified for this Preference Set",
           "type": "string"
         },
@@ -4821,6 +4891,7 @@
           "description": "A set of findings that applies to Stole-Tenant machines in the input."
         },
         "topPriority": {
+          "deprecated": true,
           "description": "Text describing the business priority specified for this Preference Set",
           "type": "string"
         },

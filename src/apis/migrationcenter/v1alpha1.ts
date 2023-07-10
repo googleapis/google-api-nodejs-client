@@ -495,6 +495,23 @@ export namespace migrationcenter_v1alpha1 {
      * Compute Engine machine series.
      */
     series?: string | null;
+    /**
+     * Compute Engine storage. Never empty.
+     */
+    storage?: Schema$ComputeStorageDescriptor[];
+  }
+  /**
+   * Compute Engine storage option descriptor.
+   */
+  export interface Schema$ComputeStorageDescriptor {
+    /**
+     * Disk size in GiB.
+     */
+    sizeGb?: number | null;
+    /**
+     * Disk type backing the storage.
+     */
+    type?: string | null;
   }
   /**
    * CPU usage sample.
