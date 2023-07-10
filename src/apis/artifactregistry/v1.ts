@@ -163,6 +163,19 @@ export namespace artifactregistry_v1 {
     failedVersions?: string[] | null;
   }
   /**
+   * The request to delete multiple versions across a repository.
+   */
+  export interface Schema$BatchDeleteVersionsRequest {
+    /**
+     * Required. The names of the versions to delete. A maximum of 10000 versions can be deleted in a batch.
+     */
+    names?: string[] | null;
+    /**
+     * If true, the request is performed without deleting data, following AIP-163.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -178,6 +191,73 @@ export namespace artifactregistry_v1 {
      * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string | null;
+  }
+  /**
+   * Artifact policy configuration for repository cleanup policies.
+   */
+  export interface Schema$CleanupPolicy {
+    /**
+     * Policy action.
+     */
+    action?: string | null;
+    /**
+     * Policy condition for matching versions.
+     */
+    condition?: Schema$CleanupPolicyCondition;
+    /**
+     * The user-provided ID of the cleanup policy.
+     */
+    id?: string | null;
+    /**
+     * Policy condition for retaining a minimum number of versions. May only be specified with a Keep action.
+     */
+    mostRecentVersions?: Schema$CleanupPolicyMostRecentVersions;
+  }
+  /**
+   * CleanupPolicyCondition is a set of conditions attached to a CleanupPolicy. If multiple entries are set, all must be satisfied for the condition to be satisfied.
+   */
+  export interface Schema$CleanupPolicyCondition {
+    /**
+     * Match versions newer than a duration.
+     */
+    newerThan?: string | null;
+    /**
+     * Match versions older than a duration.
+     */
+    olderThan?: string | null;
+    /**
+     * Match versions by package prefix. Applied on any prefix match.
+     */
+    packageNamePrefixes?: string[] | null;
+    /**
+     * Match versions by tag prefix. Applied on any prefix match.
+     */
+    tagPrefixes?: string[] | null;
+    /**
+     * Match versions by tag status.
+     */
+    tagState?: string | null;
+    /**
+     * DEPRECATED: Use older_than.
+     */
+    versionAge?: string | null;
+    /**
+     * Match versions by version name prefix. Applied on any prefix match.
+     */
+    versionNamePrefixes?: string[] | null;
+  }
+  /**
+   * CleanupPolicyMostRecentVersions is an alternate condition of a CleanupPolicy for retaining a minimum number of versions.
+   */
+  export interface Schema$CleanupPolicyMostRecentVersions {
+    /**
+     * Minimum number of versions to keep.
+     */
+    keepCount?: number | null;
+    /**
+     * List of package name prefixes that will apply this rule.
+     */
+    packageNamePrefixes?: string[] | null;
   }
   /**
    * DockerImage represents a docker artifact. The following fields are returned as untyped metadata in the Version resource, using camelcase keys (i.e. metadata.imageSizeBytes): * imageSizeBytes * mediaType * buildTime
@@ -258,6 +338,27 @@ export namespace artifactregistry_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * GoModule represents a Go module.
+   */
+  export interface Schema$GoModule {
+    /**
+     * Output only. The time when the Go module is created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of a Go module.
+     */
+    name?: string | null;
+    /**
+     * Output only. The time when the Go module is updated.
+     */
+    updateTime?: string | null;
+    /**
+     * The version of the Go module. Must be a valid canonical version as defined in https://go.dev/ref/mod#glos-canonical-version.
+     */
+    version?: string | null;
   }
   /**
    * A detailed representation of a GooGet artifact.
@@ -887,6 +988,14 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$Repository {
     /**
+     * Optional. Cleanup policies for this repository. Cleanup policies indicate when certain package versions can be automatically deleted. Map keys are policy IDs supplied by users during policy creation. They must unique within a repository and be under 128 characters in length.
+     */
+    cleanupPolicies?: {[key: string]: Schema$CleanupPolicy} | null;
+    /**
+     * Optional. If true, the cleanup pipeline is prevented from deleting versions in this repository.
+     */
+    cleanupPolicyDryRun?: boolean | null;
+    /**
      * Output only. The time when the repository was created.
      */
     createTime?: string | null;
@@ -1026,6 +1135,23 @@ export namespace artifactregistry_v1 {
      */
     aptArtifacts?: Schema$AptArtifact[];
   }
+  /**
+   * The response to upload a Go module.
+   */
+  export interface Schema$UploadGoModuleMediaResponse {
+    /**
+     * Operation to be returned to the user.
+     */
+    operation?: Schema$Operation;
+  }
+  /**
+   * The operation metadata for uploading go modules.
+   */
+  export interface Schema$UploadGoModuleMetadata {}
+  /**
+   * The request to upload a Go module.
+   */
+  export interface Schema$UploadGoModuleRequest {}
   /**
    * The response to upload an artifact.
    */
@@ -2269,6 +2395,7 @@ export namespace artifactregistry_v1 {
     aptArtifacts: Resource$Projects$Locations$Repositories$Aptartifacts;
     dockerImages: Resource$Projects$Locations$Repositories$Dockerimages;
     files: Resource$Projects$Locations$Repositories$Files;
+    goModules: Resource$Projects$Locations$Repositories$Gomodules;
     googetArtifacts: Resource$Projects$Locations$Repositories$Googetartifacts;
     kfpArtifacts: Resource$Projects$Locations$Repositories$Kfpartifacts;
     mavenArtifacts: Resource$Projects$Locations$Repositories$Mavenartifacts;
@@ -2283,6 +2410,9 @@ export namespace artifactregistry_v1 {
       this.dockerImages =
         new Resource$Projects$Locations$Repositories$Dockerimages(this.context);
       this.files = new Resource$Projects$Locations$Repositories$Files(
+        this.context
+      );
+      this.goModules = new Resource$Projects$Locations$Repositories$Gomodules(
         this.context
       );
       this.googetArtifacts =
@@ -2344,6 +2474,8 @@ export namespace artifactregistry_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cleanupPolicies": {},
+     *       //   "cleanupPolicyDryRun": false,
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "dockerConfig": {},
@@ -2633,6 +2765,8 @@ export namespace artifactregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "cleanupPolicies": {},
+     *   //   "cleanupPolicyDryRun": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "dockerConfig": {},
@@ -3058,6 +3192,8 @@ export namespace artifactregistry_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cleanupPolicies": {},
+     *       //   "cleanupPolicyDryRun": false,
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "dockerConfig": {},
@@ -3079,6 +3215,8 @@ export namespace artifactregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "cleanupPolicies": {},
+     *   //   "cleanupPolicyDryRun": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "dockerConfig": {},
@@ -4576,6 +4714,195 @@ export namespace artifactregistry_v1 {
      * Required. The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Gomodules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Directly uploads a Go module. The returned Operation will complete once the Go module is uploaded. Package, Version, and File resources are created based on the uploaded Go module.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.goModules.upload({
+     *       // The resource name of the repository where the Go module will be uploaded.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *       media: {
+     *         mimeType: 'placeholder-value',
+     *         body: 'placeholder-value',
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadGoModuleMediaResponse>;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadGoModuleMediaResponse>,
+      callback: BodyResponseCallback<Schema$UploadGoModuleMediaResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
+      callback: BodyResponseCallback<Schema$UploadGoModuleMediaResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$UploadGoModuleMediaResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Gomodules$Upload
+        | BodyResponseCallback<Schema$UploadGoModuleMediaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadGoModuleMediaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadGoModuleMediaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadGoModuleMediaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Gomodules$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Gomodules$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/goModules:create').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (rootUrl + '/upload/v1/{+parent}/goModules:create').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadGoModuleMediaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadGoModuleMediaResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Gomodules$Upload
+    extends StandardParameters {
+    /**
+     * The resource name of the repository where the Go module will be uploaded.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadGoModuleRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 
   export class Resource$Projects$Locations$Repositories$Googetartifacts {
@@ -6978,6 +7305,154 @@ export namespace artifactregistry_v1 {
     }
 
     /**
+     * Deletes multiple versions across a repository. The returned operation will complete once the versions have been deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.versions.batchDelete(
+     *       {
+     *         // The name of the repository holding all requested versions.
+     *         parent:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "names": [],
+     *           //   "validateOnly": false
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
+      params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchDelete(callback: BodyResponseCallback<Schema$Operation>): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/versions:batchDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Deletes a version and all of its content. The returned operation will complete once the version has been deleted.
      * @example
      * ```js
@@ -7408,6 +7883,18 @@ export namespace artifactregistry_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete
+    extends StandardParameters {
+    /**
+     * The name of the repository holding all requested versions.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchDeleteVersionsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete
     extends StandardParameters {
     /**
