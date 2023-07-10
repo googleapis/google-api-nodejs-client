@@ -933,6 +933,10 @@ export namespace cloudidentity_v1beta1 {
      */
     encryptionState?: string | null;
     /**
+     * Host name of the device.
+     */
+    hostname?: string | null;
+    /**
      * Output only. IMEI number of device if GSM device; empty otherwise.
      */
     imei?: string | null;

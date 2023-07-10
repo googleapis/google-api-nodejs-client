@@ -2015,7 +2015,7 @@
       }
     }
   },
-  "revision": "20230619",
+  "revision": "20230703",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -3318,6 +3318,10 @@
             "Device is not encrypted."
           ],
           "readOnly": true,
+          "type": "string"
+        },
+        "hostname": {
+          "description": "Host name of the device.",
           "type": "string"
         },
         "imei": {
