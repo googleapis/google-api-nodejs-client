@@ -134,6 +134,10 @@ export namespace transcoder_v1 {
     startTimeOffset?: string | null;
   }
   /**
+   * Configuration for AES-128 encryption.
+   */
+  export interface Schema$Aes128Encryption {}
+  /**
    * Animation types.
    */
   export interface Schema$Animation {
@@ -294,6 +298,10 @@ export namespace transcoder_v1 {
     parity?: string | null;
   }
   /**
+   * Clearkey configuration.
+   */
+  export interface Schema$Clearkey {}
+  /**
    * Color preprocessing configuration. **Note:** This configuration is not supported.
    */
   export interface Schema$Color {
@@ -380,6 +388,27 @@ export namespace transcoder_v1 {
     tune?: string | null;
   }
   /**
+   * Defines configuration for DRM systems in use.
+   */
+  export interface Schema$DrmSystems {
+    /**
+     * Clearkey configuration.
+     */
+    clearkey?: Schema$Clearkey;
+    /**
+     * Fairplay configuration.
+     */
+    fairplay?: Schema$Fairplay;
+    /**
+     * Playready configuration.
+     */
+    playready?: Schema$Playready;
+    /**
+     * Widevine configuration.
+     */
+    widevine?: Schema$Widevine;
+  }
+  /**
    * Edit atom.
    */
   export interface Schema$EditAtom {
@@ -425,6 +454,39 @@ export namespace transcoder_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Encryption settings.
+   */
+  export interface Schema$Encryption {
+    /**
+     * Configuration for AES-128 encryption.
+     */
+    aes128?: Schema$Aes128Encryption;
+    /**
+     * Required. DRM system(s) to use; at least one must be specified. If a DRM system is omitted, it is considered disabled.
+     */
+    drmSystems?: Schema$DrmSystems;
+    /**
+     * Required. Identifier for this set of encryption options.
+     */
+    id?: string | null;
+    /**
+     * Configuration for MPEG Common Encryption (MPEG-CENC).
+     */
+    mpegCenc?: Schema$MpegCommonEncryption;
+    /**
+     * Configuration for SAMPLE-AES encryption.
+     */
+    sampleAes?: Schema$SampleAesEncryption;
+    /**
+     * Keys are stored in Google Secret Manager.
+     */
+    secretManagerKeySource?: Schema$SecretManagerSource;
+  }
+  /**
+   * Fairplay configuration.
+   */
+  export interface Schema$Fairplay {}
   /**
    * H264 codec settings.
    */
@@ -630,6 +692,10 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Job {
     /**
+     * The processing priority of a batch job. This field can only be set for batch mode jobs, and the default value is 0. This value cannot be negative. Higher values correspond to higher priorities for the job.
+     */
+    batchModePriority?: number | null;
+    /**
      * The configuration for this job.
      */
     config?: Schema$JobConfig;
@@ -661,6 +727,10 @@ export namespace transcoder_v1 {
      * The resource name of the job. Format: `projects/{project_number\}/locations/{location\}/jobs/{job\}`
      */
     name?: string | null;
+    /**
+     * Optional. The optimization strategy of the job. The default is `AUTODETECT`.
+     */
+    optimization?: string | null;
     /**
      * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or `JobTemplate.config.output.uri` when using template. URI for the output file(s). For example, `gs://my-bucket/outputs/`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
@@ -698,6 +768,10 @@ export namespace transcoder_v1 {
      * List of elementary streams.
      */
     elementaryStreams?: Schema$ElementaryStream[];
+    /**
+     * List of encryption configurations for the content. Each configuration has an ID. Specify this ID in the MuxStream.encryption_id field to indicate the configuration to use for that `MuxStream` output.
+     */
+    encryptions?: Schema$Encryption[];
     /**
      * List of input assets stored in Cloud Storage.
      */
@@ -800,6 +874,15 @@ export namespace transcoder_v1 {
     type?: string | null;
   }
   /**
+   * Configuration for MPEG Common Encryption (MPEG-CENC).
+   */
+  export interface Schema$MpegCommonEncryption {
+    /**
+     * Required. Specify the encryption scheme. Supported encryption schemes: - `cenc` - `cbcs`
+     */
+    scheme?: string | null;
+  }
+  /**
    * Multiplexing settings for output stream.
    */
   export interface Schema$MuxStream {
@@ -811,6 +894,10 @@ export namespace transcoder_v1 {
      * List of `ElementaryStream.key`s multiplexed in this stream.
      */
     elementaryStreams?: string[] | null;
+    /**
+     * Identifier of the encryption configuration to use. If omitted, output will be unencrypted.
+     */
+    encryptionId?: string | null;
     /**
      * The name of the generated file. The default is `MuxStream.key` with the extension suffix corresponding to the `MuxStream.container`. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.
      */
@@ -881,6 +968,10 @@ export namespace transcoder_v1 {
     topPixels?: number | null;
   }
   /**
+   * Playready configuration.
+   */
+  export interface Schema$Playready {}
+  /**
    * Preprocessing configurations.
    */
   export interface Schema$PreprocessingConfig {
@@ -921,6 +1012,19 @@ export namespace transcoder_v1 {
      * The name of the Pub/Sub topic to publish job completion notification to. For example: `projects/{project\}/topics/{topic\}`.
      */
     topic?: string | null;
+  }
+  /**
+   * Configuration for SAMPLE-AES encryption.
+   */
+  export interface Schema$SampleAesEncryption {}
+  /**
+   * Configuration for secrets stored in Google Secret Manager.
+   */
+  export interface Schema$SecretManagerSource {
+    /**
+     * Required. The name of the Secret Version containing the encryption key in the following format: `projects/{project\}/secrets/{secret_id\}/versions/{version_number\}` Note that only numbered versions are supported. Aliases like "latest" are not supported.
+     */
+    secretVersion?: string | null;
   }
   /**
    * Segment settings for `ts`, `fmp4` and `vtt`.
@@ -1102,6 +1206,10 @@ export namespace transcoder_v1 {
     widthPixels?: number | null;
   }
   /**
+   * Widevine configuration.
+   */
+  export interface Schema$Widevine {}
+  /**
    * Yet Another Deinterlacing Filter Configuration.
    */
   export interface Schema$YadifConfig {
@@ -1185,6 +1293,7 @@ export namespace transcoder_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "batchModePriority": 0,
      *       //   "config": {},
      *       //   "createTime": "my_createTime",
      *       //   "endTime": "my_endTime",
@@ -1193,6 +1302,7 @@ export namespace transcoder_v1 {
      *       //   "labels": {},
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "optimization": "my_optimization",
      *       //   "outputUri": "my_outputUri",
      *       //   "startTime": "my_startTime",
      *       //   "state": "my_state",
@@ -1205,6 +1315,7 @@ export namespace transcoder_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "batchModePriority": 0,
      *   //   "config": {},
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
@@ -1213,6 +1324,7 @@ export namespace transcoder_v1 {
      *   //   "labels": {},
      *   //   "mode": "my_mode",
      *   //   "name": "my_name",
+     *   //   "optimization": "my_optimization",
      *   //   "outputUri": "my_outputUri",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
@@ -1469,6 +1581,7 @@ export namespace transcoder_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "batchModePriority": 0,
      *   //   "config": {},
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
@@ -1477,6 +1590,7 @@ export namespace transcoder_v1 {
      *   //   "labels": {},
      *   //   "mode": "my_mode",
      *   //   "name": "my_name",
+     *   //   "optimization": "my_optimization",
      *   //   "outputUri": "my_outputUri",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
