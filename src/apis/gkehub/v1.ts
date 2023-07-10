@@ -263,7 +263,7 @@ export namespace gkehub_v1 {
      */
     allowVerticalScale?: boolean | null;
     /**
-     * Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false and Managed Config Sync is disabled, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. Setting this field to false while enabling Managed Config Sync is invalid. If omitted, ConfigSync resources will be managed if: * the git or oci field is present; or * Managed Config Sync is enabled (i.e., managed.enabled is true).
+     * Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of the git or oci field.
      */
     enabled?: boolean | null;
     /**
@@ -271,11 +271,7 @@ export namespace gkehub_v1 {
      */
     git?: Schema$ConfigManagementGitConfig;
     /**
-     * Configuration for Managed Config Sync.
-     */
-    managed?: Schema$ConfigManagementManaged;
-    /**
-     * The Email of the GCP Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be binded to the GSA. This field is required when Managed Config Sync is enabled.
+     * The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be binded to the GSA. This field is required when automatic Feature management is enabled.
      */
     metricsGcpServiceAccountEmail?: string | null;
     /**
@@ -290,6 +286,10 @@ export namespace gkehub_v1 {
      * Specifies whether the Config Sync Repo is in "hierarchical" or "unstructured" mode.
      */
     sourceFormat?: string | null;
+    /**
+     * Set to true to stop syncing configs for a single cluster when automatic Feature management is enabled. Default to false. The field will be ignored when automatic Feature management is disabled.
+     */
+    stopSyncing?: boolean | null;
   }
   /**
    * The state of ConfigSync's deployment on a cluster
@@ -430,7 +430,7 @@ export namespace gkehub_v1 {
    */
   export interface Schema$ConfigManagementGitConfig {
     /**
-     * The GCP Service Account Email used for auth when secret_type is gcpServiceAccount.
+     * The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.
      */
     gcpServiceAccountEmail?: string | null;
     /**
@@ -545,19 +545,6 @@ export namespace gkehub_v1 {
     errorMessage?: string | null;
   }
   /**
-   * Configuration for Managed Config Sync.
-   */
-  export interface Schema$ConfigManagementManaged {
-    /**
-     * Set to true to enable Managed Config Sync. Defaults to false which disables Managed Config Sync. Setting this field to true when configSync.enabled is false is invalid.
-     */
-    enabled?: boolean | null;
-    /**
-     * Set to true to stop syncing configs for a single cluster. Default to false. If set to true, Managed Config Sync will not upgrade Config Sync.
-     */
-    stopSyncing?: boolean | null;
-  }
-  /**
    * **Anthos Config Management**: Configuration for a single cluster. Intended to parallel the ConfigManagement CR.
    */
   export interface Schema$ConfigManagementMembershipSpec {
@@ -573,6 +560,10 @@ export namespace gkehub_v1 {
      * Hierarchy Controller configuration for the cluster.
      */
     hierarchyController?: Schema$ConfigManagementHierarchyControllerConfig;
+    /**
+     * Enables automatic Feature management.
+     */
+    management?: string | null;
     /**
      * Policy Controller configuration for the cluster.
      */
@@ -616,7 +607,7 @@ export namespace gkehub_v1 {
    */
   export interface Schema$ConfigManagementOciConfig {
     /**
-     * The GCP Service Account Email used for auth when secret_type is gcpServiceAccount.
+     * The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.
      */
     gcpServiceAccountEmail?: string | null;
     /**
@@ -965,13 +956,88 @@ export namespace gkehub_v1 {
     code?: string | null;
   }
   /**
+   * All error details of the fleet observability feature.
+   */
+  export interface Schema$FleetObservabilityFeatureError {
+    /**
+     * The code of the error.
+     */
+    code?: string | null;
+    /**
+     * A human-readable description of the current status.
+     */
+    description?: string | null;
+  }
+  /**
    * **Fleet Observability**: The Hub-wide input for the FleetObservability feature.
    */
-  export interface Schema$FleetObservabilityFeatureSpec {}
+  export interface Schema$FleetObservabilityFeatureSpec {
+    /**
+     * Specified if fleet logging feature is enabled for the entire fleet. If UNSPECIFIED, fleet logging feature is disabled for the entire fleet.
+     */
+    loggingConfig?: Schema$FleetObservabilityLoggingConfig;
+  }
   /**
    * **FleetObservability**: Hub-wide Feature for FleetObservability feature. state.
    */
-  export interface Schema$FleetObservabilityFeatureState {}
+  export interface Schema$FleetObservabilityFeatureState {
+    /**
+     * The feature state of default logging.
+     */
+    logging?: Schema$FleetObservabilityFleetObservabilityLoggingState;
+    /**
+     * The feature state of fleet monitoring.
+     */
+    monitoring?: Schema$FleetObservabilityFleetObservabilityMonitoringState;
+  }
+  /**
+   * Base state for fleet observability feature.
+   */
+  export interface Schema$FleetObservabilityFleetObservabilityBaseFeatureState {
+    /**
+     * The high-level, machine-readable status of this Feature.
+     */
+    code?: string | null;
+    /**
+     * Errors after reconciling the monitoring and logging feature if the code is not OK.
+     */
+    errors?: Schema$FleetObservabilityFeatureError[];
+  }
+  /**
+   * Feature state for logging feature.
+   */
+  export interface Schema$FleetObservabilityFleetObservabilityLoggingState {
+    /**
+     * The base feature state of fleet default log.
+     */
+    defaultLog?: Schema$FleetObservabilityFleetObservabilityBaseFeatureState;
+    /**
+     * The base feature state of fleet scope log.
+     */
+    scopeLog?: Schema$FleetObservabilityFleetObservabilityBaseFeatureState;
+  }
+  /**
+   * Feature state for monitoring feature.
+   */
+  export interface Schema$FleetObservabilityFleetObservabilityMonitoringState {
+    /**
+     * The base feature state of fleet monitoring feature.
+     */
+    state?: Schema$FleetObservabilityFleetObservabilityBaseFeatureState;
+  }
+  /**
+   * LoggingConfig defines the configuration for different types of logs.
+   */
+  export interface Schema$FleetObservabilityLoggingConfig {
+    /**
+     * Specified if applying the default routing config to logs not specified in other configs.
+     */
+    defaultConfig?: Schema$FleetObservabilityRoutingConfig;
+    /**
+     * Specified if applying the routing config to all logs for all fleet scopes.
+     */
+    fleetScopeLogsConfig?: Schema$FleetObservabilityRoutingConfig;
+  }
   /**
    * **FleetObservability**: The membership-specific input for FleetObservability feature.
    */
@@ -980,6 +1046,15 @@ export namespace gkehub_v1 {
    * **FleetObservability**: Membership-specific Feature state for fleetobservability.
    */
   export interface Schema$FleetObservabilityMembershipState {}
+  /**
+   * RoutingConfig configures the behaviour of fleet logging feature.
+   */
+  export interface Schema$FleetObservabilityRoutingConfig {
+    /**
+     * mode configures the logs routing mode.
+     */
+    mode?: string | null;
+  }
   /**
    * GenerateConnectManifestResponse contains manifest information for installing/upgrading a Connect agent.
    */
@@ -1488,10 +1563,6 @@ export namespace gkehub_v1 {
      */
     configmanagement?: Schema$ConfigManagementMembershipSpec;
     /**
-     * True if value of `feature_spec` was inherited from a fleet-level default.
-     */
-    fleetInherited?: boolean | null;
-    /**
      * Fleet observability membership spec
      */
     fleetobservability?: Schema$FleetObservabilityMembershipSpec;
@@ -1503,6 +1574,10 @@ export namespace gkehub_v1 {
      * Anthos Service Mesh-specific spec
      */
     mesh?: Schema$ServiceMeshMembershipSpec;
+    /**
+     * Whether this per-Membership spec was inherited from a fleet-level default. This field can be updated by users by either overriding a Membership config (updated to USER implicitly) or setting to FLEET explicitly.
+     */
+    origin?: Schema$Origin;
   }
   /**
    * MembershipFeatureState contains Feature status information for a single Membership.
@@ -1667,6 +1742,15 @@ export namespace gkehub_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Origin defines where this MembershipFeatureSpec originated from.
+   */
+  export interface Schema$Origin {
+    /**
+     * Type specifies which type of origin is set.
+     */
+    type?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
