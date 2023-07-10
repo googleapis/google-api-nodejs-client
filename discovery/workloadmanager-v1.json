@@ -12,7 +12,7 @@
   "baseUrl": "https://workloadmanager.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Workload Manager",
-  "description": "",
+  "description": "Workload Manager is a service that provides tooling for enterprise workloads to automate the deployment and validation of your workloads against best practices and recommendations.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/workload-manager/docs",
   "fullyEncodeReservedExpansion": true,
@@ -707,7 +707,7 @@
       }
     }
   },
-  "revision": "20230605",
+  "revision": "20230630",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1243,6 +1243,7 @@
       "id": "ResourceStatus",
       "properties": {
         "rulesNewerVersions": {
+          "deprecated": true,
           "description": "Historical: Used before 2023-05-22 the new version of rule id if exists",
           "items": {
             "type": "string"
@@ -1428,11 +1429,39 @@
           "type": "array"
         },
         "resourceKind": {
-          "description": "ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.",
+          "description": "Required. ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.",
+          "enum": [
+            "RESOURCE_KIND_UNSPECIFIED",
+            "RESOURCE_KIND_INSTANCE",
+            "RESOURCE_KIND_DISK",
+            "RESOURCE_KIND_ADDRESS",
+            "RESOURCE_KIND_FILESTORE",
+            "RESOURCE_KIND_HEALTH_CHECK",
+            "RESOURCE_KIND_FORWARDING_RULE",
+            "RESOURCE_KIND_BACKEND_SERVICE",
+            "RESOURCE_KIND_SUBNETWORK",
+            "RESOURCE_KIND_NETWORK",
+            "RESOURCE_KIND_PUBLIC_ADDRESS",
+            "RESOURCE_KIND_INSTANCE_GROUP"
+          ],
+          "enumDescriptions": [
+            "Unspecified resource kind.",
+            "This is a compute instance.",
+            "This is a compute disk.",
+            "This is a compute address.",
+            "This is a filestore instance.",
+            "This is a compute health check.",
+            "This is a compute forwarding rule.",
+            "This is a compute backend service.",
+            "This is a compute subnetwork.",
+            "This is a compute network.",
+            "This is a public accessible IP Address.",
+            "This is a compute instance group."
+          ],
           "type": "string"
         },
         "resourceType": {
-          "description": "The type of this resource.",
+          "description": "Required. The type of this resource.",
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
             "COMPUTE",
@@ -1526,6 +1555,14 @@
           "description": "The agent version collected this data point",
           "type": "string"
         },
+        "instance": {
+          "description": "Required. The instance_name of the instance that the Insight data comes from. According to https://linter.aip.dev/122/name-suffix: field names should not use the _name suffix unless the field would be ambiguous without it.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Required. The project_id of the cloud project that the Insight data comes from.",
+          "type": "string"
+        },
         "validationDetails": {
           "description": "A list of SqlServer validation metrics data.",
           "items": {
@@ -1536,16 +1573,30 @@
       },
       "type": "object"
     },
-    "SqlserverValidationValidationDetail": {
-      "description": "Message describing the Sqlserver validation metrics.",
-      "id": "SqlserverValidationValidationDetail",
+    "SqlserverValidationDetails": {
+      "description": "Message containing collected data names and values.",
+      "id": "SqlserverValidationDetails",
       "properties": {
         "fields": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": " pairs of metrics data: column name & column value.",
+          "description": "Required. Collected data is in format.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "SqlserverValidationValidationDetail": {
+      "description": "Message describing the Sqlserver validation metrics.",
+      "id": "SqlserverValidationValidationDetail",
+      "properties": {
+        "details": {
+          "description": "Required. Details wraps map that represents collected data names and values.",
+          "items": {
+            "$ref": "SqlserverValidationDetails"
+          },
+          "type": "array"
         },
         "type": {
           "description": "The Sqlserver system that the validation data is from.",
