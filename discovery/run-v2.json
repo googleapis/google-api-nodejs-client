@@ -1087,7 +1087,7 @@
       }
     }
   },
-  "revision": "20230611",
+  "revision": "20230702",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2405,7 +2405,7 @@
           "type": "string"
         },
         "customAudiences": {
-          "description": "Custom audiences that can be used in the audience field of ID token for authenticated requests.",
+          "description": "One or more custom audiences that you want this service to support. Specify each custom audience as the full URL in a string. The custom audiences are encoded in the token and used to authenticate requests. For more information, see https://cloud.google.com/run/docs/configuring/custom-audiences.",
           "items": {
             "type": "string"
           },
@@ -2977,7 +2977,7 @@
           "type": "string"
         },
         "egress": {
-          "description": "Traffic VPC egress settings.",
+          "description": "Traffic VPC egress settings. If not provided, it defaults to PRIVATE_RANGES_ONLY.",
           "enum": [
             "VPC_EGRESS_UNSPECIFIED",
             "ALL_TRAFFIC",

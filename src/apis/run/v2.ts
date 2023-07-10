@@ -969,7 +969,7 @@ export namespace run_v2 {
      */
     creator?: string | null;
     /**
-     * Custom audiences that can be used in the audience field of ID token for authenticated requests.
+     * One or more custom audiences that you want this service to support. Specify each custom audience as the full URL in a string. The custom audiences are encoded in the token and used to authenticate requests. For more information, see https://cloud.google.com/run/docs/configuring/custom-audiences.
      */
     customAudiences?: string[] | null;
     /**
@@ -1351,7 +1351,7 @@ export namespace run_v2 {
      */
     connector?: string | null;
     /**
-     * Traffic VPC egress settings.
+     * Traffic VPC egress settings. If not provided, it defaults to PRIVATE_RANGES_ONLY.
      */
     egress?: string | null;
   }
