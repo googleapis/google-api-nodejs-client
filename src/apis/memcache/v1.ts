@@ -528,6 +528,10 @@ export namespace memcache_v1 {
      */
     parameters?: Schema$MemcacheParameters;
     /**
+     * Optional. Contains the id of allocated IP address ranges associated with the private service access connection for example, "test-default" associated with IP range 10.0.0.0/29.
+     */
+    reservedIpRangeId?: string[] | null;
+    /**
      * Output only. The state of this Memcached instance.
      */
     state?: string | null;
@@ -1443,6 +1447,7 @@ export namespace memcache_v1 {
      *       //   "nodeConfig": {},
      *       //   "nodeCount": 0,
      *       //   "parameters": {},
+     *       //   "reservedIpRangeId": [],
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime",
      *       //   "zones": []
@@ -1731,6 +1736,7 @@ export namespace memcache_v1 {
      *   //   "nodeConfig": {},
      *   //   "nodeCount": 0,
      *   //   "parameters": {},
+     *   //   "reservedIpRangeId": [],
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime",
      *   //   "zones": []
@@ -2020,6 +2026,7 @@ export namespace memcache_v1 {
      *       //   "nodeConfig": {},
      *       //   "nodeCount": 0,
      *       //   "parameters": {},
+     *       //   "reservedIpRangeId": [],
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime",
      *       //   "zones": []
