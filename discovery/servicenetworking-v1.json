@@ -865,7 +865,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230705",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -1247,6 +1247,7 @@
           "type": "string"
         },
         "minDeadline": {
+          "deprecated": true,
           "description": "Deprecated, do not use.",
           "format": "double",
           "type": "number"
@@ -1438,6 +1439,7 @@
           "type": "array"
         },
         "referenceDocsUri": {
+          "deprecated": true,
           "description": "Link to automatically generated reference documentation. Example: https://cloud.google.com/nodejs/docs/reference/asset/latest",
           "type": "string"
         }
@@ -1899,6 +1901,7 @@
       "id": "Endpoint",
       "properties": {
         "aliases": {
+          "deprecated": true,
           "description": "Unimplemented. Dot not use. DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases. Additional names that this endpoint will be hosted on.",
           "items": {
             "type": "string"
@@ -2636,6 +2639,7 @@
           "type": "string"
         },
         "launchStage": {
+          "deprecated": true,
           "description": "Deprecated. Must use the MetricDescriptor.launch_stage instead.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
@@ -2939,7 +2943,7 @@
           "type": "string"
         },
         "role": {
-          "description": "Required. Role to apply. Only allowlisted roles can be used at the specified granularity. The role must be one of the following: - 'roles/container.hostServiceAgentUser' applied on the shared VPC host project - 'roles/compute.securityAdmin' applied on the shared VPC host project",
+          "description": "Required. Role to apply. Only allowlisted roles can be used at the specified granularity. The role must be one of the following: - 'roles/container.hostServiceAgentUser' applied on the shared VPC host project - 'roles/compute.securityAdmin' applied on the shared VPC host project - 'roles/compute.networkAdmin' applied on the shared VPC host project - 'roles/compute.xpnAdmin' applied on the shared VPC host project - 'roles/dns.admin' applied on the shared VPC host project",
           "type": "string"
         }
       },
