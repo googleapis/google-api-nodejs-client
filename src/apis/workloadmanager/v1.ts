@@ -102,7 +102,7 @@ export namespace workloadmanager_v1 {
   /**
    * Workload Manager API
    *
-   *
+   * Workload Manager is a service that provides tooling for enterprise workloads to automate the deployment and validation of your workloads against best practices and recommendations.
    *
    * @example
    * ```js
@@ -656,11 +656,11 @@ export namespace workloadmanager_v1 {
      */
     relatedResources?: string[] | null;
     /**
-     * ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.
+     * Required. ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.
      */
     resourceKind?: string | null;
     /**
-     * The type of this resource.
+     * Required. The type of this resource.
      */
     resourceType?: string | null;
     /**
@@ -712,18 +712,35 @@ export namespace workloadmanager_v1 {
      */
     agentVersion?: string | null;
     /**
+     * Required. The instance_name of the instance that the Insight data comes from. According to https://linter.aip.dev/122/name-suffix: field names should not use the _name suffix unless the field would be ambiguous without it.
+     */
+    instance?: string | null;
+    /**
+     * Required. The project_id of the cloud project that the Insight data comes from.
+     */
+    projectId?: string | null;
+    /**
      * A list of SqlServer validation metrics data.
      */
     validationDetails?: Schema$SqlserverValidationValidationDetail[];
+  }
+  /**
+   * Message containing collected data names and values.
+   */
+  export interface Schema$SqlserverValidationDetails {
+    /**
+     * Required. Collected data is in format.
+     */
+    fields?: {[key: string]: string} | null;
   }
   /**
    * Message describing the Sqlserver validation metrics.
    */
   export interface Schema$SqlserverValidationValidationDetail {
     /**
-     *  pairs of metrics data: column name & column value.
+     * Required. Details wraps map that represents collected data names and values.
      */
-    fields?: {[key: string]: string} | null;
+    details?: Schema$SqlserverValidationDetails[];
     /**
      * The Sqlserver system that the validation data is from.
      */
