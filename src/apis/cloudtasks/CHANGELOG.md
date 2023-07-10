@@ -1,5 +1,24 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v7.0.0...cloudtasks-v8.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **cloudtasks:** update the API ([8d051f0](https://github.com/googleapis/google-api-nodejs-client/commit/8d051f0b14ad5aef30e9d4d2e82e23796f7dfb74))
+* **cloudtasks:** update the API ([083c4d1](https://github.com/googleapis/google-api-nodejs-client/commit/083c4d107e09e0de6c16c75a95d8a45832d26b23))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v6.0.0...cloudtasks-v7.0.0) (2023-07-10)
 
 

@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analytics-v6.0.0...analytics-v7.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **analytics:** update the API ([93221e0](https://github.com/googleapis/google-api-nodejs-client/commit/93221e0e0598a46bfa1a1d6ca9701108507f486d))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analytics-v5.0.0...analytics-v6.0.0) (2023-07-10)
 
 
