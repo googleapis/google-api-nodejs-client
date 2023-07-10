@@ -164,26 +164,52 @@ export namespace datamigration_v1 {
    */
   export interface Schema$ApplyConversionWorkspaceRequest {
     /**
-     * Fully qualified (Uri) name of the destination connection profile.
+     * Optional. Specifies whether the conversion workspace is to be committed automatically after the apply.
+     */
+    autoCommit?: boolean | null;
+    /**
+     * Optional. Fully qualified (Uri) name of the destination connection profile.
      */
     connectionProfile?: string | null;
+    /**
+     * Optional. Only validates the apply process, but doesn't change the destination database. Only works for PostgreSQL destination connection profile.
+     */
+    dryRun?: boolean | null;
     /**
      * Filter which entities to apply. Leaving this field empty will apply all of the entities. Supports Google AIP 160 based filtering.
      */
     filter?: string | null;
   }
   /**
+   * Apply a hash function on the value.
+   */
+  export interface Schema$ApplyHash {
+    /**
+     * Optional. Generate UUID from the data's byte array
+     */
+    uuidFromBytes?: Schema$Empty;
+  }
+  /**
    * Details regarding an Apply background job.
    */
   export interface Schema$ApplyJobDetails {
     /**
-     * The connection profile which was used for the apply job.
+     * Output only. The connection profile which was used for the apply job.
      */
     connectionProfile?: string | null;
     /**
-     * AIP-160 based filter used to specify the entities to apply
+     * Output only. AIP-160 based filter used to specify the entities to apply
      */
     filter?: string | null;
+  }
+  /**
+   * Set to a specific value (value is converted to fit the target data type)
+   */
+  export interface Schema$AssignSpecificValue {
+    /**
+     * Required. Specific value to be assigned
+     */
+    value?: string | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
@@ -216,19 +242,19 @@ export namespace datamigration_v1 {
    */
   export interface Schema$BackgroundJobLogEntry {
     /**
-     * Apply job details.
+     * Output only. Apply job details.
      */
     applyJobDetails?: Schema$ApplyJobDetails;
     /**
-     * Job completion comment, such as how many entities were seeded, how many warnings were found during conversion, and similar information.
+     * Output only. Job completion comment, such as how many entities were seeded, how many warnings were found during conversion, and similar information.
      */
     completionComment?: string | null;
     /**
-     * Job completion state, i.e. the final state after the job completed.
+     * Output only. Job completion state, i.e. the final state after the job completed.
      */
     completionState?: string | null;
     /**
-     * Convert job details.
+     * Output only. Convert job details.
      */
     convertJobDetails?: Schema$ConvertJobDetails;
     /**
@@ -240,7 +266,7 @@ export namespace datamigration_v1 {
      */
     id?: string | null;
     /**
-     * Import rules job details.
+     * Output only. Import rules job details.
      */
     importRulesJobDetails?: Schema$ImportRulesJobDetails;
     /**
@@ -248,11 +274,11 @@ export namespace datamigration_v1 {
      */
     jobType?: string | null;
     /**
-     * Whether the client requested the conversion workspace to be committed after a successful completion of the job.
+     * Output only. Whether the client requested the conversion workspace to be committed after a successful completion of the job.
      */
     requestAutocommit?: boolean | null;
     /**
-     * Seed job details.
+     * Output only. Seed job details.
      */
     seedJobDetails?: Schema$SeedJobDetails;
     /**
@@ -346,6 +372,10 @@ export namespace datamigration_v1 {
      * The type of storage: `PD_SSD` (default) or `PD_HDD`.
      */
     dataDiskType?: string | null;
+    /**
+     * Optional. The edition of the given Cloud SQL instance.
+     */
+    edition?: string | null;
     /**
      * The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled.
      */
@@ -470,6 +500,27 @@ export namespace datamigration_v1 {
     commitName?: string | null;
   }
   /**
+   * Options to configure rule type ConditionalColumnSetValue. The rule is used to transform the data which is being replicated/migrated. The rule filter field can refer to one or more entities. The rule scope can be one of: Column.
+   */
+  export interface Schema$ConditionalColumnSetValue {
+    /**
+     * Optional. Custom engine specific features.
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * Optional. Optional filter on source column precision and scale. Used for fixed point numbers such as NUMERIC/NUMBER data types.
+     */
+    sourceNumericFilter?: Schema$SourceNumericFilter;
+    /**
+     * Optional. Optional filter on source column length. Used for text based data types like varchar.
+     */
+    sourceTextFilter?: Schema$SourceTextFilter;
+    /**
+     * Required. Description of data transformation during migration.
+     */
+    valueTransformation?: Schema$ValueTransformation;
+  }
+  /**
    * A connection profile definition.
    */
   export interface Schema$ConnectionProfile {
@@ -572,11 +623,11 @@ export namespace datamigration_v1 {
      */
     destination?: Schema$DatabaseEngineInfo;
     /**
-     * The display name for the workspace.
+     * Optional. The display name for the workspace.
      */
     displayName?: string | null;
     /**
-     * A generic list of settings for the workspace. The settings are database pair dependant and can indicate default behavior for the mapping rules engine or turn on or off specific features. Such examples can be: convert_foreign_key_to_interleave=true, skip_triggers=false, ignore_non_table_synonyms=true
+     * Optional. A generic list of settings for the workspace. The settings are database pair dependant and can indicate default behavior for the mapping rules engine or turn on or off specific features. Such examples can be: convert_foreign_key_to_interleave=true, skip_triggers=false, ignore_non_table_synonyms=true
      */
     globalSettings?: {[key: string]: string} | null;
     /**
@@ -622,11 +673,15 @@ export namespace datamigration_v1 {
    */
   export interface Schema$ConvertConversionWorkspaceRequest {
     /**
-     * Specifies whether the conversion workspace is to be committed automatically after the conversion.
+     * Optional. Specifies whether the conversion workspace is to be committed automatically after the conversion.
      */
     autoCommit?: boolean | null;
     /**
-     * Filter the entities to convert. Leaving this field empty will convert all of the entities. Supports Google AIP-160 style filtering.
+     * Optional. Automatically convert the full entity path for each entity specified by the filter. For example, if the filter specifies a table, that table schema (and database if there is one) will also be converted.
+     */
+    convertFullPath?: boolean | null;
+    /**
+     * Optional. Filter the entities to convert. Leaving this field empty will convert all of the entities. Supports Google AIP-160 style filtering.
      */
     filter?: string | null;
   }
@@ -635,9 +690,18 @@ export namespace datamigration_v1 {
    */
   export interface Schema$ConvertJobDetails {
     /**
-     * AIP-160 based filter used to specify the entities to convert
+     * Output only. AIP-160 based filter used to specify the entities to convert
      */
     filter?: string | null;
+  }
+  /**
+   * Options to configure rule type ConvertROWIDToColumn. The rule is used to add column rowid to destination tables based on an Oracle rowid function/property. The rule filter field can refer to one or more entities. The rule scope can be one of: Table. This rule requires additional filter to be specified beyond the basic rule filter field, which is whether or not to work on tables which already have a primary key defined.
+   */
+  export interface Schema$ConvertRowIdToColumn {
+    /**
+     * Required. Only work on tables without primary key defined
+     */
+    onlyIfNoPrimaryKey?: boolean | null;
   }
   /**
    * The type and version of a source or destination database.
@@ -657,6 +721,10 @@ export namespace datamigration_v1 {
    */
   export interface Schema$DatabaseEntity {
     /**
+     * Database.
+     */
+    database?: Schema$DatabaseInstanceEntity;
+    /**
      * Function.
      */
     databaseFunction?: Schema$FunctionEntity;
@@ -665,13 +733,25 @@ export namespace datamigration_v1 {
      */
     databasePackage?: Schema$PackageEntity;
     /**
+     * Details about the entity DDL script. Multiple DDL scripts are provided for child entities such as a table entity will have one DDL for the table with additional DDLs for each index, constraint and such.
+     */
+    entityDdl?: Schema$EntityDdl[];
+    /**
      * The type of the database entity (table, view, index, ...).
      */
     entityType?: string | null;
     /**
+     * Details about the various issues found for the entity.
+     */
+    issues?: Schema$EntityIssue[];
+    /**
      * Details about entity mappings. For source tree entities, this holds the draft entities which were generated by the mapping rules. For draft tree entities, this holds the source entities which were converted to form the draft entity. Destination entities will have no mapping details.
      */
     mappings?: Schema$EntityMapping[];
+    /**
+     * Materialized view.
+     */
+    materializedView?: Schema$MaterializedViewEntity;
     /**
      * The full name of the parent entity (e.g. schema name).
      */
@@ -705,9 +785,22 @@ export namespace datamigration_v1 {
      */
     tree?: string | null;
     /**
+     * UDT.
+     */
+    udt?: Schema$UDTEntity;
+    /**
      * View.
      */
     view?: Schema$ViewEntity;
+  }
+  /**
+   * DatabaseInstance acts as a parent entity to other database entities.
+   */
+  export interface Schema$DatabaseInstanceEntity {
+    /**
+     * Custom engine specific features.
+     */
+    customFeatures?: {[key: string]: any} | null;
   }
   /**
    * A message defining the database engine and provider.
@@ -745,6 +838,19 @@ export namespace datamigration_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Filter based on relation between source value and compare value of type double in ConditionalColumnSetValue
+   */
+  export interface Schema$DoubleComparisonFilter {
+    /**
+     * Required. Double compare value to be used
+     */
+    value?: number | null;
+    /**
+     * Required. Relation between source value and compare value
+     */
+    valueComparison?: string | null;
+  }
+  /**
    * Dump flag definition.
    */
   export interface Schema$DumpFlag {
@@ -778,6 +884,68 @@ export namespace datamigration_v1 {
      * The fully-qualified resource name of the KMS key. Each Cloud KMS key is regionalized and has the following format: projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME]
      */
     kmsKeyName?: string | null;
+  }
+  /**
+   * A single DDL statement for a specific entity
+   */
+  export interface Schema$EntityDdl {
+    /**
+     * The actual ddl code.
+     */
+    ddl?: string | null;
+    /**
+     * Type of DDL (Create, Alter).
+     */
+    ddlType?: string | null;
+    /**
+     * The name of the database entity the ddl refers to.
+     */
+    entity?: string | null;
+    /**
+     * The entity type (if the DDL is for a sub entity).
+     */
+    entityType?: string | null;
+    /**
+     * EntityIssues found for this ddl.
+     */
+    issueId?: string[] | null;
+  }
+  /**
+   * Issue related to the entity.
+   */
+  export interface Schema$EntityIssue {
+    /**
+     * Error/Warning code
+     */
+    code?: string | null;
+    /**
+     * The ddl which caused the issue, if relevant.
+     */
+    ddl?: string | null;
+    /**
+     * The entity type (if the DDL is for a sub entity).
+     */
+    entityType?: string | null;
+    /**
+     * Unique Issue ID.
+     */
+    id?: string | null;
+    /**
+     * Issue detailed message
+     */
+    message?: string | null;
+    /**
+     * The position of the issue found, if relevant.
+     */
+    position?: Schema$Position;
+    /**
+     * Severity of the issue
+     */
+    severity?: string | null;
+    /**
+     * The type of the issue.
+     */
+    type?: string | null;
   }
   /**
    * Details of the mappings of a database entity.
@@ -822,6 +990,15 @@ export namespace datamigration_v1 {
     ruleRevisionId?: string | null;
   }
   /**
+   * Options to configure rule type EntityMove. The rule is used to move an entity to a new schema. The rule filter field can refer to one or more entities. The rule scope can be one of: Table, Column, Constraint, Index, View, Function, Stored Procedure, Materialized View, Sequence, UDT
+   */
+  export interface Schema$EntityMove {
+    /**
+     * Required. The new schema
+     */
+    newSchema?: string | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -854,6 +1031,19 @@ export namespace datamigration_v1 {
      * List of static IPs.
      */
     staticIps?: string[] | null;
+  }
+  /**
+   * Options to configure rule type FilterTableColumns. The rule is used to filter the list of columns to include or exclude from a table. The rule filter field can refer to one entity. The rule scope can be: Table Only one of the two lists can be specified for the rule.
+   */
+  export interface Schema$FilterTableColumns {
+    /**
+     * Optional. List of columns to be excluded for a particular table.
+     */
+    excludeColumns?: string[] | null;
+    /**
+     * Optional. List of columns to be included for a particular table.
+     */
+    includeColumns?: string[] | null;
   }
   /**
    * Forward SSH Tunnel connectivity.
@@ -915,6 +1105,27 @@ export namespace datamigration_v1 {
     vmSelectionConfig?: Schema$VmSelectionConfig;
   }
   /**
+   * Request message for 'GenerateTcpProxyScript' request.
+   */
+  export interface Schema$GenerateTcpProxyScriptRequest {
+    /**
+     * Required. The type of the Compute instance that will host the proxy.
+     */
+    vmMachineType?: string | null;
+    /**
+     * Required. The name of the Compute instance that will host the proxy.
+     */
+    vmName?: string | null;
+    /**
+     * Required. The name of the subnet the Compute instance will use for private connectivity. Must be supplied in the form of projects/{project\}/regions/{region\}/subnetworks/{subnetwork\}. Note: the region for the subnet must match the Compute instance region.
+     */
+    vmSubnet?: string | null;
+    /**
+     * Optional. The Google Cloud Platform zone to create the VM in. The fully qualified name of the zone must be specified, including the region name, for example "us-central1-b". If not specified, uses the "-b" zone of the destination Connection Profile's region.
+     */
+    vmZone?: string | null;
+  }
+  /**
    * Represents the metadata of the long-running operation.
    */
   export interface Schema$GoogleCloudClouddmsV1OperationMetadata {
@@ -952,15 +1163,15 @@ export namespace datamigration_v1 {
    */
   export interface Schema$ImportMappingRulesRequest {
     /**
-     * Should the conversion workspace be committed automatically after the import operation.
+     * Required. Should the conversion workspace be committed automatically after the import operation.
      */
     autoCommit?: boolean | null;
     /**
-     * One or more rules files.
+     * Required. One or more rules files.
      */
     rulesFiles?: Schema$RulesFile[];
     /**
-     * The format of the rules content file.
+     * Required. The format of the rules content file.
      */
     rulesFormat?: string | null;
   }
@@ -969,11 +1180,11 @@ export namespace datamigration_v1 {
    */
   export interface Schema$ImportRulesJobDetails {
     /**
-     * The requested file format.
+     * Output only. The requested file format.
      */
     fileFormat?: string | null;
     /**
-     * File names used for the import rules job.
+     * Output only. File names used for the import rules job.
      */
     files?: string[] | null;
   }
@@ -1001,6 +1212,19 @@ export namespace datamigration_v1 {
      * Boolean value indicating whether the index is unique.
      */
     unique?: boolean | null;
+  }
+  /**
+   * Filter based on relation between source value and compare value of type integer in ConditionalColumnSetValue
+   */
+  export interface Schema$IntComparisonFilter {
+    /**
+     * Required. Integer compare value to be used
+     */
+    value?: string | null;
+    /**
+     * Required. Relation between source value and compare value
+     */
+    valueComparison?: string | null;
   }
   /**
    * Response message for 'ListConnectionProfiles' request.
@@ -1046,6 +1270,19 @@ export namespace datamigration_v1 {
     locations?: Schema$Location[];
     /**
      * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for 'ListMappingRulesRequest' request.
+   */
+  export interface Schema$ListMappingRulesResponse {
+    /**
+     * The list of conversion workspace mapping rules.
+     */
+    mappingRules?: Schema$MappingRule[];
+    /**
+     * A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
   }
@@ -1129,6 +1366,125 @@ export namespace datamigration_v1 {
      * The number of CPU's in the VM instance.
      */
     cpuCount?: number | null;
+  }
+  /**
+   * Definition of a transformation that is to be applied to a group of entities in the source schema. Several such transformations can be applied to an entity sequentially to define the corresponding entity in the target schema.
+   */
+  export interface Schema$MappingRule {
+    /**
+     * Optional. Rule to specify how the data contained in a column should be transformed (such as trimmed, rounded, etc) provided that the data meets certain criteria.
+     */
+    conditionalColumnSetValue?: Schema$ConditionalColumnSetValue;
+    /**
+     * Optional. Rule to specify how multiple tables should be converted with an additional rowid column.
+     */
+    convertRowidColumn?: Schema$ConvertRowIdToColumn;
+    /**
+     * Optional. A human readable name
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Rule to specify how multiple entities should be relocated into a different schema.
+     */
+    entityMove?: Schema$EntityMove;
+    /**
+     * Required. The rule filter
+     */
+    filter?: Schema$MappingRuleFilter;
+    /**
+     * Optional. Rule to specify the list of columns to include or exclude from a table.
+     */
+    filterTableColumns?: Schema$FilterTableColumns;
+    /**
+     * Optional. Rule to specify how multiple columns should be converted to a different data type.
+     */
+    multiColumnDataTypeChange?: Schema$MultiColumnDatatypeChange;
+    /**
+     * Optional. Rule to specify how multiple entities should be renamed.
+     */
+    multiEntityRename?: Schema$MultiEntityRename;
+    /**
+     * Full name of the mapping rule resource, in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{set\}/mappingRule/{rule\}.
+     */
+    name?: string | null;
+    /**
+     * Output only. The timestamp that the revision was created.
+     */
+    revisionCreateTime?: string | null;
+    /**
+     * Output only. The revision ID of the mapping rule. A new revision is committed whenever the mapping rule is changed in any way. The format is an 8-character hexadecimal string.
+     */
+    revisionId?: string | null;
+    /**
+     * Required. The order in which the rule is applied. Lower order rules are applied before higher value rules so they may end up being overridden.
+     */
+    ruleOrder?: string | null;
+    /**
+     * Required. The rule scope
+     */
+    ruleScope?: string | null;
+    /**
+     * Optional. Rule to specify the primary key for a table
+     */
+    setTablePrimaryKey?: Schema$SetTablePrimaryKey;
+    /**
+     * Optional. Rule to specify how a single column is converted.
+     */
+    singleColumnChange?: Schema$SingleColumnChange;
+    /**
+     * Optional. Rule to specify how a single entity should be renamed.
+     */
+    singleEntityRename?: Schema$SingleEntityRename;
+    /**
+     * Optional. Rule to specify how a single package is converted.
+     */
+    singlePackageChange?: Schema$SinglePackageChange;
+    /**
+     * Optional. Rule to change the sql code for an entity, for example, function, procedure.
+     */
+    sourceSqlChange?: Schema$SourceSqlChange;
+    /**
+     * Optional. The mapping rule state
+     */
+    state?: string | null;
+  }
+  /**
+   * A filter defining the entities that a mapping rule should be applied to. When more than one field is specified, the rule is applied only to entities which match all the fields.
+   */
+  export interface Schema$MappingRuleFilter {
+    /**
+     * Optional. The rule should be applied to specific entities defined by their fully qualified names.
+     */
+    entities?: string[] | null;
+    /**
+     * Optional. The rule should be applied to entities whose non-qualified name contains the given string.
+     */
+    entityNameContains?: string | null;
+    /**
+     * Optional. The rule should be applied to entities whose non-qualified name starts with the given prefix.
+     */
+    entityNamePrefix?: string | null;
+    /**
+     * Optional. The rule should be applied to entities whose non-qualified name ends with the given suffix.
+     */
+    entityNameSuffix?: string | null;
+    /**
+     * Optional. The rule should be applied to entities whose parent entity (fully qualified name) matches the given value. For example, if the rule applies to a table entity, the expected value should be a schema (schema). If the rule applies to a column or index entity, the expected value can be either a schema (schema) or a table (schema.table)
+     */
+    parentEntity?: string | null;
+  }
+  /**
+   * MaterializedView's parent is a schema.
+   */
+  export interface Schema$MaterializedViewEntity {
+    /**
+     * Custom engine specific features.
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * The SQL code which creates the view.
+     */
+    sqlCode?: string | null;
   }
   /**
    * Represents a Database Migration Service migration job object.
@@ -1243,6 +1599,60 @@ export namespace datamigration_v1 {
      * Output only. A formatted message with further details about the error and a CTA.
      */
     errorMessage?: string | null;
+  }
+  /**
+   * Options to configure rule type MultiColumnDatatypeChange. The rule is used to change the data type and associated properties of multiple columns at once. The rule filter field can refer to one or more entities. The rule scope can be one of:Column. This rule requires additional filters to be specified beyond the basic rule filter field, which is the source data type, but the rule supports additional filtering capabilities such as the minimum and maximum field length. All additional filters which are specified are required to be met in order for the rule to be applied (logical AND between the fields).
+   */
+  export interface Schema$MultiColumnDatatypeChange {
+    /**
+     * Optional. Custom engine specific features.
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * Required. New data type.
+     */
+    newDataType?: string | null;
+    /**
+     * Optional. Column fractional seconds precision - used only for timestamp based datatypes - if not specified and relevant uses the source column fractional seconds precision.
+     */
+    overrideFractionalSecondsPrecision?: number | null;
+    /**
+     * Optional. Column length - e.g. varchar (50) - if not specified and relevant uses the source column length.
+     */
+    overrideLength?: string | null;
+    /**
+     * Optional. Column precision - when relevant - if not specified and relevant uses the source column precision.
+     */
+    overridePrecision?: number | null;
+    /**
+     * Optional. Column scale - when relevant - if not specified and relevant uses the source column scale.
+     */
+    overrideScale?: number | null;
+    /**
+     * Required. Filter on source data type.
+     */
+    sourceDataTypeFilter?: string | null;
+    /**
+     * Optional. Filter for fixed point number data types such as NUMERIC/NUMBER.
+     */
+    sourceNumericFilter?: Schema$SourceNumericFilter;
+    /**
+     * Optional. Filter for text-based data types like varchar.
+     */
+    sourceTextFilter?: Schema$SourceTextFilter;
+  }
+  /**
+   * Options to configure rule type MultiEntityRename. The rule is used to rename multiple entities. The rule filter field can refer to one or more entities. The rule scope can be one of: Database, Schema, Table, Column, Constraint, Index, View, Function, Stored Procedure, Materialized View, Sequence, UDT
+   */
+  export interface Schema$MultiEntityRename {
+    /**
+     * Optional. The pattern used to generate the new entity's name. This pattern must include the characters '{name\}', which will be replaced with the name of the original entity. For example, the pattern 't_{name\}' for an entity name jobs would be converted to 't_jobs'. If unspecified, the default value for this field is '{name\}'
+     */
+    newNamePattern?: string | null;
+    /**
+     * Optional. Additional transformation that can be done on the source entity name before it is being used by the new_name_pattern, for example lower case. If no transformation is desired, use NO_TRANSFORMATION
+     */
+    sourceNameTransformation?: string | null;
   }
   /**
    * Specifies connection parameters required specifically for MySQL databases.
@@ -1384,6 +1794,27 @@ export namespace datamigration_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Issue position.
+   */
+  export interface Schema$Position {
+    /**
+     * Issue column number
+     */
+    column?: number | null;
+    /**
+     * Issue length
+     */
+    length?: number | null;
+    /**
+     * Issue line number
+     */
+    line?: number | null;
+    /**
+     * Issue offset
+     */
+    offset?: number | null;
   }
   /**
    * Specifies connection parameters required specifically for PostgreSQL databases.
@@ -1548,15 +1979,24 @@ export namespace datamigration_v1 {
    */
   export interface Schema$RollbackConversionWorkspaceRequest {}
   /**
+   * This allows the data to change scale, for example if the source is 2 digits after the decimal point, specify round to scale value = 2. If for example the value needs to be converted to an integer, use round to scale value = 0.
+   */
+  export interface Schema$RoundToScale {
+    /**
+     * Required. Scale value to be used
+     */
+    scale?: number | null;
+  }
+  /**
    * Details of a single rules file.
    */
   export interface Schema$RulesFile {
     /**
-     * The text content of the rules that needs to be converted.
+     * Required. The text content of the rules that needs to be converted.
      */
     rulesContent?: string | null;
     /**
-     * The filename of the rules that needs to be converted. The filename is used mainly so that future logs of the import rules job contain it, and can therefore be searched by it.
+     * Required. The filename of the rules that needs to be converted. The filename is used mainly so that future logs of the import rules job contain it, and can therefore be searched by it.
      */
     rulesSourceFilename?: string | null;
   }
@@ -1587,11 +2027,11 @@ export namespace datamigration_v1 {
      */
     autoCommit?: boolean | null;
     /**
-     * Fully qualified (Uri) name of the destination connection profile.
+     * Optional. Fully qualified (Uri) name of the destination connection profile.
      */
     destinationConnectionProfile?: string | null;
     /**
-     * Fully qualified (Uri) name of the source connection profile.
+     * Optional. Fully qualified (Uri) name of the source connection profile.
      */
     sourceConnectionProfile?: string | null;
   }
@@ -1600,7 +2040,7 @@ export namespace datamigration_v1 {
    */
   export interface Schema$SeedJobDetails {
     /**
-     * The connection profile which was used for the seed job.
+     * Output only. The connection profile which was used for the seed job.
      */
     connectionProfile?: string | null;
   }
@@ -1649,6 +2089,153 @@ export namespace datamigration_v1 {
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
+  }
+  /**
+   * Options to configure rule type SetTablePrimaryKey. The rule is used to specify the columns and name to configure/alter the primary key of a table. The rule filter field can refer to one entity. The rule scope can be one of: Table.
+   */
+  export interface Schema$SetTablePrimaryKey {
+    /**
+     * Optional. Name for the primary key
+     */
+    primaryKey?: string | null;
+    /**
+     * Required. List of column names for the primary key
+     */
+    primaryKeyColumns?: string[] | null;
+  }
+  /**
+   * Options to configure rule type SingleColumnChange. The rule is used to change the properties of a column. The rule filter field can refer to one entity. The rule scope can be one of: Column. When using this rule, if a field is not specified than the destination column's configuration will be the same as the one in the source column..
+   */
+  export interface Schema$SingleColumnChange {
+    /**
+     * Optional. Is the column of array type.
+     */
+    array?: boolean | null;
+    /**
+     * Optional. The length of the array, only relevant if the column type is an array.
+     */
+    arrayLength?: number | null;
+    /**
+     * Optional. Is the column auto-generated/identity.
+     */
+    autoGenerated?: boolean | null;
+    /**
+     * Optional. Charset override - instead of table level charset.
+     */
+    charset?: string | null;
+    /**
+     * Optional. Collation override - instead of table level collation.
+     */
+    collation?: string | null;
+    /**
+     * Optional. Comment associated with the column.
+     */
+    comment?: string | null;
+    /**
+     * Optional. Custom engine specific features.
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * Optional. Column data type name.
+     */
+    dataType?: string | null;
+    /**
+     * Optional. Column fractional seconds precision - e.g. 2 as in timestamp (2) - when relevant.
+     */
+    fractionalSecondsPrecision?: number | null;
+    /**
+     * Optional. Column length - e.g. 50 as in varchar (50) - when relevant.
+     */
+    length?: string | null;
+    /**
+     * Optional. Is the column nullable.
+     */
+    nullable?: boolean | null;
+    /**
+     * Optional. Column precision - e.g. 8 as in double (8,2) - when relevant.
+     */
+    precision?: number | null;
+    /**
+     * Optional. Column scale - e.g. 2 as in double (8,2) - when relevant.
+     */
+    scale?: number | null;
+    /**
+     * Optional. Specifies the list of values allowed in the column.
+     */
+    setValues?: string[] | null;
+    /**
+     * Optional. Is the column a UDT (User-defined Type).
+     */
+    udt?: boolean | null;
+  }
+  /**
+   * Options to configure rule type SingleEntityRename. The rule is used to rename an entity. The rule filter field can refer to only one entity. The rule scope can be one of: Database, Schema, Table, Column, Constraint, Index, View, Function, Stored Procedure, Materialized View, Sequence, UDT, Synonym
+   */
+  export interface Schema$SingleEntityRename {
+    /**
+     * Required. The new name of the destination entity
+     */
+    newName?: string | null;
+  }
+  /**
+   * Options to configure rule type SinglePackageChange. The rule is used to alter the sql code for a package entities. The rule filter field can refer to one entity. The rule scope can be: Package
+   */
+  export interface Schema$SinglePackageChange {
+    /**
+     * Optional. Sql code for package body
+     */
+    packageBody?: string | null;
+    /**
+     * Optional. Sql code for package description
+     */
+    packageDescription?: string | null;
+  }
+  /**
+   * Filter for fixed point number data types such as NUMERIC/NUMBER
+   */
+  export interface Schema$SourceNumericFilter {
+    /**
+     * Required. Enum to set the option defining the datatypes numeric filter has to be applied to
+     */
+    numericFilterOption?: string | null;
+    /**
+     * Optional. The filter will match columns with precision smaller than or equal to this number.
+     */
+    sourceMaxPrecisionFilter?: number | null;
+    /**
+     * Optional. The filter will match columns with scale smaller than or equal to this number.
+     */
+    sourceMaxScaleFilter?: number | null;
+    /**
+     * Optional. The filter will match columns with precision greater than or equal to this number.
+     */
+    sourceMinPrecisionFilter?: number | null;
+    /**
+     * Optional. The filter will match columns with scale greater than or equal to this number.
+     */
+    sourceMinScaleFilter?: number | null;
+  }
+  /**
+   * Options to configure rule type SourceSqlChange. The rule is used to alter the sql code for database entities. The rule filter field can refer to one entity. The rule scope can be: StoredProcedure, Function, Trigger, View
+   */
+  export interface Schema$SourceSqlChange {
+    /**
+     * Required. Sql code for source (stored procedure, function, trigger or view)
+     */
+    sqlCode?: string | null;
+  }
+  /**
+   * Filter for text-based data types like varchar.
+   */
+  export interface Schema$SourceTextFilter {
+    /**
+     * Optional. The filter will match columns with length smaller than or equal to this number.
+     */
+    sourceMaxLengthFilter?: string | null;
+    /**
+     * Optional. The filter will match columns with length greater than or equal to this number.
+     */
+    sourceMinLengthFilter?: string | null;
   }
   /**
    * An entry for an Access Control list.
@@ -1819,6 +2406,15 @@ export namespace datamigration_v1 {
     triggers?: Schema$TriggerEntity[];
   }
   /**
+   * Response message for 'GenerateTcpProxyScript' request.
+   */
+  export interface Schema$TcpProxyScript {
+    /**
+     * The TCP Proxy configuration script.
+     */
+    script?: string | null;
+  }
+  /**
    * Request message for `TestIamPermissions` method.
    */
   export interface Schema$TestIamPermissionsRequest {
@@ -1862,6 +2458,23 @@ export namespace datamigration_v1 {
     triggerType?: string | null;
   }
   /**
+   * UDT's parent is a schema.
+   */
+  export interface Schema$UDTEntity {
+    /**
+     * Custom engine specific features.
+     */
+    customFeatures?: {[key: string]: any} | null;
+    /**
+     * The SQL code which creates the udt body.
+     */
+    udtBody?: string | null;
+    /**
+     * The SQL code which creates the udt.
+     */
+    udtSqlCode?: string | null;
+  }
+  /**
    * The username/password for a database user. Used for specifying initial users at cluster creation time.
    */
   export interface Schema$UserPassword {
@@ -1879,9 +2492,80 @@ export namespace datamigration_v1 {
     user?: string | null;
   }
   /**
+   * A list of values to filter by in ConditionalColumnSetValue
+   */
+  export interface Schema$ValueListFilter {
+    /**
+     * Required. Whether to ignore case when filtering by values. Defaults to false
+     */
+    ignoreCase?: boolean | null;
+    /**
+     * Required. Indicates whether the filter matches rows with values that are present in the list or those with values not present in it.
+     */
+    valuePresentList?: string | null;
+    /**
+     * Required. The list to be used to filter by
+     */
+    values?: string[] | null;
+  }
+  /**
+   * Description of data transformation during migration as part of the ConditionalColumnSetValue.
+   */
+  export interface Schema$ValueTransformation {
+    /**
+     * Optional. Applies a hash function on the data
+     */
+    applyHash?: Schema$ApplyHash;
+    /**
+     * Optional. Set to max_value - if integer or numeric, will use int.maxvalue, etc
+     */
+    assignMaxValue?: Schema$Empty;
+    /**
+     * Optional. Set to min_value - if integer or numeric, will use int.minvalue, etc
+     */
+    assignMinValue?: Schema$Empty;
+    /**
+     * Optional. Set to null
+     */
+    assignNull?: Schema$Empty;
+    /**
+     * Optional. Set to a specific value (value is converted to fit the target data type)
+     */
+    assignSpecificValue?: Schema$AssignSpecificValue;
+    /**
+     * Optional. Filter on relation between source value and compare value of type double.
+     */
+    doubleComparison?: Schema$DoubleComparisonFilter;
+    /**
+     * Optional. Filter on relation between source value and compare value of type integer.
+     */
+    intComparison?: Schema$IntComparisonFilter;
+    /**
+     * Optional. Value is null
+     */
+    isNull?: Schema$Empty;
+    /**
+     * Optional. Allows the data to change scale
+     */
+    roundScale?: Schema$RoundToScale;
+    /**
+     * Optional. Value is found in the specified list.
+     */
+    valueList?: Schema$ValueListFilter;
+  }
+  /**
    * Request message for 'VerifyMigrationJob' request.
    */
-  export interface Schema$VerifyMigrationJobRequest {}
+  export interface Schema$VerifyMigrationJobRequest {
+    /**
+     * Optional. The changed migration job parameters to verify. It will not update the migration job.
+     */
+    migrationJob?: Schema$MigrationJob;
+    /**
+     * Optional. Field mask is used to specify the changed fields to be verified. It will not update the migration job.
+     */
+    updateMask?: string | null;
+  }
   /**
    * View's parent is a schema.
    */
@@ -3813,7 +4497,9 @@ export namespace datamigration_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "autoCommit": false,
      *         //   "connectionProfile": "my_connectionProfile",
+     *         //   "dryRun": false,
      *         //   "filter": "my_filter"
      *         // }
      *       },
@@ -4098,6 +4784,7 @@ export namespace datamigration_v1 {
      *         // request body parameters
      *         // {
      *         //   "autoCommit": false,
+     *         //   "convertFullPath": false,
      *         //   "filter": "my_filter"
      *         // }
      *       },
@@ -4392,6 +5079,8 @@ export namespace datamigration_v1 {
      *   // Do the magic
      *   const res =
      *     await datamigration.projects.locations.conversionWorkspaces.delete({
+     *       // Force delete the conversion workspace, even if there's a running migration that is using the workspace.
+     *       force: 'placeholder-value',
      *       // Required. Name of the conversion workspace resource to delete.
      *       name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
      *       // A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
@@ -4674,21 +5363,23 @@ export namespace datamigration_v1 {
      *   const res =
      *     await datamigration.projects.locations.conversionWorkspaces.describeDatabaseEntities(
      *       {
-     *         // Request a specific commit ID. If not specified, the entities from the latest commit are returned.
+     *         // Optional. Request a specific commit ID. If not specified, the entities from the latest commit are returned.
      *         commitId: 'placeholder-value',
      *         // Required. Name of the conversion workspace resource whose database entities are described. Must be in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
      *         conversionWorkspace:
      *           'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
-     *         // Filter the returned entities based on AIP-160 standard.
+     *         // Optional. Filter the returned entities based on AIP-160 standard.
      *         filter: 'placeholder-value',
-     *         // The maximum number of entities to return. The service may return fewer entities than the value specifies.
+     *         // Optional. The maximum number of entities to return. The service may return fewer entities than the value specifies.
      *         pageSize: 'placeholder-value',
-     *         // The nextPageToken value received in the previous call to conversionWorkspace.describeDatabaseEntities, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspace.describeDatabaseEntities must match the call that provided the page token.
+     *         // Optional. The nextPageToken value received in the previous call to conversionWorkspace.describeDatabaseEntities, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspace.describeDatabaseEntities must match the call that provided the page token.
      *         pageToken: 'placeholder-value',
-     *         // The tree to fetch.
+     *         // Required. The tree to fetch.
      *         tree: 'placeholder-value',
-     *         // Whether to retrieve the latest committed version of the entities or the latest version. This field is ignored if a specific commit_id is specified.
+     *         // Optional. Whether to retrieve the latest committed version of the entities or the latest version. This field is ignored if a specific commit_id is specified.
      *         uncommitted: 'placeholder-value',
+     *         // Optional. Results view based on AIP-157
+     *         view: 'placeholder-value',
      *       }
      *     );
      *   console.log(res.data);
@@ -6170,6 +6861,10 @@ export namespace datamigration_v1 {
   export interface Params$Resource$Projects$Locations$Conversionworkspaces$Delete
     extends StandardParameters {
     /**
+     * Force delete the conversion workspace, even if there's a running migration that is using the workspace.
+     */
+    force?: boolean;
+    /**
      * Required. Name of the conversion workspace resource to delete.
      */
     name?: string;
@@ -6192,7 +6887,7 @@ export namespace datamigration_v1 {
   export interface Params$Resource$Projects$Locations$Conversionworkspaces$Describedatabaseentities
     extends StandardParameters {
     /**
-     * Request a specific commit ID. If not specified, the entities from the latest commit are returned.
+     * Optional. Request a specific commit ID. If not specified, the entities from the latest commit are returned.
      */
     commitId?: string;
     /**
@@ -6200,25 +6895,29 @@ export namespace datamigration_v1 {
      */
     conversionWorkspace?: string;
     /**
-     * Filter the returned entities based on AIP-160 standard.
+     * Optional. Filter the returned entities based on AIP-160 standard.
      */
     filter?: string;
     /**
-     * The maximum number of entities to return. The service may return fewer entities than the value specifies.
+     * Optional. The maximum number of entities to return. The service may return fewer entities than the value specifies.
      */
     pageSize?: number;
     /**
-     * The nextPageToken value received in the previous call to conversionWorkspace.describeDatabaseEntities, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspace.describeDatabaseEntities must match the call that provided the page token.
+     * Optional. The nextPageToken value received in the previous call to conversionWorkspace.describeDatabaseEntities, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspace.describeDatabaseEntities must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * The tree to fetch.
+     * Required. The tree to fetch.
      */
     tree?: string;
     /**
-     * Whether to retrieve the latest committed version of the entities or the latest version. This field is ignored if a specific commit_id is specified.
+     * Optional. Whether to retrieve the latest committed version of the entities or the latest version. This field is ignored if a specific commit_id is specified.
      */
     uncommitted?: boolean;
+    /**
+     * Optional. Results view based on AIP-157
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Conversionworkspaces$Get
     extends StandardParameters {
@@ -6349,6 +7048,469 @@ export namespace datamigration_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Creates a new mapping rule for a given conversion workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.mappingRules.create(
+     *       {
+     *         // Required. The ID of the rule to create.
+     *         mappingRuleId: 'placeholder-value',
+     *         // Required. The parent which owns this collection of mapping rules.
+     *         parent:
+     *           'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *         // A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *         requestId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "conditionalColumnSetValue": {},
+     *           //   "convertRowidColumn": {},
+     *           //   "displayName": "my_displayName",
+     *           //   "entityMove": {},
+     *           //   "filter": {},
+     *           //   "filterTableColumns": {},
+     *           //   "multiColumnDataTypeChange": {},
+     *           //   "multiEntityRename": {},
+     *           //   "name": "my_name",
+     *           //   "revisionCreateTime": "my_revisionCreateTime",
+     *           //   "revisionId": "my_revisionId",
+     *           //   "ruleOrder": "my_ruleOrder",
+     *           //   "ruleScope": "my_ruleScope",
+     *           //   "setTablePrimaryKey": {},
+     *           //   "singleColumnChange": {},
+     *           //   "singleEntityRename": {},
+     *           //   "singlePackageChange": {},
+     *           //   "sourceSqlChange": {},
+     *           //   "state": "my_state"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conditionalColumnSetValue": {},
+     *   //   "convertRowidColumn": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "entityMove": {},
+     *   //   "filter": {},
+     *   //   "filterTableColumns": {},
+     *   //   "multiColumnDataTypeChange": {},
+     *   //   "multiEntityRename": {},
+     *   //   "name": "my_name",
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "ruleOrder": "my_ruleOrder",
+     *   //   "ruleScope": "my_ruleScope",
+     *   //   "setTablePrimaryKey": {},
+     *   //   "singleColumnChange": {},
+     *   //   "singleEntityRename": {},
+     *   //   "singlePackageChange": {},
+     *   //   "sourceSqlChange": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MappingRule>;
+    create(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$MappingRule>,
+      callback: BodyResponseCallback<Schema$MappingRule>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Create,
+      callback: BodyResponseCallback<Schema$MappingRule>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$MappingRule>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Create
+        | BodyResponseCallback<Schema$MappingRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MappingRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MappingRule>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MappingRule> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/mappingRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MappingRule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MappingRule>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single mapping rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.mappingRules.delete(
+     *       {
+     *         // Required. Name of the mapping rule resource to delete.
+     *         name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace/mappingRules/my-mappingRule',
+     *         // Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *         requestId: 'placeholder-value',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of a mapping rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.mappingRules.get(
+     *       {
+     *         // Required. Name of the mapping rule resource to get. Example: conversionWorkspaces/123/mappingRules/rule123 In order to retrieve a previous revision of the mapping rule, also provide the revision ID. Example: conversionWorkspace/123/mappingRules/rule123@c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
+     *         name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace/mappingRules/my-mappingRule',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conditionalColumnSetValue": {},
+     *   //   "convertRowidColumn": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "entityMove": {},
+     *   //   "filter": {},
+     *   //   "filterTableColumns": {},
+     *   //   "multiColumnDataTypeChange": {},
+     *   //   "multiEntityRename": {},
+     *   //   "name": "my_name",
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "ruleOrder": "my_ruleOrder",
+     *   //   "ruleScope": "my_ruleScope",
+     *   //   "setTablePrimaryKey": {},
+     *   //   "singleColumnChange": {},
+     *   //   "singleEntityRename": {},
+     *   //   "singlePackageChange": {},
+     *   //   "sourceSqlChange": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MappingRule>;
+    get(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MappingRule>,
+      callback: BodyResponseCallback<Schema$MappingRule>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Get,
+      callback: BodyResponseCallback<Schema$MappingRule>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MappingRule>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Get
+        | BodyResponseCallback<Schema$MappingRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MappingRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MappingRule>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MappingRule> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MappingRule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MappingRule>(parameters);
+      }
     }
 
     /**
@@ -6499,8 +7661,191 @@ export namespace datamigration_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Lists the mapping rules for a specific conversion workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.conversionWorkspaces.mappingRules.list(
+     *       {
+     *         // The maximum number of rules to return. The service may return fewer than this value.
+     *         pageSize: 'placeholder-value',
+     *         // The nextPageToken value received in the previous call to mappingRules.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to mappingRules.list must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Name of the conversion workspace resource whose mapping rules are listed in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     *         parent:
+     *           'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mappingRules": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMappingRulesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMappingRulesResponse>,
+      callback: BodyResponseCallback<Schema$ListMappingRulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List,
+      callback: BodyResponseCallback<Schema$ListMappingRulesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListMappingRulesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List
+        | BodyResponseCallback<Schema$ListMappingRulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMappingRulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMappingRulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMappingRulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/mappingRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMappingRulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMappingRulesResponse>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the rule to create.
+     */
+    mappingRuleId?: string;
+    /**
+     * Required. The parent which owns this collection of mapping rules.
+     */
+    parent?: string;
+    /**
+     * A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MappingRule;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the mapping rule resource to delete.
+     */
+    name?: string;
+    /**
+     * Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the mapping rule resource to get. Example: conversionWorkspaces/123/mappingRules/rule123 In order to retrieve a previous revision of the mapping rule, also provide the revision ID. Example: conversionWorkspace/123/mappingRules/rule123@c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$Import
     extends StandardParameters {
     /**
@@ -6512,6 +7857,21 @@ export namespace datamigration_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ImportMappingRulesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List
+    extends StandardParameters {
+    /**
+     * The maximum number of rules to return. The service may return fewer than this value.
+     */
+    pageSize?: number;
+    /**
+     * The nextPageToken value received in the previous call to mappingRules.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to mappingRules.list must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the conversion workspace resource whose mapping rules are listed in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Migrationjobs {
@@ -6551,7 +7911,7 @@ export namespace datamigration_v1 {
      *     migrationJobId: 'placeholder-value',
      *     // Required. The parent which owns this collection of migration jobs.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     // Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6964,6 +8324,153 @@ export namespace datamigration_v1 {
         );
       } else {
         return createAPIRequest<Schema$SshScript>(parameters);
+      }
+    }
+
+    /**
+     * Generate a TCP Proxy configuration script to configure a cloud-hosted VM running a TCP Proxy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datamigration = google.datamigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamigration.projects.locations.migrationJobs.generateTcpProxyScript(
+     *       {
+     *         // Name of the migration job resource to generate the TCP Proxy script.
+     *         migrationJob:
+     *           'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "vmMachineType": "my_vmMachineType",
+     *           //   "vmName": "my_vmName",
+     *           //   "vmSubnet": "my_vmSubnet",
+     *           //   "vmZone": "my_vmZone"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "script": "my_script"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateTcpProxyScript(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Generatetcpproxyscript,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateTcpProxyScript(
+      params?: Params$Resource$Projects$Locations$Migrationjobs$Generatetcpproxyscript,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TcpProxyScript>;
+    generateTcpProxyScript(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Generatetcpproxyscript,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateTcpProxyScript(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Generatetcpproxyscript,
+      options: MethodOptions | BodyResponseCallback<Schema$TcpProxyScript>,
+      callback: BodyResponseCallback<Schema$TcpProxyScript>
+    ): void;
+    generateTcpProxyScript(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Generatetcpproxyscript,
+      callback: BodyResponseCallback<Schema$TcpProxyScript>
+    ): void;
+    generateTcpProxyScript(
+      callback: BodyResponseCallback<Schema$TcpProxyScript>
+    ): void;
+    generateTcpProxyScript(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Migrationjobs$Generatetcpproxyscript
+        | BodyResponseCallback<Schema$TcpProxyScript>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TcpProxyScript>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TcpProxyScript>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TcpProxyScript> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Migrationjobs$Generatetcpproxyscript;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Migrationjobs$Generatetcpproxyscript;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+migrationJob}:generateTcpProxyScript'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['migrationJob'],
+        pathParams: ['migrationJob'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TcpProxyScript>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TcpProxyScript>(parameters);
       }
     }
 
@@ -8585,7 +10092,10 @@ export namespace datamigration_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "migrationJob": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -8701,7 +10211,7 @@ export namespace datamigration_v1 {
      */
     parent?: string;
     /**
-     * A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string;
 
@@ -8736,6 +10246,18 @@ export namespace datamigration_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GenerateSshScriptRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Generatetcpproxyscript
+    extends StandardParameters {
+    /**
+     * Name of the migration job resource to generate the TCP Proxy script.
+     */
+    migrationJob?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateTcpProxyScriptRequest;
   }
   export interface Params$Resource$Projects$Locations$Migrationjobs$Get
     extends StandardParameters {

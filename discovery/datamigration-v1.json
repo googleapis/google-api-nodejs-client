@@ -640,6 +640,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Force delete the conversion workspace, even if there's a running migration that is using the workspace.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. Name of the conversion workspace resource to delete.",
                       "location": "path",
@@ -701,7 +706,7 @@
                   ],
                   "parameters": {
                     "commitId": {
-                      "description": "Request a specific commit ID. If not specified, the entities from the latest commit are returned.",
+                      "description": "Optional. Request a specific commit ID. If not specified, the entities from the latest commit are returned.",
                       "location": "query",
                       "type": "string"
                     },
@@ -713,23 +718,23 @@
                       "type": "string"
                     },
                     "filter": {
-                      "description": "Filter the returned entities based on AIP-160 standard.",
+                      "description": "Optional. Filter the returned entities based on AIP-160 standard.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of entities to return. The service may return fewer entities than the value specifies.",
+                      "description": "Optional. The maximum number of entities to return. The service may return fewer entities than the value specifies.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The nextPageToken value received in the previous call to conversionWorkspace.describeDatabaseEntities, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspace.describeDatabaseEntities must match the call that provided the page token.",
+                      "description": "Optional. The nextPageToken value received in the previous call to conversionWorkspace.describeDatabaseEntities, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspace.describeDatabaseEntities must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
                     "tree": {
-                      "description": "The tree to fetch.",
+                      "description": "Required. The tree to fetch.",
                       "enum": [
                         "DB_TREE_TYPE_UNSPECIFIED",
                         "SOURCE_TREE",
@@ -746,9 +751,26 @@
                       "type": "string"
                     },
                     "uncommitted": {
-                      "description": "Whether to retrieve the latest committed version of the entities or the latest version. This field is ignored if a specific commit_id is specified.",
+                      "description": "Optional. Whether to retrieve the latest committed version of the entities or the latest version. This field is ignored if a specific commit_id is specified.",
                       "location": "query",
                       "type": "boolean"
+                    },
+                    "view": {
+                      "description": "Optional. Results view based on AIP-157",
+                      "enum": [
+                        "DATABASE_ENTITY_VIEW_UNSPECIFIED",
+                        "DATABASE_ENTITY_VIEW_BASIC",
+                        "DATABASE_ENTITY_VIEW_FULL",
+                        "DATABASE_ENTITY_VIEW_ROOT_SUMMARY"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified view. Defaults to basic view.",
+                        "Default view. Does not return DDLs or Issues.",
+                        "Return full entity details including mappings, ddl and issues.",
+                        "Top-most (Database, Schema) nodes which are returned contains summary details for their decendents such as the number of entities per type and issues rollups. When this view is used, only a single page of result is returned and the page_size property of the request is ignored. The returned page will only include the top-most node types."
+                      ],
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v1/{+conversionWorkspace}:describeDatabaseEntities",
@@ -1053,6 +1075,99 @@
               "resources": {
                 "mappingRules": {
                   "methods": {
+                    "create": {
+                      "description": "Creates a new mapping rule for a given conversion workspace.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversionWorkspaces/{conversionWorkspacesId}/mappingRules",
+                      "httpMethod": "POST",
+                      "id": "datamigration.projects.locations.conversionWorkspaces.mappingRules.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "mappingRuleId": {
+                          "description": "Required. The ID of the rule to create.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent which owns this collection of mapping rules.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversionWorkspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/mappingRules",
+                      "request": {
+                        "$ref": "MappingRule"
+                      },
+                      "response": {
+                        "$ref": "MappingRule"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single mapping rule.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversionWorkspaces/{conversionWorkspacesId}/mappingRules/{mappingRulesId}",
+                      "httpMethod": "DELETE",
+                      "id": "datamigration.projects.locations.conversionWorkspaces.mappingRules.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the mapping rule resource to delete.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversionWorkspaces/[^/]+/mappingRules/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the details of a mapping rule.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversionWorkspaces/{conversionWorkspacesId}/mappingRules/{mappingRulesId}",
+                      "httpMethod": "GET",
+                      "id": "datamigration.projects.locations.conversionWorkspaces.mappingRules.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the mapping rule resource to get. Example: conversionWorkspaces/123/mappingRules/rule123 In order to retrieve a previous revision of the mapping rule, also provide the revision ID. Example: conversionWorkspace/123/mappingRules/rule123@c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversionWorkspaces/[^/]+/mappingRules/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "MappingRule"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "import": {
                       "description": "Imports the mapping rules for a given conversion workspace. Supports various formats of external rules files.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversionWorkspaces/{conversionWorkspacesId}/mappingRules:import",
@@ -1076,6 +1191,42 @@
                       },
                       "response": {
                         "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists the mapping rules for a specific conversion workspace.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversionWorkspaces/{conversionWorkspacesId}/mappingRules",
+                      "httpMethod": "GET",
+                      "id": "datamigration.projects.locations.conversionWorkspaces.mappingRules.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of rules to return. The service may return fewer than this value.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The nextPageToken value received in the previous call to mappingRules.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to mappingRules.list must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Name of the conversion workspace resource whose mapping rules are listed in the form of: projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversionWorkspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/mappingRules",
+                      "response": {
+                        "$ref": "ListMappingRulesResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1109,7 +1260,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                      "description": "Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1183,6 +1334,34 @@
                   },
                   "response": {
                     "$ref": "SshScript"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generateTcpProxyScript": {
+                  "description": "Generate a TCP Proxy configuration script to configure a cloud-hosted VM running a TCP Proxy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/migrationJobs/{migrationJobsId}:generateTcpProxyScript",
+                  "httpMethod": "POST",
+                  "id": "datamigration.projects.locations.migrationJobs.generateTcpProxyScript",
+                  "parameterOrder": [
+                    "migrationJob"
+                  ],
+                  "parameters": {
+                    "migrationJob": {
+                      "description": "Name of the migration job resource to generate the TCP Proxy script.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/migrationJobs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+migrationJob}:generateTcpProxyScript",
+                  "request": {
+                    "$ref": "GenerateTcpProxyScriptRequest"
+                  },
+                  "response": {
+                    "$ref": "TcpProxyScript"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1918,7 +2097,7 @@
       }
     }
   },
-  "revision": "20230610",
+  "revision": "20230703",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -1969,13 +2148,32 @@
       "description": "Request message for 'ApplyConversionWorkspace' request.",
       "id": "ApplyConversionWorkspaceRequest",
       "properties": {
+        "autoCommit": {
+          "description": "Optional. Specifies whether the conversion workspace is to be committed automatically after the apply.",
+          "type": "boolean"
+        },
         "connectionProfile": {
-          "description": "Fully qualified (Uri) name of the destination connection profile.",
+          "description": "Optional. Fully qualified (Uri) name of the destination connection profile.",
           "type": "string"
+        },
+        "dryRun": {
+          "description": "Optional. Only validates the apply process, but doesn't change the destination database. Only works for PostgreSQL destination connection profile.",
+          "type": "boolean"
         },
         "filter": {
           "description": "Filter which entities to apply. Leaving this field empty will apply all of the entities. Supports Google AIP 160 based filtering.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApplyHash": {
+      "description": "Apply a hash function on the value.",
+      "id": "ApplyHash",
+      "properties": {
+        "uuidFromBytes": {
+          "$ref": "Empty",
+          "description": "Optional. Generate UUID from the data's byte array"
         }
       },
       "type": "object"
@@ -1985,11 +2183,24 @@
       "id": "ApplyJobDetails",
       "properties": {
         "connectionProfile": {
-          "description": "The connection profile which was used for the apply job.",
+          "description": "Output only. The connection profile which was used for the apply job.",
+          "readOnly": true,
           "type": "string"
         },
         "filter": {
-          "description": "AIP-160 based filter used to specify the entities to apply",
+          "description": "Output only. AIP-160 based filter used to specify the entities to apply",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssignSpecificValue": {
+      "description": "Set to a specific value (value is converted to fit the target data type)",
+      "id": "AssignSpecificValue",
+      "properties": {
+        "value": {
+          "description": "Required. Specific value to be assigned",
           "type": "string"
         }
       },
@@ -2049,14 +2260,16 @@
       "properties": {
         "applyJobDetails": {
           "$ref": "ApplyJobDetails",
-          "description": "Apply job details."
+          "description": "Output only. Apply job details.",
+          "readOnly": true
         },
         "completionComment": {
-          "description": "Job completion comment, such as how many entities were seeded, how many warnings were found during conversion, and similar information.",
+          "description": "Output only. Job completion comment, such as how many entities were seeded, how many warnings were found during conversion, and similar information.",
+          "readOnly": true,
           "type": "string"
         },
         "completionState": {
-          "description": "Job completion state, i.e. the final state after the job completed.",
+          "description": "Output only. Job completion state, i.e. the final state after the job completed.",
           "enum": [
             "JOB_COMPLETION_STATE_UNSPECIFIED",
             "SUCCEEDED",
@@ -2067,11 +2280,13 @@
             "Success.",
             "Error."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "convertJobDetails": {
           "$ref": "ConvertJobDetails",
-          "description": "Convert job details."
+          "description": "Output only. Convert job details.",
+          "readOnly": true
         },
         "finishTime": {
           "description": "The timestamp when the background job was finished.",
@@ -2084,7 +2299,8 @@
         },
         "importRulesJobDetails": {
           "$ref": "ImportRulesJobDetails",
-          "description": "Import rules job details."
+          "description": "Output only. Import rules job details.",
+          "readOnly": true
         },
         "jobType": {
           "description": "The type of job that was executed.",
@@ -2105,12 +2321,14 @@
           "type": "string"
         },
         "requestAutocommit": {
-          "description": "Whether the client requested the conversion workspace to be committed after a successful completion of the job.",
+          "description": "Output only. Whether the client requested the conversion workspace to be committed after a successful completion of the job.",
+          "readOnly": true,
           "type": "boolean"
         },
         "seedJobDetails": {
           "$ref": "SeedJobDetails",
-          "description": "Seed job details."
+          "description": "Output only. Seed job details.",
+          "readOnly": true
         },
         "startTime": {
           "description": "The timestamp when the background job was started.",
@@ -2279,6 +2497,20 @@
           ],
           "type": "string"
         },
+        "edition": {
+          "description": "Optional. The edition of the given Cloud SQL instance.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ],
+          "enumDescriptions": [
+            "The instance did not specify the edition.",
+            "The instance is an enterprise edition.",
+            "The instance is an enterprise plus edition."
+          ],
+          "type": "string"
+        },
         "ipConfig": {
           "$ref": "SqlIpConfig",
           "description": "The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled."
@@ -2422,6 +2654,33 @@
         "commitName": {
           "description": "Optional. Optional name of the commit.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConditionalColumnSetValue": {
+      "description": "Options to configure rule type ConditionalColumnSetValue. The rule is used to transform the data which is being replicated/migrated. The rule filter field can refer to one or more entities. The rule scope can be one of: Column.",
+      "id": "ConditionalColumnSetValue",
+      "properties": {
+        "customFeatures": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Custom engine specific features.",
+          "type": "object"
+        },
+        "sourceNumericFilter": {
+          "$ref": "SourceNumericFilter",
+          "description": "Optional. Optional filter on source column precision and scale. Used for fixed point numbers such as NUMERIC/NUMBER data types."
+        },
+        "sourceTextFilter": {
+          "$ref": "SourceTextFilter",
+          "description": "Optional. Optional filter on source column length. Used for text based data types like varchar."
+        },
+        "valueTransformation": {
+          "$ref": "ValueTransformation",
+          "description": "Required. Description of data transformation during migration."
         }
       },
       "type": "object"
@@ -2587,14 +2846,14 @@
           "description": "Required. The destination engine details."
         },
         "displayName": {
-          "description": "The display name for the workspace.",
+          "description": "Optional. The display name for the workspace.",
           "type": "string"
         },
         "globalSettings": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A generic list of settings for the workspace. The settings are database pair dependant and can indicate default behavior for the mapping rules engine or turn on or off specific features. Such examples can be: convert_foreign_key_to_interleave=true, skip_triggers=false, ignore_non_table_synonyms=true",
+          "description": "Optional. A generic list of settings for the workspace. The settings are database pair dependant and can indicate default behavior for the mapping rules engine or turn on or off specific features. Such examples can be: convert_foreign_key_to_interleave=true, skip_triggers=false, ignore_non_table_synonyms=true",
           "type": "object"
         },
         "hasUncommittedChanges": {
@@ -2650,11 +2909,15 @@
       "id": "ConvertConversionWorkspaceRequest",
       "properties": {
         "autoCommit": {
-          "description": "Specifies whether the conversion workspace is to be committed automatically after the conversion.",
+          "description": "Optional. Specifies whether the conversion workspace is to be committed automatically after the conversion.",
+          "type": "boolean"
+        },
+        "convertFullPath": {
+          "description": "Optional. Automatically convert the full entity path for each entity specified by the filter. For example, if the filter specifies a table, that table schema (and database if there is one) will also be converted.",
           "type": "boolean"
         },
         "filter": {
-          "description": "Filter the entities to convert. Leaving this field empty will convert all of the entities. Supports Google AIP-160 style filtering.",
+          "description": "Optional. Filter the entities to convert. Leaving this field empty will convert all of the entities. Supports Google AIP-160 style filtering.",
           "type": "string"
         }
       },
@@ -2665,8 +2928,20 @@
       "id": "ConvertJobDetails",
       "properties": {
         "filter": {
-          "description": "AIP-160 based filter used to specify the entities to convert",
+          "description": "Output only. AIP-160 based filter used to specify the entities to convert",
+          "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConvertRowIdToColumn": {
+      "description": "Options to configure rule type ConvertROWIDToColumn. The rule is used to add column rowid to destination tables based on an Oracle rowid function/property. The rule filter field can refer to one or more entities. The rule scope can be one of: Table. This rule requires additional filter to be specified beyond the basic rule filter field, which is whether or not to work on tables which already have a primary key defined.",
+      "id": "ConvertRowIdToColumn",
+      "properties": {
+        "onlyIfNoPrimaryKey": {
+          "description": "Required. Only work on tables without primary key defined",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2702,6 +2977,10 @@
       "description": "The base entity type for all the database related entities. The message contains the entity name, the name of its parent, the entity type, and the specific details per entity type.",
       "id": "DatabaseEntity",
       "properties": {
+        "database": {
+          "$ref": "DatabaseInstanceEntity",
+          "description": "Database."
+        },
         "databaseFunction": {
           "$ref": "FunctionEntity",
           "description": "Function."
@@ -2709,6 +2988,13 @@
         "databasePackage": {
           "$ref": "PackageEntity",
           "description": "Package."
+        },
+        "entityDdl": {
+          "description": "Details about the entity DDL script. Multiple DDL scripts are provided for child entities such as a table entity will have one DDL for the table with additional DDLs for each index, constraint and such.",
+          "items": {
+            "$ref": "EntityDdl"
+          },
+          "type": "array"
         },
         "entityType": {
           "description": "The type of the database entity (table, view, index, ...).",
@@ -2750,12 +3036,23 @@
           ],
           "type": "string"
         },
+        "issues": {
+          "description": "Details about the various issues found for the entity.",
+          "items": {
+            "$ref": "EntityIssue"
+          },
+          "type": "array"
+        },
         "mappings": {
           "description": "Details about entity mappings. For source tree entities, this holds the draft entities which were generated by the mapping rules. For draft tree entities, this holds the source entities which were converted to form the draft entity. Destination entities will have no mapping details.",
           "items": {
             "$ref": "EntityMapping"
           },
           "type": "array"
+        },
+        "materializedView": {
+          "$ref": "MaterializedViewEntity",
+          "description": "Materialized view."
         },
         "parentEntity": {
           "description": "The full name of the parent entity (e.g. schema name).",
@@ -2801,9 +3098,28 @@
           ],
           "type": "string"
         },
+        "udt": {
+          "$ref": "UDTEntity",
+          "description": "UDT."
+        },
         "view": {
           "$ref": "ViewEntity",
           "description": "View."
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseInstanceEntity": {
+      "description": "DatabaseInstance acts as a parent entity to other database entities.",
+      "id": "DatabaseInstanceEntity",
+      "properties": {
+        "customFeatures": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Custom engine specific features.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -2881,6 +3197,36 @@
       },
       "type": "object"
     },
+    "DoubleComparisonFilter": {
+      "description": "Filter based on relation between source value and compare value of type double in ConditionalColumnSetValue",
+      "id": "DoubleComparisonFilter",
+      "properties": {
+        "value": {
+          "description": "Required. Double compare value to be used",
+          "format": "double",
+          "type": "number"
+        },
+        "valueComparison": {
+          "description": "Required. Relation between source value and compare value",
+          "enum": [
+            "VALUE_COMPARISON_UNSPECIFIED",
+            "VALUE_COMPARISON_IF_VALUE_SMALLER_THAN",
+            "VALUE_COMPARISON_IF_VALUE_SMALLER_EQUAL_THAN",
+            "VALUE_COMPARISON_IF_VALUE_LARGER_THAN",
+            "VALUE_COMPARISON_IF_VALUE_LARGER_EQUAL_THAN"
+          ],
+          "enumDescriptions": [
+            "Value comparison unspecified.",
+            "Value is smaller than the Compare value.",
+            "Value is smaller or equal than the Compare value.",
+            "Value is larger than the Compare value.",
+            "Value is larger or equal than the Compare value."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DumpFlag": {
       "description": "Dump flag definition.",
       "id": "DumpFlag",
@@ -2922,6 +3268,171 @@
       "properties": {
         "kmsKeyName": {
           "description": "The fully-qualified resource name of the KMS key. Each Cloud KMS key is regionalized and has the following format: projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME]",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EntityDdl": {
+      "description": "A single DDL statement for a specific entity",
+      "id": "EntityDdl",
+      "properties": {
+        "ddl": {
+          "description": "The actual ddl code.",
+          "type": "string"
+        },
+        "ddlType": {
+          "description": "Type of DDL (Create, Alter).",
+          "type": "string"
+        },
+        "entity": {
+          "description": "The name of the database entity the ddl refers to.",
+          "type": "string"
+        },
+        "entityType": {
+          "description": "The entity type (if the DDL is for a sub entity).",
+          "enum": [
+            "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+            "DATABASE_ENTITY_TYPE_SCHEMA",
+            "DATABASE_ENTITY_TYPE_TABLE",
+            "DATABASE_ENTITY_TYPE_COLUMN",
+            "DATABASE_ENTITY_TYPE_CONSTRAINT",
+            "DATABASE_ENTITY_TYPE_INDEX",
+            "DATABASE_ENTITY_TYPE_TRIGGER",
+            "DATABASE_ENTITY_TYPE_VIEW",
+            "DATABASE_ENTITY_TYPE_SEQUENCE",
+            "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+            "DATABASE_ENTITY_TYPE_FUNCTION",
+            "DATABASE_ENTITY_TYPE_SYNONYM",
+            "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+            "DATABASE_ENTITY_TYPE_UDT",
+            "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+            "DATABASE_ENTITY_TYPE_DATABASE"
+          ],
+          "enumDescriptions": [
+            "Unspecified database entity type.",
+            "Schema.",
+            "Table.",
+            "Column.",
+            "Constraint.",
+            "Index.",
+            "Trigger.",
+            "View.",
+            "Sequence.",
+            "Stored Procedure.",
+            "Function.",
+            "Synonym.",
+            "Package.",
+            "UDT.",
+            "Materialized View.",
+            "Database."
+          ],
+          "type": "string"
+        },
+        "issueId": {
+          "description": "EntityIssues found for this ddl.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EntityIssue": {
+      "description": "Issue related to the entity.",
+      "id": "EntityIssue",
+      "properties": {
+        "code": {
+          "description": "Error/Warning code",
+          "type": "string"
+        },
+        "ddl": {
+          "description": "The ddl which caused the issue, if relevant.",
+          "type": "string"
+        },
+        "entityType": {
+          "description": "The entity type (if the DDL is for a sub entity).",
+          "enum": [
+            "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+            "DATABASE_ENTITY_TYPE_SCHEMA",
+            "DATABASE_ENTITY_TYPE_TABLE",
+            "DATABASE_ENTITY_TYPE_COLUMN",
+            "DATABASE_ENTITY_TYPE_CONSTRAINT",
+            "DATABASE_ENTITY_TYPE_INDEX",
+            "DATABASE_ENTITY_TYPE_TRIGGER",
+            "DATABASE_ENTITY_TYPE_VIEW",
+            "DATABASE_ENTITY_TYPE_SEQUENCE",
+            "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+            "DATABASE_ENTITY_TYPE_FUNCTION",
+            "DATABASE_ENTITY_TYPE_SYNONYM",
+            "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+            "DATABASE_ENTITY_TYPE_UDT",
+            "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+            "DATABASE_ENTITY_TYPE_DATABASE"
+          ],
+          "enumDescriptions": [
+            "Unspecified database entity type.",
+            "Schema.",
+            "Table.",
+            "Column.",
+            "Constraint.",
+            "Index.",
+            "Trigger.",
+            "View.",
+            "Sequence.",
+            "Stored Procedure.",
+            "Function.",
+            "Synonym.",
+            "Package.",
+            "UDT.",
+            "Materialized View.",
+            "Database."
+          ],
+          "type": "string"
+        },
+        "id": {
+          "description": "Unique Issue ID.",
+          "type": "string"
+        },
+        "message": {
+          "description": "Issue detailed message",
+          "type": "string"
+        },
+        "position": {
+          "$ref": "Position",
+          "description": "The position of the issue found, if relevant."
+        },
+        "severity": {
+          "description": "Severity of the issue",
+          "enum": [
+            "ISSUE_SEVERITY_UNSPECIFIED",
+            "ISSUE_SEVERITY_INFO",
+            "ISSUE_SEVERITY_WARNING",
+            "ISSUE_SEVERITY_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified issue severity",
+            "Info",
+            "Warning",
+            "Error"
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the issue.",
+          "enum": [
+            "ISSUE_TYPE_UNSPECIFIED",
+            "ISSUE_TYPE_DDL",
+            "ISSUE_TYPE_APPLY",
+            "ISSUE_TYPE_CONVERT"
+          ],
+          "enumDescriptions": [
+            "Unspecified issue type.",
+            "Issue originated from the DDL",
+            "Issue originated during the apply process",
+            "Issue originated during the convert process"
+          ],
           "type": "string"
         }
       },
@@ -3048,6 +3559,17 @@
       },
       "type": "object"
     },
+    "EntityMove": {
+      "description": "Options to configure rule type EntityMove. The rule is used to move an entity to a new schema. The rule filter field can refer to one or more entities. The rule scope can be one of: Table, Column, Constraint, Index, View, Function, Stored Procedure, Materialized View, Sequence, UDT",
+      "id": "EntityMove",
+      "properties": {
+        "newSchema": {
+          "description": "Required. The new schema",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -3081,6 +3603,27 @@
         },
         "staticIps": {
           "description": "List of static IPs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FilterTableColumns": {
+      "description": "Options to configure rule type FilterTableColumns. The rule is used to filter the list of columns to include or exclude from a table. The rule filter field can refer to one entity. The rule scope can be: Table Only one of the two lists can be specified for the rule.",
+      "id": "FilterTableColumns",
+      "properties": {
+        "excludeColumns": {
+          "description": "Optional. List of columns to be excluded for a particular table.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includeColumns": {
+          "description": "Optional. List of columns to be included for a particular table.",
           "items": {
             "type": "string"
           },
@@ -3160,6 +3703,29 @@
       },
       "type": "object"
     },
+    "GenerateTcpProxyScriptRequest": {
+      "description": "Request message for 'GenerateTcpProxyScript' request.",
+      "id": "GenerateTcpProxyScriptRequest",
+      "properties": {
+        "vmMachineType": {
+          "description": "Required. The type of the Compute instance that will host the proxy.",
+          "type": "string"
+        },
+        "vmName": {
+          "description": "Required. The name of the Compute instance that will host the proxy.",
+          "type": "string"
+        },
+        "vmSubnet": {
+          "description": "Required. The name of the subnet the Compute instance will use for private connectivity. Must be supplied in the form of projects/{project}/regions/{region}/subnetworks/{subnetwork}. Note: the region for the subnet must match the Compute instance region.",
+          "type": "string"
+        },
+        "vmZone": {
+          "description": "Optional. The Google Cloud Platform zone to create the VM in. The fully qualified name of the zone must be specified, including the region name, for example \"us-central1-b\". If not specified, uses the \"-b\" zone of the destination Connection Profile's region.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudClouddmsV1OperationMetadata": {
       "description": "Represents the metadata of the long-running operation.",
       "id": "GoogleCloudClouddmsV1OperationMetadata",
@@ -3209,18 +3775,18 @@
       "id": "ImportMappingRulesRequest",
       "properties": {
         "autoCommit": {
-          "description": "Should the conversion workspace be committed automatically after the import operation.",
+          "description": "Required. Should the conversion workspace be committed automatically after the import operation.",
           "type": "boolean"
         },
         "rulesFiles": {
-          "description": "One or more rules files.",
+          "description": "Required. One or more rules files.",
           "items": {
             "$ref": "RulesFile"
           },
           "type": "array"
         },
         "rulesFormat": {
-          "description": "The format of the rules content file.",
+          "description": "Required. The format of the rules content file.",
           "enum": [
             "IMPORT_RULES_FILE_FORMAT_UNSPECIFIED",
             "IMPORT_RULES_FILE_FORMAT_HARBOUR_BRIDGE_SESSION_FILE",
@@ -3241,7 +3807,7 @@
       "id": "ImportRulesJobDetails",
       "properties": {
         "fileFormat": {
-          "description": "The requested file format.",
+          "description": "Output only. The requested file format.",
           "enum": [
             "IMPORT_RULES_FILE_FORMAT_UNSPECIFIED",
             "IMPORT_RULES_FILE_FORMAT_HARBOUR_BRIDGE_SESSION_FILE",
@@ -3252,13 +3818,15 @@
             "HarbourBridge session file.",
             "Ora2Pg configuration file."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "files": {
-          "description": "File names used for the import rules job.",
+          "description": "Output only. File names used for the import rules job.",
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -3294,6 +3862,36 @@
         "unique": {
           "description": "Boolean value indicating whether the index is unique.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "IntComparisonFilter": {
+      "description": "Filter based on relation between source value and compare value of type integer in ConditionalColumnSetValue",
+      "id": "IntComparisonFilter",
+      "properties": {
+        "value": {
+          "description": "Required. Integer compare value to be used",
+          "format": "int64",
+          "type": "string"
+        },
+        "valueComparison": {
+          "description": "Required. Relation between source value and compare value",
+          "enum": [
+            "VALUE_COMPARISON_UNSPECIFIED",
+            "VALUE_COMPARISON_IF_VALUE_SMALLER_THAN",
+            "VALUE_COMPARISON_IF_VALUE_SMALLER_EQUAL_THAN",
+            "VALUE_COMPARISON_IF_VALUE_LARGER_THAN",
+            "VALUE_COMPARISON_IF_VALUE_LARGER_EQUAL_THAN"
+          ],
+          "enumDescriptions": [
+            "Value comparison unspecified.",
+            "Value is smaller than the Compare value.",
+            "Value is smaller or equal than the Compare value.",
+            "Value is larger than the Compare value.",
+            "Value is larger or equal than the Compare value."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3361,6 +3959,24 @@
         },
         "nextPageToken": {
           "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListMappingRulesResponse": {
+      "description": "Response message for 'ListMappingRulesRequest' request.",
+      "id": "ListMappingRulesResponse",
+      "properties": {
+        "mappingRules": {
+          "description": "The list of conversion workspace mapping rules.",
+          "items": {
+            "$ref": "MappingRule"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -3476,6 +4092,190 @@
           "description": "The number of CPU's in the VM instance.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "MappingRule": {
+      "description": "Definition of a transformation that is to be applied to a group of entities in the source schema. Several such transformations can be applied to an entity sequentially to define the corresponding entity in the target schema.",
+      "id": "MappingRule",
+      "properties": {
+        "conditionalColumnSetValue": {
+          "$ref": "ConditionalColumnSetValue",
+          "description": "Optional. Rule to specify how the data contained in a column should be transformed (such as trimmed, rounded, etc) provided that the data meets certain criteria."
+        },
+        "convertRowidColumn": {
+          "$ref": "ConvertRowIdToColumn",
+          "description": "Optional. Rule to specify how multiple tables should be converted with an additional rowid column."
+        },
+        "displayName": {
+          "description": "Optional. A human readable name",
+          "type": "string"
+        },
+        "entityMove": {
+          "$ref": "EntityMove",
+          "description": "Optional. Rule to specify how multiple entities should be relocated into a different schema."
+        },
+        "filter": {
+          "$ref": "MappingRuleFilter",
+          "description": "Required. The rule filter"
+        },
+        "filterTableColumns": {
+          "$ref": "FilterTableColumns",
+          "description": "Optional. Rule to specify the list of columns to include or exclude from a table."
+        },
+        "multiColumnDataTypeChange": {
+          "$ref": "MultiColumnDatatypeChange",
+          "description": "Optional. Rule to specify how multiple columns should be converted to a different data type."
+        },
+        "multiEntityRename": {
+          "$ref": "MultiEntityRename",
+          "description": "Optional. Rule to specify how multiple entities should be renamed."
+        },
+        "name": {
+          "description": "Full name of the mapping rule resource, in the form of: projects/{project}/locations/{location}/conversionWorkspaces/{set}/mappingRule/{rule}.",
+          "type": "string"
+        },
+        "revisionCreateTime": {
+          "description": "Output only. The timestamp that the revision was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "Output only. The revision ID of the mapping rule. A new revision is committed whenever the mapping rule is changed in any way. The format is an 8-character hexadecimal string.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ruleOrder": {
+          "description": "Required. The order in which the rule is applied. Lower order rules are applied before higher value rules so they may end up being overridden.",
+          "format": "int64",
+          "type": "string"
+        },
+        "ruleScope": {
+          "description": "Required. The rule scope",
+          "enum": [
+            "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+            "DATABASE_ENTITY_TYPE_SCHEMA",
+            "DATABASE_ENTITY_TYPE_TABLE",
+            "DATABASE_ENTITY_TYPE_COLUMN",
+            "DATABASE_ENTITY_TYPE_CONSTRAINT",
+            "DATABASE_ENTITY_TYPE_INDEX",
+            "DATABASE_ENTITY_TYPE_TRIGGER",
+            "DATABASE_ENTITY_TYPE_VIEW",
+            "DATABASE_ENTITY_TYPE_SEQUENCE",
+            "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+            "DATABASE_ENTITY_TYPE_FUNCTION",
+            "DATABASE_ENTITY_TYPE_SYNONYM",
+            "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+            "DATABASE_ENTITY_TYPE_UDT",
+            "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+            "DATABASE_ENTITY_TYPE_DATABASE"
+          ],
+          "enumDescriptions": [
+            "Unspecified database entity type.",
+            "Schema.",
+            "Table.",
+            "Column.",
+            "Constraint.",
+            "Index.",
+            "Trigger.",
+            "View.",
+            "Sequence.",
+            "Stored Procedure.",
+            "Function.",
+            "Synonym.",
+            "Package.",
+            "UDT.",
+            "Materialized View.",
+            "Database."
+          ],
+          "type": "string"
+        },
+        "setTablePrimaryKey": {
+          "$ref": "SetTablePrimaryKey",
+          "description": "Optional. Rule to specify the primary key for a table"
+        },
+        "singleColumnChange": {
+          "$ref": "SingleColumnChange",
+          "description": "Optional. Rule to specify how a single column is converted."
+        },
+        "singleEntityRename": {
+          "$ref": "SingleEntityRename",
+          "description": "Optional. Rule to specify how a single entity should be renamed."
+        },
+        "singlePackageChange": {
+          "$ref": "SinglePackageChange",
+          "description": "Optional. Rule to specify how a single package is converted."
+        },
+        "sourceSqlChange": {
+          "$ref": "SourceSqlChange",
+          "description": "Optional. Rule to change the sql code for an entity, for example, function, procedure."
+        },
+        "state": {
+          "description": "Optional. The mapping rule state",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "The state of the mapping rule is unknown.",
+            "The rule is enabled.",
+            "The rule is disabled.",
+            "The rule is logically deleted."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MappingRuleFilter": {
+      "description": "A filter defining the entities that a mapping rule should be applied to. When more than one field is specified, the rule is applied only to entities which match all the fields.",
+      "id": "MappingRuleFilter",
+      "properties": {
+        "entities": {
+          "description": "Optional. The rule should be applied to specific entities defined by their fully qualified names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entityNameContains": {
+          "description": "Optional. The rule should be applied to entities whose non-qualified name contains the given string.",
+          "type": "string"
+        },
+        "entityNamePrefix": {
+          "description": "Optional. The rule should be applied to entities whose non-qualified name starts with the given prefix.",
+          "type": "string"
+        },
+        "entityNameSuffix": {
+          "description": "Optional. The rule should be applied to entities whose non-qualified name ends with the given suffix.",
+          "type": "string"
+        },
+        "parentEntity": {
+          "description": "Optional. The rule should be applied to entities whose parent entity (fully qualified name) matches the given value. For example, if the rule applies to a table entity, the expected value should be a schema (schema). If the rule applies to a column or index entity, the expected value can be either a schema (schema) or a table (schema.table)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MaterializedViewEntity": {
+      "description": "MaterializedView's parent is a schema.",
+      "id": "MaterializedViewEntity",
+      "properties": {
+        "customFeatures": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Custom engine specific features.",
+          "type": "object"
+        },
+        "sqlCode": {
+          "description": "The SQL code which creates the view.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3681,11 +4481,13 @@
             "UNSUPPORTED_TABLE_DEFINITION",
             "UNSUPPORTED_DEFINER",
             "CANT_RESTART_RUNNING_MIGRATION",
+            "SOURCE_ALREADY_SETUP",
             "TABLES_WITH_LIMITED_SUPPORT",
             "UNSUPPORTED_DATABASE_LOCALE",
             "UNSUPPORTED_DATABASE_FDW_CONFIG",
             "ERROR_RDBMS",
-            "SOURCE_SIZE_EXCEEDS_THRESHOLD"
+            "SOURCE_SIZE_EXCEEDS_THRESHOLD",
+            "EXISTING_CONFLICTING_DATABASES"
           ],
           "enumDescriptions": [
             "An unknown error occurred",
@@ -3708,11 +4510,13 @@
             "The table definition is not support due to missing primary key or replica identity.",
             "The definer is not supported.",
             "Migration is already running at the time of restart request.",
+            "The source already has a replication setup.",
             "The source has tables with limited support. E.g. PostgreSQL tables without primary keys.",
             "The source uses an unsupported locale.",
             "The source uses an unsupported Foreign Data Wrapper configuration.",
             "There was an underlying RDBMS error.",
-            "The source DB size in Bytes exceeds a certain threshold. The migration might require an increase of quota, or might not be supported."
+            "The source DB size in Bytes exceeds a certain threshold. The migration might require an increase of quota, or might not be supported.",
+            "The destination DB contains existing databases that are conflicting with those in the source DB."
           ],
           "readOnly": true,
           "type": "string"
@@ -3725,6 +4529,86 @@
         "errorMessage": {
           "description": "Output only. A formatted message with further details about the error and a CTA.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MultiColumnDatatypeChange": {
+      "description": "Options to configure rule type MultiColumnDatatypeChange. The rule is used to change the data type and associated properties of multiple columns at once. The rule filter field can refer to one or more entities. The rule scope can be one of:Column. This rule requires additional filters to be specified beyond the basic rule filter field, which is the source data type, but the rule supports additional filtering capabilities such as the minimum and maximum field length. All additional filters which are specified are required to be met in order for the rule to be applied (logical AND between the fields).",
+      "id": "MultiColumnDatatypeChange",
+      "properties": {
+        "customFeatures": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Custom engine specific features.",
+          "type": "object"
+        },
+        "newDataType": {
+          "description": "Required. New data type.",
+          "type": "string"
+        },
+        "overrideFractionalSecondsPrecision": {
+          "description": "Optional. Column fractional seconds precision - used only for timestamp based datatypes - if not specified and relevant uses the source column fractional seconds precision.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "overrideLength": {
+          "description": "Optional. Column length - e.g. varchar (50) - if not specified and relevant uses the source column length.",
+          "format": "int64",
+          "type": "string"
+        },
+        "overridePrecision": {
+          "description": "Optional. Column precision - when relevant - if not specified and relevant uses the source column precision.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "overrideScale": {
+          "description": "Optional. Column scale - when relevant - if not specified and relevant uses the source column scale.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sourceDataTypeFilter": {
+          "description": "Required. Filter on source data type.",
+          "type": "string"
+        },
+        "sourceNumericFilter": {
+          "$ref": "SourceNumericFilter",
+          "description": "Optional. Filter for fixed point number data types such as NUMERIC/NUMBER."
+        },
+        "sourceTextFilter": {
+          "$ref": "SourceTextFilter",
+          "description": "Optional. Filter for text-based data types like varchar."
+        }
+      },
+      "type": "object"
+    },
+    "MultiEntityRename": {
+      "description": "Options to configure rule type MultiEntityRename. The rule is used to rename multiple entities. The rule filter field can refer to one or more entities. The rule scope can be one of: Database, Schema, Table, Column, Constraint, Index, View, Function, Stored Procedure, Materialized View, Sequence, UDT",
+      "id": "MultiEntityRename",
+      "properties": {
+        "newNamePattern": {
+          "description": "Optional. The pattern used to generate the new entity's name. This pattern must include the characters '{name}', which will be replaced with the name of the original entity. For example, the pattern 't_{name}' for an entity name jobs would be converted to 't_jobs'. If unspecified, the default value for this field is '{name}'",
+          "type": "string"
+        },
+        "sourceNameTransformation": {
+          "description": "Optional. Additional transformation that can be done on the source entity name before it is being used by the new_name_pattern, for example lower case. If no transformation is desired, use NO_TRANSFORMATION",
+          "enum": [
+            "ENTITY_NAME_TRANSFORMATION_UNSPECIFIED",
+            "ENTITY_NAME_TRANSFORMATION_NO_TRANSFORMATION",
+            "ENTITY_NAME_TRANSFORMATION_LOWER_CASE",
+            "ENTITY_NAME_TRANSFORMATION_UPPER_CASE",
+            "ENTITY_NAME_TRANSFORMATION_CAPITALIZED_CASE"
+          ],
+          "enumDescriptions": [
+            "Entity name transformation unspecified.",
+            "No transformation.",
+            "Transform to lower case.",
+            "Transform to upper case.",
+            "Transform to capitalized case."
+          ],
           "type": "string"
         }
       },
@@ -3899,6 +4783,33 @@
         },
         "version": {
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Position": {
+      "description": "Issue position.",
+      "id": "Position",
+      "properties": {
+        "column": {
+          "description": "Issue column number",
+          "format": "int32",
+          "type": "integer"
+        },
+        "length": {
+          "description": "Issue length",
+          "format": "int32",
+          "type": "integer"
+        },
+        "line": {
+          "description": "Issue line number",
+          "format": "int32",
+          "type": "integer"
+        },
+        "offset": {
+          "description": "Issue offset",
           "format": "int32",
           "type": "integer"
         }
@@ -4135,16 +5046,28 @@
       "properties": {},
       "type": "object"
     },
+    "RoundToScale": {
+      "description": "This allows the data to change scale, for example if the source is 2 digits after the decimal point, specify round to scale value = 2. If for example the value needs to be converted to an integer, use round to scale value = 0.",
+      "id": "RoundToScale",
+      "properties": {
+        "scale": {
+          "description": "Required. Scale value to be used",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "RulesFile": {
       "description": "Details of a single rules file.",
       "id": "RulesFile",
       "properties": {
         "rulesContent": {
-          "description": "The text content of the rules that needs to be converted.",
+          "description": "Required. The text content of the rules that needs to be converted.",
           "type": "string"
         },
         "rulesSourceFilename": {
-          "description": "The filename of the rules that needs to be converted. The filename is used mainly so that future logs of the import rules job contain it, and can therefore be searched by it.",
+          "description": "Required. The filename of the rules that needs to be converted. The filename is used mainly so that future logs of the import rules job contain it, and can therefore be searched by it.",
           "type": "string"
         }
       },
@@ -4188,11 +5111,11 @@
           "type": "boolean"
         },
         "destinationConnectionProfile": {
-          "description": "Fully qualified (Uri) name of the destination connection profile.",
+          "description": "Optional. Fully qualified (Uri) name of the destination connection profile.",
           "type": "string"
         },
         "sourceConnectionProfile": {
-          "description": "Fully qualified (Uri) name of the source connection profile.",
+          "description": "Optional. Fully qualified (Uri) name of the source connection profile.",
           "type": "string"
         }
       },
@@ -4203,7 +5126,8 @@
       "id": "SeedJobDetails",
       "properties": {
         "connectionProfile": {
-          "description": "The connection profile which was used for the seed job.",
+          "description": "Output only. The connection profile which was used for the seed job.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4264,6 +5188,200 @@
         "updateMask": {
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SetTablePrimaryKey": {
+      "description": "Options to configure rule type SetTablePrimaryKey. The rule is used to specify the columns and name to configure/alter the primary key of a table. The rule filter field can refer to one entity. The rule scope can be one of: Table.",
+      "id": "SetTablePrimaryKey",
+      "properties": {
+        "primaryKey": {
+          "description": "Optional. Name for the primary key",
+          "type": "string"
+        },
+        "primaryKeyColumns": {
+          "description": "Required. List of column names for the primary key",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SingleColumnChange": {
+      "description": "Options to configure rule type SingleColumnChange. The rule is used to change the properties of a column. The rule filter field can refer to one entity. The rule scope can be one of: Column. When using this rule, if a field is not specified than the destination column's configuration will be the same as the one in the source column..",
+      "id": "SingleColumnChange",
+      "properties": {
+        "array": {
+          "description": "Optional. Is the column of array type.",
+          "type": "boolean"
+        },
+        "arrayLength": {
+          "description": "Optional. The length of the array, only relevant if the column type is an array.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "autoGenerated": {
+          "description": "Optional. Is the column auto-generated/identity.",
+          "type": "boolean"
+        },
+        "charset": {
+          "description": "Optional. Charset override - instead of table level charset.",
+          "type": "string"
+        },
+        "collation": {
+          "description": "Optional. Collation override - instead of table level collation.",
+          "type": "string"
+        },
+        "comment": {
+          "description": "Optional. Comment associated with the column.",
+          "type": "string"
+        },
+        "customFeatures": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Custom engine specific features.",
+          "type": "object"
+        },
+        "dataType": {
+          "description": "Optional. Column data type name.",
+          "type": "string"
+        },
+        "fractionalSecondsPrecision": {
+          "description": "Optional. Column fractional seconds precision - e.g. 2 as in timestamp (2) - when relevant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "length": {
+          "description": "Optional. Column length - e.g. 50 as in varchar (50) - when relevant.",
+          "format": "int64",
+          "type": "string"
+        },
+        "nullable": {
+          "description": "Optional. Is the column nullable.",
+          "type": "boolean"
+        },
+        "precision": {
+          "description": "Optional. Column precision - e.g. 8 as in double (8,2) - when relevant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "scale": {
+          "description": "Optional. Column scale - e.g. 2 as in double (8,2) - when relevant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "setValues": {
+          "description": "Optional. Specifies the list of values allowed in the column.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "udt": {
+          "description": "Optional. Is the column a UDT (User-defined Type).",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SingleEntityRename": {
+      "description": "Options to configure rule type SingleEntityRename. The rule is used to rename an entity. The rule filter field can refer to only one entity. The rule scope can be one of: Database, Schema, Table, Column, Constraint, Index, View, Function, Stored Procedure, Materialized View, Sequence, UDT, Synonym",
+      "id": "SingleEntityRename",
+      "properties": {
+        "newName": {
+          "description": "Required. The new name of the destination entity",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SinglePackageChange": {
+      "description": "Options to configure rule type SinglePackageChange. The rule is used to alter the sql code for a package entities. The rule filter field can refer to one entity. The rule scope can be: Package",
+      "id": "SinglePackageChange",
+      "properties": {
+        "packageBody": {
+          "description": "Optional. Sql code for package body",
+          "type": "string"
+        },
+        "packageDescription": {
+          "description": "Optional. Sql code for package description",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SourceNumericFilter": {
+      "description": "Filter for fixed point number data types such as NUMERIC/NUMBER",
+      "id": "SourceNumericFilter",
+      "properties": {
+        "numericFilterOption": {
+          "description": "Required. Enum to set the option defining the datatypes numeric filter has to be applied to",
+          "enum": [
+            "NUMERIC_FILTER_OPTION_UNSPECIFIED",
+            "NUMERIC_FILTER_OPTION_ALL",
+            "NUMERIC_FILTER_OPTION_LIMIT",
+            "NUMERIC_FILTER_OPTION_LIMITLESS"
+          ],
+          "enumDescriptions": [
+            "Numeric filter option unspecified",
+            "Numeric filter option that matches all numeric columns.",
+            "Numeric filter option that matches columns having numeric datatypes with specified precision and scale within the limited range of filter.",
+            "Numeric filter option that matches only the numeric columns with no precision and scale specified."
+          ],
+          "type": "string"
+        },
+        "sourceMaxPrecisionFilter": {
+          "description": "Optional. The filter will match columns with precision smaller than or equal to this number.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sourceMaxScaleFilter": {
+          "description": "Optional. The filter will match columns with scale smaller than or equal to this number.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sourceMinPrecisionFilter": {
+          "description": "Optional. The filter will match columns with precision greater than or equal to this number.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sourceMinScaleFilter": {
+          "description": "Optional. The filter will match columns with scale greater than or equal to this number.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SourceSqlChange": {
+      "description": "Options to configure rule type SourceSqlChange. The rule is used to alter the sql code for database entities. The rule filter field can refer to one entity. The rule scope can be: StoredProcedure, Function, Trigger, View",
+      "id": "SourceSqlChange",
+      "properties": {
+        "sqlCode": {
+          "description": "Required. Sql code for source (stored procedure, function, trigger or view)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SourceTextFilter": {
+      "description": "Filter for text-based data types like varchar.",
+      "id": "SourceTextFilter",
+      "properties": {
+        "sourceMaxLengthFilter": {
+          "description": "Optional. The filter will match columns with length smaller than or equal to this number.",
+          "format": "int64",
+          "type": "string"
+        },
+        "sourceMinLengthFilter": {
+          "description": "Optional. The filter will match columns with length greater than or equal to this number.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -4545,6 +5663,17 @@
       },
       "type": "object"
     },
+    "TcpProxyScript": {
+      "description": "Response message for 'GenerateTcpProxyScript' request.",
+      "id": "TcpProxyScript",
+      "properties": {
+        "script": {
+          "description": "The TCP Proxy configuration script.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TestIamPermissionsRequest": {
       "description": "Request message for `TestIamPermissions` method.",
       "id": "TestIamPermissionsRequest",
@@ -4607,6 +5736,29 @@
       },
       "type": "object"
     },
+    "UDTEntity": {
+      "description": "UDT's parent is a schema.",
+      "id": "UDTEntity",
+      "properties": {
+        "customFeatures": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Custom engine specific features.",
+          "type": "object"
+        },
+        "udtBody": {
+          "description": "The SQL code which creates the udt body.",
+          "type": "string"
+        },
+        "udtSqlCode": {
+          "description": "The SQL code which creates the udt.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "UserPassword": {
       "description": "The username/password for a database user. Used for specifying initial users at cluster creation time.",
       "id": "UserPassword",
@@ -4627,10 +5779,99 @@
       },
       "type": "object"
     },
+    "ValueListFilter": {
+      "description": "A list of values to filter by in ConditionalColumnSetValue",
+      "id": "ValueListFilter",
+      "properties": {
+        "ignoreCase": {
+          "description": "Required. Whether to ignore case when filtering by values. Defaults to false",
+          "type": "boolean"
+        },
+        "valuePresentList": {
+          "description": "Required. Indicates whether the filter matches rows with values that are present in the list or those with values not present in it.",
+          "enum": [
+            "VALUE_PRESENT_IN_LIST_UNSPECIFIED",
+            "VALUE_PRESENT_IN_LIST_IF_VALUE_LIST",
+            "VALUE_PRESENT_IN_LIST_IF_VALUE_NOT_LIST"
+          ],
+          "enumDescriptions": [
+            "Value present in list unspecified",
+            "If the source value is in the supplied list at value_list",
+            "If the source value is not in the supplied list at value_list"
+          ],
+          "type": "string"
+        },
+        "values": {
+          "description": "Required. The list to be used to filter by",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ValueTransformation": {
+      "description": "Description of data transformation during migration as part of the ConditionalColumnSetValue.",
+      "id": "ValueTransformation",
+      "properties": {
+        "applyHash": {
+          "$ref": "ApplyHash",
+          "description": "Optional. Applies a hash function on the data"
+        },
+        "assignMaxValue": {
+          "$ref": "Empty",
+          "description": "Optional. Set to max_value - if integer or numeric, will use int.maxvalue, etc"
+        },
+        "assignMinValue": {
+          "$ref": "Empty",
+          "description": "Optional. Set to min_value - if integer or numeric, will use int.minvalue, etc"
+        },
+        "assignNull": {
+          "$ref": "Empty",
+          "description": "Optional. Set to null"
+        },
+        "assignSpecificValue": {
+          "$ref": "AssignSpecificValue",
+          "description": "Optional. Set to a specific value (value is converted to fit the target data type)"
+        },
+        "doubleComparison": {
+          "$ref": "DoubleComparisonFilter",
+          "description": "Optional. Filter on relation between source value and compare value of type double."
+        },
+        "intComparison": {
+          "$ref": "IntComparisonFilter",
+          "description": "Optional. Filter on relation between source value and compare value of type integer."
+        },
+        "isNull": {
+          "$ref": "Empty",
+          "description": "Optional. Value is null"
+        },
+        "roundScale": {
+          "$ref": "RoundToScale",
+          "description": "Optional. Allows the data to change scale"
+        },
+        "valueList": {
+          "$ref": "ValueListFilter",
+          "description": "Optional. Value is found in the specified list."
+        }
+      },
+      "type": "object"
+    },
     "VerifyMigrationJobRequest": {
       "description": "Request message for 'VerifyMigrationJob' request.",
       "id": "VerifyMigrationJobRequest",
-      "properties": {},
+      "properties": {
+        "migrationJob": {
+          "$ref": "MigrationJob",
+          "description": "Optional. The changed migration job parameters to verify. It will not update the migration job."
+        },
+        "updateMask": {
+          "description": "Optional. Field mask is used to specify the changed fields to be verified. It will not update the migration job.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ViewEntity": {
