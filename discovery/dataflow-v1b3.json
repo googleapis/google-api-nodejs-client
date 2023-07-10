@@ -576,7 +576,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, we will first handle RequestedJobState and then the update_mask fields.",
+                  "description": "The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, an error will be returned as we cannot update both state and mask.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1302,7 +1302,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, we will first handle RequestedJobState and then the update_mask fields.",
+                      "description": "The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, an error will be returned as we cannot update both state and mask.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -2214,7 +2214,7 @@
       }
     }
   },
-  "revision": "20230608",
+  "revision": "20230619",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -4700,6 +4700,13 @@
           "description": "Optional. Additional metadata for describing this parameter.",
           "type": "object"
         },
+        "enumOptions": {
+          "description": "Optional. The options shown when ENUM ParameterType is specified.",
+          "items": {
+            "$ref": "ParameterMetadataEnumOption"
+          },
+          "type": "array"
+        },
         "groupName": {
           "description": "Optional. Specifies a group name for this parameter to be rendered under. Group header text will be rendered exactly as specified in this field. Only considered when parent_name is NOT provided.",
           "type": "string"
@@ -4739,7 +4746,9 @@
             "MACHINE_TYPE",
             "KMS_KEY_NAME",
             "WORKER_REGION",
-            "WORKER_ZONE"
+            "WORKER_ZONE",
+            "BOOLEAN",
+            "ENUM"
           ],
           "enumDescriptions": [
             "Default input type.",
@@ -4758,7 +4767,9 @@
             "The parameter specifies a Machine Type.",
             "The parameter specifies a KMS Key name.",
             "The parameter specifies a Worker Region.",
-            "The parameter specifies a Worker Zone."
+            "The parameter specifies a Worker Zone.",
+            "The parameter specifies a boolean input.",
+            "The parameter specifies an enum input."
           ],
           "type": "string"
         },
@@ -4779,6 +4790,25 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ParameterMetadataEnumOption": {
+      "description": "ParameterMetadataEnumOption specifies the option shown in the enum form.",
+      "id": "ParameterMetadataEnumOption",
+      "properties": {
+        "description": {
+          "description": "Optional. The description to display for the enum option.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Optional. The label to display for the enum option.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The value of the enum option.",
+          "type": "string"
         }
       },
       "type": "object"
