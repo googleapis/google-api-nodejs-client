@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "cloudsupport:v2beta",
+  "id": "cloudsupport:v2",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://cloudsupport.mtls.googleapis.com/",
   "name": "cloudsupport",
@@ -109,7 +109,7 @@
       "methods": {
         "search": {
           "description": "Retrieve valid classifications to be used when creating a support case. The classications are hierarchical, with each classification containing all levels of the hierarchy, separated by `\" > \"`. For example `\"Technical Issue > Compute > Compute Engine\"`. Classification IDs returned by `caseClassifications.search` are guaranteed to be valid for at least 6 months. If a given classification is deactiveated, it will immediately stop being returned. After 6 months, `case.create` requests using the classification ID will fail.",
-          "flatPath": "v2beta/caseClassifications:search",
+          "flatPath": "v2/caseClassifications:search",
           "httpMethod": "GET",
           "id": "cloudsupport.caseClassifications.search",
           "parameterOrder": [],
@@ -131,7 +131,7 @@
               "type": "string"
             }
           },
-          "path": "v2beta/caseClassifications:search",
+          "path": "v2/caseClassifications:search",
           "response": {
             "$ref": "SearchCaseClassificationsResponse"
           },
@@ -145,7 +145,7 @@
       "methods": {
         "close": {
           "description": "Close the specified case.",
-          "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}:close",
+          "flatPath": "v2/{v2Id}/{v2Id1}/cases/{casesId}:close",
           "httpMethod": "POST",
           "id": "cloudsupport.cases.close",
           "parameterOrder": [
@@ -160,7 +160,7 @@
               "type": "string"
             }
           },
-          "path": "v2beta/{+name}:close",
+          "path": "v2/{+name}:close",
           "request": {
             "$ref": "CloseCaseRequest"
           },
@@ -173,7 +173,7 @@
         },
         "create": {
           "description": "Create a new case and associate it with the given Google Cloud Resource. The case object must have the following fields set: `display_name`, `description`, `classification`, and `priority`.",
-          "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases",
+          "flatPath": "v2/{v2Id}/{v2Id1}/cases",
           "httpMethod": "POST",
           "id": "cloudsupport.cases.create",
           "parameterOrder": [
@@ -188,7 +188,7 @@
               "type": "string"
             }
           },
-          "path": "v2beta/{+parent}/cases",
+          "path": "v2/{+parent}/cases",
           "request": {
             "$ref": "Case"
           },
@@ -201,7 +201,7 @@
         },
         "escalate": {
           "description": "Escalate a case. Escalating a case will initiate the Google Cloud Support escalation management process. This operation is only available to certain Customer Care tiers. Go to https://cloud.google.com/support and look for 'Technical support escalations' in the feature list to find out which tiers are able to perform escalations.",
-          "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}:escalate",
+          "flatPath": "v2/{v2Id}/{v2Id1}/cases/{casesId}:escalate",
           "httpMethod": "POST",
           "id": "cloudsupport.cases.escalate",
           "parameterOrder": [
@@ -216,7 +216,7 @@
               "type": "string"
             }
           },
-          "path": "v2beta/{+name}:escalate",
+          "path": "v2/{+name}:escalate",
           "request": {
             "$ref": "EscalateCaseRequest"
           },
@@ -229,7 +229,7 @@
         },
         "get": {
           "description": "Retrieve the specified case.",
-          "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}",
+          "flatPath": "v2/{v2Id}/{v2Id1}/cases/{casesId}",
           "httpMethod": "GET",
           "id": "cloudsupport.cases.get",
           "parameterOrder": [
@@ -244,7 +244,7 @@
               "type": "string"
             }
           },
-          "path": "v2beta/{+name}",
+          "path": "v2/{+name}",
           "response": {
             "$ref": "Case"
           },
@@ -254,7 +254,7 @@
         },
         "list": {
           "description": "Retrieve all cases under the specified parent. Note: Listing cases under an Organization returns only the cases directly parented by that organization. To retrieve all cases under an organization, including cases parented by projects under that organization, use `cases.search`.",
-          "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases",
+          "flatPath": "v2/{v2Id}/{v2Id1}/cases",
           "httpMethod": "GET",
           "id": "cloudsupport.cases.list",
           "parameterOrder": [
@@ -285,7 +285,7 @@
               "type": "string"
             }
           },
-          "path": "v2beta/{+parent}/cases",
+          "path": "v2/{+parent}/cases",
           "response": {
             "$ref": "ListCasesResponse"
           },
@@ -295,7 +295,7 @@
         },
         "patch": {
           "description": "Update the specified case. Only a subset of fields can be updated.",
-          "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}",
+          "flatPath": "v2/{v2Id}/{v2Id1}/cases/{casesId}",
           "httpMethod": "PATCH",
           "id": "cloudsupport.cases.patch",
           "parameterOrder": [
@@ -316,7 +316,7 @@
               "type": "string"
             }
           },
-          "path": "v2beta/{+name}",
+          "path": "v2/{+name}",
           "request": {
             "$ref": "Case"
           },
@@ -329,10 +329,12 @@
         },
         "search": {
           "description": "Search cases using the specified query.",
-          "flatPath": "v2beta/cases:search",
+          "flatPath": "v2/{v2Id}/{v2Id1}/cases:search",
           "httpMethod": "GET",
           "id": "cloudsupport.cases.search",
-          "parameterOrder": [],
+          "parameterOrder": [
+            "parent"
+          ],
           "parameters": {
             "pageSize": {
               "description": "The maximum number of cases fetched with each request. The default page size is 10.",
@@ -347,7 +349,9 @@
             },
             "parent": {
               "description": "The fully qualified name of parent resource to search cases under.",
-              "location": "query",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+$",
+              "required": true,
               "type": "string"
             },
             "query": {
@@ -356,7 +360,7 @@
               "type": "string"
             }
           },
-          "path": "v2beta/cases:search",
+          "path": "v2/{+parent}/cases:search",
           "response": {
             "$ref": "SearchCasesResponse"
           },
@@ -370,7 +374,7 @@
           "methods": {
             "list": {
               "description": "Retrieve all attachments associated with a support case.",
-              "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}/attachments",
+              "flatPath": "v2/{v2Id}/{v2Id1}/cases/{casesId}/attachments",
               "httpMethod": "GET",
               "id": "cloudsupport.cases.attachments.list",
               "parameterOrder": [
@@ -396,7 +400,7 @@
                   "type": "string"
                 }
               },
-              "path": "v2beta/{+parent}/attachments",
+              "path": "v2/{+parent}/attachments",
               "response": {
                 "$ref": "ListAttachmentsResponse"
               },
@@ -410,7 +414,7 @@
           "methods": {
             "create": {
               "description": "Add a new comment to the specified Case. The comment object must have the following fields set: body.",
-              "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}/comments",
+              "flatPath": "v2/{v2Id}/{v2Id1}/cases/{casesId}/comments",
               "httpMethod": "POST",
               "id": "cloudsupport.cases.comments.create",
               "parameterOrder": [
@@ -425,7 +429,7 @@
                   "type": "string"
                 }
               },
-              "path": "v2beta/{+parent}/comments",
+              "path": "v2/{+parent}/comments",
               "request": {
                 "$ref": "Comment"
               },
@@ -438,7 +442,7 @@
             },
             "list": {
               "description": "Retrieve all Comments associated with the Case object.",
-              "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}/comments",
+              "flatPath": "v2/{v2Id}/{v2Id1}/cases/{casesId}/comments",
               "httpMethod": "GET",
               "id": "cloudsupport.cases.comments.list",
               "parameterOrder": [
@@ -464,7 +468,7 @@
                   "type": "string"
                 }
               },
-              "path": "v2beta/{+parent}/comments",
+              "path": "v2/{+parent}/comments",
               "response": {
                 "$ref": "ListCommentsResponse"
               },
@@ -480,7 +484,7 @@
       "methods": {
         "download": {
           "description": "Download a file attachment on a case. Note: HTTP requests must append \"?alt=media\" to the URL.",
-          "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}/attachments/{attachmentsId}:download",
+          "flatPath": "v2/{v2Id}/{v2Id1}/cases/{casesId}/attachments/{attachmentsId}:download",
           "httpMethod": "GET",
           "id": "cloudsupport.media.download",
           "parameterOrder": [
@@ -495,7 +499,7 @@
               "type": "string"
             }
           },
-          "path": "v2beta/{+name}:download",
+          "path": "v2/{+name}:download",
           "response": {
             "$ref": "Media"
           },
@@ -507,7 +511,7 @@
         },
         "upload": {
           "description": "Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename.",
-          "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}/attachments",
+          "flatPath": "v2/{v2Id}/{v2Id1}/cases/{casesId}/attachments",
           "httpMethod": "POST",
           "id": "cloudsupport.media.upload",
           "mediaUpload": {
@@ -517,7 +521,7 @@
             "protocols": {
               "simple": {
                 "multipart": true,
-                "path": "/upload/v2beta/{+parent}/attachments"
+                "path": "/upload/v2/{+parent}/attachments"
               }
             }
           },
@@ -533,7 +537,7 @@
               "type": "string"
             }
           },
-          "path": "v2beta/{+parent}/attachments",
+          "path": "v2/{+parent}/attachments",
           "request": {
             "$ref": "CreateAttachmentRequest"
           },
@@ -693,26 +697,6 @@
           ],
           "enumDescriptions": [
             "Priority is undefined or has not been set yet.",
-            "Extreme impact on a production service. Service is hard down.",
-            "Critical impact on a production service. Service is currently unusable.",
-            "Severe impact on a production service. Service is usable but greatly impaired.",
-            "Medium impact on a production service. Service is available, but moderately impaired.",
-            "General questions or minor issues. Production service is fully available."
-          ],
-          "type": "string"
-        },
-        "severity": {
-          "description": "REMOVED. The severity of this case. Use priority instead.",
-          "enum": [
-            "SEVERITY_UNSPECIFIED",
-            "S0",
-            "S1",
-            "S2",
-            "S3",
-            "S4"
-          ],
-          "enumDescriptions": [
-            "Severity is undefined or has not been set yet.",
             "Extreme impact on a production service. Service is hard down.",
             "Critical impact on a production service. Service is currently unusable.",
             "Severe impact on a production service. Service is usable but greatly impaired.",
@@ -1402,6 +1386,6 @@
   },
   "servicePath": "",
   "title": "Google Cloud Support API",
-  "version": "v2beta",
+  "version": "v2",
   "version_module": true
 }
