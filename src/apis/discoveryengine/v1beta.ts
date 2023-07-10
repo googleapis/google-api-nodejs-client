@@ -249,7 +249,7 @@ export namespace discoveryengine_v1beta {
     targetSites?: Schema$GoogleCloudDiscoveryengineV1alphaTargetSite[];
   }
   /**
-   * Metadata related to the progress of the ImportDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
+   * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaImportDocumentsMetadata {
     /**
@@ -287,12 +287,12 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaImportErrorConfig {
     /**
-     * Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors will be written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.
+     * Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.
      */
     gcsPrefix?: string | null;
   }
   /**
-   * Metadata related to the progress of the Import operation. This will be returned by the google.longrunning.Operation.metadata field.
+   * Metadata related to the progress of the Import operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaImportUserEventsMetadata {
     /**
@@ -368,6 +368,36 @@ export namespace discoveryengine_v1beta {
     purgeSample?: string[] | null;
   }
   /**
+   * Metadata related to the progress of the PurgeUserEvents operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeUserEventsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of entries that encountered errors while processing.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of entries that were deleted successfully.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the PurgeUserEventsRequest. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeUserEventsResponse {
+    /**
+     * The total count of events purged as a result of the operation.
+     */
+    purgeCount?: string | null;
+  }
+  /**
    * Defines the structure and layout of a type of document data.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSchema {
@@ -389,7 +419,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaTargetSite {
     /**
-     * Input only. If set to false, an uri_pattern will be generated to include all pages whose address contains the provided_uri_pattern. If set to true, an uri_pattern will be generated to try to be an exact match of the provided_uri_pattern or just the specific page if the provided_uri_pattern is a specific one. provided_uri_pattern will always be normalized to generate the uri pattern to be used by the search engine.
+     * Input only. If set to false, a uri_pattern is generated to include all pages whose address contains the provided_uri_pattern. If set to true, an uri_pattern is generated to try to be an exact match of the provided_uri_pattern or just the specific page if the provided_uri_pattern is a specific one. provided_uri_pattern is always normalized to generate the URI pattern to be used by the search engine.
      */
     exactMatch?: boolean | null;
     /**
@@ -401,7 +431,7 @@ export namespace discoveryengine_v1beta {
      */
     name?: string | null;
     /**
-     * Required. Input only. The user provided uri pattern from which the `generated_uri_pattern` is generated.
+     * Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.
      */
     providedUriPattern?: string | null;
     /**
@@ -418,7 +448,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaBigQuerySource {
     /**
-     * The schema to use when parsing the data from the source. Supported values for user event imports: * `user_event` (default): One UserEvent per row. Supported values for document imports: * `document` (default): One Document format per row. Each document must have a valid Document.id and one of Document.json_data or Document.struct_data. * `custom`: One custom data per row in arbitrary format that conforms the defined Schema of the data store. This can only be used by the GENERIC Data Store vertical.
+     * The schema to use when parsing the data from the source. Supported values for user event imports: * `user_event` (default): One UserEvent per row. Supported values for document imports: * `document` (default): One Document format per row. Each document must have a valid Document.id and one of Document.json_data or Document.struct_data. * `custom`: One custom data per row in arbitrary format that conforms to the defined Schema of the data store. This can only be used by Gen App Builder.
      */
     dataSchema?: string | null;
     /**
@@ -447,11 +477,11 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaCompletionInfo {
     /**
-     * End user selected CompleteQueryResponse.CompletionResult.suggestion position, starting from 0.
+     * End user selected CompleteQueryResponse.QuerySuggestion.suggestion position, starting from 0.
      */
     selectedPosition?: number | null;
     /**
-     * End user selected CompleteQueryResponse.CompletionResult.suggestion.
+     * End user selected CompleteQueryResponse.QuerySuggestion.suggestion.
      */
     selectedSuggestion?: string | null;
   }
@@ -477,7 +507,7 @@ export namespace discoveryengine_v1beta {
      */
     id?: string | null;
     /**
-     * The JSON string representation of the document. It should conform to the registered Schema.schema or an `INVALID_ARGUMENT` error is thrown.
+     * The JSON string representation of the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.
      */
     jsonData?: string | null;
     /**
@@ -493,7 +523,7 @@ export namespace discoveryengine_v1beta {
      */
     schemaId?: string | null;
     /**
-     * The structured JSON data for the document. It should conform to the registered Schema.schema or an `INVALID_ARGUMENT` error is thrown.
+     * The structured JSON data for the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.
      */
     structData?: {[key: string]: any} | null;
   }
@@ -502,11 +532,11 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentInfo {
     /**
-     * Required. The Document resource ID.
+     * The Document resource ID.
      */
     id?: string | null;
     /**
-     * Required. The Document resource full name, of the form: `projects/{project_id\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/branches/{branch_id\}/documents/{document_id\}`
+     * The Document resource full name, of the form: `projects/{project_id\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/branches/{branch_id\}/documents/{document_id\}`
      */
     name?: string | null;
     /**
@@ -518,7 +548,7 @@ export namespace discoveryengine_v1beta {
      */
     quantity?: number | null;
     /**
-     * Required. The Document url - only allowed for DataStores with content_config PUBLIC_WEBSITE.
+     * The Document URI - only allowed for website data stores.
      */
     uri?: string | null;
   }
@@ -527,7 +557,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaGcsSource {
     /**
-     * The schema to use when parsing the data from the source. Supported values for document imports: * `document` (default): One JSON Document per line. Each document must have a valid Document.id. * `content`: Unstructured data (e.g. PDF, HTML). Each file matched by `input_uris` will become a document, with the ID set to the first 128 bits of SHA256(URI) encoded as a hex string. * `custom`: One custom data JSON per row in arbitrary format that conforms the defined Schema of the data store. This can only be used by the GENERIC Data Store vertical. Supported values for user even imports: * `user_event` (default): One JSON UserEvent per line.
+     * The schema to use when parsing the data from the source. Supported values for document imports: * `document` (default): One JSON Document per line. Each document must have a valid Document.id. * `content`: Unstructured data (e.g. PDF, HTML). Each file matched by `input_uris` becomes a document, with the ID set to the first 128 bits of SHA256(URI) encoded as a hex string. * `custom`: One custom data JSON per row in arbitrary format that conforms to the defined Schema of the data store. This can only be used by Gen App Builder. * `csv`: A CSV file with header conforming to the defined Schema of the data store. Each entry after the header is imported as a Document. This can only be used by Gen App Builder. Supported values for user even imports: * `user_event` (default): One JSON UserEvent per line.
      */
     dataSchema?: string | null;
     /**
@@ -536,7 +566,7 @@ export namespace discoveryengine_v1beta {
     inputUris?: string[] | null;
   }
   /**
-   * Metadata related to the progress of the ImportDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
+   * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaImportDocumentsMetadata {
     /**
@@ -561,7 +591,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaImportDocumentsRequest {
     /**
-     * Whether to automatically generate IDs for the documents if absent. If set to `true`, Document.ids are automatically generated based on the hash of the payload, where IDs may not be consistent during multiple imports. In which case ReconciliationMode.FULL is highly recommended to avoid duplicate contents. If unset or set to `false`, Document.ids have to be specified using id_field, otherwises, documents without IDs will fail to be imported. Only set this field when using GcsSource or BigQuerySource, and when GcsSource.data_schema or BigQuerySource.data_schema is `custom`. Otherwise, an INVALID_ARGUMENT error is thrown.
+     * Whether to automatically generate IDs for the documents if absent. If set to `true`, Document.ids are automatically generated based on the hash of the payload, where IDs may not be consistent during multiple imports. In which case ReconciliationMode.FULL is highly recommended to avoid duplicate contents. If unset or set to `false`, Document.ids have to be specified using id_field, otherwise, documents without IDs fail to be imported. Only set this field when using GcsSource or BigQuerySource, and when GcsSource.data_schema or BigQuerySource.data_schema is `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown.
      */
     autoGenerateIds?: boolean | null;
     /**
@@ -577,7 +607,7 @@ export namespace discoveryengine_v1beta {
      */
     gcsSource?: Schema$GoogleCloudDiscoveryengineV1betaGcsSource;
     /**
-     * The field in the Cloud Storage and BigQuery sources that indicates the unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{"my_id": "some_uuid"\}`. For BigQuerySource it is the column name of the BigQuery table where the unique ids are stored. The values of the JSON field or the BigQuery column will be used as the Document.ids. The JSON field or the BigQuery column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs will fail to be imported. Only set this field when using GcsSource or BigQuerySource, and when GcsSource.data_schema or BigQuerySource.data_schema is `custom`. And only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources.
+     * The field in the Cloud Storage and BigQuery sources that indicates the unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{"my_id": "some_uuid"\}`. For BigQuerySource it is the column name of the BigQuery table where the unique ids are stored. The values of the JSON field or the BigQuery column are used as the Document.ids. The JSON field or the BigQuery column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when using GcsSource or BigQuerySource, and when GcsSource.data_schema or BigQuerySource.data_schema is `custom`. And only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources.
      */
     idField?: string | null;
     /**
@@ -616,12 +646,12 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaImportErrorConfig {
     /**
-     * Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors will be written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.
+     * Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.
      */
     gcsPrefix?: string | null;
   }
   /**
-   * Metadata related to the progress of the Import operation. This will be returned by the google.longrunning.Operation.metadata field.
+   * Metadata related to the progress of the Import operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaImportUserEventsMetadata {
     /**
@@ -646,7 +676,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaImportUserEventsRequest {
     /**
-     * Required. BigQuery input source.
+     * BigQuery input source.
      */
     bigquerySource?: Schema$GoogleCloudDiscoveryengineV1betaBigQuerySource;
     /**
@@ -654,11 +684,11 @@ export namespace discoveryengine_v1beta {
      */
     errorConfig?: Schema$GoogleCloudDiscoveryengineV1betaImportErrorConfig;
     /**
-     * Required. Cloud Storage location for the input content.
+     * Cloud Storage location for the input content.
      */
     gcsSource?: Schema$GoogleCloudDiscoveryengineV1betaGcsSource;
     /**
-     * Required. The Inline source for the input content for UserEvents.
+     * The Inline source for the input content for UserEvents.
      */
     inlineSource?: Schema$GoogleCloudDiscoveryengineV1betaImportUserEventsRequestInlineSource;
   }
@@ -723,11 +753,11 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaPageInfo {
     /**
-     * The most specific category associated with a category page. To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, please replace it with other character(s). Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: "pageCategory" : "Sales \> 2017 Black Friday Deals". Required for `view-category-page` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * The most specific category associated with a category page. To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, please replace it with other character(s). Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: `"pageCategory" : "Sales \> 2017 Black Friday Deals"`. Required for `view-category-page` events. Other event types should not set this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     pageCategory?: string | null;
     /**
-     * A unique ID of a web page view. This should be kept the same for all user events triggered from the same pageview. For example, an item detail page view could trigger multiple events as the user is browsing the page. The `pageViewId` property should be kept the same for all these events so that they can be grouped together properly. When using the client side event reporting with JavaScript pixel and Google Tag Manager, this value is filled in automatically.
+     * A unique ID of a web page view. This should be kept the same for all user events triggered from the same pageview. For example, an item detail page view could trigger multiple events as the user is browsing the page. The `pageview_id` property should be kept the same for all these events so that they can be grouped together properly. When using the client side event reporting with JavaScript pixel and Google Tag Manager, this value is filled in automatically.
      */
     pageviewId?: string | null;
     /**
@@ -896,15 +926,15 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchInfo {
     /**
-     * An integer that specifies the current offset for pagination (the 0-indexed starting location, amongst the products deemed by the API as relevant). See SearchRequest.offset for definition. If this field is negative, an INVALID_ARGUMENT is returned. This can only be set for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * An integer that specifies the current offset for pagination (the 0-indexed starting location, amongst the products deemed by the API as relevant). See SearchRequest.offset for definition. If this field is negative, an `INVALID_ARGUMENT` is returned. This can only be set for `search` events. Other event types should not set this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     offset?: number | null;
     /**
-     * The order in which products are returned, if applicable. See SearchRequest.order_by for definition and syntax. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. This can only be set for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * The order in which products are returned, if applicable. See SearchRequest.order_by for definition and syntax. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. This can only be set for `search` events. Other event types should not set this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     orderBy?: string | null;
     /**
-     * The user's search query. See SearchRequest.query for definition. The value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. At least one of search_query or PageInfo.page_category is required for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * The user's search query. See SearchRequest.query for definition. The value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. At least one of search_query or PageInfo.page_category is required for `search` events. Other event types should not set this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     searchQuery?: string | null;
   }
@@ -942,17 +972,17 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaUserEvent {
     /**
-     * Extra user event features to include in the recommendation model. These attributes must NOT contain data that needs to be parsed or processed further, e.g. JSON or other encodings. If you provide custom attributes for ingested user events, also include them in the user events that you associate with prediction requests. Custom attribute formatting must be consistent between imported events and events provided with prediction requests. This lets the Discovery Engine API use those custom attributes when training models and serving predictions, which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an `INVALID_ARGUMENT` error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example of extra user information is ` traffic_channel`, which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming through Google search, or in other ways.
+     * Extra user event features to include in the recommendation model. These attributes must NOT contain data that needs to be parsed or processed further, e.g. JSON or other encodings. If you provide custom attributes for ingested user events, also include them in the user events that you associate with prediction requests. Custom attribute formatting must be consistent between imported events and events provided with prediction requests. This lets the Discovery Engine API use those custom attributes when training models and serving predictions, which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an `INVALID_ARGUMENT` error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example of extra user information is `traffic_channel`, which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming through Google search, or in other ways.
      */
     attributes?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1betaCustomAttribute;
     } | null;
     /**
-     * Token to attribute an API response to user action(s) to trigger the event. Highly recommended for user events that are the result of RecommendationService.Recommend. This field enables accurate attribution of recommendation model performance. The value must be one of: * PredictResponse.attribution_token for events that are the result of RecommendationService.Recommend. * SearchResponse.attribution_token for events that are the result of SearchService.Search. * CompleteQueryResponse.attribution_token for events that are the result of CompletionService.CompleteQuery. This token enables us to accurately attribute page view or conversion completion back to the event and the particular predict response containing this clicked/purchased product. If user clicks on product K in the recommendation results, pass PredictResponse.attribution_token as a URL parameter to product K's page. When recording events on product K's page, log the PredictResponse.attribution_token to this field.
+     * Token to attribute an API response to user action(s) to trigger the event. Highly recommended for user events that are the result of RecommendationService.Recommend. This field enables accurate attribution of recommendation model performance. The value must be one of: * RecommendResponse.attribution_token for events that are the result of RecommendationService.Recommend. * SearchResponse.attribution_token for events that are the result of SearchService.Search. This token enables us to accurately attribute page view or conversion completion back to the event and the particular predict response containing this clicked/purchased product. If user clicks on product K in the recommendation results, pass RecommendResponse.attribution_token as a URL parameter to product K's page. When recording events on product K's page, log the RecommendResponse.attribution_token to this field.
      */
     attributionToken?: string | null;
     /**
-     * CompleteQuery API details related to the event. This field should be set for `search` event when autocomplete function is enabled and the user clicks a suggestion for search.
+     * CompletionService.CompleteQuery details related to the event. This field should be set for `search` event when autocomplete function is enabled and the user clicks a suggestion for search.
      */
     completionInfo?: Schema$GoogleCloudDiscoveryengineV1betaCompletionInfo;
     /**
@@ -972,7 +1002,7 @@ export namespace discoveryengine_v1beta {
      */
     eventType?: string | null;
     /**
-     * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. One example is for `search` events, the associated SearchRequest may contain a filter expression in SearchRequest.filter conforming to https://google.aip.dev/160#filtering. Similarly, for `view-item-list` events that are generated from a RecommendationService.RecommendRequest, this field may be populated directly from RecommendationService.RecommendRequest.filter conforming to https://google.aip.dev/160#filtering. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. One example is for `search` events, the associated SearchRequest may contain a filter expression in SearchRequest.filter conforming to https://google.aip.dev/160#filtering. Similarly, for `view-item-list` events that are generated from a RecommendationService.RecommendRequest, this field may be populated directly from RecommendationService.RecommendRequest.filter conforming to https://google.aip.dev/160#filtering. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     filter?: string | null;
     /**
@@ -992,7 +1022,7 @@ export namespace discoveryengine_v1beta {
      */
     promotionIds?: string[] | null;
     /**
-     * Search API details related to the event. This field should be set for `search` event.
+     * SearchService.Search details related to the event. This field should be set for `search` event.
      */
     searchInfo?: Schema$GoogleCloudDiscoveryengineV1betaSearchInfo;
     /**
@@ -1012,7 +1042,7 @@ export namespace discoveryengine_v1beta {
      */
     userInfo?: Schema$GoogleCloudDiscoveryengineV1betaUserInfo;
     /**
-     * Required. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor log in/out of the website. Do not set the field to the same fixed ID for different users. This mixes the event history of those users together, which results in degraded model quality. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. The field should not contain PII or user-data. We recommend to use Google Analytics [Client ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId) for this field.
+     * Required. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor log in/out of the website. Do not set the field to the same fixed ID for different users. This mixes the event history of those users together, which results in degraded model quality. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. The field should not contain PII or user-data. We recommend to use Google Analytics [Client ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId) for this field.
      */
     userPseudoId?: string | null;
   }
@@ -1021,7 +1051,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaUserInfo {
     /**
-     * User agent as included in the HTTP header. Required for getting SearchResponse.sponsored_results. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if UserEvent.direct_user_request is set.
+     * User agent as included in the HTTP header. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if UserEvent.direct_user_request is set.
      */
     userAgent?: string | null;
     /**
@@ -1030,7 +1060,7 @@ export namespace discoveryengine_v1beta {
     userId?: string | null;
   }
   /**
-   * Metadata related to the progress of the ImportDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
+   * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1ImportDocumentsMetadata {
     /**
@@ -1068,12 +1098,12 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1ImportErrorConfig {
     /**
-     * Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors will be written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.
+     * Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors are written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.
      */
     gcsPrefix?: string | null;
   }
   /**
-   * Metadata related to the progress of the Import operation. This will be returned by the google.longrunning.Operation.metadata field.
+   * Metadata related to the progress of the Import operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1ImportUserEventsMetadata {
     /**
@@ -1985,7 +2015,7 @@ export namespace discoveryengine_v1beta {
      *         pageSize: 'placeholder-value',
      *         // A page token ListDocumentsResponse.next_page_token, received from a previous DocumentService.ListDocuments call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to DocumentService.ListDocuments must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *         pageToken: 'placeholder-value',
-     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documentss under this branch, regardless of whether or not this branch exists, a `PERMISSION_DENIED` error is returned.
+     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documents under this branch, regardless of whether or not this branch exists, a `PERMISSION_DENIED` error is returned.
      *         parent:
      *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche',
      *       }
@@ -2470,7 +2500,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documentss under this branch, regardless of whether or not this branch exists, a `PERMISSION_DENIED` error is returned.
+     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documents under this branch, regardless of whether or not this branch exists, a `PERMISSION_DENIED` error is returned.
      */
     parent?: string;
   }
@@ -4018,7 +4048,7 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
-     * Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a 3rd party domain. This method is used only by the Discovery Engine API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
+     * Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a third-party domain. This method is used only by the Discovery Engine API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
      * @example
      * ```js
      * // Before running the sample:
@@ -4051,7 +4081,7 @@ export namespace discoveryengine_v1beta {
      *         // Required. The parent DataStore resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`.
      *         parent:
      *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
-     *         // The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for 3rd party requests.
+     *         // The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for third-party requests.
      *         uri: 'placeholder-value',
      *         // Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.
      *         userEvent: 'placeholder-value',
@@ -4518,7 +4548,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
     /**
-     * The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for 3rd party requests.
+     * The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for third-party requests.
      */
     uri?: string;
     /**
@@ -5892,7 +5922,7 @@ export namespace discoveryengine_v1beta {
      *         pageSize: 'placeholder-value',
      *         // A page token ListDocumentsResponse.next_page_token, received from a previous DocumentService.ListDocuments call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to DocumentService.ListDocuments must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *         pageToken: 'placeholder-value',
-     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documentss under this branch, regardless of whether or not this branch exists, a `PERMISSION_DENIED` error is returned.
+     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documents under this branch, regardless of whether or not this branch exists, a `PERMISSION_DENIED` error is returned.
      *         parent:
      *           'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche',
      *       }
@@ -6377,7 +6407,7 @@ export namespace discoveryengine_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documentss under this branch, regardless of whether or not this branch exists, a `PERMISSION_DENIED` error is returned.
+     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documents under this branch, regardless of whether or not this branch exists, a `PERMISSION_DENIED` error is returned.
      */
     parent?: string;
   }
@@ -7579,7 +7609,7 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
-     * Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a 3rd party domain. This method is used only by the Discovery Engine API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
+     * Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a third-party domain. This method is used only by the Discovery Engine API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
      * @example
      * ```js
      * // Before running the sample:
@@ -7611,7 +7641,7 @@ export namespace discoveryengine_v1beta {
      *       // Required. The parent DataStore resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`.
      *       parent:
      *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
-     *       // The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for 3rd party requests.
+     *       // The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for third-party requests.
      *       uri: 'placeholder-value',
      *       // Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.
      *       userEvent: 'placeholder-value',
@@ -8073,7 +8103,7 @@ export namespace discoveryengine_v1beta {
      */
     parent?: string;
     /**
-     * The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for 3rd party requests.
+     * The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for third-party requests.
      */
     uri?: string;
     /**
