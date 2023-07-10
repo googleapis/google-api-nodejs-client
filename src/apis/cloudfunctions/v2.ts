@@ -316,6 +316,10 @@ export namespace cloudfunctions_v2 {
      */
     name?: string | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Describes the Service being deployed. Currently deploys services to Cloud Run (fully managed).
      */
     serviceConfig?: Schema$ServiceConfig;
@@ -836,10 +840,6 @@ export namespace cloudfunctions_v2 {
      */
     dir?: string | null;
     /**
-     * Only trigger a build if the revision regex does NOT match the revision regex.
-     */
-    invertRegex?: boolean | null;
-    /**
      * ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.
      */
     projectId?: string | null;
@@ -1344,6 +1344,7 @@ export namespace cloudfunctions_v2 {
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
      *       //   "serviceConfig": {},
      *       //   "state": "my_state",
      *       //   "stateMessages": [],
@@ -1920,6 +1921,7 @@ export namespace cloudfunctions_v2 {
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "satisfiesPzs": false,
      *   //   "serviceConfig": {},
      *   //   "state": "my_state",
      *   //   "stateMessages": [],
@@ -2341,6 +2343,7 @@ export namespace cloudfunctions_v2 {
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
      *       //   "serviceConfig": {},
      *       //   "state": "my_state",
      *       //   "stateMessages": [],
