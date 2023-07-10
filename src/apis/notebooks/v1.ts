@@ -597,6 +597,10 @@ export namespace notebooks_v1 {
      */
     postStartupScript?: string | null;
     /**
+     * Output only. Check how possible a migration from UmN to WbI is.
+     */
+    preMigrationCheck?: Schema$PreMigrationCheck;
+    /**
      * Output only. The proxy endpoint that is used to access the Jupyter notebook.
      */
     proxyUri?: string | null;
@@ -969,6 +973,19 @@ export namespace notebooks_v1 {
     version?: number | null;
   }
   /**
+   * PreMigrationCheck checks how feasible a migration from UmN is.
+   */
+  export interface Schema$PreMigrationCheck {
+    /**
+     * Message provides a summary or workaround.
+     */
+    message?: string | null;
+    /**
+     * Result returns the result of the check.
+     */
+    result?: string | null;
+  }
+  /**
    * Request for getting a new access token.
    */
   export interface Schema$RefreshRuntimeTokenInternalRequest {
@@ -1123,7 +1140,7 @@ export namespace notebooks_v1 {
     virtualMachine?: Schema$VirtualMachine;
   }
   /**
-   * Definition of the types of hardware accelerators that can be used. Definition of the types of hardware accelerators that can be used. See [Compute Engine AcceleratorTypes](https://cloud.google.com/compute/docs/reference/beta/acceleratorTypes). Examples: * `nvidia-tesla-k80` * `nvidia-tesla-p100` * `nvidia-tesla-v100` * `nvidia-tesla-p4` * `nvidia-tesla-t4` * `nvidia-tesla-a100`
+   * Definition of the types of hardware accelerators that can be used. See [Compute Engine AcceleratorTypes](https://cloud.google.com/compute/docs/reference/beta/acceleratorTypes). Examples: * `nvidia-tesla-k80` * `nvidia-tesla-p100` * `nvidia-tesla-v100` * `nvidia-tesla-p4` * `nvidia-tesla-t4` * `nvidia-tesla-a100`
    */
   export interface Schema$RuntimeAcceleratorConfig {
     /**
@@ -3294,6 +3311,7 @@ export namespace notebooks_v1 {
      *       //   "noPublicIp": false,
      *       //   "noRemoveDataDisk": false,
      *       //   "postStartupScript": "my_postStartupScript",
+     *       //   "preMigrationCheck": {},
      *       //   "proxyUri": "my_proxyUri",
      *       //   "reservationAffinity": {},
      *       //   "serviceAccount": "my_serviceAccount",
@@ -3741,6 +3759,7 @@ export namespace notebooks_v1 {
      *   //   "noPublicIp": false,
      *   //   "noRemoveDataDisk": false,
      *   //   "postStartupScript": "my_postStartupScript",
+     *   //   "preMigrationCheck": {},
      *   //   "proxyUri": "my_proxyUri",
      *   //   "reservationAffinity": {},
      *   //   "serviceAccount": "my_serviceAccount",
