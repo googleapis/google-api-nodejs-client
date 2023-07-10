@@ -593,7 +593,7 @@
             "customers": {
               "methods": {
                 "create": {
-                  "description": "Creates a new Customer resource under the reseller or distributor account. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Domain field value doesn't match the primary email domain. Return value: The newly created Customer resource.",
+                  "description": "Creates a new Customer resource under the reseller or distributor account. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * PERMISSION_DENIED: You are not authorized to create a customer. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Domain field value doesn't match the primary email domain. Return value: The newly created Customer resource.",
                   "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/customers",
                   "httpMethod": "POST",
                   "id": "cloudchannel.accounts.channelPartnerLinks.customers.create",
@@ -671,7 +671,7 @@
                   ]
                 },
                 "import": {
-                  "description": "Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.",
+                  "description": "Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * PERMISSION_DENIED: You are not authorized to import the customer. See https://support.google.com/channelservices/answer/9759265 * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.",
                   "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/customers:import",
                   "httpMethod": "POST",
                   "id": "cloudchannel.accounts.channelPartnerLinks.customers.import",
@@ -780,7 +780,7 @@
         "customers": {
           "methods": {
             "create": {
-              "description": "Creates a new Customer resource under the reseller or distributor account. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Domain field value doesn't match the primary email domain. Return value: The newly created Customer resource.",
+              "description": "Creates a new Customer resource under the reseller or distributor account. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * PERMISSION_DENIED: You are not authorized to create a customer. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Domain field value doesn't match the primary email domain. Return value: The newly created Customer resource.",
               "flatPath": "v1/accounts/{accountsId}/customers",
               "httpMethod": "POST",
               "id": "cloudchannel.accounts.customers.create",
@@ -858,7 +858,7 @@
               ]
             },
             "import": {
-              "description": "Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.",
+              "description": "Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * PERMISSION_DENIED: You are not authorized to import the customer. See https://support.google.com/channelservices/answer/9759265 * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.",
               "flatPath": "v1/accounts/{accountsId}/customers:import",
               "httpMethod": "POST",
               "id": "cloudchannel.accounts.customers.import",
@@ -1093,7 +1093,7 @@
               ]
             },
             "provisionCloudIdentity": {
-              "description": "Creates a Cloud Identity for the given customer using the customer's information, or the information provided here. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer was not found. * ALREADY_EXISTS: The customer's primary email already exists. Retry after changing the customer's primary contact email. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata contains an instance of OperationMetadata.",
+              "description": "Creates a Cloud Identity for the given customer using the customer's information, or the information provided here. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * PERMISSION_DENIED: You are not authorized to provision cloud identity id. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer was not found. * ALREADY_EXISTS: The customer's primary email already exists. Retry after changing the customer's primary contact email. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata contains an instance of OperationMetadata.",
               "flatPath": "v1/accounts/{accountsId}/customers/{customersId}:provisionCloudIdentity",
               "httpMethod": "POST",
               "id": "cloudchannel.accounts.customers.provisionCloudIdentity",
@@ -2178,7 +2178,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230705",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -4985,6 +4985,7 @@
       "id": "GoogleCloudChannelV1alpha1Entitlement",
       "properties": {
         "assignedUnits": {
+          "deprecated": true,
           "description": "The current number of users that are assigned a license for the product defined in provisioned_service.skuId. Read-only. Deprecated: Use `parameters` instead.",
           "format": "int32",
           "type": "integer"
@@ -4998,6 +4999,7 @@
           "type": "string"
         },
         "channelPartnerId": {
+          "deprecated": true,
           "description": "Cloud Identity ID of a channel partner who will be the direct reseller for the customer's order. This field is generally used in 2-tier ordering, where the order is placed by a top-level distributor on behalf of their channel partner or reseller. Required for distributors. Deprecated: `channel_partner_id` has been moved to the Customer.",
           "type": "string"
         },
@@ -5012,6 +5014,7 @@
           "type": "string"
         },
         "maxUnits": {
+          "deprecated": true,
           "description": "Maximum number of units for a non commitment-based Offer, such as Flexible, Trial or Free entitlements. For commitment-based entitlements, this is a read-only field, which only the internal support team can update. Deprecated: Use `parameters` instead.",
           "format": "int32",
           "type": "integer"
@@ -5022,6 +5025,7 @@
           "type": "string"
         },
         "numUnits": {
+          "deprecated": true,
           "description": "Number of units for a commitment-based Offer. For example, for seat-based Offers, this would be the number of seats; for license-based Offers, this would be the number of licenses. Required for creating commitment-based Offers. Deprecated: Use `parameters` instead.",
           "format": "int32",
           "type": "integer"
@@ -5051,6 +5055,14 @@
             "COMPLETE",
             "PENDING",
             "SUSPENDED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            false
           ],
           "enumDescriptions": [
             "Not used.",
@@ -5270,6 +5282,7 @@
       "id": "GoogleCloudChannelV1alpha1RenewalSettings",
       "properties": {
         "disableCommitment": {
+          "deprecated": true,
           "description": "If true, disables commitment-based offer on renewal and switches to flexible or pay as you go. Deprecated: Use `payment_plan` instead.",
           "type": "boolean"
         },
@@ -5282,6 +5295,7 @@
           "description": "Describes how frequently the reseller will be billed, such as once per month."
         },
         "paymentOption": {
+          "deprecated": true,
           "description": "Set if enable_renewal=true. Deprecated: Use `payment_cycle` instead.",
           "enum": [
             "PAYMENT_OPTION_UNSPECIFIED",
