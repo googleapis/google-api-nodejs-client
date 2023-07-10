@@ -125,6 +125,15 @@ export namespace networkconnectivity_v1 {
   }
 
   /**
+   * The request for HubService.AcceptSpoke.
+   */
+  export interface Schema$AcceptSpokeRequest {
+    /**
+     * Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -338,9 +347,17 @@ export namespace networkconnectivity_v1 {
      */
     name?: string | null;
     /**
+     * Output only. The route tables that belong to this hub. They use the following form: `projects/{project_number\}/locations/global/hubs/{hub_id\}/routeTables/{route_table_id\}` This field is read-only. Network Connectivity Center automatically populates it based on the route tables nested under the hub.
+     */
+    routeTables?: string[] | null;
+    /**
      * The VPC networks associated with this hub's spokes. This field is read-only. Network Connectivity Center automatically populates it based on the set of spokes attached to the hub.
      */
     routingVpcs?: Schema$RoutingVPC[];
+    /**
+     * Output only. A summary of the spokes associated with a hub. The summary includes a count of spokes according to type and according to state. If any spokes are inactive, the summary also lists the reasons they are inactive, including a count for each reason.
+     */
+    spokeSummary?: Schema$SpokeSummary;
     /**
      * Output only. The current lifecycle state of this hub.
      */
@@ -446,6 +463,19 @@ export namespace networkconnectivity_v1 {
     vpcNetwork?: string | null;
   }
   /**
+   * An existing VPC network.
+   */
+  export interface Schema$LinkedVpcNetwork {
+    /**
+     * Optional. IP Ranges encompassing the subnets to be excluded from peering.
+     */
+    excludeExportRanges?: string[] | null;
+    /**
+     * Required. The URI of the VPC network resource
+     */
+    uri?: string | null;
+  }
+  /**
    * A collection of Cloud VPN tunnel resources. These resources should be redundant HA VPN tunnels that all advertise the same prefixes to Google Cloud. Alternatively, in a passive/active configuration, all tunnels should be capable of advertising the same prefixes.
    */
   export interface Schema$LinkedVpnTunnels {
@@ -461,6 +491,23 @@ export namespace networkconnectivity_v1 {
      * Output only. The VPC network where these VPN tunnels are located.
      */
     vpcNetwork?: string | null;
+  }
+  /**
+   * The response for HubService.ListHubSpokes.
+   */
+  export interface Schema$ListHubSpokesResponse {
+    /**
+     * The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The requested spokes. The spoke fields can be partially populated based on the `view` field in the request message.
+     */
+    spokes?: Schema$Spoke[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response for HubService.ListHubs method.
@@ -508,6 +555,40 @@ export namespace networkconnectivity_v1 {
      * The standard List next-page token.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response for HubService.ListRoutes method.
+   */
+  export interface Schema$ListRoutesResponse {
+    /**
+     * The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The requested routes.
+     */
+    routes?: Schema$Route[];
+    /**
+     * RouteTables that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response for HubService.ListRouteTables method.
+   */
+  export interface Schema$ListRouteTablesResponse {
+    /**
+     * The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The requested route tables.
+     */
+    routeTables?: Schema$RouteTable[];
+    /**
+     * Hubs that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response for ListServiceClasses.
@@ -628,6 +709,12 @@ export namespace networkconnectivity_v1 {
      */
     locationFeatures?: string[] | null;
   }
+  export interface Schema$NextHopVpcNetwork {
+    /**
+     * The URI of the VPC network resource
+     */
+    uri?: string | null;
+  }
   /**
    * Represents the metadata of the long-running operation.
    */
@@ -696,7 +783,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$PscConfig {
     /**
-     * Max number of PSC connections for this policy.
+     * Optional. Max number of PSC connections for this policy.
      */
     limit?: string | null;
     /**
@@ -742,6 +829,72 @@ export namespace networkconnectivity_v1 {
     state?: string | null;
   }
   /**
+   * The request for HubService.RejectSpoke.
+   */
+  export interface Schema$RejectSpokeRequest {
+    /**
+     * Optional. Additional Details behind the rejection
+     */
+    details?: string | null;
+    /**
+     * Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
+   * A route defines a path from VM instances within a spoke to a specific destination resource. Only VPC spokes have routes.
+   */
+  export interface Schema$Route {
+    /**
+     * Output only. The time the route was created.
+     */
+    createTime?: string | null;
+    /**
+     * An optional description of the route.
+     */
+    description?: string | null;
+    /**
+     * The destination IP address range.
+     */
+    ipCidrRange?: string | null;
+    /**
+     * Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The location of the route. Uses the following form: "projects/{project\}/locations/{location\}" Example: projects/1234/locations/us-central1
+     */
+    location?: string | null;
+    /**
+     * Immutable. The name of the route. Route names must be unique. They use the following form: `projects/{project_number\}/locations/global/hubs/{hub\}/routeTables/{route_table_id\}/routes/{route_id\}`
+     */
+    name?: string | null;
+    /**
+     * Immutable. The destination VPC network for packets on this route.
+     */
+    nextHopVpcNetwork?: Schema$NextHopVpcNetwork;
+    /**
+     * Immutable. The spoke that this route leads to. Example: projects/12345/locations/global/spokes/SPOKE
+     */
+    spoke?: string | null;
+    /**
+     * Output only. The current lifecycle state of the route.
+     */
+    state?: string | null;
+    /**
+     * Output only. The route's type. Its type is determined by the properties of its IP address range.
+     */
+    type?: string | null;
+    /**
+     * Output only. The Google-generated UUID for the route. This value is unique across all Network Connectivity Center route resources. If a route is deleted and another with the same name is created, the new route is assigned a different unique_id.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time the route was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * A router appliance instance is a Compute Engine virtual machine (VM) instance that acts as a BGP speaker. A router appliance instance is specified by the URI of the VM and the internal IP address of one of the VM's network interfaces.
    */
   export interface Schema$RouterApplianceInstance {
@@ -753,6 +906,36 @@ export namespace networkconnectivity_v1 {
      * The URI of the VM.
      */
     virtualMachine?: string | null;
+  }
+  export interface Schema$RouteTable {
+    /**
+     * Output only. The time the route table was created.
+     */
+    createTime?: string | null;
+    /**
+     * An optional description of the route table.
+     */
+    description?: string | null;
+    /**
+     * Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. The name of the route table. Route Table names must be unique. They use the following form: `projects/{project_number\}/locations/global/hubs/{hub\}/routeTables/{route_table_id\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The current lifecycle state of this route table.
+     */
+    state?: string | null;
+    /**
+     * Output only. The Google-generated UUID for the route table. This value is unique across all route table resources. If a route table is deleted and another with the same name is created, the new route table is assigned a different unique_id.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time the route table was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * RoutingVPC contains information about the VPC networks associated with the spokes of a Network Connectivity Center hub.
@@ -768,7 +951,7 @@ export namespace networkconnectivity_v1 {
     uri?: string | null;
   }
   /**
-   * The ServiceClass resource. Next id: 8
+   * The ServiceClass resource. Next id: 9
    */
   export interface Schema$ServiceClass {
     /**
@@ -779,6 +962,10 @@ export namespace networkconnectivity_v1 {
      * A description of this resource.
      */
     description?: string | null;
+    /**
+     * Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
     /**
      * User-defined labels.
      */
@@ -801,7 +988,7 @@ export namespace networkconnectivity_v1 {
     updateTime?: string | null;
   }
   /**
-   * The ServiceConnectionMap resource. Next id: 14
+   * The ServiceConnectionMap resource. Next id: 15
    */
   export interface Schema$ServiceConnectionMap {
     /**
@@ -820,6 +1007,10 @@ export namespace networkconnectivity_v1 {
      * A description of this resource.
      */
     description?: string | null;
+    /**
+     * Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
     /**
      * Output only. The infrastructure used for connections between consumers/producers.
      */
@@ -854,7 +1045,7 @@ export namespace networkconnectivity_v1 {
     updateTime?: string | null;
   }
   /**
-   * The ServiceConnectionPolicy resource. Next id: 11
+   * The ServiceConnectionPolicy resource. Next id: 12
    */
   export interface Schema$ServiceConnectionPolicy {
     /**
@@ -865,6 +1056,10 @@ export namespace networkconnectivity_v1 {
      * A description of this resource.
      */
     description?: string | null;
+    /**
+     * Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
     /**
      * Output only. The type of underlying resources used to create the connection.
      */
@@ -899,7 +1094,7 @@ export namespace networkconnectivity_v1 {
     updateTime?: string | null;
   }
   /**
-   * The ServiceConnectionToken resource. Next id: 9
+   * The ServiceConnectionToken resource. Next id: 10
    */
   export interface Schema$ServiceConnectionToken {
     /**
@@ -910,6 +1105,10 @@ export namespace networkconnectivity_v1 {
      * A description of this resource.
      */
     description?: string | null;
+    /**
+     * Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
     /**
      * Output only. The time to which this token is valid.
      */
@@ -977,6 +1176,10 @@ export namespace networkconnectivity_v1 {
      */
     linkedRouterApplianceInstances?: Schema$LinkedRouterApplianceInstances;
     /**
+     * Optional. VPC network that is associated with the spoke.
+     */
+    linkedVpcNetwork?: Schema$LinkedVpcNetwork;
+    /**
      * VPN tunnels that are associated with the spoke.
      */
     linkedVpnTunnels?: Schema$LinkedVpnTunnels;
@@ -984,6 +1187,14 @@ export namespace networkconnectivity_v1 {
      * Immutable. The name of the spoke. Spoke names must be unique. They use the following form: `projects/{project_number\}/locations/{region\}/spokes/{spoke_id\}`
      */
     name?: string | null;
+    /**
+     * Output only. The reasons for current state of the spoke.
+     */
+    reasons?: Schema$StateReason[];
+    /**
+     * Output only. The type of resource associated with the spoke.
+     */
+    spokeType?: string | null;
     /**
      * Output only. The current lifecycle state of this spoke.
      */
@@ -996,6 +1207,79 @@ export namespace networkconnectivity_v1 {
      * Output only. The time the spoke was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * The number of spokes that are in a particular state and associated with a given hub.
+   */
+  export interface Schema$SpokeStateCount {
+    /**
+     * Output only. The total number of spokes that are in this state and associated with a given hub.
+     */
+    count?: string | null;
+    /**
+     * Output only. The state of the spokes.
+     */
+    state?: string | null;
+  }
+  /**
+   * The number of spokes in the hub that are inactive for this reason.
+   */
+  export interface Schema$SpokeStateReasonCount {
+    /**
+     * Output only. The total number of spokes that are inactive for a particular reason and associated with a given hub.
+     */
+    count?: string | null;
+    /**
+     * Output only. The reason that a spoke is inactive.
+     */
+    stateReasonCode?: string | null;
+  }
+  /**
+   * Summarizes information about the spokes associated with a hub. The summary includes a count of spokes according to type and according to state. If any spokes are inactive, the summary also lists the reasons they are inactive, including a count for each reason.
+   */
+  export interface Schema$SpokeSummary {
+    /**
+     * Output only. Counts the number of spokes that are in each state and associated with a given hub.
+     */
+    spokeStateCounts?: Schema$SpokeStateCount[];
+    /**
+     * Output only. Counts the number of spokes that are inactive for each possible reason and associated with a given hub.
+     */
+    spokeStateReasonCounts?: Schema$SpokeStateReasonCount[];
+    /**
+     * Output only. Counts the number of spokes of each type that are associated with a specific hub.
+     */
+    spokeTypeCounts?: Schema$SpokeTypeCount[];
+  }
+  /**
+   * The number of spokes of a given type that are associated with a specific hub. The type indicates what kind of resource is associated with the spoke.
+   */
+  export interface Schema$SpokeTypeCount {
+    /**
+     * Output only. The total number of spokes of this type that are associated with the hub.
+     */
+    count?: string | null;
+    /**
+     * Output only. The type of the spokes.
+     */
+    spokeType?: string | null;
+  }
+  /**
+   * The reason a spoke is inactive.
+   */
+  export interface Schema$StateReason {
+    /**
+     * The code associated with this reason.
+     */
+    code?: string | null;
+    /**
+     * Human-readable details about this reason.
+     */
+    message?: string | null;
+    /**
+     * Additional information provided by the user in the RejectSpoke call.
+     */
+    userDetails?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -1372,11 +1656,14 @@ export namespace networkconnectivity_v1 {
   export class Resource$Projects$Locations$Global$Hubs {
     context: APIRequestContext;
     groups: Resource$Projects$Locations$Global$Hubs$Groups;
+    routeTables: Resource$Projects$Locations$Global$Hubs$Routetables;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.groups = new Resource$Projects$Locations$Global$Hubs$Groups(
         this.context
       );
+      this.routeTables =
+        new Resource$Projects$Locations$Global$Hubs$Routetables(this.context);
     }
 
     /**
@@ -1421,7 +1708,9 @@ export namespace networkconnectivity_v1 {
      *       //   "description": "my_description",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "routeTables": [],
      *       //   "routingVpcs": [],
+     *       //   "spokeSummary": {},
      *       //   "state": "my_state",
      *       //   "uniqueId": "my_uniqueId",
      *       //   "updateTime": "my_updateTime"
@@ -1714,7 +2003,9 @@ export namespace networkconnectivity_v1 {
      *   //   "description": "my_description",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "routeTables": [],
      *   //   "routingVpcs": [],
+     *   //   "spokeSummary": {},
      *   //   "state": "my_state",
      *   //   "uniqueId": "my_uniqueId",
      *   //   "updateTime": "my_updateTime"
@@ -2085,6 +2376,159 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
+     * Lists the Network Connectivity Center spokes associated with a specified hub and location. The list includes both spokes that are attached to the hub and spokes that have been proposed but not yet accepted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.global.hubs.listSpokes({
+     *       // An expression that filters the list of results.
+     *       filter: 'placeholder-value',
+     *       // Required. The name of the hub.
+     *       name: 'projects/my-project/locations/global/hubs/my-hub',
+     *       // Sort the results by name or create_time.
+     *       orderBy: 'placeholder-value',
+     *       // The maximum number of results to return per page.
+     *       pageSize: 'placeholder-value',
+     *       // The page token.
+     *       pageToken: 'placeholder-value',
+     *       // A list of locations. Specify one of the following: `[global]`, a single region (for example, `[us-central1]`), or a combination of values (for example, `[global, us-central1, us-west1]`). If the spoke_locations field is populated, the list of results includes only spokes in the specified location. If the spoke_locations field is not populated, the list of results includes spokes in all locations.
+     *       spokeLocations: 'placeholder-value',
+     *       // The view of the spoke to return. The view you use determines which spoke fields are included in the response.
+     *       view: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "spokes": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listSpokes(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Listspokes,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listSpokes(
+      params?: Params$Resource$Projects$Locations$Global$Hubs$Listspokes,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListHubSpokesResponse>;
+    listSpokes(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Listspokes,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listSpokes(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Listspokes,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListHubSpokesResponse>,
+      callback: BodyResponseCallback<Schema$ListHubSpokesResponse>
+    ): void;
+    listSpokes(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Listspokes,
+      callback: BodyResponseCallback<Schema$ListHubSpokesResponse>
+    ): void;
+    listSpokes(
+      callback: BodyResponseCallback<Schema$ListHubSpokesResponse>
+    ): void;
+    listSpokes(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Hubs$Listspokes
+        | BodyResponseCallback<Schema$ListHubSpokesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListHubSpokesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListHubSpokesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListHubSpokesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Hubs$Listspokes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Listspokes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:listSpokes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListHubSpokesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListHubSpokesResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates the description and/or labels of a Network Connectivity Center hub.
      * @example
      * ```js
@@ -2126,7 +2570,9 @@ export namespace networkconnectivity_v1 {
      *       //   "description": "my_description",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "routeTables": [],
      *       //   "routingVpcs": [],
+     *       //   "spokeSummary": {},
      *       //   "state": "my_state",
      *       //   "uniqueId": "my_uniqueId",
      *       //   "updateTime": "my_updateTime"
@@ -2606,6 +3052,37 @@ export namespace networkconnectivity_v1 {
      * Required. The parent resource's name.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Listspokes
+    extends StandardParameters {
+    /**
+     * An expression that filters the list of results.
+     */
+    filter?: string;
+    /**
+     * Required. The name of the hub.
+     */
+    name?: string;
+    /**
+     * Sort the results by name or create_time.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * The page token.
+     */
+    pageToken?: string;
+    /**
+     * A list of locations. Specify one of the following: `[global]`, a single region (for example, `[us-central1]`), or a combination of values (for example, `[global, us-central1, us-west1]`). If the spoke_locations field is populated, the list of results includes only spokes in the specified location. If the spoke_locations field is not populated, the list of results includes spokes in all locations.
+     */
+    spokeLocations?: string[];
+    /**
+     * The view of the spoke to return. The view you use determines which spoke fields are included in the response.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Hubs$Patch
     extends StandardParameters {
@@ -3130,6 +3607,659 @@ export namespace networkconnectivity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Global$Hubs$Routetables {
+    context: APIRequestContext;
+    routes: Resource$Projects$Locations$Global$Hubs$Routetables$Routes;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.routes =
+        new Resource$Projects$Locations$Global$Hubs$Routetables$Routes(
+          this.context
+        );
+    }
+
+    /**
+     * Gets details about a Network Connectivity Center route table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.global.hubs.routeTables.get({
+     *       // Required. The name of the route table resource.
+     *       name: 'projects/my-project/locations/global/hubs/my-hub/routeTables/my-routeTable',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RouteTable>;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RouteTable>,
+      callback: BodyResponseCallback<Schema$RouteTable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get,
+      callback: BodyResponseCallback<Schema$RouteTable>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RouteTable>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get
+        | BodyResponseCallback<Schema$RouteTable>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RouteTable>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RouteTable>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RouteTable> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RouteTable>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RouteTable>(parameters);
+      }
+    }
+
+    /**
+     * Lists route tables in a given project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.global.hubs.routeTables.list({
+     *       // An expression that filters the list of results.
+     *       filter: 'placeholder-value',
+     *       // Sort the results by a certain order.
+     *       orderBy: 'placeholder-value',
+     *       // The maximum number of results to return per page.
+     *       pageSize: 'placeholder-value',
+     *       // The page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent resource's name.
+     *       parent: 'projects/my-project/locations/global/hubs/my-hub',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "routeTables": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Global$Hubs$Routetables$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRouteTablesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRouteTablesResponse>,
+      callback: BodyResponseCallback<Schema$ListRouteTablesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$List,
+      callback: BodyResponseCallback<Schema$ListRouteTablesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRouteTablesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Hubs$Routetables$List
+        | BodyResponseCallback<Schema$ListRouteTablesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRouteTablesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRouteTablesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRouteTablesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Hubs$Routetables$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Routetables$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/routeTables').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRouteTablesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRouteTablesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Routetables$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the route table resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Routetables$List
+    extends StandardParameters {
+    /**
+     * An expression that filters the list of results.
+     */
+    filter?: string;
+    /**
+     * Sort the results by a certain order.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * The page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource's name.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Global$Hubs$Routetables$Routes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details about the specified route.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.global.hubs.routeTables.routes.get(
+     *       {
+     *         // Required. The name of the route resource.
+     *         name: 'projects/my-project/locations/global/hubs/my-hub/routeTables/my-routeTable/routes/my-route',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "ipCidrRange": "my_ipCidrRange",
+     *   //   "labels": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nextHopVpcNetwork": {},
+     *   //   "spoke": "my_spoke",
+     *   //   "state": "my_state",
+     *   //   "type": "my_type",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Route>;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Route>,
+      callback: BodyResponseCallback<Schema$Route>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get,
+      callback: BodyResponseCallback<Schema$Route>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Route>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get
+        | BodyResponseCallback<Schema$Route>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Route>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Route>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Route> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Route>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Route>(parameters);
+      }
+    }
+
+    /**
+     * Lists routes in a given project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.global.hubs.routeTables.routes.list(
+     *       {
+     *         // An expression that filters the list of results.
+     *         filter: 'placeholder-value',
+     *         // Sort the results by a certain order.
+     *         orderBy: 'placeholder-value',
+     *         // The maximum number of results to return per page.
+     *         pageSize: 'placeholder-value',
+     *         // The page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent resource's name.
+     *         parent:
+     *           'projects/my-project/locations/global/hubs/my-hub/routeTables/my-routeTable',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "routes": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRoutesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListRoutesResponse>,
+      callback: BodyResponseCallback<Schema$ListRoutesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List,
+      callback: BodyResponseCallback<Schema$ListRoutesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRoutesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List
+        | BodyResponseCallback<Schema$ListRoutesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRoutesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRoutesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRoutesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/routes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRoutesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRoutesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the route resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Routetables$Routes$List
+    extends StandardParameters {
+    /**
+     * An expression that filters the list of results.
+     */
+    filter?: string;
+    /**
+     * Sort the results by a certain order.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * The page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource's name.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Global$Policybasedroutes {
@@ -5085,6 +6215,8 @@ export namespace networkconnectivity_v1 {
      *   // Do the magic
      *   const res =
      *     await networkconnectivity.projects.locations.serviceClasses.delete({
+     *       // Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     *       etag: 'placeholder-value',
      *       // Required. The name of the ServiceClass to delete.
      *       name: 'projects/my-project/locations/my-location/serviceClasses/my-serviceClasse',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -5234,6 +6366,7 @@ export namespace networkconnectivity_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "serviceClass": "my_serviceClass",
@@ -5657,6 +6790,7 @@ export namespace networkconnectivity_v1 {
      *         // {
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
+     *         //   "etag": "my_etag",
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "serviceClass": "my_serviceClass",
@@ -6073,6 +7207,10 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Serviceclasses$Delete
     extends StandardParameters {
     /**
+     * Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string;
+    /**
      * Required. The name of the ServiceClass to delete.
      */
     name?: string;
@@ -6216,6 +7354,7 @@ export namespace networkconnectivity_v1 {
      *         //   "consumerPscConnections": [],
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
+     *         //   "etag": "my_etag",
      *         //   "infrastructure": "my_infrastructure",
      *         //   "labels": {},
      *         //   "name": "my_name",
@@ -6367,6 +7506,8 @@ export namespace networkconnectivity_v1 {
      *   // Do the magic
      *   const res =
      *     await networkconnectivity.projects.locations.serviceConnectionMaps.delete({
+     *       // Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     *       etag: 'placeholder-value',
      *       // Required. The name of the ServiceConnectionMap to delete.
      *       name: 'projects/my-project/locations/my-location/serviceConnectionMaps/my-serviceConnectionMap',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -6520,6 +7661,7 @@ export namespace networkconnectivity_v1 {
      *   //   "consumerPscConnections": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
      *   //   "infrastructure": "my_infrastructure",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -6960,6 +8102,7 @@ export namespace networkconnectivity_v1 {
      *         //   "consumerPscConnections": [],
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
+     *         //   "etag": "my_etag",
      *         //   "infrastructure": "my_infrastructure",
      *         //   "labels": {},
      *         //   "name": "my_name",
@@ -7401,6 +8544,10 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Serviceconnectionmaps$Delete
     extends StandardParameters {
     /**
+     * Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string;
+    /**
      * Required. The name of the ServiceConnectionMap to delete.
      */
     name?: string;
@@ -7543,6 +8690,7 @@ export namespace networkconnectivity_v1 {
      *           // {
      *           //   "createTime": "my_createTime",
      *           //   "description": "my_description",
+     *           //   "etag": "my_etag",
      *           //   "infrastructure": "my_infrastructure",
      *           //   "labels": {},
      *           //   "name": "my_name",
@@ -7696,6 +8844,8 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.serviceConnectionPolicies.delete(
      *       {
+     *         // Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     *         etag: 'placeholder-value',
      *         // Required. The name of the ServiceConnectionPolicy to delete.
      *         name: 'projects/my-project/locations/my-location/serviceConnectionPolicies/my-serviceConnectionPolicie',
      *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -7848,6 +8998,7 @@ export namespace networkconnectivity_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
      *   //   "infrastructure": "my_infrastructure",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -8289,6 +9440,7 @@ export namespace networkconnectivity_v1 {
      *           // {
      *           //   "createTime": "my_createTime",
      *           //   "description": "my_description",
+     *           //   "etag": "my_etag",
      *           //   "infrastructure": "my_infrastructure",
      *           //   "labels": {},
      *           //   "name": "my_name",
@@ -8731,6 +9883,10 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Serviceconnectionpolicies$Delete
     extends StandardParameters {
     /**
+     * Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string;
+    /**
      * Required. The name of the ServiceConnectionPolicy to delete.
      */
     name?: string;
@@ -8873,6 +10029,7 @@ export namespace networkconnectivity_v1 {
      *           // {
      *           //   "createTime": "my_createTime",
      *           //   "description": "my_description",
+     *           //   "etag": "my_etag",
      *           //   "expireTime": "my_expireTime",
      *           //   "labels": {},
      *           //   "name": "my_name",
@@ -9024,6 +10181,8 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.serviceConnectionTokens.delete(
      *       {
+     *         // Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     *         etag: 'placeholder-value',
      *         // Required. The name of the ServiceConnectionToken to delete.
      *         name: 'projects/my-project/locations/my-location/serviceConnectionTokens/my-serviceConnectionToken',
      *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -9176,6 +10335,7 @@ export namespace networkconnectivity_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -9455,6 +10615,10 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Serviceconnectiontokens$Delete
     extends StandardParameters {
     /**
+     * Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string;
+    /**
      * Required. The name of the ServiceConnectionToken to delete.
      */
     name?: string;
@@ -9501,6 +10665,152 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
+     * Accepts a proposal to attach a Network Connectivity Center spoke to the hub.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkconnectivity.projects.locations.spokes.accept({
+     *     // Required. The name of the spoke to accept.
+     *     name: 'projects/my-project/locations/my-location/spokes/my-spoke',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requestId": "my_requestId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accept(
+      params: Params$Resource$Projects$Locations$Spokes$Accept,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accept(
+      params?: Params$Resource$Projects$Locations$Spokes$Accept,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    accept(
+      params: Params$Resource$Projects$Locations$Spokes$Accept,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accept(
+      params: Params$Resource$Projects$Locations$Spokes$Accept,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    accept(
+      params: Params$Resource$Projects$Locations$Spokes$Accept,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    accept(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    accept(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Spokes$Accept
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Spokes$Accept;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Spokes$Accept;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accept').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Creates a Network Connectivity Center spoke.
      * @example
      * ```js
@@ -9544,8 +10854,11 @@ export namespace networkconnectivity_v1 {
      *       //   "labels": {},
      *       //   "linkedInterconnectAttachments": {},
      *       //   "linkedRouterApplianceInstances": {},
+     *       //   "linkedVpcNetwork": {},
      *       //   "linkedVpnTunnels": {},
      *       //   "name": "my_name",
+     *       //   "reasons": [],
+     *       //   "spokeType": "my_spokeType",
      *       //   "state": "my_state",
      *       //   "uniqueId": "my_uniqueId",
      *       //   "updateTime": "my_updateTime"
@@ -9843,8 +11156,11 @@ export namespace networkconnectivity_v1 {
      *   //   "labels": {},
      *   //   "linkedInterconnectAttachments": {},
      *   //   "linkedRouterApplianceInstances": {},
+     *   //   "linkedVpcNetwork": {},
      *   //   "linkedVpnTunnels": {},
      *   //   "name": "my_name",
+     *   //   "reasons": [],
+     *   //   "spokeType": "my_spokeType",
      *   //   "state": "my_state",
      *   //   "uniqueId": "my_uniqueId",
      *   //   "updateTime": "my_updateTime"
@@ -10262,8 +11578,11 @@ export namespace networkconnectivity_v1 {
      *       //   "labels": {},
      *       //   "linkedInterconnectAttachments": {},
      *       //   "linkedRouterApplianceInstances": {},
+     *       //   "linkedVpcNetwork": {},
      *       //   "linkedVpnTunnels": {},
      *       //   "name": "my_name",
+     *       //   "reasons": [],
+     *       //   "spokeType": "my_spokeType",
      *       //   "state": "my_state",
      *       //   "uniqueId": "my_uniqueId",
      *       //   "updateTime": "my_updateTime"
@@ -10360,6 +11679,153 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Does one of the following: * Rejects a proposal to attach a Network Connectivity Center spoke to the hub. * Rejects and removes a previously attached spoke from the hub.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkconnectivity.projects.locations.spokes.reject({
+     *     // Required. The name of the spoke to reject.
+     *     name: 'projects/my-project/locations/my-location/spokes/my-spoke',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "details": "my_details",
+     *       //   "requestId": "my_requestId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reject(
+      params: Params$Resource$Projects$Locations$Spokes$Reject,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reject(
+      params?: Params$Resource$Projects$Locations$Spokes$Reject,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    reject(
+      params: Params$Resource$Projects$Locations$Spokes$Reject,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reject(
+      params: Params$Resource$Projects$Locations$Spokes$Reject,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    reject(
+      params: Params$Resource$Projects$Locations$Spokes$Reject,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    reject(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    reject(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Spokes$Reject
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Spokes$Reject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Spokes$Reject;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:reject').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
           },
           options
         ),
@@ -10668,6 +12134,18 @@ export namespace networkconnectivity_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Spokes$Accept
+    extends StandardParameters {
+    /**
+     * Required. The name of the spoke to accept.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AcceptSpokeRequest;
+  }
   export interface Params$Resource$Projects$Locations$Spokes$Create
     extends StandardParameters {
     /**
@@ -10759,6 +12237,18 @@ export namespace networkconnectivity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Spoke;
+  }
+  export interface Params$Resource$Projects$Locations$Spokes$Reject
+    extends StandardParameters {
+    /**
+     * Required. The name of the spoke to reject.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RejectSpokeRequest;
   }
   export interface Params$Resource$Projects$Locations$Spokes$Setiampolicy
     extends StandardParameters {
