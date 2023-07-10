@@ -1355,7 +1355,7 @@ export namespace datacatalog_v1beta1 {
      */
     sqlDatabaseSystemSpec?: Schema$GoogleCloudDatacatalogV1SqlDatabaseSystemSpec;
     /**
-     * The type of the entry. Only used for entries with types listed in the `EntryType` enum. Currently, only `FILESET` enum value is allowed. All other entries created in Data Catalog must use the `user_specified_type`.
+     * The type of the entry. For details, see [`EntryType`](#entrytype).
      */
     type?: string | null;
     /**
