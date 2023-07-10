@@ -2059,7 +2059,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230629",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3638,7 +3638,7 @@
           "type": "string"
         },
         "brands": {
-          "description": "The brands of the product. A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).",
+          "description": "The brands of the product. A maximum of 30 brands are allowed unless overridden via pantheon UI. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).",
           "items": {
             "type": "string"
           },
@@ -5329,6 +5329,47 @@
       "properties": {
         "model": {
           "description": "The resource name of the model that this create applies to. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaEnrollSolutionMetadata": {
+      "description": "Metadata related to the EnrollSolution method. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudRetailV2alphaEnrollSolutionMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaEnrollSolutionResponse": {
+      "description": "Response for EnrollSolution method.",
+      "id": "GoogleCloudRetailV2alphaEnrollSolutionResponse",
+      "properties": {
+        "enrolledSolution": {
+          "description": "Retail API solution that the project has enrolled.",
+          "enum": [
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Used for Recommendations AI.",
+            "Used for Retail Search."
+          ],
+          "type": "string"
+        },
+        "searchSolutionUseCase": {
+          "description": "Search solution use case that the project has enrolled.",
+          "enum": [
+            "SEARCH_SOLUTION_USE_CASE_UNSPECIFIED",
+            "SEARCH_SOLUTION_USE_CASE_SEARCH",
+            "SEARCH_SOLUTION_USE_CASE_BROWSE"
+          ],
+          "enumDescriptions": [
+            "The value when it's unspecified. In this case, server behavior defaults to SEARCH_SOLUTION_USE_CASE_SEARCH.",
+            "Search use case. Expects the traffic has a non-empty query.",
+            "Browse use case. Expects the traffic has an empty query."
+          ],
           "type": "string"
         }
       },

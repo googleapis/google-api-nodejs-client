@@ -106,6 +106,86 @@
   "protocol": "rest",
   "resources": {
     "projects": {
+      "methods": {
+        "enrollSolution": {
+          "description": "Enrolls retail API solution for the project. Recommendation solution is enrolled by default when your project enables Retail API. You don't need to call this API for the recommendation solution.",
+          "flatPath": "v2alpha/projects/{projectsId}:enrollSolution",
+          "httpMethod": "POST",
+          "id": "retail.projects.enrollSolution",
+          "parameterOrder": [
+            "project"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Required. Full resource name of parent. Format: `projects/{project_number_or_id}`",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v2alpha/{+project}:enrollSolution",
+          "request": {
+            "$ref": "GoogleCloudRetailV2alphaEnrollSolutionRequest"
+          },
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "getRetailProject": {
+          "description": "Gets the project. Throws NOT_FOUND if the project wasn't initialized for Retail API Service.",
+          "flatPath": "v2alpha/projects/{projectsId}/retailProject",
+          "httpMethod": "GET",
+          "id": "retail.projects.getRetailProject",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Full resource name of the project. Format: `projects/{project_number_or_id}/retailProject`",
+              "location": "path",
+              "pattern": "^projects/[^/]+/retailProject$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v2alpha/{+name}",
+          "response": {
+            "$ref": "GoogleCloudRetailV2alphaProject"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "listEnrolledSolutions": {
+          "description": "Lists all the retail API solutions the project has enrolled.",
+          "flatPath": "v2alpha/projects/{projectsId}:enrolledSolutions",
+          "httpMethod": "GET",
+          "id": "retail.projects.listEnrolledSolutions",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. Full resource name of parent. Format: `projects/{project_number_or_id}`",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v2alpha/{+parent}:enrolledSolutions",
+          "response": {
+            "$ref": "GoogleCloudRetailV2alphaListEnrolledSolutionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      },
       "resources": {
         "locations": {
           "resources": {
@@ -2213,11 +2293,43 @@
               ]
             }
           }
+        },
+        "retailProject": {
+          "methods": {
+            "acceptTerms": {
+              "description": "Accepts service terms for this project. By making requests to this API, you agree to the terms of service linked below. https://cloud.google.com/retail/data-use-terms",
+              "flatPath": "v2alpha/projects/{projectsId}/retailProject:acceptTerms",
+              "httpMethod": "POST",
+              "id": "retail.projects.retailProject.acceptTerms",
+              "parameterOrder": [
+                "project"
+              ],
+              "parameters": {
+                "project": {
+                  "description": "Required. Full resource name of the project. Format: `projects/{project_number_or_id}/retailProject`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/retailProject$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2alpha/{+project}:acceptTerms",
+              "request": {
+                "$ref": "GoogleCloudRetailV2alphaAcceptTermsRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudRetailV2alphaProject"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
         }
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230629",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -2835,6 +2947,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaAcceptTermsRequest": {
+      "description": "Request for AcceptTerms method.",
+      "id": "GoogleCloudRetailV2alphaAcceptTermsRequest",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2alphaAddCatalogAttributeRequest": {
@@ -3585,6 +3703,82 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaEnrollSolutionMetadata": {
+      "description": "Metadata related to the EnrollSolution method. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudRetailV2alphaEnrollSolutionMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaEnrollSolutionRequest": {
+      "description": "Request for EnrollSolution method.",
+      "id": "GoogleCloudRetailV2alphaEnrollSolutionRequest",
+      "properties": {
+        "searchSolutionUseCase": {
+          "description": "Solution use case to enroll. Currently settable for Browse to enroll. It should be only set when [solution] is set as SolutionType.SOLUTION_TYPE_SEARCH or an INVALID_ARGUMENT error is thrown.",
+          "enum": [
+            "SEARCH_SOLUTION_USE_CASE_UNSPECIFIED",
+            "SEARCH_SOLUTION_USE_CASE_SEARCH",
+            "SEARCH_SOLUTION_USE_CASE_BROWSE"
+          ],
+          "enumDescriptions": [
+            "The value when it's unspecified. In this case, server behavior defaults to SEARCH_SOLUTION_USE_CASE_SEARCH.",
+            "Search use case. Expects the traffic has a non-empty query.",
+            "Browse use case. Expects the traffic has an empty query."
+          ],
+          "type": "string"
+        },
+        "solution": {
+          "description": "Required. Solution to enroll.",
+          "enum": [
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Used for Recommendations AI.",
+            "Used for Retail Search."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaEnrollSolutionResponse": {
+      "description": "Response for EnrollSolution method.",
+      "id": "GoogleCloudRetailV2alphaEnrollSolutionResponse",
+      "properties": {
+        "enrolledSolution": {
+          "description": "Retail API solution that the project has enrolled.",
+          "enum": [
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Used for Recommendations AI.",
+            "Used for Retail Search."
+          ],
+          "type": "string"
+        },
+        "searchSolutionUseCase": {
+          "description": "Search solution use case that the project has enrolled.",
+          "enum": [
+            "SEARCH_SOLUTION_USE_CASE_UNSPECIFIED",
+            "SEARCH_SOLUTION_USE_CASE_SEARCH",
+            "SEARCH_SOLUTION_USE_CASE_BROWSE"
+          ],
+          "enumDescriptions": [
+            "The value when it's unspecified. In this case, server behavior defaults to SEARCH_SOLUTION_USE_CASE_SEARCH.",
+            "Search use case. Expects the traffic has a non-empty query.",
+            "Browse use case. Expects the traffic has an empty query."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaExperimentInfo": {
       "description": "Metadata for active A/B testing Experiment.",
       "id": "GoogleCloudRetailV2alphaExperimentInfo",
@@ -4014,6 +4208,30 @@
         "nextPageToken": {
           "description": "Pagination token, if not returned indicates the last page.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaListEnrolledSolutionsResponse": {
+      "description": "Response for ListEnrolledSolutions method.",
+      "id": "GoogleCloudRetailV2alphaListEnrolledSolutionsResponse",
+      "properties": {
+        "enrolledSolutions": {
+          "description": "Retail API solutions that the project has enrolled.",
+          "items": {
+            "enum": [
+              "SOLUTION_TYPE_UNSPECIFIED",
+              "SOLUTION_TYPE_RECOMMENDATION",
+              "SOLUTION_TYPE_SEARCH"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Used for Recommendations AI.",
+              "Used for Retail Search."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4740,7 +4958,7 @@
           "type": "string"
         },
         "brands": {
-          "description": "The brands of the product. A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).",
+          "description": "The brands of the product. A maximum of 30 brands are allowed unless overridden via pantheon UI. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).",
           "items": {
             "type": "string"
           },
@@ -4974,6 +5192,36 @@
         },
         "merchantCenterProductIdField": {
           "description": "Which field of [Merchant Center Product](/bigquery-transfer/docs/merchant-center-products-schema) should be imported as Product.id. Acceptable values are: * `offerId` (default): Import `offerId` as the product ID. * `itemGroupId`: Import `itemGroupId` as the product ID. Notice that Retail API will choose one item from the ones with the same `itemGroupId`, and use it to represent the item group. If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned. If this field is `itemGroupId` and ingestion_product_type is `variant`, an INVALID_ARGUMENT error is returned. See [Product levels](https://cloud.google.com/retail/docs/catalog#product-levels) for more details.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaProject": {
+      "description": "Metadata that describes a Cloud Retail Project.",
+      "id": "GoogleCloudRetailV2alphaProject",
+      "properties": {
+        "enrolledSolutions": {
+          "description": "Output only. Retail API solutions that the project has enrolled.",
+          "items": {
+            "enum": [
+              "SOLUTION_TYPE_UNSPECIFIED",
+              "SOLUTION_TYPE_RECOMMENDATION",
+              "SOLUTION_TYPE_SEARCH"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Used for Recommendations AI.",
+              "Used for Retail Search."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Full resource name of the retail project, such as `projects/{project_id_or_number}/retailProject`.",
+          "readOnly": true,
           "type": "string"
         }
       },
