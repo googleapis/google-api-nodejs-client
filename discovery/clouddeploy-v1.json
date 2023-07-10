@@ -1451,7 +1451,7 @@
       }
     }
   },
-  "revision": "20230609",
+  "revision": "20230621",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -1937,6 +1937,13 @@
             "TYPE_PROCESS_ABORTED",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Type is unspecified.",
             "A Pub/Sub notification failed to be sent.",
@@ -2403,6 +2410,13 @@
             "TYPE_RESOURCE_STATE_CHANGE",
             "TYPE_PROCESS_ABORTED",
             "TYPE_RENDER_STATUES_CHANGE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "Type is unspecified.",
@@ -3089,6 +3103,13 @@
             "TYPE_PROCESS_ABORTED",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Type is unspecified.",
             "A Pub/Sub notification failed to be sent.",
@@ -3368,6 +3389,13 @@
             "TYPE_PROCESS_ABORTED",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Type is unspecified.",
             "A Pub/Sub notification failed to be sent.",
@@ -3601,7 +3629,7 @@
         },
         "anthosCluster": {
           "$ref": "AnthosCluster",
-          "description": "Information specifying an Anthos Cluster."
+          "description": "Optional. Information specifying an Anthos Cluster."
         },
         "createTime": {
           "description": "Output only. Time at which the `Target` was created.",
@@ -3633,7 +3661,7 @@
         },
         "gke": {
           "$ref": "GkeCluster",
-          "description": "Information specifying a GKE Cluster."
+          "description": "Optional. Information specifying a GKE Cluster."
         },
         "labels": {
           "additionalProperties": {
@@ -3644,7 +3672,7 @@
         },
         "multiTarget": {
           "$ref": "MultiTarget",
-          "description": "Information specifying a multiTarget."
+          "description": "Optional. Information specifying a multiTarget."
         },
         "name": {
           "description": "Optional. Name of the `Target`. Format is projects/{project}/locations/{location}/targets/a-z{0,62}.",
@@ -3656,7 +3684,7 @@
         },
         "run": {
           "$ref": "CloudRunLocation",
-          "description": "Information specifying a Cloud Run deployment target."
+          "description": "Optional. Information specifying a Cloud Run deployment target."
         },
         "targetId": {
           "description": "Output only. Resource id of the `Target`.",
@@ -3727,6 +3755,13 @@
             "TYPE_RESOURCE_STATE_CHANGE",
             "TYPE_PROCESS_ABORTED",
             "TYPE_RENDER_STATUES_CHANGE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "Type is unspecified.",
