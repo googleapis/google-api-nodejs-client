@@ -457,7 +457,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$ExistenceFilter {
     /**
-     * The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target.
+     * The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target. The client can use the `unchanged_names` bloom filter to assist with this determination.
      */
     count?: number | null;
     /**
@@ -740,6 +740,31 @@ export namespace firestore_v1beta1 {
     workEstimated?: string | null;
   }
   /**
+   * Metadata for the long-running operation from the RestoreDatabase request.
+   */
+  export interface Schema$GoogleFirestoreAdminV1RestoreDatabaseMetadata {
+    /**
+     * The name of the backup restoring from.
+     */
+    backup?: string | null;
+    /**
+     * The name of the database being restored to.
+     */
+    database?: string | null;
+    /**
+     * The time the restore finished, unset for ongoing restores.
+     */
+    endTime?: string | null;
+    /**
+     * The operation state of the restore.
+     */
+    operationState?: string | null;
+    /**
+     * The time the restore was started.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Metadata related to the update database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {}
@@ -971,7 +996,7 @@ export namespace firestore_v1beta1 {
     readTime?: string | null;
   }
   /**
-   * Options for a transaction that can be used to read and write documents.
+   * Options for a transaction that can be used to read and write documents. Firestore does not allow 3rd party auth requests to create read-write. transactions.
    */
   export interface Schema$ReadWrite {
     /**

@@ -416,6 +416,31 @@ export namespace firestore_v1beta2 {
     estimatedWork?: string | null;
   }
   /**
+   * Metadata for the long-running operation from the RestoreDatabase request.
+   */
+  export interface Schema$GoogleFirestoreAdminV1RestoreDatabaseMetadata {
+    /**
+     * The name of the backup restoring from.
+     */
+    backup?: string | null;
+    /**
+     * The name of the database being restored to.
+     */
+    database?: string | null;
+    /**
+     * The time the restore finished, unset for ongoing restores.
+     */
+    endTime?: string | null;
+    /**
+     * The operation state of the restore.
+     */
+    operationState?: string | null;
+    /**
+     * The time the restore was started.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Metadata related to the update database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {}
