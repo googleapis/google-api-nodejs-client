@@ -3566,7 +3566,7 @@ export namespace sheets_v4 {
      */
     randomizeRange?: Schema$RandomizeRangeRequest;
     /**
-     * Refreshs one or multiple data sources and associated dbobjects.
+     * Refreshes one or multiple data sources and associated dbobjects.
      */
     refreshDataSource?: Schema$RefreshDataSourceRequest;
     /**
