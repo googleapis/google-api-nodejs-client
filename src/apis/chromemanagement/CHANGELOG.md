@@ -1,5 +1,31 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v9.0.0...chromemanagement-v10.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **chromemanagement:** update the API ([0682fa7](https://github.com/googleapis/google-api-nodejs-client/commit/0682fa72414d5895360a19187525ac963013ef67))
+* **chromemanagement:** update the API ([1c18b16](https://github.com/googleapis/google-api-nodejs-client/commit/1c18b1665587b2d59e7bec78acb695017424aa9f))
+* **chromemanagement:** update the API ([3368e8d](https://github.com/googleapis/google-api-nodejs-client/commit/3368e8dd0e6b92d05fdaf43069758d2c0c01a3f6))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3226](https://github.com/googleapis/google-api-nodejs-client/issues/3226)) ([64731b3](https://github.com/googleapis/google-api-nodejs-client/commit/64731b38b8b60b082da5456914546850d152d677))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **chromemanagement:** update the API ([b11e7ce](https://github.com/googleapis/google-api-nodejs-client/commit/b11e7ceeb62fd694aab0b6dc8f974a977edbea9f))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v8.0.0...chromemanagement-v9.0.0) (2023-07-10)
 
 

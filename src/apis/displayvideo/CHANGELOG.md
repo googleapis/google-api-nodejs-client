@@ -1,5 +1,31 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v11.0.0...displayvideo-v12.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **displayvideo:** This release has breaking changes.
+
+### Features
+
+* **displayvideo:** update the API ([49e989f](https://github.com/googleapis/google-api-nodejs-client/commit/49e989f5bce356e52569733d47800b3643c1ee6a))
+* **displayvideo:** update the API ([f746fe6](https://github.com/googleapis/google-api-nodejs-client/commit/f746fe658a636a8d65dc61829ffc4693b9b6b401))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3211](https://github.com/googleapis/google-api-nodejs-client/issues/3211)) ([e2d966e](https://github.com/googleapis/google-api-nodejs-client/commit/e2d966e089bf8e743dbfc83af8ef3b37a0f4c83d))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **displayvideo:** update the API ([f924f97](https://github.com/googleapis/google-api-nodejs-client/commit/f924f9747c47480e1527963d50eae95760fedcd4))
+* **displayvideo:** update the API ([5c7c0b6](https://github.com/googleapis/google-api-nodejs-client/commit/5c7c0b63505ef31bf1450ed275fc90b6d664d0e8))
+* **displayvideo:** update the API ([95253da](https://github.com/googleapis/google-api-nodejs-client/commit/95253da14d2087d714f9d452b8ecb2287c456ea2))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v10.0.0...displayvideo-v11.0.0) (2023-07-10)
 
 
