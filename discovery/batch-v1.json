@@ -556,7 +556,7 @@
       }
     }
   },
-  "revision": "20230607",
+  "revision": "20230621",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -569,6 +569,7 @@
           "type": "string"
         },
         "installGpuDrivers": {
+          "deprecated": true,
           "description": "Deprecated: please use instances[0].install_gpu_drivers instead.",
           "type": "boolean"
         },
@@ -715,6 +716,7 @@
       "id": "AgentMetadata",
       "properties": {
         "creationTime": {
+          "deprecated": true,
           "description": "When the VM agent started. Use agent_startup_time instead.",
           "format": "google-datetime",
           "type": "string"
@@ -1349,7 +1351,7 @@
             "DELETION_IN_PROGRESS"
           ],
           "enumDescriptions": [
-            "",
+            "Job state unspecified.",
             "Job is admitted (validated and persisted) and waiting for resources.",
             "Job is scheduled to run as soon as resource allocation is ready. The resource allocation may happen at a later time but with a high chance to succeed.",
             "Resource allocation has been successful. At least one Task in the Job is RUNNING.",
@@ -1589,7 +1591,7 @@
             "DELETION_IN_PROGRESS"
           ],
           "enumDescriptions": [
-            "",
+            "Job state unspecified.",
             "Job is admitted (validated and persisted) and waiting for resources.",
             "Job is scheduled to run as soon as resource allocation is ready. The resource allocation may happen at a later time but with a high chance to succeed.",
             "Resource allocation has been successful. At least one Task in the Job is RUNNING.",
@@ -2102,6 +2104,7 @@
           "additionalProperties": {
             "type": "string"
           },
+          "deprecated": true,
           "description": "Deprecated: please use environment(non-plural) instead.",
           "type": "object"
         },

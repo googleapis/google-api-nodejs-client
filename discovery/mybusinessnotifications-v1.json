@@ -154,7 +154,7 @@
       }
     }
   },
-  "revision": "20221213",
+  "revision": "20230705",
   "rootUrl": "https://mybusinessnotifications.googleapis.com/",
   "schemas": {
     "NotificationSetting": {
@@ -181,6 +181,20 @@
               "DUPLICATE_LOCATION",
               "LOSS_OF_VOICE_OF_MERCHANT",
               "VOICE_OF_MERCHANT_UPDATED"
+            ],
+            "enumDeprecated": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false
             ],
             "enumDescriptions": [
               "No notification type. Will not match any notifications.",

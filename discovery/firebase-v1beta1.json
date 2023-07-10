@@ -1320,7 +1320,7 @@
       }
     }
   },
-  "revision": "20230405",
+  "revision": "20230705",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -2275,6 +2275,7 @@
           "type": "string"
         },
         "webId": {
+          "deprecated": true,
           "description": "Output only. Immutable. A unique, Firebase-assigned identifier for the `WebApp`. This identifier is only used to populate the `namespace` value for the `WebApp`. For most use cases, use `appId` to identify or reference the App. The `webId` value is only unique within a `FirebaseProject` and its associated Apps.",
           "readOnly": true,
           "type": "string"

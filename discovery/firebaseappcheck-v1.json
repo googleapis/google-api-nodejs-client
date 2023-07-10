@@ -1343,7 +1343,7 @@
       }
     }
   },
-  "revision": "20230612",
+  "revision": "20230703",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1AppAttestConfig": {
@@ -1449,6 +1449,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse": {
+      "deprecated": true,
       "description": "Response message for the BatchGetSafetyNetConfigs method.",
       "id": "GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse",
       "properties": {
@@ -1702,6 +1703,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1ExchangeSafetyNetTokenRequest": {
+      "deprecated": true,
       "description": "Request message for the ExchangeSafetyNetToken method.",
       "id": "GoogleFirebaseAppcheckV1ExchangeSafetyNetTokenRequest",
       "properties": {
@@ -1900,6 +1902,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1SafetyNetConfig": {
+      "deprecated": true,
       "description": "An app's SafetyNet configuration object. This configuration controls certain properties of the `AppCheckToken` returned by ExchangeSafetyNetToken, such as its ttl. Note that your registered SHA-256 certificate fingerprints are used to validate tokens issued by SafetyNet; please register them via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v11/projects.androidApps.sha/create).",
       "id": "GoogleFirebaseAppcheckV1SafetyNetConfig",
       "properties": {
@@ -1928,8 +1931,8 @@
           ],
           "enumDescriptions": [
             "Firebase App Check is not enforced for the service, nor are App Check metrics collected. Though the service is not protected by App Check in this mode, other applicable protections, such as user authorization, are still enforced. An unconfigured service is in this mode by default.",
-            "Firebase App Check is not enforced for the service. App Check metrics are collected to help you decide when to turn on enforcement for the service. Though the service is not protected by App Check in this mode, other applicable protections, such as user authorization, are still enforced.",
-            "Firebase App Check is enforced for the service. The service will reject any request that attempts to access your project's resources if it does not have valid App Check token attached, with some exceptions depending on the service; for example, some services will still allow requests bearing the developer's privileged service account credentials without an App Check token. App Check metrics continue to be collected to help you detect issues with your App Check integration and monitor the composition of your callers. While the service is protected by App Check, other applicable protections, such as user authorization, continue to be enforced at the same time. Use caution when choosing to enforce App Check on a Firebase service. If your users have not updated to an App Check capable version of your app, their apps will no longer be able to use your Firebase services that are enforcing App Check. App Check metrics can help you decide whether to enforce App Check on your Firebase services. If your app has not launched yet, you should enable enforcement immediately, since there are no outdated clients in use."
+            "Firebase App Check is not enforced for the service. App Check metrics are collected to help you decide when to turn on enforcement for the service. Though the service is not protected by App Check in this mode, other applicable protections, such as user authorization, are still enforced. Some services require certain conditions to be met before they will work with App Check, such as requiring you to upgrade to a specific service tier. Until those requirements are met for a service, this `UNENFORCED` setting will have no effect and App Check will not work with that service.",
+            "Firebase App Check is enforced for the service. The service will reject any request that attempts to access your project's resources if it does not have valid App Check token attached, with some exceptions depending on the service; for example, some services will still allow requests bearing the developer's privileged service account credentials without an App Check token. App Check metrics continue to be collected to help you detect issues with your App Check integration and monitor the composition of your callers. While the service is protected by App Check, other applicable protections, such as user authorization, continue to be enforced at the same time. Use caution when choosing to enforce App Check on a Firebase service. If your users have not updated to an App Check capable version of your app, their apps will no longer be able to use your Firebase services that are enforcing App Check. App Check metrics can help you decide whether to enforce App Check on your Firebase services. If your app has not launched yet, you should enable enforcement immediately, since there are no outdated clients in use. Some services require certain conditions to be met before they will work with App Check, such as requiring you to upgrade to a specific service tier or requiring you to enable the service first. Until those requirements are met for a service, this `ENFORCED` setting will have no effect and App Check will not work with that service."
           ],
           "type": "string"
         },

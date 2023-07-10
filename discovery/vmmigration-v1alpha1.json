@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20230608",
+  "revision": "20230629",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2389,6 +2389,7 @@
         },
         "computeEngineVmDetails": {
           "$ref": "TargetVMDetails",
+          "deprecated": true,
           "description": "Output only. Details of the VM in Compute Engine. Deprecated: Use compute_engine_target_details instead.",
           "readOnly": true
         },
@@ -2455,6 +2456,7 @@
         },
         "targetDetails": {
           "$ref": "TargetVMDetails",
+          "deprecated": true,
           "description": "Output only. Details of the VM to create as the target of this clone job. Deprecated: Use compute_engine_target_details instead.",
           "readOnly": true
         }
@@ -2749,6 +2751,7 @@
       "id": "ComputeScheduling",
       "properties": {
         "automaticRestart": {
+          "deprecated": true,
           "type": "boolean"
         },
         "minNodeCpus": {
@@ -2818,6 +2821,7 @@
         },
         "computeEngineVmDetails": {
           "$ref": "TargetVMDetails",
+          "deprecated": true,
           "description": "Output only. Details of the VM in Compute Engine. Deprecated: Use compute_engine_target_details instead.",
           "readOnly": true
         },
@@ -2844,6 +2848,7 @@
           "type": "string"
         },
         "progress": {
+          "deprecated": true,
           "description": "Output only. The current progress in percentage of the cutover job.",
           "format": "int32",
           "readOnly": true,
@@ -2901,6 +2906,7 @@
         },
         "targetDetails": {
           "$ref": "TargetVMDetails",
+          "deprecated": true,
           "description": "Output only. Details of the VM to create as the target of this cutover job. Deprecated: Use compute_engine_target_details instead.",
           "readOnly": true
         }
@@ -3513,6 +3519,7 @@
         },
         "computeEngineVmDefaults": {
           "$ref": "TargetVMDetails",
+          "deprecated": true,
           "description": "Details of the VM in Compute Engine. Deprecated: Use compute_engine_target_defaults instead."
         },
         "createTime": {
@@ -3636,6 +3643,7 @@
         },
         "targetDefaults": {
           "$ref": "TargetVMDetails",
+          "deprecated": true,
           "description": "The default configuration of the target VM that will be created in Google Cloud as a result of the migration. Deprecated: Use compute_engine_target_defaults instead."
         },
         "updateTime": {
@@ -3927,11 +3935,13 @@
           "type": "string"
         },
         "progress": {
+          "deprecated": true,
           "description": "The current progress in percentage of this cycle.",
           "format": "int32",
           "type": "integer"
         },
         "progressPercent": {
+          "deprecated": true,
           "description": "The current progress in percentage of this cycle. Was replaced by 'steps' field, which breaks down the cycle progression more accurately.",
           "format": "int32",
           "type": "integer"
@@ -4074,6 +4084,7 @@
         },
         "error": {
           "$ref": "Status",
+          "deprecated": true,
           "description": "Output only. Provides details on the state of the Source in case of an error.",
           "readOnly": true
         },
@@ -4183,6 +4194,7 @@
       "type": "object"
     },
     "TargetVMDetails": {
+      "deprecated": true,
       "description": "TargetVMDetails is a collection of details for creating a VM in a target Compute Engine project.",
       "id": "TargetVMDetails",
       "properties": {
@@ -4293,6 +4305,7 @@
           "type": "array"
         },
         "project": {
+          "deprecated": true,
           "description": "Output only. The project in which to create the VM.",
           "readOnly": true,
           "type": "string"
@@ -4454,6 +4467,7 @@
           "type": "array"
         },
         "vmsCount": {
+          "deprecated": true,
           "description": "Output only. Total number of VMs included in the report.",
           "format": "int32",
           "readOnly": true,
@@ -4486,6 +4500,7 @@
       "id": "VmUtilizationMetrics",
       "properties": {
         "cpuAverage": {
+          "deprecated": true,
           "description": "Average CPU usage, percent.",
           "format": "int32",
           "type": "integer"
@@ -4496,6 +4511,7 @@
           "type": "integer"
         },
         "cpuMax": {
+          "deprecated": true,
           "description": "Max CPU usage, percent.",
           "format": "int32",
           "type": "integer"
@@ -4506,6 +4522,7 @@
           "type": "integer"
         },
         "diskIoRateAverage": {
+          "deprecated": true,
           "description": "Average disk IO rate, in kilobytes per second.",
           "format": "int64",
           "type": "string"
@@ -4516,6 +4533,7 @@
           "type": "string"
         },
         "diskIoRateMax": {
+          "deprecated": true,
           "description": "Max disk IO rate, in kilobytes per second.",
           "format": "int64",
           "type": "string"
@@ -4526,6 +4544,7 @@
           "type": "string"
         },
         "memoryAverage": {
+          "deprecated": true,
           "description": "Average memory usage, percent.",
           "format": "int32",
           "type": "integer"
@@ -4536,6 +4555,7 @@
           "type": "integer"
         },
         "memoryMax": {
+          "deprecated": true,
           "description": "Max memory usage, percent.",
           "format": "int32",
           "type": "integer"
@@ -4546,6 +4566,7 @@
           "type": "integer"
         },
         "networkThroughputAverage": {
+          "deprecated": true,
           "description": "Average network throughput (combined transmit-rates and receive-rates), in kilobytes per second.",
           "format": "int64",
           "type": "string"
@@ -4556,6 +4577,7 @@
           "type": "string"
         },
         "networkThroughputMax": {
+          "deprecated": true,
           "description": "Max network throughput (combined transmit-rates and receive-rates), in kilobytes per second.",
           "format": "int64",
           "type": "string"
@@ -4615,6 +4637,7 @@
           "type": "string"
         },
         "committedStorage": {
+          "deprecated": true,
           "description": "The total size of the storage allocated to the VM in MB.",
           "format": "int64",
           "type": "string"

@@ -1342,7 +1342,7 @@
       }
     }
   },
-  "revision": "20230423",
+  "revision": "20230701",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {
@@ -1458,10 +1458,12 @@
           "type": "boolean"
         },
         "supportsMultipleTransfers": {
+          "deprecated": true,
           "description": "Deprecated. This field has no effect.",
           "type": "boolean"
         },
         "transferType": {
+          "deprecated": true,
           "description": "Deprecated. This field has no effect.",
           "enum": [
             "TRANSFER_TYPE_UNSPECIFIED",

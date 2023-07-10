@@ -278,7 +278,7 @@
       "name": "analyticsadmin",
       "version": "v1alpha",
       "title": "Google Analytics Admin API",
-      "description": "",
+      "description": "Manage properties in Google Analytics. Warning: Creating multiple Customer Applications, Accounts, or Projects to simulate or act as a single Customer Application, Account, or Project (respectively) or to circumvent Service-specific usage limits or quotas is a direct violation of Google Cloud Platform Terms of Service as well as Google APIs Terms of Service. These actions can result in immediate termination of your GCP project(s) without any warning.",
       "discoveryRestUrl": "https://analyticsadmin.googleapis.com/$discovery/rest?version=v1alpha",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -293,7 +293,7 @@
       "name": "analyticsadmin",
       "version": "v1beta",
       "title": "Google Analytics Admin API",
-      "description": "",
+      "description": "Manage properties in Google Analytics. Warning: Creating multiple Customer Applications, Accounts, or Projects to simulate or act as a single Customer Application, Account, or Project (respectively) or to circumvent Service-specific usage limits or quotas is a direct violation of Google Cloud Platform Terms of Service as well as Google APIs Terms of Service. These actions can result in immediate termination of your GCP project(s) without any warning.",
       "discoveryRestUrl": "https://analyticsadmin.googleapis.com/$discovery/rest?version=v1beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -308,7 +308,7 @@
       "name": "analyticsdata",
       "version": "v1beta",
       "title": "Google Analytics Data API",
-      "description": "Accesses report data in Google Analytics.",
+      "description": "Accesses report data in Google Analytics. Warning: Creating multiple Customer Applications, Accounts, or Projects to simulate or act as a single Customer Application, Account, or Project (respectively) or to circumvent Service-specific usage limits or quotas is a direct violation of Google Cloud Platform Terms of Service as well as Google APIs Terms of Service. These actions can result in immediate termination of your GCP project(s) without any warning.",
       "discoveryRestUrl": "https://analyticsdata.googleapis.com/$discovery/rest?version=v1beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -839,6 +839,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/binary-authorization/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "blockchainnodeengine:v1",
+      "name": "blockchainnodeengine",
+      "version": "v1",
+      "title": "Blockchain Node Engine API",
+      "description": "",
+      "discoveryRestUrl": "https://blockchainnodeengine.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/blockchain-node-engine",
       "preferred": true
     },
     {
@@ -1479,6 +1494,21 @@
       "title": "Google Cloud Support API",
       "description": "Manages Google Cloud technical support cases for Customer Care support offerings.",
       "discoveryRestUrl": "https://cloudsupport.googleapis.com/$discovery/rest?version=v2beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/support/docs/apis",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "cloudsupport:v2",
+      "name": "cloudsupport",
+      "version": "v2",
+      "title": "Google Cloud Support API",
+      "description": "Manages Google Cloud technical support cases for Customer Care support offerings.",
+      "discoveryRestUrl": "https://cloudsupport.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3049,21 +3079,6 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/solutions/gaming/",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "genomics:v2alpha1",
-      "name": "genomics",
-      "version": "v2alpha1",
-      "title": "Genomics API",
-      "description": "Uploads, processes, queries, and searches Genomics data in the cloud.",
-      "discoveryRestUrl": "https://genomics.googleapis.com/$discovery/rest?version=v2alpha1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/genomics",
       "preferred": true
     },
     {
@@ -6103,7 +6118,7 @@
       "name": "workloadmanager",
       "version": "v1",
       "title": "Workload Manager API",
-      "description": "",
+      "description": "Workload Manager is a service that provides tooling for enterprise workloads to automate the deployment and validation of your workloads against best practices and recommendations.",
       "discoveryRestUrl": "https://workloadmanager.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",

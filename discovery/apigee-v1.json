@@ -1594,6 +1594,488 @@
             }
           }
         },
+        "appgroups": {
+          "methods": {
+            "create": {
+              "description": "Creates an AppGroup. Once created, user can register apps under the AppGroup to obtain secret key and password. At creation time, the AppGroup's state is set as `active`. The attribute `Attribute` with key `attribute_name` as `__apigee_reserved__developer_details` can be used to store developers and their roles. The JSON format expected is: [ { \"developer_id\":\"\", \"roles\":[ \"\" ] } ] and is dealt in base64encoded format. Etag will be available in attribute `Attribute` with key `attribute_name` as `__apigee_reserved__developer_details_etag` for that AppGroup.",
+              "flatPath": "v1/organizations/{organizationsId}/appgroups",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.appgroups.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Name of the Apigee organization in which the AppGroup is created. Use the following structure in your request: `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/appgroups",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1AppGroup"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1AppGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an AppGroup. All app and API keys associations with the AppGroup are also removed. **Warning**: This API will permanently delete the AppGroup and related artifacts. **Note**: The delete operation is asynchronous. The AppGroup app is deleted immediately, but its associated resources, such as apps and API keys, may take anywhere from a few seconds to a few minutes to be deleted.",
+              "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}",
+              "httpMethod": "DELETE",
+              "id": "apigee.organizations.appgroups.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the AppGroup. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/appgroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1AppGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Returns the AppGroup details for the provided AppGroup name in the request URI.",
+              "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.appgroups.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the AppGroup. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/appgroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1AppGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists all AppGroups in an organization. A maximum of 1000 AppGroups are returned in the response if PageSize is not specified, or if the PageSize is greater than 1000.",
+              "flatPath": "v1/organizations/{organizationsId}/appgroups",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.appgroups.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "The filter expression to be used to get the list of AppGroups, where filtering can be done on name, correlationID or channelID of the app group. Example: filter = \"name = foobar\"",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Count of AppGroups a single page can have in the response. If unspecified, at most 1000 AppGroups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The starting index record for listing the AppGroups.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the Apigee organization. Use the following structure in your request: `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/appgroups",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListAppGroupsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "update": {
+              "description": "Updates an appGroup. This API replaces the existing appGroup details with those specified in the request. Include or exclude any existing details that you want to retain or delete, respectively. Note that the state of the AppGroup should be updated using `action`, and not via AppGroup. The custom attribute limit is 1000, and is how `__apigee_reserved__developer_details` can be updated. **Note**: OAuth access tokens and Key Management Service (KMS) entities (apps, developers, and API products) are cached for 180 seconds (current default). Any custom attributes associated with these entities are cached for at least 180 seconds after the entity is accessed at runtime. Therefore, an `ExpiresIn` element on the OAuthV2 policy won't be able to expire an access token in less than 180 seconds.",
+              "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}",
+              "httpMethod": "PUT",
+              "id": "apigee.organizations.appgroups.update",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "action": {
+                  "description": "Activate or de-activate the appGroup by setting the action as `active` or `inactive`. The `Content-Type` header must be set to `application/octet-stream`, with empty body.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Required. Name of the AppGroup. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/appgroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1AppGroup"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1AppGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "apps": {
+              "methods": {
+                "create": {
+                  "description": "Creates an app and associates it with an AppGroup. This API associates the AppGroup app with the specified API product and auto-generates an API key for the app to use in calls to API proxies inside that API product. The `name` is the unique ID of the app that you can use in API calls.",
+                  "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.appgroups.apps.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Name of the AppGroup. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/appgroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/apps",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1AppGroupApp"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1AppGroupApp"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an AppGroup app. **Note**: The delete operation is asynchronous. The AppGroup app is deleted immediately, but its associated resources, such as app keys or access tokens, may take anywhere from a few seconds to a few minutes to be deleted.",
+                  "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps/{appsId}",
+                  "httpMethod": "DELETE",
+                  "id": "apigee.organizations.appgroups.apps.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the AppGroup app. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}/apps/{app}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/appgroups/[^/]+/apps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1AppGroupApp"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Returns the details for an AppGroup app.",
+                  "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps/{appsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.appgroups.apps.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the AppGroup app. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}/apps/{app}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/appgroups/[^/]+/apps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1AppGroupApp"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all apps created by an AppGroup in an Apigee organization. Optionally, you can request an expanded view of the AppGroup apps. Lists all AppGroupApps in an AppGroup. A maximum of 1000 AppGroup apps are returned in the response if PageSize is not specified, or if the PageSize is greater than 1000.",
+                  "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.appgroups.apps.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number entries to return. If unspecified, at most 1000 entries will be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token. If provides, must be a valid AppGroup app returned from a previous call that can be used to retrieve the next page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of the AppGroup. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/appgroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/apps",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListAppGroupAppsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "update": {
+                  "description": "Updates the details for an AppGroup app. In addition, you can add an API product to an AppGroup app and automatically generate an API key for the app to use when calling APIs in the API product. If you want to use an existing API key for the API product, add the API product to the API key using the UpdateAppGroupAppKey API. Using this API, you cannot update the app name, as it is the primary key used to identify the app and cannot be changed. This API replaces the existing attributes with those specified in the request. Include or exclude any existing attributes that you want to retain or delete, respectively.",
+                  "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps/{appsId}",
+                  "httpMethod": "PUT",
+                  "id": "apigee.organizations.appgroups.apps.update",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "action": {
+                      "description": "Approve or revoke the consumer key by setting this value to `approve` or `revoke`. The `Content-Type` header must be set to `application/octet-stream`, with empty body.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. Name of the AppGroup app. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}/apps/{app}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/appgroups/[^/]+/apps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1AppGroupApp"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1AppGroupApp"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "keys": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a custom consumer key and secret for a AppGroup app. This is particularly useful if you want to migrate existing consumer keys and secrets to Apigee from another system. Consumer keys and secrets can contain letters, numbers, underscores, and hyphens. No other special characters are allowed. To avoid service disruptions, a consumer key and secret should not exceed 2 KBs each. **Note**: When creating the consumer key and secret, an association to API products will not be made. Therefore, you should not specify the associated API products in your request. Instead, use the ProductizeAppGroupAppKey API to make the association after the consumer key and secret are created. If a consumer key and secret already exist, you can keep them or delete them using the DeleteAppGroupAppKey API.",
+                      "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps/{appsId}/keys",
+                      "httpMethod": "POST",
+                      "id": "apigee.organizations.appgroups.apps.keys.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Parent of the AppGroup app key. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}/apps/{app}/keys`",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/appgroups/[^/]+/apps/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/keys",
+                      "request": {
+                        "$ref": "GoogleCloudApigeeV1AppGroupAppKey"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1AppGroupAppKey"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes an app's consumer key and removes all API products associated with the app. After the consumer key is deleted, it cannot be used to access any APIs.",
+                      "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps/{appsId}/keys/{keysId}",
+                      "httpMethod": "DELETE",
+                      "id": "apigee.organizations.appgroups.apps.keys.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the AppGroup app key. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}/apps/{app}/keys/{key}`",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/appgroups/[^/]+/apps/[^/]+/keys/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1AppGroupAppKey"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details for a consumer key for a AppGroup app, including the key and secret value, associated API products, and other information.",
+                      "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps/{appsId}/keys/{keysId}",
+                      "httpMethod": "GET",
+                      "id": "apigee.organizations.appgroups.apps.keys.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the AppGroup app key. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}/apps/{app}/keys/{key}`",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/appgroups/[^/]+/apps/[^/]+/keys/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1AppGroupAppKey"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "updateAppGroupAppKey": {
+                      "description": "Adds an API product to an AppGroupAppKey, enabling the app that holds the key to access the API resources bundled in the API product. In addition, you can add attributes to the AppGroupAppKey. This API replaces the existing attributes with those specified in the request. Include or exclude any existing attributes that you want to retain or delete, respectively. You can use the same key to access all API products associated with the app.",
+                      "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps/{appsId}/keys/{keysId}",
+                      "httpMethod": "POST",
+                      "id": "apigee.organizations.appgroups.apps.keys.updateAppGroupAppKey",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the AppGroup app key. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}/apps/{app}/keys/{key}`",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/appgroups/[^/]+/apps/[^/]+/keys/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudApigeeV1UpdateAppGroupAppKeyRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudApigeeV1AppGroupAppKey"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "apiproducts": {
+                      "methods": {
+                        "delete": {
+                          "description": "Removes an API product from an app's consumer key. After the API product is removed, the app cannot access the API resources defined in that API product. **Note**: The consumer key is not removed, only its association with the API product.",
+                          "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps/{appsId}/keys/{keysId}/apiproducts/{apiproductsId}",
+                          "httpMethod": "DELETE",
+                          "id": "apigee.organizations.appgroups.apps.keys.apiproducts.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Parent of the AppGroup app key. Use the following structure in your request: `organizations/{org}/appgroups/{app_group_name}/apps/{app}/keys/{key}/apiproducts/{apiproduct}`",
+                              "location": "path",
+                              "pattern": "^organizations/[^/]+/appgroups/[^/]+/apps/[^/]+/keys/[^/]+/apiproducts/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudApigeeV1AppGroupAppKey"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "updateAppGroupAppKeyApiProduct": {
+                          "description": "Approves or revokes the consumer key for an API product. After a consumer key is approved, the app can use it to access APIs. A consumer key that is revoked or pending cannot be used to access an API. Any access tokens associated with a revoked consumer key will remain active. However, Apigee checks the status of the consumer key and if set to `revoked` will not allow access to the API.",
+                          "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps/{appsId}/keys/{keysId}/apiproducts/{apiproductsId}",
+                          "httpMethod": "POST",
+                          "id": "apigee.organizations.appgroups.apps.keys.apiproducts.updateAppGroupAppKeyApiProduct",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "action": {
+                              "description": "Approve or revoke the consumer key by setting this value to `approve` or `revoke` respectively. The `Content-Type` header, if set, must be set to `application/octet-stream`, with empty body.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Required. Name of the API product in the developer app key in the following format: `organizations/{org}/appgroups/{app_group_name}/apps/{app}/keys/{key}/apiproducts/{apiproduct}`",
+                              "location": "path",
+                              "pattern": "^organizations/[^/]+/appgroups/[^/]+/apps/[^/]+/keys/[^/]+/apiproducts/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "apps": {
           "methods": {
             "get": {
@@ -1636,7 +2118,7 @@
                   "type": "string"
                 },
                 "apptype": {
-                  "description": "Optional. Filter by the type of the app. Valid values are `company` or `developer`. Defaults to `developer`.",
+                  "description": "Optional. 'apptype' is no longer available. Use a 'filter' instead.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1644,6 +2126,11 @@
                   "description": "Optional. Flag that specifies whether to return an expanded list of apps for the organization. Defaults to `false`.",
                   "location": "query",
                   "type": "boolean"
+                },
+                "filter": {
+                  "description": "Optional. The filter expression to be used to get the list of apps, where filtering can be done on developerEmail, apiProduct, consumerKey, status, appId, appName and appType. Examples: \"developerEmail=foo@bar.com\", \"appType=AppGroup\", or \"appType=Developer\" \"filter\" is supported from ver 1.10.0 and above.",
+                  "location": "query",
+                  "type": "string"
                 },
                 "ids": {
                   "description": "Optional. Comma-separated list of app IDs on which to filter.",
@@ -1657,6 +2144,17 @@
                 },
                 "keyStatus": {
                   "description": "Optional. Key status of the app. Valid values include `approved` or `revoked`. Defaults to `approved`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Count of apps a single page can have in the response. If unspecified, at most 100 apps will be returned. The maximum value is 100; values above 100 will be coerced to 100. \"page_size\" is supported from ver 1.10.0 and above.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. The starting index record for listing the developers. \"page_token\" is supported from ver 1.10.0 and above.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2529,7 +3027,7 @@
                 "keys": {
                   "methods": {
                     "create": {
-                      "description": "Creates a custom consumer key and secret for a developer app. This is particularly useful if you want to migrate existing consumer keys and secrets to Apigee from another system. Consumer keys and secrets can contain letters, numbers, underscores, and hyphens. No other special characters are allowed. To avoid service disruptions, a consumer key and secret should not exceed 2 KBs each. **Note**: When creating the consumer key and secret, an association to API products will not be made. Therefore, you should not specify the associated API products in your request. Instead, use the UpdateDeveloperAppKey API to make the association after the consumer key and secret are created. If a consumer key and secret already exist, you can keep them or delete them using the DeleteDeveloperAppKey API.",
+                      "description": "Creates a custom consumer key and secret for a developer app. This is particularly useful if you want to migrate existing consumer keys and secrets to Apigee from another system. Consumer keys and secrets can contain letters, numbers, underscores, and hyphens. No other special characters are allowed. To avoid service disruptions, a consumer key and secret should not exceed 2 KBs each. **Note**: When creating the consumer key and secret, an association to API products will not be made. Therefore, you should not specify the associated API products in your request. Instead, use the UpdateDeveloperAppKey API to make the association after the consumer key and secret are created. If a consumer key and secret already exist, you can keep them or delete them using the DeleteDeveloperAppKey API. **Note**: All keys start out with status=approved, even if status=revoked is passed when the key is created. To revoke a key, use the UpdateDeveloperAppKey API.",
                       "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/apps/{appsId}/keys",
                       "httpMethod": "POST",
                       "id": "apigee.organizations.developers.apps.keys.create",
@@ -2731,7 +3229,7 @@
                     "create": {
                       "methods": {
                         "create": {
-                          "description": "Creates a custom consumer key and secret for a developer app. This is particularly useful if you want to migrate existing consumer keys and secrets to Apigee from another system. Consumer keys and secrets can contain letters, numbers, underscores, and hyphens. No other special characters are allowed. To avoid service disruptions, a consumer key and secret should not exceed 2 KBs each. **Note**: When creating the consumer key and secret, an association to API products will not be made. Therefore, you should not specify the associated API products in your request. Instead, use the UpdateDeveloperAppKey API to make the association after the consumer key and secret are created. If a consumer key and secret already exist, you can keep them or delete them using the DeleteDeveloperAppKey API.",
+                          "description": "Creates a custom consumer key and secret for a developer app. This is particularly useful if you want to migrate existing consumer keys and secrets to Apigee from another system. Consumer keys and secrets can contain letters, numbers, underscores, and hyphens. No other special characters are allowed. To avoid service disruptions, a consumer key and secret should not exceed 2 KBs each. **Note**: When creating the consumer key and secret, an association to API products will not be made. Therefore, you should not specify the associated API products in your request. Instead, use the UpdateDeveloperAppKey API to make the association after the consumer key and secret are created. If a consumer key and secret already exist, you can keep them or delete them using the DeleteDeveloperAppKey API. **Note**: All keys start out with status=approved, even if status=revoked is passed when the key is created. To revoke a key, use the UpdateDeveloperAppKey API.",
                           "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/apps/{appsId}/keys/create",
                           "httpMethod": "POST",
                           "id": "apigee.organizations.developers.apps.keys.create.create",
@@ -8744,7 +9242,7 @@
       }
     }
   },
-  "revision": "20230615",
+  "revision": "20230630",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -8799,6 +9297,21 @@
             "type": "object"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1APIProductAssociation": {
+      "description": "APIProductAssociation has the API product and its administrative state association.",
+      "id": "GoogleCloudApigeeV1APIProductAssociation",
+      "properties": {
+        "apiproduct": {
+          "description": "API product to be associated with the credential.",
+          "type": "string"
+        },
+        "status": {
+          "description": "The API product credential associated status. Valid values are `approved` or `revoked`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9399,6 +9912,10 @@
           },
           "type": "array"
         },
+        "appGroup": {
+          "description": "Name of the AppGroup",
+          "type": "string"
+        },
         "appId": {
           "description": "ID of the app.",
           "type": "string"
@@ -9432,6 +9949,10 @@
           "readOnly": true,
           "type": "array"
         },
+        "developerEmail": {
+          "description": "Email of the developer.",
+          "type": "string"
+        },
         "developerId": {
           "description": "ID of the developer.",
           "type": "string"
@@ -9460,6 +9981,192 @@
         },
         "status": {
           "description": "Status of the credential.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AppGroup": {
+      "description": "AppGroup contains the request/response fields representing the logical grouping of apps. Note that appgroup_id, create_time and update_time cannot be changed by the user, and gets updated by the system. The name and the organization once provided cannot be edited subsequently.",
+      "id": "GoogleCloudApigeeV1AppGroup",
+      "properties": {
+        "appGroupId": {
+          "description": "Output only. Internal identifier that cannot be edited",
+          "readOnly": true,
+          "type": "string"
+        },
+        "attributes": {
+          "description": "A list of attributes",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Attribute"
+          },
+          "type": "array"
+        },
+        "channelId": {
+          "description": "channel identifier identifies the owner maintaing this grouping.",
+          "type": "string"
+        },
+        "channelUri": {
+          "description": "A reference to the associated storefront/marketplace.",
+          "type": "string"
+        },
+        "createdAt": {
+          "description": "Output only. Created time as milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "app group name displayed in the UI",
+          "type": "string"
+        },
+        "lastModifiedAt": {
+          "description": "Output only. Modified time as milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Name of the AppGroup. Characters you can use in the name are restricted to: A-Z0-9._\\-$ %.",
+          "type": "string"
+        },
+        "organization": {
+          "description": "Immutable. the org the app group is created",
+          "type": "string"
+        },
+        "status": {
+          "description": "Valid values are `active` or `inactive`. Note that the status of the AppGroup should be updated via UpdateAppGroupRequest by setting the action as `active` or `inactive`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AppGroupApp": {
+      "description": "Response for [GetAppGroupApp].[AppGroupApps.GetAppGroupApp], [CreateAppGroupAppRequest].[AppGroupApp.CreateAppGroupAppRequest] and [DeleteAppGroupApp].[AppGroupApp.DeleteAppGroupApp]",
+      "id": "GoogleCloudApigeeV1AppGroupApp",
+      "properties": {
+        "apiProducts": {
+          "description": "List of API products associated with the AppGroup app.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "appGroup": {
+          "description": "Immutable. Name of the parent AppGroup whose resource name format is of syntax (organizations/*/appgroups/*).",
+          "type": "string"
+        },
+        "appId": {
+          "description": "Immutable. ID of the AppGroup app.",
+          "type": "string"
+        },
+        "attributes": {
+          "description": "List of attributes for the AppGroup app.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Attribute"
+          },
+          "type": "array"
+        },
+        "callbackUrl": {
+          "description": "Callback URL used by OAuth 2.0 authorization servers to communicate authorization codes back to AppGroup apps.",
+          "type": "string"
+        },
+        "createdAt": {
+          "description": "Output only. Time the AppGroup app was created in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "credentials": {
+          "description": "Output only. Set of credentials for the AppGroup app consisting of the consumer key/secret pairs associated with the API products.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Credential"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "keyExpiresIn": {
+          "description": "Immutable. Expiration time, in seconds, for the consumer key that is generated for the AppGroup app. If not set or left to the default value of `-1`, the API key never expires. The expiration time can't be updated after it is set.",
+          "format": "int64",
+          "type": "string"
+        },
+        "lastModifiedAt": {
+          "description": "Output only. Time the AppGroup app was modified in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Name of the AppGroup app whose resource name format is of syntax (organizations/*/appgroups/*/apps/*).",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Scopes to apply to the AppGroup app. The specified scopes must already exist for the API product that you associate with the AppGroup app.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "status": {
+          "description": "Status of the App. Valid values include `approved` or `revoked`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AppGroupAppKey": {
+      "description": "AppGroupAppKey contains all the information associated with the credentials.",
+      "id": "GoogleCloudApigeeV1AppGroupAppKey",
+      "properties": {
+        "apiProducts": {
+          "description": "Output only. List of API products and its status for which the credential can be used. **Note**: Use UpdateAppGroupAppKeyApiProductRequest API to make the association after the consumer key and secret are created.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1APIProductAssociation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "attributes": {
+          "description": "List of attributes associated with the credential.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Attribute"
+          },
+          "type": "array"
+        },
+        "consumerKey": {
+          "description": "Immutable. Consumer key.",
+          "type": "string"
+        },
+        "consumerSecret": {
+          "description": "Secret key.",
+          "type": "string"
+        },
+        "expiresAt": {
+          "description": "Output only. Time the AppGroup app expires in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expiresInSeconds": {
+          "description": "Immutable. Expiration time, in seconds, for the consumer key. If not set or left to the default value of `-1`, the API key never expires. The expiration time can't be updated after it is set.",
+          "format": "int64",
+          "type": "string"
+        },
+        "issuedAt": {
+          "description": "Output only. Time the AppGroup app was created in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Scopes to apply to the app. The specified scope names must already be defined for the API product that you associate with the app.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "status": {
+          "description": "Status of the credential. Valid values include `approved` or `revoked`.",
           "type": "string"
         }
       },
@@ -10987,6 +11694,7 @@
           "type": "array"
         },
         "name": {
+          "deprecated": true,
           "description": "Comma joined dimension names. E.g. \"dim1_name,dim2_name\". Deprecated. If name already has comma before join, we may get wrong splits. Please use individual_names.",
           "type": "string"
         }
@@ -11784,6 +12492,7 @@
           "type": "string"
         },
         "peeringCidrRange": {
+          "deprecated": true,
           "description": "Optional. Size of the CIDR block range that will be reserved by the instance. PAID organizations support `SLASH_16` to `SLASH_20` and defaults to `SLASH_16`. Evaluation organizations support only `SLASH_23`.",
           "enum": [
             "CIDR_RANGE_UNSPECIFIED",
@@ -12078,6 +12787,47 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListAppGroupAppsResponse": {
+      "description": "Response for ListAppGroupApps",
+      "id": "GoogleCloudApigeeV1ListAppGroupAppsResponse",
+      "properties": {
+        "appGroupApps": {
+          "description": "List of AppGroup apps and their credentials.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1AppGroupApp"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token that can be sent as `next_page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListAppGroupsResponse": {
+      "description": "ListAppGroupsResponse contains the 0 or more AppGroups, along with the optional page token and the total count of apps.",
+      "id": "GoogleCloudApigeeV1ListAppGroupsResponse",
+      "properties": {
+        "appGroups": {
+          "description": "List of AppGroups.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1AppGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token that can be sent as `next_page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "totalSize": {
+          "description": "Total count of AppGroups.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListAppsResponse": {
       "id": "GoogleCloudApigeeV1ListAppsResponse",
       "properties": {
@@ -12086,6 +12836,15 @@
             "$ref": "GoogleCloudApigeeV1App"
           },
           "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token that can be sent as `next_page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "totalSize": {
+          "description": "Total count of Apps.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -12910,6 +13669,7 @@
           "description": "Addon configurations of the Apigee organization."
         },
         "analyticsRegion": {
+          "deprecated": true,
           "description": "Required. DEPRECATED: This field will eventually be deprecated and replaced with a differently-named field. Primary Google Cloud region for analytics data storage. For valid values, see [Create an Apigee organization](https://cloud.google.com/apigee/docs/api-platform/get-started/create-org).",
           "type": "string"
         },
@@ -12976,6 +13736,10 @@
         "description": {
           "description": "Description of the Apigee organization.",
           "type": "string"
+        },
+        "disableVpcPeering": {
+          "description": "Optional. Flag that specifies whether the VPC Peering through Private Google Access should be disabled between the consumer network and Apigee. Valid only when RuntimeType is set to CLOUD. Required if an authorizedNetwork on the consumer project is not provided, in which case the flag should be set to true. The value must be set before the creation of any Apigee runtime instance and can be updated only when there are no runtime instances. **Note:** Apigee will be deprecating the vpc peering model that requires you to provide 'authorizedNetwork', by making the non-peering model as the default way of provisioning Apigee organization in future. So, this will be a temporary flag to enable the transition. Not supported for Apigee hybrid.",
+          "type": "boolean"
         },
         "displayName": {
           "description": "Display name for the Apigee organization. Unused, but reserved for future use.",
@@ -13057,6 +13821,7 @@
           "type": "string"
         },
         "subscriptionType": {
+          "deprecated": true,
           "description": "Output only. DEPRECATED: This will eventually be replaced by BillingType. Subscription type of the Apigee organization. Valid values include trial (free, limited, and for evaluation purposes only) or paid (full subscription has been purchased). See [Apigee pricing](https://cloud.google.com/apigee/pricing/).",
           "enum": [
             "SUBSCRIPTION_TYPE_UNSPECIFIED",
@@ -13107,6 +13872,7 @@
           "type": "string"
         },
         "projectIds": {
+          "deprecated": true,
           "description": "DEPRECATED: Use `project_id`. An Apigee Organization is mapped to a single project.",
           "items": {
             "type": "string"
@@ -13179,87 +13945,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudApigeeV1ProfileConfig": {
-      "description": "ProfileConfig defines a set of categories and policies which will be used to compute security score.",
-      "id": "GoogleCloudApigeeV1ProfileConfig",
-      "properties": {
-        "categories": {
-          "description": "List of categories of profile config.",
-          "items": {
-            "$ref": "GoogleCloudApigeeV1ProfileConfigCategory"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1ProfileConfigAbuse": {
-      "description": "Checks for abuse, which includes any requests sent to the API for purposes other than what it is intended for, such as high volumes of requests, data scraping, and abuse related to authorization.",
-      "id": "GoogleCloudApigeeV1ProfileConfigAbuse",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1ProfileConfigAuthorization": {
-      "description": "By default, following policies will be included: - JWS - JWT - OAuth - BasicAuth - APIKey",
-      "id": "GoogleCloudApigeeV1ProfileConfigAuthorization",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1ProfileConfigCORS": {
-      "description": "Checks to see if you have CORS policy in place.",
-      "id": "GoogleCloudApigeeV1ProfileConfigCORS",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1ProfileConfigCategory": {
-      "description": "Advanced API Security provides security profile that scores the following categories.",
-      "id": "GoogleCloudApigeeV1ProfileConfigCategory",
-      "properties": {
-        "abuse": {
-          "$ref": "GoogleCloudApigeeV1ProfileConfigAbuse",
-          "description": "Checks for abuse, which includes any requests sent to the API for purposes other than what it is intended for, such as high volumes of requests, data scraping, and abuse related to authorization."
-        },
-        "authorization": {
-          "$ref": "GoogleCloudApigeeV1ProfileConfigAuthorization",
-          "description": "Checks to see if you have an authorization policy in place."
-        },
-        "cors": {
-          "$ref": "GoogleCloudApigeeV1ProfileConfigCORS",
-          "description": "Checks to see if you have CORS policy in place."
-        },
-        "mediation": {
-          "$ref": "GoogleCloudApigeeV1ProfileConfigMediation",
-          "description": "Checks to see if you have a mediation policy in place."
-        },
-        "mtls": {
-          "$ref": "GoogleCloudApigeeV1ProfileConfigMTLS",
-          "description": "Checks to see if you have configured mTLS for the target server."
-        },
-        "threat": {
-          "$ref": "GoogleCloudApigeeV1ProfileConfigThreat",
-          "description": "Checks to see if you have a threat protection policy in place."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1ProfileConfigMTLS": {
-      "description": "Checks to see if you have configured mTLS for the target server.",
-      "id": "GoogleCloudApigeeV1ProfileConfigMTLS",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1ProfileConfigMediation": {
-      "description": "By default, following policies will be included: - OASValidation - SOAPMessageValidation",
-      "id": "GoogleCloudApigeeV1ProfileConfigMediation",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1ProfileConfigThreat": {
-      "description": "By default, following policies will be included: - XMLThreatProtection - JSONThreatProtection",
-      "id": "GoogleCloudApigeeV1ProfileConfigThreat",
-      "properties": {},
-      "type": "object"
-    },
     "GoogleCloudApigeeV1Properties": {
       "description": "Message for compatibility with legacy Edge specification for Java Properties object in JSON.",
       "id": "GoogleCloudApigeeV1Properties",
@@ -13300,6 +13985,10 @@
         "authorizedNetwork": {
           "description": "Compute Engine network used for Service Networking to be peered with Apigee runtime instances. See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started). Apigee also supports shared VPC (that is, the host network project is not the same as the one that is peering with Apigee). See [Shared VPC overview](https://cloud.google.com/vpc/docs/shared-vpc). To use a shared VPC network, use the following format: `projects/{host-project-id}/{region}/networks/{network-name}`. For example: `projects/my-sharedvpc-host/global/networks/mynetwork`",
           "type": "string"
+        },
+        "disableVpcPeering": {
+          "description": "Optional. Flag that specifies whether the VPC Peering through Private Google Access should be disabled between the consumer network and Apigee. Required if an authorizedNetwork on the consumer project is not provided, in which case the flag should be set to true. The value must be set before the creation of any Apigee runtime instance and can be updated only when there are no runtime instances. **Note:** Apigee will be deprecating the vpc peering model that requires you to provide 'authorizedNetwork', by making the non-peering model as the default way of provisioning Apigee organization in future. So, this will be a temporary flag to enable the transition. Not supported for Apigee hybrid.",
+          "type": "boolean"
         },
         "runtimeLocation": {
           "description": "Cloud Platform location for the runtime instance. Defaults to zone `us-west1-a`. If a region is provided, `EVAL` organizations will use the region for automatically selecting a zone for the runtime instance.",
@@ -13723,6 +14412,7 @@
           "type": "string"
         },
         "paymentFundingModel": {
+          "deprecated": true,
           "description": "DEPRECATED: This field is no longer supported and will eventually be removed when Apigee Hybrid 1.5/1.6 is no longer supported. Instead, use the `billingType` field inside `DeveloperMonetizationConfig` resource. Flag that specifies the billing account type, prepaid or postpaid.",
           "enum": [
             "PAYMENT_FUNDING_MODEL_UNSPECIFIED",
@@ -14497,10 +15187,6 @@
         "name": {
           "description": "Immutable. Name of the security profile resource. Format: organizations/{org}/securityProfiles/{profile}",
           "type": "string"
-        },
-        "profileConfig": {
-          "$ref": "GoogleCloudApigeeV1ProfileConfig",
-          "description": "Customized profile configuration that computes the security score."
         },
         "revisionCreateTime": {
           "description": "Output only. The time when revision was created.",
@@ -15363,6 +16049,28 @@
           "description": "Field sampling rate. This value is only applicable when using the PROBABILITY sampler. The supported values are > 0 and <= 0.5.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1UpdateAppGroupAppKeyRequest": {
+      "description": "Request for UpdateAppGroupAppKey",
+      "id": "GoogleCloudApigeeV1UpdateAppGroupAppKeyRequest",
+      "properties": {
+        "action": {
+          "description": "Approve or revoke the consumer key by setting this value to `approve` or `revoke` respectively. The `Content-Type` header, if set, must be set to `application/octet-stream`, with empty body.",
+          "type": "string"
+        },
+        "apiProducts": {
+          "description": "The list of API products that will be associated with the credential. This list will be appended to the existing list of associated API Products for this App Key. Duplicates will be ignored.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "appGroupAppKey": {
+          "$ref": "GoogleCloudApigeeV1AppGroupAppKey",
+          "description": "The new AppGroupKey to be amended. Note that the status can be updated only via action."
         }
       },
       "type": "object"

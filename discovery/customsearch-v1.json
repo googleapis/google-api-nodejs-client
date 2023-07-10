@@ -321,6 +321,13 @@
                 "medium",
                 "off"
               ],
+              "enumDeprecated": [
+                false,
+                false,
+                true,
+                true,
+                false
+              ],
               "enumDescriptions": [
                 "SafeSearch mode unspecified. (Falls back to engine's configuration.)",
                 "Turn SafeSearch on.",
@@ -609,6 +616,13 @@
                     "medium",
                     "off"
                   ],
+                  "enumDeprecated": [
+                    false,
+                    false,
+                    true,
+                    true,
+                    false
+                  ],
                   "enumDescriptions": [
                     "SafeSearch mode unspecified. (Falls back to engine's configuration.)",
                     "Turn SafeSearch on.",
@@ -674,7 +688,7 @@
       }
     }
   },
-  "revision": "20230320",
+  "revision": "20230705",
   "rootUrl": "https://customsearch.googleapis.com/",
   "schemas": {
     "Promotion": {

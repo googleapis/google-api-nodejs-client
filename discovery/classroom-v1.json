@@ -1383,7 +1383,7 @@
                   "enumDescriptions": [
                     "No state specified. This is never returned.",
                     "Status for course work material that has been published. This is the default state.",
-                    "Status for an course work material that is not yet published. Course work material in this state is visible only to course teachers and domain administrators.",
+                    "Status for a course work material that is not yet published. Course work material in this state is visible only to course teachers and domain administrators.",
                     "Status for course work material that was published but is now deleted. Course work material in this state is visible only to course teachers and domain administrators. Course work material in this state is deleted after some time."
                   ],
                   "location": "query",
@@ -2400,7 +2400,7 @@
       }
     }
   },
-  "revision": "20230612",
+  "revision": "20230626",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "Announcement": {
@@ -2943,7 +2943,7 @@
           "enumDescriptions": [
             "No state specified. This is never returned.",
             "Status for course work material that has been published. This is the default state.",
-            "Status for an course work material that is not yet published. Course work material in this state is visible only to course teachers and domain administrators.",
+            "Status for a course work material that is not yet published. Course work material in this state is visible only to course teachers and domain administrators.",
             "Status for course work material that was published but is now deleted. Course work material in this state is visible only to course teachers and domain administrators. Course work material in this state is deleted after some time."
           ],
           "type": "string"

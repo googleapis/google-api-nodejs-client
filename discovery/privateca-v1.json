@@ -1605,7 +1605,7 @@
       }
     }
   },
-  "revision": "20230607",
+  "revision": "20230620",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -3040,6 +3040,7 @@
       "id": "ReconciliationOperationMetadata",
       "properties": {
         "deleteResource": {
+          "deprecated": true,
           "description": "DEPRECATED. Use exclusive_action instead.",
           "type": "boolean"
         },
@@ -3049,6 +3050,11 @@
             "UNKNOWN_REPAIR_ACTION",
             "DELETE",
             "RETRY"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false
           ],
           "enumDescriptions": [
             "Unknown repair action.",

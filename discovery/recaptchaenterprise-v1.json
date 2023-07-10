@@ -666,7 +666,7 @@
       }
     }
   },
-  "revision": "20230618",
+  "revision": "20230702",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -742,6 +742,7 @@
           "type": "string"
         },
         "username": {
+          "deprecated": true,
           "description": "Username of the account that is being verified. Deprecated. Customers should now provide the hashed account ID field in Event.",
           "type": "string"
         }
@@ -782,6 +783,13 @@
             "FRAUDULENT",
             "PASSWORD_CORRECT",
             "PASSWORD_INCORRECT"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            true
           ],
           "enumDescriptions": [
             "Default unspecified type.",

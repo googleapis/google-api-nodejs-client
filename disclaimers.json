@@ -536,6 +536,10 @@
     "package": "@google-cloud/bigquery-migration"
   },
   {
+    "api": "confidentialcomputing",
+    "package": "@google-cloud/confidentialcomputing"
+  },
+  {
     "api": "datalabeling",
     "package": "@google-cloud/datalabeling"
   },
@@ -558,6 +562,10 @@
   {
     "api": "discoveryengine",
     "package": "@google-cloud/discoveryengine"
+  },
+  {
+    "api": "generativelanguage",
+    "package": "@google-ai/generativelanguage"
   },
   {
     "api": "connectgateway",
@@ -588,6 +596,10 @@
     "package": "@google-cloud/life-sciences"
   },
   {
+    "api": "migrationcenter",
+    "package": "@google-cloud/migrationcenter"
+  },
+  {
     "api": "networksecurity",
     "package": "@google-cloud/network-security"
   },
@@ -596,12 +608,28 @@
     "package": "@google-cloud/phishing-protection"
   },
   {
+    "api": "places",
+    "package": "@googlemaps/places"
+  },
+  {
     "api": "privatecatalog",
     "package": "@google-cloud/private-catalog"
   },
   {
     "api": "publicca",
     "package": "@google-cloud/publicca"
+  },
+  {
+    "api": "rapidmigrationassessment",
+    "package": "@google-cloud/rapidmigrationassessment"
+  },
+  {
+    "api": "storageinsights",
+    "package": "@google-cloud/storageinsights"
+  },
+  {
+    "api": "cloudsupport",
+    "package": "@google-cloud/support"
   },
   {
     "api": "cloudtrace",

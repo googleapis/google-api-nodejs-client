@@ -1844,7 +1844,7 @@
       }
     }
   },
-  "revision": "20230621",
+  "revision": "20230706",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {
@@ -2098,6 +2098,14 @@
             "ARTICLE",
             "MATCHED_CONTENT",
             "LINK"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "Unspecified ad unit type.",

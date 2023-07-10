@@ -411,7 +411,7 @@
       }
     }
   },
-  "revision": "20220321",
+  "revision": "20230705",
   "rootUrl": "https://youtubereporting.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -455,6 +455,7 @@
       "id": "GdataCompositeMedia",
       "properties": {
         "blobRef": {
+          "deprecated": true,
           "description": "gdata",
           "format": "byte",
           "type": "string"
@@ -659,15 +660,18 @@
       "id": "GdataMedia",
       "properties": {
         "algorithm": {
+          "deprecated": true,
           "description": "gdata",
           "type": "string"
         },
         "bigstoreObjectRef": {
+          "deprecated": true,
           "description": "gdata",
           "format": "byte",
           "type": "string"
         },
         "blobRef": {
+          "deprecated": true,
           "description": "gdata",
           "format": "byte",
           "type": "string"
@@ -730,6 +734,7 @@
           "type": "string"
         },
         "hash": {
+          "deprecated": true,
           "description": "gdata",
           "type": "string"
         },

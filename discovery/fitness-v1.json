@@ -831,7 +831,7 @@
       }
     }
   },
-  "revision": "20210920",
+  "revision": "20230704",
   "rootUrl": "https://fitness.googleapis.com/",
   "schemas": {
     "AggregateBucket": {
@@ -942,6 +942,7 @@
           "type": "string"
         },
         "filteredDataQualityStandard": {
+          "deprecated": true,
           "description": "DO NOT POPULATE THIS FIELD. It is ignored.",
           "items": {
             "enum": [
@@ -1099,6 +1100,7 @@
       "id": "DataPoint",
       "properties": {
         "computationTimeMillis": {
+          "deprecated": true,
           "description": "DO NOT USE THIS FIELD. It is ignored, and not stored.",
           "format": "int64",
           "type": "string"
@@ -1176,6 +1178,7 @@
           "description": "Information about an application which feeds sensor data into the platform."
         },
         "dataQualityStandard": {
+          "deprecated": true,
           "description": "DO NOT POPULATE THIS FIELD. It is never populated in responses from the platform, and is ignored in queries. It will be removed in a future version entirely.",
           "items": {
             "enum": [
@@ -1240,6 +1243,7 @@
           "description": "Representation of an integrated device (such as a phone or a wearable) that can hold sensors."
         },
         "name": {
+          "deprecated": true,
           "description": "An end-user visible name for this data source.",
           "type": "string"
         },
@@ -1522,6 +1526,7 @@
           "type": "array"
         },
         "hasMoreData": {
+          "deprecated": true,
           "description": "Flag to indicate server has more data to transfer. DO NOT USE THIS FIELD. It is never populated in responses from the server.",
           "type": "boolean"
         },

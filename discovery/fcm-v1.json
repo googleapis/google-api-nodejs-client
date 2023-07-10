@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20230612",
+  "revision": "20230626",
   "rootUrl": "https://fcm.googleapis.com/",
   "schemas": {
     "AndroidConfig": {
@@ -231,6 +231,7 @@
           "type": "string"
         },
         "bypassProxyNotification": {
+          "deprecated": true,
           "description": "If set, display notifications delivered to the device will be handled by the app instead of the proxy.",
           "type": "boolean"
         },

@@ -193,7 +193,7 @@
       }
     }
   },
-  "revision": "20230320",
+  "revision": "20230705",
   "rootUrl": "https://pagespeedonline.googleapis.com/",
   "schemas": {
     "AuditRefs": {
@@ -300,6 +300,7 @@
           "type": "string"
         },
         "emulatedFormFactor": {
+          "deprecated": true,
           "description": "The form factor the emulation should use. This field is deprecated, form_factor should be used instead.",
           "type": "string"
         },

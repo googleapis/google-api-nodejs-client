@@ -2109,7 +2109,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230705",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -2281,6 +2281,13 @@
             "DOMAIN_ACTIVE",
             "DOMAIN_VERIFICATION_REQUIRED",
             "DOMAIN_VERIFICATION_LOST"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Unspecified domain association status.",
