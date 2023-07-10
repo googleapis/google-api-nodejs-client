@@ -285,7 +285,7 @@ export namespace networkservices_v1 {
    */
   export interface Schema$Gateway {
     /**
-     * Optional. Zero or one IPv4-address on which the Gateway will receive the traffic. When no address is provided, an IP from the subnetwork is allocated This field only applies to gateways of type 'SECURE_WEB_GATEWAY'. Gateways of type 'OPEN_MESH' listen on 0.0.0.0.
+     * Optional. Zero or one IPv4 or IPv6 address on which the Gateway will receive the traffic. When no address is provided, an IP from the subnetwork is allocated This field only applies to gateways of type 'SECURE_WEB_GATEWAY'. Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6.
      */
     addresses?: string[] | null;
     /**
@@ -317,7 +317,7 @@ export namespace networkservices_v1 {
      */
     network?: string | null;
     /**
-     * Required. One or more port numbers (1-65535), on which the Gateway will receive traffic. The proxy binds to the specified ports. Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port. Gateways of type 'OPEN_MESH' listen on 0.0.0.0 and support multiple ports.
+     * Required. One or more port numbers (1-65535), on which the Gateway will receive traffic. The proxy binds to the specified ports. Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port. Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and support multiple ports.
      */
     ports?: number[] | null;
     /**
@@ -1216,6 +1216,10 @@ export namespace networkservices_v1 {
      * Required. The full Service Directory Service name of the format projects/x/locations/x/namespaces/x/services/x
      */
     service?: string | null;
+    /**
+     * Output only. The unique identifier of the Service Directory Service against which the Service Binding resource is validated. This is populated when the Service Binding resource is used in another resource (like Backend Service). This is of the UUID4 format.
+     */
+    serviceId?: string | null;
     /**
      * Output only. The timestamp when the resource was updated.
      */
@@ -9165,6 +9169,7 @@ export namespace networkservices_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "service": "my_service",
+     *       //   "serviceId": "my_serviceId",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -9445,6 +9450,7 @@ export namespace networkservices_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "service": "my_service",
+     *   //   "serviceId": "my_serviceId",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
