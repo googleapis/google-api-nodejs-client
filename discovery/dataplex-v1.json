@@ -4269,7 +4269,7 @@
       }
     }
   },
-  "revision": "20230607",
+  "revision": "20230628",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -5200,7 +5200,7 @@
           "description": "String type field information."
         },
         "topNValues": {
-          "description": "The list of top N non-null values and number of times they occur in the scanned data. N is 10 or equal to the number of distinct values in the field, whichever is smaller. Not available for complex non-groupable field type RECORD and fields with REPEATABLE mode.",
+          "description": "The list of top N non-null values, frequency and ratio with which they occur in the scanned data. N is 10 or equal to the number of distinct values in the field, whichever is smaller. Not available for complex non-groupable field type RECORD and fields with REPEATABLE mode.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue"
           },
@@ -5310,6 +5310,11 @@
           "format": "int64",
           "type": "string"
         },
+        "ratio": {
+          "description": "Ratio of the corresponding value in the field against the total number of rows in the scanned data.",
+          "format": "double",
+          "type": "number"
+        },
         "value": {
           "description": "String value of a top N non-null value.",
           "type": "string"
@@ -5408,50 +5413,58 @@
           "description": "Optional. The unnested column which this rule is evaluated against.",
           "type": "string"
         },
+        "description": {
+          "description": "Optional. Description of the rule. The maximum length is 1,024 characters.",
+          "type": "string"
+        },
         "dimension": {
           "description": "Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"INTEGRITY\"",
           "type": "string"
         },
         "ignoreNull": {
-          "description": "Optional. Rows with null values will automatically fail a rule, unless ignore_null is true. In that case, such null rows are trivially considered passing.Only applicable to ColumnMap rules.",
+          "description": "Optional. Rows with null values will automatically fail a rule, unless ignore_null is true. In that case, such null rows are trivially considered passing.This field is only valid for row-level type rules.",
           "type": "boolean"
+        },
+        "name": {
+          "description": "Optional. A mutable name for the rule. The name must contain only letters (a-z, A-Z), numbers (0-9), or hyphens (-). The maximum length is 63 characters. Must start with a letter. Must end with a number or a letter.",
+          "type": "string"
         },
         "nonNullExpectation": {
           "$ref": "GoogleCloudDataplexV1DataQualityRuleNonNullExpectation",
-          "description": "ColumnMap rule which evaluates whether each column value is null."
+          "description": "Row-level rule which evaluates whether each column value is null."
         },
         "rangeExpectation": {
           "$ref": "GoogleCloudDataplexV1DataQualityRuleRangeExpectation",
-          "description": "ColumnMap rule which evaluates whether each column value lies between a specified range."
+          "description": "Row-level rule which evaluates whether each column value lies between a specified range."
         },
         "regexExpectation": {
           "$ref": "GoogleCloudDataplexV1DataQualityRuleRegexExpectation",
-          "description": "ColumnMap rule which evaluates whether each column value matches a specified regex."
+          "description": "Row-level rule which evaluates whether each column value matches a specified regex."
         },
         "rowConditionExpectation": {
           "$ref": "GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation",
-          "description": "Table rule which evaluates whether each row passes the specified condition."
+          "description": "Row-level rule which evaluates whether each row in a table passes the specified condition."
         },
         "setExpectation": {
           "$ref": "GoogleCloudDataplexV1DataQualityRuleSetExpectation",
-          "description": "ColumnMap rule which evaluates whether each column value is contained by a specified set."
+          "description": "Row-level rule which evaluates whether each column value is contained by a specified set."
         },
         "statisticRangeExpectation": {
           "$ref": "GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation",
-          "description": "ColumnAggregate rule which evaluates whether the column aggregate statistic lies between a specified range."
+          "description": "Aggregate rule which evaluates whether the column aggregate statistic lies between a specified range."
         },
         "tableConditionExpectation": {
           "$ref": "GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation",
-          "description": "Table rule which evaluates whether the provided expression is true."
+          "description": "Aggregate rule which evaluates whether the provided expression is true for a table."
         },
         "threshold": {
-          "description": "Optional. The minimum ratio of passing_rows / total_rows required to pass this rule, with a range of 0.0, 1.0.0 indicates default value (i.e. 1.0).",
+          "description": "Optional. The minimum ratio of passing_rows / total_rows required to pass this rule, with a range of 0.0, 1.0.0 indicates default value (i.e. 1.0).This field is only valid for row-level type rules.",
           "format": "double",
           "type": "number"
         },
         "uniquenessExpectation": {
           "$ref": "GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation",
-          "description": "ColumnAggregate rule which evaluates whether the column has duplicates."
+          "description": "Aggregate rule which evaluates whether the column has duplicates."
         }
       },
       "type": "object"
@@ -5501,12 +5514,12 @@
       "id": "GoogleCloudDataplexV1DataQualityRuleResult",
       "properties": {
         "evaluatedCount": {
-          "description": "The number of rows a rule was evaluated against. This field is only valid for ColumnMap type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.",
+          "description": "The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.",
           "format": "int64",
           "type": "string"
         },
         "failingRowsQuery": {
-          "description": "The query to find rows that did not pass this rule. Only applies to ColumnMap and RowCondition rules.",
+          "description": "The query to find rows that did not pass this rule.This field is only valid for row-level type rules.",
           "type": "string"
         },
         "nullCount": {
@@ -5515,7 +5528,7 @@
           "type": "string"
         },
         "passRatio": {
-          "description": "The ratio of passed_count / evaluated_count. This field is only valid for ColumnMap type rules.",
+          "description": "The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.",
           "format": "double",
           "type": "number"
         },
@@ -5524,7 +5537,7 @@
           "type": "boolean"
         },
         "passedCount": {
-          "description": "The number of rows which passed a rule evaluation. This field is only valid for ColumnMap type rules.",
+          "description": "The number of rows which passed a rule evaluation.This field is only valid for row-level type rules.",
           "format": "int64",
           "type": "string"
         },
@@ -5614,6 +5627,107 @@
       "description": "Evaluates whether the column has duplicates.",
       "id": "GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityScanRuleResult": {
+      "description": "Information about the result of a data quality rule for data quality scan. The monitored resource is 'DataScan'.",
+      "id": "GoogleCloudDataplexV1DataQualityScanRuleResult",
+      "properties": {
+        "column": {
+          "description": "The column which this rule is evaluated against.",
+          "type": "string"
+        },
+        "dataSource": {
+          "description": "The data source of the data scan (e.g. BigQuery table name).",
+          "type": "string"
+        },
+        "evaluatedRowCount": {
+          "description": "The number of rows evaluated against the data quality rule. This field is only valid for rules of PER_ROW evaluation type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "evalutionType": {
+          "description": "The evaluation type of the data quality rule.",
+          "enum": [
+            "EVALUATION_TYPE_UNSPECIFIED",
+            "PER_ROW",
+            "AGGREGATE"
+          ],
+          "enumDescriptions": [
+            "An unspecified evaluation type.",
+            "The rule evaluation is done at per row level.",
+            "The rule evaluation is done for an aggregate of rows."
+          ],
+          "type": "string"
+        },
+        "jobId": {
+          "description": "Identifier of the specific data scan job this log entry is for.",
+          "type": "string"
+        },
+        "nullRowCount": {
+          "description": "The number of rows with null values in the specified column.",
+          "format": "int64",
+          "type": "string"
+        },
+        "passedRowCount": {
+          "description": "The number of rows which passed a rule evaluation. This field is only valid for rules of PER_ROW evaluation type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "result": {
+          "description": "The result of the data quality rule.",
+          "enum": [
+            "RESULT_UNSPECIFIED",
+            "PASSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "An unspecified result.",
+            "The data quality rule passed.",
+            "The data quality rule failed."
+          ],
+          "type": "string"
+        },
+        "ruleDimension": {
+          "description": "The dimension of the data quality rule.",
+          "type": "string"
+        },
+        "ruleName": {
+          "description": "The name of the data quality rule.",
+          "type": "string"
+        },
+        "ruleType": {
+          "description": "The type of the data quality rule.",
+          "enum": [
+            "RULE_TYPE_UNSPECIFIED",
+            "NON_NULL_EXPECTATION",
+            "RANGE_EXPECTATION",
+            "REGEX_EXPECTATION",
+            "ROW_CONDITION_EXPECTATION",
+            "SET_EXPECTATION",
+            "STATISTIC_RANGE_EXPECTATION",
+            "TABLE_CONDITION_EXPECTATION",
+            "UNIQUENESS_EXPECTATION"
+          ],
+          "enumDescriptions": [
+            "An unspecified rule type.",
+            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#nonnullexpectation.",
+            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#rangeexpectation.",
+            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#regexexpectation.",
+            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#rowconditionexpectation.",
+            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#setexpectation.",
+            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#statisticrangeexpectation.",
+            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#tableconditionexpectation.",
+            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#uniquenessexpectation."
+          ],
+          "type": "string"
+        },
+        "thresholdPercent": {
+          "description": "The passing threshold (0.0, 100.0) of the data quality rule.",
+          "format": "double",
+          "type": "number"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDataplexV1DataQualitySpec": {
@@ -5785,6 +5899,10 @@
           "description": "The message describing the data scan job event.",
           "type": "string"
         },
+        "postScanActionsResult": {
+          "$ref": "GoogleCloudDataplexV1DataScanEventPostScanActionsResult",
+          "description": "The result of post scan actions."
+        },
         "scope": {
           "description": "The scope of the data scan (e.g. full, incremental).",
           "enum": [
@@ -5923,6 +6041,44 @@
         "rowCount": {
           "description": "The count of rows processed in the data scan job.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScanEventPostScanActionsResult": {
+      "description": "Post scan actions result for data scan job.",
+      "id": "GoogleCloudDataplexV1DataScanEventPostScanActionsResult",
+      "properties": {
+        "bigqueryExportResult": {
+          "$ref": "GoogleCloudDataplexV1DataScanEventPostScanActionsResultBigQueryExportResult",
+          "description": "The result of BigQuery export post scan action."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScanEventPostScanActionsResultBigQueryExportResult": {
+      "description": "The result of BigQuery export post scan action.",
+      "id": "GoogleCloudDataplexV1DataScanEventPostScanActionsResultBigQueryExportResult",
+      "properties": {
+        "message": {
+          "description": "Additional information about the BigQuery exporting.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Execution state for the BigQuery exporting.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED",
+            "SKIPPED"
+          ],
+          "enumDescriptions": [
+            "The exporting state is unspecified.",
+            "The exporting completed successfully.",
+            "The exporting is no longer running due to an error.",
+            "The exporting is skipped due to no valid scan result to export (usually caused by scan failed)."
+          ],
           "type": "string"
         }
       },
@@ -6417,7 +6573,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1Environment": {
-      "description": "Environment represents a user-visible compute infrastructure for analytics within a lake. LINT.IfChange",
+      "description": "Environment represents a user-visible compute infrastructure for analytics within a lake.",
       "id": "GoogleCloudDataplexV1Environment",
       "properties": {
         "createTime": {
