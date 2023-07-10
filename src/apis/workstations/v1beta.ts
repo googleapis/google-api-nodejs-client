@@ -201,7 +201,7 @@ export namespace workstations_v1beta {
      */
     env?: {[key: string]: string} | null;
     /**
-     * A Docker container image that defines a custom environment. Cloud Workstations provides a number of [preconfigured images](https://cloud.google.com/workstations/docs/preconfigured-base-images), but you can create your own [custom container images](https://cloud.google.com/workstations/docs/custom-container-images). If using a private image, the `host.gceInstance.serviceAccount` field must be specified in the workstation configuration and must have permission to pull the specified image. Otherwise, the image must be publicly accessible.s
+     * A Docker container image that defines a custom environment. Cloud Workstations provides a number of [preconfigured images](https://cloud.google.com/workstations/docs/preconfigured-base-images), but you can create your own [custom container images](https://cloud.google.com/workstations/docs/custom-container-images). If using a private image, the `host.gceInstance.serviceAccount` field must be specified in the workstation configuration and must have permission to pull the specified image. Otherwise, the image must be publicly accessible.
      */
     image?: string | null;
     /**
@@ -276,6 +276,10 @@ export namespace workstations_v1beta {
      * When set to true, disables public IP addresses for VMs. If you disable public IP addresses, you must set up Private Google Access or Cloud NAT on your network. If you use Private Google Access and you use `private.googleapis.com` or `restricted.googleapis.com` for Container Registry and Artifact Registry, make sure that you set up DNS records for domains `*.gcr.io` and `*.pkg.dev`. Defaults to false (VMs have public IP addresses).
      */
     disablePublicIpAddresses?: boolean | null;
+    /**
+     * Whether to enable nested virtualization on instances.
+     */
+    enableNestedVirtualization?: boolean | null;
     /**
      * The type of machine to use for VM instances—for example, `e2-standard-4`. For more information about machine types that Cloud Workstations supports, see the list of [available machine types](https://cloud.google.com/workstations/docs/available-machine-types).
      */
@@ -827,7 +831,7 @@ export namespace workstations_v1beta {
      */
     createTime?: string | null;
     /**
-     * Output only. Whether this resource is in degraded mode, in which case it may require user action to restore full functionality. Details can be found in the `conditions` field.
+     * Output only. Whether this resource is degraded, in which case it may require user action to restore full functionality. See also the `conditions` field.
      */
     degraded?: boolean | null;
     /**
