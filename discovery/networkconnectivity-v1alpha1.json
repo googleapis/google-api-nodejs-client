@@ -1116,7 +1116,7 @@
       }
     }
   },
-  "revision": "20230531",
+  "revision": "20230627",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1329,6 +1329,7 @@
           "type": "string"
         },
         "spokes": {
+          "deprecated": true,
           "description": "Output only. A list of the URIs of all attached spokes. This field is deprecated and will not be included in future API versions. Call ListSpokes on each region instead.",
           "items": {
             "type": "string"
@@ -1405,11 +1406,13 @@
           "items": {
             "enum": [
               "OVERLAP_UNSPECIFIED",
-              "OVERLAP_ROUTE_RANGE"
+              "OVERLAP_ROUTE_RANGE",
+              "OVERLAP_EXISTING_SUBNET_RANGE"
             ],
             "enumDescriptions": [
               "No overlap overrides.",
-              "Allow creation of static routes more specific than the current internal range."
+              "Allow creation of static routes more specific than the current internal range.",
+              "Allow creation of internal ranges that overlap with existing subnets."
             ],
             "type": "string"
           },
@@ -1684,6 +1687,7 @@
           "type": "string"
         },
         "networkInterface": {
+          "deprecated": true,
           "type": "string"
         },
         "virtualMachine": {
