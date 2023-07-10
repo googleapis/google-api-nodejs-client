@@ -419,6 +419,10 @@ export namespace androidmanagement_v1 {
      */
     state?: string | null;
     /**
+     * Whether the app is user facing.
+     */
+    userFacingType?: string | null;
+    /**
      * The app version code, which can be used to determine whether one version is more recent than another.
      */
     versionCode?: number | null;
@@ -959,9 +963,30 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$DeviceConnectivityManagement {
     /**
+     * Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.
+     */
+    configureWifi?: string | null;
+    /**
+     * Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.
+     */
+    tetheringSettings?: string | null;
+    /**
      * Controls what files and/or data can be transferred via USB. Supported only on company-owned devices.
      */
     usbDataAccess?: string | null;
+    /**
+     * Controls configuring and using Wi-Fi direct settings. Supported on company-owned devices running Android 13 and above.
+     */
+    wifiDirectSettings?: string | null;
+  }
+  /**
+   * Controls for device radio settings.
+   */
+  export interface Schema$DeviceRadioState {
+    /**
+     * Controls current state of Wi-Fi and if user can change its state.
+     */
+    wifiState?: string | null;
   }
   /**
    * Information about security related device settings on device.
@@ -2072,6 +2097,10 @@ export namespace androidmanagement_v1 {
      */
     deviceOwnerLockScreenInfo?: Schema$UserFacingMessage;
     /**
+     * Covers controls for radio state such as Wi-Fi, bluetooth, and more.
+     */
+    deviceRadioState?: Schema$DeviceRadioState;
+    /**
      * Whether encryption is enabled
      */
     encryptionPolicy?: string | null;
@@ -2152,7 +2181,7 @@ export namespace androidmanagement_v1 {
      */
     name?: string | null;
     /**
-     * Whether the network escape hatch is enabled. If a network connection can't be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.Note: Setting wifiConfigDisabled to true will override this setting under specific circumstances. Please see wifiConfigDisabled for further details.
+     * Whether the network escape hatch is enabled. If a network connection can't be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.Note: Setting wifiConfigDisabled to true will override this setting under specific circumstances. Please see wifiConfigDisabled for further details. Setting configureWifi to DISALLOW_CONFIGURING_WIFI will override this setting under specific circumstances. Please see DISALLOW_CONFIGURING_WIFI for further details.
      */
     networkEscapeHatchEnabled?: boolean | null;
     /**
@@ -2280,7 +2309,7 @@ export namespace androidmanagement_v1 {
      */
     systemUpdate?: Schema$SystemUpdate;
     /**
-     * Whether configuring tethering and portable hotspots is disabled.
+     * Whether configuring tethering and portable hotspots is disabled. If tetheringSettings is set to anything other than TETHERING_SETTINGS_UNSPECIFIED, this setting is ignored.
      */
     tetheringConfigDisabled?: boolean | null;
     /**
@@ -2312,7 +2341,7 @@ export namespace androidmanagement_v1 {
      */
     vpnConfigDisabled?: boolean | null;
     /**
-     * Whether configuring Wi-Fi networks is disabled. Supported on fully managed devices and work profiles on company-owned devices. For fully managed devices, setting this to true removes all configured networks and retains only the networks configured using openNetworkConfiguration. For work profiles on company-owned devices, existing configured networks are not affected and the user is not allowed to add, remove, or modify Wi-Fi networks. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).
+     * Whether configuring Wi-Fi networks is disabled. Supported on fully managed devices and work profiles on company-owned devices. For fully managed devices, setting this to true removes all configured networks and retains only the networks configured using openNetworkConfiguration. For work profiles on company-owned devices, existing configured networks are not affected and the user is not allowed to add, remove, or modify Wi-Fi networks. If configureWifi is set to anything other than CONFIGURE_WIFI_UNSPECIFIED, this setting is ignored. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).
      */
     wifiConfigDisabled?: boolean | null;
     /**
@@ -6102,6 +6131,7 @@ export namespace androidmanagement_v1 {
      *   //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
      *   //   "deviceConnectivityManagement": {},
      *   //   "deviceOwnerLockScreenInfo": {},
+     *   //   "deviceRadioState": {},
      *   //   "encryptionPolicy": "my_encryptionPolicy",
      *   //   "ensureVerifyAppsEnabled": false,
      *   //   "factoryResetDisabled": false,
@@ -6459,6 +6489,7 @@ export namespace androidmanagement_v1 {
      *       //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
      *       //   "deviceConnectivityManagement": {},
      *       //   "deviceOwnerLockScreenInfo": {},
+     *       //   "deviceRadioState": {},
      *       //   "encryptionPolicy": "my_encryptionPolicy",
      *       //   "ensureVerifyAppsEnabled": false,
      *       //   "factoryResetDisabled": false,
@@ -6555,6 +6586,7 @@ export namespace androidmanagement_v1 {
      *   //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
      *   //   "deviceConnectivityManagement": {},
      *   //   "deviceOwnerLockScreenInfo": {},
+     *   //   "deviceRadioState": {},
      *   //   "encryptionPolicy": "my_encryptionPolicy",
      *   //   "ensureVerifyAppsEnabled": false,
      *   //   "factoryResetDisabled": false,

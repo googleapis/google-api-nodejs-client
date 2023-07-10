@@ -1066,7 +1066,7 @@
       }
     }
   },
-  "revision": "20230612",
+  "revision": "20230628",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1750,6 +1750,20 @@
             "App state is unspecified",
             "App was removed from the device",
             "App is installed on the device"
+          ],
+          "type": "string"
+        },
+        "userFacingType": {
+          "description": "Whether the app is user facing.",
+          "enum": [
+            "USER_FACING_TYPE_UNSPECIFIED",
+            "NOT_USER_FACING",
+            "USER_FACING"
+          ],
+          "enumDescriptions": [
+            "App user facing type is unspecified.",
+            "App is not user facing.",
+            "App is user facing."
           ],
           "type": "string"
         },
@@ -2477,6 +2491,38 @@
       "description": "Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more.",
       "id": "DeviceConnectivityManagement",
       "properties": {
+        "configureWifi": {
+          "description": "Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.",
+          "enum": [
+            "CONFIGURE_WIFI_UNSPECIFIED",
+            "ALLOW_CONFIGURING_WIFI",
+            "DISALLOW_ADD_WIFI_CONFIG",
+            "DISALLOW_CONFIGURING_WIFI"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to ALLOW_CONFIGURING_WIFI unless wifiConfigDisabled is set to true. If wifiConfigDisabled is set to true, this is equivalent to DISALLOW_CONFIGURING_WIFI.",
+            "The user is allowed to configure Wi-Fi. wifiConfigDisabled is ignored.",
+            "Adding new Wi-Fi configurations is disallowed. The user is only able to switch between already configured networks. Supported on Android 13 and above, on fully managed devices and work profiles on company-owned devices. If the setting is not supported, ALLOW_CONFIGURING_WIFI is set. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13. wifiConfigDisabled is ignored.",
+            "Disallows configuring Wi-Fi networks. The setting wifiConfigDisabled is ignored when this value is set. Supported on fully managed devices and work profile on company-owned devices, on all supported API levels. For fully managed devices, setting this removes all configured networks and retains only the networks configured using openNetworkConfiguration policy. For work profiles on company-owned devices, existing configured networks are not affected and the user is not allowed to add, remove, or modify Wi-Fi networks. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled)."
+          ],
+          "type": "string"
+        },
+        "tetheringSettings": {
+          "description": "Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.",
+          "enum": [
+            "TETHERING_SETTINGS_UNSPECIFIED",
+            "ALLOW_ALL_TETHERING",
+            "DISALLOW_WIFI_TETHERING",
+            "DISALLOW_ALL_TETHERING"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to ALLOW_ALL_TETHERING unless tetheringConfigDisabled is set to true. If tetheringConfigDisabled is set to true, this is equivalent to DISALLOW_ALL_TETHERING.",
+            "Allows configuration and use of all forms of tethering. tetheringConfigDisabled is ignored.",
+            "Disallows the user from using Wi-Fi tethering. Supported on company owned devices running Android 13 and above. If the setting is not supported, ALLOW_ALL_TETHERING will be set. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13. tetheringConfigDisabled is ignored.",
+            "Disallows all forms of tethering. Supported on fully managed devices and work profile on company-owned devices, on all supported android versions. The setting tetheringConfigDisabled is ignored."
+          ],
+          "type": "string"
+        },
         "usbDataAccess": {
           "description": "Controls what files and/or data can be transferred via USB. Supported only on company-owned devices.",
           "enum": [
@@ -2490,6 +2536,43 @@
             "All types of USB data transfers are allowed. usbFileTransferDisabled is ignored.",
             "Transferring files over USB is disallowed. Other types of USB data connections, such as mouse and keyboard connection, are allowed. usbFileTransferDisabled is ignored.",
             "When set, all types of USB data transfers are prohibited. Supported for devices running Android 12 or above with USB HAL 1.3 or above. If the setting is not supported, DISALLOW_USB_FILE_TRANSFER will be set. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 12. A nonComplianceDetail with DEVICE_INCOMPATIBLE is reported if the device does not have USB HAL 1.3 or above. usbFileTransferDisabled is ignored."
+          ],
+          "type": "string"
+        },
+        "wifiDirectSettings": {
+          "description": "Controls configuring and using Wi-Fi direct settings. Supported on company-owned devices running Android 13 and above.",
+          "enum": [
+            "WIFI_DIRECT_SETTINGS_UNSPECIFIED",
+            "ALLOW_WIFI_DIRECT",
+            "DISALLOW_WIFI_DIRECT"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to ALLOW_WIFI_DIRECT",
+            "The user is allowed to use Wi-Fi direct.",
+            "The user is not allowed to use Wi-Fi direct. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeviceRadioState": {
+      "description": "Controls for device radio settings.",
+      "id": "DeviceRadioState",
+      "properties": {
+        "wifiState": {
+          "description": "Controls current state of Wi-Fi and if user can change its state.",
+          "enum": [
+            "WIFI_STATE_UNSPECIFIED",
+            "WIFI_STATE_USER_CHOICE",
+            "WIFI_ENABLED",
+            "WIFI_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to WIFI_STATE_USER_CHOICE",
+            "User is allowed to enable/disable Wi-Fi.",
+            "Wi-Fi is on and the user is not allowed to turn it off. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13.",
+            "Wi-Fi is off and the user is not allowed to turn it on. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13."
           ],
           "type": "string"
         }
@@ -3672,7 +3755,8 @@
             "PASSWORD_POLICIES_PASSWORD_EXPIRED",
             "PASSWORD_POLICIES_PASSWORD_NOT_SUFFICIENT",
             "ONC_WIFI_INVALID_VALUE",
-            "ONC_WIFI_API_LEVEL"
+            "ONC_WIFI_API_LEVEL",
+            "ONC_WIFI_INVALID_ENTERPRISE_CONFIG"
           ],
           "enumDescriptions": [
             "Specific non-compliance reason is not specified. Fields in specific_non_compliance_context are not set.",
@@ -3680,7 +3764,8 @@
             "The device or profile password has expired. passwordPoliciesContext is set. nonComplianceReason is set to USER_ACTION.",
             "The device password does not satisfy password requirements. passwordPoliciesContext is set. nonComplianceReason is set to USER_ACTION.",
             "There is an incorrect value in ONC Wi-Fi configuration. fieldPath specifies which field value is incorrect. oncWifiContext is set. nonComplianceReason is set to INVALID_VALUE.",
-            "The ONC Wi-Fi setting is not supported in the API level of the Android version running on the device. fieldPath specifies which field value is not supported. oncWifiContext is set. nonComplianceReason is set to API_LEVEL."
+            "The ONC Wi-Fi setting is not supported in the API level of the Android version running on the device. fieldPath specifies which field value is not supported. oncWifiContext is set. nonComplianceReason is set to API_LEVEL.",
+            "The enterprise Wi-Fi network is missing either the root CA or domain name. nonComplianceReason is set to INVALID_VALUE."
           ],
           "type": "string"
         }
@@ -4344,6 +4429,10 @@
           "$ref": "UserFacingMessage",
           "description": "The device owner information to be shown on the lock screen."
         },
+        "deviceRadioState": {
+          "$ref": "DeviceRadioState",
+          "description": "Covers controls for radio state such as Wi-Fi, bluetooth, and more."
+        },
         "encryptionPolicy": {
           "description": "Whether encryption is enabled",
           "enum": [
@@ -4501,7 +4590,7 @@
           "type": "string"
         },
         "networkEscapeHatchEnabled": {
-          "description": "Whether the network escape hatch is enabled. If a network connection can't be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.Note: Setting wifiConfigDisabled to true will override this setting under specific circumstances. Please see wifiConfigDisabled for further details.",
+          "description": "Whether the network escape hatch is enabled. If a network connection can't be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.Note: Setting wifiConfigDisabled to true will override this setting under specific circumstances. Please see wifiConfigDisabled for further details. Setting configureWifi to DISALLOW_CONFIGURING_WIFI will override this setting under specific circumstances. Please see DISALLOW_CONFIGURING_WIFI for further details.",
           "type": "boolean"
         },
         "networkResetDisabled": {
@@ -4686,7 +4775,7 @@
           "description": "The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well."
         },
         "tetheringConfigDisabled": {
-          "description": "Whether configuring tethering and portable hotspots is disabled.",
+          "description": "Whether configuring tethering and portable hotspots is disabled. If tetheringSettings is set to anything other than TETHERING_SETTINGS_UNSPECIFIED, this setting is ignored.",
           "type": "boolean"
         },
         "uninstallAppsDisabled": {
@@ -4719,7 +4808,7 @@
           "type": "boolean"
         },
         "wifiConfigDisabled": {
-          "description": "Whether configuring Wi-Fi networks is disabled. Supported on fully managed devices and work profiles on company-owned devices. For fully managed devices, setting this to true removes all configured networks and retains only the networks configured using openNetworkConfiguration. For work profiles on company-owned devices, existing configured networks are not affected and the user is not allowed to add, remove, or modify Wi-Fi networks. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).",
+          "description": "Whether configuring Wi-Fi networks is disabled. Supported on fully managed devices and work profiles on company-owned devices. For fully managed devices, setting this to true removes all configured networks and retains only the networks configured using openNetworkConfiguration. For work profiles on company-owned devices, existing configured networks are not affected and the user is not allowed to add, remove, or modify Wi-Fi networks. If configureWifi is set to anything other than CONFIGURE_WIFI_UNSPECIFIED, this setting is ignored. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).",
           "type": "boolean"
         },
         "wifiConfigsLockdownEnabled": {
