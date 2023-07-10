@@ -1200,6 +1200,129 @@
                 }
               }
             },
+            "operations": {
+              "methods": {
+                "cancel": {
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "flatPath": "v1alpha/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "beyondcorp.organizations.locations.operations.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be cancelled.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:cancel",
+                  "request": {
+                    "$ref": "GoogleLongrunningCancelOperationRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                  "flatPath": "v1alpha/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "beyondcorp.organizations.locations.operations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be deleted.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1alpha/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "beyondcorp.organizations.locations.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                  "flatPath": "v1alpha/organizations/{organizationsId}/locations/{locationsId}/operations",
+                  "httpMethod": "GET",
+                  "id": "beyondcorp.organizations.locations.operations.list",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The standard list filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the operation's parent resource.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}/operations",
+                  "response": {
+                    "$ref": "GoogleLongrunningListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "subscriptions": {
               "methods": {
                 "create": {
@@ -2360,109 +2483,6 @@
             },
             "clientConnectorServices": {
               "methods": {
-                "create": {
-                  "description": "Creates a new ClientConnectorService in a given project and location.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientConnectorServices",
-                  "httpMethod": "POST",
-                  "id": "beyondcorp.projects.locations.clientConnectorServices.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "clientConnectorServiceId": {
-                      "description": "Optional. User-settable client connector service resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter. A random system generated name will be assigned if not specified by the user.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. Value for parent.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/clientConnectorServices",
-                  "request": {
-                    "$ref": "ClientConnectorService"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "delete": {
-                  "description": "Deletes a single ClientConnectorService.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientConnectorServices/{clientConnectorServicesId}",
-                  "httpMethod": "DELETE",
-                  "id": "beyondcorp.projects.locations.clientConnectorServices.delete",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Name of the resource.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/clientConnectorServices/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "get": {
-                  "description": "Gets details of a single ClientConnectorService.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientConnectorServices/{clientConnectorServicesId}",
-                  "httpMethod": "GET",
-                  "id": "beyondcorp.projects.locations.clientConnectorServices.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Name of the resource.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/clientConnectorServices/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "ClientConnectorService"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientConnectorServices/{clientConnectorServicesId}:getIamPolicy",
@@ -2489,101 +2509,6 @@
                   "path": "v1alpha/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "list": {
-                  "description": "Lists ClientConnectorServices in a given project and location.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientConnectorServices",
-                  "httpMethod": "GET",
-                  "id": "beyondcorp.projects.locations.clientConnectorServices.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "filter": {
-                      "description": "Optional. Filtering results.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "orderBy": {
-                      "description": "Optional. Hint for how to order the results.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. Parent value for ListClientConnectorServicesRequest.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/clientConnectorServices",
-                  "response": {
-                    "$ref": "ListClientConnectorServicesResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "patch": {
-                  "description": "Updates the parameters of a single ClientConnectorService.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientConnectorServices/{clientConnectorServicesId}",
-                  "httpMethod": "PATCH",
-                  "id": "beyondcorp.projects.locations.clientConnectorServices.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "allowMissing": {
-                      "description": "Optional. If set as true, will create the resource if it is not found.",
-                      "location": "query",
-                      "type": "boolean"
-                    },
-                    "name": {
-                      "description": "Required. Name of resource. The name is ignored during creation.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/clientConnectorServices/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the ClientConnectorService resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Mutable fields: display_name, ingress.config.destination_routes.",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "request": {
-                    "$ref": "ClientConnectorService"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2649,109 +2574,6 @@
             },
             "clientGateways": {
               "methods": {
-                "create": {
-                  "description": "Creates a new ClientGateway in a given project and location.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientGateways",
-                  "httpMethod": "POST",
-                  "id": "beyondcorp.projects.locations.clientGateways.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "clientGatewayId": {
-                      "description": "Optional. User-settable client gateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or a letter.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. Value for parent.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/clientGateways",
-                  "request": {
-                    "$ref": "ClientGateway"
-                  },
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "delete": {
-                  "description": "Deletes a single ClientGateway.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientGateways/{clientGatewaysId}",
-                  "httpMethod": "DELETE",
-                  "id": "beyondcorp.projects.locations.clientGateways.delete",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Name of the resource",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/clientGateways/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "GoogleLongrunningOperation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "get": {
-                  "description": "Gets details of a single ClientGateway.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientGateways/{clientGatewaysId}",
-                  "httpMethod": "GET",
-                  "id": "beyondcorp.projects.locations.clientGateways.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Name of the resource",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/clientGateways/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "ClientGateway"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientGateways/{clientGatewaysId}:getIamPolicy",
@@ -2778,52 +2600,6 @@
                   "path": "v1alpha/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "list": {
-                  "description": "Lists ClientGateways in a given project and location.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clientGateways",
-                  "httpMethod": "GET",
-                  "id": "beyondcorp.projects.locations.clientGateways.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "filter": {
-                      "description": "Optional. Filtering results.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "orderBy": {
-                      "description": "Optional. Hint for how to order the results.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "pageSize": {
-                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "Optional. A token identifying a page of results the server should return.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. Parent value for ListClientGatewaysRequest.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/clientGateways",
-                  "response": {
-                    "$ref": "ListClientGatewaysResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -3968,7 +3744,7 @@
       }
     }
   },
-  "revision": "20230613",
+  "revision": "20230616",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -4144,208 +3920,6 @@
       },
       "type": "object"
     },
-    "ClientConnectorService": {
-      "description": "Message describing ClientConnectorService object.",
-      "id": "ClientConnectorService",
-      "properties": {
-        "createTime": {
-          "description": "Output only. [Output only] Create time stamp.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "displayName": {
-          "description": "Optional. User-provided name. The display name should follow certain format. * Must be 6 to 30 characters in length. * Can only contain lowercase letters, numbers, and hyphens. * Must start with a letter.",
-          "type": "string"
-        },
-        "egress": {
-          "$ref": "Egress",
-          "description": "Required. The details of the egress settings."
-        },
-        "ingress": {
-          "$ref": "Ingress",
-          "description": "Required. The details of the ingress settings."
-        },
-        "name": {
-          "description": "Required. Name of resource. The name is ignored during creation.",
-          "type": "string"
-        },
-        "state": {
-          "description": "Output only. The operational state of the ClientConnectorService.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "UPDATING",
-            "DELETING",
-            "RUNNING",
-            "DOWN",
-            "ERROR"
-          ],
-          "enumDescriptions": [
-            "Default value. This value is unused.",
-            "ClientConnectorService is being created.",
-            "ClientConnectorService is being updated.",
-            "ClientConnectorService is being deleted.",
-            "ClientConnectorService is running.",
-            "ClientConnectorService is down and may be restored in the future. This happens when CCFE sends ProjectState = OFF.",
-            "ClientConnectorService encountered an error and is in an indeterministic state."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "Output only. [Output only] Update time stamp.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ClientConnectorServiceOperationMetadata": {
-      "description": "Represents the metadata of the long-running operation.",
-      "id": "ClientConnectorServiceOperationMetadata",
-      "properties": {
-        "apiVersion": {
-          "description": "Output only. API version used to start the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Output only. The time the operation was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Output only. The time the operation finished running.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "statusMessage": {
-          "description": "Output only. Human-readable status of the operation, if any.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "target": {
-          "description": "Output only. Server-defined resource path for the target of the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "verb": {
-          "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ClientGateway": {
-      "description": "Message describing ClientGateway object.",
-      "id": "ClientGateway",
-      "properties": {
-        "clientConnectorService": {
-          "description": "Output only. The client connector service name that the client gateway is associated to. Client Connector Services, named as follows: `projects/{project_id}/locations/{location_id}/client_connector_services/{client_connector_service_id}`.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Output only. [Output only] Create time stamp.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "id": {
-          "description": "Output only. A unique identifier for the instance generated by the system.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "name": {
-          "description": "Required. name of resource. The name is ignored during creation.",
-          "type": "string"
-        },
-        "state": {
-          "description": "Output only. The operational state of the gateway.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "UPDATING",
-            "DELETING",
-            "RUNNING",
-            "DOWN",
-            "ERROR"
-          ],
-          "enumDescriptions": [
-            "Default value. This value is unused.",
-            "Gateway is being created.",
-            "Gateway is being updated.",
-            "Gateway is being deleted.",
-            "Gateway is running.",
-            "Gateway is down and may be restored in the future. This happens when CCFE sends ProjectState = OFF.",
-            "ClientGateway encountered an error and is in indeterministic state."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "Output only. [Output only] Update time stamp.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ClientGatewayOperationMetadata": {
-      "description": "Represents the metadata of the long-running operation.",
-      "id": "ClientGatewayOperationMetadata",
-      "properties": {
-        "apiVersion": {
-          "description": "Output only. API version used to start the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Output only. The time the operation was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Output only. The time the operation finished running.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "statusMessage": {
-          "description": "Output only. Human-readable status of the operation, if any.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "target": {
-          "description": "Output only. Server-defined resource path for the target of the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "verb": {
-          "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "CloudPubSubNotificationConfig": {
       "description": "The configuration for Pub/Sub messaging for the connector.",
       "id": "CloudPubSubNotificationConfig",
@@ -4439,32 +4013,6 @@
       "description": "LogAgentDetails reflects the details of a log agent.",
       "id": "CloudSecurityZerotrustApplinkLogagentProtoLogAgentDetails",
       "properties": {},
-      "type": "object"
-    },
-    "Config": {
-      "description": "The basic ingress config for ClientGateways.",
-      "id": "Config",
-      "properties": {
-        "destinationRoutes": {
-          "description": "Required. The settings used to configure basic ClientGateways.",
-          "items": {
-            "$ref": "DestinationRoute"
-          },
-          "type": "array"
-        },
-        "transportProtocol": {
-          "description": "Required. Immutable. The transport protocol used between the client and the server.",
-          "enum": [
-            "TRANSPORT_PROTOCOL_UNSPECIFIED",
-            "TCP"
-          ],
-          "enumDescriptions": [
-            "Default value. This value is unused.",
-            "TCP protocol."
-          ],
-          "type": "string"
-        }
-      },
       "type": "object"
     },
     "Connection": {
@@ -4778,32 +4326,6 @@
           },
           "description": "The extended status. Such as ExitCode, StartedAt, FinishedAt, etc.",
           "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "DestinationRoute": {
-      "description": "The setting used to configure ClientGateways. It is adding routes to the client's routing table after the connection is established.",
-      "id": "DestinationRoute",
-      "properties": {
-        "address": {
-          "description": "Required. The network address of the subnet for which the packet is routed to the ClientGateway.",
-          "type": "string"
-        },
-        "netmask": {
-          "description": "Required. The network mask of the subnet for which the packet is routed to the ClientGateway.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Egress": {
-      "description": "The details of the egress info. One of the following options should be set.",
-      "id": "Egress",
-      "properties": {
-        "peeredVpc": {
-          "$ref": "PeeredVpc",
-          "description": "A VPC from the consumer project."
         }
       },
       "type": "object"
@@ -5679,6 +5201,10 @@
       "description": "Metadata associated with PartnerTenant and is provided by the Partner.",
       "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerMetadata",
       "properties": {
+        "internalTenantId": {
+          "description": "Optional. UUID used by the Partner to refer to the PartnerTenant in their internal systems.",
+          "type": "string"
+        },
         "partnerTenantId": {
           "description": "Optional. UUID used by the Partner to refer to the PartnerTenant in their internal systems.",
           "type": "string"
@@ -6657,17 +6183,6 @@
       },
       "type": "object"
     },
-    "Ingress": {
-      "description": "Settings of how to connect to the ClientGateway. One of the following options should be set.",
-      "id": "Ingress",
-      "properties": {
-        "config": {
-          "$ref": "Config",
-          "description": "The basic ingress config for ClientGateways."
-        }
-      },
-      "type": "object"
-    },
     "ListAppGatewaysResponse": {
       "description": "Response message for BeyondCorp.ListAppGateways.",
       "id": "ListAppGatewaysResponse",
@@ -6685,56 +6200,6 @@
         },
         "unreachable": {
           "description": "A list of locations that could not be reached.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ListClientConnectorServicesResponse": {
-      "description": "Message for response to listing ClientConnectorServices.",
-      "id": "ListClientConnectorServicesResponse",
-      "properties": {
-        "clientConnectorServices": {
-          "description": "The list of ClientConnectorService.",
-          "items": {
-            "$ref": "ClientConnectorService"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
-          "type": "string"
-        },
-        "unreachable": {
-          "description": "Locations that could not be reached.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ListClientGatewaysResponse": {
-      "description": "Message for response to listing ClientGateways.",
-      "id": "ListClientGatewaysResponse",
-      "properties": {
-        "clientGateways": {
-          "description": "The list of ClientGateway.",
-          "items": {
-            "$ref": "ClientGateway"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
-          "type": "string"
-        },
-        "unreachable": {
-          "description": "Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -6800,17 +6265,6 @@
         "pubsubNotification": {
           "$ref": "CloudPubSubNotificationConfig",
           "description": "Pub/Sub topic for Connector to subscribe and receive notifications from `projects/{project}/topics/{pubsub_topic}`"
-        }
-      },
-      "type": "object"
-    },
-    "PeeredVpc": {
-      "description": "The peered VPC owned by the consumer project.",
-      "id": "PeeredVpc",
-      "properties": {
-        "networkVpc": {
-          "description": "Required. The name of the peered VPC owned by the consumer project.",
-          "type": "string"
         }
       },
       "type": "object"
