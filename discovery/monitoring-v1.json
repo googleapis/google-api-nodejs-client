@@ -806,7 +806,7 @@
       }
     }
   },
-  "revision": "20230326",
+  "revision": "20230703",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1949,6 +1949,7 @@
       "id": "TableDisplayOptions",
       "properties": {
         "shownColumns": {
+          "deprecated": true,
           "description": "Optional. This field is unused and has been replaced by TimeSeriesTable.column_settings",
           "items": {
             "type": "string"
@@ -2094,6 +2095,7 @@
         },
         "statisticalTimeSeriesFilter": {
           "$ref": "StatisticalTimeSeriesFilter",
+          "deprecated": true,
           "description": "Statistics based time series filter. Note: This field is deprecated and completely ignored by the API."
         }
       },
@@ -2121,6 +2123,7 @@
         },
         "statisticalTimeSeriesFilter": {
           "$ref": "StatisticalTimeSeriesFilter",
+          "deprecated": true,
           "description": "Statistics based time series filter. Note: This field is deprecated and completely ignored by the API."
         }
       },
