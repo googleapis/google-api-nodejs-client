@@ -1053,101 +1053,13 @@
                   }
                 }
               }
-            },
-            "registrationPolicies": {
-              "methods": {
-                "getIamPolicy": {
-                  "description": "Gets the IAM Policy for a resource",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/registrationPolicies/{registrationPoliciesId}:getIamPolicy",
-                  "httpMethod": "POST",
-                  "id": "servicedirectory.projects.locations.registrationPolicies.getIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/registrationPolicies/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+resource}:getIamPolicy",
-                  "request": {
-                    "$ref": "GetIamPolicyRequest"
-                  },
-                  "response": {
-                    "$ref": "Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "setIamPolicy": {
-                  "description": "Sets the IAM Policy for a resource",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/registrationPolicies/{registrationPoliciesId}:setIamPolicy",
-                  "httpMethod": "POST",
-                  "id": "servicedirectory.projects.locations.registrationPolicies.setIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/registrationPolicies/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+resource}:setIamPolicy",
-                  "request": {
-                    "$ref": "SetIamPolicyRequest"
-                  },
-                  "response": {
-                    "$ref": "Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "testIamPermissions": {
-                  "description": "Tests IAM permissions for a resource (namespace, service or service workload only).",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/registrationPolicies/{registrationPoliciesId}:testIamPermissions",
-                  "httpMethod": "POST",
-                  "id": "servicedirectory.projects.locations.registrationPolicies.testIamPermissions",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/registrationPolicies/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+resource}:testIamPermissions",
-                  "request": {
-                    "$ref": "TestIamPermissionsRequest"
-                  },
-                  "response": {
-                    "$ref": "TestIamPermissionsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
             }
           }
         }
       }
     }
   },
-  "revision": "20230603",
+  "revision": "20230618",
   "rootUrl": "https://servicedirectory.googleapis.com/",
   "schemas": {
     "Binding": {
