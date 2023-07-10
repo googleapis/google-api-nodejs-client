@@ -778,7 +778,7 @@ export namespace dataplex_v1 {
      */
     stringProfile?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo;
     /**
-     * The list of top N non-null values and number of times they occur in the scanned data. N is 10 or equal to the number of distinct values in the field, whichever is smaller. Not available for complex non-groupable field type RECORD and fields with REPEATABLE mode.
+     * The list of top N non-null values, frequency and ratio with which they occur in the scanned data. N is 10 or equal to the number of distinct values in the field, whichever is smaller. Not available for complex non-groupable field type RECORD and fields with REPEATABLE mode.
      */
     topNValues?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue[];
   }
@@ -858,6 +858,10 @@ export namespace dataplex_v1 {
      */
     count?: string | null;
     /**
+     * Ratio of the corresponding value in the field against the total number of rows in the scanned data.
+     */
+    ratio?: number | null;
+    /**
      * String value of a top N non-null value.
      */
     value?: string | null;
@@ -935,47 +939,55 @@ export namespace dataplex_v1 {
      */
     column?: string | null;
     /**
+     * Optional. Description of the rule. The maximum length is 1,024 characters.
+     */
+    description?: string | null;
+    /**
      * Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"
      */
     dimension?: string | null;
     /**
-     * Optional. Rows with null values will automatically fail a rule, unless ignore_null is true. In that case, such null rows are trivially considered passing.Only applicable to ColumnMap rules.
+     * Optional. Rows with null values will automatically fail a rule, unless ignore_null is true. In that case, such null rows are trivially considered passing.This field is only valid for row-level type rules.
      */
     ignoreNull?: boolean | null;
     /**
-     * ColumnMap rule which evaluates whether each column value is null.
+     * Optional. A mutable name for the rule. The name must contain only letters (a-z, A-Z), numbers (0-9), or hyphens (-). The maximum length is 63 characters. Must start with a letter. Must end with a number or a letter.
+     */
+    name?: string | null;
+    /**
+     * Row-level rule which evaluates whether each column value is null.
      */
     nonNullExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleNonNullExpectation;
     /**
-     * ColumnMap rule which evaluates whether each column value lies between a specified range.
+     * Row-level rule which evaluates whether each column value lies between a specified range.
      */
     rangeExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleRangeExpectation;
     /**
-     * ColumnMap rule which evaluates whether each column value matches a specified regex.
+     * Row-level rule which evaluates whether each column value matches a specified regex.
      */
     regexExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleRegexExpectation;
     /**
-     * Table rule which evaluates whether each row passes the specified condition.
+     * Row-level rule which evaluates whether each row in a table passes the specified condition.
      */
     rowConditionExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation;
     /**
-     * ColumnMap rule which evaluates whether each column value is contained by a specified set.
+     * Row-level rule which evaluates whether each column value is contained by a specified set.
      */
     setExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleSetExpectation;
     /**
-     * ColumnAggregate rule which evaluates whether the column aggregate statistic lies between a specified range.
+     * Aggregate rule which evaluates whether the column aggregate statistic lies between a specified range.
      */
     statisticRangeExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation;
     /**
-     * Table rule which evaluates whether the provided expression is true.
+     * Aggregate rule which evaluates whether the provided expression is true for a table.
      */
     tableConditionExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation;
     /**
-     * Optional. The minimum ratio of passing_rows / total_rows required to pass this rule, with a range of 0.0, 1.0.0 indicates default value (i.e. 1.0).
+     * Optional. The minimum ratio of passing_rows / total_rows required to pass this rule, with a range of 0.0, 1.0.0 indicates default value (i.e. 1.0).This field is only valid for row-level type rules.
      */
     threshold?: number | null;
     /**
-     * ColumnAggregate rule which evaluates whether the column has duplicates.
+     * Aggregate rule which evaluates whether the column has duplicates.
      */
     uniquenessExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation;
   }
@@ -1018,11 +1030,11 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleResult {
     /**
-     * The number of rows a rule was evaluated against. This field is only valid for ColumnMap type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.
+     * The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.
      */
     evaluatedCount?: string | null;
     /**
-     * The query to find rows that did not pass this rule. Only applies to ColumnMap and RowCondition rules.
+     * The query to find rows that did not pass this rule.This field is only valid for row-level type rules.
      */
     failingRowsQuery?: string | null;
     /**
@@ -1034,11 +1046,11 @@ export namespace dataplex_v1 {
      */
     passed?: boolean | null;
     /**
-     * The number of rows which passed a rule evaluation. This field is only valid for ColumnMap type rules.
+     * The number of rows which passed a rule evaluation.This field is only valid for row-level type rules.
      */
     passedCount?: string | null;
     /**
-     * The ratio of passed_count / evaluated_count. This field is only valid for ColumnMap type rules.
+     * The ratio of passed_count / evaluated_count.This field is only valid for row-level type rules.
      */
     passRatio?: number | null;
     /**
@@ -1102,6 +1114,59 @@ export namespace dataplex_v1 {
    * Evaluates whether the column has duplicates.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation {}
+  /**
+   * Information about the result of a data quality rule for data quality scan. The monitored resource is 'DataScan'.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualityScanRuleResult {
+    /**
+     * The column which this rule is evaluated against.
+     */
+    column?: string | null;
+    /**
+     * The data source of the data scan (e.g. BigQuery table name).
+     */
+    dataSource?: string | null;
+    /**
+     * The number of rows evaluated against the data quality rule. This field is only valid for rules of PER_ROW evaluation type.
+     */
+    evaluatedRowCount?: string | null;
+    /**
+     * The evaluation type of the data quality rule.
+     */
+    evalutionType?: string | null;
+    /**
+     * Identifier of the specific data scan job this log entry is for.
+     */
+    jobId?: string | null;
+    /**
+     * The number of rows with null values in the specified column.
+     */
+    nullRowCount?: string | null;
+    /**
+     * The number of rows which passed a rule evaluation. This field is only valid for rules of PER_ROW evaluation type.
+     */
+    passedRowCount?: string | null;
+    /**
+     * The result of the data quality rule.
+     */
+    result?: string | null;
+    /**
+     * The dimension of the data quality rule.
+     */
+    ruleDimension?: string | null;
+    /**
+     * The name of the data quality rule.
+     */
+    ruleName?: string | null;
+    /**
+     * The type of the data quality rule.
+     */
+    ruleType?: string | null;
+    /**
+     * The passing threshold (0.0, 100.0) of the data quality rule.
+     */
+    thresholdPercent?: number | null;
+  }
   /**
    * DataQualityScan related setting.
    */
@@ -1225,6 +1290,10 @@ export namespace dataplex_v1 {
      */
     message?: string | null;
     /**
+     * The result of post scan actions.
+     */
+    postScanActionsResult?: Schema$GoogleCloudDataplexV1DataScanEventPostScanActionsResult;
+    /**
      * The scope of the data scan (e.g. full, incremental).
      */
     scope?: string | null;
@@ -1304,6 +1373,28 @@ export namespace dataplex_v1 {
      * The count of rows processed in the data scan job.
      */
     rowCount?: string | null;
+  }
+  /**
+   * Post scan actions result for data scan job.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataScanEventPostScanActionsResult {
+    /**
+     * The result of BigQuery export post scan action.
+     */
+    bigqueryExportResult?: Schema$GoogleCloudDataplexV1DataScanEventPostScanActionsResultBigQueryExportResult;
+  }
+  /**
+   * The result of BigQuery export post scan action.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataScanEventPostScanActionsResultBigQueryExportResult {
+    /**
+     * Additional information about the BigQuery exporting.
+     */
+    message?: string | null;
+    /**
+     * Execution state for the BigQuery exporting.
+     */
+    state?: string | null;
   }
   /**
    * DataScan execution settings.
@@ -1635,7 +1726,7 @@ export namespace dataplex_v1 {
     reason?: string | null;
   }
   /**
-   * Environment represents a user-visible compute infrastructure for analytics within a lake. LINT.IfChange
+   * Environment represents a user-visible compute infrastructure for analytics within a lake.
    */
   export interface Schema$GoogleCloudDataplexV1Environment {
     /**
