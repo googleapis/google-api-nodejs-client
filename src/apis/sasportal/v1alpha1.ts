@@ -159,6 +159,15 @@ export namespace sasportal_v1alpha1 {
     score?: number | null;
   }
   /**
+   * Response for [CheckHasProvisionedDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.CheckHasProvisionedDeployment].
+   */
+  export interface Schema$SasPortalCheckHasProvisionedDeploymentResponse {
+    /**
+     * Whether a SAS deployment for the authentication context exists.
+     */
+    hasProvisionedDeployment?: boolean | null;
+  }
+  /**
    * Request for CreateSignedDevice.
    */
   export interface Schema$SasPortalCreateSignedDeviceRequest {
@@ -208,6 +217,19 @@ export namespace sasportal_v1alpha1 {
      * User ID used by the devices belonging to this deployment. Each deployment should be associated with one unique user ID.
      */
     sasUserIds?: string[] | null;
+  }
+  /**
+   * Association between a gcp project and a SAS user id.
+   */
+  export interface Schema$SasPortalDeploymentAssociation {
+    /**
+     * GCP project id of the associated project.
+     */
+    gcpProjectId?: string | null;
+    /**
+     * User id of the deployment.
+     */
+    userId?: string | null;
   }
   export interface Schema$SasPortalDevice {
     /**
@@ -578,6 +600,33 @@ export namespace sasportal_v1alpha1 {
     nodes?: Schema$SasPortalNode[];
   }
   /**
+   * Long-running operation metadata message returned by the MigrateOrganization.
+   */
+  export interface Schema$SasPortalMigrateOrganizationMetadata {
+    /**
+     * Output only. Current operation state
+     */
+    operationState?: string | null;
+  }
+  /**
+   * Request for [MigrateOrganization]. [spectrum.sas.portal.v1alpha1.Provisioning.MigrateOrganization]. GCP Project, Organization Info, and caller's GAIA ID should be retrieved from the RPC handler, and used to check authorization on SAS Portal organization and to create GCP Projects.
+   */
+  export interface Schema$SasPortalMigrateOrganizationRequest {
+    /**
+     * Required. Id of the SAS organization to be migrated.
+     */
+    organizationId?: string | null;
+  }
+  /**
+   * Response for [MigrateOrganization]. [spectrum.sas.portal.v1alpha1.Provisioning.MigrateOrganization].
+   */
+  export interface Schema$SasPortalMigrateOrganizationResponse {
+    /**
+     * Optional. A list of deployment association that were created for the migration, or current associations if they already exist.
+     */
+    deploymentAssociation?: Schema$SasPortalDeploymentAssociation[];
+  }
+  /**
    * Request for MoveDeployment.
    */
   export interface Schema$SasPortalMoveDeploymentRequest {
@@ -820,6 +869,143 @@ export namespace sasportal_v1alpha1 {
       this.deployments = new Resource$Customers$Deployments(this.context);
       this.devices = new Resource$Customers$Devices(this.context);
       this.nodes = new Resource$Customers$Nodes(this.context);
+    }
+
+    /**
+     * Checks whether a SAS deployment for the authentication context exists.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.customers.checkHasProvisionedDeployment({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasProvisionedDeployment": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkHasProvisionedDeployment(
+      params: Params$Resource$Customers$Checkhasprovisioneddeployment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkHasProvisionedDeployment(
+      params?: Params$Resource$Customers$Checkhasprovisioneddeployment,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalCheckHasProvisionedDeploymentResponse>;
+    checkHasProvisionedDeployment(
+      params: Params$Resource$Customers$Checkhasprovisioneddeployment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkHasProvisionedDeployment(
+      params: Params$Resource$Customers$Checkhasprovisioneddeployment,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
+    ): void;
+    checkHasProvisionedDeployment(
+      params: Params$Resource$Customers$Checkhasprovisioneddeployment,
+      callback: BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
+    ): void;
+    checkHasProvisionedDeployment(
+      callback: BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
+    ): void;
+    checkHasProvisionedDeployment(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Checkhasprovisioneddeployment
+        | BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalCheckHasProvisionedDeploymentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Checkhasprovisioneddeployment;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Checkhasprovisioneddeployment;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha1/customers:checkHasProvisionedDeployment'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalCheckHasProvisionedDeploymentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalCheckHasProvisionedDeploymentResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -1095,6 +1281,152 @@ export namespace sasportal_v1alpha1 {
         return createAPIRequest<Schema$SasPortalListCustomersResponse>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Migrates a SAS organization to the cloud. This will create GCP projects for each deployment and associate them. The SAS Organization is linked to the gcp project that called the command. go/sas-legacy-customer-migration
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sasportal = google.sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sasportal',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sasportal.customers.migrateOrganization({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "organizationId": "my_organizationId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    migrateOrganization(
+      params: Params$Resource$Customers$Migrateorganization,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    migrateOrganization(
+      params?: Params$Resource$Customers$Migrateorganization,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalOperation>;
+    migrateOrganization(
+      params: Params$Resource$Customers$Migrateorganization,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    migrateOrganization(
+      params: Params$Resource$Customers$Migrateorganization,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalOperation>,
+      callback: BodyResponseCallback<Schema$SasPortalOperation>
+    ): void;
+    migrateOrganization(
+      params: Params$Resource$Customers$Migrateorganization,
+      callback: BodyResponseCallback<Schema$SasPortalOperation>
+    ): void;
+    migrateOrganization(
+      callback: BodyResponseCallback<Schema$SasPortalOperation>
+    ): void;
+    migrateOrganization(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Migrateorganization
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Migrateorganization;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Migrateorganization;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/customers:migrateOrganization').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalOperation>(parameters);
       }
     }
 
@@ -1392,6 +1724,8 @@ export namespace sasportal_v1alpha1 {
     }
   }
 
+  export interface Params$Resource$Customers$Checkhasprovisioneddeployment
+    extends StandardParameters {}
   export interface Params$Resource$Customers$Get extends StandardParameters {
     /**
      * Required. The name of the customer.
@@ -1407,6 +1741,13 @@ export namespace sasportal_v1alpha1 {
      * A pagination token returned from a previous call to ListCustomers that indicates where this listing should continue from.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Customers$Migrateorganization
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalMigrateOrganizationRequest;
   }
   export interface Params$Resource$Customers$Patch extends StandardParameters {
     /**
