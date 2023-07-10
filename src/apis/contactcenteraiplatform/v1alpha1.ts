@@ -153,7 +153,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Message describing ContactCenter object Next ID: 14
+   * Message describing ContactCenter object Next ID: 15
    */
   export interface Schema$ContactCenter {
     /**
@@ -180,6 +180,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * The configuration of this instance, it is currently immutable once created.
      */
     instanceConfig?: Schema$InstanceConfig;
+    /**
+     * Immutable. The KMS key name to encrypt the user input (`ContactCenter`).
+     */
+    kmsKey?: string | null;
     /**
      * Labels as key value pairs
      */
@@ -1017,6 +1021,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *         //   "customerDomainPrefix": "my_customerDomainPrefix",
      *         //   "displayName": "my_displayName",
      *         //   "instanceConfig": {},
+     *         //   "kmsKey": "my_kmsKey",
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "samlParams": {},
@@ -1306,6 +1311,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *   //   "customerDomainPrefix": "my_customerDomainPrefix",
      *   //   "displayName": "my_displayName",
      *   //   "instanceConfig": {},
+     *   //   "kmsKey": "my_kmsKey",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "samlParams": {},
@@ -1737,6 +1743,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *         //   "customerDomainPrefix": "my_customerDomainPrefix",
      *         //   "displayName": "my_displayName",
      *         //   "instanceConfig": {},
+     *         //   "kmsKey": "my_kmsKey",
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "samlParams": {},
