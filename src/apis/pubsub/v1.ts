@@ -138,7 +138,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$AvroConfig {
     /**
-     * When true, write the subscription name, message_id, publish_time, attributes, and ordering_key as additional fields in the output.
+     * Optional. When true, write the subscription name, message_id, publish_time, attributes, and ordering_key as additional fields in the output.
      */
     writeMetadata?: boolean | null;
   }
@@ -147,7 +147,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$BigQueryConfig {
     /**
-     * When true and use_topic_schema is true, any fields that are a part of the topic schema that are not part of the BigQuery table schema are dropped when writing to BigQuery. Otherwise, the schemas must be kept in sync and any messages with extra fields are not written and remain in the subscription's backlog.
+     * Optional. When true and use_topic_schema is true, any fields that are a part of the topic schema that are not part of the BigQuery table schema are dropped when writing to BigQuery. Otherwise, the schemas must be kept in sync and any messages with extra fields are not written and remain in the subscription's backlog.
      */
     dropUnknownFields?: boolean | null;
     /**
@@ -155,15 +155,15 @@ export namespace pubsub_v1 {
      */
     state?: string | null;
     /**
-     * The name of the table to which to write data, of the form {projectId\}.{datasetId\}.{tableId\}
+     * Optional. The name of the table to which to write data, of the form {projectId\}.{datasetId\}.{tableId\}
      */
     table?: string | null;
     /**
-     * When true, use the topic's schema as the columns to write to in BigQuery, if it exists.
+     * Optional. When true, use the topic's schema as the columns to write to in BigQuery, if it exists.
      */
     useTopicSchema?: boolean | null;
     /**
-     * When true, write the subscription name, message_id, publish_time, attributes, and ordering_key to additional columns in the table. The subscription name, message_id, and publish_time fields are put in their own columns while all other message properties (other than data) are written to a JSON object in the attributes column.
+     * Optional. When true, write the subscription name, message_id, publish_time, attributes, and ordering_key to additional columns in the table. The subscription name, message_id, and publish_time fields are put in their own columns while all other message properties (other than data) are written to a JSON object in the attributes column.
      */
     writeMetadata?: boolean | null;
   }
@@ -189,7 +189,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$CloudStorageConfig {
     /**
-     * If set, message data will be written to Cloud Storage in Avro format.
+     * Optional. If set, message data will be written to Cloud Storage in Avro format.
      */
     avroConfig?: Schema$AvroConfig;
     /**
@@ -197,19 +197,19 @@ export namespace pubsub_v1 {
      */
     bucket?: string | null;
     /**
-     * User-provided prefix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming).
+     * Optional. User-provided prefix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming).
      */
     filenamePrefix?: string | null;
     /**
-     * User-provided suffix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming).
+     * Optional. User-provided suffix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming). Must not end in "/".
      */
     filenameSuffix?: string | null;
     /**
-     * The maximum bytes that can be written to a Cloud Storage file before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded in cases where messages are larger than the limit.
+     * Optional. The maximum bytes that can be written to a Cloud Storage file before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded in cases where messages are larger than the limit.
      */
     maxBytes?: string | null;
     /**
-     * The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.
+     * Optional. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.
      */
     maxDuration?: string | null;
     /**
@@ -217,7 +217,7 @@ export namespace pubsub_v1 {
      */
     state?: string | null;
     /**
-     * If set, message data will be written to Cloud Storage in text format.
+     * Optional. If set, message data will be written to Cloud Storage in text format.
      */
     textConfig?: Schema$TextConfig;
   }
@@ -235,7 +235,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$CreateSnapshotRequest {
     /**
-     * See [Creating and managing labels](https://cloud.google.com/pubsub/docs/labels).
+     * Optional. See [Creating and managing labels](https://cloud.google.com/pubsub/docs/labels).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -248,11 +248,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$DeadLetterPolicy {
     /**
-     * The name of the topic to which dead letter messages should be published. Format is `projects/{project\}/topics/{topic\}`.The Cloud Pub/Sub service account associated with the enclosing subscription's parent project (i.e., service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Publish() to this topic. The operation will fail if the topic does not exist. Users should ensure that there is a subscription attached to this topic since messages published to a topic with no subscriptions are lost.
+     * Optional. The name of the topic to which dead letter messages should be published. Format is `projects/{project\}/topics/{topic\}`.The Pub/Sub service account associated with the enclosing subscription's parent project (i.e., service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Publish() to this topic. The operation will fail if the topic does not exist. Users should ensure that there is a subscription attached to this topic since messages published to a topic with no subscriptions are lost.
      */
     deadLetterTopic?: string | null;
     /**
-     * The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgement deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.
+     * Optional. The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgement deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.
      */
     maxDeliveryAttempts?: number | null;
   }
@@ -269,7 +269,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ExpirationPolicy {
     /**
-     * Specifies the "time-to-live" duration for an associated resource. The resource expires if it is not active for a period of `ttl`. The definition of "activity" depends on the type of the associated resource. The minimum and maximum allowed values for `ttl` depend on the type of the associated resource, as well. If `ttl` is not set, the associated resource never expires.
+     * Optional. Specifies the "time-to-live" duration for an associated resource. The resource expires if it is not active for a period of `ttl`. The definition of "activity" depends on the type of the associated resource. The minimum and maximum allowed values for `ttl` depend on the type of the associated resource, as well. If `ttl` is not set, the associated resource never expires.
      */
     ttl?: string | null;
   }
@@ -325,11 +325,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ListSnapshotsResponse {
     /**
-     * If not empty, indicates that there may be more snapshot that match the request; this value should be passed in a new `ListSnapshotsRequest`.
+     * Optional. If not empty, indicates that there may be more snapshot that match the request; this value should be passed in a new `ListSnapshotsRequest`.
      */
     nextPageToken?: string | null;
     /**
-     * The resulting snapshots.
+     * Optional. The resulting snapshots.
      */
     snapshots?: Schema$Snapshot[];
   }
@@ -338,11 +338,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ListSubscriptionsResponse {
     /**
-     * If not empty, indicates that there may be more subscriptions that match the request; this value should be passed in a new `ListSubscriptionsRequest` to get more subscriptions.
+     * Optional. If not empty, indicates that there may be more subscriptions that match the request; this value should be passed in a new `ListSubscriptionsRequest` to get more subscriptions.
      */
     nextPageToken?: string | null;
     /**
-     * The subscriptions that match the request.
+     * Optional. The subscriptions that match the request.
      */
     subscriptions?: Schema$Subscription[];
   }
@@ -351,11 +351,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ListTopicSnapshotsResponse {
     /**
-     * If not empty, indicates that there may be more snapshots that match the request; this value should be passed in a new `ListTopicSnapshotsRequest` to get more snapshots.
+     * Optional. If not empty, indicates that there may be more snapshots that match the request; this value should be passed in a new `ListTopicSnapshotsRequest` to get more snapshots.
      */
     nextPageToken?: string | null;
     /**
-     * The names of the snapshots that match the request.
+     * Optional. The names of the snapshots that match the request.
      */
     snapshots?: string[] | null;
   }
@@ -364,11 +364,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ListTopicsResponse {
     /**
-     * If not empty, indicates that there may be more topics that match the request; this value should be passed in a new `ListTopicsRequest`.
+     * Optional. If not empty, indicates that there may be more topics that match the request; this value should be passed in a new `ListTopicsRequest`.
      */
     nextPageToken?: string | null;
     /**
-     * The resulting topics.
+     * Optional. The resulting topics.
      */
     topics?: Schema$Topic[];
   }
@@ -377,11 +377,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ListTopicSubscriptionsResponse {
     /**
-     * If not empty, indicates that there may be more subscriptions that match the request; this value should be passed in a new `ListTopicSubscriptionsRequest` to get more subscriptions.
+     * Optional. If not empty, indicates that there may be more subscriptions that match the request; this value should be passed in a new `ListTopicSubscriptionsRequest` to get more subscriptions.
      */
     nextPageToken?: string | null;
     /**
-     * The names of subscriptions attached to the topic specified in the request.
+     * Optional. The names of subscriptions attached to the topic specified in the request.
      */
     subscriptions?: string[] | null;
   }
@@ -390,7 +390,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$MessageStoragePolicy {
     /**
-     * A list of IDs of GCP regions where messages that are published to the topic may be persisted in storage. Messages published by publishers running in non-allowed GCP regions (or running outside of GCP altogether) will be routed for storage in one of the allowed regions. An empty list means that no regions are allowed, and is not a valid configuration.
+     * Optional. A list of IDs of GCP regions where messages that are published to the topic may be persisted in storage. Messages published by publishers running in non-allowed GCP regions (or running outside of GCP altogether) will be routed for storage in one of the allowed regions. An empty list means that no regions are allowed, and is not a valid configuration.
      */
     allowedPersistenceRegions?: string[] | null;
   }
@@ -421,7 +421,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$NoWrapper {
     /**
-     * When true, writes the Pub/Sub message metadata to `x-goog-pubsub-:` headers of the HTTP request. Writes the Pub/Sub message attributes to `:` headers of the HTTP request.
+     * Optional. When true, writes the Pub/Sub message metadata to `x-goog-pubsub-:` headers of the HTTP request. Writes the Pub/Sub message attributes to `:` headers of the HTTP request.
      */
     writeMetadata?: boolean | null;
   }
@@ -430,11 +430,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$OidcToken {
     /**
-     * Audience to be used when generating OIDC token. The audience claim identifies the recipients that the JWT is intended for. The audience value is a single case-sensitive string. Having multiple values (array) for the audience field is not supported. More info about the OIDC JWT token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3 Note: if not specified, the Push endpoint URL will be used.
+     * Optional. Audience to be used when generating OIDC token. The audience claim identifies the recipients that the JWT is intended for. The audience value is a single case-sensitive string. Having multiple values (array) for the audience field is not supported. More info about the OIDC JWT token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3 Note: if not specified, the Push endpoint URL will be used.
      */
     audience?: string | null;
     /**
-     * [Service account email](https://cloud.google.com/iam/docs/service-accounts) used for generating the OIDC token. For more information on setting up authentication, see [Push subscriptions](https://cloud.google.com/pubsub/docs/push).
+     * Optional. [Service account email](https://cloud.google.com/iam/docs/service-accounts) used for generating the OIDC token. For more information on setting up authentication, see [Push subscriptions](https://cloud.google.com/pubsub/docs/push).
      */
     serviceAccountEmail?: string | null;
   }
@@ -469,7 +469,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PublishResponse {
     /**
-     * The server-assigned ID of each published message, in the same order as the messages in the request. IDs are guaranteed to be unique within the topic.
+     * Optional. The server-assigned ID of each published message, in the same order as the messages in the request. IDs are guaranteed to be unique within the topic.
      */
     messageIds?: string[] | null;
   }
@@ -478,23 +478,23 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PubsubMessage {
     /**
-     * Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.
+     * Optional. Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.
      */
     attributes?: {[key: string]: string} | null;
     /**
-     * The message data field. If this field is empty, the message must contain at least one attribute.
+     * Optional. The message data field. If this field is empty, the message must contain at least one attribute.
      */
     data?: string | null;
     /**
-     * ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.
+     * Optional. ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.
      */
     messageId?: string | null;
     /**
-     * If non-empty, identifies related messages for which publish order should be respected. If a `Subscription` has `enable_message_ordering` set to `true`, messages published with the same non-empty `ordering_key` value will be delivered to subscribers in the order in which they are received by the Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest` must specify the same `ordering_key` value. For more information, see [ordering messages](https://cloud.google.com/pubsub/docs/ordering).
+     * Optional. If non-empty, identifies related messages for which publish order should be respected. If a `Subscription` has `enable_message_ordering` set to `true`, messages published with the same non-empty `ordering_key` value will be delivered to subscribers in the order in which they are received by the Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest` must specify the same `ordering_key` value. For more information, see [ordering messages](https://cloud.google.com/pubsub/docs/ordering).
      */
     orderingKey?: string | null;
     /**
-     * The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
+     * Optional. The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
      */
     publishTime?: string | null;
   }
@@ -520,7 +520,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PullResponse {
     /**
-     * Received Pub/Sub messages. The list will be empty if there are no more messages available in the backlog, or if no messages could be returned before the request timeout. For JSON, the response can be entirely empty. The Pub/Sub system may return fewer than the `maxMessages` requested even if there are more messages available in the backlog.
+     * Optional. Received Pub/Sub messages. The list will be empty if there are no more messages available in the backlog, or if no messages could be returned before the request timeout. For JSON, the response can be entirely empty. The Pub/Sub system may return fewer than the `maxMessages` requested even if there are more messages available in the backlog.
      */
     receivedMessages?: Schema$ReceivedMessage[];
   }
@@ -529,23 +529,23 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PushConfig {
     /**
-     * Endpoint configuration attributes that can be used to control different aspects of the message delivery. The only currently supported attribute is `x-goog-version`, which you can use to change the format of the pushed message. This attribute indicates the version of the data expected by the endpoint. This controls the shape of the pushed message (i.e., its fields and metadata). If not present during the `CreateSubscription` call, it will default to the version of the Pub/Sub API used to make such call. If not present in a `ModifyPushConfig` call, its value will not be changed. `GetSubscription` calls will always return a valid version, even if the subscription was created without this attribute. The only supported values for the `x-goog-version` attribute are: * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API. For example: `attributes { "x-goog-version": "v1" \}`
+     * Optional. Endpoint configuration attributes that can be used to control different aspects of the message delivery. The only currently supported attribute is `x-goog-version`, which you can use to change the format of the pushed message. This attribute indicates the version of the data expected by the endpoint. This controls the shape of the pushed message (i.e., its fields and metadata). If not present during the `CreateSubscription` call, it will default to the version of the Pub/Sub API used to make such call. If not present in a `ModifyPushConfig` call, its value will not be changed. `GetSubscription` calls will always return a valid version, even if the subscription was created without this attribute. The only supported values for the `x-goog-version` attribute are: * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API. For example: `attributes { "x-goog-version": "v1" \}`
      */
     attributes?: {[key: string]: string} | null;
     /**
-     * When set, the payload to the push endpoint is not wrapped.
+     * Optional. When set, the payload to the push endpoint is not wrapped.
      */
     noWrapper?: Schema$NoWrapper;
     /**
-     * If specified, Pub/Sub will generate and attach an OIDC JWT token as an `Authorization` header in the HTTP request for every pushed message.
+     * Optional. If specified, Pub/Sub will generate and attach an OIDC JWT token as an `Authorization` header in the HTTP request for every pushed message.
      */
     oidcToken?: Schema$OidcToken;
     /**
-     * When set, the payload to the push endpoint is in the form of the JSON representation of a PubsubMessage (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
+     * Optional. When set, the payload to the push endpoint is in the form of the JSON representation of a PubsubMessage (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
      */
     pubsubWrapper?: Schema$PubsubWrapper;
     /**
-     * A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use `https://example.com/push`.
+     * Optional. A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use `https://example.com/push`.
      */
     pushEndpoint?: string | null;
   }
@@ -554,28 +554,28 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ReceivedMessage {
     /**
-     * This ID can be used to acknowledge the received message.
+     * Optional. This ID can be used to acknowledge the received message.
      */
     ackId?: string | null;
     /**
-     * The approximate number of times that Cloud Pub/Sub has attempted to deliver the associated message to a subscriber. More precisely, this is 1 + (number of NACKs) + (number of ack_deadline exceeds) for this message. A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline exceeds event is whenever a message is not acknowledged within ack_deadline. Note that ack_deadline is initially Subscription.ackDeadlineSeconds, but may get extended automatically by the client library. Upon the first delivery of a given message, `delivery_attempt` will have a value of 1. The value is calculated at best effort and is approximate. If a DeadLetterPolicy is not set on the subscription, this will be 0.
+     * Optional. The approximate number of times that Pub/Sub has attempted to deliver the associated message to a subscriber. More precisely, this is 1 + (number of NACKs) + (number of ack_deadline exceeds) for this message. A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline exceeds event is whenever a message is not acknowledged within ack_deadline. Note that ack_deadline is initially Subscription.ackDeadlineSeconds, but may get extended automatically by the client library. Upon the first delivery of a given message, `delivery_attempt` will have a value of 1. The value is calculated at best effort and is approximate. If a DeadLetterPolicy is not set on the subscription, this will be 0.
      */
     deliveryAttempt?: number | null;
     /**
-     * The message.
+     * Optional. The message.
      */
     message?: Schema$PubsubMessage;
   }
   /**
-   * A policy that specifies how Cloud Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.
+   * A policy that specifies how Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.
    */
   export interface Schema$RetryPolicy {
     /**
-     * The maximum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 600 seconds.
+     * Optional. The maximum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 600 seconds.
      */
     maximumBackoff?: string | null;
     /**
-     * The minimum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.
+     * Optional. The minimum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.
      */
     minimumBackoff?: string | null;
   }
@@ -618,15 +618,15 @@ export namespace pubsub_v1 {
    */
   export interface Schema$SchemaSettings {
     /**
-     * The encoding of messages validated against `schema`.
+     * Optional. The encoding of messages validated against `schema`.
      */
     encoding?: string | null;
     /**
-     * The minimum (inclusive) revision allowed for validating messages. If empty or not present, allow any revision to be validated against last_revision or any revision created before.
+     * Optional. The minimum (inclusive) revision allowed for validating messages. If empty or not present, allow any revision to be validated against last_revision or any revision created before.
      */
     firstRevisionId?: string | null;
     /**
-     * The maximum (inclusive) revision allowed for validating messages. If empty or not present, allow any revision to be validated against first_revision or any revision created after.
+     * Optional. The maximum (inclusive) revision allowed for validating messages. If empty or not present, allow any revision to be validated against first_revision or any revision created after.
      */
     lastRevisionId?: string | null;
     /**
@@ -639,11 +639,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$SeekRequest {
     /**
-     * The snapshot to seek to. The snapshot's topic must be the same as that of the provided subscription. Format is `projects/{project\}/snapshots/{snap\}`.
+     * Optional. The snapshot to seek to. The snapshot's topic must be the same as that of the provided subscription. Format is `projects/{project\}/snapshots/{snap\}`.
      */
     snapshot?: string | null;
     /**
-     * The time to seek to. Messages retained in the subscription that were published before this time are marked as acknowledged, and messages retained in the subscription that were published after this time are marked as unacknowledged. Note that this operation affects only those messages retained in the subscription (configured by the combination of `message_retention_duration` and `retain_acked_messages`). For example, if `time` corresponds to a point before the message retention window (or to a point before the system's notion of the subscription creation time), only retained messages will be marked as unacknowledged, and already-expunged messages will not be restored.
+     * Optional. The time to seek to. Messages retained in the subscription that were published before this time are marked as acknowledged, and messages retained in the subscription that were published after this time are marked as unacknowledged. Note that this operation affects only those messages retained in the subscription (configured by the combination of `message_retention_duration` and `retain_acked_messages`). For example, if `time` corresponds to a point before the message retention window (or to a point before the system's notion of the subscription creation time), only retained messages will be marked as unacknowledged, and already-expunged messages will not be restored.
      */
     time?: string | null;
   }
@@ -665,19 +665,19 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Snapshot {
     /**
-     * The snapshot is guaranteed to exist up until this time. A newly-created snapshot expires no later than 7 days from the time of its creation. Its exact lifetime is determined at creation by the existing backlog in the source subscription. Specifically, the lifetime of the snapshot is `7 days - (age of oldest unacked message in the subscription)`. For example, consider a subscription whose oldest unacked message is 3 days old. If a snapshot is created from this subscription, the snapshot -- which will always capture this 3-day-old backlog as long as the snapshot exists -- will expire in 4 days. The service will refuse to create a snapshot that would expire in less than 1 hour after creation.
+     * Optional. The snapshot is guaranteed to exist up until this time. A newly-created snapshot expires no later than 7 days from the time of its creation. Its exact lifetime is determined at creation by the existing backlog in the source subscription. Specifically, the lifetime of the snapshot is `7 days - (age of oldest unacked message in the subscription)`. For example, consider a subscription whose oldest unacked message is 3 days old. If a snapshot is created from this subscription, the snapshot -- which will always capture this 3-day-old backlog as long as the snapshot exists -- will expire in 4 days. The service will refuse to create a snapshot that would expire in less than 1 hour after creation.
      */
     expireTime?: string | null;
     /**
-     * See [Creating and managing labels] (https://cloud.google.com/pubsub/docs/labels).
+     * Optional. See [Creating and managing labels] (https://cloud.google.com/pubsub/docs/labels).
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The name of the snapshot.
+     * Optional. The name of the snapshot.
      */
     name?: string | null;
     /**
-     * The name of the topic from which this snapshot is retaining messages.
+     * Optional. The name of the topic from which this snapshot is retaining messages.
      */
     topic?: string | null;
   }
@@ -686,47 +686,47 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Subscription {
     /**
-     * The approximate amount of time (on a best-effort basis) Pub/Sub waits for the subscriber to acknowledge receipt before resending the message. In the interval after the message is delivered and before it is acknowledged, it is considered to be _outstanding_. During that time period, the message will not be redelivered (on a best-effort basis). For pull subscriptions, this value is used as the initial value for the ack deadline. To override this value for a given message, call `ModifyAckDeadline` with the corresponding `ack_id` if using non-streaming pull or send the `ack_id` in a `StreamingModifyAckDeadlineRequest` if using streaming pull. The minimum custom deadline you can specify is 10 seconds. The maximum custom deadline you can specify is 600 seconds (10 minutes). If this parameter is 0, a default value of 10 seconds is used. For push delivery, this value is also used to set the request timeout for the call to the push endpoint. If the subscriber never acknowledges the message, the Pub/Sub system will eventually redeliver the message.
+     * Optional. The approximate amount of time (on a best-effort basis) Pub/Sub waits for the subscriber to acknowledge receipt before resending the message. In the interval after the message is delivered and before it is acknowledged, it is considered to be _outstanding_. During that time period, the message will not be redelivered (on a best-effort basis). For pull subscriptions, this value is used as the initial value for the ack deadline. To override this value for a given message, call `ModifyAckDeadline` with the corresponding `ack_id` if using non-streaming pull or send the `ack_id` in a `StreamingModifyAckDeadlineRequest` if using streaming pull. The minimum custom deadline you can specify is 10 seconds. The maximum custom deadline you can specify is 600 seconds (10 minutes). If this parameter is 0, a default value of 10 seconds is used. For push delivery, this value is also used to set the request timeout for the call to the push endpoint. If the subscriber never acknowledges the message, the Pub/Sub system will eventually redeliver the message.
      */
     ackDeadlineSeconds?: number | null;
     /**
-     * If delivery to BigQuery is used with this subscription, this field is used to configure it.
+     * Optional. If delivery to BigQuery is used with this subscription, this field is used to configure it.
      */
     bigqueryConfig?: Schema$BigQueryConfig;
     /**
-     * If delivery to Google Cloud Storage is used with this subscription, this field is used to configure it.
+     * Optional. If delivery to Google Cloud Storage is used with this subscription, this field is used to configure it.
      */
     cloudStorageConfig?: Schema$CloudStorageConfig;
     /**
-     * A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled. The Cloud Pub/Sub service account associated with this subscriptions's parent project (i.e., service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription.
+     * Optional. A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled. The Pub/Sub service account associated with this subscriptions's parent project (i.e., service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription.
      */
     deadLetterPolicy?: Schema$DeadLetterPolicy;
     /**
-     * Indicates whether the subscription is detached from its topic. Detached subscriptions don't receive messages from their topic and don't retain any backlog. `Pull` and `StreamingPull` requests will return FAILED_PRECONDITION. If the subscription is a push subscription, pushes to the endpoint will not be made.
+     * Optional. Indicates whether the subscription is detached from its topic. Detached subscriptions don't receive messages from their topic and don't retain any backlog. `Pull` and `StreamingPull` requests will return FAILED_PRECONDITION. If the subscription is a push subscription, pushes to the endpoint will not be made.
      */
     detached?: boolean | null;
     /**
-     * If true, Pub/Sub provides the following guarantees for the delivery of a message with a given value of `message_id` on this subscription: * The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires. * An acknowledged message will not be resent to a subscriber. Note that subscribers may still receive multiple copies of a message when `enable_exactly_once_delivery` is true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct `message_id` values.
+     * Optional. If true, Pub/Sub provides the following guarantees for the delivery of a message with a given value of `message_id` on this subscription: * The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires. * An acknowledged message will not be resent to a subscriber. Note that subscribers may still receive multiple copies of a message when `enable_exactly_once_delivery` is true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct `message_id` values.
      */
     enableExactlyOnceDelivery?: boolean | null;
     /**
-     * If true, messages published with the same `ordering_key` in `PubsubMessage` will be delivered to the subscribers in the order in which they are received by the Pub/Sub system. Otherwise, they may be delivered in any order.
+     * Optional. If true, messages published with the same `ordering_key` in `PubsubMessage` will be delivered to the subscribers in the order in which they are received by the Pub/Sub system. Otherwise, they may be delivered in any order.
      */
     enableMessageOrdering?: boolean | null;
     /**
-     * A policy that specifies the conditions for this subscription's expiration. A subscription is considered active as long as any connected subscriber is successfully consuming messages from the subscription or is issuing operations on the subscription. If `expiration_policy` is not set, a *default policy* with `ttl` of 31 days will be used. The minimum allowed value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set, but `expiration_policy.ttl` is not set, the subscription never expires.
+     * Optional. A policy that specifies the conditions for this subscription's expiration. A subscription is considered active as long as any connected subscriber is successfully consuming messages from the subscription or is issuing operations on the subscription. If `expiration_policy` is not set, a *default policy* with `ttl` of 31 days will be used. The minimum allowed value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set, but `expiration_policy.ttl` is not set, the subscription never expires.
      */
     expirationPolicy?: Schema$ExpirationPolicy;
     /**
-     * An expression written in the Pub/Sub [filter language](https://cloud.google.com/pubsub/docs/filtering). If non-empty, then only `PubsubMessage`s whose `attributes` field matches the filter are delivered on this subscription. If empty, then no messages are filtered out.
+     * Optional. An expression written in the Pub/Sub [filter language](https://cloud.google.com/pubsub/docs/filtering). If non-empty, then only `PubsubMessage`s whose `attributes` field matches the filter are delivered on this subscription. If empty, then no messages are filtered out.
      */
     filter?: string | null;
     /**
-     * See [Creating and managing labels](https://cloud.google.com/pubsub/docs/labels).
+     * Optional. See [Creating and managing labels](https://cloud.google.com/pubsub/docs/labels).
      */
     labels?: {[key: string]: string} | null;
     /**
-     * How long to retain unacknowledged messages in the subscription's backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10 minutes.
+     * Optional. How long to retain unacknowledged messages in the subscription's backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10 minutes.
      */
     messageRetentionDuration?: string | null;
     /**
@@ -734,15 +734,15 @@ export namespace pubsub_v1 {
      */
     name?: string | null;
     /**
-     * If push delivery is used with this subscription, this field is used to configure it.
+     * Optional. If push delivery is used with this subscription, this field is used to configure it.
      */
     pushConfig?: Schema$PushConfig;
     /**
-     * Indicates whether to retain acknowledged messages. If true, then messages are not expunged from the subscription's backlog, even if they are acknowledged, until they fall out of the `message_retention_duration` window. This must be true if you would like to [`Seek` to a timestamp] (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in the past to replay previously-acknowledged messages.
+     * Optional. Indicates whether to retain acknowledged messages. If true, then messages are not expunged from the subscription's backlog, even if they are acknowledged, until they fall out of the `message_retention_duration` window. This must be true if you would like to [`Seek` to a timestamp] (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in the past to replay previously-acknowledged messages.
      */
     retainAckedMessages?: boolean | null;
     /**
-     * A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.
+     * Optional. A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.
      */
     retryPolicy?: Schema$RetryPolicy;
     /**
@@ -785,19 +785,19 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Topic {
     /**
-     * The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. The expected format is `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     * Optional. The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. The expected format is `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     kmsKeyName?: string | null;
     /**
-     * See [Creating and managing labels] (https://cloud.google.com/pubsub/docs/labels).
+     * Optional. See [Creating and managing labels] (https://cloud.google.com/pubsub/docs/labels).
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Indicates the minimum duration to retain a message after it is published to the topic. If this field is set, messages published to the topic in the last `message_retention_duration` are always available to subscribers. For instance, it allows any attached subscription to [seek to a timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) that is up to `message_retention_duration` in the past. If this field is not set, message retention is controlled by settings on individual subscriptions. Cannot be more than 31 days or less than 10 minutes.
+     * Optional. Indicates the minimum duration to retain a message after it is published to the topic. If this field is set, messages published to the topic in the last `message_retention_duration` are always available to subscribers. For instance, it allows any attached subscription to [seek to a timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) that is up to `message_retention_duration` in the past. If this field is not set, message retention is controlled by settings on individual subscriptions. Cannot be more than 31 days or less than 10 minutes.
      */
     messageRetentionDuration?: string | null;
     /**
-     * Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not present, then no constraints are in effect.
+     * Optional. Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not present, then no constraints are in effect.
      */
     messageStoragePolicy?: Schema$MessageStoragePolicy;
     /**
@@ -805,11 +805,11 @@ export namespace pubsub_v1 {
      */
     name?: string | null;
     /**
-     * Reserved for future use. This field is set only in responses from the server; it is ignored if it is set in any requests.
+     * Optional. Reserved for future use. This field is set only in responses from the server; it is ignored if it is set in any requests.
      */
     satisfiesPzs?: boolean | null;
     /**
-     * Settings for validating messages published against a schema.
+     * Optional. Settings for validating messages published against a schema.
      */
     schemaSettings?: Schema$SchemaSettings;
   }
@@ -3493,9 +3493,9 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.list({
-     *     // Maximum number of snapshots to return.
+     *     // Optional. Maximum number of snapshots to return.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.
+     *     // Optional. The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the project in which to list snapshots. Format is `projects/{project-id\}`.
      *     project: 'projects/my-project',
@@ -3635,7 +3635,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.patch({
-     *     // The name of the snapshot.
+     *     // Optional. The name of the snapshot.
      *     name: 'projects/my-project/snapshots/my-snapshot',
      *
      *     // Request body metadata
@@ -4076,11 +4076,11 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$List
     extends StandardParameters {
     /**
-     * Maximum number of snapshots to return.
+     * Optional. Maximum number of snapshots to return.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -4091,7 +4091,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$Patch
     extends StandardParameters {
     /**
-     * The name of the snapshot.
+     * Optional. The name of the snapshot.
      */
     name?: string;
 
@@ -5022,9 +5022,9 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.list({
-     *     // Maximum number of subscriptions to return.
+     *     // Optional. Maximum number of subscriptions to return.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
+     *     // Optional. The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the project in which to list subscriptions. Format is `projects/{project-id\}`.
      *     project: 'projects/my-project',
@@ -6198,11 +6198,11 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$List
     extends StandardParameters {
     /**
-     * Maximum number of subscriptions to return.
+     * Optional. Maximum number of subscriptions to return.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -6884,9 +6884,9 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.list({
-     *     // Maximum number of topics to return.
+     *     // Optional. Maximum number of topics to return.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
+     *     // Optional. The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the project in which to list topics. Format is `projects/{project-id\}`.
      *     project: 'projects/my-project',
@@ -7608,11 +7608,11 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$List
     extends StandardParameters {
     /**
-     * Maximum number of topics to return.
+     * Optional. Maximum number of topics to return.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -7705,9 +7705,9 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.snapshots.list({
-     *     // Maximum number of snapshot names to return.
+     *     // Optional. Maximum number of snapshot names to return.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.
+     *     // Optional. The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the topic that snapshots are attached to. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
@@ -7823,11 +7823,11 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Snapshots$List
     extends StandardParameters {
     /**
-     * Maximum number of snapshot names to return.
+     * Optional. Maximum number of snapshot names to return.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -7872,9 +7872,9 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.subscriptions.list({
-     *     // Maximum number of subscription names to return.
+     *     // Optional. Maximum number of subscription names to return.
      *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
+     *     // Optional. The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the topic that subscriptions are attached to. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
@@ -7992,11 +7992,11 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Subscriptions$List
     extends StandardParameters {
     /**
-     * Maximum number of subscription names to return.
+     * Optional. Maximum number of subscription names to return.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**

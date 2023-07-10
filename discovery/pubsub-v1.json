@@ -681,13 +681,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Maximum number of snapshots to return.",
+                  "description": "Optional. Maximum number of snapshots to return.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.",
+                  "description": "Optional. The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.",
                   "location": "query",
                   "type": "string"
                 },
@@ -718,7 +718,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The name of the snapshot.",
+                  "description": "Optional. The name of the snapshot.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/snapshots/[^/]+$",
                   "required": true,
@@ -977,13 +977,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Maximum number of subscriptions to return.",
+                  "description": "Optional. Maximum number of subscriptions to return.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.",
+                  "description": "Optional. The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1334,13 +1334,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Maximum number of topics to return.",
+                  "description": "Optional. Maximum number of topics to return.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.",
+                  "description": "Optional. The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1491,13 +1491,13 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Maximum number of snapshot names to return.",
+                      "description": "Optional. Maximum number of snapshot names to return.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.",
+                      "description": "Optional. The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1532,13 +1532,13 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Maximum number of subscription names to return.",
+                      "description": "Optional. Maximum number of subscription names to return.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.",
+                      "description": "Optional. The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1566,7 +1566,7 @@
       }
     }
   },
-  "revision": "20230606",
+  "revision": "20230627",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1588,7 +1588,7 @@
       "id": "AvroConfig",
       "properties": {
         "writeMetadata": {
-          "description": "When true, write the subscription name, message_id, publish_time, attributes, and ordering_key as additional fields in the output.",
+          "description": "Optional. When true, write the subscription name, message_id, publish_time, attributes, and ordering_key as additional fields in the output.",
           "type": "boolean"
         }
       },
@@ -1599,7 +1599,7 @@
       "id": "BigQueryConfig",
       "properties": {
         "dropUnknownFields": {
-          "description": "When true and use_topic_schema is true, any fields that are a part of the topic schema that are not part of the BigQuery table schema are dropped when writing to BigQuery. Otherwise, the schemas must be kept in sync and any messages with extra fields are not written and remain in the subscription's backlog.",
+          "description": "Optional. When true and use_topic_schema is true, any fields that are a part of the topic schema that are not part of the BigQuery table schema are dropped when writing to BigQuery. Otherwise, the schemas must be kept in sync and any messages with extra fields are not written and remain in the subscription's backlog.",
           "type": "boolean"
         },
         "state": {
@@ -1622,15 +1622,15 @@
           "type": "string"
         },
         "table": {
-          "description": "The name of the table to which to write data, of the form {projectId}.{datasetId}.{tableId}",
+          "description": "Optional. The name of the table to which to write data, of the form {projectId}.{datasetId}.{tableId}",
           "type": "string"
         },
         "useTopicSchema": {
-          "description": "When true, use the topic's schema as the columns to write to in BigQuery, if it exists.",
+          "description": "Optional. When true, use the topic's schema as the columns to write to in BigQuery, if it exists.",
           "type": "boolean"
         },
         "writeMetadata": {
-          "description": "When true, write the subscription name, message_id, publish_time, attributes, and ordering_key to additional columns in the table. The subscription name, message_id, and publish_time fields are put in their own columns while all other message properties (other than data) are written to a JSON object in the attributes column.",
+          "description": "Optional. When true, write the subscription name, message_id, publish_time, attributes, and ordering_key to additional columns in the table. The subscription name, message_id, and publish_time fields are put in their own columns while all other message properties (other than data) are written to a JSON object in the attributes column.",
           "type": "boolean"
         }
       },
@@ -1664,27 +1664,27 @@
       "properties": {
         "avroConfig": {
           "$ref": "AvroConfig",
-          "description": "If set, message data will be written to Cloud Storage in Avro format."
+          "description": "Optional. If set, message data will be written to Cloud Storage in Avro format."
         },
         "bucket": {
           "description": "Required. User-provided name for the Cloud Storage bucket. The bucket must be created by the user. The bucket name must be without any prefix like \"gs://\". See the [bucket naming requirements] (https://cloud.google.com/storage/docs/buckets#naming).",
           "type": "string"
         },
         "filenamePrefix": {
-          "description": "User-provided prefix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming).",
+          "description": "Optional. User-provided prefix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming).",
           "type": "string"
         },
         "filenameSuffix": {
-          "description": "User-provided suffix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming).",
+          "description": "Optional. User-provided suffix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming). Must not end in \"/\".",
           "type": "string"
         },
         "maxBytes": {
-          "description": "The maximum bytes that can be written to a Cloud Storage file before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded in cases where messages are larger than the limit.",
+          "description": "Optional. The maximum bytes that can be written to a Cloud Storage file before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded in cases where messages are larger than the limit.",
           "format": "int64",
           "type": "string"
         },
         "maxDuration": {
-          "description": "The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.",
+          "description": "Optional. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.",
           "format": "google-duration",
           "type": "string"
         },
@@ -1707,7 +1707,7 @@
         },
         "textConfig": {
           "$ref": "TextConfig",
-          "description": "If set, message data will be written to Cloud Storage in text format."
+          "description": "Optional. If set, message data will be written to Cloud Storage in text format."
         }
       },
       "type": "object"
@@ -1731,7 +1731,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "See [Creating and managing labels](https://cloud.google.com/pubsub/docs/labels).",
+          "description": "Optional. See [Creating and managing labels](https://cloud.google.com/pubsub/docs/labels).",
           "type": "object"
         },
         "subscription": {
@@ -1746,11 +1746,11 @@
       "id": "DeadLetterPolicy",
       "properties": {
         "deadLetterTopic": {
-          "description": "The name of the topic to which dead letter messages should be published. Format is `projects/{project}/topics/{topic}`.The Cloud Pub/Sub service account associated with the enclosing subscription's parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Publish() to this topic. The operation will fail if the topic does not exist. Users should ensure that there is a subscription attached to this topic since messages published to a topic with no subscriptions are lost.",
+          "description": "Optional. The name of the topic to which dead letter messages should be published. Format is `projects/{project}/topics/{topic}`.The Pub/Sub service account associated with the enclosing subscription's parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Publish() to this topic. The operation will fail if the topic does not exist. Users should ensure that there is a subscription attached to this topic since messages published to a topic with no subscriptions are lost.",
           "type": "string"
         },
         "maxDeliveryAttempts": {
-          "description": "The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgement deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.",
+          "description": "Optional. The maximum number of delivery attempts for any message. The value must be between 5 and 100. The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgement deadline has been exceeded for the message). A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines. This field will be honored on a best effort basis. If this parameter is 0, a default value of 5 is used.",
           "format": "int32",
           "type": "integer"
         }
@@ -1774,7 +1774,7 @@
       "id": "ExpirationPolicy",
       "properties": {
         "ttl": {
-          "description": "Specifies the \"time-to-live\" duration for an associated resource. The resource expires if it is not active for a period of `ttl`. The definition of \"activity\" depends on the type of the associated resource. The minimum and maximum allowed values for `ttl` depend on the type of the associated resource, as well. If `ttl` is not set, the associated resource never expires.",
+          "description": "Optional. Specifies the \"time-to-live\" duration for an associated resource. The resource expires if it is not active for a period of `ttl`. The definition of \"activity\" depends on the type of the associated resource. The minimum and maximum allowed values for `ttl` depend on the type of the associated resource, as well. If `ttl` is not set, the associated resource never expires.",
           "format": "google-duration",
           "type": "string"
         }
@@ -1845,11 +1845,11 @@
       "id": "ListSnapshotsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "If not empty, indicates that there may be more snapshot that match the request; this value should be passed in a new `ListSnapshotsRequest`.",
+          "description": "Optional. If not empty, indicates that there may be more snapshot that match the request; this value should be passed in a new `ListSnapshotsRequest`.",
           "type": "string"
         },
         "snapshots": {
-          "description": "The resulting snapshots.",
+          "description": "Optional. The resulting snapshots.",
           "items": {
             "$ref": "Snapshot"
           },
@@ -1863,11 +1863,11 @@
       "id": "ListSubscriptionsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "If not empty, indicates that there may be more subscriptions that match the request; this value should be passed in a new `ListSubscriptionsRequest` to get more subscriptions.",
+          "description": "Optional. If not empty, indicates that there may be more subscriptions that match the request; this value should be passed in a new `ListSubscriptionsRequest` to get more subscriptions.",
           "type": "string"
         },
         "subscriptions": {
-          "description": "The subscriptions that match the request.",
+          "description": "Optional. The subscriptions that match the request.",
           "items": {
             "$ref": "Subscription"
           },
@@ -1881,11 +1881,11 @@
       "id": "ListTopicSnapshotsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "If not empty, indicates that there may be more snapshots that match the request; this value should be passed in a new `ListTopicSnapshotsRequest` to get more snapshots.",
+          "description": "Optional. If not empty, indicates that there may be more snapshots that match the request; this value should be passed in a new `ListTopicSnapshotsRequest` to get more snapshots.",
           "type": "string"
         },
         "snapshots": {
-          "description": "The names of the snapshots that match the request.",
+          "description": "Optional. The names of the snapshots that match the request.",
           "items": {
             "type": "string"
           },
@@ -1899,11 +1899,11 @@
       "id": "ListTopicSubscriptionsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "If not empty, indicates that there may be more subscriptions that match the request; this value should be passed in a new `ListTopicSubscriptionsRequest` to get more subscriptions.",
+          "description": "Optional. If not empty, indicates that there may be more subscriptions that match the request; this value should be passed in a new `ListTopicSubscriptionsRequest` to get more subscriptions.",
           "type": "string"
         },
         "subscriptions": {
-          "description": "The names of subscriptions attached to the topic specified in the request.",
+          "description": "Optional. The names of subscriptions attached to the topic specified in the request.",
           "items": {
             "type": "string"
           },
@@ -1917,11 +1917,11 @@
       "id": "ListTopicsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "If not empty, indicates that there may be more topics that match the request; this value should be passed in a new `ListTopicsRequest`.",
+          "description": "Optional. If not empty, indicates that there may be more topics that match the request; this value should be passed in a new `ListTopicsRequest`.",
           "type": "string"
         },
         "topics": {
-          "description": "The resulting topics.",
+          "description": "Optional. The resulting topics.",
           "items": {
             "$ref": "Topic"
           },
@@ -1935,7 +1935,7 @@
       "id": "MessageStoragePolicy",
       "properties": {
         "allowedPersistenceRegions": {
-          "description": "A list of IDs of GCP regions where messages that are published to the topic may be persisted in storage. Messages published by publishers running in non-allowed GCP regions (or running outside of GCP altogether) will be routed for storage in one of the allowed regions. An empty list means that no regions are allowed, and is not a valid configuration.",
+          "description": "Optional. A list of IDs of GCP regions where messages that are published to the topic may be persisted in storage. Messages published by publishers running in non-allowed GCP regions (or running outside of GCP altogether) will be routed for storage in one of the allowed regions. An empty list means that no regions are allowed, and is not a valid configuration.",
           "items": {
             "type": "string"
           },
@@ -1979,7 +1979,7 @@
       "id": "NoWrapper",
       "properties": {
         "writeMetadata": {
-          "description": "When true, writes the Pub/Sub message metadata to `x-goog-pubsub-:` headers of the HTTP request. Writes the Pub/Sub message attributes to `:` headers of the HTTP request.",
+          "description": "Optional. When true, writes the Pub/Sub message metadata to `x-goog-pubsub-:` headers of the HTTP request. Writes the Pub/Sub message attributes to `:` headers of the HTTP request.",
           "type": "boolean"
         }
       },
@@ -1990,11 +1990,11 @@
       "id": "OidcToken",
       "properties": {
         "audience": {
-          "description": "Audience to be used when generating OIDC token. The audience claim identifies the recipients that the JWT is intended for. The audience value is a single case-sensitive string. Having multiple values (array) for the audience field is not supported. More info about the OIDC JWT token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3 Note: if not specified, the Push endpoint URL will be used.",
+          "description": "Optional. Audience to be used when generating OIDC token. The audience claim identifies the recipients that the JWT is intended for. The audience value is a single case-sensitive string. Having multiple values (array) for the audience field is not supported. More info about the OIDC JWT token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3 Note: if not specified, the Push endpoint URL will be used.",
           "type": "string"
         },
         "serviceAccountEmail": {
-          "description": "[Service account email](https://cloud.google.com/iam/docs/service-accounts) used for generating the OIDC token. For more information on setting up authentication, see [Push subscriptions](https://cloud.google.com/pubsub/docs/push).",
+          "description": "Optional. [Service account email](https://cloud.google.com/iam/docs/service-accounts) used for generating the OIDC token. For more information on setting up authentication, see [Push subscriptions](https://cloud.google.com/pubsub/docs/push).",
           "type": "string"
         }
       },
@@ -2043,7 +2043,7 @@
       "id": "PublishResponse",
       "properties": {
         "messageIds": {
-          "description": "The server-assigned ID of each published message, in the same order as the messages in the request. IDs are guaranteed to be unique within the topic.",
+          "description": "Optional. The server-assigned ID of each published message, in the same order as the messages in the request. IDs are guaranteed to be unique within the topic.",
           "items": {
             "type": "string"
           },
@@ -2060,24 +2060,24 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.",
+          "description": "Optional. Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.",
           "type": "object"
         },
         "data": {
-          "description": "The message data field. If this field is empty, the message must contain at least one attribute.",
+          "description": "Optional. The message data field. If this field is empty, the message must contain at least one attribute.",
           "format": "byte",
           "type": "string"
         },
         "messageId": {
-          "description": "ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.",
+          "description": "Optional. ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.",
           "type": "string"
         },
         "orderingKey": {
-          "description": "If non-empty, identifies related messages for which publish order should be respected. If a `Subscription` has `enable_message_ordering` set to `true`, messages published with the same non-empty `ordering_key` value will be delivered to subscribers in the order in which they are received by the Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest` must specify the same `ordering_key` value. For more information, see [ordering messages](https://cloud.google.com/pubsub/docs/ordering).",
+          "description": "Optional. If non-empty, identifies related messages for which publish order should be respected. If a `Subscription` has `enable_message_ordering` set to `true`, messages published with the same non-empty `ordering_key` value will be delivered to subscribers in the order in which they are received by the Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest` must specify the same `ordering_key` value. For more information, see [ordering messages](https://cloud.google.com/pubsub/docs/ordering).",
           "type": "string"
         },
         "publishTime": {
-          "description": "The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.",
+          "description": "Optional. The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -2111,7 +2111,7 @@
       "id": "PullResponse",
       "properties": {
         "receivedMessages": {
-          "description": "Received Pub/Sub messages. The list will be empty if there are no more messages available in the backlog, or if no messages could be returned before the request timeout. For JSON, the response can be entirely empty. The Pub/Sub system may return fewer than the `maxMessages` requested even if there are more messages available in the backlog.",
+          "description": "Optional. Received Pub/Sub messages. The list will be empty if there are no more messages available in the backlog, or if no messages could be returned before the request timeout. For JSON, the response can be entirely empty. The Pub/Sub system may return fewer than the `maxMessages` requested even if there are more messages available in the backlog.",
           "items": {
             "$ref": "ReceivedMessage"
           },
@@ -2128,23 +2128,23 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Endpoint configuration attributes that can be used to control different aspects of the message delivery. The only currently supported attribute is `x-goog-version`, which you can use to change the format of the pushed message. This attribute indicates the version of the data expected by the endpoint. This controls the shape of the pushed message (i.e., its fields and metadata). If not present during the `CreateSubscription` call, it will default to the version of the Pub/Sub API used to make such call. If not present in a `ModifyPushConfig` call, its value will not be changed. `GetSubscription` calls will always return a valid version, even if the subscription was created without this attribute. The only supported values for the `x-goog-version` attribute are: * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API. For example: `attributes { \"x-goog-version\": \"v1\" }`",
+          "description": "Optional. Endpoint configuration attributes that can be used to control different aspects of the message delivery. The only currently supported attribute is `x-goog-version`, which you can use to change the format of the pushed message. This attribute indicates the version of the data expected by the endpoint. This controls the shape of the pushed message (i.e., its fields and metadata). If not present during the `CreateSubscription` call, it will default to the version of the Pub/Sub API used to make such call. If not present in a `ModifyPushConfig` call, its value will not be changed. `GetSubscription` calls will always return a valid version, even if the subscription was created without this attribute. The only supported values for the `x-goog-version` attribute are: * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API. For example: `attributes { \"x-goog-version\": \"v1\" }`",
           "type": "object"
         },
         "noWrapper": {
           "$ref": "NoWrapper",
-          "description": "When set, the payload to the push endpoint is not wrapped."
+          "description": "Optional. When set, the payload to the push endpoint is not wrapped."
         },
         "oidcToken": {
           "$ref": "OidcToken",
-          "description": "If specified, Pub/Sub will generate and attach an OIDC JWT token as an `Authorization` header in the HTTP request for every pushed message."
+          "description": "Optional. If specified, Pub/Sub will generate and attach an OIDC JWT token as an `Authorization` header in the HTTP request for every pushed message."
         },
         "pubsubWrapper": {
           "$ref": "PubsubWrapper",
-          "description": "When set, the payload to the push endpoint is in the form of the JSON representation of a PubsubMessage (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage)."
+          "description": "Optional. When set, the payload to the push endpoint is in the form of the JSON representation of a PubsubMessage (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage)."
         },
         "pushEndpoint": {
-          "description": "A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use `https://example.com/push`.",
+          "description": "Optional. A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use `https://example.com/push`.",
           "type": "string"
         }
       },
@@ -2155,32 +2155,32 @@
       "id": "ReceivedMessage",
       "properties": {
         "ackId": {
-          "description": "This ID can be used to acknowledge the received message.",
+          "description": "Optional. This ID can be used to acknowledge the received message.",
           "type": "string"
         },
         "deliveryAttempt": {
-          "description": "The approximate number of times that Cloud Pub/Sub has attempted to deliver the associated message to a subscriber. More precisely, this is 1 + (number of NACKs) + (number of ack_deadline exceeds) for this message. A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline exceeds event is whenever a message is not acknowledged within ack_deadline. Note that ack_deadline is initially Subscription.ackDeadlineSeconds, but may get extended automatically by the client library. Upon the first delivery of a given message, `delivery_attempt` will have a value of 1. The value is calculated at best effort and is approximate. If a DeadLetterPolicy is not set on the subscription, this will be 0.",
+          "description": "Optional. The approximate number of times that Pub/Sub has attempted to deliver the associated message to a subscriber. More precisely, this is 1 + (number of NACKs) + (number of ack_deadline exceeds) for this message. A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline exceeds event is whenever a message is not acknowledged within ack_deadline. Note that ack_deadline is initially Subscription.ackDeadlineSeconds, but may get extended automatically by the client library. Upon the first delivery of a given message, `delivery_attempt` will have a value of 1. The value is calculated at best effort and is approximate. If a DeadLetterPolicy is not set on the subscription, this will be 0.",
           "format": "int32",
           "type": "integer"
         },
         "message": {
           "$ref": "PubsubMessage",
-          "description": "The message."
+          "description": "Optional. The message."
         }
       },
       "type": "object"
     },
     "RetryPolicy": {
-      "description": "A policy that specifies how Cloud Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.",
+      "description": "A policy that specifies how Pub/Sub retries message delivery. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message. Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.",
       "id": "RetryPolicy",
       "properties": {
         "maximumBackoff": {
-          "description": "The maximum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 600 seconds.",
+          "description": "Optional. The maximum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 600 seconds.",
           "format": "google-duration",
           "type": "string"
         },
         "minimumBackoff": {
-          "description": "The minimum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.",
+          "description": "Optional. The minimum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.",
           "format": "google-duration",
           "type": "string"
         }
@@ -2243,7 +2243,7 @@
       "id": "SchemaSettings",
       "properties": {
         "encoding": {
-          "description": "The encoding of messages validated against `schema`.",
+          "description": "Optional. The encoding of messages validated against `schema`.",
           "enum": [
             "ENCODING_UNSPECIFIED",
             "JSON",
@@ -2257,11 +2257,11 @@
           "type": "string"
         },
         "firstRevisionId": {
-          "description": "The minimum (inclusive) revision allowed for validating messages. If empty or not present, allow any revision to be validated against last_revision or any revision created before.",
+          "description": "Optional. The minimum (inclusive) revision allowed for validating messages. If empty or not present, allow any revision to be validated against last_revision or any revision created before.",
           "type": "string"
         },
         "lastRevisionId": {
-          "description": "The maximum (inclusive) revision allowed for validating messages. If empty or not present, allow any revision to be validated against first_revision or any revision created after.",
+          "description": "Optional. The maximum (inclusive) revision allowed for validating messages. If empty or not present, allow any revision to be validated against first_revision or any revision created after.",
           "type": "string"
         },
         "schema": {
@@ -2276,11 +2276,11 @@
       "id": "SeekRequest",
       "properties": {
         "snapshot": {
-          "description": "The snapshot to seek to. The snapshot's topic must be the same as that of the provided subscription. Format is `projects/{project}/snapshots/{snap}`.",
+          "description": "Optional. The snapshot to seek to. The snapshot's topic must be the same as that of the provided subscription. Format is `projects/{project}/snapshots/{snap}`.",
           "type": "string"
         },
         "time": {
-          "description": "The time to seek to. Messages retained in the subscription that were published before this time are marked as acknowledged, and messages retained in the subscription that were published after this time are marked as unacknowledged. Note that this operation affects only those messages retained in the subscription (configured by the combination of `message_retention_duration` and `retain_acked_messages`). For example, if `time` corresponds to a point before the message retention window (or to a point before the system's notion of the subscription creation time), only retained messages will be marked as unacknowledged, and already-expunged messages will not be restored.",
+          "description": "Optional. The time to seek to. Messages retained in the subscription that were published before this time are marked as acknowledged, and messages retained in the subscription that were published after this time are marked as unacknowledged. Note that this operation affects only those messages retained in the subscription (configured by the combination of `message_retention_duration` and `retain_acked_messages`). For example, if `time` corresponds to a point before the message retention window (or to a point before the system's notion of the subscription creation time), only retained messages will be marked as unacknowledged, and already-expunged messages will not be restored.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -2309,7 +2309,7 @@
       "id": "Snapshot",
       "properties": {
         "expireTime": {
-          "description": "The snapshot is guaranteed to exist up until this time. A newly-created snapshot expires no later than 7 days from the time of its creation. Its exact lifetime is determined at creation by the existing backlog in the source subscription. Specifically, the lifetime of the snapshot is `7 days - (age of oldest unacked message in the subscription)`. For example, consider a subscription whose oldest unacked message is 3 days old. If a snapshot is created from this subscription, the snapshot -- which will always capture this 3-day-old backlog as long as the snapshot exists -- will expire in 4 days. The service will refuse to create a snapshot that would expire in less than 1 hour after creation.",
+          "description": "Optional. The snapshot is guaranteed to exist up until this time. A newly-created snapshot expires no later than 7 days from the time of its creation. Its exact lifetime is determined at creation by the existing backlog in the source subscription. Specifically, the lifetime of the snapshot is `7 days - (age of oldest unacked message in the subscription)`. For example, consider a subscription whose oldest unacked message is 3 days old. If a snapshot is created from this subscription, the snapshot -- which will always capture this 3-day-old backlog as long as the snapshot exists -- will expire in 4 days. The service will refuse to create a snapshot that would expire in less than 1 hour after creation.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2317,15 +2317,15 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "See [Creating and managing labels] (https://cloud.google.com/pubsub/docs/labels).",
+          "description": "Optional. See [Creating and managing labels] (https://cloud.google.com/pubsub/docs/labels).",
           "type": "object"
         },
         "name": {
-          "description": "The name of the snapshot.",
+          "description": "Optional. The name of the snapshot.",
           "type": "string"
         },
         "topic": {
-          "description": "The name of the topic from which this snapshot is retaining messages.",
+          "description": "Optional. The name of the topic from which this snapshot is retaining messages.",
           "type": "string"
         }
       },
@@ -2336,51 +2336,51 @@
       "id": "Subscription",
       "properties": {
         "ackDeadlineSeconds": {
-          "description": "The approximate amount of time (on a best-effort basis) Pub/Sub waits for the subscriber to acknowledge receipt before resending the message. In the interval after the message is delivered and before it is acknowledged, it is considered to be _outstanding_. During that time period, the message will not be redelivered (on a best-effort basis). For pull subscriptions, this value is used as the initial value for the ack deadline. To override this value for a given message, call `ModifyAckDeadline` with the corresponding `ack_id` if using non-streaming pull or send the `ack_id` in a `StreamingModifyAckDeadlineRequest` if using streaming pull. The minimum custom deadline you can specify is 10 seconds. The maximum custom deadline you can specify is 600 seconds (10 minutes). If this parameter is 0, a default value of 10 seconds is used. For push delivery, this value is also used to set the request timeout for the call to the push endpoint. If the subscriber never acknowledges the message, the Pub/Sub system will eventually redeliver the message.",
+          "description": "Optional. The approximate amount of time (on a best-effort basis) Pub/Sub waits for the subscriber to acknowledge receipt before resending the message. In the interval after the message is delivered and before it is acknowledged, it is considered to be _outstanding_. During that time period, the message will not be redelivered (on a best-effort basis). For pull subscriptions, this value is used as the initial value for the ack deadline. To override this value for a given message, call `ModifyAckDeadline` with the corresponding `ack_id` if using non-streaming pull or send the `ack_id` in a `StreamingModifyAckDeadlineRequest` if using streaming pull. The minimum custom deadline you can specify is 10 seconds. The maximum custom deadline you can specify is 600 seconds (10 minutes). If this parameter is 0, a default value of 10 seconds is used. For push delivery, this value is also used to set the request timeout for the call to the push endpoint. If the subscriber never acknowledges the message, the Pub/Sub system will eventually redeliver the message.",
           "format": "int32",
           "type": "integer"
         },
         "bigqueryConfig": {
           "$ref": "BigQueryConfig",
-          "description": "If delivery to BigQuery is used with this subscription, this field is used to configure it."
+          "description": "Optional. If delivery to BigQuery is used with this subscription, this field is used to configure it."
         },
         "cloudStorageConfig": {
           "$ref": "CloudStorageConfig",
-          "description": "If delivery to Google Cloud Storage is used with this subscription, this field is used to configure it."
+          "description": "Optional. If delivery to Google Cloud Storage is used with this subscription, this field is used to configure it."
         },
         "deadLetterPolicy": {
           "$ref": "DeadLetterPolicy",
-          "description": "A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled. The Cloud Pub/Sub service account associated with this subscriptions's parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription."
+          "description": "Optional. A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled. The Pub/Sub service account associated with this subscriptions's parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription."
         },
         "detached": {
-          "description": "Indicates whether the subscription is detached from its topic. Detached subscriptions don't receive messages from their topic and don't retain any backlog. `Pull` and `StreamingPull` requests will return FAILED_PRECONDITION. If the subscription is a push subscription, pushes to the endpoint will not be made.",
+          "description": "Optional. Indicates whether the subscription is detached from its topic. Detached subscriptions don't receive messages from their topic and don't retain any backlog. `Pull` and `StreamingPull` requests will return FAILED_PRECONDITION. If the subscription is a push subscription, pushes to the endpoint will not be made.",
           "type": "boolean"
         },
         "enableExactlyOnceDelivery": {
-          "description": "If true, Pub/Sub provides the following guarantees for the delivery of a message with a given value of `message_id` on this subscription: * The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires. * An acknowledged message will not be resent to a subscriber. Note that subscribers may still receive multiple copies of a message when `enable_exactly_once_delivery` is true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct `message_id` values.",
+          "description": "Optional. If true, Pub/Sub provides the following guarantees for the delivery of a message with a given value of `message_id` on this subscription: * The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires. * An acknowledged message will not be resent to a subscriber. Note that subscribers may still receive multiple copies of a message when `enable_exactly_once_delivery` is true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct `message_id` values.",
           "type": "boolean"
         },
         "enableMessageOrdering": {
-          "description": "If true, messages published with the same `ordering_key` in `PubsubMessage` will be delivered to the subscribers in the order in which they are received by the Pub/Sub system. Otherwise, they may be delivered in any order.",
+          "description": "Optional. If true, messages published with the same `ordering_key` in `PubsubMessage` will be delivered to the subscribers in the order in which they are received by the Pub/Sub system. Otherwise, they may be delivered in any order.",
           "type": "boolean"
         },
         "expirationPolicy": {
           "$ref": "ExpirationPolicy",
-          "description": "A policy that specifies the conditions for this subscription's expiration. A subscription is considered active as long as any connected subscriber is successfully consuming messages from the subscription or is issuing operations on the subscription. If `expiration_policy` is not set, a *default policy* with `ttl` of 31 days will be used. The minimum allowed value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set, but `expiration_policy.ttl` is not set, the subscription never expires."
+          "description": "Optional. A policy that specifies the conditions for this subscription's expiration. A subscription is considered active as long as any connected subscriber is successfully consuming messages from the subscription or is issuing operations on the subscription. If `expiration_policy` is not set, a *default policy* with `ttl` of 31 days will be used. The minimum allowed value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set, but `expiration_policy.ttl` is not set, the subscription never expires."
         },
         "filter": {
-          "description": "An expression written in the Pub/Sub [filter language](https://cloud.google.com/pubsub/docs/filtering). If non-empty, then only `PubsubMessage`s whose `attributes` field matches the filter are delivered on this subscription. If empty, then no messages are filtered out.",
+          "description": "Optional. An expression written in the Pub/Sub [filter language](https://cloud.google.com/pubsub/docs/filtering). If non-empty, then only `PubsubMessage`s whose `attributes` field matches the filter are delivered on this subscription. If empty, then no messages are filtered out.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "See [Creating and managing labels](https://cloud.google.com/pubsub/docs/labels).",
+          "description": "Optional. See [Creating and managing labels](https://cloud.google.com/pubsub/docs/labels).",
           "type": "object"
         },
         "messageRetentionDuration": {
-          "description": "How long to retain unacknowledged messages in the subscription's backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10 minutes.",
+          "description": "Optional. How long to retain unacknowledged messages in the subscription's backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10 minutes.",
           "format": "google-duration",
           "type": "string"
         },
@@ -2390,15 +2390,15 @@
         },
         "pushConfig": {
           "$ref": "PushConfig",
-          "description": "If push delivery is used with this subscription, this field is used to configure it."
+          "description": "Optional. If push delivery is used with this subscription, this field is used to configure it."
         },
         "retainAckedMessages": {
-          "description": "Indicates whether to retain acknowledged messages. If true, then messages are not expunged from the subscription's backlog, even if they are acknowledged, until they fall out of the `message_retention_duration` window. This must be true if you would like to [`Seek` to a timestamp] (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in the past to replay previously-acknowledged messages.",
+          "description": "Optional. Indicates whether to retain acknowledged messages. If true, then messages are not expunged from the subscription's backlog, even if they are acknowledged, until they fall out of the `message_retention_duration` window. This must be true if you would like to [`Seek` to a timestamp] (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in the past to replay previously-acknowledged messages.",
           "type": "boolean"
         },
         "retryPolicy": {
           "$ref": "RetryPolicy",
-          "description": "A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message."
+          "description": "Optional. A policy that specifies how Pub/Sub retries message delivery for this subscription. If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message."
         },
         "state": {
           "description": "Output only. An output-only field indicating whether or not the subscription can receive messages.",
@@ -2467,36 +2467,36 @@
       "id": "Topic",
       "properties": {
         "kmsKeyName": {
-          "description": "The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+          "description": "Optional. The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "See [Creating and managing labels] (https://cloud.google.com/pubsub/docs/labels).",
+          "description": "Optional. See [Creating and managing labels] (https://cloud.google.com/pubsub/docs/labels).",
           "type": "object"
         },
         "messageRetentionDuration": {
-          "description": "Indicates the minimum duration to retain a message after it is published to the topic. If this field is set, messages published to the topic in the last `message_retention_duration` are always available to subscribers. For instance, it allows any attached subscription to [seek to a timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) that is up to `message_retention_duration` in the past. If this field is not set, message retention is controlled by settings on individual subscriptions. Cannot be more than 31 days or less than 10 minutes.",
+          "description": "Optional. Indicates the minimum duration to retain a message after it is published to the topic. If this field is set, messages published to the topic in the last `message_retention_duration` are always available to subscribers. For instance, it allows any attached subscription to [seek to a timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) that is up to `message_retention_duration` in the past. If this field is not set, message retention is controlled by settings on individual subscriptions. Cannot be more than 31 days or less than 10 minutes.",
           "format": "google-duration",
           "type": "string"
         },
         "messageStoragePolicy": {
           "$ref": "MessageStoragePolicy",
-          "description": "Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not present, then no constraints are in effect."
+          "description": "Optional. Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not present, then no constraints are in effect."
         },
         "name": {
           "description": "Required. The name of the topic. It must have the format `\"projects/{project}/topics/{topic}\"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
           "type": "string"
         },
         "satisfiesPzs": {
-          "description": "Reserved for future use. This field is set only in responses from the server; it is ignored if it is set in any requests.",
+          "description": "Optional. Reserved for future use. This field is set only in responses from the server; it is ignored if it is set in any requests.",
           "type": "boolean"
         },
         "schemaSettings": {
           "$ref": "SchemaSettings",
-          "description": "Settings for validating messages published against a schema."
+          "description": "Optional. Settings for validating messages published against a schema."
         }
       },
       "type": "object"
