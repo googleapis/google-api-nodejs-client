@@ -1556,6 +1556,250 @@
                 }
               }
             },
+            "serviceLbPolicies": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new ServiceLbPolicy in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serviceLbPolicies",
+                  "httpMethod": "POST",
+                  "id": "networkservices.projects.locations.serviceLbPolicies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource of the ServiceLbPolicy. Must be in the format `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "serviceLbPolicyId": {
+                      "description": "Required. Short name of the ServiceLbPolicy resource to be created. E.g. for resource name `projects/{project}/locations/{location}/serviceLbPolicies/{service_lb_policy_name}`. the id is value of {service_lb_policy_name}",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/serviceLbPolicies",
+                  "request": {
+                    "$ref": "ServiceLbPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single ServiceLbPolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serviceLbPolicies/{serviceLbPoliciesId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkservices.projects.locations.serviceLbPolicies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the ServiceLbPolicy to delete. Must be in the format `projects/{project}/locations/{location}/serviceLbPolicies/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceLbPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single ServiceLbPolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serviceLbPolicies/{serviceLbPoliciesId}",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.serviceLbPolicies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the ServiceLbPolicy to get. Must be in the format `projects/{project}/locations/{location}/serviceLbPolicies/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceLbPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "ServiceLbPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serviceLbPolicies/{serviceLbPoliciesId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.serviceLbPolicies.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceLbPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists ServiceLbPolicies in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serviceLbPolicies",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.serviceLbPolicies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of ServiceLbPolicies to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListServiceLbPoliciesResponse` Indicates that this is a continuation of a prior `ListRouters` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the ServiceLbPolicies should be listed, specified in the format `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/serviceLbPolicies",
+                  "response": {
+                    "$ref": "ListServiceLbPoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single ServiceLbPolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serviceLbPolicies/{serviceLbPoliciesId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkservices.projects.locations.serviceLbPolicies.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the ServiceLbPolicy resource. It matches pattern `projects/{project}/locations/{location}/serviceLbPolicies/{service_lb_policy_name}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceLbPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the ServiceLbPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "ServiceLbPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serviceLbPolicies/{serviceLbPoliciesId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "networkservices.projects.locations.serviceLbPolicies.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceLbPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serviceLbPolicies/{serviceLbPoliciesId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "networkservices.projects.locations.serviceLbPolicies.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceLbPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "tcpRoutes": {
               "methods": {
                 "create": {
@@ -1875,7 +2119,7 @@
       }
     }
   },
-  "revision": "20230531",
+  "revision": "20230630",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2067,7 +2311,7 @@
       "id": "Gateway",
       "properties": {
         "addresses": {
-          "description": "Optional. Zero or one IPv4-address on which the Gateway will receive the traffic. When no address is provided, an IP from the subnetwork is allocated This field only applies to gateways of type 'SECURE_WEB_GATEWAY'. Gateways of type 'OPEN_MESH' listen on 0.0.0.0.",
+          "description": "Optional. Zero or one IPv4 or IPv6 address on which the Gateway will receive the traffic. When no address is provided, an IP from the subnetwork is allocated This field only applies to gateways of type 'SECURE_WEB_GATEWAY'. Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6.",
           "items": {
             "type": "string"
           },
@@ -2110,7 +2354,7 @@
           "type": "string"
         },
         "ports": {
-          "description": "Required. One or more port numbers (1-65535), on which the Gateway will receive traffic. The proxy binds to the specified ports. Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port. Gateways of type 'OPEN_MESH' listen on 0.0.0.0 and support multiple ports.",
+          "description": "Required. One or more port numbers (1-65535), on which the Gateway will receive traffic. The proxy binds to the specified ports. Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port. Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and support multiple ports.",
           "items": {
             "format": "int32",
             "type": "integer"
@@ -3085,6 +3329,24 @@
       },
       "type": "object"
     },
+    "ListServiceLbPoliciesResponse": {
+      "description": "Response returned by the ListServiceLbPolicies method.",
+      "id": "ListServiceLbPoliciesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "serviceLbPolicies": {
+          "description": "List of ServiceLbPolicy resources.",
+          "items": {
+            "$ref": "ServiceLbPolicy"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListTcpRoutesResponse": {
       "description": "Response returned by the ListTcpRoutes method.",
       "id": "ListTcpRoutesResponse",
@@ -3381,11 +3643,99 @@
           "description": "Required. The full Service Directory Service name of the format projects/*/locations/*/namespaces/*/services/*",
           "type": "string"
         },
+        "serviceId": {
+          "description": "Output only. The unique identifier of the Service Directory Service against which the Service Binding resource is validated. This is populated when the Service Binding resource is used in another resource (like Backend Service). This is of the UUID4 format.",
+          "readOnly": true,
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. The timestamp when the resource was updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceLbPolicy": {
+      "description": "ServiceLbPolicy holds global load balancing and traffic distribution configuration that can be applied to a BackendService.",
+      "id": "ServiceLbPolicy",
+      "properties": {
+        "autoCapacityDrain": {
+          "$ref": "ServiceLbPolicyAutoCapacityDrain",
+          "description": "Optional. Configuration to automatically move traffic away for unhealthy IG/NEG for the associated Backend Service."
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when this resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
+          "type": "string"
+        },
+        "failoverConfig": {
+          "$ref": "ServiceLbPolicyFailoverConfig",
+          "description": "Optional. Configuration related to health based failover."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Set of label tags associated with the ServiceLbPolicy resource.",
+          "type": "object"
+        },
+        "loadBalancingAlgorithm": {
+          "description": "Optional. The type of load balancing algorithm to be used. The default behavior is WATERFALL_BY_REGION.",
+          "enum": [
+            "LOAD_BALANCING_ALGORITHM_UNSPECIFIED",
+            "SPRAY_TO_WORLD",
+            "SPRAY_TO_REGION",
+            "WATERFALL_BY_REGION",
+            "WATERFALL_BY_ZONE"
+          ],
+          "enumDescriptions": [
+            "The type of the loadbalancing algorithm is unspecified.",
+            "Balance traffic across all backends across the world proportionally based on capacity.",
+            "Direct traffic to the nearest region with endpoints and capacity before spilling over to other regions and spread the traffic from each client to all the MIGs/NEGs in a region.",
+            "Direct traffic to the nearest region with endpoints and capacity before spilling over to other regions. All MIGs/NEGs within a region are evenly loaded but each client might not spread the traffic to all the MIGs/NEGs in the region.",
+            "Attempt to keep traffic in a single zone closest to the client, before spilling over to other zones."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the ServiceLbPolicy resource. It matches pattern `projects/{project}/locations/{location}/serviceLbPolicies/{service_lb_policy_name}`.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when this resource was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceLbPolicyAutoCapacityDrain": {
+      "description": "Option to specify if an unhealthy IG/NEG should be considered for global load balancing and traffic routing.",
+      "id": "ServiceLbPolicyAutoCapacityDrain",
+      "properties": {
+        "enable": {
+          "description": "Optional. If set to 'True', an unhealthy IG/NEG will be set as drained. - An IG/NEG is considered unhealthy if less than 25% of the instances/endpoints in the IG/NEG are healthy. - This option will never result in draining more than 50% of the configured IGs/NEGs for the Backend Service.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceLbPolicyFailoverConfig": {
+      "description": "Option to specify health based failover behavior. This is not related to Network load balancer FailoverPolicy.",
+      "id": "ServiceLbPolicyFailoverConfig",
+      "properties": {
+        "failoverHealthThreshold": {
+          "description": "Optional. The percentage threshold that a load balancer will begin to send traffic to failover backends. If the percentage of endpoints in a MIG/NEG is smaller than this value, traffic would be sent to failover backends if possible. This field should be set to a value between 1 and 99. The default value is 50 for Global external HTTP(S) load balancer (classic) and Proxyless service mesh, and 70 for others.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
