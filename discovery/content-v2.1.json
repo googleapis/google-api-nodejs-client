@@ -6271,7 +6271,7 @@
       }
     }
   },
-  "revision": "20230613",
+  "revision": "20230704",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -13396,6 +13396,13 @@
           "description": "URL for the canonical version of your item's landing page.",
           "type": "string"
         },
+        "certifications": {
+          "description": "Product [certification](https://support.google.com/merchants/answer/13528839), introduced for EU energy efficiency labeling compliance using the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database.",
+          "items": {
+            "$ref": "ProductCertification"
+          },
+          "type": "array"
+        },
         "channel": {
           "description": "Required. The item's channel (online or local). Acceptable values are: - \"`local`\" - \"`online`\" ",
           "type": "string"
@@ -13796,6 +13803,25 @@
         "taxAmount": {
           "$ref": "Price",
           "description": "Tax value."
+        }
+      },
+      "type": "object"
+    },
+    "ProductCertification": {
+      "description": "Product [certification](https://support.google.com/merchants/answer/13528839), introduced for EU energy efficiency labeling compliance using the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database.",
+      "id": "ProductCertification",
+      "properties": {
+        "certificationAuthority": {
+          "description": "The certification authority, for example \"European_Commission\". Maximum length is 2000 characters.",
+          "type": "string"
+        },
+        "certificationCode": {
+          "description": "The certification code, for eaxample \"123456\". Maximum length is 2000 characters.",
+          "type": "string"
+        },
+        "certificationName": {
+          "description": "The name of the certification, for example \"EPREL\". Maximum length is 2000 characters.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -16945,6 +16971,10 @@
         "localCutoffTime": {
           "$ref": "ServiceStoreConfigCutoffConfigLocalCutoffTime",
           "description": "Time in hours and minutes in the local timezone when local delivery ends."
+        },
+        "noDeliveryPostCutoff": {
+          "description": "Merchants can opt-out of showing n+1 day local delivery when they have a shipping service configured to n day local delivery. For example, if the shipping service defines same-day delivery, and it's past the cut-off, setting this field to `true` results in the calculated shipping service rate returning `NO_DELIVERY_POST_CUTOFF`. In the same example, setting this field to `false` results in the calculated shipping time being one day. This is only for local delivery.",
+          "type": "boolean"
         },
         "storeCloseOffsetHours": {
           "description": "Represents cutoff time as the number of hours before store closing. Mutually exclusive with other fields (hour and minute).",
