@@ -8211,7 +8211,7 @@
       }
     }
   },
-  "revision": "20230618",
+  "revision": "20230705",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -8606,12 +8606,16 @@
       "id": "GoogleCloudDialogflowCxV3ExportAgentResponse",
       "properties": {
         "agentContent": {
-          "description": "Uncompressed raw byte content for agent.",
+          "description": "Uncompressed raw byte content for agent. This field is populated if none of `agent_uri` and `git_destination` are specified in ExportAgentRequest.",
           "format": "byte",
           "type": "string"
         },
         "agentUri": {
           "description": "The URI to a file containing the exported agent. This field is populated if `agent_uri` is specified in ExportAgentRequest.",
+          "type": "string"
+        },
+        "commitSha": {
+          "description": "Commit SHA of the git push. This field is populated if `git_destination` are specified in ExportAgentRequest.",
           "type": "string"
         }
       },
@@ -9883,6 +9887,7 @@
           "type": "object"
         },
         "password": {
+          "deprecated": true,
           "description": "The password for HTTP Basic authentication.",
           "type": "string"
         },
@@ -9902,6 +9907,7 @@
           "type": "string"
         },
         "username": {
+          "deprecated": true,
           "description": "The user name for HTTP Basic authentication.",
           "type": "string"
         },
@@ -10532,12 +10538,16 @@
       "id": "GoogleCloudDialogflowCxV3beta1ExportAgentResponse",
       "properties": {
         "agentContent": {
-          "description": "Uncompressed raw byte content for agent.",
+          "description": "Uncompressed raw byte content for agent. This field is populated if none of `agent_uri` and `git_destination` are specified in ExportAgentRequest.",
           "format": "byte",
           "type": "string"
         },
         "agentUri": {
           "description": "The URI to a file containing the exported agent. This field is populated if `agent_uri` is specified in ExportAgentRequest.",
+          "type": "string"
+        },
+        "commitSha": {
+          "description": "Commit SHA of the git push. This field is populated if `git_destination` are specified in ExportAgentRequest.",
           "type": "string"
         }
       },
@@ -11809,6 +11819,7 @@
           "type": "object"
         },
         "password": {
+          "deprecated": true,
           "description": "The password for HTTP Basic authentication.",
           "type": "string"
         },
@@ -11828,6 +11839,7 @@
           "type": "string"
         },
         "username": {
+          "deprecated": true,
           "description": "The user name for HTTP Basic authentication.",
           "type": "string"
         },
@@ -12112,6 +12124,7 @@
           "type": "boolean"
         },
         "matchMode": {
+          "deprecated": true,
           "description": "Optional. Determines how intents are detected from user queries.",
           "enum": [
             "MATCH_MODE_UNSPECIFIED",
@@ -12143,6 +12156,12 @@
             "TIER_STANDARD",
             "TIER_ENTERPRISE",
             "TIER_ENTERPRISE_PLUS"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "Not specified. This value should never be used.",
@@ -12493,6 +12512,11 @@
       "properties": {
         "agent": {
           "description": "Required. ID of the Dialogflow agent environment to use. This project needs to either be the same project as the conversation or you need to grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API Service Agent` role in this project. - For ES agents, use format: `projects//locations//agent/environments/`. If environment is not specified, the default `draft` environment is used. Refer to [DetectIntentRequest](/dialogflow/docs/reference/rpc/google.cloud.dialogflow.v2#google.cloud.dialogflow.v2.DetectIntentRequest) for more details. - For CX agents, use format `projects//locations//agents//environments/`. If environment is not specified, the default `draft` environment is used.",
+          "type": "string"
+        },
+        "sessionTtl": {
+          "description": "Optional. Sets Dialogflow CX session life time. By default, a Dialogflow CX session remains active and its data is stored for 30 minutes after the last request is sent for the session. This value should be no longer than 1 day.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -13880,6 +13904,7 @@
       "id": "GoogleCloudDialogflowV2FulfillmentGenericWebService",
       "properties": {
         "isCloudFunction": {
+          "deprecated": true,
           "description": "Optional. Indicates if generic web service is created through Cloud Functions integration. Defaults to false. is_cloud_function is deprecated. Cloud functions can be configured by its uri as a regular web service now.",
           "type": "boolean"
         },
@@ -14500,6 +14525,7 @@
           "type": "string"
         },
         "phraseHints": {
+          "deprecated": true,
           "description": "A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details. This field is deprecated. Please use [speech_contexts]() instead. If you specify both [phrase_hints]() and [speech_contexts](), Dialogflow will treat the [phrase_hints]() as a single additional [SpeechContext]().",
           "items": {
             "type": "string"
@@ -15437,6 +15463,11 @@
             "TYPE_UNSPECIFIED",
             "EXAMPLE",
             "TEMPLATE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "Not specified. This value should never be used.",
@@ -16579,6 +16610,10 @@
       "description": "The request message for Conversations.SuggestConversationSummary.",
       "id": "GoogleCloudDialogflowV2SuggestConversationSummaryRequest",
       "properties": {
+        "assistQueryParams": {
+          "$ref": "GoogleCloudDialogflowV2AssistQueryParameters",
+          "description": "Parameters for a human assist query. Only used for POC/demo purpose."
+        },
         "contextSize": {
           "description": "Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 500 and at most 1000.",
           "format": "int32",
@@ -17587,6 +17622,7 @@
           "type": "boolean"
         },
         "mlEnabled": {
+          "deprecated": true,
           "description": "Optional. Indicates whether Machine Learning is enabled for the intent. Note: If `ml_enabled` setting is set to false, then this intent is not taken into account during inference in `ML ONLY` match mode. Also, auto-markup in the UI is turned off. DEPRECATED! Please use `ml_disabled` field instead. NOTE: If both `ml_enabled` and `ml_disabled` are either not set or false, then the default value is determined as follows: - Before April 15th, 2018 the default is: ml_enabled = false / ml_disabled = true. - After April 15th, 2018 the default is: ml_enabled = true / ml_disabled = false.",
           "type": "boolean"
         },
@@ -18687,6 +18723,11 @@
             "TYPE_UNSPECIFIED",
             "EXAMPLE",
             "TEMPLATE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "Not specified. This value should never be used.",
