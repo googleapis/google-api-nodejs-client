@@ -3077,7 +3077,7 @@
       }
     }
   },
-  "revision": "20230619",
+  "revision": "20230703",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
@@ -4348,7 +4348,8 @@
       "id": "WatchRequest",
       "properties": {
         "labelFilterAction": {
-          "description": "Filtering behavior of labelIds list specified.",
+          "deprecated": true,
+          "description": "Filtering behavior of `labelIds list` specified. This field is deprecated because it caused incorrect behavior in some cases; use `label_filter_behavior` instead.",
           "enum": [
             "include",
             "exclude"
@@ -4360,7 +4361,7 @@
           "type": "string"
         },
         "labelFilterBehavior": {
-          "description": "Filtering behavior of labelIds list specified. This field replaces label_filter_action; if set, label_filter_action is ignored.",
+          "description": "Filtering behavior of `labelIds list` specified. This field replaces `label_filter_action`; if set, `label_filter_action` is ignored.",
           "enum": [
             "include",
             "exclude"
