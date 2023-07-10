@@ -761,7 +761,7 @@
       }
     }
   },
-  "revision": "20230519",
+  "revision": "20230623",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
     "GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest": {
@@ -852,7 +852,7 @@
           "type": "string"
         },
         "startTime": {
-          "description": "Optional. The beginning of the transformation which resulted in this lineage event. For streaming scenarios, it should be the beginning of the period from which the lineage is being reported.",
+          "description": "Required. The beginning of the transformation which resulted in this lineage event. For streaming scenarios, it should be the beginning of the period from which the lineage is being reported.",
           "format": "google-datetime",
           "type": "string"
         }

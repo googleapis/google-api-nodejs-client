@@ -193,7 +193,7 @@ export namespace datalineage_v1 {
      */
     name?: string | null;
     /**
-     * Optional. The beginning of the transformation which resulted in this lineage event. For streaming scenarios, it should be the beginning of the period from which the lineage is being reported.
+     * Required. The beginning of the transformation which resulted in this lineage event. For streaming scenarios, it should be the beginning of the period from which the lineage is being reported.
      */
     startTime?: string | null;
   }
