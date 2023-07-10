@@ -930,11 +930,11 @@ export namespace gmail_v1 {
    */
   export interface Schema$WatchRequest {
     /**
-     * Filtering behavior of labelIds list specified.
+     * Filtering behavior of `labelIds list` specified. This field is deprecated because it caused incorrect behavior in some cases; use `label_filter_behavior` instead.
      */
     labelFilterAction?: string | null;
     /**
-     * Filtering behavior of labelIds list specified. This field replaces label_filter_action; if set, label_filter_action is ignored.
+     * Filtering behavior of `labelIds list` specified. This field replaces `label_filter_action`; if set, `label_filter_action` is ignored.
      */
     labelFilterBehavior?: string | null;
     /**
