@@ -1518,7 +1518,7 @@
       }
     }
   },
-  "revision": "20230609",
+  "revision": "20230627",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -1701,23 +1701,20 @@
       "id": "ConfigManagementConfigSync",
       "properties": {
         "allowVerticalScale": {
+          "deprecated": true,
           "description": "Set to true to allow the vertical scaling. Defaults to false which disallows vertical scaling. This field is deprecated.",
           "type": "boolean"
         },
         "enabled": {
-          "description": "Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false and Managed Config Sync is disabled, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. Setting this field to false while enabling Managed Config Sync is invalid. If omitted, ConfigSync resources will be managed if: * the git or oci field is present; or * Managed Config Sync is enabled (i.e., managed.enabled is true).",
+          "description": "Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of the git or oci field.",
           "type": "boolean"
         },
         "git": {
           "$ref": "ConfigManagementGitConfig",
           "description": "Git repo configuration for the cluster."
         },
-        "managed": {
-          "$ref": "ConfigManagementManaged",
-          "description": "Configuration for Managed Config Sync."
-        },
         "metricsGcpServiceAccountEmail": {
-          "description": "The Email of the GCP Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be binded to the GSA. This field is required when Managed Config Sync is enabled.",
+          "description": "The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be binded to the GSA. This field is required when automatic Feature management is enabled.",
           "type": "string"
         },
         "oci": {
@@ -1731,6 +1728,10 @@
         "sourceFormat": {
           "description": "Specifies whether the Config Sync Repo is in \"hierarchical\" or \"unstructured\" mode.",
           "type": "string"
+        },
+        "stopSyncing": {
+          "description": "Set to true to stop syncing configs for a single cluster when automatic Feature management is enabled. Default to false. The field will be ignored when automatic Feature management is disabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2009,7 +2010,7 @@
       "id": "ConfigManagementGitConfig",
       "properties": {
         "gcpServiceAccountEmail": {
-          "description": "The GCP Service Account Email used for auth when secret_type is gcpServiceAccount.",
+          "description": "The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.",
           "type": "string"
         },
         "httpsProxy": {
@@ -2162,21 +2163,6 @@
       },
       "type": "object"
     },
-    "ConfigManagementManaged": {
-      "description": "Configuration for Managed Config Sync.",
-      "id": "ConfigManagementManaged",
-      "properties": {
-        "enabled": {
-          "description": "Set to true to enable Managed Config Sync. Defaults to false which disables Managed Config Sync. Setting this field to true when configSync.enabled is false is invalid.",
-          "type": "boolean"
-        },
-        "stopSyncing": {
-          "description": "Set to true to stop syncing configs for a single cluster. Default to false. If set to true, Managed Config Sync will not upgrade Config Sync.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "ConfigManagementMembershipSpec": {
       "description": "**Anthos Config Management**: Configuration for a single cluster. Intended to parallel the ConfigManagement CR.",
       "id": "ConfigManagementMembershipSpec",
@@ -2192,6 +2178,20 @@
         "hierarchyController": {
           "$ref": "ConfigManagementHierarchyControllerConfig",
           "description": "Hierarchy Controller configuration for the cluster."
+        },
+        "management": {
+          "description": "Enables automatic Feature management.",
+          "enum": [
+            "MANAGEMENT_UNSPECIFIED",
+            "MANAGEMENT_AUTOMATIC",
+            "MANAGEMENT_MANUAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Google will manage the Feature for the cluster.",
+            "User will manually manage the Feature for the cluster."
+          ],
+          "type": "string"
         },
         "policyController": {
           "$ref": "ConfigManagementPolicyController",
@@ -2240,7 +2240,7 @@
       "id": "ConfigManagementOciConfig",
       "properties": {
         "gcpServiceAccountEmail": {
-          "description": "The GCP Service Account Email used for auth when secret_type is gcpServiceAccount.",
+          "description": "The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.",
           "type": "string"
         },
         "policyDir": {
@@ -2488,6 +2488,7 @@
           "type": "string"
         },
         "lastSync": {
+          "deprecated": true,
           "description": "Deprecated: use last_sync_time instead. Timestamp of when ACM last successfully synced the repo The time format is specified in https://golang.org/pkg/time/#Time.String",
           "type": "string"
         },
@@ -2776,16 +2777,114 @@
       },
       "type": "object"
     },
+    "FleetObservabilityFeatureError": {
+      "description": "All error details of the fleet observability feature.",
+      "id": "FleetObservabilityFeatureError",
+      "properties": {
+        "code": {
+          "description": "The code of the error.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A human-readable description of the current status.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FleetObservabilityFeatureSpec": {
       "description": "**Fleet Observability**: The Hub-wide input for the FleetObservability feature.",
       "id": "FleetObservabilityFeatureSpec",
-      "properties": {},
+      "properties": {
+        "loggingConfig": {
+          "$ref": "FleetObservabilityLoggingConfig",
+          "description": "Specified if fleet logging feature is enabled for the entire fleet. If UNSPECIFIED, fleet logging feature is disabled for the entire fleet."
+        }
+      },
       "type": "object"
     },
     "FleetObservabilityFeatureState": {
       "description": "**FleetObservability**: Hub-wide Feature for FleetObservability feature. state.",
       "id": "FleetObservabilityFeatureState",
-      "properties": {},
+      "properties": {
+        "logging": {
+          "$ref": "FleetObservabilityFleetObservabilityLoggingState",
+          "description": "The feature state of default logging."
+        },
+        "monitoring": {
+          "$ref": "FleetObservabilityFleetObservabilityMonitoringState",
+          "description": "The feature state of fleet monitoring."
+        }
+      },
+      "type": "object"
+    },
+    "FleetObservabilityFleetObservabilityBaseFeatureState": {
+      "description": "Base state for fleet observability feature.",
+      "id": "FleetObservabilityFleetObservabilityBaseFeatureState",
+      "properties": {
+        "code": {
+          "description": "The high-level, machine-readable status of this Feature.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "OK",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Unknown or not set.",
+            "The Feature is operating normally.",
+            "The Feature is encountering errors in the reconciliation. The Feature may need intervention to return to normal operation. See the description and any associated Feature-specific details for more information."
+          ],
+          "type": "string"
+        },
+        "errors": {
+          "description": "Errors after reconciling the monitoring and logging feature if the code is not OK.",
+          "items": {
+            "$ref": "FleetObservabilityFeatureError"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FleetObservabilityFleetObservabilityLoggingState": {
+      "description": "Feature state for logging feature.",
+      "id": "FleetObservabilityFleetObservabilityLoggingState",
+      "properties": {
+        "defaultLog": {
+          "$ref": "FleetObservabilityFleetObservabilityBaseFeatureState",
+          "description": "The base feature state of fleet default log."
+        },
+        "scopeLog": {
+          "$ref": "FleetObservabilityFleetObservabilityBaseFeatureState",
+          "description": "The base feature state of fleet scope log."
+        }
+      },
+      "type": "object"
+    },
+    "FleetObservabilityFleetObservabilityMonitoringState": {
+      "description": "Feature state for monitoring feature.",
+      "id": "FleetObservabilityFleetObservabilityMonitoringState",
+      "properties": {
+        "state": {
+          "$ref": "FleetObservabilityFleetObservabilityBaseFeatureState",
+          "description": "The base feature state of fleet monitoring feature."
+        }
+      },
+      "type": "object"
+    },
+    "FleetObservabilityLoggingConfig": {
+      "description": "LoggingConfig defines the configuration for different types of logs.",
+      "id": "FleetObservabilityLoggingConfig",
+      "properties": {
+        "defaultConfig": {
+          "$ref": "FleetObservabilityRoutingConfig",
+          "description": "Specified if applying the default routing config to logs not specified in other configs."
+        },
+        "fleetScopeLogsConfig": {
+          "$ref": "FleetObservabilityRoutingConfig",
+          "description": "Specified if applying the routing config to all logs for all fleet scopes."
+        }
+      },
       "type": "object"
     },
     "FleetObservabilityMembershipSpec": {
@@ -2798,6 +2897,27 @@
       "description": "**FleetObservability**: Membership-specific Feature state for fleetobservability.",
       "id": "FleetObservabilityMembershipState",
       "properties": {},
+      "type": "object"
+    },
+    "FleetObservabilityRoutingConfig": {
+      "description": "RoutingConfig configures the behaviour of fleet logging feature.",
+      "id": "FleetObservabilityRoutingConfig",
+      "properties": {
+        "mode": {
+          "description": "mode configures the logs routing mode.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "COPY",
+            "MOVE"
+          ],
+          "enumDescriptions": [
+            "If UNSPECIFIED, fleet logging feature is disabled.",
+            "logs will be copied to the destination project.",
+            "logs will be moved to the destination project."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GenerateConnectManifestResponse": {
@@ -3471,10 +3591,6 @@
           "$ref": "ConfigManagementMembershipSpec",
           "description": "Config Management-specific spec."
         },
-        "fleetInherited": {
-          "description": "True if value of `feature_spec` was inherited from a fleet-level default.",
-          "type": "boolean"
-        },
         "fleetobservability": {
           "$ref": "FleetObservabilityMembershipSpec",
           "description": "Fleet observability membership spec"
@@ -3486,6 +3602,10 @@
         "mesh": {
           "$ref": "ServiceMeshMembershipSpec",
           "description": "Anthos Service Mesh-specific spec"
+        },
+        "origin": {
+          "$ref": "Origin",
+          "description": "Whether this per-Membership spec was inherited from a fleet-level default. This field can be updated by users by either overriding a Membership config (updated to USER implicitly) or setting to FLEET explicitly."
         }
       },
       "type": "object"
@@ -3715,6 +3835,27 @@
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Origin": {
+      "description": "Origin defines where this MembershipFeatureSpec originated from.",
+      "id": "Origin",
+      "properties": {
+        "type": {
+          "description": "Type specifies which type of origin is set.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "FLEET",
+            "USER"
+          ],
+          "enumDescriptions": [
+            "Type is unknown or not set.",
+            "Per-Membership spec was inherited from the fleet-level default.",
+            "Per-Membership spec was inherited from a user specification."
+          ],
           "type": "string"
         }
       },
@@ -3953,6 +4094,7 @@
       "id": "ServiceMeshMembershipSpec",
       "properties": {
         "controlPlane": {
+          "deprecated": true,
           "description": "Deprecated: use `management` instead Enables automatic control plane management.",
           "enum": [
             "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED",
