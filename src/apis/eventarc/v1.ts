@@ -271,10 +271,6 @@ export namespace eventarc_v1 {
      */
     gke?: Schema$GKE;
     /**
-     * An HTTP endpoint destination described by an URI.
-     */
-    httpEndpoint?: Schema$HttpEndpoint;
-    /**
      * The resource name of the Workflow whose Executions are triggered by the events. The Workflow resource should be deployed in the same project as the trigger. Format: `projects/{project\}/locations/{location\}/workflows/{workflow\}`
      */
     workflow?: string | null;
@@ -463,19 +459,6 @@ export namespace eventarc_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
-  }
-  /**
-   * Represents a HTTP endpoint destination.
-   */
-  export interface Schema$HttpEndpoint {
-    /**
-     * Optional. Forwards DNS requests to the VPC specified by network config to resolve the HTTP endpoint. Default to false. If set to true, Eventarc will create a peering zone to the consumer VPC and forward DNS requests. See: https://cloud.google.com/dns/docs/zones/zones-overview#peering_zones Enable this if the URI uses an internal DNS name or a private Cloud DNS zone.
-     */
-    forwardDnsRequests?: boolean | null;
-    /**
-     * Required. The URI of the HTTP enpdoint. The value must be a RFC2396 URI string. Examples: `http://10.10.10.8:80/route`, `http://svc.us-central1.p.local:8080/`. Only HTTP and HTTPS protocols are supported. The host can be either a static IP addressable from the VPC specified by the network config, or an internal DNS hostname of the service resolvable via Cloud DNS.
-     */
-    uri?: string | null;
   }
   /**
    * The response message for the `ListChannelConnections` method.
