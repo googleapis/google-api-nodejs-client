@@ -152,6 +152,28 @@ export namespace androidpublisher_v3 {
   }
 
   /**
+   * Represents an Abi.
+   */
+  export interface Schema$Abi {
+    /**
+     * Alias for an abi.
+     */
+    alias?: string | null;
+  }
+  /**
+   * Targeting based on Abi.
+   */
+  export interface Schema$AbiTargeting {
+    /**
+     * Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits.
+     */
+    alternatives?: Schema$Abi[];
+    /**
+     * Value of an abi.
+     */
+    value?: Schema$Abi[];
+  }
+  /**
    * Represents a targeting rule of the form: User never had {scope\} before.
    */
   export interface Schema$AcquisitionTargetingRule {
@@ -195,6 +217,35 @@ export namespace androidpublisher_v3 {
     sha256?: string | null;
   }
   /**
+   * Description of the created apks.
+   */
+  export interface Schema$ApkDescription {
+    /**
+     * Set only for asset slices.
+     */
+    assetSliceMetadata?: Schema$SplitApkMetadata;
+    /**
+     * Set only for Instant split APKs.
+     */
+    instantApkMetadata?: Schema$SplitApkMetadata;
+    /**
+     * Path of the Apk, will be in the following format: .apk where DownloadId is the ID used to download the apk using GeneratedApks.Download API.
+     */
+    path?: string | null;
+    /**
+     * Set only for Split APKs.
+     */
+    splitApkMetadata?: Schema$SplitApkMetadata;
+    /**
+     * Set only for standalone APKs.
+     */
+    standaloneApkMetadata?: Schema$StandaloneApkMetadata;
+    /**
+     * Apk-level targeting.
+     */
+    targeting?: Schema$ApkTargeting;
+  }
+  /**
    * Request to create a new externally hosted APK.
    */
   export interface Schema$ApksAddExternallyHostedRequest {
@@ -213,6 +264,19 @@ export namespace androidpublisher_v3 {
     externallyHostedApk?: Schema$ExternallyHostedApk;
   }
   /**
+   * A set of apks representing a module.
+   */
+  export interface Schema$ApkSet {
+    /**
+     * Description of the generated apks.
+     */
+    apkDescription?: Schema$ApkDescription[];
+    /**
+     * Metadata about the module represented by this ApkSet
+     */
+    moduleMetadata?: Schema$ModuleMetadata;
+  }
+  /**
    * Response listing all APKs.
    */
   export interface Schema$ApksListResponse {
@@ -224,6 +288,35 @@ export namespace androidpublisher_v3 {
      * The kind of this response ("androidpublisher#apksListResponse").
      */
     kind?: string | null;
+  }
+  /**
+   * Represents a set of apk-level targetings.
+   */
+  export interface Schema$ApkTargeting {
+    /**
+     * The abi that the apk targets
+     */
+    abiTargeting?: Schema$AbiTargeting;
+    /**
+     * The language that the apk targets
+     */
+    languageTargeting?: Schema$LanguageTargeting;
+    /**
+     * Multi-api-level targeting.
+     */
+    multiAbiTargeting?: Schema$MultiAbiTargeting;
+    /**
+     * The screen density that this apk supports.
+     */
+    screenDensityTargeting?: Schema$ScreenDensityTargeting;
+    /**
+     * The sdk version that the apk targets
+     */
+    sdkVersionTargeting?: Schema$SdkVersionTargeting;
+    /**
+     * Texture-compression-format-level targeting
+     */
+    textureCompressionFormatTargeting?: Schema$TextureCompressionFormatTargeting;
   }
   /**
    * The app details. The resource for DetailsService.
@@ -263,6 +356,32 @@ export namespace androidpublisher_v3 {
    * Request message for ArchiveSubscription.
    */
   export interface Schema$ArchiveSubscriptionRequest {}
+  /**
+   * Metadata of an asset module.
+   */
+  export interface Schema$AssetModuleMetadata {
+    /**
+     * Indicates the delivery type for persistent install.
+     */
+    deliveryType?: string | null;
+    /**
+     * Module name.
+     */
+    name?: string | null;
+  }
+  /**
+   * Set of asset slices belonging to a single asset module.
+   */
+  export interface Schema$AssetSliceSet {
+    /**
+     * Asset slices.
+     */
+    apkDescription?: Schema$ApkDescription[];
+    /**
+     * Module level metadata.
+     */
+    assetModuleMetadata?: Schema$AssetModuleMetadata;
+  }
   /**
    * Represents a base plan that automatically renews at the end of its subscription period.
    */
@@ -532,6 +651,28 @@ export namespace androidpublisher_v3 {
    * Information specific to cancellations initiated by developers.
    */
   export interface Schema$DeveloperInitiatedCancellation {}
+  /**
+   * Represents a device feature.
+   */
+  export interface Schema$DeviceFeature {
+    /**
+     * Name of the feature.
+     */
+    featureName?: string | null;
+    /**
+     * The feature version specified by android:glEsVersion or android:version in in the AndroidManifest.
+     */
+    featureVersion?: number | null;
+  }
+  /**
+   * Targeting for a device feature.
+   */
+  export interface Schema$DeviceFeatureTargeting {
+    /**
+     * Feature of the device.
+     */
+    requiredFeature?: Schema$DeviceFeature;
+  }
   /**
    * A group of devices. A group is defined by a set of device selectors. A device belongs to the group if it matches any selector (logical OR).
    */
@@ -925,6 +1066,10 @@ export namespace androidpublisher_v3 {
      * Generated universal APK, signed with a key corresponding to certificate_sha256_hash. This field is not set if no universal APK was generated for this signing key.
      */
     generatedUniversalApk?: Schema$GeneratedUniversalApk;
+    /**
+     * Contains targeting information about the generated apks.
+     */
+    targetingInfo?: Schema$TargetingInfo;
   }
   /**
    * Download metadata for an asset pack slice.
@@ -1189,6 +1334,19 @@ export namespace androidpublisher_v3 {
     introductoryPricePeriod?: string | null;
   }
   /**
+   * Targeting based on language.
+   */
+  export interface Schema$LanguageTargeting {
+    /**
+     * Alternative languages.
+     */
+    alternatives?: string[] | null;
+    /**
+     * ISO-639: 2 or 3 letter language code.
+     */
+    value?: string[] | null;
+  }
+  /**
    * Response listing existing device tier configs.
    */
   export interface Schema$ListDeviceTierConfigsResponse {
@@ -1324,6 +1482,48 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$MigrateBasePlanPricesResponse {}
   /**
+   * Metadata of a module.
+   */
+  export interface Schema$ModuleMetadata {
+    /**
+     * Indicates the delivery type (e.g. on-demand) of the module.
+     */
+    deliveryType?: string | null;
+    /**
+     * Names of the modules that this module directly depends on. Each module implicitly depends on the base module.
+     */
+    dependencies?: string[] | null;
+    /**
+     * Indicates the type of this feature module.
+     */
+    moduleType?: string | null;
+    /**
+     * Module name.
+     */
+    name?: string | null;
+    /**
+     * The targeting that makes a conditional module installed. Relevant only for Split APKs.
+     */
+    targeting?: Schema$ModuleTargeting;
+  }
+  /**
+   * Targeting on the module level.
+   */
+  export interface Schema$ModuleTargeting {
+    /**
+     * Targeting for device features.
+     */
+    deviceFeatureTargeting?: Schema$DeviceFeatureTargeting[];
+    /**
+     * The sdk version that the variant targets
+     */
+    sdkVersionTargeting?: Schema$SdkVersionTargeting;
+    /**
+     * Countries-level targeting
+     */
+    userCountriesTargeting?: Schema$UserCountriesTargeting;
+  }
+  /**
    * Represents an amount of money with its currency type.
    */
   export interface Schema$Money {
@@ -1339,6 +1539,28 @@ export namespace androidpublisher_v3 {
      * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+  /**
+   * Represents a list of apis.
+   */
+  export interface Schema$MultiAbi {
+    /**
+     * A list of targeted ABIs, as represented by the Android Platform
+     */
+    abi?: Schema$Abi[];
+  }
+  /**
+   * Targeting based on multiple abis.
+   */
+  export interface Schema$MultiAbiTargeting {
+    /**
+     * Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits.
+     */
+    alternatives?: Schema$MultiAbi[];
+    /**
+     * Value of a multi abi.
+     */
+    value?: Schema$MultiAbi[];
   }
   /**
    * Offer details information related to a purchase line item.
@@ -1767,6 +1989,93 @@ export namespace androidpublisher_v3 {
      * The result of replying/updating a reply to review.
      */
     result?: Schema$ReviewReplyResult;
+  }
+  /**
+   * Represents a screen density.
+   */
+  export interface Schema$ScreenDensity {
+    /**
+     * Alias for a screen density.
+     */
+    densityAlias?: string | null;
+    /**
+     * Value for density dpi.
+     */
+    densityDpi?: number | null;
+  }
+  /**
+   * Targeting based on screen density.
+   */
+  export interface Schema$ScreenDensityTargeting {
+    /**
+     * Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits.
+     */
+    alternatives?: Schema$ScreenDensity[];
+    /**
+     * Value of a screen density.
+     */
+    value?: Schema$ScreenDensity[];
+  }
+  /**
+   * Represents an sdk version.
+   */
+  export interface Schema$SdkVersion {
+    /**
+     * Inclusive minimum value of an sdk version.
+     */
+    min?: number | null;
+  }
+  /**
+   * Targeting based on sdk version.
+   */
+  export interface Schema$SdkVersionTargeting {
+    /**
+     * Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits.
+     */
+    alternatives?: Schema$SdkVersion[];
+    /**
+     * Value of an sdk version.
+     */
+    value?: Schema$SdkVersion[];
+  }
+  /**
+   * Holds data specific to Split APKs.
+   */
+  export interface Schema$SplitApkMetadata {
+    /**
+     * Indicates whether this APK is the main split of the module.
+     */
+    isMasterSplit?: boolean | null;
+    /**
+     * Id of the split.
+     */
+    splitId?: string | null;
+  }
+  /**
+   * Variant is a group of APKs that covers a part of the device configuration space. APKs from multiple variants are never combined on one device.
+   */
+  export interface Schema$SplitApkVariant {
+    /**
+     * Set of APKs, one set per module.
+     */
+    apkSet?: Schema$ApkSet[];
+    /**
+     * Variant-level targeting.
+     */
+    targeting?: Schema$VariantTargeting;
+    /**
+     * Number of the variant, starting at 0 (unless overridden). A device will receive APKs from the first variant that matches the device configuration, with higher variant numbers having priority over lower variant numbers.
+     */
+    variantNumber?: number | null;
+  }
+  /**
+   * Holds data specific to Standalone APKs.
+   */
+  export interface Schema$StandaloneApkMetadata {
+    /**
+     * Names of the modules fused in this standalone APK.
+     */
+    fusedModuleName?: string[] | null;
   }
   /**
    * Information associated with purchases made with 'Subscribe with Google'.
@@ -2254,6 +2563,23 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$SystemInitiatedCancellation {}
   /**
+   * Targeting information about the generated apks.
+   */
+  export interface Schema$TargetingInfo {
+    /**
+     * List of created asset slices.
+     */
+    assetSliceSet?: Schema$AssetSliceSet[];
+    /**
+     * The package name of this app.
+     */
+    packageName?: string | null;
+    /**
+     * List of the created variants.
+     */
+    variant?: Schema$SplitApkVariant[];
+  }
+  /**
    * Defines the scope of subscriptions which a targeting rule can match to target offers to users based on past or current entitlement.
    */
   export interface Schema$TargetingRuleScope {
@@ -2275,6 +2601,28 @@ export namespace androidpublisher_v3 {
    * Whether this subscription purchase is a test purchase.
    */
   export interface Schema$TestPurchase {}
+  /**
+   * Represents texture compression format.
+   */
+  export interface Schema$TextureCompressionFormat {
+    /**
+     * Alias for texture compression format.
+     */
+    alias?: string | null;
+  }
+  /**
+   * Targeting by a texture compression format.
+   */
+  export interface Schema$TextureCompressionFormatTargeting {
+    /**
+     * List of alternative TCFs (TCFs targeted by the sibling splits).
+     */
+    alternatives?: Schema$TextureCompressionFormat[];
+    /**
+     * The list of targeted TCFs. Should not be empty.
+     */
+    value?: Schema$TextureCompressionFormat[];
+  }
   /**
    * A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970.
    */
@@ -2487,6 +2835,19 @@ export namespace androidpublisher_v3 {
     thumbsUpCount?: number | null;
   }
   /**
+   * Describes an inclusive/exclusive list of country codes that module targets.
+   */
+  export interface Schema$UserCountriesTargeting {
+    /**
+     * List of country codes in the two-letter CLDR territory format.
+     */
+    countryCodes?: string[] | null;
+    /**
+     * Indicates if the list above is exclusive.
+     */
+    exclude?: boolean | null;
+  }
+  /**
    * A set of user countries. A country set determines what variation of app content gets served to a specific location.
    */
   export interface Schema$UserCountrySet {
@@ -2537,6 +2898,31 @@ export namespace androidpublisher_v3 {
      * Output only. The ID of a previously created system APK variant.
      */
     variantId?: number | null;
+  }
+  /**
+   * Targeting on the level of variants.
+   */
+  export interface Schema$VariantTargeting {
+    /**
+     * The abi that the variant targets
+     */
+    abiTargeting?: Schema$AbiTargeting;
+    /**
+     * Multi-api-level targeting
+     */
+    multiAbiTargeting?: Schema$MultiAbiTargeting;
+    /**
+     * The screen densities that this variant supports
+     */
+    screenDensityTargeting?: Schema$ScreenDensityTargeting;
+    /**
+     * The sdk version that the variant targets
+     */
+    sdkVersionTargeting?: Schema$SdkVersionTargeting;
+    /**
+     * Texture-compression-format-level targeting
+     */
+    textureCompressionFormatTargeting?: Schema$TextureCompressionFormatTargeting;
   }
   /**
    * A VoidedPurchase resource indicates a purchase that was either canceled/refunded/charged-back.
