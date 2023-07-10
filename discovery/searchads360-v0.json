@@ -106,6 +106,23 @@
   "protocol": "rest",
   "resources": {
     "customers": {
+      "methods": {
+        "listAccessibleCustomers": {
+          "description": "Returns resource names of customers directly accessible by the user authenticating the call. List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QuotaError]() [RequestError]()",
+          "flatPath": "v0/customers:listAccessibleCustomers",
+          "httpMethod": "GET",
+          "id": "searchads360.customers.listAccessibleCustomers",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v0/customers:listAccessibleCustomers",
+          "response": {
+            "$ref": "GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/doubleclicksearch"
+          ]
+        }
+      },
       "resources": {
         "customColumns": {
           "methods": {
@@ -243,7 +260,7 @@
       }
     }
   },
-  "revision": "20230504",
+  "revision": "20230625",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AgeRangeInfo": {
@@ -959,6 +976,33 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Common__MobileAppAsset": {
+      "description": "An asset representing a mobile app.",
+      "id": "GoogleAdsSearchads360V0Common__MobileAppAsset",
+      "properties": {
+        "appId": {
+          "description": "Required. A string that uniquely identifies a mobile application. It should just contain the platform native id, like \"com.android.ebay\" for Android or \"12345689\" for iOS.",
+          "type": "string"
+        },
+        "appStore": {
+          "description": "Required. The application store that distributes this specific app.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "APPLE_APP_STORE",
+            "GOOGLE_APP_STORE"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Mobile app vendor for Apple app store.",
+            "Mobile app vendor for Google app store."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Common__PercentCpc": {
       "description": "A bidding strategy where bids are a fraction of the advertised price for some good or service.",
       "id": "GoogleAdsSearchads360V0Common__PercentCpc",
@@ -1108,6 +1152,30 @@
       "description": "Segment only fields.",
       "id": "GoogleAdsSearchads360V0Common__Segments",
       "properties": {
+        "adNetworkType": {
+          "description": "Ad network type.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "SEARCH",
+            "SEARCH_PARTNERS",
+            "CONTENT",
+            "YOUTUBE_SEARCH",
+            "YOUTUBE_WATCH",
+            "MIXED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The value is unknown in this version.",
+            "Google search.",
+            "Search partners.",
+            "Display Network.",
+            "YouTube Search.",
+            "YouTube Videos",
+            "Cross-network."
+          ],
+          "type": "string"
+        },
         "conversionAction": {
           "description": "Resource name of the conversion action.",
           "type": "string"
@@ -1642,6 +1710,22 @@
             "The developer specified does not have access to the service.",
             "The customer (or login customer) isn't allowed in Search Ads 360 API. It belongs to another ads system.",
             "The developer does not have access to the metrics queried."
+          ],
+          "type": "string"
+        },
+        "customColumnError": {
+          "description": "The reasons for the custom column error",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "CUSTOM_COLUMN_NOT_FOUND",
+            "CUSTOM_COLUMN_NOT_AVAILABLE"
+          ],
+          "enumDescriptions": [
+            "Enum unspecified.",
+            "The received error code is not known in this version.",
+            "The custom column has not been found.",
+            "The custom column is not available."
           ],
           "type": "string"
         },
@@ -3133,6 +3217,176 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Resources__Asset": {
+      "description": "Asset is a part of an ad which can be shared across multiple ads. It can be an image (ImageAsset), a video (YoutubeVideoAsset), etc. Assets are immutable and cannot be removed. To stop an asset from serving, remove the asset from the entity that is using it.",
+      "id": "GoogleAdsSearchads360V0Resources__Asset",
+      "properties": {
+        "creationTime": {
+          "description": "Output only. The timestamp when this asset was created. The timestamp is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss\" format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "engineStatus": {
+          "description": "Output only. The Engine Status for an asset.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "SERVING",
+            "SERVING_LIMITED",
+            "DISAPPROVED",
+            "DISABLED",
+            "REMOVED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "The asset is active.",
+            "The asset is active limited.",
+            "The asset is disapproved (not eligible).",
+            "The asset is inactive (pending).",
+            "The asset has been removed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "finalUrls": {
+          "description": "A list of possible final URLs after all cross domain redirects.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Output only. The ID of the asset.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastModifiedTime": {
+          "description": "Output only. The datetime when this asset was last modified. The datetime is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss.ssssss\" format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "mobileAppAsset": {
+          "$ref": "GoogleAdsSearchads360V0Common__MobileAppAsset",
+          "description": "A mobile app asset."
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the asset. Asset resource names have the form: `customers/{customer_id}/assets/{asset_id}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. The status of the asset.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "REMOVED",
+            "ARCHIVED",
+            "PENDING_SYSTEM_GENERATED"
+          ],
+          "enumDescriptions": [
+            "The status has not been specified.",
+            "The received value is not known in this version. This is a response-only value.",
+            "The asset is enabled.",
+            "The asset is removed.",
+            "The asset is archived.",
+            "The asset is system generated pending user review."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "trackingUrlTemplate": {
+          "description": "URL template for constructing a tracking URL.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. Type of the asset.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "YOUTUBE_VIDEO",
+            "MEDIA_BUNDLE",
+            "IMAGE",
+            "TEXT",
+            "LEAD_FORM",
+            "BOOK_ON_GOOGLE",
+            "PROMOTION",
+            "CALLOUT",
+            "STRUCTURED_SNIPPET",
+            "SITELINK",
+            "PAGE_FEED",
+            "DYNAMIC_EDUCATION",
+            "MOBILE_APP",
+            "HOTEL_CALLOUT",
+            "CALL",
+            "PRICE",
+            "CALL_TO_ACTION",
+            "DYNAMIC_REAL_ESTATE",
+            "DYNAMIC_CUSTOM",
+            "DYNAMIC_HOTELS_AND_RENTALS",
+            "DYNAMIC_FLIGHTS",
+            "DISCOVERY_CAROUSEL_CARD",
+            "DYNAMIC_TRAVEL",
+            "DYNAMIC_LOCAL",
+            "DYNAMIC_JOBS",
+            "LOCATION",
+            "HOTEL_PROPERTY"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "YouTube video asset.",
+            "Media bundle asset.",
+            "Image asset.",
+            "Text asset.",
+            "Lead form asset.",
+            "Book on Google asset.",
+            "Promotion asset.",
+            "Callout asset.",
+            "Structured Snippet asset.",
+            "Sitelink asset.",
+            "Page Feed asset.",
+            "Dynamic Education asset.",
+            "Mobile app asset.",
+            "Hotel callout asset.",
+            "Call asset.",
+            "Price asset.",
+            "Call to action asset.",
+            "Dynamic real estate asset.",
+            "Dynamic custom asset.",
+            "Dynamic hotels and rentals asset.",
+            "Dynamic flights asset.",
+            "Discovery Carousel Card asset.",
+            "Dynamic travel asset.",
+            "Dynamic local asset.",
+            "Dynamic jobs asset.",
+            "Location asset.",
+            "Hotel property asset."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AssetSet": {
+      "description": "An asset set representing a collection of assets. Use AssetSetAsset to link an asset to the asset set.",
+      "id": "GoogleAdsSearchads360V0Resources__AssetSet",
+      "properties": {
+        "id": {
+          "description": "Output only. The ID of the asset set.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the asset set. Asset set resource names have the form: `customers/{customer_id}/assetSets/{asset_set_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Resources__BiddingStrategy": {
       "description": "A bidding strategy.",
       "id": "GoogleAdsSearchads360V0Resources__BiddingStrategy",
@@ -4194,7 +4448,11 @@
             "SMART_CAMPAIGN_MAP_DIRECTIONS",
             "SMART_CAMPAIGN_TRACKED_CALLS",
             "STORE_VISITS",
-            "WEBPAGE_CODELESS"
+            "WEBPAGE_CODELESS",
+            "UNIVERSAL_ANALYTICS_GOAL",
+            "UNIVERSAL_ANALYTICS_TRANSACTION",
+            "GOOGLE_ANALYTICS_4_CUSTOM",
+            "GOOGLE_ANALYTICS_4_PURCHASE"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -4234,7 +4492,11 @@
             "The user requests directions to a business location within Google Maps. Smart campaign only. Read only.",
             "Call conversions that occur on Smart campaign Ads with call tracking setup, using Smart campaign custom criteria. Read only.",
             "Conversions that occur when a user visits an advertiser's retail store. Read only.",
-            "Conversions created from website events (such as form submissions or page loads), that don't use individually coded event snippets."
+            "Conversions created from website events (such as form submissions or page loads), that don't use individually coded event snippets.",
+            "Conversions that come from linked Universal Analytics goals.",
+            "Conversions that come from linked Universal Analytics transactions.",
+            "Conversions that come from linked Google Analytics 4 custom event conversions.",
+            "Conversions that come from linked Google Analytics 4 purchase conversions."
           ],
           "type": "string"
         },
@@ -5000,6 +5262,20 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponse": {
+      "description": "Response message for CustomerService.ListAccessibleCustomers.",
+      "id": "GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponse",
+      "properties": {
+        "resourceNames": {
+          "description": "Resource name of customers directly accessible by the user authenticating the call.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Services__ListCustomColumnsResponse": {
       "description": "Response message for fetching all custom columns associated with a customer.",
       "id": "GoogleAdsSearchads360V0Services__ListCustomColumnsResponse",
@@ -5053,6 +5329,14 @@
         "ageRangeView": {
           "$ref": "GoogleAdsSearchads360V0Resources__AgeRangeView",
           "description": "The age range view referenced in the query."
+        },
+        "asset": {
+          "$ref": "GoogleAdsSearchads360V0Resources__Asset",
+          "description": "The asset referenced in the query."
+        },
+        "assetSet": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AssetSet",
+          "description": "The asset set referenced in the query."
         },
         "biddingStrategy": {
           "$ref": "GoogleAdsSearchads360V0Resources__BiddingStrategy",
