@@ -1187,7 +1187,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$SingleTargetDataset {
     /**
-     * The dataset ID of the target dataset.
+     * The dataset ID of the target dataset. DatasetIds allowed characters: https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets#datasetreference.
      */
     datasetId?: string | null;
   }
