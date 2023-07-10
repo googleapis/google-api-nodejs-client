@@ -1,5 +1,25 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playdeveloperreporting-v3.0.0...playdeveloperreporting-v4.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **playdeveloperreporting:** update the API ([1cf7012](https://github.com/googleapis/google-api-nodejs-client/commit/1cf70126213aa14cc03fb3179adea8be47bff8fe))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **playdeveloperreporting:** update the API ([ec6cf33](https://github.com/googleapis/google-api-nodejs-client/commit/ec6cf335bba5e8936934704efc0487d9c3f72612))
+* **playdeveloperreporting:** update the API ([b765398](https://github.com/googleapis/google-api-nodejs-client/commit/b76539809ba428f310b17315070fb69e77da8afe))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playdeveloperreporting-v2.0.1...playdeveloperreporting-v3.0.0) (2023-06-22)
 
 
