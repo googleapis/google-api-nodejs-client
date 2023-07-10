@@ -2,7 +2,7 @@
 
 # genomics
 
-> Uploads, processes, queries, and searches Genomics data in the cloud.
+> 
 
 ## Installation
 
