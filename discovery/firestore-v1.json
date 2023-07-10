@@ -122,7 +122,7 @@
               ],
               "parameters": {
                 "databaseId": {
-                  "description": "Required. The ID to use for the database, which will become the final component of the database's resource name. The value must be set to \"(default)\".",
+                  "description": "Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. \"(default)\" database id is also valid.",
                   "location": "query",
                   "type": "string"
                 },
@@ -540,7 +540,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists the field configuration and metadata for this database. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false` .",
+                      "description": "Lists the field configuration and metadata for this database. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false or `ttlConfig:*`.",
                       "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/collectionGroups/{collectionGroupsId}/fields",
                       "httpMethod": "GET",
                       "id": "firestore.projects.databases.collectionGroups.fields.list",
@@ -1682,7 +1682,7 @@
       }
     }
   },
-  "revision": "20230605",
+  "revision": "20230629",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2154,7 +2154,7 @@
       "id": "ExistenceFilter",
       "properties": {
         "count": {
-          "description": "The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target.",
+          "description": "The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target. The client can use the `unchanged_names` bloom filter to assist with this determination.",
           "format": "int32",
           "type": "integer"
         },
@@ -3106,6 +3106,55 @@
       },
       "type": "object"
     },
+    "GoogleFirestoreAdminV1RestoreDatabaseMetadata": {
+      "description": "Metadata for the long-running operation from the RestoreDatabase request.",
+      "id": "GoogleFirestoreAdminV1RestoreDatabaseMetadata",
+      "properties": {
+        "backup": {
+          "description": "The name of the backup restoring from.",
+          "type": "string"
+        },
+        "database": {
+          "description": "The name of the database being restored to.",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the restore finished, unset for ongoing restores.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "operationState": {
+          "description": "The operation state of the restore.",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "INITIALIZING",
+            "PROCESSING",
+            "CANCELLING",
+            "FINALIZING",
+            "SUCCESSFUL",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Request is being prepared for processing.",
+            "Request is actively being processed.",
+            "Request is in the process of being cancelled after user called google.longrunning.Operations.CancelOperation on the operation.",
+            "Request has been processed and is in its finalization stage.",
+            "Request has completed successfully.",
+            "Request has finished being processed, but encountered an error.",
+            "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
+          ],
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time the restore was started.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirestoreAdminV1RestoreDatabaseRequest": {
       "description": "The request message for FirestoreAdmin.RestoreDatabase.",
       "id": "GoogleFirestoreAdminV1RestoreDatabaseRequest",
@@ -3608,7 +3657,7 @@
       "type": "object"
     },
     "ReadWrite": {
-      "description": "Options for a transaction that can be used to read and write documents.",
+      "description": "Options for a transaction that can be used to read and write documents. Firestore does not allow 3rd party auth requests to create read-write. transactions.",
       "id": "ReadWrite",
       "properties": {
         "retryTransaction": {

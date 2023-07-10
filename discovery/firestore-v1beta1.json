@@ -950,7 +950,7 @@
       }
     }
   },
-  "revision": "20230605",
+  "revision": "20230629",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1422,7 +1422,7 @@
       "id": "ExistenceFilter",
       "properties": {
         "count": {
-          "description": "The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target.",
+          "description": "The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target. The client can use the `unchanged_names` bloom filter to assist with this determination.",
           "format": "int32",
           "type": "integer"
         },
@@ -1552,6 +1552,55 @@
         "unaryFilter": {
           "$ref": "UnaryFilter",
           "description": "A filter that takes exactly one argument."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1RestoreDatabaseMetadata": {
+      "description": "Metadata for the long-running operation from the RestoreDatabase request.",
+      "id": "GoogleFirestoreAdminV1RestoreDatabaseMetadata",
+      "properties": {
+        "backup": {
+          "description": "The name of the backup restoring from.",
+          "type": "string"
+        },
+        "database": {
+          "description": "The name of the database being restored to.",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the restore finished, unset for ongoing restores.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "operationState": {
+          "description": "The operation state of the restore.",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "INITIALIZING",
+            "PROCESSING",
+            "CANCELLING",
+            "FINALIZING",
+            "SUCCESSFUL",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Request is being prepared for processing.",
+            "Request is actively being processed.",
+            "Request is in the process of being cancelled after user called google.longrunning.Operations.CancelOperation on the operation.",
+            "Request has been processed and is in its finalization stage.",
+            "Request has completed successfully.",
+            "Request has finished being processed, but encountered an error.",
+            "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
+          ],
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time the restore was started.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2180,7 +2229,7 @@
       "type": "object"
     },
     "ReadWrite": {
-      "description": "Options for a transaction that can be used to read and write documents.",
+      "description": "Options for a transaction that can be used to read and write documents. Firestore does not allow 3rd party auth requests to create read-write. transactions.",
       "id": "ReadWrite",
       "properties": {
         "retryTransaction": {

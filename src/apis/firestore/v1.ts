@@ -457,7 +457,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$ExistenceFilter {
     /**
-     * The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target.
+     * The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target. The client can use the `unchanged_names` bloom filter to assist with this determination.
      */
     count?: number | null;
     /**
@@ -1027,6 +1027,31 @@ export namespace firestore_v1 {
     estimatedWork?: string | null;
   }
   /**
+   * Metadata for the long-running operation from the RestoreDatabase request.
+   */
+  export interface Schema$GoogleFirestoreAdminV1RestoreDatabaseMetadata {
+    /**
+     * The name of the backup restoring from.
+     */
+    backup?: string | null;
+    /**
+     * The name of the database being restored to.
+     */
+    database?: string | null;
+    /**
+     * The time the restore finished, unset for ongoing restores.
+     */
+    endTime?: string | null;
+    /**
+     * The operation state of the restore.
+     */
+    operationState?: string | null;
+    /**
+     * The time the restore was started.
+     */
+    startTime?: string | null;
+  }
+  /**
    * The request message for FirestoreAdmin.RestoreDatabase.
    */
   export interface Schema$GoogleFirestoreAdminV1RestoreDatabaseRequest {
@@ -1370,7 +1395,7 @@ export namespace firestore_v1 {
     readTime?: string | null;
   }
   /**
-   * Options for a transaction that can be used to read and write documents.
+   * Options for a transaction that can be used to read and write documents. Firestore does not allow 3rd party auth requests to create read-write. transactions.
    */
   export interface Schema$ReadWrite {
     /**
@@ -1817,7 +1842,7 @@ export namespace firestore_v1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.create({
-     *     // Required. The ID to use for the database, which will become the final component of the database's resource name. The value must be set to "(default)".
+     *     // Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database id is also valid.
      *     databaseId: 'placeholder-value',
      *     // Required. A parent name of the form `projects/{project_id\}`
      *     parent: 'projects/my-project',
@@ -3017,7 +3042,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Databases$Create
     extends StandardParameters {
     /**
-     * Required. The ID to use for the database, which will become the final component of the database's resource name. The value must be set to "(default)".
+     * Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database id is also valid.
      */
     databaseId?: string;
     /**
@@ -4064,7 +4089,7 @@ export namespace firestore_v1 {
     }
 
     /**
-     * Lists the field configuration and metadata for this database. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false` .
+     * Lists the field configuration and metadata for this database. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false or `ttlConfig:*`.
      * @example
      * ```js
      * // Before running the sample:
