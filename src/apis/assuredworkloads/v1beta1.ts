@@ -257,10 +257,6 @@ export namespace assuredworkloads_v1beta1 {
      */
     nonCompliantOrgPolicy?: string | null;
     /**
-     * Output only. Immutable. The org-policy-constraint that was incorrectly changed, which resulted in this violation.
-     */
-    orgPolicyConstraint?: string | null;
-    /**
      * Output only. Compliance violation remediation
      */
     remediation?: Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediation;
@@ -2450,7 +2446,6 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "exceptionAuditLogLink": "my_exceptionAuditLogLink",
      *   //   "name": "my_name",
      *   //   "nonCompliantOrgPolicy": "my_nonCompliantOrgPolicy",
-     *   //   "orgPolicyConstraint": "my_orgPolicyConstraint",
      *   //   "remediation": {},
      *   //   "resolveTime": "my_resolveTime",
      *   //   "state": "my_state",
