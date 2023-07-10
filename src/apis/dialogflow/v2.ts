@@ -452,13 +452,17 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportAgentResponse {
     /**
-     * Uncompressed raw byte content for agent.
+     * Uncompressed raw byte content for agent. This field is populated if none of `agent_uri` and `git_destination` are specified in ExportAgentRequest.
      */
     agentContent?: string | null;
     /**
      * The URI to a file containing the exported agent. This field is populated if `agent_uri` is specified in ExportAgentRequest.
      */
     agentUri?: string | null;
+    /**
+     * Commit SHA of the git push. This field is populated if `git_destination` are specified in ExportAgentRequest.
+     */
+    commitSha?: string | null;
   }
   /**
    * The response message for Flows.ExportFlow.
@@ -1843,13 +1847,17 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3ExportAgentResponse {
     /**
-     * Uncompressed raw byte content for agent.
+     * Uncompressed raw byte content for agent. This field is populated if none of `agent_uri` and `git_destination` are specified in ExportAgentRequest.
      */
     agentContent?: string | null;
     /**
      * The URI to a file containing the exported agent. This field is populated if `agent_uri` is specified in ExportAgentRequest.
      */
     agentUri?: string | null;
+    /**
+     * Commit SHA of the git push. This field is populated if `git_destination` are specified in ExportAgentRequest.
+     */
+    commitSha?: string | null;
   }
   /**
    * The response message for Flows.ExportFlow.
@@ -3256,6 +3264,10 @@ export namespace dialogflow_v2 {
      * Required. ID of the Dialogflow agent environment to use. This project needs to either be the same project as the conversation or you need to grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API Service Agent` role in this project. - For ES agents, use format: `projects//locations//agent/environments/`. If environment is not specified, the default `draft` environment is used. Refer to [DetectIntentRequest](/dialogflow/docs/reference/rpc/google.cloud.dialogflow.v2#google.cloud.dialogflow.v2.DetectIntentRequest) for more details. - For CX agents, use format `projects//locations//agents//environments/`. If environment is not specified, the default `draft` environment is used.
      */
     agent?: string | null;
+    /**
+     * Optional. Sets Dialogflow CX session life time. By default, a Dialogflow CX session remains active and its data is stored for 30 minutes after the last request is sent for the session. This value should be no longer than 1 day.
+     */
+    sessionTtl?: string | null;
   }
   /**
    * Represents a response from an automated agent.
@@ -7707,6 +7719,10 @@ export namespace dialogflow_v2 {
    * The request message for Conversations.SuggestConversationSummary.
    */
   export interface Schema$GoogleCloudDialogflowV2SuggestConversationSummaryRequest {
+    /**
+     * Parameters for a human assist query. Only used for POC/demo purpose.
+     */
+    assistQueryParams?: Schema$GoogleCloudDialogflowV2AssistQueryParameters;
     /**
      * Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 500 and at most 1000.
      */
@@ -26191,6 +26207,7 @@ export namespace dialogflow_v2 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }
@@ -45469,6 +45486,7 @@ export namespace dialogflow_v2 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }

@@ -183,6 +183,10 @@ export namespace dialogflow_v3 {
      */
     enableStackdriverLogging?: boolean | null;
     /**
+     * Git integration settings for this agent.
+     */
+    gitIntegrationSettings?: Schema$GoogleCloudDialogflowCxV3AgentGitIntegrationSettings;
+    /**
      * Indicates whether the agent is locked for changes. If the agent is locked, modifications to the agent will be rejected except for RestoreAgent.
      */
     locked?: boolean | null;
@@ -214,6 +218,40 @@ export namespace dialogflow_v3 {
      * Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.
      */
     timeZone?: string | null;
+  }
+  /**
+   * Settings for connecting to Git repository for an agent.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3AgentGitIntegrationSettings {
+    /**
+     * GitHub settings.
+     */
+    githubSettings?: Schema$GoogleCloudDialogflowCxV3AgentGitIntegrationSettingsGithubSettings;
+  }
+  /**
+   * Settings of integration with GitHub.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3AgentGitIntegrationSettingsGithubSettings {
+    /**
+     * The access token used to authenticate the access to the GitHub repository.
+     */
+    accessToken?: string | null;
+    /**
+     * A list of branches configured to be used from Dialogflow.
+     */
+    branches?: string[] | null;
+    /**
+     * The unique repository display name for the GitHub repository.
+     */
+    displayName?: string | null;
+    /**
+     * The GitHub repository URI related to the agent.
+     */
+    repositoryUri?: string | null;
+    /**
+     * The branch of GitHub repository tracked for this agent.
+     */
+    trackingBranch?: string | null;
   }
   /**
    * The response message for Agents.GetAgentValidationResult.
@@ -578,13 +616,17 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportAgentResponse {
     /**
-     * Uncompressed raw byte content for agent.
+     * Uncompressed raw byte content for agent. This field is populated if none of `agent_uri` and `git_destination` are specified in ExportAgentRequest.
      */
     agentContent?: string | null;
     /**
      * The URI to a file containing the exported agent. This field is populated if `agent_uri` is specified in ExportAgentRequest.
      */
     agentUri?: string | null;
+    /**
+     * Commit SHA of the git push. This field is populated if `git_destination` are specified in ExportAgentRequest.
+     */
+    commitSha?: string | null;
   }
   /**
    * The response message for Flows.ExportFlow.
@@ -2374,19 +2416,44 @@ export namespace dialogflow_v3 {
      * Optional. Environment name. If not set, draft environment is assumed. Format: `projects//locations//agents//environments/`.
      */
     environment?: string | null;
+    /**
+     * Optional. The Git branch to export the agent to.
+     */
+    gitDestination?: Schema$GoogleCloudDialogflowCxV3ExportAgentRequestGitDestination;
+    /**
+     * Optional. Whether to include BigQuery Export setting.
+     */
+    includeBigqueryExportSettings?: boolean | null;
+  }
+  /**
+   * Settings for exporting to a git branch.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportAgentRequestGitDestination {
+    /**
+     * Commit message for the git push.
+     */
+    commitMessage?: string | null;
+    /**
+     * Tracking branch for the git push.
+     */
+    trackingBranch?: string | null;
   }
   /**
    * The response message for Agents.ExportAgent.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ExportAgentResponse {
     /**
-     * Uncompressed raw byte content for agent.
+     * Uncompressed raw byte content for agent. This field is populated if none of `agent_uri` and `git_destination` are specified in ExportAgentRequest.
      */
     agentContent?: string | null;
     /**
      * The URI to a file containing the exported agent. This field is populated if `agent_uri` is specified in ExportAgentRequest.
      */
     agentUri?: string | null;
+    /**
+     * Commit SHA of the git push. This field is populated if `git_destination` are specified in ExportAgentRequest.
+     */
+    commitSha?: string | null;
   }
   /**
    * The request message for Flows.ExportFlow.
@@ -3423,6 +3490,10 @@ export namespace dialogflow_v3 {
      */
     sessionEntityTypes?: Schema$GoogleCloudDialogflowCxV3SessionEntityType[];
     /**
+     * Optional. Sets Dialogflow session life time. By default, a Dialogflow session remains active and its data is stored for 30 minutes after the last request is sent for the session. This value should be no longer than 1 day.
+     */
+    sessionTtl?: string | null;
+    /**
      * The time zone of this conversational query from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris. If not provided, the time zone specified in the agent is used.
      */
     timeZone?: string | null;
@@ -3680,9 +3751,22 @@ export namespace dialogflow_v3 {
      */
     agentUri?: string | null;
     /**
+     * Setting for restoring from a git branch
+     */
+    gitSource?: Schema$GoogleCloudDialogflowCxV3RestoreAgentRequestGitSource;
+    /**
      * Agent restore mode. If not specified, `KEEP` is assumed.
      */
     restoreOption?: string | null;
+  }
+  /**
+   * Settings for restoring from a git branch
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3RestoreAgentRequestGitSource {
+    /**
+     * tracking branch for the git pull
+     */
+    trackingBranch?: string | null;
   }
   /**
    * The configuration for auto rollout.
@@ -8364,6 +8448,7 @@ export namespace dialogflow_v3 {
      *       //   "displayName": "my_displayName",
      *       //   "enableSpellCorrection": false,
      *       //   "enableStackdriverLogging": false,
+     *       //   "gitIntegrationSettings": {},
      *       //   "locked": false,
      *       //   "name": "my_name",
      *       //   "securitySettings": "my_securitySettings",
@@ -8386,6 +8471,7 @@ export namespace dialogflow_v3 {
      *   //   "displayName": "my_displayName",
      *   //   "enableSpellCorrection": false,
      *   //   "enableStackdriverLogging": false,
+     *   //   "gitIntegrationSettings": {},
      *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "securitySettings": "my_securitySettings",
@@ -8666,7 +8752,9 @@ export namespace dialogflow_v3 {
      *       // {
      *       //   "agentUri": "my_agentUri",
      *       //   "dataFormat": "my_dataFormat",
-     *       //   "environment": "my_environment"
+     *       //   "environment": "my_environment",
+     *       //   "gitDestination": {},
+     *       //   "includeBigqueryExportSettings": false
      *       // }
      *     },
      *   });
@@ -8821,6 +8909,7 @@ export namespace dialogflow_v3 {
      *   //   "displayName": "my_displayName",
      *   //   "enableSpellCorrection": false,
      *   //   "enableStackdriverLogging": false,
+     *   //   "gitIntegrationSettings": {},
      *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "securitySettings": "my_securitySettings",
@@ -9263,6 +9352,7 @@ export namespace dialogflow_v3 {
      *       //   "displayName": "my_displayName",
      *       //   "enableSpellCorrection": false,
      *       //   "enableStackdriverLogging": false,
+     *       //   "gitIntegrationSettings": {},
      *       //   "locked": false,
      *       //   "name": "my_name",
      *       //   "securitySettings": "my_securitySettings",
@@ -9285,6 +9375,7 @@ export namespace dialogflow_v3 {
      *   //   "displayName": "my_displayName",
      *   //   "enableSpellCorrection": false,
      *   //   "enableStackdriverLogging": false,
+     *   //   "gitIntegrationSettings": {},
      *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "securitySettings": "my_securitySettings",
@@ -9432,6 +9523,7 @@ export namespace dialogflow_v3 {
      *       // {
      *       //   "agentContent": "my_agentContent",
      *       //   "agentUri": "my_agentUri",
+     *       //   "gitSource": {},
      *       //   "restoreOption": "my_restoreOption"
      *       // }
      *     },
@@ -23763,7 +23855,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Fetches a list of results for a given test case.
+     * Fetches the list of run results for the given test case. A maximum of 100 results are kept for each test case.
      * @example
      * ```js
      * // Before running the sample:
