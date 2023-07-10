@@ -15,7 +15,7 @@
   "baseUrl": "https://analyticsdata.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "AnalyticsData",
-  "description": "Accesses report data in Google Analytics.",
+  "description": "Accesses report data in Google Analytics. Warning: Creating multiple Customer Applications, Accounts, or Projects to simulate or act as a single Customer Application, Account, or Project (respectively) or to circumvent Service-specific usage limits or quotas is a direct violation of Google Cloud Platform Terms of Service as well as Google APIs Terms of Service. These actions can result in immediate termination of your GCP project(s) without any warning. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/analytics/devguides/reporting/data/v1/",
   "fullyEncodeReservedExpansion": true,
@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230705",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "ActiveMetricRestriction": {
