@@ -1168,7 +1168,7 @@ export namespace gkeonprem_v1 {
    */
   export interface Schema$EnrollBareMetalAdminClusterRequest {
     /**
-     * User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all GKE on-prem clusters within a project and location and will return a 409 if the cluster already exists. This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format.
+     * User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all GKE on-prem clusters within a project and location and will return a 409 if the cluster already exists. (https://tools.ietf.org/html/rfc1123) format.
      */
     bareMetalAdminClusterId?: string | null;
     /**
@@ -1185,11 +1185,11 @@ export namespace gkeonprem_v1 {
      */
     adminClusterMembership?: string | null;
     /**
-     * User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all bare metal clusters within a project and location and will return a 409 if the cluster already exists. This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format.
+     * User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all bare metal clusters within a project and location and will return a 409 if the cluster already exists. (https://tools.ietf.org/html/rfc1123) format.
      */
     bareMetalClusterId?: string | null;
     /**
-     * The object name of the bare metal cluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the bare_metal_cluster_id. Otherwise, it must match the object name of the bare metal cluster custom resource. It is not modifiable outside / beyond the enrollment operation.
+     * Optional. The object name of the bare metal cluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the bare_metal_cluster_id. Otherwise, it must match the object name of the bare metal cluster custom resource. It is not modifiable outside / beyond the enrollment operation.
      */
     localName?: string | null;
   }
@@ -1198,7 +1198,7 @@ export namespace gkeonprem_v1 {
    */
   export interface Schema$EnrollBareMetalNodePoolRequest {
     /**
-     * User provided OnePlatform identifier that is used as part of the resource name. This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format.
+     * User provided OnePlatform identifier that is used as part of the resource name. (https://tools.ietf.org/html/rfc1123) format.
      */
     bareMetalNodePoolId?: string | null;
     /**
@@ -1215,7 +1215,7 @@ export namespace gkeonprem_v1 {
      */
     membership?: string | null;
     /**
-     * User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all GKE on-prem clusters within a project and location and will return a 409 if the cluster already exists. This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format.
+     * User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all GKE on-prem clusters within a project and location and will return a 409 if the cluster already exists. (https://tools.ietf.org/html/rfc1123) format.
      */
     vmwareAdminClusterId?: string | null;
   }
@@ -1228,7 +1228,7 @@ export namespace gkeonprem_v1 {
      */
     adminClusterMembership?: string | null;
     /**
-     * The object name of the VMware OnPremUserCluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the vmware_cluster_id. Otherwise, it must match the object name of the VMware OnPremUserCluster custom resource. It is not modifiable outside / beyond the enrollment operation.
+     * Optional. The object name of the VMware OnPremUserCluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the vmware_cluster_id. Otherwise, it must match the object name of the VMware OnPremUserCluster custom resource. It is not modifiable outside / beyond the enrollment operation.
      */
     localName?: string | null;
     /**
@@ -1236,7 +1236,7 @@ export namespace gkeonprem_v1 {
      */
     validateOnly?: boolean | null;
     /**
-     * User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all GKE on-prem clusters within a project and location and will return a 409 if the cluster already exists. This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format.
+     * User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all GKE on-prem clusters within a project and location and will return a 409 if the cluster already exists. (https://tools.ietf.org/html/rfc1123) format.
      */
     vmwareClusterId?: string | null;
   }
@@ -1433,6 +1433,27 @@ export namespace gkeonprem_v1 {
     name?: string | null;
   }
   /**
+   * Progress metric is (string, int|float|string) pair.
+   */
+  export interface Schema$Metric {
+    /**
+     * For metrics with floating point value.
+     */
+    doubleValue?: number | null;
+    /**
+     * For metrics with integer value.
+     */
+    intValue?: string | null;
+    /**
+     * Required. The metric name.
+     */
+    metric?: string | null;
+    /**
+     * For metrics with custom values (ratios, visual progress, etc.).
+     */
+    stringValue?: string | null;
+  }
+  /**
    * NodeTaint applied to every Kubernetes node in a node pool. Kubernetes taints can be used together with tolerations to control how workloads are scheduled to your nodes. Node taints are permanent.
    */
   export interface Schema$NodeTaint {
@@ -1495,6 +1516,10 @@ export namespace gkeonprem_v1 {
      */
     endTime?: string | null;
     /**
+     * Output only. Detailed progress information for the operation.
+     */
+    progress?: Schema$OperationProgress;
+    /**
      * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have [Operation.error] value with a [google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
@@ -1514,6 +1539,40 @@ export namespace gkeonprem_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Information about operation progress. LINT.IfChange
+   */
+  export interface Schema$OperationProgress {
+    /**
+     * The stages of the operation.
+     */
+    stages?: Schema$OperationStage[];
+  }
+  /**
+   * Information about a particular stage of an operation.
+   */
+  export interface Schema$OperationStage {
+    /**
+     * Time the stage ended.
+     */
+    endTime?: string | null;
+    /**
+     * Progress metric bundle.
+     */
+    metrics?: Schema$Metric[];
+    /**
+     * The high-level stage of the operation.
+     */
+    stage?: string | null;
+    /**
+     * Time the stage started.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. State of the stage.
+     */
+    state?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -2203,6 +2262,10 @@ export namespace gkeonprem_v1 {
      * The Vsphere datastore used by the control plane Node.
      */
     datastore?: string | null;
+    /**
+     * The Vsphere storage policy used by the control plane Node.
+     */
+    storagePolicyName?: string | null;
   }
   /**
    * Contains configurations for Dataplane V2, which is optimized dataplane for Kubernetes networking. For more information, see: https://cloud.google.com/kubernetes-engine/docs/concepts/dataplane-v2
@@ -2568,6 +2631,10 @@ export namespace gkeonprem_v1 {
      * The name of the vCenter resource pool for the user cluster.
      */
     resourcePool?: string | null;
+    /**
+     * The name of the vCenter storage policy for the user cluster.
+     */
+    storagePolicyName?: string | null;
   }
   /**
    * Contains information about a specific Anthos on VMware version.
@@ -2607,6 +2674,10 @@ export namespace gkeonprem_v1 {
      * The name of the vCenter datastore. Inherited from the user cluster.
      */
     datastore?: string | null;
+    /**
+     * The name of the vCenter storage policy. Inherited from the user cluster.
+     */
+    storagePolicyName?: string | null;
     /**
      * Tags to apply to VMs.
      */

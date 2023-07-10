@@ -2996,7 +2996,7 @@
       }
     }
   },
-  "revision": "20230607",
+  "revision": "20230626",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -4385,7 +4385,7 @@
       "id": "EnrollBareMetalAdminClusterRequest",
       "properties": {
         "bareMetalAdminClusterId": {
-          "description": "User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all GKE on-prem clusters within a project and location and will return a 409 if the cluster already exists. This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format.",
+          "description": "User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all GKE on-prem clusters within a project and location and will return a 409 if the cluster already exists. (https://tools.ietf.org/html/rfc1123) format.",
           "type": "string"
         },
         "membership": {
@@ -4404,11 +4404,11 @@
           "type": "string"
         },
         "bareMetalClusterId": {
-          "description": "User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all bare metal clusters within a project and location and will return a 409 if the cluster already exists. This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format.",
+          "description": "User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all bare metal clusters within a project and location and will return a 409 if the cluster already exists. (https://tools.ietf.org/html/rfc1123) format.",
           "type": "string"
         },
         "localName": {
-          "description": "The object name of the bare metal cluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the bare_metal_cluster_id. Otherwise, it must match the object name of the bare metal cluster custom resource. It is not modifiable outside / beyond the enrollment operation.",
+          "description": "Optional. The object name of the bare metal cluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the bare_metal_cluster_id. Otherwise, it must match the object name of the bare metal cluster custom resource. It is not modifiable outside / beyond the enrollment operation.",
           "type": "string"
         }
       },
@@ -4419,7 +4419,7 @@
       "id": "EnrollBareMetalNodePoolRequest",
       "properties": {
         "bareMetalNodePoolId": {
-          "description": "User provided OnePlatform identifier that is used as part of the resource name. This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format.",
+          "description": "User provided OnePlatform identifier that is used as part of the resource name. (https://tools.ietf.org/html/rfc1123) format.",
           "type": "string"
         },
         "validateOnly": {
@@ -4438,7 +4438,7 @@
           "type": "string"
         },
         "vmwareAdminClusterId": {
-          "description": "User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all GKE on-prem clusters within a project and location and will return a 409 if the cluster already exists. This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format.",
+          "description": "User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all GKE on-prem clusters within a project and location and will return a 409 if the cluster already exists. (https://tools.ietf.org/html/rfc1123) format.",
           "type": "string"
         }
       },
@@ -4453,7 +4453,7 @@
           "type": "string"
         },
         "localName": {
-          "description": "The object name of the VMware OnPremUserCluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the vmware_cluster_id. Otherwise, it must match the object name of the VMware OnPremUserCluster custom resource. It is not modifiable outside / beyond the enrollment operation.",
+          "description": "Optional. The object name of the VMware OnPremUserCluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the vmware_cluster_id. Otherwise, it must match the object name of the VMware OnPremUserCluster custom resource. It is not modifiable outside / beyond the enrollment operation.",
           "type": "string"
         },
         "validateOnly": {
@@ -4461,7 +4461,7 @@
           "type": "boolean"
         },
         "vmwareClusterId": {
-          "description": "User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all GKE on-prem clusters within a project and location and will return a 409 if the cluster already exists. This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format.",
+          "description": "User provided OnePlatform identifier that is used as part of the resource name. This must be unique among all GKE on-prem clusters within a project and location and will return a 409 if the cluster already exists. (https://tools.ietf.org/html/rfc1123) format.",
           "type": "string"
         }
       },
@@ -4733,6 +4733,63 @@
       },
       "type": "object"
     },
+    "Metric": {
+      "description": "Progress metric is (string, int|float|string) pair.",
+      "id": "Metric",
+      "properties": {
+        "doubleValue": {
+          "description": "For metrics with floating point value.",
+          "format": "double",
+          "type": "number"
+        },
+        "intValue": {
+          "description": "For metrics with integer value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "metric": {
+          "description": "Required. The metric name.",
+          "enum": [
+            "METRIC_ID_UNSPECIFIED",
+            "NODES_TOTAL",
+            "NODES_DRAINING",
+            "NODES_UPGRADING",
+            "NODES_PENDING_UPGRADE",
+            "NODES_UPGRADED",
+            "NODES_FAILED",
+            "NODES_HEALTHY",
+            "NODES_RECONCILING",
+            "NODES_IN_MAINTENANCE",
+            "PREFLIGHTS_COMPLETED",
+            "PREFLIGHTS_RUNNING",
+            "PREFLIGHTS_FAILED",
+            "PREFLIGHTS_TOTAL"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "The total number of nodes being actuated.",
+            "The number of nodes draining.",
+            "The number of nodes actively upgrading.",
+            "The number of nodes to be upgraded.",
+            "The number of nodes upgraded.",
+            "The number of nodes to fail actuation.",
+            "The number of nodes healthy.",
+            "The number of nodes reconciling.",
+            "The number of nodes in maintenance mode.",
+            "The number of completed preflight checks.",
+            "The number of preflight checks running.",
+            "The number of preflight checks failed.",
+            "The total number of preflight checks."
+          ],
+          "type": "string"
+        },
+        "stringValue": {
+          "description": "For metrics with custom values (ratios, visual progress, etc.).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NodeTaint": {
       "description": "NodeTaint applied to every Kubernetes node in a node pool. Kubernetes taints can be used together with tolerations to control how workloads are scheduled to your nodes. Node taints are permanent.",
       "id": "NodeTaint",
@@ -4825,6 +4882,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "progress": {
+          "$ref": "OperationProgress",
+          "description": "Output only. Detailed progress information for the operation.",
+          "readOnly": true
+        },
         "requestedCancellation": {
           "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have [Operation.error] value with a [google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
@@ -4861,6 +4923,83 @@
         },
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OperationProgress": {
+      "description": "Information about operation progress. LINT.IfChange",
+      "id": "OperationProgress",
+      "properties": {
+        "stages": {
+          "description": "The stages of the operation.",
+          "items": {
+            "$ref": "OperationStage"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OperationStage": {
+      "description": "Information about a particular stage of an operation.",
+      "id": "OperationStage",
+      "properties": {
+        "endTime": {
+          "description": "Time the stage ended.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "metrics": {
+          "description": "Progress metric bundle.",
+          "items": {
+            "$ref": "Metric"
+          },
+          "type": "array"
+        },
+        "stage": {
+          "description": "The high-level stage of the operation.",
+          "enum": [
+            "STAGE_UNSPECIFIED",
+            "PREFLIGHT_CHECK",
+            "CONFIGURE",
+            "DEPLOY",
+            "HEALTH_CHECK",
+            "UPDATE"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Preflight checks are running.",
+            "Resource is being configured.",
+            "Resource is being deployed.",
+            "Waiting for the resource to become healthy.",
+            "Resource is being updated."
+          ],
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Time the stage started.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the stage.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "The stage is pending.",
+            "The stage is running",
+            "The stage has completed successfully.",
+            "The stage has failed."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -5793,6 +5932,10 @@
         "datastore": {
           "description": "The Vsphere datastore used by the control plane Node.",
           "type": "string"
+        },
+        "storagePolicyName": {
+          "description": "The Vsphere storage policy used by the control plane Node.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6271,6 +6414,10 @@
         "resourcePool": {
           "description": "The name of the vCenter resource pool for the user cluster.",
           "type": "string"
+        },
+        "storagePolicyName": {
+          "description": "The name of the vCenter storage policy for the user cluster.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6315,6 +6462,10 @@
       "properties": {
         "datastore": {
           "description": "The name of the vCenter datastore. Inherited from the user cluster.",
+          "type": "string"
+        },
+        "storagePolicyName": {
+          "description": "The name of the vCenter storage policy. Inherited from the user cluster.",
           "type": "string"
         },
         "tags": {
