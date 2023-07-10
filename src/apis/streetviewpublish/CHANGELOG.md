@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v3.0.0...streetviewpublish-v4.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **streetviewpublish:** This release has breaking changes.
+
+### Features
+
+* **streetviewpublish:** update the API ([8695d8c](https://github.com/googleapis/google-api-nodejs-client/commit/8695d8c0ecf2f6956a4a9e51168cad606d53f148))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v2.2.1...streetviewpublish-v3.0.0) (2023-06-22)
 
 

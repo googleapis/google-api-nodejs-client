@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v12.0.0...servicenetworking-v12.1.0) (2023-07-10)
+
+
+### Features
+
+* **servicenetworking:** update the API ([a73423b](https://github.com/googleapis/google-api-nodejs-client/commit/a73423bd8bfe21fca471016b894077dff56e06c0))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v11.1.0...servicenetworking-v12.0.0) (2023-06-22)
 
 
