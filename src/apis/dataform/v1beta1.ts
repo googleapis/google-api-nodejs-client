@@ -467,7 +467,7 @@ export namespace dataform_v1beta1 {
      */
     defaultBranch?: string | null;
     /**
-     * Output only. Indicates the status of the Git access token.
+     * Output only. Deprecated: The field does not contain any token status information. Instead use https://cloud.google.com/dataform/reference/rest/v1beta1/projects.locations.repositories/computeAccessTokenStatus
      */
     tokenStatus?: string | null;
     /**
@@ -1191,7 +1191,7 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$WorkflowInvocation {
     /**
-     * Immutable. The name of the compilation result to compile. Must be in the format `projects/x/locations/x/repositories/x/compilationResults/x`.
+     * Immutable. The name of the compilation result to use for this invocation. Must be in the format `projects/x/locations/x/repositories/x/compilationResults/x`.
      */
     compilationResult?: string | null;
     /**
