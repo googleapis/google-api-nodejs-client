@@ -2144,7 +2144,7 @@
       }
     }
   },
-  "revision": "20230526",
+  "revision": "20230630",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2902,7 +2902,7 @@
           "description": "Specification that applies to a relational database system. Only settable when `user_specified_system` is equal to `SQL_DATABASE`"
         },
         "type": {
-          "description": "The type of the entry. Only used for entries with types listed in the `EntryType` enum. Currently, only `FILESET` enum value is allowed. All other entries created in Data Catalog must use the `user_specified_type`.",
+          "description": "The type of the entry. For details, see [`EntryType`](#entrytype).",
           "enum": [
             "ENTRY_TYPE_UNSPECIFIED",
             "TABLE",
@@ -2924,13 +2924,13 @@
           "enumDescriptions": [
             "Default unknown type.",
             "The entry type that has a GoogleSQL schema, including logical views.",
-            "Output only. The type of models. For more information, see [Supported models in BigQuery ML] (https://cloud.google.com/bigquery-ml/docs/introduction#supported_models_in).",
+            "The type of models. For more information, see [Supported models in BigQuery ML](/bigquery/docs/bqml-introduction#supported_models).",
             "An entry type for streaming entries. For example, a Pub/Sub topic.",
             "An entry type for a set of files or objects. For example, a Cloud Storage fileset.",
             "A group of servers that work together. For example, a Kafka cluster.",
             "A database.",
-            "Output only. Connection to a data source. For example, a BigQuery connection.",
-            "Output only. Routine, for example, a BigQuery routine.",
+            "Connection to a data source. For example, a BigQuery connection.",
+            "Routine, for example, a BigQuery routine.",
             "A Dataplex lake.",
             "A Dataplex zone.",
             "A service, for example, a Dataproc Metastore service.",
@@ -3694,11 +3694,11 @@
       "id": "GoogleCloudDatacatalogV1SearchCatalogRequest",
       "properties": {
         "orderBy": {
-          "description": "Specifies the order of results. Currently supported case-sensitive values are: * `relevance` that can only be descending * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default * `default` that can only be descending If this parameter is omitted, it defaults to the descending `relevance`.",
+          "description": "Specifies the order of results. Currently supported case-sensitive values are: * `relevance` that can only be descending * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default * `default` that can only be descending Search queries don't guarantee full recall. Results that match your query might not be returned, even in subsequent result pages. Additionally, returned (and not returned) results can vary if you repeat search queries. If you are experiencing recall issues and you don't have to fetch the results in any specific order, consider setting this parameter to `default`. If this parameter is omitted, it defaults to the descending `relevance`.",
           "type": "string"
         },
         "pageSize": {
-          "description": "Number of results to return in a single search page. Can't be negative or 0, defaults to 10 in this case. The maximum number is 1000. If exceeded, throws an \"invalid argument\" exception.",
+          "description": "Upper bound on the number of results you can get in a single response. Can't be negative or 0, defaults to 10 in this case. The maximum number is 1000. If exceeded, throws an \"invalid argument\" exception.",
           "format": "int32",
           "type": "integer"
         },
