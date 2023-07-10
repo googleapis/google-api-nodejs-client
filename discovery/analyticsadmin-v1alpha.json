@@ -21,7 +21,7 @@
   "baseUrl": "https://analyticsadmin.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Google Analytics Admin",
-  "description": "",
+  "description": "Manage properties in Google Analytics. Warning: Creating multiple Customer Applications, Accounts, or Projects to simulate or act as a single Customer Application, Account, or Project (respectively) or to circumvent Service-specific usage limits or quotas is a direct violation of Google Cloud Platform Terms of Service as well as Google APIs Terms of Service. These actions can result in immediate termination of your GCP project(s) without any warning.",
   "discoveryVersion": "v1",
   "documentationLink": "http://code.google.com/apis/analytics/docs/mgmt/home.html",
   "fullyEncodeReservedExpansion": true,
@@ -4322,7 +4322,7 @@
       }
     }
   },
-  "revision": "20230621",
+  "revision": "20230706",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -4918,10 +4918,10 @@
             "Reporting attribution model unspecified.",
             "Data-driven attribution distributes credit for the conversion based on data for each conversion event. Each Data-driven model is specific to each advertiser and each conversion event.",
             "Ignores direct traffic and attributes 100% of the conversion value to the last channel that the customer clicked through (or engaged view through for YouTube) before converting.",
-            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320?hl=en#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives all credit for the conversion to the first channel that a customer clicked (or engaged view through for YouTube) before converting.",
-            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320?hl=en#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Distributes the credit for the conversion equally across all the channels a customer clicked (or engaged view through for YouTube) before converting.",
-            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320?hl=en#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Attributes 40% credit to the first and last interaction, and the remaining 20% credit is distributed evenly to the middle interactions.",
-            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320?hl=en#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives more credit to the touchpoints that happened closer in time to the conversion.",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives all credit for the conversion to the first channel that a customer clicked (or engaged view through for YouTube) before converting.",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Distributes the credit for the conversion equally across all the channels a customer clicked (or engaged view through for YouTube) before converting.",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Attributes 40% credit to the first and last interaction, and the remaining 20% credit is distributed evenly to the middle interactions.",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives more credit to the touchpoints that happened closer in time to the conversion.",
             "Attributes 100% of the conversion value to the last Google Ads channel that the customer clicked through before converting."
           ],
           "type": "string"
