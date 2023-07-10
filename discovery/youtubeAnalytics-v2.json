@@ -421,7 +421,7 @@
       }
     }
   },
-  "revision": "20210519",
+  "revision": "20230705",
   "rootUrl": "https://youtubeanalytics.googleapis.com/",
   "schemas": {
     "EmptyResponse": {
@@ -487,6 +487,7 @@
       "id": "Errors",
       "properties": {
         "code": {
+          "deprecated": true,
           "description": "Global error code. Deprecated and ignored. Set custom error codes in ErrorProto.domain and ErrorProto.code instead.",
           "enum": [
             "BAD_REQUEST",

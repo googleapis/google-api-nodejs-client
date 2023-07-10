@@ -135,6 +135,10 @@ import {
   VERSIONS as binaryauthorizationVersions,
   binaryauthorization,
 } from './binaryauthorization';
+import {
+  VERSIONS as blockchainnodeengineVersions,
+  blockchainnodeengine,
+} from './blockchainnodeengine';
 import {VERSIONS as bloggerVersions, blogger} from './blogger';
 import {VERSIONS as booksVersions, books} from './books';
 import {
@@ -698,6 +702,7 @@ export const APIS: APIList = {
   bigtableadmin: bigtableadminVersions,
   billingbudgets: billingbudgetsVersions,
   binaryauthorization: binaryauthorizationVersions,
+  blockchainnodeengine: blockchainnodeengineVersions,
   blogger: bloggerVersions,
   books: booksVersions,
   businessprofileperformance: businessprofileperformanceVersions,
@@ -972,6 +977,7 @@ export class GeneratedAPIs {
   bigtableadmin = bigtableadmin;
   billingbudgets = billingbudgets;
   binaryauthorization = binaryauthorization;
+  blockchainnodeengine = blockchainnodeengine;
   blogger = blogger;
   books = books;
   businessprofileperformance = businessprofileperformance;

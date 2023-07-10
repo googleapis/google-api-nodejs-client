@@ -1041,7 +1041,7 @@
       }
     }
   },
-  "revision": "20230614",
+  "revision": "20230625",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1389,6 +1389,7 @@
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule",
       "properties": {
         "canReschedule": {
+          "deprecated": true,
           "description": "This field is deprecated, and will be always set to true since reschedule can happen multiple times now. This field should not be removed until all service producers remove this for their customers.",
           "type": "boolean"
         },
@@ -2171,6 +2172,7 @@
           "type": "string"
         },
         "sourceSnapshot": {
+          "deprecated": true,
           "description": "The resource name of the snapshot, in the format `projects/{project_id}/locations/{location_id}/snapshots/{snapshot_id}`.",
           "type": "string"
         }

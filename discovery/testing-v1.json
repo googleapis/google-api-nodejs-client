@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20230613",
+  "revision": "20230704",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -580,11 +580,13 @@
           "type": "string"
         },
         "maxDepth": {
+          "deprecated": true,
           "description": "The max depth of the traversal stack Robo can explore. Needs to be at least 2 to make Robo explore the app beyond the first activity. Default is 50.",
           "format": "int32",
           "type": "integer"
         },
         "maxSteps": {
+          "deprecated": true,
           "description": "The max number of steps Robo can execute. Default is no limit.",
           "format": "int32",
           "type": "integer"
@@ -1610,6 +1612,7 @@
           "type": "string"
         },
         "orchestratorVersion": {
+          "deprecated": true,
           "description": "Deprecated: Use AndroidX Test Orchestrator going forward. A string representing the current version of Android Test Orchestrator that is used in the environment. The package is available at https://maven.google.com/web/index.html#com.android.support.test:orchestrator.",
           "type": "string"
         }
@@ -1814,6 +1817,7 @@
       "id": "SystraceSetup",
       "properties": {
         "durationSeconds": {
+          "deprecated": true,
           "description": "Systrace duration in seconds. Should be between 1 and 30 seconds. 0 disables systrace.",
           "format": "int32",
           "type": "integer"
@@ -2004,6 +2008,47 @@
             "SERVICE_NOT_ACTIVATED",
             "UNKNOWN_PERMISSION_ERROR"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
             "The matrix is INVALID, but there are no further details available.",
@@ -2172,6 +2217,7 @@
         },
         "systrace": {
           "$ref": "SystraceSetup",
+          "deprecated": true,
           "description": "Systrace configuration for the run. Deprecated: Systrace used Python 2 which was sunsetted on 2020-01-01. Systrace is no longer supported in the Cloud Testing API, and no Systrace file will be provided in the results."
         }
       },

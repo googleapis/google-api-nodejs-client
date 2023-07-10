@@ -1932,7 +1932,7 @@
       }
     }
   },
-  "revision": "20200930",
+  "revision": "20230705",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -2430,6 +2430,7 @@
           "type": "array"
         },
         "macro": {
+          "deprecated": true,
           "description": "The macros in the container that this version was taken from.",
           "items": {
             "$ref": "Macro"
@@ -2445,6 +2446,7 @@
           "type": "string"
         },
         "rule": {
+          "deprecated": true,
           "description": "The rules in the container that this version was taken from.",
           "items": {
             "$ref": "Rule"
@@ -2500,10 +2502,12 @@
           "type": "string"
         },
         "numMacros": {
+          "deprecated": true,
           "description": "Number of macros in the container version.",
           "type": "string"
         },
         "numRules": {
+          "deprecated": true,
           "description": "Number of rules in the container version.",
           "type": "string"
         },
@@ -3030,6 +3034,7 @@
           "type": "string"
         },
         "blockingRuleId": {
+          "deprecated": true,
           "description": "Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update",
           "items": {
             "type": "string"
@@ -3052,6 +3057,7 @@
           "type": "string"
         },
         "firingRuleId": {
+          "deprecated": true,
           "description": "Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false. @mutable tagmanager.accounts.containers.tags.create @mutable tagmanager.accounts.containers.tags.update",
           "items": {
             "type": "string"

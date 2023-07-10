@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20230607",
+  "revision": "20230621",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1417,6 +1417,7 @@
           "type": "string"
         },
         "serviceAccount": {
+          "deprecated": true,
           "description": "Service account authorized for the instance.",
           "type": "string"
         },

@@ -110,6 +110,7 @@
         "assets": {
           "methods": {
             "group": {
+              "deprecated": true,
               "description": "Filters an organization's assets and groups them by their specified properties.",
               "flatPath": "v1/folders/{foldersId}/assets:group",
               "httpMethod": "POST",
@@ -138,6 +139,7 @@
               ]
             },
             "list": {
+              "deprecated": true,
               "description": "Lists an organization's assets.",
               "flatPath": "v1/folders/{foldersId}/assets",
               "httpMethod": "GET",
@@ -1379,6 +1381,7 @@
         "assets": {
           "methods": {
             "group": {
+              "deprecated": true,
               "description": "Filters an organization's assets and groups them by their specified properties.",
               "flatPath": "v1/organizations/{organizationsId}/assets:group",
               "httpMethod": "POST",
@@ -1407,6 +1410,7 @@
               ]
             },
             "list": {
+              "deprecated": true,
               "description": "Lists an organization's assets.",
               "flatPath": "v1/organizations/{organizationsId}/assets",
               "httpMethod": "GET",
@@ -1471,6 +1475,7 @@
               ]
             },
             "runDiscovery": {
+              "deprecated": true,
               "description": "Runs asset discovery. The discovery is tracked with a long-running operation. This API can only be called with limited frequency for an organization. If it is called too frequently the caller will receive a TOO_MANY_REQUESTS error.",
               "flatPath": "v1/organizations/{organizationsId}/assets:runDiscovery",
               "httpMethod": "POST",
@@ -2939,6 +2944,7 @@
         "assets": {
           "methods": {
             "group": {
+              "deprecated": true,
               "description": "Filters an organization's assets and groups them by their specified properties.",
               "flatPath": "v1/projects/{projectsId}/assets:group",
               "httpMethod": "POST",
@@ -2967,6 +2973,7 @@
               ]
             },
             "list": {
+              "deprecated": true,
               "description": "Lists an organization's assets.",
               "flatPath": "v1/projects/{projectsId}/assets",
               "httpMethod": "GET",
@@ -4143,7 +4150,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230626",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {

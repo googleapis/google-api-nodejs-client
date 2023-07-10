@@ -426,7 +426,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230705",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -674,6 +674,7 @@
           "type": "string"
         },
         "minDeadline": {
+          "deprecated": true,
           "description": "Deprecated, do not use.",
           "format": "double",
           "type": "number"
@@ -922,6 +923,7 @@
           "type": "array"
         },
         "referenceDocsUri": {
+          "deprecated": true,
           "description": "Link to automatically generated reference documentation. Example: https://cloud.google.com/nodejs/docs/reference/asset/latest",
           "type": "string"
         }
@@ -1292,6 +1294,7 @@
           "type": "string"
         },
         "groups": {
+          "deprecated": true,
           "description": "DEPRECATED: Please use field `values`. Service group should have prefix `groups/`. The names of the service groups that are enabled (Not Implemented). go/predefined-service-groups. Example: `groups/googleServices`.",
           "items": {
             "type": "string"
@@ -1299,6 +1302,7 @@
           "type": "array"
         },
         "services": {
+          "deprecated": true,
           "description": "DEPRECATED: Please use field `values`. Service should have prefix `services/`. The names of the services that are enabled. Example: `storage.googleapis.com`.",
           "items": {
             "type": "string"
@@ -1337,6 +1341,7 @@
       "id": "Endpoint",
       "properties": {
         "aliases": {
+          "deprecated": true,
           "description": "Unimplemented. Dot not use. DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases. Additional names that this endpoint will be hosted on.",
           "items": {
             "type": "string"
@@ -2369,6 +2374,7 @@
           "type": "string"
         },
         "launchStage": {
+          "deprecated": true,
           "description": "Deprecated. Must use the MetricDescriptor.launch_stage instead.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
@@ -2862,6 +2868,7 @@
           "type": "string"
         },
         "removedValues": {
+          "deprecated": true,
           "description": "The values removed from the parent consumer policy.",
           "items": {
             "type": "string"

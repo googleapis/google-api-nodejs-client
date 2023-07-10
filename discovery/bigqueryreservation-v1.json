@@ -824,7 +824,7 @@
       }
     }
   },
-  "revision": "20230610",
+  "revision": "20230706",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -988,6 +988,18 @@
             "THREE_YEAR",
             "NONE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Flex commitments have committed period of 1 minute after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
@@ -1015,6 +1027,18 @@
             "ANNUAL_FLAT_RATE",
             "THREE_YEAR",
             "NONE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",

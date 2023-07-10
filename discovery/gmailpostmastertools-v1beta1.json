@@ -265,7 +265,7 @@
       }
     }
   },
-  "revision": "20201124",
+  "revision": "20230706",
   "rootUrl": "https://gmailpostmastertools.googleapis.com/",
   "schemas": {
     "DeliveryError": {
@@ -382,6 +382,7 @@
           "type": "string"
         },
         "numIps": {
+          "deprecated": true,
           "description": "Total number of unique IPs in this reputation category. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/). Deprecated to be complied with ApiLinter for Quantities. Use ip_count instead.",
           "format": "int64",
           "type": "string"

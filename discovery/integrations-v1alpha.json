@@ -3257,7 +3257,7 @@
       }
     }
   },
-  "revision": "20230611",
+  "revision": "20230627",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -8471,7 +8471,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "The name of the auth config.",
+          "description": "Required. The name of the auth config.",
           "type": "string"
         },
         "encryptedCredential": {
