@@ -1748,7 +1748,7 @@
       }
     }
   },
-  "revision": "20230612",
+  "revision": "20230706",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1beta1CostProjection": {
@@ -1953,7 +1953,7 @@
       "type": "object"
     },
     "GoogleCloudRecommenderV1beta1InsightType": {
-      "description": "The type of insight. See google3/googledata/devsite/site-cloud/en/recommender/docs/insights/insight-types.md for more info.",
+      "description": "The type of insight.",
       "id": "GoogleCloudRecommenderV1beta1InsightType",
       "properties": {
         "name": {
@@ -2439,7 +2439,7 @@
       "type": "object"
     },
     "GoogleCloudRecommenderV1beta1RecommenderType": {
-      "description": "The type of a recommender. See google3/googledata/devsite/site-cloud/en/recommender/docs/recommenders.md for more info.",
+      "description": "The type of a recommender.",
       "id": "GoogleCloudRecommenderV1beta1RecommenderType",
       "properties": {
         "name": {
