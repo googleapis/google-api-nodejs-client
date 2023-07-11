@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v9.0.0...androidmanagement-v9.1.0) (2023-07-11)
+
+
+### Features
+
+* **androidmanagement:** update the API ([d4e697c](https://github.com/googleapis/google-api-nodejs-client/commit/d4e697c9f5c45a1145ab0583070eb7d00a3f0c66))
+* regenerate index files ([d121ab4](https://github.com/googleapis/google-api-nodejs-client/commit/d121ab4cb630dd1c77a228166da2788bd2bd1175))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v8.0.0...androidmanagement-v9.0.0) (2023-07-10)
 
 
