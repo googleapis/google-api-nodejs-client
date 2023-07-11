@@ -4,6 +4,35 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [122.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v121.0.0...googleapis-v122.0.0) (2023-07-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloudsearch:** This release has breaking changes.
+* **civicinfo:** This release has breaking changes.
+* **appengine:** This release has breaking changes.
+
+### Features
+
+* **androidmanagement:** update the API ([d4e697c](https://github.com/googleapis/google-api-nodejs-client/commit/d4e697c9f5c45a1145ab0583070eb7d00a3f0c66))
+* **appengine:** update the API ([4a5432c](https://github.com/googleapis/google-api-nodejs-client/commit/4a5432cdf9de146451a20ce2e15c94a1311adcd6))
+* **civicinfo:** update the API ([8bab2a7](https://github.com/googleapis/google-api-nodejs-client/commit/8bab2a759f922704cf64bb9ae1c1256a1d6f66be))
+* **cloudsearch:** update the API ([119fc3e](https://github.com/googleapis/google-api-nodejs-client/commit/119fc3e2b3f696a619ddf59b6134d17e85af3067))
+* **compute:** update the API ([207e449](https://github.com/googleapis/google-api-nodejs-client/commit/207e449acb8ad5b8850438be3b98a029f44821fd))
+* **connectors:** update the API ([ee504f3](https://github.com/googleapis/google-api-nodejs-client/commit/ee504f3b4dad68b68f25acd094ca8d09e8fdc885))
+* **containeranalysis:** update the API ([f5911f9](https://github.com/googleapis/google-api-nodejs-client/commit/f5911f9378e61a7c4fe049917ce3f2e074dc2b9b))
+* **container:** update the API ([538a298](https://github.com/googleapis/google-api-nodejs-client/commit/538a298aa230964555b8e3bcfcb6467709af8cac))
+* **kmsinventory:** update the API ([07e1098](https://github.com/googleapis/google-api-nodejs-client/commit/07e1098cc76adca73c68e996c4c244ad0ce2337e))
+* regenerate index files ([d121ab4](https://github.com/googleapis/google-api-nodejs-client/commit/d121ab4cb630dd1c77a228166da2788bd2bd1175))
+* **securitycenter:** update the API ([17156a3](https://github.com/googleapis/google-api-nodejs-client/commit/17156a3c5d73e095e98edee257a59e2d7c736ea9))
+
+
+### Bug Fixes
+
+* **cloudchannel:** update the API ([3785827](https://github.com/googleapis/google-api-nodejs-client/commit/37858270d7b8bad326c3de24f5d6ab9a06495b1c))
+* **recommender:** update the API ([1b049f9](https://github.com/googleapis/google-api-nodejs-client/commit/1b049f9c98bee9e33780c62a158fe7f5582dfbfe))
+
 ## [121.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v120.0.0...googleapis-v121.0.0) (2023-07-10)
 
 
