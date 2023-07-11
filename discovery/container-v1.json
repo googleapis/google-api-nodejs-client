@@ -2540,7 +2540,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230626",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2640,6 +2640,33 @@
         "networkPolicyConfig": {
           "$ref": "NetworkPolicyConfig",
           "description": "Configuration for NetworkPolicy. This only tracks whether the addon is enabled or not on the Master, it does not track whether network policy is enabled for the nodes."
+        }
+      },
+      "type": "object"
+    },
+    "AdvancedDatapathObservabilityConfig": {
+      "description": "AdvancedDatapathObservabilityConfig specifies configuration of observability features of advanced datapath.",
+      "id": "AdvancedDatapathObservabilityConfig",
+      "properties": {
+        "enableMetrics": {
+          "description": "Expose flow metrics on nodes",
+          "type": "boolean"
+        },
+        "relayMode": {
+          "description": "Method used to make Relay available",
+          "enum": [
+            "RELAY_MODE_UNSPECIFIED",
+            "DISABLED",
+            "INTERNAL_VPC_LB",
+            "EXTERNAL_LB"
+          ],
+          "enumDescriptions": [
+            "Default value. This shouldn't be used.",
+            "disabled",
+            "exposed via internal load balancer",
+            "exposed via external load balancer"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3763,7 +3790,7 @@
             "Default value",
             "Use GKE default DNS provider(kube-dns) for DNS resolution.",
             "Use CloudDNS for DNS resolution.",
-            "Use KubeDNS for DNS resolution"
+            "Use KubeDNS for DNS resolution."
           ],
           "type": "string"
         },
@@ -4200,7 +4227,7 @@
           "type": "boolean"
         },
         "defaultPodIpv4RangeUtilization": {
-          "description": "Output only. [Output only] The utilization of the cluster default IPv4 range for pod. The ratio is Usage/[Total number of IPs in the secondary range], Usage=numNodes*numZones*podIPsPerNode.",
+          "description": "Output only. [Output only] The utilization of the cluster default IPv4 range for the pod. The ratio is Usage/[Total number of IPs in the secondary range], Usage=numNodes*numZones*podIPsPerNode.",
           "format": "double",
           "readOnly": true,
           "type": "number"
@@ -4765,6 +4792,10 @@
       "description": "MonitoringConfig is cluster monitoring configuration.",
       "id": "MonitoringConfig",
       "properties": {
+        "advancedDatapathObservabilityConfig": {
+          "$ref": "AdvancedDatapathObservabilityConfig",
+          "description": "Configuration of Advanced Datapath Observability features."
+        },
         "componentConfig": {
           "$ref": "MonitoringComponentConfig",
           "description": "Monitoring components configuration"
@@ -5219,7 +5250,7 @@
           "type": "string"
         },
         "podIpv4RangeUtilization": {
-          "description": "Output only. [Output only] The utilization of the IPv4 range for pod. The ratio is Usage/[Total number of IPs in the secondary range], Usage=numNodes*numZones*podIPsPerNode.",
+          "description": "Output only. [Output only] The utilization of the IPv4 range for the pod. The ratio is Usage/[Total number of IPs in the secondary range], Usage=numNodes*numZones*podIPsPerNode.",
           "format": "double",
           "readOnly": true,
           "type": "number"

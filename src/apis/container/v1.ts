@@ -212,6 +212,19 @@ export namespace container_v1 {
     networkPolicyConfig?: Schema$NetworkPolicyConfig;
   }
   /**
+   * AdvancedDatapathObservabilityConfig specifies configuration of observability features of advanced datapath.
+   */
+  export interface Schema$AdvancedDatapathObservabilityConfig {
+    /**
+     * Expose flow metrics on nodes
+     */
+    enableMetrics?: boolean | null;
+    /**
+     * Method used to make Relay available
+     */
+    relayMode?: string | null;
+  }
+  /**
    * Specifies options for controlling advanced machine features.
    */
   export interface Schema$AdvancedMachineFeatures {
@@ -1412,7 +1425,7 @@ export namespace container_v1 {
      */
     createSubnetwork?: boolean | null;
     /**
-     * Output only. [Output only] The utilization of the cluster default IPv4 range for pod. The ratio is Usage/[Total number of IPs in the secondary range], Usage=numNodes*numZones*podIPsPerNode.
+     * Output only. [Output only] The utilization of the cluster default IPv4 range for the pod. The ratio is Usage/[Total number of IPs in the secondary range], Usage=numNodes*numZones*podIPsPerNode.
      */
     defaultPodIpv4RangeUtilization?: number | null;
     /**
@@ -1784,6 +1797,10 @@ export namespace container_v1 {
    */
   export interface Schema$MonitoringConfig {
     /**
+     * Configuration of Advanced Datapath Observability features.
+     */
+    advancedDatapathObservabilityConfig?: Schema$AdvancedDatapathObservabilityConfig;
+    /**
      * Monitoring components configuration
      */
     componentConfig?: Schema$MonitoringComponentConfig;
@@ -2132,7 +2149,7 @@ export namespace container_v1 {
      */
     podIpv4CidrBlock?: string | null;
     /**
-     * Output only. [Output only] The utilization of the IPv4 range for pod. The ratio is Usage/[Total number of IPs in the secondary range], Usage=numNodes*numZones*podIPsPerNode.
+     * Output only. [Output only] The utilization of the IPv4 range for the pod. The ratio is Usage/[Total number of IPs in the secondary range], Usage=numNodes*numZones*podIPsPerNode.
      */
     podIpv4RangeUtilization?: number | null;
     /**
