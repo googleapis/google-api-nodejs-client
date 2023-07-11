@@ -887,7 +887,7 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20230609",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {
@@ -1437,12 +1437,10 @@
       "id": "ProjectState",
       "properties": {
         "currentReasons": {
-          "$ref": "Reasons",
-          "deprecated": true
+          "$ref": "Reasons"
         },
         "previousReasons": {
           "$ref": "Reasons",
-          "deprecated": true,
           "description": "The previous and current reasons for a project state will be sent for a project event. CLHs that need to know the signal that caused the project event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state.Reasons fields are deprecated. New tenants should only use the state field. If you must know the reason(s) behind a specific state, please consult with CCFE team first (cloud-ccfe-discuss@google.com)."
         },
         "state": {
@@ -1579,14 +1577,6 @@
             "PREPARE_DEACTIVATION",
             "ABORT_DEACTIVATION",
             "COMMIT_DEACTIVATION"
-          ],
-          "enumDeprecated": [
-            false,
-            false,
-            true,
-            true,
-            true,
-            true
           ],
           "enumDescriptions": [
             "An unknown reason indicates that we have not received a signal from service management about this project. Since projects are created by request of service management, this reason should never be set.",
