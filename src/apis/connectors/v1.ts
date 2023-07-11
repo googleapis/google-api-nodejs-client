@@ -357,6 +357,10 @@ export namespace connectors_v1 {
      */
     connectorVersion?: string | null;
     /**
+     * Output only. Infra configs supported by Connector Version.
+     */
+    connectorVersionInfraConfig?: Schema$ConnectorVersionInfraConfig;
+    /**
      * Output only. Flag to mark the version indicating the launch stage.
      */
     connectorVersionLaunchStage?: string | null;
@@ -376,6 +380,18 @@ export namespace connectors_v1 {
      * Output only. GCR location where the envoy image is stored. formatted like: gcr.io/{bucketName\}/{imageName\}
      */
     envoyImageLocation?: string | null;
+    /**
+     * Optional. Eventing config of a connection
+     */
+    eventingConfig?: Schema$EventingConfig;
+    /**
+     * Optional. Eventing enablement type. Will be nil if eventing is not enabled.
+     */
+    eventingEnablementType?: string | null;
+    /**
+     * Output only. Eventing Runtime Data.
+     */
+    eventingRuntimeData?: Schema$EventingRuntimeData;
     /**
      * Output only. GCR location where the runtime image is stored. formatted like: gcr.io/{bucketName\}/{imageName\}
      */
@@ -496,6 +512,10 @@ export namespace connectors_v1 {
      */
     documentationUri?: string | null;
     /**
+     * Output only. Eventing details. Will be null if eventing is not supported.
+     */
+    eventingDetails?: Schema$EventingDetails;
+    /**
      * Output only. Link to external page.
      */
     externalUri?: string | null;
@@ -521,6 +541,15 @@ export namespace connectors_v1 {
     webAssetsLocation?: string | null;
   }
   /**
+   * This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version
+   */
+  export interface Schema$ConnectorInfraConfig {
+    /**
+     * Max QPS supported by the connector version before throttling of requests.
+     */
+    ratelimitThreshold?: string | null;
+  }
+  /**
    * Log configuration for the connection.
    */
   export interface Schema$ConnectorsLogConfig {
@@ -542,6 +571,10 @@ export namespace connectors_v1 {
      */
     configVariableTemplates?: Schema$ConfigVariableTemplate[];
     /**
+     * Output only. Infra configs supported by Connector.
+     */
+    connectorInfraConfig?: Schema$ConnectorInfraConfig;
+    /**
      * Output only. Created time.
      */
     createTime?: string | null;
@@ -557,6 +590,10 @@ export namespace connectors_v1 {
      * Output only. Configuration for Egress Control.
      */
     egressControlConfig?: Schema$EgressControlConfig;
+    /**
+     * Output only. Eventing configuration supported by the Connector.
+     */
+    eventingConfigTemplate?: Schema$EventingConfigTemplate;
     /**
      * Output only. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources
      */
@@ -593,6 +630,15 @@ export namespace connectors_v1 {
      * Output only. Updated time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version
+   */
+  export interface Schema$ConnectorVersionInfraConfig {
+    /**
+     * Output only. Max QPS supported by the connector version before throttling of requests.
+     */
+    ratelimitThreshold?: string | null;
   }
   export interface Schema$Destination {
     /**
@@ -693,6 +739,19 @@ export namespace connectors_v1 {
     type?: string | null;
   }
   /**
+   * Endpoint message includes details of the Destination endpoint.
+   */
+  export interface Schema$EndPoint {
+    /**
+     * The URI of the Endpoint.
+     */
+    endpointUri?: string | null;
+    /**
+     * List of Header to be added to the Endpoint.
+     */
+    headers?: Schema$Header[];
+  }
+  /**
    * represents the Connector's Endpoint Attachment resource
    */
   export interface Schema$EndpointAttachment {
@@ -737,6 +796,231 @@ export namespace connectors_v1 {
      * Id of the option.
      */
     id?: string | null;
+  }
+  /**
+   * Eventing Configuration of a connection
+   */
+  export interface Schema$EventingConfig {
+    /**
+     * Additional eventing related field values
+     */
+    additionalVariables?: Schema$ConfigVariable[];
+    /**
+     * Auth details for the webhook adapter.
+     */
+    authConfig?: Schema$AuthConfig;
+    /**
+     * Encryption key (can be either Google managed or CMEK).
+     */
+    encryptionKey?: Schema$ConfigVariable;
+    /**
+     * Enrichment Enabled.
+     */
+    enrichmentEnabled?: boolean | null;
+    /**
+     * Registration endpoint for auto regsitration.
+     */
+    registrationDestinationConfig?: Schema$DestinationConfig;
+  }
+  /**
+   * Eventing Config details of a connector version.
+   */
+  export interface Schema$EventingConfigTemplate {
+    /**
+     * Additional fields that need to be rendered.
+     */
+    additionalVariables?: Schema$ConfigVariableTemplate[];
+    /**
+     * AuthConfigTemplates represents the auth values for the webhook adapter.
+     */
+    authConfigTemplates?: Schema$AuthConfigTemplate[];
+    /**
+     * Auto refresh to extend webhook life.
+     */
+    autoRefresh?: boolean | null;
+    /**
+     * Auto Registration supported.
+     */
+    autoRegistrationSupported?: boolean | null;
+    /**
+     * Encryption key (can be either Google managed or CMEK).
+     */
+    encryptionKeyTemplate?: Schema$ConfigVariableTemplate;
+    /**
+     * Enrichment Supported.
+     */
+    enrichmentSupported?: boolean | null;
+    /**
+     * Is Eventing Supported.
+     */
+    isEventingSupported?: boolean | null;
+    /**
+     * Registration host destination config template.
+     */
+    registrationDestinationConfig?: Schema$DestinationConfigTemplate;
+  }
+  /**
+   * Eventing Details message.
+   */
+  export interface Schema$EventingDetails {
+    /**
+     * Output only. Custom Event Types.
+     */
+    customEventTypes?: boolean | null;
+    /**
+     * Output only. Description.
+     */
+    description?: string | null;
+    /**
+     * Output only. Link to public documentation.
+     */
+    documentationLink?: string | null;
+    /**
+     * Output only. Cloud storage location of the icon.
+     */
+    iconLocation?: string | null;
+    /**
+     * Output only. Eventing Launch Stage.
+     */
+    launchStage?: string | null;
+    /**
+     * Output only. Name of the Eventing trigger.
+     */
+    name?: string | null;
+    /**
+     * Output only. Array of search keywords.
+     */
+    searchTags?: string[] | null;
+  }
+  /**
+   * Eventing runtime data has the details related to eventing managed by the system.
+   */
+  export interface Schema$EventingRuntimeData {
+    /**
+     * Output only. Events listener endpoint. The value will populated after provisioning the events listener.
+     */
+    eventsListenerEndpoint?: string | null;
+    /**
+     * Output only. Current status of eventing.
+     */
+    status?: Schema$EventingStatus;
+  }
+  /**
+   * EventingStatus indicates the state of eventing.
+   */
+  export interface Schema$EventingStatus {
+    /**
+     * Output only. Description of error if State is set to "ERROR".
+     */
+    description?: string | null;
+    /**
+     * Output only. State.
+     */
+    state?: string | null;
+  }
+  /**
+   * represents the Connector's EventSubscription resource
+   */
+  export interface Schema$EventSubscription {
+    /**
+     * Output only. Created time.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The destination to hit when we receive an event
+     */
+    destinations?: Schema$EventSubscriptionDestination;
+    /**
+     * Optional. Event type id of the event of current EventSubscription.
+     */
+    eventTypeId?: string | null;
+    /**
+     * Required. Resource name of the EventSubscription. Format: projects/{project\}/locations/{location\}/connections/{connection\}/eventSubscriptions/{event_subscription\}
+     */
+    name?: string | null;
+    /**
+     * Optional. Status indicates the status of the event subscription resource
+     */
+    status?: Schema$EventSubscriptionStatus;
+    /**
+     * Optional. name of the Subscriber for the current EventSubscription.
+     */
+    subscriber?: string | null;
+    /**
+     * Optional. Link for Subscriber of the current EventSubscription.
+     */
+    subscriberLink?: string | null;
+    /**
+     * Output only. Updated time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Message for EventSubscription Destination to act on receiving an event
+   */
+  export interface Schema$EventSubscriptionDestination {
+    /**
+     * OPTION 1: Hit an endpoint when we receive an event.
+     */
+    endpoint?: Schema$EndPoint;
+    /**
+     * Service account needed for runtime plane to trigger IP workflow.
+     */
+    serviceAccount?: string | null;
+    /**
+     * type of the destination
+     */
+    type?: string | null;
+  }
+  /**
+   * EventSubscription Status denotes the status of the EventSubscription resource.
+   */
+  export interface Schema$EventSubscriptionStatus {
+    /**
+     * Output only. Description of the state.
+     */
+    description?: string | null;
+    /**
+     * Output only. State of Event Subscription resource.
+     */
+    state?: string | null;
+  }
+  /**
+   * EventType includes fields.
+   */
+  export interface Schema$EventType {
+    /**
+     * Output only. Created time.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Schema of the event payload after enriched. Will be null if read before send is not supported.
+     */
+    enrichedEventPayloadSchema?: string | null;
+    /**
+     * Output only. Runtime entity type name. Will be null if entity type map is not available. Used for read before send feature.
+     */
+    entityType?: string | null;
+    /**
+     * Output only. Schema of webhook event payload.
+     */
+    eventPayloadSchema?: string | null;
+    /**
+     * Output only. Event type id. Example: `ticket.created`.
+     */
+    eventTypeId?: string | null;
+    /**
+     * Output only. Id path denotes the path of id in webhook payload.
+     */
+    idPath?: string | null;
+    /**
+     * Output only. Resource name of the eventtype. Format: projects/{project\}/locations/{location\}/providers/{provider\}/connectors/{connector\}/versions/{version\}/eventtypes/{eventtype\} Only global location is supported for Connector resource.
+     */
+    name?: string | null;
+    /**
+     * Output only. Updated time.
+     */
+    updateTime?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -842,6 +1126,19 @@ export namespace connectors_v1 {
      * String value
      */
     stringValue?: string | null;
+  }
+  /**
+   * Header details for a given header to be added to Endpoint.
+   */
+  export interface Schema$Header {
+    /**
+     * Key of Header.
+     */
+    key?: string | null;
+    /**
+     * Value of Header.
+     */
+    value?: string | null;
   }
   /**
    * Metadata of an input parameter.
@@ -952,6 +1249,36 @@ export namespace connectors_v1 {
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Response message for ConnectorsService.ListEventSubscriptions
+   */
+  export interface Schema$ListEventSubscriptionsResponse {
+    /**
+     * Subscriptions.
+     */
+    eventSubscriptions?: Schema$EventSubscription[];
+    /**
+     * Next page token.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for Connectors.ListEventTypes.
+   */
+  export interface Schema$ListEventTypesResponse {
+    /**
+     * A list of connector versions.
+     */
+    eventTypes?: Schema$EventType[];
+    /**
+     * Next page token.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -1332,6 +1659,10 @@ export namespace connectors_v1 {
    */
   export interface Schema$RefreshConnectionSchemaMetadataRequest {}
   /**
+   * Request message for ConnectorsService.RepairEventing
+   */
+  export interface Schema$RepairEventingRequest {}
+  /**
    * Resource definition
    */
   export interface Schema$Resource {
@@ -1361,6 +1692,10 @@ export namespace connectors_v1 {
      */
     field?: string | null;
   }
+  /**
+   * Request message for ConnectorsService.RefreshEventSubscription
+   */
+  export interface Schema$RetryEventSubscriptionRequest {}
   /**
    * This configuration defines all the Cloud IAM roles that needs to be granted to a particular GCP resource for the selected principal like service account. These configurations will let UI display to customers what IAM roles need to be granted by them. Or these configurations can be used by the UI to render a 'grant' button to do the same on behalf of the user.
    */
@@ -2146,12 +2481,17 @@ export namespace connectors_v1 {
   export class Resource$Projects$Locations$Connections {
     context: APIRequestContext;
     connectionSchemaMetadata: Resource$Projects$Locations$Connections$Connectionschemametadata;
+    eventSubscriptions: Resource$Projects$Locations$Connections$Eventsubscriptions;
     runtimeActionSchemas: Resource$Projects$Locations$Connections$Runtimeactionschemas;
     runtimeEntitySchemas: Resource$Projects$Locations$Connections$Runtimeentityschemas;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.connectionSchemaMetadata =
         new Resource$Projects$Locations$Connections$Connectionschemametadata(
+          this.context
+        );
+      this.eventSubscriptions =
+        new Resource$Projects$Locations$Connections$Eventsubscriptions(
           this.context
         );
       this.runtimeActionSchemas =
@@ -2204,11 +2544,15 @@ export namespace connectors_v1 {
      *       //   "configVariables": [],
      *       //   "connectionRevision": "my_connectionRevision",
      *       //   "connectorVersion": "my_connectorVersion",
+     *       //   "connectorVersionInfraConfig": {},
      *       //   "connectorVersionLaunchStage": "my_connectorVersionLaunchStage",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "destinationConfigs": [],
      *       //   "envoyImageLocation": "my_envoyImageLocation",
+     *       //   "eventingConfig": {},
+     *       //   "eventingEnablementType": "my_eventingEnablementType",
+     *       //   "eventingRuntimeData": {},
      *       //   "imageLocation": "my_imageLocation",
      *       //   "labels": {},
      *       //   "lockConfig": {},
@@ -2498,11 +2842,15 @@ export namespace connectors_v1 {
      *   //   "configVariables": [],
      *   //   "connectionRevision": "my_connectionRevision",
      *   //   "connectorVersion": "my_connectorVersion",
+     *   //   "connectorVersionInfraConfig": {},
      *   //   "connectorVersionLaunchStage": "my_connectorVersionLaunchStage",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "destinationConfigs": [],
      *   //   "envoyImageLocation": "my_envoyImageLocation",
+     *   //   "eventingConfig": {},
+     *   //   "eventingEnablementType": "my_eventingEnablementType",
+     *   //   "eventingRuntimeData": {},
      *   //   "imageLocation": "my_imageLocation",
      *   //   "labels": {},
      *   //   "lockConfig": {},
@@ -3071,11 +3419,15 @@ export namespace connectors_v1 {
      *       //   "configVariables": [],
      *       //   "connectionRevision": "my_connectionRevision",
      *       //   "connectorVersion": "my_connectorVersion",
+     *       //   "connectorVersionInfraConfig": {},
      *       //   "connectorVersionLaunchStage": "my_connectorVersionLaunchStage",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "destinationConfigs": [],
      *       //   "envoyImageLocation": "my_envoyImageLocation",
+     *       //   "eventingConfig": {},
+     *       //   "eventingEnablementType": "my_eventingEnablementType",
+     *       //   "eventingRuntimeData": {},
      *       //   "imageLocation": "my_imageLocation",
      *       //   "labels": {},
      *       //   "lockConfig": {},
@@ -3174,6 +3526,146 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * RepaiEventing tries to repair eventing related event subscriptions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.repairEventing({
+     *     // Required. Resource name of the form: `projects/x/locations/x/connections/x`
+     *     name: 'projects/my-project/locations/my-location/connections/my-connection',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    repairEventing(
+      params: Params$Resource$Projects$Locations$Connections$Repaireventing,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    repairEventing(
+      params?: Params$Resource$Projects$Locations$Connections$Repaireventing,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    repairEventing(
+      params: Params$Resource$Projects$Locations$Connections$Repaireventing,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    repairEventing(
+      params: Params$Resource$Projects$Locations$Connections$Repaireventing,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    repairEventing(
+      params: Params$Resource$Projects$Locations$Connections$Repaireventing,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    repairEventing(callback: BodyResponseCallback<Schema$Operation>): void;
+    repairEventing(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Repaireventing
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Repaireventing;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Repaireventing;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:repairEventing').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
           },
           options
         ),
@@ -3578,6 +4070,18 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$Connection;
   }
+  export interface Params$Resource$Projects$Locations$Connections$Repaireventing
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/x/locations/x/connections/x`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RepairEventingRequest;
+  }
   export interface Params$Resource$Projects$Locations$Connections$Setiampolicy
     extends StandardParameters {
     /**
@@ -3764,6 +4268,956 @@ export namespace connectors_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RefreshConnectionSchemaMetadataRequest;
+  }
+
+  export class Resource$Projects$Locations$Connections$Eventsubscriptions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new EventSubscription in a given project,location and connection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.eventSubscriptions.create({
+     *       // Required. Identifier to assign to the Event Subscription. Must be unique within scope of the parent resource.
+     *       eventSubscriptionId: 'placeholder-value',
+     *       // Required. Parent resource of the EventSubscription, of the form: `projects/x/locations/x/connections/x`
+     *       parent:
+     *         'projects/my-project/locations/my-location/connections/my-connection',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "destinations": {},
+     *         //   "eventTypeId": "my_eventTypeId",
+     *         //   "name": "my_name",
+     *         //   "status": {},
+     *         //   "subscriber": "my_subscriber",
+     *         //   "subscriberLink": "my_subscriberLink",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/eventSubscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single EventSubscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.eventSubscriptions.delete({
+     *       // Required. Resource name of the form: `projects/x/locations/x/connections/x/eventsubscriptions/x`
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection/eventSubscriptions/my-eventSubscription',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single EventSubscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.eventSubscriptions.get({
+     *       // Required. Resource name of the form: `projects/x/locations/x/connections/x/eventSubscriptions/x`
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection/eventSubscriptions/my-eventSubscription',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "destinations": {},
+     *   //   "eventTypeId": "my_eventTypeId",
+     *   //   "name": "my_name",
+     *   //   "status": {},
+     *   //   "subscriber": "my_subscriber",
+     *   //   "subscriberLink": "my_subscriberLink",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventSubscription>;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$EventSubscription>,
+      callback: BodyResponseCallback<Schema$EventSubscription>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get,
+      callback: BodyResponseCallback<Schema$EventSubscription>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$EventSubscription>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get
+        | BodyResponseCallback<Schema$EventSubscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventSubscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventSubscription>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventSubscription>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventSubscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EventSubscription>(parameters);
+      }
+    }
+
+    /**
+     * List EventSubscriptions in a given project,location and connection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.eventSubscriptions.list({
+     *       // Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.
+     *       filter: 'placeholder-value',
+     *       // Order by parameters.
+     *       orderBy: 'placeholder-value',
+     *       // Page size.
+     *       pageSize: 'placeholder-value',
+     *       // Page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent resource of the EventSubscription, of the form: `projects/x/locations/x/connections/x`
+     *       parent:
+     *         'projects/my-project/locations/my-location/connections/my-connection',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "eventSubscriptions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEventSubscriptionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEventSubscriptionsResponse>,
+      callback: BodyResponseCallback<Schema$ListEventSubscriptionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List,
+      callback: BodyResponseCallback<Schema$ListEventSubscriptionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListEventSubscriptionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List
+        | BodyResponseCallback<Schema$ListEventSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEventSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEventSubscriptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEventSubscriptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/eventSubscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEventSubscriptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEventSubscriptionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single EventSubscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.eventSubscriptions.patch({
+     *       // Required. Resource name of the EventSubscription. Format: projects/{project\}/locations/{location\}/connections/{connection\}/eventSubscriptions/{event_subscription\}
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection/eventSubscriptions/my-eventSubscription',
+     *       // Required. The list of fields to update. Fields are specified relative to the Subscription. A field will be overwritten if it is in the mask. You can modify only the fields listed below. To update the EventSubscription details: * `serviceAccount`
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "destinations": {},
+     *         //   "eventTypeId": "my_eventTypeId",
+     *         //   "name": "my_name",
+     *         //   "status": {},
+     *         //   "subscriber": "my_subscriber",
+     *         //   "subscriberLink": "my_subscriberLink",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * RetryEventSubscription retries the registration of Subscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.eventSubscriptions.retry({
+     *       // Required. Resource name of the form: `projects/x/locations/x/connections/x/eventSubscriptions/x`
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection/eventSubscriptions/my-eventSubscription',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retry(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retry(
+      params?: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    retry(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retry(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    retry(
+      params: Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    retry(callback: BodyResponseCallback<Schema$Operation>): void;
+    retry(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:retry').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Create
+    extends StandardParameters {
+    /**
+     * Required. Identifier to assign to the Event Subscription. Must be unique within scope of the parent resource.
+     */
+    eventSubscriptionId?: string;
+    /**
+     * Required. Parent resource of the EventSubscription, of the form: `projects/x/locations/x/connections/x`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EventSubscription;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/x/locations/x/connections/x/eventsubscriptions/x`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/x/locations/x/connections/x/eventSubscriptions/x`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List
+    extends StandardParameters {
+    /**
+     * Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.
+     */
+    filter?: string;
+    /**
+     * Order by parameters.
+     */
+    orderBy?: string;
+    /**
+     * Page size.
+     */
+    pageSize?: number;
+    /**
+     * Page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource of the EventSubscription, of the form: `projects/x/locations/x/connections/x`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Patch
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the EventSubscription. Format: projects/{project\}/locations/{location\}/connections/{connection\}/eventSubscriptions/{event_subscription\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update. Fields are specified relative to the Subscription. A field will be overwritten if it is in the mask. You can modify only the fields listed below. To update the EventSubscription details: * `serviceAccount`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EventSubscription;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$Retry
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/x/locations/x/connections/x/eventSubscriptions/x`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RetryEventSubscriptionRequest;
   }
 
   export class Resource$Projects$Locations$Connections$Runtimeactionschemas {
@@ -5044,6 +6498,149 @@ export namespace connectors_v1 {
         return createAPIRequest<Schema$Settings>(parameters);
       }
     }
+
+    /**
+     * Update the global settings of a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.global.updateSettings({
+     *     // Output only. Resource name of the Connection. Format: projects/{project\}/locations/global/settings\}
+     *     name: 'projects/my-project/locations/global/settings',
+     *     // Required. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "payg": false,
+     *       //   "tenantProjectId": "my_tenantProjectId",
+     *       //   "vpcsc": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateSettings(
+      params: Params$Resource$Projects$Locations$Global$Updatesettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateSettings(
+      params?: Params$Resource$Projects$Locations$Global$Updatesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateSettings(
+      params: Params$Resource$Projects$Locations$Global$Updatesettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateSettings(
+      params: Params$Resource$Projects$Locations$Global$Updatesettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateSettings(
+      params: Params$Resource$Projects$Locations$Global$Updatesettings,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateSettings(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Updatesettings
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Updatesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Global$Updatesettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Global$Getsettings
@@ -5052,6 +6649,22 @@ export namespace connectors_v1 {
      * Required. The resource name of the Settings.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Updatesettings
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of the Connection. Format: projects/{project\}/locations/global/settings\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Settings;
   }
 
   export class Resource$Projects$Locations$Global$Managedzones {
@@ -7232,6 +8845,7 @@ export namespace connectors_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "documentationUri": "my_documentationUri",
+     *   //   "eventingDetails": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "labels": {},
      *   //   "launchStage": "my_launchStage",
@@ -7503,8 +9117,13 @@ export namespace connectors_v1 {
 
   export class Resource$Projects$Locations$Providers$Connectors$Versions {
     context: APIRequestContext;
+    eventtypes: Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.eventtypes =
+        new Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes(
+          this.context
+        );
     }
 
     /**
@@ -7546,10 +9165,12 @@ export namespace connectors_v1 {
      *   // {
      *   //   "authConfigTemplates": [],
      *   //   "configVariableTemplates": [],
+     *   //   "connectorInfraConfig": {},
      *   //   "createTime": "my_createTime",
      *   //   "destinationConfigTemplates": [],
      *   //   "displayName": "my_displayName",
      *   //   "egressControlConfig": {},
+     *   //   "eventingConfigTemplate": {},
      *   //   "labels": {},
      *   //   "launchStage": "my_launchStage",
      *   //   "name": "my_name",
@@ -7830,5 +9451,316 @@ export namespace connectors_v1 {
      * Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `BASIC` view.
      */
     view?: string;
+  }
+
+  export class Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single event type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.providers.connectors.versions.eventtypes.get(
+     *       {
+     *         // Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x/versions/x/eventtypes/x` Only global location is supported for EventType resource.
+     *         name: 'projects/my-project/locations/my-location/providers/my-provider/connectors/my-connector/versions/my-version/eventtypes/my-eventtype',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "enrichedEventPayloadSchema": "my_enrichedEventPayloadSchema",
+     *   //   "entityType": "my_entityType",
+     *   //   "eventPayloadSchema": "my_eventPayloadSchema",
+     *   //   "eventTypeId": "my_eventTypeId",
+     *   //   "idPath": "my_idPath",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventType>;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$EventType>,
+      callback: BodyResponseCallback<Schema$EventType>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get,
+      callback: BodyResponseCallback<Schema$EventType>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$EventType>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get
+        | BodyResponseCallback<Schema$EventType>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventType>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EventType> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EventType>(parameters);
+      }
+    }
+
+    /**
+     * Lists Event Types in a given Connector Version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.providers.connectors.versions.eventtypes.list(
+     *       {
+     *         // Page size.
+     *         pageSize: 'placeholder-value',
+     *         // Page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Parent resource of the connectors, of the form: `projects/x/locations/x/providers/x/connectors/x/versions/x` Only global location is supported for EventType resource.
+     *         parent:
+     *           'projects/my-project/locations/my-location/providers/my-provider/connectors/my-connector/versions/my-version',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "eventTypes": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEventTypesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEventTypesResponse>,
+      callback: BodyResponseCallback<Schema$ListEventTypesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List,
+      callback: BodyResponseCallback<Schema$ListEventTypesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListEventTypesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List
+        | BodyResponseCallback<Schema$ListEventTypesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEventTypesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEventTypesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEventTypesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/eventtypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEventTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEventTypesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/x/locations/x/providers/x/connectors/x/versions/x/eventtypes/x` Only global location is supported for EventType resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List
+    extends StandardParameters {
+    /**
+     * Page size.
+     */
+    pageSize?: number;
+    /**
+     * Page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource of the connectors, of the form: `projects/x/locations/x/providers/x/connectors/x/versions/x` Only global location is supported for EventType resource.
+     */
+    parent?: string;
   }
 }
