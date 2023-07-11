@@ -1224,7 +1224,7 @@
       }
     }
   },
-  "revision": "20230607",
+  "revision": "20230620",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -1576,6 +1576,7 @@
           "type": "integer"
         },
         "gcsFileFormat": {
+          "deprecated": true,
           "description": "File format that data should be written in. Deprecated field (b/169501737) - use file_format instead.",
           "enum": [
             "GCS_FILE_FORMAT_UNSPECIFIED",

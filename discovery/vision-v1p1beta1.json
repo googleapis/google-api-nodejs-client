@@ -449,7 +449,7 @@
       }
     }
   },
-  "revision": "20230608",
+  "revision": "20230710",
   "rootUrl": "https://vision.googleapis.com/",
   "schemas": {
     "AnnotateFileResponse": {
@@ -866,6 +866,7 @@
           "description": "Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features."
         },
         "confidence": {
+          "deprecated": true,
           "description": "**Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the \"Eiffel Tower\" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].",
           "format": "float",
           "type": "number"
@@ -1595,6 +1596,7 @@
           "description": "Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features."
         },
         "confidence": {
+          "deprecated": true,
           "description": "**Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the \"Eiffel Tower\" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].",
           "format": "float",
           "type": "number"
@@ -3193,6 +3195,7 @@
           "description": "Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features."
         },
         "confidence": {
+          "deprecated": true,
           "description": "**Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the \"Eiffel Tower\" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].",
           "format": "float",
           "type": "number"
@@ -4641,6 +4644,7 @@
           "description": "Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features."
         },
         "confidence": {
+          "deprecated": true,
           "description": "**Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the \"Eiffel Tower\" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].",
           "format": "float",
           "type": "number"
@@ -6176,6 +6180,7 @@
           "description": "Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features."
         },
         "confidence": {
+          "deprecated": true,
           "description": "**Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the \"Eiffel Tower\" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].",
           "format": "float",
           "type": "number"
