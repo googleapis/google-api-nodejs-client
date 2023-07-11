@@ -113,6 +113,7 @@ export namespace androidmanagement_v1 {
   export class Androidmanagement {
     context: APIRequestContext;
     enterprises: Resource$Enterprises;
+    provisioningInfo: Resource$Provisioninginfo;
     signupUrls: Resource$Signupurls;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -122,6 +123,7 @@ export namespace androidmanagement_v1 {
       };
 
       this.enterprises = new Resource$Enterprises(this.context);
+      this.provisioningInfo = new Resource$Provisioninginfo(this.context);
       this.signupUrls = new Resource$Signupurls(this.context);
     }
   }
@@ -2395,6 +2397,43 @@ export namespace androidmanagement_v1 {
      * Event type.
      */
     eventType?: string | null;
+  }
+  /**
+   * Information about a device that is available during setup.
+   */
+  export interface Schema$ProvisioningInfo {
+    /**
+     * The API level of the Android platform version running on the device.
+     */
+    apiLevel?: number | null;
+    /**
+     * The email address of the authenticated user (only present for Google Account provisioning method).
+     */
+    authenticatedUserEmail?: string | null;
+    /**
+     * Brand of the device. For example, Google.
+     */
+    brand?: string | null;
+    /**
+     * The name of the enterprise in the form enterprises/{enterprise\}.
+     */
+    enterprise?: string | null;
+    /**
+     * The management mode of the device or profile.
+     */
+    managementMode?: string | null;
+    /**
+     * The model of the device. For example, Asus Nexus 7.
+     */
+    model?: string | null;
+    /**
+     * The name of this resource in the form provisioningInfo/{provisioning_info\}.
+     */
+    name?: string | null;
+    /**
+     * Ownership of the managed device.
+     */
+    ownership?: string | null;
   }
   /**
    * Configuration info for an HTTP proxy. For a direct proxy, set the host, port, and excluded_hosts fields. For a PAC script proxy, set the pac_uri field.
@@ -7707,6 +7746,155 @@ export namespace androidmanagement_v1 {
      * Request body metadata
      */
     requestBody?: Schema$WebToken;
+  }
+
+  export class Resource$Provisioninginfo {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get the device provisioning info by the identifier provided via the sign-in url.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.provisioningInfo.get({
+     *     // Required. The identifier that Android Device Policy passes to the 3P sign-in page in the form of provisioningInfo/{provisioning_info\}.
+     *     name: 'provisioningInfo/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiLevel": 0,
+     *   //   "authenticatedUserEmail": "my_authenticatedUserEmail",
+     *   //   "brand": "my_brand",
+     *   //   "enterprise": "my_enterprise",
+     *   //   "managementMode": "my_managementMode",
+     *   //   "model": "my_model",
+     *   //   "name": "my_name",
+     *   //   "ownership": "my_ownership"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Provisioninginfo$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Provisioninginfo$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProvisioningInfo>;
+    get(
+      params: Params$Resource$Provisioninginfo$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Provisioninginfo$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ProvisioningInfo>,
+      callback: BodyResponseCallback<Schema$ProvisioningInfo>
+    ): void;
+    get(
+      params: Params$Resource$Provisioninginfo$Get,
+      callback: BodyResponseCallback<Schema$ProvisioningInfo>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ProvisioningInfo>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Provisioninginfo$Get
+        | BodyResponseCallback<Schema$ProvisioningInfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProvisioningInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProvisioningInfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ProvisioningInfo> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Provisioninginfo$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Provisioninginfo$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProvisioningInfo>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProvisioningInfo>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Provisioninginfo$Get
+    extends StandardParameters {
+    /**
+     * Required. The identifier that Android Device Policy passes to the 3P sign-in page in the form of provisioningInfo/{provisioning_info\}.
+     */
+    name?: string;
   }
 
   export class Resource$Signupurls {
