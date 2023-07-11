@@ -1016,7 +1016,7 @@
                   "type": "boolean"
                 },
                 "requestOptions.languageCode": {
-                  "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. From Suggest API perspective, for 3p suggest this is used as a hint while making predictions to add language boosting.",
+                  "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The Suggest API uses this field as a hint to make better third-party autocomplete predictions.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2096,46 +2096,9 @@
       }
     }
   },
-  "revision": "20230614",
+  "revision": "20230628",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
-    "AclInfo": {
-      "description": "Next tag: 4",
-      "id": "AclInfo",
-      "properties": {
-        "groupsCount": {
-          "description": "Number of groups which have at least read access to the document.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "scope": {
-          "description": "The scope to which the content was shared.",
-          "enum": [
-            "LIMITED",
-            "DASHER_DOMAIN_WITH_LINK",
-            "DASHER_DOMAIN",
-            "PUBLIC_WITH_LINK",
-            "PUBLIC",
-            "TEAM_DRIVE"
-          ],
-          "enumDescriptions": [
-            "Explicit set of people and groups.",
-            "Anybody at the same domain with the link.",
-            "Now it works only for google.com. Anybody at the same domain. Now it works only",
-            "for google.com. Anybody with the link.",
-            "Anybody.",
-            "Special tag to indicate TeamDrive scope."
-          ],
-          "type": "string"
-        },
-        "usersCount": {
-          "description": "Number of users which have at least read access to the document.",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "Action": {
       "id": "Action",
       "properties": {
@@ -2527,7 +2490,7 @@
       "type": "object"
     },
     "DataSource": {
-      "description": "Datasource is a logical namespace for items to be indexed. All items must belong to a datasource. This is the prerequisite before items can be indexed into Cloud Search.",
+      "description": "Datasource is a logical namespace for items to be indexed. All items must belong to a datasource. This is the prerequisite before items can be indexed into Cloud Search. ",
       "id": "DataSource",
       "properties": {
         "disableModifications": {
@@ -5037,118 +5000,6 @@
       },
       "type": "object"
     },
-    "GoogleDocsMetadata": {
-      "description": "The corpus specific metadata for office-type documents, from Google Docs and other sources. This message is passed to the scorer and beyond. Next tag: 9",
-      "id": "GoogleDocsMetadata",
-      "properties": {
-        "aclInfo": {
-          "$ref": "AclInfo",
-          "description": "Contains number of users and groups which can access the document."
-        },
-        "documentType": {
-          "description": "The conceptual type (presentation, document, etc.) of this document.",
-          "enum": [
-            "UNKNOWN",
-            "DOCUMENT",
-            "PRESENTATION",
-            "SPREADSHEET",
-            "PDF",
-            "IMAGE",
-            "BINARY_BLOB",
-            "FUSION_TABLE",
-            "FOLDER",
-            "DRAWING",
-            "VIDEO",
-            "FORM",
-            "DRAFT_SITE",
-            "DRAFT_SITE_PAGE",
-            "JAM",
-            "SHORTCUT",
-            "SCRIPT"
-          ],
-          "enumDescriptions": [
-            "If the type is unknown or not represented in this enum.",
-            "Writely, Word, etc.",
-            "Presently, PowerPoint, etc.",
-            "Trix, Excel, etc.",
-            "File types for Gdrive objects are below.",
-            "",
-            "Fall-back for unknown Gdrive types.",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "For Atari page and site drafts",
-            "",
-            "Jamboard Jams (go/jam)",
-            "Drive Shortcuts (go/shortcuts)",
-            ""
-          ],
-          "type": "string"
-        },
-        "fileExtension": {
-          "description": "The file extension of the document. NOTE: As of October 2018 this field is not backfilled for old documents.",
-          "type": "string"
-        },
-        "lastContentModifiedTimestamp": {
-          "description": "The last time this document was modified, in seconds since epoch. Only counts content modifications.",
-          "format": "int64",
-          "type": "string"
-        },
-        "numSubscribers": {
-          "description": "Contains number of subscribers for the document.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "numViewers": {
-          "description": "Size of untruncated viewers list.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "resultInfo": {
-          "$ref": "GoogleDocsResultInfo",
-          "description": "Additional per-result information, akin to Gmail's SingleThreadResponse. Note: GWS no longer seems to use this field, but there's still one reference to it for Scribe, so we can't remove it."
-        },
-        "typeInfo": {
-          "$ref": "TypeInfo",
-          "description": "Contains additional information about the document depending on its type."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleDocsResultInfo": {
-      "description": "A message containing information about a specific result. This information is passed to the scorer and beyond; in particular, GWS relies on it to format the result in the UI. Split from GoogleDocsMetadata in case we later want to reuse the message.",
-      "id": "GoogleDocsResultInfo",
-      "properties": {
-        "attachmentSha1": {
-          "description": "The SHA1 hash of the object in Drive, if any.",
-          "type": "string"
-        },
-        "cosmoId": {
-          "$ref": "Id",
-          "description": "The storage identifier for the object in Cosmo. This field is intended to used by Stratus/Moonshine integration only. It should not be exposed externally (please refer to encrypted_id for that purpose)."
-        },
-        "cosmoNameSpace": {
-          "description": "For Cosmo objects, the Cosmo namespace the object was in. This allows downstream clients to identify whether a document was created in Writely or Kix, Presently or Punch, or whether it was uploaded from GDrive. See storage_cosmo.Id.NAME_SPACE for a list of all Cosmo name spaces.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "encryptedId": {
-          "description": "The encrypted (user-visible) id of this object. Knowing the id is sufficient to create a canonical URL for this document.",
-          "type": "string"
-        },
-        "mimeType": {
-          "description": "The mimetype of the document.",
-          "type": "string"
-        },
-        "shareScope": {
-          "$ref": "ShareScope",
-          "description": "The visibility indicator in the UI will be based upon this."
-        }
-      },
-      "type": "object"
-    },
     "HtmlOperatorOptions": {
       "description": "Used to provide a search operator for html properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.",
       "id": "HtmlOperatorOptions",
@@ -5185,27 +5036,6 @@
             "type": "string"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "Id": {
-      "description": "Identifies a particular object, including both Users and DirEntries. This Id is unique across the entire server instance, such as the production or qa instance.",
-      "id": "Id",
-      "properties": {
-        "creatorUserId": {
-          "description": "The User account in which the DirEntry was originally created. If name_space==GAIA, then it's the gaia_id of the user this id is referring to. This field should really be called the \"bucket ID\", not the creator ID. In some circumstances, such as copying a Google Docs file, a user can create an item in a different user's bucket, so it should not be relied upon for anything other than bucket location. To look up the requesting user who initially created item, use the `creator_id` DirEntry field instead.",
-          "format": "uint64",
-          "type": "string"
-        },
-        "localId": {
-          "description": "The local identifier for the DirEntry (local to the creator's account). local_id + app_name is guaranteed to be unique within the creator account, but not across all User accounts. The string is case sensitive. Ignore if name_space==GAIA. NB For name_space==COSMO, all local_id's should be defined in google3/java/com/google/storage/cosmo/server/api/SpecialObjectIds.java as they have a special predefined meaning. See cosmo.client.CosmoIdFactory.createObjectId(long,String) for IMPORTANT recommendations when generating IDs.",
-          "type": "string"
-        },
-        "nameSpace": {
-          "description": "The name space in which this id is unique (typically the application that created it). Values should be drawn from the above enum, but for experimentation, use values greater than 1000.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -6957,7 +6787,7 @@
           "description": "Debug options of the request"
         },
         "languageCode": {
-          "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. From Suggest API perspective, for 3p suggest this is used as a hint while making predictions to add language boosting.",
+          "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The Suggest API uses this field as a hint to make better third-party autocomplete predictions.",
           "type": "string"
         },
         "searchApplicationId": {
@@ -7491,36 +7321,6 @@
       },
       "type": "object"
     },
-    "ShareScope": {
-      "id": "ShareScope",
-      "properties": {
-        "domain": {
-          "description": "If scope is DOMAIN, this field contains the dasher domain, for example \"google.com\".",
-          "type": "string"
-        },
-        "scope": {
-          "description": "The scope to which the content was shared.",
-          "enum": [
-            "UNKNOWN",
-            "PRIVATE",
-            "LIMITED",
-            "EXTENDED",
-            "DASHER_DOMAIN",
-            "PUBLIC"
-          ],
-          "enumDescriptions": [
-            "",
-            "Only the author can view the post.",
-            "Viewable only by a set of people.",
-            "Viewable by extended circles.",
-            "",
-            ""
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "Snippet": {
       "description": "Snippet of the search result, which summarizes the content of the resulting page.",
       "id": "Snippet",
@@ -7953,17 +7753,6 @@
       },
       "type": "object"
     },
-    "TypeInfo": {
-      "description": "Next tag: 2",
-      "id": "TypeInfo",
-      "properties": {
-        "videoInfo": {
-          "$ref": "VideoInfo",
-          "description": "Contains additional video information only if document_type is VIDEO."
-        }
-      },
-      "type": "object"
-    },
     "UnmappedIdentity": {
       "id": "UnmappedIdentity",
       "properties": {
@@ -8118,18 +7907,6 @@
         "value": {
           "$ref": "Value",
           "description": "The value to be compared with."
-        }
-      },
-      "type": "object"
-    },
-    "VideoInfo": {
-      "description": "Next tag: 2",
-      "id": "VideoInfo",
-      "properties": {
-        "duration": {
-          "description": "Duration of the video in milliseconds. This field can be absent for recently uploaded video or inaccurate sometimes.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
