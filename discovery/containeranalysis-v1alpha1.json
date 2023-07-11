@@ -1233,7 +1233,7 @@
       }
     }
   },
-  "revision": "20230612",
+  "revision": "20230707",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -1263,6 +1263,7 @@
           "type": "string"
         },
         "name": {
+          "deprecated": true,
           "description": "Name of the artifact. This may be the path to a binary or jar file, or in the case of a container build, the name used to push the container image to Google Container Registry, as presented to `docker push`. This field is deprecated in favor of the plural `names` field; it continues to exist here to allow existing BuildProvenance serialized to json in google.devtools.containeranalysis.v1alpha1.BuildDetails.provenance_bytes to deserialize back into proto.",
           "type": "string"
         },
@@ -2507,6 +2508,14 @@
             "CLOUD_LOGGING_ONLY",
             "NONE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "The service determines the logging mode. The default is `LEGACY`. Do not rely on the default logging behavior as it may change in the future.",
             "Build logs are stored in Cloud Logging and Cloud Storage.",
@@ -2524,14 +2533,16 @@
             "N1_HIGHCPU_8",
             "N1_HIGHCPU_32",
             "E2_HIGHCPU_8",
-            "E2_HIGHCPU_32"
+            "E2_HIGHCPU_32",
+            "E2_MEDIUM"
           ],
           "enumDescriptions": [
             "Standard machine type.",
             "Highcpu machine with 8 CPUs.",
             "Highcpu machine with 32 CPUs.",
             "Highcpu e2 machine with 8 CPUs.",
-            "Highcpu e2 machine with 32 CPUs."
+            "Highcpu e2 machine with 32 CPUs.",
+            "E2 machine with 1 CPU."
           ],
           "type": "string"
         },
@@ -2597,6 +2608,7 @@
           "type": "array"
         },
         "workerPool": {
+          "deprecated": true,
           "description": "This field deprecated; please use `pool.name` instead.",
           "type": "string"
         }
@@ -3490,6 +3502,11 @@
         "operation": {
           "$ref": "Operation",
           "description": "Output only. An operation that indicates the status of the current scan. This field is deprecated, do not use."
+        },
+        "sbomStatus": {
+          "$ref": "SBOMStatus",
+          "description": "Output only. The status of an SBOM generation.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -5604,6 +5621,7 @@
       "type": "object"
     },
     "RepoSource": {
+      "deprecated": true,
       "description": "RepoSource describes the location of the source in a Google Cloud Source Repository.",
       "id": "RepoSource",
       "properties": {
@@ -5682,6 +5700,33 @@
             "$ref": "EnvelopeSignature"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SBOMStatus": {
+      "description": "The status of an SBOM generation.",
+      "id": "SBOMStatus",
+      "properties": {
+        "error": {
+          "description": "Output only. If there was an error generating an SBOM, this will indicate what that error was.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sbomState": {
+          "description": "Output only. The progress of the SBOM generation.",
+          "enum": [
+            "SBOM_STATE_UNSPECIFIED",
+            "PENDING",
+            "COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Default unknown state.",
+            "SBOM scanning is pending.",
+            "SBOM scanning has completed."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -5997,10 +6042,12 @@
         },
         "repoSource": {
           "$ref": "RepoSource",
+          "deprecated": true,
           "description": "If provided, get source from this location in a Cloud Repo."
         },
         "storageSource": {
           "$ref": "StorageSource",
+          "deprecated": true,
           "description": "If provided, get the source from this location in Google Cloud Storage."
         }
       },
