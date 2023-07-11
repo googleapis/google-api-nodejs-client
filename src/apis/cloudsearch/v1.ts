@@ -138,23 +138,6 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  /**
-   * Next tag: 4
-   */
-  export interface Schema$AclInfo {
-    /**
-     * Number of groups which have at least read access to the document.
-     */
-    groupsCount?: number | null;
-    /**
-     * The scope to which the content was shared.
-     */
-    scope?: string | null;
-    /**
-     * Number of users which have at least read access to the document.
-     */
-    usersCount?: number | null;
-  }
   export interface Schema$Action {
     /**
      * [Required] Title of the action.
@@ -1827,72 +1810,6 @@ export namespace cloudsearch_v1 {
   export interface Schema$GetSearchApplicationUserStatsResponse {
     stats?: Schema$SearchApplicationUserStats[];
   }
-  /**
-   * The corpus specific metadata for office-type documents, from Google Docs and other sources. This message is passed to the scorer and beyond. Next tag: 9
-   */
-  export interface Schema$GoogleDocsMetadata {
-    /**
-     * Contains number of users and groups which can access the document.
-     */
-    aclInfo?: Schema$AclInfo;
-    /**
-     * The conceptual type (presentation, document, etc.) of this document.
-     */
-    documentType?: string | null;
-    /**
-     * The file extension of the document. NOTE: As of October 2018 this field is not backfilled for old documents.
-     */
-    fileExtension?: string | null;
-    /**
-     * The last time this document was modified, in seconds since epoch. Only counts content modifications.
-     */
-    lastContentModifiedTimestamp?: string | null;
-    /**
-     * Contains number of subscribers for the document.
-     */
-    numSubscribers?: number | null;
-    /**
-     * Size of untruncated viewers list.
-     */
-    numViewers?: number | null;
-    /**
-     * Additional per-result information, akin to Gmail's SingleThreadResponse. Note: GWS no longer seems to use this field, but there's still one reference to it for Scribe, so we can't remove it.
-     */
-    resultInfo?: Schema$GoogleDocsResultInfo;
-    /**
-     * Contains additional information about the document depending on its type.
-     */
-    typeInfo?: Schema$TypeInfo;
-  }
-  /**
-   * A message containing information about a specific result. This information is passed to the scorer and beyond; in particular, GWS relies on it to format the result in the UI. Split from GoogleDocsMetadata in case we later want to reuse the message.
-   */
-  export interface Schema$GoogleDocsResultInfo {
-    /**
-     * The SHA1 hash of the object in Drive, if any.
-     */
-    attachmentSha1?: string | null;
-    /**
-     * The storage identifier for the object in Cosmo. This field is intended to used by Stratus/Moonshine integration only. It should not be exposed externally (please refer to encrypted_id for that purpose).
-     */
-    cosmoId?: Schema$Id;
-    /**
-     * For Cosmo objects, the Cosmo namespace the object was in. This allows downstream clients to identify whether a document was created in Writely or Kix, Presently or Punch, or whether it was uploaded from GDrive. See storage_cosmo.Id.NAME_SPACE for a list of all Cosmo name spaces.
-     */
-    cosmoNameSpace?: number | null;
-    /**
-     * The encrypted (user-visible) id of this object. Knowing the id is sufficient to create a canonical URL for this document.
-     */
-    encryptedId?: string | null;
-    /**
-     * The mimetype of the document.
-     */
-    mimeType?: string | null;
-    /**
-     * The visibility indicator in the UI will be based upon this.
-     */
-    shareScope?: Schema$ShareScope;
-  }
   export interface Schema$GSuitePrincipal {
     /**
      * This principal represents all users of the Google Workspace domain of the customer.
@@ -1937,23 +1854,6 @@ export namespace cloudsearch_v1 {
      * The maximum allowable length for html values is 2048 characters.
      */
     values?: string[] | null;
-  }
-  /**
-   * Identifies a particular object, including both Users and DirEntries. This Id is unique across the entire server instance, such as the production or qa instance.
-   */
-  export interface Schema$Id {
-    /**
-     * The User account in which the DirEntry was originally created. If name_space==GAIA, then it's the gaia_id of the user this id is referring to. This field should really be called the "bucket ID", not the creator ID. In some circumstances, such as copying a Google Docs file, a user can create an item in a different user's bucket, so it should not be relied upon for anything other than bucket location. To look up the requesting user who initially created item, use the `creator_id` DirEntry field instead.
-     */
-    creatorUserId?: string | null;
-    /**
-     * The local identifier for the DirEntry (local to the creator's account). local_id + app_name is guaranteed to be unique within the creator account, but not across all User accounts. The string is case sensitive. Ignore if name_space==GAIA. NB For name_space==COSMO, all local_id's should be defined in google3/java/com/google/storage/cosmo/server/api/SpecialObjectIds.java as they have a special predefined meaning. See cosmo.client.CosmoIdFactory.createObjectId(long,String) for IMPORTANT recommendations when generating IDs.
-     */
-    localId?: string | null;
-    /**
-     * The name space in which this id is unique (typically the application that created it). Values should be drawn from the above enum, but for experimentation, use values greater than 1000.
-     */
-    nameSpace?: number | null;
   }
   export interface Schema$IndexItemOptions {
     /**
@@ -3069,7 +2969,7 @@ export namespace cloudsearch_v1 {
      */
     debugOptions?: Schema$DebugOptions;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. From Suggest API perspective, for 3p suggest this is used as a hint while making predictions to add language boosting.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The Suggest API uses this field as a hint to make better third-party autocomplete predictions.
      */
     languageCode?: string | null;
     /**
@@ -3446,16 +3346,6 @@ export namespace cloudsearch_v1 {
      */
     url?: string | null;
   }
-  export interface Schema$ShareScope {
-    /**
-     * If scope is DOMAIN, this field contains the dasher domain, for example "google.com".
-     */
-    domain?: string | null;
-    /**
-     * The scope to which the content was shared.
-     */
-    scope?: string | null;
-  }
   /**
    * Snippet of the search result, which summarizes the content of the resulting page.
    */
@@ -3754,15 +3644,6 @@ export namespace cloudsearch_v1 {
   export interface Schema$TimestampValues {
     values?: string[] | null;
   }
-  /**
-   * Next tag: 2
-   */
-  export interface Schema$TypeInfo {
-    /**
-     * Contains additional video information only if document_type is VIDEO.
-     */
-    videoInfo?: Schema$VideoInfo;
-  }
   export interface Schema$UnmappedIdentity {
     /**
      * The resource name for an external user.
@@ -3850,15 +3731,6 @@ export namespace cloudsearch_v1 {
      * The value to be compared with.
      */
     value?: Schema$Value;
-  }
-  /**
-   * Next tag: 2
-   */
-  export interface Schema$VideoInfo {
-    /**
-     * Duration of the video in milliseconds. This field can be absent for recently uploaded video or inaccurate sometimes.
-     */
-    duration?: number | null;
   }
   export interface Schema$VPCSettings {
     /**
@@ -7722,7 +7594,7 @@ export namespace cloudsearch_v1 {
      *     pageToken: 'placeholder-value',
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'requestOptions.debugOptions.enableDebugging': 'placeholder-value',
-     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. From Suggest API perspective, for 3p suggest this is used as a hint while making predictions to add language boosting.
+     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The Suggest API uses this field as a hint to make better third-party autocomplete predictions.
      *     'requestOptions.languageCode': 'placeholder-value',
      *     // The ID generated when you create a search application using the [admin console](https://support.google.com/a/answer/9043922).
      *     'requestOptions.searchApplicationId': 'placeholder-value',
@@ -7843,7 +7715,7 @@ export namespace cloudsearch_v1 {
      */
     'requestOptions.debugOptions.enableDebugging'?: boolean;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. From Suggest API perspective, for 3p suggest this is used as a hint while making predictions to add language boosting.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The Suggest API uses this field as a hint to make better third-party autocomplete predictions.
      */
     'requestOptions.languageCode'?: string;
     /**
