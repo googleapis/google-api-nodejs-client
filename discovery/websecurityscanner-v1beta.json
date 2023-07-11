@@ -526,7 +526,7 @@
       }
     }
   },
-  "revision": "20230126",
+  "revision": "20230701",
   "rootUrl": "https://websecurityscanner.googleapis.com/",
   "schemas": {
     "Authentication": {
@@ -539,6 +539,7 @@
         },
         "googleAccount": {
           "$ref": "GoogleAccount",
+          "deprecated": true,
           "description": "Authentication using a Google account."
         },
         "iapCredential": {
@@ -720,6 +721,7 @@
       "type": "object"
     },
     "GoogleAccount": {
+      "deprecated": true,
       "description": "Describes authentication configuration that uses a Google account.",
       "id": "GoogleAccount",
       "properties": {

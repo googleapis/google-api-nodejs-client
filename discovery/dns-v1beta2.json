@@ -1821,7 +1821,7 @@
       }
     }
   },
-  "revision": "20230407",
+  "revision": "20230708",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -3023,7 +3023,8 @@
           "$ref": "RRSetRoutingPolicyGeoPolicy"
         },
         "geoPolicy": {
-          "$ref": "RRSetRoutingPolicyGeoPolicy"
+          "$ref": "RRSetRoutingPolicyGeoPolicy",
+          "deprecated": true
         },
         "kind": {
           "default": "dns#rRSetRoutingPolicy",
@@ -3036,7 +3037,8 @@
           "$ref": "RRSetRoutingPolicyWrrPolicy"
         },
         "wrrPolicy": {
-          "$ref": "RRSetRoutingPolicyWrrPolicy"
+          "$ref": "RRSetRoutingPolicyWrrPolicy",
+          "deprecated": true
         }
       },
       "type": "object"
