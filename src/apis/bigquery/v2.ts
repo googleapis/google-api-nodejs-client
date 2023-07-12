@@ -1259,6 +1259,10 @@ export namespace bigquery_v2 {
      */
     decimalTargetTypes?: string[] | null;
     /**
+     * [Optional] Specifies how source URIs are interpreted for constructing the file set to load. By default source URIs are expanded against the underlying storage. Other options include specifying manifest files. Only applicable to object storage systems.
+     */
+    fileSetSpecType?: string | null;
+    /**
      * [Optional] Additional options if sourceFormat is set to GOOGLE_SHEETS.
      */
     googleSheetsOptions?: Schema$GoogleSheetsOptions;
@@ -1847,6 +1851,10 @@ export namespace bigquery_v2 {
      * [Optional] The separator for fields in a CSV file. The separator can be any ISO-8859-1 single-byte character. To use a character in the range 128-255, you must encode the character as UTF8. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence "\t" to specify a tab separator. The default value is a comma (',').
      */
     fieldDelimiter?: string | null;
+    /**
+     * [Optional] Specifies how source URIs are interpreted for constructing the file set to load. By default source URIs are expanded against the underlying storage. Other options include specifying manifest files. Only applicable to object storage systems.
+     */
+    fileSetSpecType?: string | null;
     /**
      * [Optional] Options to configure hive partitioning support.
      */
@@ -3961,10 +3969,6 @@ export namespace bigquery_v2 {
      * Optimization strategy for training linear regression models.
      */
     optimizationStrategy?: string | null;
-    /**
-     * Whether to preserve the input structs in output feature names. Suppose there is a struct A with field b. When false (default), the output feature name is A_b. When true, the output feature name is A.b.
-     */
-    preserveInputStructs?: boolean | null;
     /**
      * Number of paths for the sampled Shapley explain method.
      */

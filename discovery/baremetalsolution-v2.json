@@ -176,35 +176,6 @@
             }
           },
           "resources": {
-            "instanceProvisioningSettings": {
-              "methods": {
-                "fetch": {
-                  "description": "Get instance provisioning settings for a given project. This is hidden method used by UI only.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instanceProvisioningSettings:fetch",
-                  "httpMethod": "GET",
-                  "id": "baremetalsolution.projects.locations.instanceProvisioningSettings.fetch",
-                  "parameterOrder": [
-                    "location"
-                  ],
-                  "parameters": {
-                    "location": {
-                      "description": "Required. The parent project and location containing the ProvisioningSettings.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v2/{+location}/instanceProvisioningSettings:fetch",
-                  "response": {
-                    "$ref": "FetchInstanceProvisioningSettingsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
-            },
             "instances": {
               "methods": {
                 "detachLun": {
@@ -1577,7 +1548,7 @@
       }
     }
   },
-  "revision": "20230612",
+  "revision": "20230628",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1676,25 +1647,12 @@
       "properties": {},
       "type": "object"
     },
-    "FetchInstanceProvisioningSettingsResponse": {
-      "description": "Response with all provisioning settings.",
-      "id": "FetchInstanceProvisioningSettingsResponse",
-      "properties": {
-        "images": {
-          "description": "The OS images available.",
-          "items": {
-            "$ref": "OSImage"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudBaremetalsolutionV2LogicalInterface": {
       "description": "Each logical interface represents a logical abstraction of the underlying physical interface (for eg. bond, nic) of the instance. Each logical interface can effectively map to multiple network-IP pairs and still be mapped to one underlying physical interface.",
       "id": "GoogleCloudBaremetalsolutionV2LogicalInterface",
       "properties": {
         "interfaceIndex": {
+          "deprecated": true,
           "description": "The index of the logical interface mapping to the index of the hardware bond or nic on the chosen network template. This field is deprecated.",
           "format": "int32",
           "type": "integer"
@@ -1708,35 +1666,6 @@
         },
         "name": {
           "description": "Interface name. This is of syntax or and forms part of the network template name.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface": {
-      "description": "Logical interface.",
-      "id": "GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface",
-      "properties": {
-        "name": {
-          "description": "Interface name. This is not a globally unique identifier. Name is unique only inside the ServerNetworkTemplate. This is of syntax or and forms part of the network template name.",
-          "type": "string"
-        },
-        "required": {
-          "description": "If true, interface must have network connected.",
-          "type": "boolean"
-        },
-        "type": {
-          "description": "Interface type.",
-          "enum": [
-            "INTERFACE_TYPE_UNSPECIFIED",
-            "BOND",
-            "NIC"
-          ],
-          "enumDescriptions": [
-            "Unspecified value.",
-            "Bond interface type.",
-            "NIC interface type."
-          ],
           "type": "string"
         }
       },
@@ -1890,6 +1819,7 @@
         },
         "clientNetwork": {
           "$ref": "NetworkAddress",
+          "deprecated": true,
           "description": "Client network address. Filled if InstanceConfig.multivlan_config is false."
         },
         "hyperthreading": {
@@ -1940,6 +1870,7 @@
         },
         "privateNetwork": {
           "$ref": "NetworkAddress",
+          "deprecated": true,
           "description": "Private network address, if any. Filled if InstanceConfig.multivlan_config is false."
         },
         "sshKeyNames": {
@@ -1970,6 +1901,7 @@
           "type": "string"
         },
         "instanceType": {
+          "deprecated": true,
           "description": "Instance type. Deprecated: use gcp_service.",
           "type": "string"
         },
@@ -2808,40 +2740,6 @@
       },
       "type": "object"
     },
-    "OSImage": {
-      "description": "Operation System image.",
-      "id": "OSImage",
-      "properties": {
-        "applicableInstanceTypes": {
-          "description": "Instance types this image is applicable to. [Available types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "code": {
-          "description": "OS Image code.",
-          "type": "string"
-        },
-        "description": {
-          "description": "OS Image description.",
-          "type": "string"
-        },
-        "name": {
-          "description": "Output only. OS Image's unique name.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "supportedNetworkTemplates": {
-          "description": "Network templates that can be used with this OS Image.",
-          "items": {
-            "$ref": "ServerNetworkTemplate"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -2891,6 +2789,7 @@
           "type": "string"
         },
         "email": {
+          "deprecated": true,
           "description": "Email provided to send a confirmation with provisioning config to. Deprecated in favour of email field in request messages.",
           "type": "string"
         },
@@ -3131,32 +3030,6 @@
         },
         "publicKey": {
           "description": "The public SSH key. This must be in OpenSSH .authorized_keys format.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ServerNetworkTemplate": {
-      "description": "Network template.",
-      "id": "ServerNetworkTemplate",
-      "properties": {
-        "applicableInstanceTypes": {
-          "description": "Instance types this template is applicable to.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "logicalInterfaces": {
-          "description": "Logical interfaces.",
-          "items": {
-            "$ref": "GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface"
-          },
-          "type": "array"
-        },
-        "name": {
-          "description": "Output only. Template's unique name. The full resource name follows the pattern: `projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}` Generally, the {server_network_template} follows the syntax of \"bond\" or \"nic\".",
-          "readOnly": true,
           "type": "string"
         }
       },

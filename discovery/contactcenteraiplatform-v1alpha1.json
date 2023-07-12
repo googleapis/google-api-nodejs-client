@@ -571,7 +571,7 @@
       }
     }
   },
-  "revision": "20230615",
+  "revision": "20230628",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -621,7 +621,7 @@
       "type": "object"
     },
     "ContactCenter": {
-      "description": "Message describing ContactCenter object Next ID: 14",
+      "description": "Message describing ContactCenter object Next ID: 15",
       "id": "ContactCenter",
       "properties": {
         "adminUser": {
@@ -649,6 +649,10 @@
         "instanceConfig": {
           "$ref": "InstanceConfig",
           "description": "The configuration of this instance, it is currently immutable once created."
+        },
+        "kmsKey": {
+          "description": "Immutable. The KMS key name to encrypt the user input (`ContactCenter`).",
+          "type": "string"
         },
         "labels": {
           "additionalProperties": {
@@ -711,11 +715,13 @@
       "id": "ContactCenterQuota",
       "properties": {
         "contactCenterCountLimit": {
+          "deprecated": true,
           "description": "Deprecated: Use the Quota fields instead. Reflects the count limit of contact centers on a billing account.",
           "format": "int32",
           "type": "integer"
         },
         "contactCenterCountSum": {
+          "deprecated": true,
           "description": "Deprecated: Use the Quota fields instead. Reflects the count sum of contact centers on a billing account.",
           "format": "int32",
           "type": "integer"
@@ -1047,6 +1053,7 @@
           "type": "string"
         },
         "userEmail": {
+          "deprecated": true,
           "description": "Email address of the first admin users.",
           "type": "string"
         }

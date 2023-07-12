@@ -3253,7 +3253,7 @@
                           ]
                         },
                         "list": {
-                          "description": "Fetches a list of results for a given test case.",
+                          "description": "Fetches the list of run results for the given test case. A maximum of 100 results are kept for each test case.",
                           "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/testCases/{testCasesId}/results",
                           "httpMethod": "GET",
                           "id": "dialogflow.projects.locations.agents.testCases.results.list",
@@ -3820,7 +3820,7 @@
       }
     }
   },
-  "revision": "20230618",
+  "revision": "20230705",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -4215,12 +4215,16 @@
       "id": "GoogleCloudDialogflowCxV3ExportAgentResponse",
       "properties": {
         "agentContent": {
-          "description": "Uncompressed raw byte content for agent.",
+          "description": "Uncompressed raw byte content for agent. This field is populated if none of `agent_uri` and `git_destination` are specified in ExportAgentRequest.",
           "format": "byte",
           "type": "string"
         },
         "agentUri": {
           "description": "The URI to a file containing the exported agent. This field is populated if `agent_uri` is specified in ExportAgentRequest.",
+          "type": "string"
+        },
+        "commitSha": {
+          "description": "Commit SHA of the git push. This field is populated if `git_destination` are specified in ExportAgentRequest.",
           "type": "string"
         }
       },
@@ -5492,6 +5496,7 @@
           "type": "object"
         },
         "password": {
+          "deprecated": true,
           "description": "The password for HTTP Basic authentication.",
           "type": "string"
         },
@@ -5511,6 +5516,7 @@
           "type": "string"
         },
         "username": {
+          "deprecated": true,
           "description": "The user name for HTTP Basic authentication.",
           "type": "string"
         },
@@ -5808,8 +5814,13 @@
           "type": "boolean"
         },
         "enableStackdriverLogging": {
+          "deprecated": true,
           "description": "Indicates if stackdriver logging is enabled for the agent. Please use agent.advanced_settings instead.",
           "type": "boolean"
+        },
+        "gitIntegrationSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettings",
+          "description": "Git integration settings for this agent."
         },
         "locked": {
           "description": "Indicates whether the agent is locked for changes. If the agent is locked, modifications to the agent will be rejected except for RestoreAgent.",
@@ -5844,6 +5855,47 @@
         },
         "timeZone": {
           "description": "Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettings": {
+      "description": "Settings for connecting to Git repository for an agent.",
+      "id": "GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettings",
+      "properties": {
+        "githubSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGithubSettings",
+          "description": "GitHub settings."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGithubSettings": {
+      "description": "Settings of integration with GitHub.",
+      "id": "GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGithubSettings",
+      "properties": {
+        "accessToken": {
+          "description": "The access token used to authenticate the access to the GitHub repository.",
+          "type": "string"
+        },
+        "branches": {
+          "description": "A list of branches configured to be used from Dialogflow.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "The unique repository display name for the GitHub repository.",
+          "type": "string"
+        },
+        "repositoryUri": {
+          "description": "The GitHub repository URI related to the agent.",
+          "type": "string"
+        },
+        "trackingBranch": {
+          "description": "The branch of GitHub repository tracked for this agent.",
           "type": "string"
         }
       },
@@ -6864,6 +6916,29 @@
         "environment": {
           "description": "Optional. Environment name. If not set, draft environment is assumed. Format: `projects//locations//agents//environments/`.",
           "type": "string"
+        },
+        "gitDestination": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ExportAgentRequestGitDestination",
+          "description": "Optional. The Git branch to export the agent to."
+        },
+        "includeBigqueryExportSettings": {
+          "description": "Optional. Whether to include BigQuery Export setting.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ExportAgentRequestGitDestination": {
+      "description": "Settings for exporting to a git branch.",
+      "id": "GoogleCloudDialogflowCxV3beta1ExportAgentRequestGitDestination",
+      "properties": {
+        "commitMessage": {
+          "description": "Commit message for the git push.",
+          "type": "string"
+        },
+        "trackingBranch": {
+          "description": "Tracking branch for the git push.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6873,12 +6948,16 @@
       "id": "GoogleCloudDialogflowCxV3beta1ExportAgentResponse",
       "properties": {
         "agentContent": {
-          "description": "Uncompressed raw byte content for agent.",
+          "description": "Uncompressed raw byte content for agent. This field is populated if none of `agent_uri` and `git_destination` are specified in ExportAgentRequest.",
           "format": "byte",
           "type": "string"
         },
         "agentUri": {
           "description": "The URI to a file containing the exported agent. This field is populated if `agent_uri` is specified in ExportAgentRequest.",
+          "type": "string"
+        },
+        "commitSha": {
+          "description": "Commit SHA of the git push. This field is populated if `git_destination` are specified in ExportAgentRequest.",
           "type": "string"
         }
       },
@@ -8335,6 +8414,11 @@
           },
           "type": "array"
         },
+        "sessionTtl": {
+          "description": "Optional. Sets Dialogflow session life time. By default, a Dialogflow session remains active and its data is stored for 30 minutes after the last request is sent for the session. This value should be no longer than 1 day.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "timeZone": {
           "description": "The time zone of this conversational query from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris. If not provided, the time zone specified in the agent is used.",
           "type": "string"
@@ -8371,9 +8455,11 @@
         },
         "intent": {
           "$ref": "GoogleCloudDialogflowCxV3beta1Intent",
+          "deprecated": true,
           "description": "The Intent that matched the conversational query. Some, not all fields are filled in this message, including but not limited to: `name` and `display_name`. This field is deprecated, please use QueryResult.match instead."
         },
         "intentDetectionConfidence": {
+          "deprecated": true,
           "description": "The intent detection confidence. Values range from 0.0 (completely uncertain) to 1.0 (completely certain). This value is for informational purpose only and is only used to help match the best intent within the classification threshold. This value may change for the same end-user expression at any time due to a model retraining or change in implementation. This field is deprecated, please use QueryResult.match instead.",
           "format": "float",
           "type": "number"
@@ -8671,6 +8757,10 @@
           "description": "The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to restore agent from. The format of this URI must be `gs:///`. Dialogflow performs a read operation for the Cloud Storage object on the caller's behalf, so your request authentication must have read permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).",
           "type": "string"
         },
+        "gitSource": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1RestoreAgentRequestGitSource",
+          "description": "Setting for restoring from a git branch"
+        },
         "restoreOption": {
           "description": "Agent restore mode. If not specified, `KEEP` is assumed.",
           "enum": [
@@ -8683,6 +8773,17 @@
             "Always respect the settings from the exported agent file. It may cause a restoration failure if some settings (e.g. model type) are not supported in the target agent.",
             "Fallback to default settings if some settings are not supported in the target agent."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1RestoreAgentRequestGitSource": {
+      "description": "Settings for restoring from a git branch",
+      "id": "GoogleCloudDialogflowCxV3beta1RestoreAgentRequestGitSource",
+      "properties": {
+        "trackingBranch": {
+          "description": "tracking branch for the git pull",
           "type": "string"
         }
       },
@@ -9589,6 +9690,7 @@
           "type": "string"
         },
         "resources": {
+          "deprecated": true,
           "description": "The names of the resources where the message is found.",
           "items": {
             "type": "string"
@@ -9814,6 +9916,7 @@
           "type": "object"
         },
         "password": {
+          "deprecated": true,
           "description": "The password for HTTP Basic authentication.",
           "type": "string"
         },
@@ -9833,6 +9936,7 @@
           "type": "string"
         },
         "username": {
+          "deprecated": true,
           "description": "The user name for HTTP Basic authentication.",
           "type": "string"
         },
@@ -11613,6 +11717,11 @@
             "EXAMPLE",
             "TEMPLATE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Not specified. This value should never be used.",
             "Examples do not contain @-prefixed entity type names, but example parts can be annotated with entity types.",
@@ -12710,6 +12819,7 @@
           "type": "boolean"
         },
         "mlEnabled": {
+          "deprecated": true,
           "description": "Optional. Indicates whether Machine Learning is enabled for the intent. Note: If `ml_enabled` setting is set to false, then this intent is not taken into account during inference in `ML ONLY` match mode. Also, auto-markup in the UI is turned off. DEPRECATED! Please use `ml_disabled` field instead. NOTE: If both `ml_enabled` and `ml_disabled` are either not set or false, then the default value is determined as follows: - Before April 15th, 2018 the default is: ml_enabled = false / ml_disabled = true. - After April 15th, 2018 the default is: ml_enabled = true / ml_disabled = false.",
           "type": "boolean"
         },
@@ -13810,6 +13920,11 @@
             "TYPE_UNSPECIFIED",
             "EXAMPLE",
             "TEMPLATE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "Not specified. This value should never be used.",

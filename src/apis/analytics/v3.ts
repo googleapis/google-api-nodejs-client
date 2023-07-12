@@ -4453,13 +4453,13 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.customDataSources.list({
      *     // Account Id for the custom data sources to retrieve.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // The maximum number of custom data sources to include in this response.
      *     'max-results': 'placeholder-value',
      *     // A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      *     'start-index': 'placeholder-value',
      *     // Web property Id for the custom data sources to retrieve.
-     *     webPropertyId: 'UA-(d+)-(d+)',
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
      *   });
      *   console.log(res.data);
      *
@@ -6933,15 +6933,15 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.experiments.list({
      *     // Account ID to retrieve experiments for.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // The maximum number of experiments to include in this response.
      *     'max-results': 'placeholder-value',
      *     // View (Profile) ID to retrieve experiments for.
-     *     profileId: 'd+',
+     *     profileId: '&#92;d+',
      *     // An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      *     'start-index': 'placeholder-value',
      *     // Web property ID to retrieve experiments for.
-     *     webPropertyId: 'UA-(d+)-(d+)',
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
      *   });
      *   console.log(res.data);
      *
@@ -8084,7 +8084,7 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.filters.list({
      *     // Account ID to retrieve filters for.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // The maximum number of filters to include in this response.
      *     'max-results': 'placeholder-value',
      *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
@@ -9596,13 +9596,13 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.profileFilterLinks.delete({
      *     // Account ID to which the profile filter link belongs.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // ID of the profile filter link to delete.
-     *     linkId: 'd+:d+',
+     *     linkId: '&#92;d+:&#92;d+',
      *     // Profile ID to which the filter link belongs.
-     *     profileId: 'd+',
+     *     profileId: '&#92;d+',
      *     // Web property Id to which the profile filter link belongs.
-     *     webPropertyId: 'UA-(d+)-(d+)',
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
      *   });
      *   console.log(res.data);
      * }
@@ -9727,13 +9727,13 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.profileFilterLinks.get({
      *     // Account ID to retrieve profile filter link for.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // ID of the profile filter link.
-     *     linkId: 'd+:d+',
+     *     linkId: '&#92;d+:&#92;d+',
      *     // Profile ID to retrieve filter link for.
-     *     profileId: 'd+',
+     *     profileId: '&#92;d+',
      *     // Web property Id to retrieve profile filter link for.
-     *     webPropertyId: 'UA-(d+)-(d+)',
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
      *   });
      *   console.log(res.data);
      *
@@ -9870,11 +9870,11 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.profileFilterLinks.insert({
      *     // Account ID to create profile filter link for.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // Profile ID to create filter link for.
-     *     profileId: 'd+',
+     *     profileId: '&#92;d+',
      *     // Web property Id to create profile filter link for.
-     *     webPropertyId: 'UA-(d+)-(d+)',
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -10027,7 +10027,7 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.profileFilterLinks.list({
      *     // Account ID to retrieve profile filter links for.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // The maximum number of profile filter links to include in this response.
      *     'max-results': 'placeholder-value',
      *     // Profile ID to retrieve filter links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
@@ -10174,13 +10174,13 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.profileFilterLinks.patch({
      *     // Account ID to which profile filter link belongs.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // ID of the profile filter link to be updated.
-     *     linkId: 'd+:d+',
+     *     linkId: '&#92;d+:&#92;d+',
      *     // Profile ID to which filter link belongs
-     *     profileId: 'd+',
+     *     profileId: '&#92;d+',
      *     // Web property Id to which profile filter link belongs
-     *     webPropertyId: 'UA-(d+)-(d+)',
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -10330,13 +10330,13 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.profileFilterLinks.update({
      *     // Account ID to which profile filter link belongs.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // ID of the profile filter link to be updated.
-     *     linkId: 'd+:d+',
+     *     linkId: '&#92;d+:&#92;d+',
      *     // Profile ID to which filter link belongs
-     *     profileId: 'd+',
+     *     profileId: '&#92;d+',
      *     // Web property Id to which profile filter link belongs
-     *     webPropertyId: 'UA-(d+)-(d+)',
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -14353,11 +14353,11 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.uploads.deleteUploadData({
      *     // Account Id for the uploads to be deleted.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // Custom data source Id for the uploads to be deleted.
      *     customDataSourceId: '.{22}',
      *     // Web property Id for the uploads to be deleted.
-     *     webPropertyId: 'UA-(d+)-(d+)',
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -14491,13 +14491,13 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.uploads.get({
      *     // Account Id for the upload to retrieve.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // Custom data source Id for upload to retrieve.
      *     customDataSourceId: '.{22}',
      *     // Upload Id to retrieve.
      *     uploadId: '.{22}',
      *     // Web property Id for the upload to retrieve.
-     *     webPropertyId: 'UA-(d+)-(d+)',
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
      *   });
      *   console.log(res.data);
      *
@@ -14646,7 +14646,7 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.uploads.list({
      *     // Account Id for the uploads to retrieve.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // Custom data source Id for uploads to retrieve.
      *     customDataSourceId: '.{22}',
      *     // The maximum number of uploads to include in this response.
@@ -14654,7 +14654,7 @@ export namespace analytics_v3 {
      *     // A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      *     'start-index': 'placeholder-value',
      *     // Web property Id for the uploads to retrieve.
-     *     webPropertyId: 'UA-(d+)-(d+)',
+     *     webPropertyId: 'UA-(&#92;d+)-(&#92;d+)',
      *   });
      *   console.log(res.data);
      *
@@ -14792,11 +14792,11 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.uploads.uploadData({
      *     // Account Id associated with the upload.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // Custom data source Id to which the data being uploaded belongs.
      *     customDataSourceId: 'placeholder-value',
      *     // Web property UA-string associated with the upload.
-     *     webPropertyId: 'UA-d+-d+',
+     *     webPropertyId: 'UA-&#92;d+-&#92;d+',
      *
      *     requestBody: {
      *       // request body parameters
@@ -16383,7 +16383,7 @@ export namespace analytics_v3 {
      *   // Do the magic
      *   const res = await analytics.management.webPropertyAdWordsLinks.list({
      *     // ID of the account which the given web property belongs to.
-     *     accountId: 'd+',
+     *     accountId: '&#92;d+',
      *     // The maximum number of webProperty-Google Ads links to include in this response.
      *     'max-results': 'placeholder-value',
      *     // An index of the first webProperty-Google Ads link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.

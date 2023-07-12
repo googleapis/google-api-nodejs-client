@@ -110,6 +110,7 @@
         "assets": {
           "methods": {
             "group": {
+              "deprecated": true,
               "description": "Filters an organization's assets and groups them by their specified properties.",
               "flatPath": "v1/folders/{foldersId}/assets:group",
               "httpMethod": "POST",
@@ -138,6 +139,7 @@
               ]
             },
             "list": {
+              "deprecated": true,
               "description": "Lists an organization's assets.",
               "flatPath": "v1/folders/{foldersId}/assets",
               "httpMethod": "GET",
@@ -1379,6 +1381,7 @@
         "assets": {
           "methods": {
             "group": {
+              "deprecated": true,
               "description": "Filters an organization's assets and groups them by their specified properties.",
               "flatPath": "v1/organizations/{organizationsId}/assets:group",
               "httpMethod": "POST",
@@ -1407,6 +1410,7 @@
               ]
             },
             "list": {
+              "deprecated": true,
               "description": "Lists an organization's assets.",
               "flatPath": "v1/organizations/{organizationsId}/assets",
               "httpMethod": "GET",
@@ -1471,6 +1475,7 @@
               ]
             },
             "runDiscovery": {
+              "deprecated": true,
               "description": "Runs asset discovery. The discovery is tracked with a long-running operation. This API can only be called with limited frequency for an organization. If it is called too frequently the caller will receive a TOO_MANY_REQUESTS error.",
               "flatPath": "v1/organizations/{organizationsId}/assets:runDiscovery",
               "httpMethod": "POST",
@@ -2939,6 +2944,7 @@
         "assets": {
           "methods": {
             "group": {
+              "deprecated": true,
               "description": "Filters an organization's assets and groups them by their specified properties.",
               "flatPath": "v1/projects/{projectsId}/assets:group",
               "httpMethod": "POST",
@@ -2967,6 +2973,7 @@
               ]
             },
             "list": {
+              "deprecated": true,
               "description": "Lists an organization's assets.",
               "flatPath": "v1/projects/{projectsId}/assets",
               "httpMethod": "GET",
@@ -4143,7 +4150,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230706",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -4393,6 +4400,7 @@
           "type": "string"
         },
         "muteAnnotation": {
+          "deprecated": true,
           "description": "This can be a mute configuration name or any identifier for mute/unmute of findings based on the filter.",
           "type": "string"
         }
@@ -4729,7 +4737,7 @@
       "type": "object"
     },
     "Database": {
-      "description": "Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of Cloud SQL instances or Cloud Spanner instances), or the database instance itself. Some database resources might not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types, such as Cloud SQL databases, are not yet supported by Cloud Asset Inventory. In these cases only the display name is provided. Some database resources may not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types are not yet supported by Cloud Asset Inventory (e.g. Cloud SQL databases). In these cases only the display name will be provided.",
+      "description": "Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of Cloud SQL instances or Cloud Spanner instances), or the database instance itself. Some database resources might not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types, such as Cloud SQL databases, are not yet supported by Cloud Asset Inventory. In these cases only the display name is provided.",
       "id": "Database",
       "properties": {
         "displayName": {
@@ -4744,7 +4752,7 @@
           "type": "array"
         },
         "name": {
-          "description": "The [full resource name](https://google.aip.dev/122#full-resource-names) of the database that the user connected to, if it is supported by Cloud Asset Inventory.",
+          "description": "Some database resources may not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types are not yet supported by Cloud Asset Inventory (e.g. Cloud SQL databases). In these cases only the display name will be provided. The [full resource name](https://google.aip.dev/122#full-resource-names) of the database that the user connected to, if it is supported by Cloud Asset Inventory.",
           "type": "string"
         },
         "query": {
@@ -4753,6 +4761,10 @@
         },
         "userName": {
           "description": "The username used to connect to the database. The username might not be an IAM principal and does not have a set format.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the database, for example, POSTGRES_14. See [the complete list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).",
           "type": "string"
         }
       },
@@ -5404,6 +5416,7 @@
           "type": "string"
         },
         "displayName": {
+          "deprecated": true,
           "description": "The human readable name to be displayed for the mute config.",
           "type": "string"
         },
@@ -6519,7 +6532,8 @@
               "NETWORK_SERVICE_DISCOVERY",
               "ACCESS_TOKEN_MANIPULATION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
-              "DEFAULT_ACCOUNTS"
+              "DEFAULT_ACCOUNTS",
+              "INHIBIT_SYSTEM_RECOVERY"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -6557,7 +6571,8 @@
               "T1046",
               "T1134",
               "T1548",
-              "T1078.001"
+              "T1078.001",
+              "T1490"
             ],
             "type": "string"
           },
@@ -6640,7 +6655,8 @@
               "NETWORK_SERVICE_DISCOVERY",
               "ACCESS_TOKEN_MANIPULATION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
-              "DEFAULT_ACCOUNTS"
+              "DEFAULT_ACCOUNTS",
+              "INHIBIT_SYSTEM_RECOVERY"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -6678,7 +6694,8 @@
               "T1046",
               "T1134",
               "T1548",
-              "T1078.001"
+              "T1078.001",
+              "T1490"
             ],
             "type": "string"
           },

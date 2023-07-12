@@ -109,6 +109,22 @@
   "resources": {
     "customers": {
       "methods": {
+        "checkHasProvisionedDeployment": {
+          "description": "Checks whether a SAS deployment for the authentication context exists.",
+          "flatPath": "v1alpha1/customers:checkHasProvisionedDeployment",
+          "httpMethod": "GET",
+          "id": "sasportal.customers.checkHasProvisionedDeployment",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha1/customers:checkHasProvisionedDeployment",
+          "response": {
+            "$ref": "SasPortalCheckHasProvisionedDeploymentResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sasportal"
+          ]
+        },
         "get": {
           "description": "Returns a requested customer.",
           "flatPath": "v1alpha1/customers/{customersId}",
@@ -157,6 +173,25 @@
           "path": "v1alpha1/customers",
           "response": {
             "$ref": "SasPortalListCustomersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sasportal"
+          ]
+        },
+        "migrateOrganization": {
+          "description": "Migrates a SAS organization to the cloud. This will create GCP projects for each deployment and associate them. The SAS Organization is linked to the gcp project that called the command. go/sas-legacy-customer-migration",
+          "flatPath": "v1alpha1/customers:migrateOrganization",
+          "httpMethod": "POST",
+          "id": "sasportal.customers.migrateOrganization",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha1/customers:migrateOrganization",
+          "request": {
+            "$ref": "SasPortalMigrateOrganizationRequest"
+          },
+          "response": {
+            "$ref": "SasPortalOperation"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -2582,7 +2617,7 @@
       }
     }
   },
-  "revision": "20230612",
+  "revision": "20230628",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2615,6 +2650,17 @@
           "description": "The channel score, normalized to be in the range [0,100].",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalCheckHasProvisionedDeploymentResponse": {
+      "description": "Response for [CheckHasProvisionedDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.CheckHasProvisionedDeployment].",
+      "id": "SasPortalCheckHasProvisionedDeploymentResponse",
+      "properties": {
+        "hasProvisionedDeployment": {
+          "description": "Whether a SAS deployment for the authentication context exists.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2684,6 +2730,21 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalDeploymentAssociation": {
+      "description": "Association between a gcp project and a SAS user id.",
+      "id": "SasPortalDeploymentAssociation",
+      "properties": {
+        "gcpProjectId": {
+          "description": "GCP project id of the associated project.",
+          "type": "string"
+        },
+        "userId": {
+          "description": "User id of the deployment.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3237,6 +3298,58 @@
           "description": "The nodes that match the request.",
           "items": {
             "$ref": "SasPortalNode"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalMigrateOrganizationMetadata": {
+      "description": "Long-running operation metadata message returned by the MigrateOrganization.",
+      "id": "SasPortalMigrateOrganizationMetadata",
+      "properties": {
+        "operationState": {
+          "description": "Output only. Current operation state",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "OPERATION_STATE_PENDING",
+            "OPERATION_STATE_RUNNING",
+            "OPERATION_STATE_SUCCEEDED",
+            "OPERATION_STATE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Pending (Not started).",
+            "In-progress.",
+            "Done successfully.",
+            "Done with errors."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalMigrateOrganizationRequest": {
+      "description": "Request for [MigrateOrganization]. [spectrum.sas.portal.v1alpha1.Provisioning.MigrateOrganization]. GCP Project, Organization Info, and caller's GAIA ID should be retrieved from the RPC handler, and used to check authorization on SAS Portal organization and to create GCP Projects.",
+      "id": "SasPortalMigrateOrganizationRequest",
+      "properties": {
+        "organizationId": {
+          "description": "Required. Id of the SAS organization to be migrated.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalMigrateOrganizationResponse": {
+      "description": "Response for [MigrateOrganization]. [spectrum.sas.portal.v1alpha1.Provisioning.MigrateOrganization].",
+      "id": "SasPortalMigrateOrganizationResponse",
+      "properties": {
+        "deploymentAssociation": {
+          "description": "Optional. A list of deployment association that were created for the migration, or current associations if they already exist.",
+          "items": {
+            "$ref": "SasPortalDeploymentAssociation"
           },
           "type": "array"
         }

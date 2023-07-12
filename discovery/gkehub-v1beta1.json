@@ -712,7 +712,7 @@
       }
     }
   },
-  "revision": "20230609",
+  "revision": "20230627",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "ApplianceCluster": {
@@ -1271,10 +1271,12 @@
           "type": "string"
         },
         "description": {
+          "deprecated": true,
           "description": "This field is never set by the Hub Service.",
           "type": "string"
         },
         "updateTime": {
+          "deprecated": true,
           "description": "This field is never set by the Hub Service.",
           "format": "google-datetime",
           "type": "string"

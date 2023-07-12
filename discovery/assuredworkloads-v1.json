@@ -519,7 +519,7 @@
       }
     }
   },
-  "revision": "20230619",
+  "revision": "20230630",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest": {
@@ -565,7 +565,8 @@
             "ASSURED_WORKLOADS_FOR_PARTNERS",
             "ISR_REGIONS",
             "ISR_REGIONS_AND_SUPPORT",
-            "CA_PROTECTED_B"
+            "CA_PROTECTED_B",
+            "IL5"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -583,7 +584,8 @@
             "Assured Workloads for Partners;",
             "Assured Workloads for Israel",
             "Assured Workloads for Israel Regions",
-            "Assured Workloads for Canada Protected B regime"
+            "Assured Workloads for Canada Protected B regime",
+            "Information protection as per DoD IL5 requirements."
           ],
           "type": "string"
         },
@@ -737,11 +739,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "orgPolicyConstraint": {
-          "description": "Output only. Immutable. The org-policy-constraint that was incorrectly changed, which resulted in this violation.",
-          "readOnly": true,
-          "type": "string"
-        },
         "remediation": {
           "$ref": "GoogleCloudAssuredworkloadsV1ViolationRemediation",
           "description": "Output only. Compliance violation remediation",
@@ -801,14 +798,16 @@
             "REMEDIATION_BOOLEAN_ORG_POLICY_VIOLATION",
             "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION",
             "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION",
-            "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION"
+            "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION",
+            "REMEDIATION_RESOURCE_VIOLATION"
           ],
           "enumDescriptions": [
             "Unspecified remediation type",
             "Remediation type for boolean org policy",
             "Remediation type for list org policy which have allowed values in the monitoring rule",
             "Remediation type for list org policy which have denied values in the monitoring rule",
-            "Remediation type for gcp.restrictCmekCryptoKeyProjects"
+            "Remediation type for gcp.restrictCmekCryptoKeyProjects",
+            "Remediation type for resource violation."
           ],
           "readOnly": true,
           "type": "string"
@@ -913,7 +912,8 @@
             "ASSURED_WORKLOADS_FOR_PARTNERS",
             "ISR_REGIONS",
             "ISR_REGIONS_AND_SUPPORT",
-            "CA_PROTECTED_B"
+            "CA_PROTECTED_B",
+            "IL5"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -931,7 +931,8 @@
             "Assured Workloads for Partners;",
             "Assured Workloads for Israel",
             "Assured Workloads for Israel Regions",
-            "Assured Workloads for Canada Protected B regime"
+            "Assured Workloads for Canada Protected B regime",
+            "Information protection as per DoD IL5 requirements."
           ],
           "type": "string"
         },

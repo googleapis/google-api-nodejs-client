@@ -1339,7 +1339,7 @@
       }
     }
   },
-  "revision": "20230601",
+  "revision": "20230629",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -1569,6 +1569,7 @@
       "id": "DatabaseDump",
       "properties": {
         "databaseType": {
+          "deprecated": true,
           "description": "The type of the database.",
           "enum": [
             "DATABASE_TYPE_UNSPECIFIED",
@@ -1585,6 +1586,7 @@
           "type": "string"
         },
         "sourceDatabase": {
+          "deprecated": true,
           "description": "The name of the source database.",
           "type": "string"
         },

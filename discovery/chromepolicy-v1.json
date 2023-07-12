@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20230429",
+  "revision": "20230706",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle": {
@@ -1142,6 +1142,7 @@
           "type": "any"
         },
         "description": {
+          "deprecated": true,
           "description": "Deprecated. Use name and field_description instead. The description for the field.",
           "type": "string"
         },

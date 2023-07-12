@@ -332,6 +332,10 @@ export namespace workflows_v1 {
      * Output only. The timestamp for when the workflow was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Optional. User-defined environment variables associated with this workflow revision. This map has a maximum length of 20. Each string can take up to 40KiB. Keys cannot be empty strings and cannot start with “GOOGLE” or “WORKFLOWS".
+     */
+    userEnvVars?: {[key: string]: string} | null;
   }
 
   export class Resource$Projects {
@@ -1144,7 +1148,8 @@ export namespace workflows_v1 {
      *       //   "sourceContents": "my_sourceContents",
      *       //   "state": "my_state",
      *       //   "stateError": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "userEnvVars": {}
      *       // }
      *     },
      *   });
@@ -1429,7 +1434,8 @@ export namespace workflows_v1 {
      *   //   "sourceContents": "my_sourceContents",
      *   //   "state": "my_state",
      *   //   "stateError": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "userEnvVars": {}
      *   // }
      * }
      *
@@ -1713,7 +1719,8 @@ export namespace workflows_v1 {
      *       //   "sourceContents": "my_sourceContents",
      *       //   "state": "my_state",
      *       //   "stateError": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "userEnvVars": {}
      *       // }
      *     },
      *   });

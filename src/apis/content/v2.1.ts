@@ -5471,6 +5471,10 @@ export namespace content_v2_1 {
      */
     canonicalLink?: string | null;
     /**
+     * Product [certification](https://support.google.com/merchants/answer/13528839), introduced for EU energy efficiency labeling compliance using the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database.
+     */
+    certifications?: Schema$ProductCertification[];
+    /**
      * Required. The item's channel (online or local). Acceptable values are: - "`local`" - "`online`"
      */
     channel?: string | null;
@@ -5820,6 +5824,23 @@ export namespace content_v2_1 {
      * Tax value.
      */
     taxAmount?: Schema$Price;
+  }
+  /**
+   * Product [certification](https://support.google.com/merchants/answer/13528839), introduced for EU energy efficiency labeling compliance using the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database.
+   */
+  export interface Schema$ProductCertification {
+    /**
+     * The certification authority, for example "European_Commission". Maximum length is 2000 characters.
+     */
+    certificationAuthority?: string | null;
+    /**
+     * The certification code, for eaxample "123456". Maximum length is 2000 characters.
+     */
+    certificationCode?: string | null;
+    /**
+     * The name of the certification, for example "EPREL". Maximum length is 2000 characters.
+     */
+    certificationName?: string | null;
   }
   /**
    * Product cluster fields. A product cluster is a grouping for different offers that represent the same product. Values are only set for fields requested explicitly in the request's search query.
@@ -8050,6 +8071,10 @@ export namespace content_v2_1 {
      * Time in hours and minutes in the local timezone when local delivery ends.
      */
     localCutoffTime?: Schema$ServiceStoreConfigCutoffConfigLocalCutoffTime;
+    /**
+     * Merchants can opt-out of showing n+1 day local delivery when they have a shipping service configured to n day local delivery. For example, if the shipping service defines same-day delivery, and it's past the cut-off, setting this field to `true` results in the calculated shipping service rate returning `NO_DELIVERY_POST_CUTOFF`. In the same example, setting this field to `false` results in the calculated shipping time being one day. This is only for local delivery.
+     */
+    noDeliveryPostCutoff?: boolean | null;
     /**
      * Represents cutoff time as the number of hours before store closing. Mutually exclusive with other fields (hour and minute).
      */
@@ -27997,6 +28022,7 @@ export namespace content_v2_1 {
      *   //   "availabilityDate": "my_availabilityDate",
      *   //   "brand": "my_brand",
      *   //   "canonicalLink": "my_canonicalLink",
+     *   //   "certifications": [],
      *   //   "channel": "my_channel",
      *   //   "cloudExportAdditionalProperties": [],
      *   //   "color": "my_color",
@@ -28221,6 +28247,7 @@ export namespace content_v2_1 {
      *       //   "availabilityDate": "my_availabilityDate",
      *       //   "brand": "my_brand",
      *       //   "canonicalLink": "my_canonicalLink",
+     *       //   "certifications": [],
      *       //   "channel": "my_channel",
      *       //   "cloudExportAdditionalProperties": [],
      *       //   "color": "my_color",
@@ -28323,6 +28350,7 @@ export namespace content_v2_1 {
      *   //   "availabilityDate": "my_availabilityDate",
      *   //   "brand": "my_brand",
      *   //   "canonicalLink": "my_canonicalLink",
+     *   //   "certifications": [],
      *   //   "channel": "my_channel",
      *   //   "cloudExportAdditionalProperties": [],
      *   //   "color": "my_color",
@@ -28690,6 +28718,7 @@ export namespace content_v2_1 {
      *       //   "availabilityDate": "my_availabilityDate",
      *       //   "brand": "my_brand",
      *       //   "canonicalLink": "my_canonicalLink",
+     *       //   "certifications": [],
      *       //   "channel": "my_channel",
      *       //   "cloudExportAdditionalProperties": [],
      *       //   "color": "my_color",
@@ -28792,6 +28821,7 @@ export namespace content_v2_1 {
      *   //   "availabilityDate": "my_availabilityDate",
      *   //   "brand": "my_brand",
      *   //   "canonicalLink": "my_canonicalLink",
+     *   //   "certifications": [],
      *   //   "channel": "my_channel",
      *   //   "cloudExportAdditionalProperties": [],
      *   //   "color": "my_color",

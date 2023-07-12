@@ -803,6 +803,50 @@
                     }
                   }
                 },
+                "goModules": {
+                  "methods": {
+                    "upload": {
+                      "description": "Directly uploads a Go module. The returned Operation will complete once the Go module is uploaded. Package, Version, and File resources are created based on the uploaded Go module.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/goModules:create",
+                      "httpMethod": "POST",
+                      "id": "artifactregistry.projects.locations.repositories.goModules.upload",
+                      "mediaUpload": {
+                        "accept": [
+                          "*/*"
+                        ],
+                        "protocols": {
+                          "simple": {
+                            "multipart": true,
+                            "path": "/upload/v1/{+parent}/goModules:create"
+                          }
+                        }
+                      },
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "The resource name of the repository where the Go module will be uploaded.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/goModules:create",
+                      "request": {
+                        "$ref": "UploadGoModuleRequest"
+                      },
+                      "response": {
+                        "$ref": "UploadGoModuleMediaResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ],
+                      "supportsMediaUpload": true
+                    }
+                  }
+                },
                 "googetArtifacts": {
                   "methods": {
                     "import": {
@@ -1311,6 +1355,34 @@
                     },
                     "versions": {
                       "methods": {
+                        "batchDelete": {
+                          "description": "Deletes multiple versions across a repository. The returned operation will complete once the versions have been deleted.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/packages/{packagesId}/versions:batchDelete",
+                          "httpMethod": "POST",
+                          "id": "artifactregistry.projects.locations.repositories.packages.versions.batchDelete",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "The name of the repository holding all requested versions.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/packages/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/versions:batchDelete",
+                          "request": {
+                            "$ref": "BatchDeleteVersionsRequest"
+                          },
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "delete": {
                           "description": "Deletes a version and all of its content. The returned operation will complete once the version has been deleted.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/packages/{packagesId}/versions/{versionsId}",
@@ -1589,7 +1661,7 @@
       }
     }
   },
-  "revision": "20230615",
+  "revision": "20230628",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1654,6 +1726,24 @@
       },
       "type": "object"
     },
+    "BatchDeleteVersionsRequest": {
+      "description": "The request to delete multiple versions across a repository.",
+      "id": "BatchDeleteVersionsRequest",
+      "properties": {
+        "names": {
+          "description": "Required. The names of the versions to delete. A maximum of 10000 versions can be deleted in a batch.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "validateOnly": {
+          "description": "If true, the request is performed without deleting data, following AIP-163.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Binding": {
       "description": "Associates `members`, or principals, with a `role`.",
       "id": "Binding",
@@ -1672,6 +1762,117 @@
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CleanupPolicy": {
+      "description": "Artifact policy configuration for repository cleanup policies.",
+      "id": "CleanupPolicy",
+      "properties": {
+        "action": {
+          "description": "Policy action.",
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "DELETE",
+            "KEEP"
+          ],
+          "enumDescriptions": [
+            "Action not specified.",
+            "Delete action.",
+            "Keep action."
+          ],
+          "type": "string"
+        },
+        "condition": {
+          "$ref": "CleanupPolicyCondition",
+          "description": "Policy condition for matching versions."
+        },
+        "id": {
+          "description": "The user-provided ID of the cleanup policy.",
+          "type": "string"
+        },
+        "mostRecentVersions": {
+          "$ref": "CleanupPolicyMostRecentVersions",
+          "description": "Policy condition for retaining a minimum number of versions. May only be specified with a Keep action."
+        }
+      },
+      "type": "object"
+    },
+    "CleanupPolicyCondition": {
+      "description": "CleanupPolicyCondition is a set of conditions attached to a CleanupPolicy. If multiple entries are set, all must be satisfied for the condition to be satisfied.",
+      "id": "CleanupPolicyCondition",
+      "properties": {
+        "newerThan": {
+          "description": "Match versions newer than a duration.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "olderThan": {
+          "description": "Match versions older than a duration.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "packageNamePrefixes": {
+          "description": "Match versions by package prefix. Applied on any prefix match.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tagPrefixes": {
+          "description": "Match versions by tag prefix. Applied on any prefix match.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tagState": {
+          "description": "Match versions by tag status.",
+          "enum": [
+            "TAG_STATE_UNSPECIFIED",
+            "TAGGED",
+            "UNTAGGED",
+            "ANY"
+          ],
+          "enumDescriptions": [
+            "Tag status not specified.",
+            "Applies to tagged versions only.",
+            "Applies to untagged versions only.",
+            "Applies to all versions."
+          ],
+          "type": "string"
+        },
+        "versionAge": {
+          "description": "DEPRECATED: Use older_than.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "versionNamePrefixes": {
+          "description": "Match versions by version name prefix. Applied on any prefix match.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CleanupPolicyMostRecentVersions": {
+      "description": "CleanupPolicyMostRecentVersions is an alternate condition of a CleanupPolicy for retaining a minimum number of versions.",
+      "id": "CleanupPolicyMostRecentVersions",
+      "properties": {
+        "keepCount": {
+          "description": "Minimum number of versions to keep.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "packageNamePrefixes": {
+          "description": "List of package name prefixes that will apply this rule.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1777,6 +1978,33 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoModule": {
+      "description": "GoModule represents a Go module.",
+      "id": "GoModule",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the Go module is created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name of a Go module.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the Go module is updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the Go module. Must be a valid canonical version as defined in https://go.dev/ref/mod#glos-canonical-version.",
           "type": "string"
         }
       },
@@ -2660,6 +2888,17 @@
       "description": "A Repository for storing artifacts with a specific format.",
       "id": "Repository",
       "properties": {
+        "cleanupPolicies": {
+          "additionalProperties": {
+            "$ref": "CleanupPolicy"
+          },
+          "description": "Optional. Cleanup policies for this repository. Cleanup policies indicate when certain package versions can be automatically deleted. Map keys are policy IDs supplied by users during policy creation. They must unique within a repository and be under 128 characters in length.",
+          "type": "object"
+        },
+        "cleanupPolicyDryRun": {
+          "description": "Optional. If true, the cleanup pipeline is prevented from deleting versions in this repository.",
+          "type": "boolean"
+        },
         "createTime": {
           "description": "Output only. The time when the repository was created.",
           "format": "google-datetime",
@@ -2685,7 +2924,8 @@
             "YUM",
             "GOOGET",
             "PYTHON",
-            "KFP"
+            "KFP",
+            "GO"
           ],
           "enumDescriptions": [
             "Unspecified package format.",
@@ -2696,7 +2936,8 @@
             "YUM package format.",
             "GooGet package format.",
             "Python package format.",
-            "Kubeflow Pipelines package format."
+            "Kubeflow Pipelines package format.",
+            "Go package format."
           ],
           "type": "string"
         },
@@ -2879,6 +3120,29 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "UploadGoModuleMediaResponse": {
+      "description": "The response to upload a Go module.",
+      "id": "UploadGoModuleMediaResponse",
+      "properties": {
+        "operation": {
+          "$ref": "Operation",
+          "description": "Operation to be returned to the user."
+        }
+      },
+      "type": "object"
+    },
+    "UploadGoModuleMetadata": {
+      "description": "The operation metadata for uploading go modules.",
+      "id": "UploadGoModuleMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "UploadGoModuleRequest": {
+      "description": "The request to upload a Go module.",
+      "id": "UploadGoModuleRequest",
+      "properties": {},
       "type": "object"
     },
     "UploadGoogetArtifactMediaResponse": {

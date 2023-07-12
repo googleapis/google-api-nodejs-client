@@ -400,7 +400,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20230708",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "AmpInspectionResult": {
@@ -1416,6 +1416,15 @@
             "PATTERN_SITEMAP",
             "OCEANFRONT"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true
+          ],
           "enumDescriptions": [
             "",
             "",
@@ -1440,6 +1449,7 @@
       "id": "WmxSitemapContent",
       "properties": {
         "indexed": {
+          "deprecated": true,
           "description": "*Deprecated; do not use.*",
           "format": "int64",
           "type": "string"
@@ -1461,6 +1471,17 @@
             "PATTERN",
             "IOS_APP",
             "DATA_FEED_ELEMENT"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true
           ],
           "enumDescriptions": [
             "",

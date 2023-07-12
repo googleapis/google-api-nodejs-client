@@ -721,7 +721,7 @@
       }
     }
   },
-  "revision": "20230420",
+  "revision": "20230621",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1255,7 +1255,7 @@
             "TPU node is restarting.",
             "TPU node is undergoing reimaging.",
             "TPU node is being deleted.",
-            "TPU node is being repaired and may be unusable. Details can be found in the `help_description` field.",
+            "TPU node is being repaired and may be unusable. Details can be found in the 'help_description' field.",
             "TPU node is stopped.",
             "TPU node is currently stopping.",
             "TPU node is currently starting.",

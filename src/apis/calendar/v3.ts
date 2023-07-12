@@ -805,7 +805,7 @@ export namespace calendar_v3 {
      */
     visibility?: string | null;
     /**
-     * Working Location event data. Read-only. Developer Preview.
+     * Working Location event data. Developer Preview.
      */
     workingLocationProperties?: Schema$EventWorkingLocationProperties;
   }

@@ -1,5 +1,31 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dfareporting-v4.0.0...dfareporting-v5.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **dfareporting:** update the API ([c346e5b](https://github.com/googleapis/google-api-nodejs-client/commit/c346e5b75a5c7b349b142d00aa8cc54484abb967))
+* **dfareporting:** update the API ([2093abd](https://github.com/googleapis/google-api-nodejs-client/commit/2093abd97ab8dea3766b7b01ad5d54ae8fba15f2))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dfareporting-v3.0.0...dfareporting-v4.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **dfareporting:** update the API ([c346e5b](https://github.com/googleapis/google-api-nodejs-client/commit/c346e5b75a5c7b349b142d00aa8cc54484abb967))
+* **dfareporting:** update the API ([2093abd](https://github.com/googleapis/google-api-nodejs-client/commit/2093abd97ab8dea3766b7b01ad5d54ae8fba15f2))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dfareporting-v2.2.0...dfareporting-v3.0.0) (2023-06-22)
 
 

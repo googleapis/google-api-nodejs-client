@@ -624,7 +624,7 @@
       }
     }
   },
-  "revision": "20230608",
+  "revision": "20230627",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -1160,6 +1160,7 @@
       "id": "MaintenanceSchedule",
       "properties": {
         "canReschedule": {
+          "deprecated": true,
           "description": "If the scheduled maintenance can be rescheduled, default is true.",
           "type": "boolean"
         },
@@ -1302,6 +1303,7 @@
       "id": "ReconciliationOperationMetadata",
       "properties": {
         "deleteResource": {
+          "deprecated": true,
           "description": "DEPRECATED. Use exclusive_action instead.",
           "type": "boolean"
         },
@@ -1311,6 +1313,11 @@
             "UNKNOWN_REPAIR_ACTION",
             "DELETE",
             "RETRY"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false
           ],
           "enumDescriptions": [
             "Unknown repair action.",

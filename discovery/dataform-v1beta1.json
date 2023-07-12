@@ -1816,7 +1816,7 @@
       }
     }
   },
-  "revision": "20230603",
+  "revision": "20230701",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2255,7 +2255,8 @@
           "type": "string"
         },
         "tokenStatus": {
-          "description": "Output only. Indicates the status of the Git access token.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: The field does not contain any token status information. Instead use https://cloud.google.com/dataform/reference/rest/v1beta1/projects.locations.repositories/computeAccessTokenStatus",
           "enum": [
             "TOKEN_STATUS_UNSPECIFIED",
             "NOT_FOUND",
@@ -3261,7 +3262,7 @@
       "id": "WorkflowInvocation",
       "properties": {
         "compilationResult": {
-          "description": "Immutable. The name of the compilation result to compile. Must be in the format `projects/*/locations/*/repositories/*/compilationResults/*`.",
+          "description": "Immutable. The name of the compilation result to use for this invocation. Must be in the format `projects/*/locations/*/repositories/*/compilationResults/*`.",
           "type": "string"
         },
         "invocationConfig": {

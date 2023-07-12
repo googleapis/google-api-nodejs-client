@@ -1,5 +1,45 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v9.0.0...iam-v10.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **iam:** update the API ([627861d](https://github.com/googleapis/google-api-nodejs-client/commit/627861db489a3f5b59cd1bd59eeab3281d732967))
+* **iam:** update the API ([4855bec](https://github.com/googleapis/google-api-nodejs-client/commit/4855becee9d8ad4d7246e2b5e710c3eac57fcfe8))
+* **iam:** update the API ([b149229](https://github.com/googleapis/google-api-nodejs-client/commit/b1492297140434849e31c1c0a1e947c61fac7d4a))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v8.0.0...iam-v9.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **iam:** update the API ([627861d](https://github.com/googleapis/google-api-nodejs-client/commit/627861db489a3f5b59cd1bd59eeab3281d732967))
+* **iam:** update the API ([4855bec](https://github.com/googleapis/google-api-nodejs-client/commit/4855becee9d8ad4d7246e2b5e710c3eac57fcfe8))
+* **iam:** update the API ([b149229](https://github.com/googleapis/google-api-nodejs-client/commit/b1492297140434849e31c1c0a1e947c61fac7d4a))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v7.1.0...iam-v8.0.0) (2023-06-22)
 
 

@@ -1049,6 +1049,10 @@ export namespace contentwarehouse_v1 {
      */
     appUniqueId?: string | null;
     /**
+     * Where this contact info was retrieved from. Note: only added for Assistant usage, and will not be populated by PAPI. This is due to the coupling between Assistant Proto, and PAPI proto. (//depot/google3/quality/qrewrite/servlets/proto/focus_name.proto)
+     */
+    contactInfoSource?: string | null;
+    /**
      * Store third party endpoint that is displayed to users. For example, display_app_unique_id for Whatsapp will be "Message +11234567890".
      */
     displayAppUniqueId?: string | null;
@@ -1259,10 +1263,6 @@ export namespace contentwarehouse_v1 {
    * Contact-level people-prompts settings and contact-level connection reminders. Part of go/people-prompts.
    */
   export interface Schema$AppsPeopleOzExternalMergedpeopleapiConnectionReminder {
-    /**
-     * Contains the Contact level settings that will affect all reminders.
-     */
-    contactPromptSettings?: Schema$SocialGraphApiProtoContactPromptSettings;
     metadata?: Schema$AppsPeopleOzExternalMergedpeopleapiPersonFieldMetadata;
     /**
      * Contact-level "reminder to connect" prompts for this contact.
@@ -4506,13 +4506,17 @@ export namespace contentwarehouse_v1 {
     routineId?: string | null;
   }
   /**
-   * The set of information that helps the server identify the surface. This replaces the User-Agent string within the Assistant Server. Note: The SurfaceIdentity proto should only be used to derive the capabilities of a surface. It should not be accessed outside of the CapabilityBuilder or CapabilityChecker. NEXT ID: 5 LINT.IfChange
+   * The set of information that helps the server identify the surface. This replaces the User-Agent string within the Assistant Server. Note: The SurfaceIdentity proto should only be used to derive the capabilities of a surface. It should not be accessed outside of the CapabilityBuilder or CapabilityChecker. NEXT ID: 6 LINT.IfChange
    */
   export interface Schema$AssistantApiCoreTypesGovernedSurfaceIdentity {
     /**
      * The identifier of the device.
      */
     deviceId?: Schema$AssistantApiCoreTypesDeviceId;
+    /**
+     * DEPRECATED: The legacy device's surface type enum. NOTE: Prefer using the ontological `surface_type` field above. If you need to access the legacy surface type, please file a bug and add it in your code to migrate to ontological surface type.
+     */
+    legacySurfaceType?: string | null;
     /**
      * The device's surface type. The types are defined at google3/assistant/api/core_types/surfaces.gcl.
      */
@@ -8903,8 +8907,40 @@ export namespace contentwarehouse_v1 {
     lowConfidenceReason?: string | null;
     resultConfidenceLevel?: string | null;
   }
+  export interface Schema$AssistantPfrDeviceRdMetadata {
+    deviceName?: string | null;
+    deviceTypes?: string[] | null;
+    effectiveArgSpanLength?: number | null;
+    /**
+     * True if there are more than one possible resolutions to the RD.
+     */
+    hasAmbiguousResolutions?: boolean | null;
+    /**
+     * True if there's at least one device id that gets resolved. Note this is different from is_grounded = true: it is possible that is_grounded = false (num_grounded_args =0) but there is resolved device ids. E.g.: "turn on the blue light" Power_on(device_object = [d1, d2]:RD(category=DeviceObject(name='blue light')) where there are "blue light 1" and "blue light 2" hence two resolved device ids. But since the quantifier is single, GB can't resolve the ambiguity and would set num_grounded_args = 0 to indicate such unresolved ambiguity.
+     */
+    hasResolvedDeviceId?: boolean | null;
+    roomName?: string | null;
+  }
   /**
-   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 57
+   * Used by the Smarthome Business Rules twiddler to determine whether to replace the top-scoring Smarthome intent with another.
+   */
+  export interface Schema$AssistantPfrSmartHomeIntentMetadata {
+    /**
+     * Each DeviceRdMetadata represents one device RD (device slot) in the intent. Note that each device RD could have multiple device groundings inside of it.
+     */
+    deviceRdMetadata?: Schema$AssistantPfrDeviceRdMetadata[];
+    intentName?: string | null;
+    /**
+     * When num_constraints == num_constraints_satisfied, indicating all slot matchings are exact match.
+     */
+    isExactMatch?: boolean | null;
+    /**
+     * When num_grounded_args \> 0, indicating there is at least one top-level argument is grounded.
+     */
+    isGrounded?: boolean | null;
+  }
+  /**
+   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 60
    */
   export interface Schema$AssistantPrefulfillmentRankerPrefulfillmentSignals {
     /**
@@ -8988,6 +9024,10 @@ export namespace contentwarehouse_v1 {
      */
     isFullyGrounded?: boolean | null;
     /**
+     * Used for PFR manual rule to prefer high confidence podcast intent (e.g. topical, genre) over generic podcast intents.
+     */
+    isHighConfidencePodcastIntent?: boolean | null;
+    /**
      * Whether the intent is a media control intent.
      */
     isMediaControlIntent?: boolean | null;
@@ -8995,6 +9035,10 @@ export namespace contentwarehouse_v1 {
      * Whether the intent is a PlayGenericMusic-type intent.
      */
     isPlayGenericMusic?: boolean | null;
+    /**
+     * Used for PFR manual rule to prefer high confidence podcast intent (e.g. topical, genre) over generic podcast intents.
+     */
+    isPodcastGenericIntent?: boolean | null;
     /**
      * Whether the intent is a podcast intent.
      */
@@ -9091,6 +9135,10 @@ export namespace contentwarehouse_v1 {
      * The determination made by the SearchDispatchingConfig as to whether and how this interpretation should be dispatched to Search.
      */
     searchDispatch?: string | null;
+    /**
+     * SmartHome intent metadata used for the SmartHome business-rules twiddler.
+     */
+    smarthomeIntentMetadata?: Schema$AssistantPfrSmartHomeIntentMetadata;
     /**
      * sub_intent_type differentiates between intents that share the top level intent name. For eg: for TV_FALLBACK_SEARCH_INTENT, the top level intent name must be "Find_media" and the media_object argument within it must be of type "Media_unspecified".
      */
@@ -11765,7 +11813,7 @@ export namespace contentwarehouse_v1 {
     value?: number[] | null;
   }
   /**
-   * The attributes of encoded thumbnail images. Next id: 7.
+   * The attributes of encoded thumbnail images. Next id: 8.
    */
   export interface Schema$DrishtiVesperEncodedThumbnail {
     /**
@@ -11777,6 +11825,10 @@ export namespace contentwarehouse_v1 {
      */
     encodingType?: string | null;
     height?: number | null;
+    /**
+     * The Blob ID of the thumbnail image in the Blobstore. We recommend absolute IDs with universe prefix if this field is passed across systems. The owner of this blob is also responsible for data Wipeout compliance.
+     */
+    imageBlobId?: string | null;
     /**
      * Encoded thumbnail bytes. Prefer this over `image_string` as we are not supposed to store image bytes in a proto string field.
      */
@@ -18033,6 +18085,14 @@ export namespace contentwarehouse_v1 {
      * The document type of the document being referenced.
      */
     documentIsFolder?: boolean | null;
+    /**
+     * Document is a folder with legal hold.
+     */
+    documentIsLegalHoldFolder?: boolean | null;
+    /**
+     * Document is a folder with retention policy.
+     */
+    documentIsRetentionFolder?: boolean | null;
     /**
      * Required. Name of the referenced document.
      */
@@ -38435,6 +38495,7 @@ export namespace contentwarehouse_v1 {
     brandEntityId?: string | null;
     catalogId?: string | null;
     globalProductClusterId?: string | null;
+    images?: Schema$ShoppingWebentityShoppingAnnotationProductImage[];
     locale?: Schema$QualityShoppingShoppingAttachmentLocale;
     mokaFacet?: Schema$QualityShoppingShoppingAttachmentMokaFacetValue[];
     nonDisplayableDescription?: string | null;
@@ -42545,7 +42606,7 @@ export namespace contentwarehouse_v1 {
     originalOrganizationName?: string | null;
   }
   /**
-   * A proto for storing inferred and reconciled metadata for Science Search. Next available tag: 71
+   * A proto for storing inferred and reconciled metadata for Science Search. Next available tag: 72
    */
   export interface Schema$ResearchScienceSearchReconciledMetadata {
     /**
@@ -42764,6 +42825,10 @@ export namespace contentwarehouse_v1 {
      * An embedding for the dataset to be used by the VersionAggregator.
      */
     versionEmbeddingVector?: number[] | null;
+    /**
+     * A simhash value of the fields used for identifying versions of a dataset. This will be used by the VersionClusterInfoWriter.
+     */
+    versionsSimhash?: string | null;
   }
   /**
    * Stores the information about a dataset replica. Next ID: 5
@@ -44422,6 +44487,13 @@ export namespace contentwarehouse_v1 {
   }
   export interface Schema$ShoppingWebentityShoppingAnnotationOfferAvailabilityInfo {
     availability?: string | null;
+  }
+  /**
+   * Images from the product-level representation (i.e. GPC). These images are currently only annotated 1) when no offers are available 2) on the product level
+   */
+  export interface Schema$ShoppingWebentityShoppingAnnotationProductImage {
+    imageDocid?: string | null;
+    productImageType?: string | null;
   }
   /**
    * Information about a rating provided for a product. This can represent an aggregated rating if count is set. Next Id: 7
@@ -52481,27 +52553,31 @@ export namespace contentwarehouse_v1 {
     size?: number | null;
   }
   /**
-   * Contains information about comment that is posted through a Super VOD purchase. Next ID: 6
+   * Contains information about comment that is posted through a Super Thanks purchase. Next ID: 7
    */
   export interface Schema$YoutubeBackstageSuperVodCommentInfo {
     /**
-     * Currency code the user uses to purchase this Super VOD item.
+     * Currency code the user uses to purchase this Super Thanks item.
      */
     currencyCode?: string | null;
     /**
-     * The ID of the Super VOD entitlement. It uniquely identifies a Super VOD purchase.
+     * The ID of the Super Thanks entitlement. It uniquely identifies a Super Thanks purchase. This field is deprecated in favor of transaction_id, see go/st-deprecate-ent-id.
      */
     entitlementId?: string | null;
     /**
-     * Price of Super VOD item the user purchases in micros.
+     * Price of Super Thanks item the user purchases in micros.
      */
     priceInMicros?: string | null;
     /**
-     * The Super VOD item the user purchases, it represents price tier.
+     * The Super Thanks item the user purchases, it represents price tier.
      */
     superVodItemId?: string | null;
     /**
-     * Which version of experiment this Super VOD comment is posted in.
+     * The ID of the Super Thanks transaction. It uniquely identifies a Super Thanks purchase.
+     */
+    transactionId?: string | null;
+    /**
+     * Which version of experiment this Super Thanks comment is posted in.
      */
     version?: string | null;
   }

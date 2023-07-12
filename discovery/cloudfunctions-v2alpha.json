@@ -571,7 +571,7 @@
       }
     }
   },
-  "revision": "20230608",
+  "revision": "20230629",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -841,6 +841,11 @@
         "name": {
           "description": "A user-defined name of the function. Function names must be unique globally and match pattern `projects/*/locations/*/functions/*`",
           "type": "string"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "serviceConfig": {
           "$ref": "ServiceConfig",
@@ -1692,10 +1697,6 @@
         "dir": {
           "description": "Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution. eg. helloworld (no leading slash allowed)",
           "type": "string"
-        },
-        "invertRegex": {
-          "description": "Only trigger a build if the revision regex does NOT match the revision regex.",
-          "type": "boolean"
         },
         "projectId": {
           "description": "ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.",

@@ -433,7 +433,7 @@
       }
     }
   },
-  "revision": "20230612",
+  "revision": "20230630",
   "rootUrl": "https://cloudscheduler.googleapis.com/",
   "schemas": {
     "AppEngineHttpTarget": {
@@ -595,6 +595,7 @@
         "lastAttemptTime": {
           "description": "Output only. The time the last job attempt started.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "legacyAppEngineCron": {
@@ -620,6 +621,7 @@
         "scheduleTime": {
           "description": "Output only. The next time the job is scheduled. Note that this may be a retry of a previously failed attempt or the next execution time according to the schedule.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -638,11 +640,13 @@
             "The job is disabled by the system due to error. The user cannot directly set a job to be disabled.",
             "The job state resulting from a failed CloudScheduler.UpdateJob operation. To recover a job from this state, retry CloudScheduler.UpdateJob until a successful response is received."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "status": {
           "$ref": "Status",
-          "description": "Output only. The response from the target for the last attempted execution."
+          "description": "Output only. The response from the target for the last attempted execution.",
+          "readOnly": true
         },
         "timeZone": {
           "description": "Specifies the time zone to be used in interpreting schedule. The value of this field must be a time zone name from the [tz database](http://en.wikipedia.org/wiki/Tz_database). Note that some time zones include a provision for daylight savings time. The rules for daylight saving time are determined by the chosen tz. For UTC use the string \"utc\". If a time zone is not specified, the default will be in UTC (also known as GMT).",
@@ -651,6 +655,7 @@
         "userUpdateTime": {
           "description": "Output only. The creation time of the job.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -770,24 +775,24 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.",
+          "description": "Optional. Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.",
           "type": "object"
         },
         "data": {
-          "description": "The message data field. If this field is empty, the message must contain at least one attribute.",
+          "description": "Optional. The message data field. If this field is empty, the message must contain at least one attribute.",
           "format": "byte",
           "type": "string"
         },
         "messageId": {
-          "description": "ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.",
+          "description": "Optional. ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.",
           "type": "string"
         },
         "orderingKey": {
-          "description": "If non-empty, identifies related messages for which publish order should be respected. If a `Subscription` has `enable_message_ordering` set to `true`, messages published with the same non-empty `ordering_key` value will be delivered to subscribers in the order in which they are received by the Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest` must specify the same `ordering_key` value. For more information, see [ordering messages](https://cloud.google.com/pubsub/docs/ordering).",
+          "description": "Optional. If non-empty, identifies related messages for which publish order should be respected. If a `Subscription` has `enable_message_ordering` set to `true`, messages published with the same non-empty `ordering_key` value will be delivered to subscribers in the order in which they are received by the Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest` must specify the same `ordering_key` value. For more information, see [ordering messages](https://cloud.google.com/pubsub/docs/ordering).",
           "type": "string"
         },
         "publishTime": {
-          "description": "The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.",
+          "description": "Optional. The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.",
           "format": "google-datetime",
           "type": "string"
         }

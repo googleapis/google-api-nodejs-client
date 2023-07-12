@@ -568,7 +568,7 @@
       }
     }
   },
-  "revision": "20230528",
+  "revision": "20230625",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "Ancestor": {
@@ -1040,6 +1040,7 @@
           "type": "string"
         },
         "organizationId": {
+          "deprecated": true,
           "description": "An immutable id for the Organization that is assigned on creation. This should be omitted when creating a new Organization. This field is read-only.",
           "type": "string"
         },

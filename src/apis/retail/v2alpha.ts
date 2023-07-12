@@ -260,6 +260,10 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2AddLocalInventoriesResponse {}
   /**
+   * Request for AcceptTerms method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaAcceptTermsRequest {}
+  /**
    * Request for CatalogService.AddCatalogAttribute method.
    */
   export interface Schema$GoogleCloudRetailV2alphaAddCatalogAttributeRequest {
@@ -763,6 +767,36 @@ export namespace retail_v2alpha {
     text?: string[] | null;
   }
   /**
+   * Metadata related to the EnrollSolution method. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaEnrollSolutionMetadata {}
+  /**
+   * Request for EnrollSolution method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaEnrollSolutionRequest {
+    /**
+     * Solution use case to enroll. Currently settable for Browse to enroll. It should be only set when [solution] is set as SolutionType.SOLUTION_TYPE_SEARCH or an INVALID_ARGUMENT error is thrown.
+     */
+    searchSolutionUseCase?: string | null;
+    /**
+     * Required. Solution to enroll.
+     */
+    solution?: string | null;
+  }
+  /**
+   * Response for EnrollSolution method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaEnrollSolutionResponse {
+    /**
+     * Retail API solution that the project has enrolled.
+     */
+    enrolledSolution?: string | null;
+    /**
+     * Search solution use case that the project has enrolled.
+     */
+    searchSolutionUseCase?: string | null;
+  }
+  /**
    * Metadata for active A/B testing Experiment.
    */
   export interface Schema$GoogleCloudRetailV2alphaExperimentInfo {
@@ -1099,6 +1133,15 @@ export namespace retail_v2alpha {
      * Pagination token, if not returned indicates the last page.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response for ListEnrolledSolutions method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse {
+    /**
+     * Retail API solutions that the project has enrolled.
+     */
+    enrolledSolutions?: string[] | null;
   }
   /**
    * Response for MerchantCenterAccountLinkService.ListMerchantCenterAccountLinks method.
@@ -1580,7 +1623,7 @@ export namespace retail_v2alpha {
      */
     availableTime?: string | null;
     /**
-     * The brands of the product. A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).
+     * The brands of the product. A maximum of 30 brands are allowed unless overridden via pantheon UI. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).
      */
     brands?: string[] | null;
     /**
@@ -1747,6 +1790,19 @@ export namespace retail_v2alpha {
      * Which field of [Merchant Center Product](/bigquery-transfer/docs/merchant-center-products-schema) should be imported as Product.id. Acceptable values are: * `offerId` (default): Import `offerId` as the product ID. * `itemGroupId`: Import `itemGroupId` as the product ID. Notice that Retail API will choose one item from the ones with the same `itemGroupId`, and use it to represent the item group. If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned. If this field is `itemGroupId` and ingestion_product_type is `variant`, an INVALID_ARGUMENT error is returned. See [Product levels](https://cloud.google.com/retail/docs/catalog#product-levels) for more details.
      */
     merchantCenterProductIdField?: string | null;
+  }
+  /**
+   * Metadata that describes a Cloud Retail Project.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaProject {
+    /**
+     * Output only. Retail API solutions that the project has enrolled.
+     */
+    enrolledSolutions?: string[] | null;
+    /**
+     * Output only. Full resource name of the retail project, such as `projects/{project_id_or_number\}/retailProject`.
+     */
+    name?: string | null;
   }
   /**
    * Promotion specification.
@@ -3621,11 +3677,463 @@ export namespace retail_v2alpha {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
     operations: Resource$Projects$Operations;
+    retailProject: Resource$Projects$Retailproject;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.locations = new Resource$Projects$Locations(this.context);
       this.operations = new Resource$Projects$Operations(this.context);
+      this.retailProject = new Resource$Projects$Retailproject(this.context);
     }
+
+    /**
+     * Enrolls retail API solution for the project. Recommendation solution is enrolled by default when your project enables Retail API. You don't need to call this API for the recommendation solution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.enrollSolution({
+     *     // Required. Full resource name of parent. Format: `projects/{project_number_or_id\}`
+     *     project: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "searchSolutionUseCase": "my_searchSolutionUseCase",
+     *       //   "solution": "my_solution"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enrollSolution(
+      params: Params$Resource$Projects$Enrollsolution,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enrollSolution(
+      params?: Params$Resource$Projects$Enrollsolution,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    enrollSolution(
+      params: Params$Resource$Projects$Enrollsolution,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enrollSolution(
+      params: Params$Resource$Projects$Enrollsolution,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    enrollSolution(
+      params: Params$Resource$Projects$Enrollsolution,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    enrollSolution(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    enrollSolution(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Enrollsolution
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Enrollsolution;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Enrollsolution;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+project}:enrollSolution').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the project. Throws NOT_FOUND if the project wasn't initialized for Retail API Service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.getRetailProject({
+     *     // Required. Full resource name of the project. Format: `projects/{project_number_or_id\}/retailProject`
+     *     name: 'projects/my-project/retailProject',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledSolutions": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getRetailProject(
+      params: Params$Resource$Projects$Getretailproject,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getRetailProject(
+      params?: Params$Resource$Projects$Getretailproject,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaProject>;
+    getRetailProject(
+      params: Params$Resource$Projects$Getretailproject,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getRetailProject(
+      params: Params$Resource$Projects$Getretailproject,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>
+    ): void;
+    getRetailProject(
+      params: Params$Resource$Projects$Getretailproject,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>
+    ): void;
+    getRetailProject(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>
+    ): void;
+    getRetailProject(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getretailproject
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaProject>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getretailproject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getretailproject;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaProject>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaProject>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all the retail API solutions the project has enrolled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.listEnrolledSolutions({
+     *     // Required. Full resource name of parent. Format: `projects/{project_number_or_id\}`
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledSolutions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listEnrolledSolutions(
+      params: Params$Resource$Projects$Listenrolledsolutions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listEnrolledSolutions(
+      params?: Params$Resource$Projects$Listenrolledsolutions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse>;
+    listEnrolledSolutions(
+      params: Params$Resource$Projects$Listenrolledsolutions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listEnrolledSolutions(
+      params: Params$Resource$Projects$Listenrolledsolutions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse>
+    ): void;
+    listEnrolledSolutions(
+      params: Params$Resource$Projects$Listenrolledsolutions,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse>
+    ): void;
+    listEnrolledSolutions(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse>
+    ): void;
+    listEnrolledSolutions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Listenrolledsolutions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Listenrolledsolutions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Listenrolledsolutions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+parent}:enrolledSolutions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Enrollsolution
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of parent. Format: `projects/{project_number_or_id\}`
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaEnrollSolutionRequest;
+  }
+  export interface Params$Resource$Projects$Getretailproject
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of the project. Format: `projects/{project_number_or_id\}/retailProject`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Listenrolledsolutions
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of parent. Format: `projects/{project_number_or_id\}`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations {
@@ -14839,5 +15347,170 @@ export namespace retail_v2alpha {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Retailproject {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Accepts service terms for this project. By making requests to this API, you agree to the terms of service linked below. https://cloud.google.com/retail/data-use-terms
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.retailProject.acceptTerms({
+     *     // Required. Full resource name of the project. Format: `projects/{project_number_or_id\}/retailProject`
+     *     project: 'projects/my-project/retailProject',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrolledSolutions": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    acceptTerms(
+      params: Params$Resource$Projects$Retailproject$Acceptterms,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    acceptTerms(
+      params?: Params$Resource$Projects$Retailproject$Acceptterms,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaProject>;
+    acceptTerms(
+      params: Params$Resource$Projects$Retailproject$Acceptterms,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    acceptTerms(
+      params: Params$Resource$Projects$Retailproject$Acceptterms,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>
+    ): void;
+    acceptTerms(
+      params: Params$Resource$Projects$Retailproject$Acceptterms,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>
+    ): void;
+    acceptTerms(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>
+    ): void;
+    acceptTerms(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Retailproject$Acceptterms
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaProject>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaProject>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Retailproject$Acceptterms;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Retailproject$Acceptterms;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+project}:acceptTerms').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaProject>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaProject>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Retailproject$Acceptterms
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of the project. Format: `projects/{project_number_or_id\}/retailProject`
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaAcceptTermsRequest;
   }
 }

@@ -14,27 +14,40 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {cloudsupport_v2} from './v2';
 import {cloudsupport_v2beta} from './v2beta';
 
 export const VERSIONS = {
+  v2: cloudsupport_v2.Cloudsupport,
   v2beta: cloudsupport_v2beta.Cloudsupport,
 };
 
+export function cloudsupport(version: 'v2'): cloudsupport_v2.Cloudsupport;
+export function cloudsupport(
+  options: cloudsupport_v2.Options
+): cloudsupport_v2.Cloudsupport;
 export function cloudsupport(
   version: 'v2beta'
 ): cloudsupport_v2beta.Cloudsupport;
 export function cloudsupport(
   options: cloudsupport_v2beta.Options
 ): cloudsupport_v2beta.Cloudsupport;
-export function cloudsupport<T = cloudsupport_v2beta.Cloudsupport>(
+export function cloudsupport<
+  T = cloudsupport_v2.Cloudsupport | cloudsupport_v2beta.Cloudsupport
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v2beta' | cloudsupport_v2beta.Options
+  versionOrOptions:
+    | 'v2'
+    | cloudsupport_v2.Options
+    | 'v2beta'
+    | cloudsupport_v2beta.Options
 ) {
   return getAPI<T>('cloudsupport', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {cloudsupport_v2};
 export {cloudsupport_v2beta};
 export {
   AuthPlus,

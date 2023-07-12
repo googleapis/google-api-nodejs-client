@@ -1384,7 +1384,7 @@
       }
     }
   },
-  "revision": "20230424",
+  "revision": "20230702",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -1768,6 +1768,7 @@
             "format": "int32",
             "type": "integer"
           },
+          "deprecated": true,
           "description": "A map associating each issue resource name with its respective number of matches in the set of conversations. Key has the format: `projects//locations//issueModels//issues/` Deprecated, use `issue_matches_stats` field instead.",
           "type": "object"
         },
@@ -2052,6 +2053,7 @@
       "id": "GoogleCloudContactcenterinsightsV1ConversationParticipant",
       "properties": {
         "dialogflowParticipant": {
+          "deprecated": true,
           "description": "Deprecated. Use `dialogflow_participant_name` instead. The name of the Dialogflow participant. Format: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}",
           "type": "string"
         },
@@ -2921,6 +2923,24 @@
           "readOnly": true,
           "type": "string"
         },
+        "languageCode": {
+          "description": "Language of the model.",
+          "type": "string"
+        },
+        "modelType": {
+          "description": "Type of the model.",
+          "enum": [
+            "MODEL_TYPE_UNSPECIFIED",
+            "TYPE_V1",
+            "TYPE_V2"
+          ],
+          "enumDescriptions": [
+            "Unspecified model type.",
+            "Type V1.",
+            "Type V2."
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "Immutable. The resource name of the issue model. Format: projects/{project}/locations/{location}/issueModels/{issue_model}",
           "type": "string"
@@ -2969,6 +2989,7 @@
           "type": "string"
         },
         "medium": {
+          "deprecated": true,
           "description": "Medium of conversations used in training data. This field is being deprecated. To specify the medium to be used in training a new issue model, set the `medium` field on `filter`.",
           "enum": [
             "MEDIUM_UNSPECIFIED",
@@ -3320,7 +3341,7 @@
           "type": "string"
         },
         "inspectTemplate": {
-          "description": "The fully-qualified DLP inspect template resource name. Format: `projects/{project}/inspectTemplates/{template}`",
+          "description": "The fully-qualified DLP inspect template resource name. Format: `projects/{project}/locations/{location}/inspectTemplates/{template}`",
           "type": "string"
         }
       },
@@ -4212,6 +4233,7 @@
       "id": "GoogleCloudContactcenterinsightsV1alpha1ConversationParticipant",
       "properties": {
         "dialogflowParticipant": {
+          "deprecated": true,
           "description": "Deprecated. Use `dialogflow_participant_name` instead. The name of the Dialogflow participant. Format: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}",
           "type": "string"
         },
@@ -5035,6 +5057,24 @@
           "readOnly": true,
           "type": "string"
         },
+        "languageCode": {
+          "description": "Language of the model.",
+          "type": "string"
+        },
+        "modelType": {
+          "description": "Type of the model.",
+          "enum": [
+            "MODEL_TYPE_UNSPECIFIED",
+            "TYPE_V1",
+            "TYPE_V2"
+          ],
+          "enumDescriptions": [
+            "Unspecified model type.",
+            "Type V1.",
+            "Type V2."
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "Immutable. The resource name of the issue model. Format: projects/{project}/locations/{location}/issueModels/{issue_model}",
           "type": "string"
@@ -5083,6 +5123,7 @@
           "type": "string"
         },
         "medium": {
+          "deprecated": true,
           "description": "Medium of conversations used in training data. This field is being deprecated. To specify the medium to be used in training a new issue model, set the `medium` field on `filter`.",
           "enum": [
             "MEDIUM_UNSPECIFIED",
@@ -5191,7 +5232,7 @@
           "type": "string"
         },
         "inspectTemplate": {
-          "description": "The fully-qualified DLP inspect template resource name. Format: `projects/{project}/inspectTemplates/{template}`",
+          "description": "The fully-qualified DLP inspect template resource name. Format: `projects/{project}/locations/{location}/inspectTemplates/{template}`",
           "type": "string"
         }
       },

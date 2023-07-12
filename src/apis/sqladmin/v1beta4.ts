@@ -408,6 +408,10 @@ export namespace sqladmin_v1beta4 {
      * Timestamp, if specified, identifies the time to which the source instance is cloned.
      */
     pointInTime?: string | null;
+    /**
+     * Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance in the specified zone. If no zone is specified, clone to the same zone as the source instance.
+     */
+    preferredZone?: string | null;
   }
   /**
    * Connect settings retrieval response.
@@ -654,6 +658,15 @@ export namespace sqladmin_v1beta4 {
      * This is always `sql#databasesList`.
      */
     kind?: string | null;
+  }
+  /**
+   * Data cache configurations.
+   */
+  export interface Schema$DataCacheConfig {
+    /**
+     * Whether data cache is enabled for the instance.
+     */
+    dataCacheEnabled?: boolean | null;
   }
   /**
    * Read-replica configuration for connecting to the on-premises primary instance.
@@ -1625,6 +1638,10 @@ export namespace sqladmin_v1beta4 {
      */
     databaseReplicationEnabled?: boolean | null;
     /**
+     * Configuration for data cache.
+     */
+    dataCacheConfig?: Schema$DataCacheConfig;
+    /**
      * The size of data disk, in GB. The data disk size minimum is 10GB.
      */
     dataDiskSizeGb?: string | null;
@@ -1640,6 +1657,10 @@ export namespace sqladmin_v1beta4 {
      * Deny maintenance periods
      */
     denyMaintenancePeriods?: Schema$DenyMaintenancePeriod[];
+    /**
+     * Optional. The edition of the instance.
+     */
+    edition?: string | null;
     /**
      * Insights configuration, for now relevant only for Postgres.
      */
@@ -1747,6 +1768,19 @@ export namespace sqladmin_v1beta4 {
      * The minimum size to which a disk can be shrunk in GigaBytes.
      */
     minimalTargetSizeGb?: string | null;
+  }
+  /**
+   * Instance get latest recovery time response.
+   */
+  export interface Schema$SqlInstancesGetLatestRecoveryTimeResponse {
+    /**
+     * This is always `sql#getLatestRecoveryTime`.
+     */
+    kind?: string | null;
+    /**
+     * Timestamp, identifies the latest recovery time of the source instance.
+     */
+    latestRecoveryTime?: string | null;
   }
   /**
    * Reschedule options for maintenance windows.
@@ -8755,6 +8789,150 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
+     * Get Latest Recovery Time for a given instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.getLatestRecoveryTime({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "latestRecoveryTime": "my_latestRecoveryTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getLatestRecoveryTime(
+      params: Params$Resource$Projects$Instances$Getlatestrecoverytime,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getLatestRecoveryTime(
+      params?: Params$Resource$Projects$Instances$Getlatestrecoverytime,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SqlInstancesGetLatestRecoveryTimeResponse>;
+    getLatestRecoveryTime(
+      params: Params$Resource$Projects$Instances$Getlatestrecoverytime,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getLatestRecoveryTime(
+      params: Params$Resource$Projects$Instances$Getlatestrecoverytime,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SqlInstancesGetLatestRecoveryTimeResponse>,
+      callback: BodyResponseCallback<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
+    ): void;
+    getLatestRecoveryTime(
+      params: Params$Resource$Projects$Instances$Getlatestrecoverytime,
+      callback: BodyResponseCallback<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
+    ): void;
+    getLatestRecoveryTime(
+      callback: BodyResponseCallback<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
+    ): void;
+    getLatestRecoveryTime(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Getlatestrecoverytime
+        | BodyResponseCallback<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SqlInstancesGetLatestRecoveryTimeResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Getlatestrecoverytime;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Getlatestrecoverytime;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/getLatestRecoveryTime'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SqlInstancesGetLatestRecoveryTimeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SqlInstancesGetLatestRecoveryTimeResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Perform Disk Shrink on primary instance.
      * @example
      * ```js
@@ -9544,6 +9722,17 @@ export namespace sqladmin_v1beta4 {
   }
 
   export interface Params$Resource$Projects$Instances$Getdiskshrinkconfig
+    extends StandardParameters {
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Getlatestrecoverytime
     extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.

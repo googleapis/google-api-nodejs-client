@@ -1162,6 +1162,14 @@ export namespace contactcenterinsights_v1 {
      */
     issueCount?: string | null;
     /**
+     * Language of the model.
+     */
+    languageCode?: string | null;
+    /**
+     * Type of the model.
+     */
+    modelType?: string | null;
+    /**
      * Immutable. The resource name of the issue model. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}
      */
     name?: string | null;
@@ -1268,7 +1276,7 @@ export namespace contactcenterinsights_v1 {
      */
     deidentifyTemplate?: string | null;
     /**
-     * The fully-qualified DLP inspect template resource name. Format: `projects/{project\}/inspectTemplates/{template\}`
+     * The fully-qualified DLP inspect template resource name. Format: `projects/{project\}/locations/{location\}/inspectTemplates/{template\}`
      */
     inspectTemplate?: string | null;
   }
@@ -2600,6 +2608,14 @@ export namespace contactcenterinsights_v1 {
      */
     issueCount?: string | null;
     /**
+     * Language of the model.
+     */
+    languageCode?: string | null;
+    /**
+     * Type of the model.
+     */
+    modelType?: string | null;
+    /**
      * Immutable. The resource name of the issue model. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}
      */
     name?: string | null;
@@ -2864,7 +2880,7 @@ export namespace contactcenterinsights_v1 {
      */
     deidentifyTemplate?: string | null;
     /**
-     * The fully-qualified DLP inspect template resource name. Format: `projects/{project\}/inspectTemplates/{template\}`
+     * The fully-qualified DLP inspect template resource name. Format: `projects/{project\}/locations/{location\}/inspectTemplates/{template\}`
      */
     inspectTemplate?: string | null;
   }
@@ -6114,6 +6130,8 @@ export namespace contactcenterinsights_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "inputDataConfig": {},
      *         //   "issueCount": "my_issueCount",
+     *         //   "languageCode": "my_languageCode",
+     *         //   "modelType": "my_modelType",
      *         //   "name": "my_name",
      *         //   "state": "my_state",
      *         //   "trainingStats": {},
@@ -6559,6 +6577,8 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "inputDataConfig": {},
      *   //   "issueCount": "my_issueCount",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "modelType": "my_modelType",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "trainingStats": {},
@@ -6843,6 +6863,8 @@ export namespace contactcenterinsights_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "inputDataConfig": {},
      *       //   "issueCount": "my_issueCount",
+     *       //   "languageCode": "my_languageCode",
+     *       //   "modelType": "my_modelType",
      *       //   "name": "my_name",
      *       //   "state": "my_state",
      *       //   "trainingStats": {},
@@ -6858,6 +6880,8 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "inputDataConfig": {},
      *   //   "issueCount": "my_issueCount",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "modelType": "my_modelType",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "trainingStats": {},

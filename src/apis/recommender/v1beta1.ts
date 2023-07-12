@@ -248,7 +248,7 @@ export namespace recommender_v1beta1 {
     stateMetadata?: {[key: string]: string} | null;
   }
   /**
-   * The type of insight. See google3/googledata/devsite/site-cloud/en/recommender/docs/insights/insight-types.md for more info.
+   * The type of insight.
    */
   export interface Schema$GoogleCloudRecommenderV1beta1InsightType {
     /**
@@ -598,7 +598,7 @@ export namespace recommender_v1beta1 {
     params?: {[key: string]: any} | null;
   }
   /**
-   * The type of a recommender. See google3/googledata/devsite/site-cloud/en/recommender/docs/recommenders.md for more info.
+   * The type of a recommender.
    */
   export interface Schema$GoogleCloudRecommenderV1beta1RecommenderType {
     /**

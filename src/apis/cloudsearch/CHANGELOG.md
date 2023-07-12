@@ -1,5 +1,59 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v13.0.0...cloudsearch-v14.0.0) (2023-07-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloudsearch:** This release has breaking changes.
+
+### Features
+
+* **cloudsearch:** update the API ([119fc3e](https://github.com/googleapis/google-api-nodejs-client/commit/119fc3e2b3f696a619ddf59b6134d17e85af3067))
+* regenerate index files ([d121ab4](https://github.com/googleapis/google-api-nodejs-client/commit/d121ab4cb630dd1c77a228166da2788bd2bd1175))
+
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v12.0.0...cloudsearch-v13.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* **cloudsearch:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **cloudsearch:** update the API ([6d2f850](https://github.com/googleapis/google-api-nodejs-client/commit/6d2f850c32f5b740a74ba2c758c4b2331e2d93fe))
+* **cloudsearch:** update the API ([e4665d4](https://github.com/googleapis/google-api-nodejs-client/commit/e4665d484b4bdfb577ea8782bc5f0de67239f9d1))
+* **cloudsearch:** update the API ([110d85a](https://github.com/googleapis/google-api-nodejs-client/commit/110d85ab29d65dc7dbaefdfb9ee7e8c5df72bb2f))
+* **cloudsearch:** update the API ([e743154](https://github.com/googleapis/google-api-nodejs-client/commit/e7431549a8c85e8bc5b904cf1241e86716317adf))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v11.0.0...cloudsearch-v12.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* **cloudsearch:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **cloudsearch:** update the API ([6d2f850](https://github.com/googleapis/google-api-nodejs-client/commit/6d2f850c32f5b740a74ba2c758c4b2331e2d93fe))
+* **cloudsearch:** update the API ([e4665d4](https://github.com/googleapis/google-api-nodejs-client/commit/e4665d484b4bdfb577ea8782bc5f0de67239f9d1))
+* **cloudsearch:** update the API ([110d85a](https://github.com/googleapis/google-api-nodejs-client/commit/110d85ab29d65dc7dbaefdfb9ee7e8c5df72bb2f))
+* **cloudsearch:** update the API ([e743154](https://github.com/googleapis/google-api-nodejs-client/commit/e7431549a8c85e8bc5b904cf1241e86716317adf))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v10.0.0...cloudsearch-v11.0.0) (2023-06-22)
 
 

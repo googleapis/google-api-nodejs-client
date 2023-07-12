@@ -453,6 +453,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "repairEventing": {
+                  "description": "RepaiEventing tries to repair eventing related event subscriptions.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:repairEventing",
+                  "httpMethod": "POST",
+                  "id": "connectors.projects.locations.connections.repairEventing",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the form: `projects/*/locations/*/connections/*`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:repairEventing",
+                  "request": {
+                    "$ref": "RepairEventingRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:setIamPolicy",
@@ -533,6 +561,201 @@
                       "path": "v1/{+name}:refresh",
                       "request": {
                         "$ref": "RefreshConnectionSchemaMetadataRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "eventSubscriptions": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new EventSubscription in a given project,location and connection.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/eventSubscriptions",
+                      "httpMethod": "POST",
+                      "id": "connectors.projects.locations.connections.eventSubscriptions.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "eventSubscriptionId": {
+                          "description": "Required. Identifier to assign to the Event Subscription. Must be unique within scope of the parent resource.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent resource of the EventSubscription, of the form: `projects/*/locations/*/connections/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/eventSubscriptions",
+                      "request": {
+                        "$ref": "EventSubscription"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single EventSubscription.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/eventSubscriptions/{eventSubscriptionsId}",
+                      "httpMethod": "DELETE",
+                      "id": "connectors.projects.locations.connections.eventSubscriptions.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the form: `projects/*/locations/*/connections/*/eventsubscriptions/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/eventSubscriptions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single EventSubscription.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/eventSubscriptions/{eventSubscriptionsId}",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.eventSubscriptions.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the form: `projects/*/locations/*/connections/*/eventSubscriptions/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/eventSubscriptions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "EventSubscription"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List EventSubscriptions in a given project,location and connection.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/eventSubscriptions",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.eventSubscriptions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Order by parameters.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent resource of the EventSubscription, of the form: `projects/*/locations/*/connections/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/eventSubscriptions",
+                      "response": {
+                        "$ref": "ListEventSubscriptionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the parameters of a single EventSubscription.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/eventSubscriptions/{eventSubscriptionsId}",
+                      "httpMethod": "PATCH",
+                      "id": "connectors.projects.locations.connections.eventSubscriptions.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the EventSubscription. Format: projects/{project}/locations/{location}/connections/{connection}/eventSubscriptions/{event_subscription}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/eventSubscriptions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. The list of fields to update. Fields are specified relative to the Subscription. A field will be overwritten if it is in the mask. You can modify only the fields listed below. To update the EventSubscription details: * `serviceAccount`",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "EventSubscription"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "retry": {
+                      "description": "RetryEventSubscription retries the registration of Subscription.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/eventSubscriptions/{eventSubscriptionsId}:retry",
+                      "httpMethod": "POST",
+                      "id": "connectors.projects.locations.connections.eventSubscriptions.retry",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the form: `projects/*/locations/*/connections/*/eventSubscriptions/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/eventSubscriptions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:retry",
+                      "request": {
+                        "$ref": "RetryEventSubscriptionRequest"
                       },
                       "response": {
                         "$ref": "Operation"
@@ -824,6 +1047,40 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "Settings"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateSettings": {
+                  "description": "Update the global settings of a project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/global/settings",
+                  "httpMethod": "PATCH",
+                  "id": "connectors.projects.locations.global.updateSettings",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the Connection. Format: projects/{project}/locations/global/settings}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/global/settings$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Settings"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1438,6 +1695,73 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         }
+                      },
+                      "resources": {
+                        "eventtypes": {
+                          "methods": {
+                            "get": {
+                              "description": "Gets details of a single event type.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/providers/{providersId}/connectors/{connectorsId}/versions/{versionsId}/eventtypes/{eventtypesId}",
+                              "httpMethod": "GET",
+                              "id": "connectors.projects.locations.providers.connectors.versions.eventtypes.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Resource name of the form: `projects/*/locations/*/providers/*/connectors/*/versions/*/eventtypes/*` Only global location is supported for EventType resource.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/providers/[^/]+/connectors/[^/]+/versions/[^/]+/eventtypes/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}",
+                              "response": {
+                                "$ref": "EventType"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "list": {
+                              "description": "Lists Event Types in a given Connector Version.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/providers/{providersId}/connectors/{connectorsId}/versions/{versionsId}/eventtypes",
+                              "httpMethod": "GET",
+                              "id": "connectors.projects.locations.providers.connectors.versions.eventtypes.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "pageSize": {
+                                  "description": "Page size.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "Page token.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. Parent resource of the connectors, of the form: `projects/*/locations/*/providers/*/connectors/*/versions/*` Only global location is supported for EventType resource.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/providers/[^/]+/connectors/[^/]+/versions/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/eventtypes",
+                              "response": {
+                                "$ref": "ListEventTypesResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -1449,7 +1773,7 @@
       }
     }
   },
-  "revision": "20230609",
+  "revision": "20230706",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1803,6 +2127,11 @@
           "description": "Required. Connector version on which the connection is created. The format is: projects/*/locations/*/providers/*/connectors/*/versions/* Only global location is supported for ConnectorVersion resource.",
           "type": "string"
         },
+        "connectorVersionInfraConfig": {
+          "$ref": "ConnectorVersionInfraConfig",
+          "description": "Output only. Infra configs supported by Connector Version.",
+          "readOnly": true
+        },
         "connectorVersionLaunchStage": {
           "description": "Output only. Flag to mark the version indicating the launch stage.",
           "enum": [
@@ -1843,6 +2172,29 @@
           "description": "Output only. GCR location where the envoy image is stored. formatted like: gcr.io/{bucketName}/{imageName}",
           "readOnly": true,
           "type": "string"
+        },
+        "eventingConfig": {
+          "$ref": "EventingConfig",
+          "description": "Optional. Eventing config of a connection"
+        },
+        "eventingEnablementType": {
+          "description": "Optional. Eventing enablement type. Will be nil if eventing is not enabled.",
+          "enum": [
+            "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
+            "EVENTING_AND_CONNECTION",
+            "ONLY_EVENTING"
+          ],
+          "enumDescriptions": [
+            "Eventing Enablement Type Unspecifeied.",
+            "Both connection and eventing.",
+            "Only Eventing."
+          ],
+          "type": "string"
+        },
+        "eventingRuntimeData": {
+          "$ref": "EventingRuntimeData",
+          "description": "Output only. Eventing Runtime Data.",
+          "readOnly": true
         },
         "imageLocation": {
           "description": "Output only. GCR location where the runtime image is stored. formatted like: gcr.io/{bucketName}/{imageName}",
@@ -2038,6 +2390,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "eventingDetails": {
+          "$ref": "EventingDetails",
+          "description": "Output only. Eventing details. Will be null if eventing is not supported.",
+          "readOnly": true
+        },
         "externalUri": {
           "description": "Output only. Link to external page.",
           "readOnly": true,
@@ -2089,6 +2446,18 @@
       },
       "type": "object"
     },
+    "ConnectorInfraConfig": {
+      "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
+      "id": "ConnectorInfraConfig",
+      "properties": {
+        "ratelimitThreshold": {
+          "description": "Max QPS supported by the connector version before throttling of requests.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConnectorVersion": {
       "description": "ConnectorVersion indicates a specific version of a connector.",
       "id": "ConnectorVersion",
@@ -2108,6 +2477,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "connectorInfraConfig": {
+          "$ref": "ConnectorInfraConfig",
+          "description": "Output only. Infra configs supported by Connector.",
+          "readOnly": true
         },
         "createTime": {
           "description": "Output only. Created time.",
@@ -2131,6 +2505,11 @@
         "egressControlConfig": {
           "$ref": "EgressControlConfig",
           "description": "Output only. Configuration for Egress Control.",
+          "readOnly": true
+        },
+        "eventingConfigTemplate": {
+          "$ref": "EventingConfigTemplate",
+          "description": "Output only. Eventing configuration supported by the Connector.",
           "readOnly": true
         },
         "labels": {
@@ -2196,6 +2575,19 @@
         "updateTime": {
           "description": "Output only. Updated time.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConnectorVersionInfraConfig": {
+      "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
+      "id": "ConnectorVersionInfraConfig",
+      "properties": {
+        "ratelimitThreshold": {
+          "description": "Output only. Max QPS supported by the connector version before throttling of requests.",
+          "format": "int64",
           "readOnly": true,
           "type": "string"
         }
@@ -2354,6 +2746,24 @@
       },
       "type": "object"
     },
+    "EndPoint": {
+      "description": "Endpoint message includes details of the Destination endpoint.",
+      "id": "EndPoint",
+      "properties": {
+        "endpointUri": {
+          "description": "The URI of the Endpoint.",
+          "type": "string"
+        },
+        "headers": {
+          "description": "List of Header to be added to the Endpoint.",
+          "items": {
+            "$ref": "Header"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "EndpointAttachment": {
       "description": "represents the Connector's Endpoint Attachment resource",
       "id": "EndpointAttachment",
@@ -2408,6 +2818,336 @@
         },
         "id": {
           "description": "Id of the option.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EventSubscription": {
+      "description": "represents the Connector's EventSubscription resource",
+      "id": "EventSubscription",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Created time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "destinations": {
+          "$ref": "EventSubscriptionDestination",
+          "description": "Optional. The destination to hit when we receive an event"
+        },
+        "eventTypeId": {
+          "description": "Optional. Event type id of the event of current EventSubscription.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Resource name of the EventSubscription. Format: projects/{project}/locations/{location}/connections/{connection}/eventSubscriptions/{event_subscription}",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "EventSubscriptionStatus",
+          "description": "Optional. Status indicates the status of the event subscription resource"
+        },
+        "subscriber": {
+          "description": "Optional. name of the Subscriber for the current EventSubscription.",
+          "type": "string"
+        },
+        "subscriberLink": {
+          "description": "Optional. Link for Subscriber of the current EventSubscription.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Updated time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EventSubscriptionDestination": {
+      "description": "Message for EventSubscription Destination to act on receiving an event",
+      "id": "EventSubscriptionDestination",
+      "properties": {
+        "endpoint": {
+          "$ref": "EndPoint",
+          "description": "OPTION 1: Hit an endpoint when we receive an event."
+        },
+        "serviceAccount": {
+          "description": "Service account needed for runtime plane to trigger IP workflow.",
+          "type": "string"
+        },
+        "type": {
+          "description": "type of the destination",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ENDPOINT"
+          ],
+          "enumDescriptions": [
+            "Default state.",
+            "Endpoint - Hit the value of endpoint when event is received"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EventSubscriptionStatus": {
+      "description": "EventSubscription Status denotes the status of the EventSubscription resource.",
+      "id": "EventSubscriptionStatus",
+      "properties": {
+        "description": {
+          "description": "Output only. Description of the state.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of Event Subscription resource.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "UPDATING",
+            "ACTIVE",
+            "SUSPENDED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Default state.",
+            "EventSubscription creation is in progress.",
+            "EventSubscription is in Updating status.",
+            "EventSubscription is in Active state and is ready to receive events.",
+            "EventSubscription is currently suspended.",
+            "EventSubscription is in Error state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EventType": {
+      "description": "EventType includes fields.",
+      "id": "EventType",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Created time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "enrichedEventPayloadSchema": {
+          "description": "Output only. Schema of the event payload after enriched. Will be null if read before send is not supported.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "entityType": {
+          "description": "Output only. Runtime entity type name. Will be null if entity type map is not available. Used for read before send feature.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "eventPayloadSchema": {
+          "description": "Output only. Schema of webhook event payload.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "eventTypeId": {
+          "description": "Output only. Event type id. Example: `ticket.created`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "idPath": {
+          "description": "Output only. Id path denotes the path of id in webhook payload.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name of the eventtype. Format: projects/{project}/locations/{location}/providers/{provider}/connectors/{connector}/versions/{version}/eventtypes/{eventtype} Only global location is supported for Connector resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Updated time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EventingConfig": {
+      "description": "Eventing Configuration of a connection",
+      "id": "EventingConfig",
+      "properties": {
+        "additionalVariables": {
+          "description": "Additional eventing related field values",
+          "items": {
+            "$ref": "ConfigVariable"
+          },
+          "type": "array"
+        },
+        "authConfig": {
+          "$ref": "AuthConfig",
+          "description": "Auth details for the webhook adapter."
+        },
+        "encryptionKey": {
+          "$ref": "ConfigVariable",
+          "description": "Encryption key (can be either Google managed or CMEK)."
+        },
+        "enrichmentEnabled": {
+          "description": "Enrichment Enabled.",
+          "type": "boolean"
+        },
+        "registrationDestinationConfig": {
+          "$ref": "DestinationConfig",
+          "description": "Registration endpoint for auto regsitration."
+        }
+      },
+      "type": "object"
+    },
+    "EventingConfigTemplate": {
+      "description": "Eventing Config details of a connector version.",
+      "id": "EventingConfigTemplate",
+      "properties": {
+        "additionalVariables": {
+          "description": "Additional fields that need to be rendered.",
+          "items": {
+            "$ref": "ConfigVariableTemplate"
+          },
+          "type": "array"
+        },
+        "authConfigTemplates": {
+          "description": "AuthConfigTemplates represents the auth values for the webhook adapter.",
+          "items": {
+            "$ref": "AuthConfigTemplate"
+          },
+          "type": "array"
+        },
+        "autoRefresh": {
+          "description": "Auto refresh to extend webhook life.",
+          "type": "boolean"
+        },
+        "autoRegistrationSupported": {
+          "description": "Auto Registration supported.",
+          "type": "boolean"
+        },
+        "encryptionKeyTemplate": {
+          "$ref": "ConfigVariableTemplate",
+          "description": "Encryption key (can be either Google managed or CMEK)."
+        },
+        "enrichmentSupported": {
+          "description": "Enrichment Supported.",
+          "type": "boolean"
+        },
+        "isEventingSupported": {
+          "description": "Is Eventing Supported.",
+          "type": "boolean"
+        },
+        "registrationDestinationConfig": {
+          "$ref": "DestinationConfigTemplate",
+          "description": "Registration host destination config template."
+        }
+      },
+      "type": "object"
+    },
+    "EventingDetails": {
+      "description": "Eventing Details message.",
+      "id": "EventingDetails",
+      "properties": {
+        "customEventTypes": {
+          "description": "Output only. Custom Event Types.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "description": {
+          "description": "Output only. Description.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "documentationLink": {
+          "description": "Output only. Link to public documentation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "iconLocation": {
+          "description": "Output only. Cloud storage location of the icon.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "launchStage": {
+          "description": "Output only. Eventing Launch Stage.",
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "PREVIEW",
+            "GA",
+            "DEPRECATED",
+            "PRIVATE_PREVIEW"
+          ],
+          "enumDescriptions": [
+            "LAUNCH_STAGE_UNSPECIFIED.",
+            "PREVIEW.",
+            "GA.",
+            "DEPRECATED.",
+            "PRIVATE_PREVIEW."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the Eventing trigger.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "searchTags": {
+          "description": "Output only. Array of search keywords.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EventingRuntimeData": {
+      "description": "Eventing runtime data has the details related to eventing managed by the system.",
+      "id": "EventingRuntimeData",
+      "properties": {
+        "eventsListenerEndpoint": {
+          "description": "Output only. Events listener endpoint. The value will populated after provisioning the events listener.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "EventingStatus",
+          "description": "Output only. Current status of eventing.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "EventingStatus": {
+      "description": "EventingStatus indicates the state of eventing.",
+      "id": "EventingStatus",
+      "properties": {
+        "description": {
+          "description": "Output only. Description of error if State is set to \"ERROR\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Default state.",
+            "Eventing is enabled and ready to receive events.",
+            "Eventing is not active due to an error."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2526,6 +3266,53 @@
             "DATA_TYPE_TIME_WITH_TIMEZONE",
             "DATA_TYPE_TIMESTAMP_WITH_TIMEZONE"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Data type is not specified.",
             "DEPRECATED! Use DATA_TYPE_INTEGER.",
@@ -2640,6 +3427,21 @@
       },
       "type": "object"
     },
+    "Header": {
+      "description": "Header details for a given header to be added to Endpoint.",
+      "id": "Header",
+      "properties": {
+        "key": {
+          "description": "Key of Header.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value of Header.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InputParameter": {
       "description": "Metadata of an input parameter.",
       "id": "InputParameter",
@@ -2692,6 +3494,53 @@
             "DATA_TYPE_REF_CURSOR",
             "DATA_TYPE_TIME_WITH_TIMEZONE",
             "DATA_TYPE_TIMESTAMP_WITH_TIMEZONE"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Data type is not specified.",
@@ -2876,6 +3725,49 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListEventSubscriptionsResponse": {
+      "description": "Response message for ConnectorsService.ListEventSubscriptions",
+      "id": "ListEventSubscriptionsResponse",
+      "properties": {
+        "eventSubscriptions": {
+          "description": "Subscriptions.",
+          "items": {
+            "$ref": "EventSubscription"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Next page token.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListEventTypesResponse": {
+      "description": "Response message for Connectors.ListEventTypes.",
+      "id": "ListEventTypesResponse",
+      "properties": {
+        "eventTypes": {
+          "description": "A list of connector versions.",
+          "items": {
+            "$ref": "EventType"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Next page token.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3407,6 +4299,12 @@
       "properties": {},
       "type": "object"
     },
+    "RepairEventingRequest": {
+      "description": "Request message for ConnectorsService.RepairEventing",
+      "id": "RepairEventingRequest",
+      "properties": {},
+      "type": "object"
+    },
     "Resource": {
       "description": "Resource definition",
       "id": "Resource",
@@ -3489,6 +4387,53 @@
             "DATA_TYPE_TIME_WITH_TIMEZONE",
             "DATA_TYPE_TIMESTAMP_WITH_TIMEZONE"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Data type is not specified.",
             "DEPRECATED! Use DATA_TYPE_INTEGER.",
@@ -3547,6 +4492,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "RetryEventSubscriptionRequest": {
+      "description": "Request message for ConnectorsService.RefreshEventSubscription",
+      "id": "RetryEventSubscriptionRequest",
+      "properties": {},
       "type": "object"
     },
     "RoleGrant": {
@@ -3670,6 +4621,15 @@
             "CREATING",
             "DELETING",
             "UPDATING"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "STATE_UNSPECIFIED.",

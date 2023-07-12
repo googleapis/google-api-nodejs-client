@@ -553,6 +553,10 @@ export namespace cloudidentity_v1 {
      */
     encryptionState?: string | null;
     /**
+     * Host name of the device.
+     */
+    hostname?: string | null;
+    /**
      * Output only. IMEI number of device if GSM device; empty otherwise.
      */
     imei?: string | null;
@@ -2424,6 +2428,7 @@ export namespace cloudidentity_v1 {
      *       //   "enabledDeveloperOptions": false,
      *       //   "enabledUsbDebugging": false,
      *       //   "encryptionState": "my_encryptionState",
+     *       //   "hostname": "my_hostname",
      *       //   "imei": "my_imei",
      *       //   "kernelVersion": "my_kernelVersion",
      *       //   "lastSyncTime": "my_lastSyncTime",
@@ -2727,6 +2732,7 @@ export namespace cloudidentity_v1 {
      *   //   "enabledDeveloperOptions": false,
      *   //   "enabledUsbDebugging": false,
      *   //   "encryptionState": "my_encryptionState",
+     *   //   "hostname": "my_hostname",
      *   //   "imei": "my_imei",
      *   //   "kernelVersion": "my_kernelVersion",
      *   //   "lastSyncTime": "my_lastSyncTime",

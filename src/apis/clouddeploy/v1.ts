@@ -1587,7 +1587,7 @@ export namespace clouddeploy_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Information specifying an Anthos Cluster.
+     * Optional. Information specifying an Anthos Cluster.
      */
     anthosCluster?: Schema$AnthosCluster;
     /**
@@ -1611,7 +1611,7 @@ export namespace clouddeploy_v1 {
      */
     executionConfigs?: Schema$ExecutionConfig[];
     /**
-     * Information specifying a GKE Cluster.
+     * Optional. Information specifying a GKE Cluster.
      */
     gke?: Schema$GkeCluster;
     /**
@@ -1619,7 +1619,7 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Information specifying a multiTarget.
+     * Optional. Information specifying a multiTarget.
      */
     multiTarget?: Schema$MultiTarget;
     /**
@@ -1631,7 +1631,7 @@ export namespace clouddeploy_v1 {
      */
     requireApproval?: boolean | null;
     /**
-     * Information specifying a Cloud Run deployment target.
+     * Optional. Information specifying a Cloud Run deployment target.
      */
     run?: Schema$CloudRunLocation;
     /**

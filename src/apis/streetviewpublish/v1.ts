@@ -513,10 +513,6 @@ export namespace streetviewpublish_v1 {
      */
     sequenceBounds?: Schema$LatLngBounds;
     /**
-     * Output only. Set if a Photo within the PhotoSequence contains a takedown.
-     */
-    takedown?: boolean | null;
-    /**
      * Input only. Required when creating photo sequence. The resource name where the bytes of the photo sequence (in the form of video) are uploaded.
      */
     uploadReference?: Schema$UploadRef;
@@ -2096,7 +2092,6 @@ export namespace streetviewpublish_v1 {
      *       //   "processingState": "my_processingState",
      *       //   "rawGpsTimeline": [],
      *       //   "sequenceBounds": {},
-     *       //   "takedown": false,
      *       //   "uploadReference": {},
      *       //   "uploadTime": "my_uploadTime",
      *       //   "viewCount": "my_viewCount"
@@ -2679,7 +2674,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photoSequences.list({
-     *     // Optional. The filter expression. For example: `imagery_type=SPHERICAL`. The filters supported are: `imagery_type`, `processing_state`, `min_latitude`, `max_latitude`, `min_longitude`, `max_longitude`, `filename_query`, `min_capture_time_seconds`, `max_capture_time_seconds`, and `takedown`. See https://google.aip.dev/160 for more information. Filename queries should sent as a Phrase in order to support multiple words and special characters by adding escaped quotes. Ex: filename_query="example of a phrase.mp4"
+     *     // Optional. The filter expression. For example: `imagery_type=SPHERICAL`. The filters supported are: `imagery_type`, `processing_state`, `min_latitude`, `max_latitude`, `min_longitude`, `max_longitude`, `filename_query`, `min_capture_time_seconds`, `max_capture_time_seconds. See https://google.aip.dev/160 for more information. Filename queries should sent as a Phrase in order to support multiple words and special characters by adding escaped quotes. Ex: filename_query="example of a phrase.mp4"
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of photo sequences to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 is used. The number of photo sequences returned in the response may be less than `pageSize` if the number of matches is less than `pageSize`. This is currently unimplemented but is in process.
      *     pageSize: 'placeholder-value',
@@ -2795,7 +2790,7 @@ export namespace streetviewpublish_v1 {
   export interface Params$Resource$Photosequences$List
     extends StandardParameters {
     /**
-     * Optional. The filter expression. For example: `imagery_type=SPHERICAL`. The filters supported are: `imagery_type`, `processing_state`, `min_latitude`, `max_latitude`, `min_longitude`, `max_longitude`, `filename_query`, `min_capture_time_seconds`, `max_capture_time_seconds`, and `takedown`. See https://google.aip.dev/160 for more information. Filename queries should sent as a Phrase in order to support multiple words and special characters by adding escaped quotes. Ex: filename_query="example of a phrase.mp4"
+     * Optional. The filter expression. For example: `imagery_type=SPHERICAL`. The filters supported are: `imagery_type`, `processing_state`, `min_latitude`, `max_latitude`, `min_longitude`, `max_longitude`, `filename_query`, `min_capture_time_seconds`, `max_capture_time_seconds. See https://google.aip.dev/160 for more information. Filename queries should sent as a Phrase in order to support multiple words and special characters by adding escaped quotes. Ex: filename_query="example of a phrase.mp4"
      */
     filter?: string;
     /**

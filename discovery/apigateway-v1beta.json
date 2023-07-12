@@ -1083,7 +1083,7 @@
       }
     }
   },
-  "revision": "20230607",
+  "revision": "20230621",
   "rootUrl": "https://apigateway.googleapis.com/",
   "schemas": {
     "ApigatewayApi": {
@@ -1332,6 +1332,7 @@
       "type": "object"
     },
     "ApigatewayBackendConfig": {
+      "deprecated": true,
       "description": "Configuration for all backends.",
       "id": "ApigatewayBackendConfig",
       "properties": {
@@ -1464,6 +1465,7 @@
       "properties": {
         "backendConfig": {
           "$ref": "ApigatewayBackendConfig",
+          "deprecated": true,
           "description": "Required. Backend settings that are applied to all backends of the Gateway."
         }
       },

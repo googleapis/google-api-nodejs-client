@@ -12,7 +12,7 @@
   "baseUrl": "https://orgpolicy.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "OrgPolicy API",
-  "description": "The Org Policy API allows users to configure governance rules on their GCP resources across the Cloud Resource Hierarchy.",
+  "description": "The Organization Policy API allows users to configure governance rules on their Google Cloud resources across the resource hierarchy.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/orgpolicy/docs/reference/rest/index.html",
   "fullyEncodeReservedExpansion": true,
@@ -915,7 +915,7 @@
       }
     }
   },
-  "revision": "20230405",
+  "revision": "20230705",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -1128,6 +1128,7 @@
       "properties": {
         "alternate": {
           "$ref": "GoogleCloudOrgpolicyV2AlternatePolicySpec",
+          "deprecated": true,
           "description": "Deprecated."
         },
         "dryRunSpec": {

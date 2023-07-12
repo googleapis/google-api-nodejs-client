@@ -158,6 +158,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$AdditionalPodRangesConfig {
     /**
+     * Output only. [Output only] Information for additional pod range.
+     */
+    podRangeInfo?: Schema$RangeInfo[];
+    /**
      * Name for pod secondary ipv4 range which has the actual range defined ahead.
      */
     podRangeNames?: string[] | null;
@@ -218,6 +222,19 @@ export namespace container_v1beta1 {
      * Configuration for NetworkPolicy. This only tracks whether the addon is enabled or not on the Master, it does not track whether network policy is enabled for the nodes.
      */
     networkPolicyConfig?: Schema$NetworkPolicyConfig;
+  }
+  /**
+   * AdvancedDatapathObservabilityConfig specifies configuration of observability features of advanced datapath.
+   */
+  export interface Schema$AdvancedDatapathObservabilityConfig {
+    /**
+     * Expose flow metrics on nodes
+     */
+    enableMetrics?: boolean | null;
+    /**
+     * Method used to make Relay available
+     */
+    relayMode?: string | null;
   }
   /**
    * Specifies options for controlling advanced machine features.
@@ -303,6 +320,10 @@ export namespace container_v1beta1 {
      * The image type to use for NAP created node. Please see https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for available image types.
      */
     imageType?: string | null;
+    /**
+     * Enable or disable Kubelet read only port.
+     */
+    insecureKubeletReadonlyPortEnabled?: boolean | null;
     /**
      * NodeManagement configuration for this NodePool.
      */
@@ -827,6 +848,15 @@ export namespace container_v1beta1 {
     resourceLimits?: Schema$ResourceLimit[];
   }
   /**
+   * Configuration of all network bandwidth tiers
+   */
+  export interface Schema$ClusterNetworkPerformanceConfig {
+    /**
+     * Specifies the total network bandwidth tier for the NodePool.
+     */
+    totalEgressBandwidthTier?: string | null;
+  }
+  /**
    * Telemetry integration for the cluster.
    */
   export interface Schema$ClusterTelemetry {
@@ -963,6 +993,10 @@ export namespace container_v1beta1 {
      * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     desiredMonitoringService?: string | null;
+    /**
+     * The desired network performance config.
+     */
+    desiredNetworkPerformanceConfig?: Schema$ClusterNetworkPerformanceConfig;
     /**
      * The desired network tags that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.
      */
@@ -1519,6 +1553,10 @@ export namespace container_v1beta1 {
      */
     createSubnetwork?: boolean | null;
     /**
+     * Output only. [Output only] The utilization of the cluster default IPv4 range for the pod. The ratio is Usage/[Total number of IPs in the secondary range], Usage=numNodes*numZones*podIPsPerNode.
+     */
+    defaultPodIpv4RangeUtilization?: number | null;
+    /**
      * The ipv6 access type (internal or external) when create_subnetwork is true
      */
     ipv6AccessType?: string | null;
@@ -1940,6 +1978,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$MonitoringConfig {
     /**
+     * Configuration of Advanced Datapath Observability features.
+     */
+    advancedDatapathObservabilityConfig?: Schema$AdvancedDatapathObservabilityConfig;
+    /**
      * Monitoring components configuration
      */
     componentConfig?: Schema$MonitoringComponentConfig;
@@ -1984,6 +2026,10 @@ export namespace container_v1beta1 {
      * Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network
      */
     network?: string | null;
+    /**
+     * Network bandwidth tier configuration.
+     */
+    networkPerformanceConfig?: Schema$ClusterNetworkPerformanceConfig;
     /**
      * The desired state of IPv6 connectivity to Google Services. By default, no private IPv6 access to or from Google Services (all access will be via IPv4)
      */
@@ -2155,7 +2201,7 @@ export namespace container_v1beta1 {
      */
     oauthScopes?: string[] | null;
     /**
-     * Whether the nodes are created as preemptible VM instances. See: https://cloud.google.com/compute/docs/instances/preemptible for more inforamtion about preemptible VM instances.
+     * Whether the nodes are created as preemptible VM instances. See: https://cloud.google.com/compute/docs/instances/preemptible for more information about preemptible VM instances.
      */
     preemptible?: boolean | null;
     /**
@@ -2233,6 +2279,10 @@ export namespace container_v1beta1 {
      */
     cpuManagerPolicy?: string | null;
     /**
+     * Enable or disable Kubelet read only port.
+     */
+    insecureKubeletReadonlyPortEnabled?: boolean | null;
+    /**
      * Set the Pod PID limits. See https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits Controls the maximum number of processes allowed to run in a pod. The value must be greater than or equal to 1024 and less than 4194304.
      */
     podPidsLimit?: string | null;
@@ -2287,6 +2337,10 @@ export namespace container_v1beta1 {
      * The IP address range for pod IPs in this node pool. Only applicable if `create_pod_range` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) to pick a specific range to use. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
      */
     podIpv4CidrBlock?: string | null;
+    /**
+     * Output only. [Output only] The utilization of the IPv4 range for the pod. The ratio is Usage/[Total number of IPs in the secondary range], Usage=numNodes*numZones*podIPsPerNode.
+     */
+    podIpv4RangeUtilization?: number | null;
     /**
      * The ID of the secondary range for pod IPs. If `create_pod_range` is true, this ID is used for the new range. If `create_pod_range` is false, uses an existing secondary range with this ID. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
      */
@@ -2563,6 +2617,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$PlacementPolicy {
     /**
+     * TPU placement topology for pod slice node pool. https://cloud.google.com/tpu/docs/types-topologies#tpu_topologies
+     */
+    tpuTopology?: string | null;
+    /**
      * The type of placement.
      */
     type?: string | null;
@@ -2660,6 +2718,19 @@ export namespace container_v1beta1 {
      * The desired Pub/Sub topic to which notifications will be sent by GKE. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string | null;
+  }
+  /**
+   * RangeInfo contains the range name and the range utilization by this cluster.
+   */
+  export interface Schema$RangeInfo {
+    /**
+     * Output only. [Output only] Name of a range.
+     */
+    rangeName?: string | null;
+    /**
+     * Output only. [Output only] The utilization of the range.
+     */
+    utilization?: number | null;
   }
   /**
    * Represents an arbitrary window of time that recurs.
