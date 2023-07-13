@@ -489,7 +489,7 @@ export namespace run_v1 {
    */
   export interface Schema$EmptyDirVolumeSource {
     /**
-     * The medium on which the data is stored. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir +optional
+     * The medium on which the data is stored. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
      */
     medium?: string | null;
     /**
