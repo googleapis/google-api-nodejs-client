@@ -209,6 +209,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "checkMigrationPermission": {
+                      "description": "CheckMigrationPermission API gets the current state of DomainMigration",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/domains/{domainsId}:checkMigrationPermission",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.checkMigrationPermission",
+                      "parameterOrder": [
+                        "domain"
+                      ],
+                      "parameters": {
+                        "domain": {
+                          "description": "Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+domain}:checkMigrationPermission",
+                      "request": {
+                        "$ref": "CheckMigrationPermissionRequest"
+                      },
+                      "response": {
+                        "$ref": "CheckMigrationPermissionResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a Microsoft AD domain.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/domains",
@@ -1487,7 +1515,7 @@
       }
     }
   },
-  "revision": "20230505",
+  "revision": "20230705",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1625,6 +1653,42 @@
         },
         "thumbprint": {
           "description": "The certificate thumbprint which uniquely identifies the certificate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CheckMigrationPermissionRequest": {
+      "description": "CheckMigrationPermissionRequest is the request message for CheckMigrationPermission method.",
+      "id": "CheckMigrationPermissionRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CheckMigrationPermissionResponse": {
+      "description": "CheckMigrationPermissionResponse is the response message for CheckMigrationPermission method.",
+      "id": "CheckMigrationPermissionResponse",
+      "properties": {
+        "onpremDomains": {
+          "description": "The state of SID filtering of all the domains which has trust established.",
+          "items": {
+            "$ref": "OnPremDomainSIDDetails"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "The state of DomainMigration.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED",
+            "NEEDS_MAINTENANCE"
+          ],
+          "enumDescriptions": [
+            "DomainMigration is in unspecified state.",
+            "Domain Migration is Disabled.",
+            "Domain Migration is Enabled.",
+            "Domain Migration is not in valid state."
+          ],
           "type": "string"
         }
       },
@@ -2141,6 +2205,7 @@
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule",
       "properties": {
         "canReschedule": {
+          "deprecated": true,
           "description": "This field is deprecated, and will be always set to true since reschedule can happen multiple times now. This field should not be removed until all service producers remove this for their customers.",
           "type": "boolean"
         },
@@ -2580,6 +2645,31 @@
         },
         "domainName": {
           "description": "Required. FQDN of the on-prem domain being migrated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OnPremDomainSIDDetails": {
+      "description": "OnPremDomainDetails is the message which contains details of on-prem domain which is trusted and needs to be migrated.",
+      "id": "OnPremDomainSIDDetails",
+      "properties": {
+        "name": {
+          "description": "FQDN of the on-prem domain being migrated.",
+          "type": "string"
+        },
+        "sidFilteringState": {
+          "description": "Current SID filtering state.",
+          "enum": [
+            "SID_FILTERING_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "SID Filtering is in unspecified state.",
+            "SID Filtering is Enabled.",
+            "SID Filtering is Disabled."
+          ],
           "type": "string"
         }
       },

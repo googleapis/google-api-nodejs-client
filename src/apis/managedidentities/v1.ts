@@ -213,6 +213,23 @@ export namespace managedidentities_v1 {
     thumbprint?: string | null;
   }
   /**
+   * CheckMigrationPermissionRequest is the request message for CheckMigrationPermission method.
+   */
+  export interface Schema$CheckMigrationPermissionRequest {}
+  /**
+   * CheckMigrationPermissionResponse is the response message for CheckMigrationPermission method.
+   */
+  export interface Schema$CheckMigrationPermissionResponse {
+    /**
+     * The state of SID filtering of all the domains which has trust established.
+     */
+    onpremDomains?: Schema$OnPremDomainSIDDetails[];
+    /**
+     * The state of DomainMigration.
+     */
+    state?: string | null;
+  }
+  /**
    * Time window specified for daily operations.
    */
   export interface Schema$DailyCycle {
@@ -904,6 +921,19 @@ export namespace managedidentities_v1 {
      * Required. FQDN of the on-prem domain being migrated.
      */
     domainName?: string | null;
+  }
+  /**
+   * OnPremDomainDetails is the message which contains details of on-prem domain which is trusted and needs to be migrated.
+   */
+  export interface Schema$OnPremDomainSIDDetails {
+    /**
+     * FQDN of the on-prem domain being migrated.
+     */
+    name?: string | null;
+    /**
+     * Current SID filtering state.
+     */
+    sidFilteringState?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1737,6 +1767,156 @@ export namespace managedidentities_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * CheckMigrationPermission API gets the current state of DomainMigration
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const managedidentities = google.managedidentities('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.checkMigrationPermission(
+     *       {
+     *         // Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
+     *         domain: 'projects/my-project/locations/global/domains/my-domain',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "onpremDomains": [],
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkMigrationPermission(
+      params: Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkMigrationPermission(
+      params?: Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckMigrationPermissionResponse>;
+    checkMigrationPermission(
+      params: Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkMigrationPermission(
+      params: Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckMigrationPermissionResponse>,
+      callback: BodyResponseCallback<Schema$CheckMigrationPermissionResponse>
+    ): void;
+    checkMigrationPermission(
+      params: Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission,
+      callback: BodyResponseCallback<Schema$CheckMigrationPermissionResponse>
+    ): void;
+    checkMigrationPermission(
+      callback: BodyResponseCallback<Schema$CheckMigrationPermissionResponse>
+    ): void;
+    checkMigrationPermission(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission
+        | BodyResponseCallback<Schema$CheckMigrationPermissionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckMigrationPermissionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckMigrationPermissionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckMigrationPermissionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://managedidentities.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+domain}:checkMigrationPermission').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['domain'],
+        pathParams: ['domain'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckMigrationPermissionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckMigrationPermissionResponse>(
+          parameters
+        );
       }
     }
 
@@ -4501,6 +4681,18 @@ export namespace managedidentities_v1 {
      * Request body metadata
      */
     requestBody?: Schema$AttachTrustRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Domains$Checkmigrationpermission
+    extends StandardParameters {
+    /**
+     * Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
+     */
+    domain?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckMigrationPermissionRequest;
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$Create
     extends StandardParameters {

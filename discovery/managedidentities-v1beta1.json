@@ -1515,7 +1515,7 @@
       }
     }
   },
-  "revision": "20230505",
+  "revision": "20230705",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1914,6 +1914,11 @@
       "description": "EnableMigrationRequest is the request message for EnableMigration method.",
       "id": "EnableMigrationRequest",
       "properties": {
+        "enableDuration": {
+          "description": "Optional. Period after which the migration would be auto disabled. If unspecified, a default timeout of 48h is used.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "migratingDomains": {
           "description": "Required. List of the on-prem domains to be migrated.",
           "items": {
@@ -2212,6 +2217,7 @@
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule",
       "properties": {
         "canReschedule": {
+          "deprecated": true,
           "description": "This field is deprecated, and will be always set to true since reschedule can happen multiple times now. This field should not be removed until all service producers remove this for their customers.",
           "type": "boolean"
         },
