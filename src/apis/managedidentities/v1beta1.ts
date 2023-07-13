@@ -385,6 +385,10 @@ export namespace managedidentities_v1beta1 {
    */
   export interface Schema$EnableMigrationRequest {
     /**
+     * Optional. Period after which the migration would be auto disabled. If unspecified, a default timeout of 48h is used.
+     */
+    enableDuration?: string | null;
+    /**
      * Required. List of the on-prem domains to be migrated.
      */
     migratingDomains?: Schema$OnPremDomainDetails[];
@@ -2682,6 +2686,7 @@ export namespace managedidentities_v1beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "enableDuration": "my_enableDuration",
      *         //   "migratingDomains": []
      *         // }
      *       },
