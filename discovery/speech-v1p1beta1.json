@@ -524,7 +524,7 @@
       }
     }
   },
-  "revision": "20230420",
+  "revision": "20230710",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ABNFGrammar": {
@@ -904,6 +904,7 @@
           "description": "Config to enable speaker diarization and set additional parameters to make diarization better suited for your application. Note: When this is enabled, we send all the words from the beginning of the audio for the top alternative in every consecutive STREAMING responses. This is done in order to improve our speaker tags as our models learn to identify the speakers in the conversation over time. For non-streaming requests, the diarization results will be provided only in the top alternative of the FINAL SpeechRecognitionResult."
         },
         "diarizationSpeakerCount": {
+          "deprecated": true,
           "description": "If set, specifies the estimated number of speakers in the conversation. Defaults to '2'. Ignored unless enable_speaker_diarization is set to true. Note: Use diarization_config instead.",
           "format": "int32",
           "type": "integer"
@@ -917,6 +918,7 @@
           "type": "boolean"
         },
         "enableSpeakerDiarization": {
+          "deprecated": true,
           "description": "If 'true', enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_label provided in the WordInfo. Note: Use diarization_config instead.",
           "type": "boolean"
         },
@@ -1009,6 +1011,7 @@
       "type": "object"
     },
     "RecognitionMetadata": {
+      "deprecated": true,
       "description": "Description of audio data to be recognized.",
       "id": "RecognitionMetadata",
       "properties": {
@@ -1064,6 +1067,7 @@
           "type": "string"
         },
         "obfuscatedId": {
+          "deprecated": true,
           "description": "Obfuscated (privacy-protected) ID of the user, to identify number of unique users using the service.",
           "format": "int64",
           "type": "string"
@@ -1177,6 +1181,7 @@
           "type": "integer"
         },
         "speakerTag": {
+          "deprecated": true,
           "description": "Output only. Unused.",
           "format": "int32",
           "readOnly": true,
@@ -1375,6 +1380,7 @@
           "type": "string"
         },
         "speakerTag": {
+          "deprecated": true,
           "description": "Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from '1' to diarization_speaker_count. speaker_tag is set if enable_speaker_diarization = 'true' and only for the top alternative. Note: Use speaker_label instead.",
           "format": "int32",
           "readOnly": true,

@@ -524,7 +524,7 @@
       }
     }
   },
-  "revision": "20230420",
+  "revision": "20230710",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ABNFGrammar": {
@@ -970,6 +970,7 @@
       "type": "object"
     },
     "RecognitionMetadata": {
+      "deprecated": true,
       "description": "Description of audio data to be recognized.",
       "id": "RecognitionMetadata",
       "properties": {
@@ -1133,6 +1134,7 @@
           "type": "integer"
         },
         "speakerTag": {
+          "deprecated": true,
           "description": "Output only. Unused.",
           "format": "int32",
           "readOnly": true,
@@ -1317,6 +1319,7 @@
           "type": "string"
         },
         "speakerTag": {
+          "deprecated": true,
           "description": "Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from '1' to diarization_speaker_count. speaker_tag is set if enable_speaker_diarization = 'true' and only for the top alternative. Note: Use speaker_label instead.",
           "format": "int32",
           "readOnly": true,

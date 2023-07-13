@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20230324",
+  "revision": "20230707",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -318,6 +318,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
+          "deprecated": true,
           "description": "Deprecated. Use the `metadata` field instead. Other service-specific data about the request, response, and other activities.",
           "type": "object"
         },
