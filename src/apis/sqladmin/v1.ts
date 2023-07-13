@@ -952,6 +952,8 @@ export namespace sqladmin_v1 {
       };
       noRecovery?: boolean;
       recoveryOnly?: boolean;
+      stopAt?: string;
+      stopAtMark?: string;
       striped?: boolean;
     } | null;
     /**
