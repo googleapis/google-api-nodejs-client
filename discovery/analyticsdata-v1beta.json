@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20230705",
+  "revision": "20230711",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "ActiveMetricRestriction": {
@@ -342,6 +342,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "AudienceListMetadata": {
+      "description": "This metadata is currently blank.",
+      "id": "AudienceListMetadata",
+      "properties": {},
       "type": "object"
     },
     "BatchRunPivotReportsRequest": {

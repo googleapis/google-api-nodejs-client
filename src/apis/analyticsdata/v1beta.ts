@@ -138,6 +138,10 @@ export namespace analyticsdata_v1beta {
     restrictedMetricTypes?: string[] | null;
   }
   /**
+   * This metadata is currently blank.
+   */
+  export interface Schema$AudienceListMetadata {}
+  /**
    * The batch request containing multiple pivot report requests.
    */
   export interface Schema$BatchRunPivotReportsRequest {
