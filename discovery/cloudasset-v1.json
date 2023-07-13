@@ -1095,7 +1095,7 @@
       }
     }
   },
-  "revision": "20230630",
+  "revision": "20230707",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -1352,6 +1352,7 @@
         },
         "relatedAssets": {
           "$ref": "RelatedAssets",
+          "deprecated": true,
           "description": "DEPRECATED. This field only presents for the purpose of backward-compatibility. The server will never generate responses with this field. The related assets of the asset of one relationship type. One asset only represents one type of relationship."
         },
         "resource": {
@@ -3821,6 +3822,7 @@
       "type": "object"
     },
     "RelatedAssets": {
+      "deprecated": true,
       "description": "DEPRECATED. This message only presents for the purpose of backward-compatibility. The server will never populate this message in responses. The detailed related assets with the `relationship_type`.",
       "id": "RelatedAssets",
       "properties": {
@@ -3868,6 +3870,7 @@
       "type": "object"
     },
     "RelationshipAttributes": {
+      "deprecated": true,
       "description": "DEPRECATED. This message only presents for the purpose of backward-compatibility. The server will never populate this message in responses. The relationship attributes which include `type`, `source_resource_type`, `target_resource_type` and `action`.",
       "id": "RelationshipAttributes",
       "properties": {
@@ -3973,6 +3976,7 @@
           "type": "array"
         },
         "kmsKey": {
+          "deprecated": true,
           "description": "The Cloud KMS [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys) name or [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions) name. This field only presents for the purpose of backward compatibility. Please use the `kms_keys` field to retrieve Cloud KMS key information. This field is available only when the resource's Protobuf contains it and will only be populated for [these resource types](https://cloud.google.com/asset-inventory/docs/legacy-field-names#resource_types_with_the_to_be_deprecated_kmskey_field) for backward compatible purposes. To search against the `kms_key`: * Use a field query. Example: `kmsKey:key` * Use a free text query. Example: `key`",
           "type": "string"
         },

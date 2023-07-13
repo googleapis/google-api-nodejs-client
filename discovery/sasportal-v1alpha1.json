@@ -2617,7 +2617,7 @@
       }
     }
   },
-  "revision": "20230628",
+  "revision": "20230710",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2757,6 +2757,7 @@
           "description": "Output only. Current configuration of the device as registered to the SAS."
         },
         "currentChannels": {
+          "deprecated": true,
           "description": "Output only. Current channels with scores.",
           "items": {
             "$ref": "SasPortalChannelWithScore"
@@ -3034,6 +3035,7 @@
           "type": "string"
         },
         "nrqzValidated": {
+          "deprecated": true,
           "description": "Output only. Set to `true` if a CPI has validated that they have coordinated with the National Quiet Zone office.",
           "readOnly": true,
           "type": "boolean"

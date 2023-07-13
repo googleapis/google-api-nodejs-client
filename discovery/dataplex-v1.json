@@ -4269,7 +4269,7 @@
       }
     }
   },
-  "revision": "20230628",
+  "revision": "20230709",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -7478,6 +7478,7 @@
       "id": "GoogleCloudDataplexV1Partition",
       "properties": {
         "etag": {
+          "deprecated": true,
           "description": "Optional. The etag for this partition.",
           "type": "string"
         },

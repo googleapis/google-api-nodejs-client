@@ -682,7 +682,7 @@
       }
     }
   },
-  "revision": "20230612",
+  "revision": "20230707",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
@@ -1133,6 +1133,13 @@
             "PASSWORD",
             "SECURE_KEY",
             "ENROLLED_SECOND_FACTORS"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Reauthentication disabled.",

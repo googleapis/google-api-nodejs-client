@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20230127",
+  "revision": "20230707",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -484,6 +484,7 @@
           "type": "string"
         },
         "followUpToken": {
+          "deprecated": true,
           "description": "Deprecated.",
           "type": "string"
         },

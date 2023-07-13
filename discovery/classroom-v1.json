@@ -2400,7 +2400,7 @@
       }
     }
   },
-  "revision": "20230626",
+  "revision": "20230708",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "Announcement": {
@@ -2562,6 +2562,7 @@
           "type": "string"
         },
         "courseMaterialSets": {
+          "deprecated": true,
           "description": "Sets of materials that appear on the \"about\" page of this course. Read-only.",
           "items": {
             "$ref": "CourseMaterialSet"

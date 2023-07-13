@@ -2329,7 +2329,7 @@
       }
     }
   },
-  "revision": "20230629",
+  "revision": "20230706",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -2561,6 +2561,7 @@
           "type": "string"
         },
         "requestId": {
+          "deprecated": true,
           "description": "Deprecated. This field is never set.",
           "type": "string"
         },
@@ -3373,6 +3374,7 @@
           "type": "array"
         },
         "recentSearchResults": {
+          "deprecated": true,
           "description": "Deprecated. Matched recent searches of this user. The maximum number of recent searches is 10. This field is a restricted feature. If you want to enable it, contact Retail Search support. This feature is only available when CompleteQueryRequest.visitor_id field is set and UserEvent is imported. The recent searches satisfy the follow rules: * They are ordered from latest to oldest. * They are matched with CompleteQueryRequest.query case insensitively. * They are transformed to lower case. * They are UTF-8 safe. Recent searches are deduplicated. More recent searches will be reserved when duplication happens.",
           "items": {
             "$ref": "GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult"
@@ -3427,6 +3429,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult": {
+      "deprecated": true,
       "description": "Recent search of this user.",
       "id": "GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult",
       "properties": {
@@ -3598,6 +3601,7 @@
         },
         "facetSpec": {
           "$ref": "GoogleCloudRetailV2alphaSearchRequestFacetSpec",
+          "deprecated": true,
           "description": "A facet specification to perform faceted search. Note that this field is deprecated and will throw NOT_IMPLEMENTED if used for creating a control."
         },
         "name": {
@@ -3678,6 +3682,7 @@
       "id": "GoogleCloudRetailV2alphaCustomAttribute",
       "properties": {
         "indexable": {
+          "deprecated": true,
           "description": "This field is normally ignored unless AttributesConfig.attribute_config_level of the Catalog is set to the deprecated 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level attribute configuration, see [Configuration modes](https://cloud.google.com/retail/docs/attribute-config#config-modes). If true, custom attribute values are indexed, so that they can be filtered, faceted or boosted in SearchService.Search. This field is ignored in a UserEvent. See SearchRequest.filter, SearchRequest.facet_specs and SearchRequest.boost_spec for more details.",
           "type": "boolean"
         },
@@ -3690,6 +3695,7 @@
           "type": "array"
         },
         "searchable": {
+          "deprecated": true,
           "description": "This field is normally ignored unless AttributesConfig.attribute_config_level of the Catalog is set to the deprecated 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level attribute configuration, see [Configuration modes](https://cloud.google.com/retail/docs/attribute-config#config-modes). If true, custom attribute values are searchable by text queries in SearchService.Search. This field is ignored in a UserEvent. Only set if type text is set. Otherwise, a INVALID_ARGUMENT error is returned.",
           "type": "boolean"
         },
@@ -4028,6 +4034,7 @@
           "type": "string"
         },
         "requestId": {
+          "deprecated": true,
           "description": "Deprecated. This field is never set.",
           "type": "string"
         },
@@ -4079,6 +4086,7 @@
           "type": "string"
         },
         "requestId": {
+          "deprecated": true,
           "description": "Deprecated. This field has no effect.",
           "type": "string"
         },
@@ -4790,6 +4798,7 @@
           "type": "integer"
         },
         "pageToken": {
+          "deprecated": true,
           "description": "This field is not used; leave it unset.",
           "type": "string"
         },
@@ -5075,6 +5084,7 @@
           "description": "The rating of this product."
         },
         "retrievableFields": {
+          "deprecated": true,
           "description": "Indicates which fields in the Products are returned in SearchResponse. Supported fields for all types: * audience * availability * brands * color_info * conditions * gtin * materials * name * patterns * price_info * rating * sizes * title * uri Supported fields only for Type.PRIMARY and Type.COLLECTION: * categories * description * images Supported fields only for Type.VARIANT: * Only the first image in images To mark attributes as retrievable, include paths of the form \"attributes.key\" where \"key\" is the key of a custom attribute, as specified in attributes. For Type.PRIMARY and Type.COLLECTION, the following fields are always returned in SearchResponse by default: * name For Type.VARIANT, the following fields are always returned in by default: * name * color_info The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is returned. Note: Returning more fields in SearchResponse can increase response payload size and serving latency. This field is deprecated. Use the retrievable site-wide control instead.",
           "format": "google-fieldmask",
           "type": "string"
@@ -5749,6 +5759,7 @@
         },
         "dynamicFacetSpec": {
           "$ref": "GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec",
+          "deprecated": true,
           "description": "Deprecated. Refer to https://cloud.google.com/retail/docs/configs#dynamic to enable dynamic facets. Do not set this field. The specification for dynamically generated facets. Notice that only textual facets can be dynamically generated."
         },
         "entity": {
@@ -6846,6 +6857,7 @@
           "type": "string"
         },
         "requestId": {
+          "deprecated": true,
           "description": "Deprecated. This field is never set.",
           "type": "string"
         },
