@@ -1558,10 +1558,6 @@ export namespace containeranalysis_v1alpha1 {
      * Output only. An operation that indicates the status of the current scan. This field is deprecated, do not use.
      */
     operation?: Schema$Operation;
-    /**
-     * Output only. The status of an SBOM generation.
-     */
-    sbomStatus?: Schema$SBOMStatus;
   }
   /**
    * A note that indicates a type of analysis a provider would perform. This note exists in a provider's project. A `Discovery` occurrence is created in a consumer's project at the start of analysis. The occurrence's operation will indicate the status of the analysis. Absence of an occurrence linked to this note for a resource indicates that analysis hasn't started.
@@ -3045,19 +3041,6 @@ export namespace containeranalysis_v1alpha1 {
      * The signatures over the payload.
      */
     signatures?: Schema$EnvelopeSignature[];
-  }
-  /**
-   * The status of an SBOM generation.
-   */
-  export interface Schema$SBOMStatus {
-    /**
-     * Output only. If there was an error generating an SBOM, this will indicate what that error was.
-     */
-    error?: string | null;
-    /**
-     * Output only. The progress of the SBOM generation.
-     */
-    sbomState?: string | null;
   }
   /**
    * Indicates various scans and whether they are turned on or off.
