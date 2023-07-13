@@ -1851,10 +1851,6 @@ export namespace dataflow_v1b3 {
      */
     customMetadata?: {[key: string]: string} | null;
     /**
-     * Optional. The options shown when ENUM ParameterType is specified.
-     */
-    enumOptions?: Schema$ParameterMetadataEnumOption[];
-    /**
      * Optional. Specifies a group name for this parameter to be rendered under. Group header text will be rendered exactly as specified in this field. Only considered when parent_name is NOT provided.
      */
     groupName?: string | null;
@@ -1890,23 +1886,6 @@ export namespace dataflow_v1b3 {
      * Optional. Regexes that the parameter must match.
      */
     regexes?: string[] | null;
-  }
-  /**
-   * ParameterMetadataEnumOption specifies the option shown in the enum form.
-   */
-  export interface Schema$ParameterMetadataEnumOption {
-    /**
-     * Optional. The description to display for the enum option.
-     */
-    description?: string | null;
-    /**
-     * Optional. The label to display for the enum option.
-     */
-    label?: string | null;
-    /**
-     * Required. The value of the enum option.
-     */
-    value?: string | null;
   }
   /**
    * An instruction that does a ParDo operation. Takes one main input and zero or more side inputs, and produces zero or more outputs. Runs user code.
@@ -5137,7 +5116,7 @@ export namespace dataflow_v1b3 {
      *     location: 'placeholder-value',
      *     // The ID of the Cloud Platform project that the job belongs to.
      *     projectId: 'placeholder-value',
-     *     // The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, an error will be returned as we cannot update both state and mask.
+     *     // The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, we will first handle RequestedJobState and then the update_mask fields.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5453,7 +5432,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, an error will be returned as we cannot update both state and mask.
+     * The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, we will first handle RequestedJobState and then the update_mask fields.
      */
     updateMask?: string;
 
@@ -7739,7 +7718,7 @@ export namespace dataflow_v1b3 {
      *     location: 'placeholder-value',
      *     // The ID of the Cloud Platform project that the job belongs to.
      *     projectId: 'placeholder-value',
-     *     // The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, an error will be returned as we cannot update both state and mask.
+     *     // The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, we will first handle RequestedJobState and then the update_mask fields.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8051,7 +8030,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, an error will be returned as we cannot update both state and mask.
+     * The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, we will first handle RequestedJobState and then the update_mask fields.
      */
     updateMask?: string;
 
