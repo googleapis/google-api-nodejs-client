@@ -3231,6 +3231,7 @@ export namespace youtube_v3 {
     title?: string | null;
   }
   export interface Schema$PlaylistStatus {
+    podcastStatus?: string | null;
     /**
      * The playlist's privacy status.
      */
