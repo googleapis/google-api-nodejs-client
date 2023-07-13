@@ -754,34 +754,6 @@
         },
         "resources": {
           "methods": {
-            "exportSBOM": {
-              "description": "Generates an SBOM and other dependency information for the given resource.",
-              "flatPath": "v1beta1/projects/{projectsId}/resources/{resourcesId}:exportSBOM",
-              "httpMethod": "POST",
-              "id": "containeranalysis.projects.resources.exportSBOM",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. The name of the resource in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/resources/.*$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1beta1/{+name}:exportSBOM",
-              "request": {
-                "$ref": "ExportSBOMRequest"
-              },
-              "response": {
-                "$ref": "ExportSBOMResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
             "generatePackagesSummary": {
               "description": "Gets a summary of the packages within a given resource.",
               "flatPath": "v1beta1/projects/{projectsId}/resources/{resourcesId}:generatePackagesSummary",
@@ -815,7 +787,7 @@
       }
     }
   },
-  "revision": "20230707",
+  "revision": "20230612",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1094,52 +1066,6 @@
         "signature": {
           "$ref": "BuildSignature",
           "description": "Signature of the build in occurrences pointing to this build note containing build details."
-        }
-      },
-      "type": "object"
-    },
-    "BuildDefinition": {
-      "id": "BuildDefinition",
-      "properties": {
-        "buildType": {
-          "type": "string"
-        },
-        "externalParameters": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "type": "object"
-        },
-        "internalParameters": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "type": "object"
-        },
-        "resolvedDependencies": {
-          "items": {
-            "$ref": "ResourceDescriptor"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "BuildMetadata": {
-      "id": "BuildMetadata",
-      "properties": {
-        "finishedOn": {
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "invocationId": {
-          "type": "string"
-        },
-        "startedOn": {
-          "format": "google-datetime",
-          "type": "string"
         }
       },
       "type": "object"
@@ -2241,14 +2167,6 @@
             "CLOUD_LOGGING_ONLY",
             "NONE"
           ],
-          "enumDeprecated": [
-            false,
-            false,
-            false,
-            true,
-            false,
-            false
-          ],
           "enumDescriptions": [
             "The service determines the logging mode. The default is `LEGACY`. Do not rely on the default logging behavior as it may change in the future.",
             "Build logs are stored in Cloud Logging and Cloud Storage.",
@@ -2266,16 +2184,14 @@
             "N1_HIGHCPU_8",
             "N1_HIGHCPU_32",
             "E2_HIGHCPU_8",
-            "E2_HIGHCPU_32",
-            "E2_MEDIUM"
+            "E2_HIGHCPU_32"
           ],
           "enumDescriptions": [
             "Standard machine type.",
             "Highcpu machine with 8 CPUs.",
             "Highcpu machine with 32 CPUs.",
             "Highcpu e2 machine with 8 CPUs.",
-            "Highcpu e2 machine with 32 CPUs.",
-            "E2 machine with 1 CPU."
+            "Highcpu e2 machine with 32 CPUs."
           ],
           "type": "string"
         },
@@ -2341,7 +2257,6 @@
           "type": "array"
         },
         "workerPool": {
-          "deprecated": true,
           "description": "This field deprecated; please use `pool.name` instead.",
           "type": "string"
         }
@@ -3186,10 +3101,6 @@
           "description": "The last time continuous analysis was done for this resource. Deprecated, do not use.",
           "format": "google-datetime",
           "type": "string"
-        },
-        "sbomStatus": {
-          "$ref": "SBOMStatus",
-          "description": "The status of an SBOM generation."
         }
       },
       "type": "object"
@@ -3393,23 +3304,6 @@
             "type": "string"
           },
           "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "ExportSBOMRequest": {
-      "description": "The request to a call of ExportSBOM",
-      "id": "ExportSBOMRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "ExportSBOMResponse": {
-      "description": "The response from a call to ExportSBOM",
-      "id": "ExportSBOMResponse",
-      "properties": {
-        "discoveryOccurrenceId": {
-          "description": "The name of the discovery occurrence in the form \"projects/{project_id}/occurrences/{OCCURRENCE_ID} It can be used to track the progression of the SBOM export.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -3768,9 +3662,6 @@
       "description": "Details of a build occurrence.",
       "id": "GrafeasV1beta1BuildDetails",
       "properties": {
-        "inTotoSlsaProvenanceV1": {
-          "$ref": "InTotoSlsaProvenanceV1"
-        },
         "provenance": {
           "$ref": "BuildProvenance",
           "description": "Required. The actual provenance for the build."
@@ -4048,28 +3939,6 @@
           "description": "This field contains a value that indicates the minimum number of keys that need to be used to sign the step's in-toto link.",
           "format": "int64",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "InTotoSlsaProvenanceV1": {
-      "id": "InTotoSlsaProvenanceV1",
-      "properties": {
-        "_type": {
-          "description": "InToto spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement",
-          "type": "string"
-        },
-        "predicate": {
-          "$ref": "SlsaProvenanceV1"
-        },
-        "predicateType": {
-          "type": "string"
-        },
-        "subject": {
-          "items": {
-            "$ref": "Subject"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -4983,27 +4852,6 @@
       },
       "type": "object"
     },
-    "ProvenanceBuilder": {
-      "id": "ProvenanceBuilder",
-      "properties": {
-        "builderDependencies": {
-          "items": {
-            "$ref": "ResourceDescriptor"
-          },
-          "type": "array"
-        },
-        "id": {
-          "type": "string"
-        },
-        "version": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
     "Publisher": {
       "description": "Publisher contains information about the publisher of this Note.",
       "id": "Publisher",
@@ -5313,69 +5161,15 @@
       "properties": {
         "contentHash": {
           "$ref": "Hash",
-          "deprecated": true,
           "description": "Deprecated, do not use. Use uri instead. The hash of the resource content. For example, the Docker digest."
         },
         "name": {
-          "deprecated": true,
           "description": "Deprecated, do not use. Use uri instead. The name of the resource. For example, the name of a Docker image - \"Debian\".",
           "type": "string"
         },
         "uri": {
           "description": "Required. The unique URI of the resource. For example, `https://gcr.io/project/image@sha256:foo` for a Docker image.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ResourceDescriptor": {
-      "id": "ResourceDescriptor",
-      "properties": {
-        "annotations": {
-          "additionalProperties": {
-            "type": "any"
-          },
-          "type": "object"
-        },
-        "content": {
-          "format": "byte",
-          "type": "string"
-        },
-        "digest": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "type": "object"
-        },
-        "downloadLocation": {
-          "type": "string"
-        },
-        "mediaType": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "uri": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RunDetails": {
-      "id": "RunDetails",
-      "properties": {
-        "builder": {
-          "$ref": "ProvenanceBuilder"
-        },
-        "byproducts": {
-          "items": {
-            "$ref": "ResourceDescriptor"
-          },
-          "type": "array"
-        },
-        "metadata": {
-          "$ref": "BuildMetadata"
         }
       },
       "type": "object"
@@ -5413,31 +5207,6 @@
             "$ref": "EnvelopeSignature"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "SBOMStatus": {
-      "description": "The status of an SBOM generation.",
-      "id": "SBOMStatus",
-      "properties": {
-        "error": {
-          "description": "If there was an error generating an SBOM, this will indicate what that error was.",
-          "type": "string"
-        },
-        "sbomState": {
-          "description": "The progress of the SBOM generation.",
-          "enum": [
-            "SBOM_STATE_UNSPECIFIED",
-            "PENDING",
-            "COMPLETE"
-          ],
-          "enumDescriptions": [
-            "Default unknown state.",
-            "SBOM scanning is pending.",
-            "SBOM scanning has completed."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -5540,19 +5309,6 @@
         "publicKeyValue": {
           "description": "This field contains the actual public key.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SlsaProvenanceV1": {
-      "description": "Keep in sync with schema at https://github.com/slsa-framework/slsa/blob/main/docs/provenance/schema/v1/provenance.proto Builder renamed to ProvenanceBuilder because of Java conflicts.",
-      "id": "SlsaProvenanceV1",
-      "properties": {
-        "buildDefinition": {
-          "$ref": "BuildDefinition"
-        },
-        "runDetails": {
-          "$ref": "RunDetails"
         }
       },
       "type": "object"

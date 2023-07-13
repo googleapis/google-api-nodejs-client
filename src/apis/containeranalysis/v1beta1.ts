@@ -307,17 +307,6 @@ export namespace containeranalysis_v1beta1 {
      */
     signature?: Schema$BuildSignature;
   }
-  export interface Schema$BuildDefinition {
-    buildType?: string | null;
-    externalParameters?: {[key: string]: any} | null;
-    internalParameters?: {[key: string]: any} | null;
-    resolvedDependencies?: Schema$ResourceDescriptor[];
-  }
-  export interface Schema$BuildMetadata {
-    finishedOn?: string | null;
-    invocationId?: string | null;
-    startedOn?: string | null;
-  }
   /**
    * Provenance of a build. Contains all information needed to verify the full details about the build from source to completion.
    */
@@ -1532,10 +1521,6 @@ export namespace containeranalysis_v1beta1 {
      * The last time continuous analysis was done for this resource. Deprecated, do not use.
      */
     lastAnalysisTime?: string | null;
-    /**
-     * The status of an SBOM generation.
-     */
-    sbomStatus?: Schema$SBOMStatus;
   }
   /**
    * A note that indicates a type of analysis a provider would perform. This note exists in a provider's project. A `Discovery` occurrence is created in a consumer's project at the start of analysis.
@@ -1650,19 +1635,6 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Environment {
     customValues?: {[key: string]: string} | null;
-  }
-  /**
-   * The request to a call of ExportSBOM
-   */
-  export interface Schema$ExportSBOMRequest {}
-  /**
-   * The response from a call to ExportSBOM
-   */
-  export interface Schema$ExportSBOMResponse {
-    /**
-     * The name of the discovery occurrence in the form "projects/{project_id\}/occurrences/{OCCURRENCE_ID\} It can be used to track the progression of the SBOM export.
-     */
-    discoveryOccurrenceId?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -1897,7 +1869,6 @@ export namespace containeranalysis_v1beta1 {
    * Details of a build occurrence.
    */
   export interface Schema$GrafeasV1beta1BuildDetails {
-    inTotoSlsaProvenanceV1?: Schema$InTotoSlsaProvenanceV1;
     /**
      * Required. The actual provenance for the build.
      */
@@ -2091,15 +2062,6 @@ export namespace containeranalysis_v1beta1 {
      * This field contains a value that indicates the minimum number of keys that need to be used to sign the step's in-toto link.
      */
     threshold?: string | null;
-  }
-  export interface Schema$InTotoSlsaProvenanceV1 {
-    predicate?: Schema$SlsaProvenanceV1;
-    predicateType?: string | null;
-    subject?: Schema$Subject[];
-    /**
-     * InToto spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement
-     */
-    _type?: string | null;
   }
   /**
    * Justification provides the justification when the state of the assessment if NOT_AFFECTED.
@@ -2699,11 +2661,6 @@ export namespace containeranalysis_v1beta1 {
      */
     repoName?: string | null;
   }
-  export interface Schema$ProvenanceBuilder {
-    builderDependencies?: Schema$ResourceDescriptor[];
-    id?: string | null;
-    version?: {[key: string]: string} | null;
-  }
   /**
    * Publisher contains information about the publisher of this Note.
    */
@@ -2811,20 +2768,6 @@ export namespace containeranalysis_v1beta1 {
      */
     uri?: string | null;
   }
-  export interface Schema$ResourceDescriptor {
-    annotations?: {[key: string]: any} | null;
-    content?: string | null;
-    digest?: {[key: string]: string} | null;
-    downloadLocation?: string | null;
-    mediaType?: string | null;
-    name?: string | null;
-    uri?: string | null;
-  }
-  export interface Schema$RunDetails {
-    builder?: Schema$ProvenanceBuilder;
-    byproducts?: Schema$ResourceDescriptor[];
-    metadata?: Schema$BuildMetadata;
-  }
   /**
    * The actual payload that contains the SBOM Reference data. The payload follows the intoto statement specification. See https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md for more details.
    */
@@ -2898,19 +2841,6 @@ export namespace containeranalysis_v1beta1 {
     signatures?: Schema$EnvelopeSignature[];
   }
   /**
-   * The status of an SBOM generation.
-   */
-  export interface Schema$SBOMStatus {
-    /**
-     * If there was an error generating an SBOM, this will indicate what that error was.
-     */
-    error?: string | null;
-    /**
-     * The progress of the SBOM generation.
-     */
-    sbomState?: string | null;
-  }
-  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -2952,13 +2882,6 @@ export namespace containeranalysis_v1beta1 {
      * This field contains the actual public key.
      */
     publicKeyValue?: string | null;
-  }
-  /**
-   * Keep in sync with schema at https://github.com/slsa-framework/slsa/blob/main/docs/provenance/schema/v1/provenance.proto Builder renamed to ProvenanceBuilder because of Java conflicts.
-   */
-  export interface Schema$SlsaProvenanceV1 {
-    buildDefinition?: Schema$BuildDefinition;
-    runDetails?: Schema$RunDetails;
   }
   /**
    * Source describes the location of the source used for the build.
@@ -6685,145 +6608,6 @@ export namespace containeranalysis_v1beta1 {
     }
 
     /**
-     * Generates an SBOM and other dependency information for the given resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.resources.exportSBOM({
-     *     // Required. The name of the resource in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
-     *     name: 'projects/my-project/resources/.*',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "discoveryOccurrenceId": "my_discoveryOccurrenceId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    exportSBOM(
-      params: Params$Resource$Projects$Resources$Exportsbom,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    exportSBOM(
-      params?: Params$Resource$Projects$Resources$Exportsbom,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ExportSBOMResponse>;
-    exportSBOM(
-      params: Params$Resource$Projects$Resources$Exportsbom,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    exportSBOM(
-      params: Params$Resource$Projects$Resources$Exportsbom,
-      options: MethodOptions | BodyResponseCallback<Schema$ExportSBOMResponse>,
-      callback: BodyResponseCallback<Schema$ExportSBOMResponse>
-    ): void;
-    exportSBOM(
-      params: Params$Resource$Projects$Resources$Exportsbom,
-      callback: BodyResponseCallback<Schema$ExportSBOMResponse>
-    ): void;
-    exportSBOM(callback: BodyResponseCallback<Schema$ExportSBOMResponse>): void;
-    exportSBOM(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Resources$Exportsbom
-        | BodyResponseCallback<Schema$ExportSBOMResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ExportSBOMResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ExportSBOMResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ExportSBOMResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Resources$Exportsbom;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Resources$Exportsbom;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://containeranalysis.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}:exportSBOM').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ExportSBOMResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ExportSBOMResponse>(parameters);
-      }
-    }
-
-    /**
      * Gets a summary of the packages within a given resource.
      * @example
      * ```js
@@ -6970,18 +6754,6 @@ export namespace containeranalysis_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Resources$Exportsbom
-    extends StandardParameters {
-    /**
-     * Required. The name of the resource in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ExportSBOMRequest;
-  }
   export interface Params$Resource$Projects$Resources$Generatepackagessummary
     extends StandardParameters {
     /**
