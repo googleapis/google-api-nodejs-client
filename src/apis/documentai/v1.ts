@@ -499,6 +499,10 @@ export namespace documentai_v1 {
      */
     inputGcsSource?: string | null;
     /**
+     * The document id of imported document if it was successful, otherwise empty.
+     */
+    outputDocumentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
      * The output_gcs_destination of the processed document if it was successful, otherwise empty.
      */
     outputGcsDestination?: string | null;
@@ -610,6 +614,14 @@ export namespace documentai_v1 {
    * Response of the sample documents operation.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponse {
+    /**
+     * The status of sampling documents in test split.
+     */
+    sampleTestStatus?: Schema$GoogleRpcStatus;
+    /**
+     * The status of sampling documents in training split.
+     */
+    sampleTrainingStatus?: Schema$GoogleRpcStatus;
     /**
      * The result of the sampling process.
      */
@@ -806,6 +818,10 @@ export namespace documentai_v1 {
      * The input documents for the BatchProcessDocuments method.
      */
     inputDocuments?: Schema$GoogleCloudDocumentaiV1BatchDocumentsInputConfig;
+    /**
+     * Inference-time options for the process API
+     */
+    processOptions?: Schema$GoogleCloudDocumentaiV1ProcessOptions;
     /**
      * Whether human review should be skipped for this request. Default to `false`.
      */
@@ -2836,6 +2852,41 @@ export namespace documentai_v1 {
      */
     y?: number | null;
   }
+  export interface Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+    /**
+     * Total number of documents that failed to be deleted in storage.
+     */
+    errorDocumentCount?: number | null;
+    /**
+     * The list of response details of each document.
+     */
+    individualBatchDeleteStatuses?: Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus[];
+    /**
+     * Total number of documents deleting from dataset.
+     */
+    totalDocumentCount?: number | null;
+  }
+  /**
+   * The status of each individual document in the batch delete process.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus {
+    /**
+     * The document id of the document.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiV1beta3DocumentId;
+    /**
+     * The status of deleting the document in storage.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * Response of the delete documents operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsResponse {}
   /**
    * The long-running operation metadata for BatchProcessDocuments.
    */
@@ -2916,6 +2967,65 @@ export namespace documentai_v1 {
     updateTime?: string | null;
   }
   /**
+   * A singleton resource under a Processor which configures a collection of documents.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3Dataset {
+    /**
+     * Optional. Document AI Warehouse-based dataset configuration.
+     */
+    documentWarehouseConfig?: Schema$GoogleCloudDocumentaiV1beta3DatasetDocumentWarehouseConfig;
+    /**
+     * Optional. User-managed Cloud Storage dataset configuration. Use this configuration if the dataset documents are stored under a user-managed Cloud Storage location.
+     */
+    gcsManagedConfig?: Schema$GoogleCloudDocumentaiV1beta3DatasetGCSManagedConfig;
+    /**
+     * Dataset resource name. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/dataset`
+     */
+    name?: string | null;
+    /**
+     * Optional. A lightweight indexing source with low latency and high reliability, but lacking advanced features like CMEK and content-based search.
+     */
+    spannerIndexingConfig?: Schema$GoogleCloudDocumentaiV1beta3DatasetSpannerIndexingConfig;
+    /**
+     * Required. State of the dataset. Ignored when updating dataset.
+     */
+    state?: string | null;
+    /**
+     * Optional. Unmanaged dataset configuration. Use this configuration if the dataset documents are managed by the document service internally (not user-managed).
+     */
+    unmanagedDatasetConfig?: Schema$GoogleCloudDocumentaiV1beta3DatasetUnmanagedDatasetConfig;
+  }
+  /**
+   * Configuration specific to the Document AI Warehouse-based implementation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DatasetDocumentWarehouseConfig {
+    /**
+     * Output only. The collection in Document AI Warehouse associated with the dataset.
+     */
+    collection?: string | null;
+    /**
+     * Output only. The schema in Document AI Warehouse associated with the dataset.
+     */
+    schema?: string | null;
+  }
+  /**
+   * Configuration specific to the Cloud Storage-based implementation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DatasetGCSManagedConfig {
+    /**
+     * Required. The Cloud Storage URI (a directory) where the documents belonging to the dataset must be stored.
+     */
+    gcsPrefix?: Schema$GoogleCloudDocumentaiV1beta3GcsPrefix;
+  }
+  /**
+   * Configuration specific to spanner-based indexing.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DatasetSpannerIndexingConfig {}
+  /**
+   * Configuration specific to an unmanaged dataset.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DatasetUnmanagedDatasetConfig {}
+  /**
    * The long-running operation metadata for the DeleteProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata {
@@ -2960,6 +3070,45 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorResponse {}
   /**
+   * Document Identifier.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentId {
+    /**
+     * A document id within user-managed Cloud Storage.
+     */
+    gcsManagedDocId?: Schema$GoogleCloudDocumentaiV1beta3DocumentIdGCSManagedDocumentId;
+    /**
+     * Points to a specific revision of the document if set.
+     */
+    revisionRef?: Schema$GoogleCloudDocumentaiV1beta3RevisionRef;
+    /**
+     * A document id within unmanaged dataset.
+     */
+    unmanagedDocId?: Schema$GoogleCloudDocumentaiV1beta3DocumentIdUnmanagedDocumentId;
+  }
+  /**
+   * Identifies a document uniquely within the scope of a dataset in the user-managed Cloud Storage option.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentIdGCSManagedDocumentId {
+    /**
+     * Id of the document (indexed) managed by Content Warehouse.
+     */
+    cwDocId?: string | null;
+    /**
+     * Required. The Cloud Storage URI where the actual document is stored.
+     */
+    gcsUri?: string | null;
+  }
+  /**
+   * Identifies a document uniquely within the scope of a dataset in unmanaged option.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentIdUnmanagedDocumentId {
+    /**
+     * Required. The id of the document.
+     */
+    docId?: string | null;
+  }
+  /**
    * The long-running operation metadata for the EnableProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorMetadata {
@@ -2991,6 +3140,15 @@ export namespace documentai_v1 {
     evaluation?: string | null;
   }
   /**
+   * Specifies all documents on Cloud Storage with a common prefix.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3GcsPrefix {
+    /**
+     * The URI prefix.
+     */
+    gcsUriPrefix?: string | null;
+  }
+  /**
    * The status of human review on a processed document.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3HumanReviewStatus {
@@ -3007,6 +3165,61 @@ export namespace documentai_v1 {
      */
     stateMessage?: string | null;
   }
+  /**
+   * Metadata of the import document operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+    /**
+     * Validation statuses of the batch documents import config.
+     */
+    importConfigValidationResults?: Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadataImportConfigValidationResult[];
+    /**
+     * The list of response details of each document.
+     */
+    individualImportStatuses?: Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadataIndividualImportStatus[];
+    /**
+     * Total number of the documents that are qualified for importing.
+     */
+    totalDocumentCount?: number | null;
+  }
+  /**
+   * The validation status of each import config. Status is set to errors if there is no documents to import in the import_config, or OK if the operation will try to proceed at least one document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadataImportConfigValidationResult {
+    /**
+     * The source Cloud Storage URI specified in the import config.
+     */
+    inputGcsSource?: string | null;
+    /**
+     * The validation status of import config.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * The status of each individual document in the import process.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadataIndividualImportStatus {
+    /**
+     * The source Cloud Storage URI of the document.
+     */
+    inputGcsSource?: string | null;
+    /**
+     * The document id of imported document if it was successful, otherwise empty.
+     */
+    outputDocumentId?: Schema$GoogleCloudDocumentaiV1beta3DocumentId;
+    /**
+     * The status of the importing of the document.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * Response of the import document operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsResponse {}
   /**
    * The long-running operation metadata for the ImportProcessorVersion method.
    */
@@ -3070,6 +3283,23 @@ export namespace documentai_v1 {
      * The state of the review operation.
      */
     state?: string | null;
+  }
+  /**
+   * The revision reference specifies which revision on the document to read.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3RevisionRef {
+    /**
+     * Reads the revision generated by the processor version. The format takes the full resource name of processor version. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
+     */
+    latestProcessorVersion?: string | null;
+    /**
+     * Reads the revision by the predefined case.
+     */
+    revisionCase?: string | null;
+    /**
+     * Reads the revision given by the id.
+     */
+    revisionId?: string | null;
   }
   /**
    * The long-running operation metadata for the SetDefaultProcessorVersion method.
@@ -3144,6 +3374,12 @@ export namespace documentai_v1 {
    * Response message for the UndeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse {}
+  export interface Schema$GoogleCloudDocumentaiV1beta3UpdateDatasetOperationMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
   /**
    * A bounding polygon for the detected image annotation.
    */
@@ -4568,6 +4804,53 @@ export namespace documentai_v1 {
     y?: number | null;
   }
   /**
+   * Config for Document OCR.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1OcrConfig {
+    /**
+     * A list of advanced OCR options to further fine-tune OCR behavior. Current valid values are: - `legacy_layout`: a heuristics layout detection algorithm, which serves as an alternative to the current ML-based layout detection algorithm. Customers can choose the best suitable layout algorithm based on their situation.
+     */
+    advancedOcrOptions?: string[] | null;
+    /**
+     * Turn on font id model and returns font style information.
+     */
+    computeStyleInfo?: boolean | null;
+    /**
+     * Enables intelligent document quality scores after OCR. Can help with diagnosing why OCR responses are of poor quality for a given input. Adds additional latency comparable to regular OCR to the process call.
+     */
+    enableImageQualityScores?: boolean | null;
+    /**
+     * Enables special handling for PDFs with existing text information. Results in better text extraction quality in such PDF inputs.
+     */
+    enableNativePdfParsing?: boolean | null;
+    /**
+     * Includes symbol level OCR information if set to true.
+     */
+    enableSymbol?: boolean | null;
+    /**
+     * Hints for the OCR model.
+     */
+    hints?: Schema$GoogleCloudDocumentaiV1OcrConfigHints;
+  }
+  /**
+   * Hints for OCR Engine
+   */
+  export interface Schema$GoogleCloudDocumentaiV1OcrConfigHints {
+    /**
+     * List of BCP-47 language codes to use for OCR. In most cases, not specifying it yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting hints is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong).
+     */
+    languageHints?: string[] | null;
+  }
+  /**
+   * Options for Process API
+   */
+  export interface Schema$GoogleCloudDocumentaiV1ProcessOptions {
+    /**
+     * Only applicable to `OCR_PROCESSOR`. Returns error if set on other processor types.
+     */
+    ocrConfig?: Schema$GoogleCloudDocumentaiV1OcrConfig;
+  }
+  /**
    * The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.
    */
   export interface Schema$GoogleCloudDocumentaiV1Processor {
@@ -4713,9 +4996,17 @@ export namespace documentai_v1 {
      */
     fieldMask?: string | null;
     /**
+     * A raw document on Google Cloud Storage.
+     */
+    gcsDocument?: Schema$GoogleCloudDocumentaiV1GcsDocument;
+    /**
      * An inline document proto.
      */
     inlineDocument?: Schema$GoogleCloudDocumentaiV1Document;
+    /**
+     * Inference-time options for the process API
+     */
+    processOptions?: Schema$GoogleCloudDocumentaiV1ProcessOptions;
     /**
      * A raw document content (bytes).
      */
@@ -6329,6 +6620,7 @@ export namespace documentai_v1 {
      *       // {
      *       //   "documentOutputConfig": {},
      *       //   "inputDocuments": {},
+     *       //   "processOptions": {},
      *       //   "skipHumanReview": false
      *       // }
      *     },
@@ -7350,7 +7642,9 @@ export namespace documentai_v1 {
      *       // request body parameters
      *       // {
      *       //   "fieldMask": "my_fieldMask",
+     *       //   "gcsDocument": {},
      *       //   "inlineDocument": {},
+     *       //   "processOptions": {},
      *       //   "rawDocument": {},
      *       //   "skipHumanReview": false
      *       // }
@@ -7943,6 +8237,7 @@ export namespace documentai_v1 {
      *           // {
      *           //   "documentOutputConfig": {},
      *           //   "inputDocuments": {},
+     *           //   "processOptions": {},
      *           //   "skipHumanReview": false
      *           // }
      *         },
@@ -8823,7 +9118,9 @@ export namespace documentai_v1 {
      *         // request body parameters
      *         // {
      *         //   "fieldMask": "my_fieldMask",
+     *         //   "gcsDocument": {},
      *         //   "inlineDocument": {},
+     *         //   "processOptions": {},
      *         //   "rawDocument": {},
      *         //   "skipHumanReview": false
      *         // }
