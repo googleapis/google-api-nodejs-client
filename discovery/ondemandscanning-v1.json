@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20230612",
+  "revision": "20230710",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -419,6 +419,7 @@
       "id": "AnalyzePackagesRequestV1",
       "properties": {
         "includeOsvData": {
+          "deprecated": true,
           "description": "[DEPRECATED] Whether to include OSV data in the scan. For backwards compatibility reasons, this field can be neither removed nor renamed.",
           "type": "boolean"
         },
@@ -520,10 +521,60 @@
       },
       "type": "object"
     },
+    "BuildDefinition": {
+      "id": "BuildDefinition",
+      "properties": {
+        "buildType": {
+          "type": "string"
+        },
+        "externalParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "internalParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "resolvedDependencies": {
+          "items": {
+            "$ref": "ResourceDescriptor"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BuildMetadata": {
+      "id": "BuildMetadata",
+      "properties": {
+        "finishedOn": {
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "invocationId": {
+          "type": "string"
+        },
+        "startedOn": {
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BuildOccurrence": {
       "description": "Details of a build occurrence.",
       "id": "BuildOccurrence",
       "properties": {
+        "inTotoSlsaProvenanceV1": {
+          "$ref": "InTotoSlsaProvenanceV1",
+          "description": "In-Toto Slsa Provenance V1 represents a slsa provenance meeting the slsa spec, wrapped in an in-toto statement. This allows for direct jsonification of a to-spec in-toto slsa statement with a to-spec slsa provenance."
+        },
         "intotoProvenance": {
           "$ref": "InTotoProvenance",
           "description": "Deprecated. See InTotoStatement for the replacement. In-toto Provenance representation as defined in spec."
@@ -1032,6 +1083,10 @@
           "description": "The last time this resource was scanned.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "sbomStatus": {
+          "$ref": "SBOMStatus",
+          "description": "The status of an SBOM generation."
         }
       },
       "type": "object"
@@ -1359,6 +1414,28 @@
         "recipe": {
           "$ref": "Recipe",
           "description": "Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required"
+        }
+      },
+      "type": "object"
+    },
+    "InTotoSlsaProvenanceV1": {
+      "id": "InTotoSlsaProvenanceV1",
+      "properties": {
+        "_type": {
+          "description": "InToto spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement",
+          "type": "string"
+        },
+        "predicate": {
+          "$ref": "SlsaProvenanceV1"
+        },
+        "predicateType": {
+          "type": "string"
+        },
+        "subject": {
+          "items": {
+            "$ref": "Subject"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2003,6 +2080,27 @@
       },
       "type": "object"
     },
+    "ProvenanceBuilder": {
+      "id": "ProvenanceBuilder",
+      "properties": {
+        "builderDependencies": {
+          "items": {
+            "$ref": "ResourceDescriptor"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "Recipe": {
       "description": "Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.",
       "id": "Recipe",
@@ -2110,6 +2208,58 @@
       },
       "type": "object"
     },
+    "ResourceDescriptor": {
+      "id": "ResourceDescriptor",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "content": {
+          "format": "byte",
+          "type": "string"
+        },
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "downloadLocation": {
+          "type": "string"
+        },
+        "mediaType": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RunDetails": {
+      "id": "RunDetails",
+      "properties": {
+        "builder": {
+          "$ref": "ProvenanceBuilder"
+        },
+        "byproducts": {
+          "items": {
+            "$ref": "ResourceDescriptor"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "$ref": "BuildMetadata"
+        }
+      },
+      "type": "object"
+    },
     "SBOMReferenceOccurrence": {
       "description": "The occurrence representing an SBOM reference as applied to a specific resource. The occurrence follows the DSSE specification. See https://github.com/secure-systems-lab/dsse/blob/master/envelope.md for more details.",
       "id": "SBOMReferenceOccurrence",
@@ -2128,6 +2278,31 @@
             "$ref": "EnvelopeSignature"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SBOMStatus": {
+      "description": "The status of an SBOM generation.",
+      "id": "SBOMStatus",
+      "properties": {
+        "error": {
+          "description": "If there was an error generating an SBOM, this will indicate what that error was.",
+          "type": "string"
+        },
+        "sbomState": {
+          "description": "The progress of the SBOM generation.",
+          "enum": [
+            "SBOM_STATE_UNSPECIFIED",
+            "PENDING",
+            "COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Default unknown state.",
+            "SBOM scanning is pending.",
+            "SBOM scanning has completed."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2277,6 +2452,19 @@
         "recipe": {
           "$ref": "SlsaRecipe",
           "description": "Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required"
+        }
+      },
+      "type": "object"
+    },
+    "SlsaProvenanceV1": {
+      "description": "Keep in sync with schema at https://github.com/slsa-framework/slsa/blob/main/docs/provenance/schema/v1/provenance.proto Builder renamed to ProvenanceBuilder because of Java conflicts.",
+      "id": "SlsaProvenanceV1",
+      "properties": {
+        "buildDefinition": {
+          "$ref": "BuildDefinition"
+        },
+        "runDetails": {
+          "$ref": "RunDetails"
         }
       },
       "type": "object"

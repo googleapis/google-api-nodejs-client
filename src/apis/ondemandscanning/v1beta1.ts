@@ -244,8 +244,19 @@ export namespace ondemandscanning_v1beta1 {
      */
     sourceVersion?: Schema$PackageVersion;
   }
+  export interface Schema$BuildDefinition {
+    buildType?: string | null;
+    externalParameters?: {[key: string]: any} | null;
+    internalParameters?: {[key: string]: any} | null;
+    resolvedDependencies?: Schema$ResourceDescriptor[];
+  }
   export interface Schema$BuilderConfig {
     id?: string | null;
+  }
+  export interface Schema$BuildMetadata {
+    finishedOn?: string | null;
+    invocationId?: string | null;
+    startedOn?: string | null;
   }
   /**
    * Details of a build occurrence.
@@ -255,6 +266,10 @@ export namespace ondemandscanning_v1beta1 {
      * Deprecated. See InTotoStatement for the replacement. In-toto Provenance representation as defined in spec.
      */
     intotoProvenance?: Schema$InTotoProvenance;
+    /**
+     * In-Toto Slsa Provenance V1 represents a slsa provenance meeting the slsa spec, wrapped in an in-toto statement. This allows for direct jsonification of a to-spec in-toto slsa statement with a to-spec slsa provenance.
+     */
+    inTotoSlsaProvenanceV1?: Schema$InTotoSlsaProvenanceV1;
     /**
      * In-toto Statement representation as defined in spec. The intoto_statement can contain any type of provenance. The serialized payload of the statement can be stored and signed in the Occurrence's envelope.
      */
@@ -497,6 +512,10 @@ export namespace ondemandscanning_v1beta1 {
      * The last time this resource was scanned.
      */
     lastScanTime?: string | null;
+    /**
+     * The status of an SBOM generation.
+     */
+    sbomStatus?: Schema$SBOMStatus;
   }
   /**
    * Deprecated. Prefer to use a regular Occurrence, and populate the Envelope at the top level of the Occurrence.
@@ -710,6 +729,15 @@ export namespace ondemandscanning_v1beta1 {
      * Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required
      */
     recipe?: Schema$Recipe;
+  }
+  export interface Schema$InTotoSlsaProvenanceV1 {
+    predicate?: Schema$SlsaProvenanceV1;
+    predicateType?: string | null;
+    subject?: Schema$Subject[];
+    /**
+     * InToto spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement
+     */
+    _type?: string | null;
   }
   /**
    * Spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement The serialized InTotoStatement will be stored as Envelope.payload. Envelope.payloadType is always "application/vnd.in-toto+json".
@@ -1137,6 +1165,11 @@ export namespace ondemandscanning_v1beta1 {
      */
     repoName?: string | null;
   }
+  export interface Schema$ProvenanceBuilder {
+    builderDependencies?: Schema$ResourceDescriptor[];
+    id?: string | null;
+    version?: {[key: string]: string} | null;
+  }
   /**
    * Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.
    */
@@ -1205,6 +1238,20 @@ export namespace ondemandscanning_v1beta1 {
      */
     uid?: string | null;
   }
+  export interface Schema$ResourceDescriptor {
+    annotations?: {[key: string]: any} | null;
+    content?: string | null;
+    digest?: {[key: string]: string} | null;
+    downloadLocation?: string | null;
+    mediaType?: string | null;
+    name?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$RunDetails {
+    builder?: Schema$ProvenanceBuilder;
+    byproducts?: Schema$ResourceDescriptor[];
+    metadata?: Schema$BuildMetadata;
+  }
   /**
    * The actual payload that contains the SBOM Reference data. The payload follows the intoto statement specification. See https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md for more details.
    */
@@ -1263,6 +1310,19 @@ export namespace ondemandscanning_v1beta1 {
      * The signatures over the payload.
      */
     signatures?: Schema$EnvelopeSignature[];
+  }
+  /**
+   * The status of an SBOM generation.
+   */
+  export interface Schema$SBOMStatus {
+    /**
+     * If there was an error generating an SBOM, this will indicate what that error was.
+     */
+    error?: string | null;
+    /**
+     * The progress of the SBOM generation.
+     */
+    sbomState?: string | null;
   }
   /**
    * Verifiers (e.g. Kritis implementations) MUST verify signatures with respect to the trust anchors defined in policy (e.g. a Kritis policy). Typically this means that the verifier has been configured with a map from `public_key_id` to public key material (and any required parameters, e.g. signing algorithm). In particular, verification implementations MUST NOT treat the signature `public_key_id` as anything more than a key lookup hint. The `public_key_id` DOES NOT validate or authenticate a public key; it only provides a mechanism for quickly selecting a public key ALREADY CONFIGURED on the verifier through a trusted channel. Verification implementations MUST reject signatures in any of the following circumstances: * The `public_key_id` is not recognized by the verifier. * The public key that `public_key_id` refers to does not verify the signature with respect to the payload. The `signature` contents SHOULD NOT be "attached" (where the payload is included with the serialized `signature` bytes). Verifiers MUST ignore any "attached" payload and only verify signatures with respect to explicitly provided payload (e.g. a `payload` field on the proto message that holds this Signature, or the canonical serialization of the proto message that holds this signature).
@@ -1336,6 +1396,13 @@ export namespace ondemandscanning_v1beta1 {
      * Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required
      */
     recipe?: Schema$SlsaRecipe;
+  }
+  /**
+   * Keep in sync with schema at https://github.com/slsa-framework/slsa/blob/main/docs/provenance/schema/v1/provenance.proto Builder renamed to ProvenanceBuilder because of Java conflicts.
+   */
+  export interface Schema$SlsaProvenanceV1 {
+    buildDefinition?: Schema$BuildDefinition;
+    runDetails?: Schema$RunDetails;
   }
   /**
    * See full explanation of fields at slsa.dev/provenance/v0.2.
