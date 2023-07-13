@@ -2148,6 +2148,10 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$UpdateConsumerPolicyLROMetadata {}
   /**
+   * Metadata for the `UpdateConsumerPolicy` method.
+   */
+  export interface Schema$UpdateConsumerPolicyMetadata {}
+  /**
    * Configuration controlling usage of a service.
    */
   export interface Schema$Usage {
