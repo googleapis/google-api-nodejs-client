@@ -118,13 +118,7 @@
           "httpMethod": "POST",
           "id": "appengine.apps.create",
           "parameterOrder": [],
-          "parameters": {
-            "parent": {
-              "description": "The project and location in which the application should be created, specified in the format projects/*/locations/*",
-              "location": "query",
-              "type": "string"
-            }
-          },
+          "parameters": {},
           "path": "v1beta/apps",
           "request": {
             "$ref": "Application"
@@ -1681,229 +1675,6 @@
             }
           },
           "resources": {
-            "applications": {
-              "methods": {
-                "create": {
-                  "description": "Creates an App Engine application for a Google Cloud Platform project. Required fields: id - The ID of the target Cloud Platform project. location - The region (https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.For more information about App Engine applications, see Managing Projects, Applications, and Billing (https://cloud.google.com/appengine/docs/standard/python/console/).",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications",
-                  "httpMethod": "POST",
-                  "id": "appengine.projects.locations.applications.create",
-                  "parameterOrder": [
-                    "projectsId",
-                    "locationsId"
-                  ],
-                  "parameters": {
-                    "locationsId": {
-                      "description": "Part of `parent`. See documentation of `projectsId`.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "projectsId": {
-                      "description": "Part of `parent`. The project and location in which the application should be created, specified in the format projects/*/locations/*",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications",
-                  "request": {
-                    "$ref": "Application"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "get": {
-                  "description": "Gets information about an application.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}",
-                  "httpMethod": "GET",
-                  "id": "appengine.projects.locations.applications.get",
-                  "parameterOrder": [
-                    "projectsId",
-                    "locationsId",
-                    "applicationsId"
-                  ],
-                  "parameters": {
-                    "applicationsId": {
-                      "description": "Part of `name`. See documentation of `projectsId`.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "locationsId": {
-                      "description": "Part of `name`. See documentation of `projectsId`.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "projectsId": {
-                      "description": "Part of `name`. Name of the Application resource to get. Example: apps/myapp.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}",
-                  "response": {
-                    "$ref": "Application"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/appengine.admin",
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-platform.read-only"
-                  ]
-                },
-                "repair": {
-                  "description": "Recreates the required App Engine features for the specified App Engine application, for example a Cloud Storage bucket or App Engine service account. Use this method if you receive an error message about a missing feature, for example, Error retrieving the App Engine service account. If you have deleted your App Engine service account, this will not be able to recreate it. Instead, you should attempt to use the IAM undelete API if possible at https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts/undelete?apix_params=%7B\"name\"%3A\"projects%2F-%2FserviceAccounts%2Funique_id\"%2C\"resource\"%3A%7B%7D%7D . If the deletion was recent, the numeric ID can be found in the Cloud Console Activity Log.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}:repair",
-                  "httpMethod": "POST",
-                  "id": "appengine.projects.locations.applications.repair",
-                  "parameterOrder": [
-                    "projectsId",
-                    "locationsId",
-                    "applicationsId"
-                  ],
-                  "parameters": {
-                    "applicationsId": {
-                      "description": "Part of `name`. See documentation of `projectsId`.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "locationsId": {
-                      "description": "Part of `name`. See documentation of `projectsId`.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "projectsId": {
-                      "description": "Part of `name`. Name of the application to repair. Example: apps/myapp",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}:repair",
-                  "request": {
-                    "$ref": "RepairApplicationRequest"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              },
-              "resources": {
-                "services": {
-                  "methods": {
-                    "get": {
-                      "description": "Gets the current configuration of the specified service.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}",
-                      "httpMethod": "GET",
-                      "id": "appengine.projects.locations.applications.services.get",
-                      "parameterOrder": [
-                        "projectsId",
-                        "locationsId",
-                        "applicationsId",
-                        "servicesId"
-                      ],
-                      "parameters": {
-                        "applicationsId": {
-                          "description": "Part of `name`. See documentation of `projectsId`.",
-                          "location": "path",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "locationsId": {
-                          "description": "Part of `name`. See documentation of `projectsId`.",
-                          "location": "path",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "projectsId": {
-                          "description": "Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.",
-                          "location": "path",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "servicesId": {
-                          "description": "Part of `name`. See documentation of `projectsId`.",
-                          "location": "path",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}",
-                      "response": {
-                        "$ref": "Service"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/appengine.admin",
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud-platform.read-only"
-                      ]
-                    },
-                    "list": {
-                      "description": "Lists all the services in the application.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services",
-                      "httpMethod": "GET",
-                      "id": "appengine.projects.locations.applications.services.list",
-                      "parameterOrder": [
-                        "projectsId",
-                        "locationsId",
-                        "applicationsId"
-                      ],
-                      "parameters": {
-                        "applicationsId": {
-                          "description": "Part of `parent`. See documentation of `projectsId`.",
-                          "location": "path",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "locationsId": {
-                          "description": "Part of `parent`. See documentation of `projectsId`.",
-                          "location": "path",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "pageSize": {
-                          "description": "Maximum results to return per page.",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "pageToken": {
-                          "description": "Continuation token for fetching the next page of results.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "projectsId": {
-                          "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
-                          "location": "path",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services",
-                      "response": {
-                        "$ref": "ListServicesResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/appengine.admin",
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud-platform.read-only"
-                      ]
-                    }
-                  }
-                }
-              }
-            },
             "operations": {
               "methods": {
                 "get": {
@@ -2002,7 +1773,7 @@
       }
     }
   },
-  "revision": "20230609",
+  "revision": "20230706",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -3575,10 +3346,12 @@
       "id": "ProjectState",
       "properties": {
         "currentReasons": {
-          "$ref": "Reasons"
+          "$ref": "Reasons",
+          "deprecated": true
         },
         "previousReasons": {
           "$ref": "Reasons",
+          "deprecated": true,
           "description": "The previous and current reasons for a project state will be sent for a project event. CLHs that need to know the signal that caused the project event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state.Reasons fields are deprecated. New tenants should only use the state field. If you must know the reason(s) behind a specific state, please consult with CCFE team first (cloud-ccfe-discuss@google.com)."
         },
         "state": {
@@ -3755,6 +3528,14 @@
             "PREPARE_DEACTIVATION",
             "ABORT_DEACTIVATION",
             "COMMIT_DEACTIVATION"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            true
           ],
           "enumDescriptions": [
             "An unknown reason indicates that we have not received a signal from service management about this project. Since projects are created by request of service management, this reason should never be set.",
