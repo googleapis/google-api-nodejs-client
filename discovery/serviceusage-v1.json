@@ -426,7 +426,7 @@
       }
     }
   },
-  "revision": "20230705",
+  "revision": "20230711",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -3074,6 +3074,12 @@
     "UpdateConsumerPolicyLROMetadata": {
       "description": "Metadata for the `UpdateConsumerPolicyLRO` method.",
       "id": "UpdateConsumerPolicyLROMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "UpdateConsumerPolicyMetadata": {
+      "description": "Metadata for the `UpdateConsumerPolicy` method.",
+      "id": "UpdateConsumerPolicyMetadata",
       "properties": {},
       "type": "object"
     },
