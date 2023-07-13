@@ -3833,7 +3833,7 @@
       }
     }
   },
-  "revision": "20230705",
+  "revision": "20230711",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -9802,6 +9802,17 @@
     "PlaylistStatus": {
       "id": "PlaylistStatus",
       "properties": {
+        "podcastStatus": {
+          "enum": [
+            "enabled",
+            "disabled"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "privacyStatus": {
           "description": "The playlist's privacy status.",
           "enum": [
