@@ -1710,7 +1710,7 @@
       }
     }
   },
-  "revision": "20230624",
+  "revision": "20230708",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -1855,6 +1855,7 @@
       "id": "ArimaForecastingMetrics",
       "properties": {
         "arimaFittingMetrics": {
+          "deprecated": true,
           "description": "Arima model fitting metrics.",
           "items": {
             "$ref": "ArimaFittingMetrics"
@@ -1869,6 +1870,7 @@
           "type": "array"
         },
         "hasDrift": {
+          "deprecated": true,
           "description": "Whether Arima model fitted with drift or not. It is always false when d is not 1.",
           "items": {
             "type": "boolean"
@@ -1876,6 +1878,7 @@
           "type": "array"
         },
         "nonSeasonalOrder": {
+          "deprecated": true,
           "description": "Non-seasonal order.",
           "items": {
             "$ref": "ArimaOrder"
@@ -1883,6 +1886,7 @@
           "type": "array"
         },
         "seasonalPeriods": {
+          "deprecated": true,
           "description": "Seasonal periods. Repeated because multiple periods are supported for one time series.",
           "items": {
             "enum": [
@@ -1908,6 +1912,7 @@
           "type": "array"
         },
         "timeSeriesId": {
+          "deprecated": true,
           "description": "Id to differentiate different time series for the large-scale case.",
           "items": {
             "type": "string"
@@ -5057,6 +5062,7 @@
       "id": "Model",
       "properties": {
         "bestTrialId": {
+          "deprecated": true,
           "description": "The best trial_id across all training runs.",
           "format": "int64",
           "type": "string"
@@ -5092,7 +5098,7 @@
           "type": "string"
         },
         "featureColumns": {
-          "description": "Output only. Input feature columns that were used to train this model.",
+          "description": "Output only. Input feature columns for the model inference. If the model is trained with TRANSFORM clause, these are the input of the TRANSFORM clause.",
           "items": {
             "$ref": "StandardSqlField"
           },
@@ -7084,6 +7090,10 @@
       "description": "Options used in model training.",
       "id": "TrainingOptions",
       "properties": {
+        "activationFn": {
+          "description": "Activation function of the neural nets.",
+          "type": "string"
+        },
         "adjustStepChanges": {
           "description": "If true, detect step changes and make data adjustment in the input time series.",
           "type": "boolean"
@@ -7106,6 +7116,10 @@
           "format": "int64",
           "type": "string"
         },
+        "autoClassWeights": {
+          "description": "Whether to calculate class weights automatically based on the popularity of each label.",
+          "type": "boolean"
+        },
         "batchSize": {
           "description": "Batch size for dnn models.",
           "format": "int64",
@@ -7124,6 +7138,11 @@
             "Dart booster."
           ],
           "type": "string"
+        },
+        "budgetHours": {
+          "description": "Budget in hours for AutoML training.",
+          "format": "double",
+          "type": "number"
         },
         "calculatePValues": {
           "description": "Whether or not p-value test should be computed for this model. Only available for linear and logistic regression models.",
@@ -7281,6 +7300,10 @@
             "Use nonweighted-als for explicit feedback problems."
           ],
           "type": "string"
+        },
+        "fitIntercept": {
+          "description": "Whether the model should include intercept during model training.",
+          "type": "boolean"
         },
         "hiddenUnits": {
           "description": "Hidden units for dnn models.",
@@ -7535,6 +7558,11 @@
           ],
           "type": "string"
         },
+        "l1RegActivation": {
+          "description": "L1 regularization coefficient to activations.",
+          "format": "double",
+          "type": "number"
+        },
         "l1Regularization": {
           "description": "L1 regularization coefficient.",
           "format": "double",
@@ -7626,6 +7654,18 @@
           "format": "int64",
           "type": "string"
         },
+        "modelRegistry": {
+          "description": "The model registry.",
+          "enum": [
+            "MODEL_REGISTRY_UNSPECIFIED",
+            "VERTEX_AI"
+          ],
+          "enumDescriptions": [
+            "",
+            "Vertex AI."
+          ],
+          "type": "string"
+        },
         "modelUri": {
           "description": "Google Cloud Storage URI from which the model was imported. Only applicable for imported models.",
           "type": "string"
@@ -7649,6 +7689,11 @@
           "format": "int64",
           "type": "string"
         },
+        "numPrincipalComponents": {
+          "description": "Number of principal components to keep in the PCA model. Must be <= the number of features.",
+          "format": "int64",
+          "type": "string"
+        },
         "numTrials": {
           "description": "Number of trials to run this hyperparameter tuning job.",
           "format": "int64",
@@ -7668,10 +7713,43 @@
           ],
           "type": "string"
         },
+        "optimizer": {
+          "description": "Optimizer used for training the neural nets.",
+          "type": "string"
+        },
+        "pcaExplainedVarianceRatio": {
+          "description": "The minimum ratio of cumulative explained variance that needs to be given by the PCA model.",
+          "format": "double",
+          "type": "number"
+        },
+        "pcaSolver": {
+          "description": "The solver for PCA.",
+          "enum": [
+            "UNSPECIFIED",
+            "FULL",
+            "RANDOMIZED",
+            "AUTO"
+          ],
+          "enumDescriptions": [
+            "",
+            "Full eigen-decoposition.",
+            "Randomized SVD.",
+            "Auto."
+          ],
+          "type": "string"
+        },
         "sampledShapleyNumPaths": {
           "description": "Number of paths for the sampled Shapley explain method.",
           "format": "int64",
           "type": "string"
+        },
+        "scaleFeatures": {
+          "description": "If true, scale the feature values by dividing the feature standard deviation. Currently only apply to PCA.",
+          "type": "boolean"
+        },
+        "standardizeFeatures": {
+          "description": "Whether to standardize numerical features. Default to true.",
+          "type": "boolean"
         },
         "subsample": {
           "description": "Subsample fraction of the training data to grow tree to prevent overfitting for boosted tree models.",
@@ -7732,6 +7810,13 @@
         "userColumn": {
           "description": "User column specified for matrix factorization models.",
           "type": "string"
+        },
+        "vertexAiModelVersionAliases": {
+          "description": "The version aliases to apply in Vertex AI model registry. Always overwrite if the version aliases exists in a existing model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "walsAlpha": {
           "description": "Hyperparameter for matrix factoration when implicit feedback type is specified.",
@@ -7796,6 +7881,7 @@
           "readOnly": true
         },
         "trainingStartTime": {
+          "deprecated": true,
           "description": "Output only. The start time of this training run, in milliseconds since epoch.",
           "format": "int64",
           "readOnly": true,

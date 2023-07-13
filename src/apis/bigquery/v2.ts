@@ -2509,7 +2509,7 @@ export namespace bigquery_v2 {
      */
     expirationTime?: string | null;
     /**
-     * Output only. Input feature columns that were used to train this model.
+     * Output only. Input feature columns for the model inference. If the model is trained with TRANSFORM clause, these are the input of the TRANSFORM clause.
      */
     featureColumns?: Schema$StandardSqlField[];
     /**
@@ -3742,6 +3742,10 @@ export namespace bigquery_v2 {
    */
   export interface Schema$TrainingOptions {
     /**
+     * Activation function of the neural nets.
+     */
+    activationFn?: string | null;
+    /**
      * If true, detect step changes and make data adjustment in the input time series.
      */
     adjustStepChanges?: boolean | null;
@@ -3762,6 +3766,10 @@ export namespace bigquery_v2 {
      */
     autoArimaMinOrder?: string | null;
     /**
+     * Whether to calculate class weights automatically based on the popularity of each label.
+     */
+    autoClassWeights?: boolean | null;
+    /**
      * Batch size for dnn models.
      */
     batchSize?: string | null;
@@ -3769,6 +3777,10 @@ export namespace bigquery_v2 {
      * Booster type for boosted tree models.
      */
     boosterType?: string | null;
+    /**
+     * Budget in hours for AutoML training.
+     */
+    budgetHours?: number | null;
     /**
      * Whether or not p-value test should be computed for this model. Only available for linear and logistic regression models.
      */
@@ -3838,6 +3850,10 @@ export namespace bigquery_v2 {
      */
     feedbackType?: string | null;
     /**
+     * Whether the model should include intercept during model training.
+     */
+    fitIntercept?: boolean | null;
+    /**
      * Hidden units for dnn models.
      */
     hiddenUnits?: string[] | null;
@@ -3885,6 +3901,10 @@ export namespace bigquery_v2 {
      * The method used to initialize the centroids for kmeans algorithm.
      */
     kmeansInitializationMethod?: string | null;
+    /**
+     * L1 regularization coefficient to activations.
+     */
+    l1RegActivation?: number | null;
     /**
      * L1 regularization coefficient.
      */
@@ -3942,6 +3962,10 @@ export namespace bigquery_v2 {
      */
     minTreeChildWeight?: string | null;
     /**
+     * The model registry.
+     */
+    modelRegistry?: string | null;
+    /**
      * Google Cloud Storage URI from which the model was imported. Only applicable for imported models.
      */
     modelUri?: string | null;
@@ -3962,6 +3986,10 @@ export namespace bigquery_v2 {
      */
     numParallelTree?: string | null;
     /**
+     * Number of principal components to keep in the PCA model. Must be <= the number of features.
+     */
+    numPrincipalComponents?: string | null;
+    /**
      * Number of trials to run this hyperparameter tuning job.
      */
     numTrials?: string | null;
@@ -3970,9 +3998,29 @@ export namespace bigquery_v2 {
      */
     optimizationStrategy?: string | null;
     /**
+     * Optimizer used for training the neural nets.
+     */
+    optimizer?: string | null;
+    /**
+     * The minimum ratio of cumulative explained variance that needs to be given by the PCA model.
+     */
+    pcaExplainedVarianceRatio?: number | null;
+    /**
+     * The solver for PCA.
+     */
+    pcaSolver?: string | null;
+    /**
      * Number of paths for the sampled Shapley explain method.
      */
     sampledShapleyNumPaths?: string | null;
+    /**
+     * If true, scale the feature values by dividing the feature standard deviation. Currently only apply to PCA.
+     */
+    scaleFeatures?: boolean | null;
+    /**
+     * Whether to standardize numerical features. Default to true.
+     */
+    standardizeFeatures?: boolean | null;
     /**
      * Subsample fraction of the training data to grow tree to prevent overfitting for boosted tree models.
      */
@@ -4013,6 +4061,10 @@ export namespace bigquery_v2 {
      * User column specified for matrix factorization models.
      */
     userColumn?: string | null;
+    /**
+     * The version aliases to apply in Vertex AI model registry. Always overwrite if the version aliases exists in a existing model.
+     */
+    vertexAiModelVersionAliases?: string[] | null;
     /**
      * Hyperparameter for matrix factoration when implicit feedback type is specified.
      */
