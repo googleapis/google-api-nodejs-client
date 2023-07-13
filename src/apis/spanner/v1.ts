@@ -723,7 +723,7 @@ export namespace spanner_v1 {
    */
   export interface Schema$ExecuteSqlRequest {
     /**
-     * If this is for a partitioned query and this field is set to `true`, the request will be executed via Spanner independent compute resources. If the field is set to `true` but the request does not set `partition_token`, the API will return an `INVALID_ARGUMENT` error.
+     * If this is for a partitioned query and this field is set to `true`, the request is executed with Spanner Data Boost independent compute resources. If the field is set to `true` but the request does not set `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      */
     dataBoostEnabled?: boolean | null;
     /**
@@ -1650,7 +1650,7 @@ export namespace spanner_v1 {
      */
     columns?: string[] | null;
     /**
-     * If this is for a partitioned read and this field is set to `true`, the request will be executed via Spanner independent compute resources. If the field is set to `true` but the request does not set `partition_token`, the API will return an `INVALID_ARGUMENT` error.
+     * If this is for a partitioned read and this field is set to `true`, the request is executed with Spanner Data Boost independent compute resources. If the field is set to `true` but the request does not set `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      */
     dataBoostEnabled?: boolean | null;
     /**
