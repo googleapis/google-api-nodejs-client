@@ -497,6 +497,10 @@ export namespace documentai_v1beta3 {
      */
     inputGcsSource?: string | null;
     /**
+     * The document id of imported document if it was successful, otherwise empty.
+     */
+    outputDocumentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
      * The output_gcs_destination of the processed document if it was successful, otherwise empty.
      */
     outputGcsDestination?: string | null;
@@ -608,6 +612,14 @@ export namespace documentai_v1beta3 {
    * Response of the sample documents operation.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponse {
+    /**
+     * The status of sampling documents in test split.
+     */
+    sampleTestStatus?: Schema$GoogleRpcStatus;
+    /**
+     * The status of sampling documents in training split.
+     */
+    sampleTrainingStatus?: Schema$GoogleRpcStatus;
     /**
      * The result of the sampling process.
      */
@@ -2805,6 +2817,69 @@ export namespace documentai_v1beta3 {
     valueFormat?: string | null;
   }
   /**
+   * Dataset documents that the batch operation will be applied to.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3BatchDatasetDocuments {
+    /**
+     * A filter matching the documents. Follows the same format and restriction as [google.cloud.documentai.master.ListDocumentsRequest.filter].
+     */
+    filter?: string | null;
+    /**
+     * Document identifiers.
+     */
+    individualDocumentIds?: Schema$GoogleCloudDocumentaiV1beta3BatchDatasetDocumentsIndividualDocumentIds;
+  }
+  /**
+   * List of individual DocumentIds.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3BatchDatasetDocumentsIndividualDocumentIds {
+    /**
+     * Required. List of Document IDs indicating where the actual documents are stored.
+     */
+    documentIds?: Schema$GoogleCloudDocumentaiV1beta3DocumentId[];
+  }
+  export interface Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+    /**
+     * Total number of documents that failed to be deleted in storage.
+     */
+    errorDocumentCount?: number | null;
+    /**
+     * The list of response details of each document.
+     */
+    individualBatchDeleteStatuses?: Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus[];
+    /**
+     * Total number of documents deleting from dataset.
+     */
+    totalDocumentCount?: number | null;
+  }
+  /**
+   * The status of each individual document in the batch delete process.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus {
+    /**
+     * The document id of the document.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiV1beta3DocumentId;
+    /**
+     * The status of deleting the document in storage.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  export interface Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsRequest {
+    /**
+     * Required. Dataset documents input. If given `filter`, all documents satisfying the filter will be deleted. If given documentIds, a maximum of 50 documents can be deleted in a batch. The request will be rejected if more than 50 document_ids are provided.
+     */
+    datasetDocuments?: Schema$GoogleCloudDocumentaiV1beta3BatchDatasetDocuments;
+  }
+  /**
+   * Response of the delete documents operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsResponse {}
+  /**
    * The common config to specify a set of documents used as input.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3BatchDocumentsInputConfig {
@@ -3239,6 +3314,45 @@ export namespace documentai_v1beta3 {
      * Subject entity id.
      */
     subjectId?: string | null;
+  }
+  /**
+   * Document Identifier.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentId {
+    /**
+     * A document id within user-managed Cloud Storage.
+     */
+    gcsManagedDocId?: Schema$GoogleCloudDocumentaiV1beta3DocumentIdGCSManagedDocumentId;
+    /**
+     * Points to a specific revision of the document if set.
+     */
+    revisionRef?: Schema$GoogleCloudDocumentaiV1beta3RevisionRef;
+    /**
+     * A document id within unmanaged dataset.
+     */
+    unmanagedDocId?: Schema$GoogleCloudDocumentaiV1beta3DocumentIdUnmanagedDocumentId;
+  }
+  /**
+   * Identifies a document uniquely within the scope of a dataset in the user-managed Cloud Storage option.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentIdGCSManagedDocumentId {
+    /**
+     * Id of the document (indexed) managed by Content Warehouse.
+     */
+    cwDocId?: string | null;
+    /**
+     * Required. The Cloud Storage URI where the actual document is stored.
+     */
+    gcsUri?: string | null;
+  }
+  /**
+   * Identifies a document uniquely within the scope of a dataset in unmanaged option.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentIdUnmanagedDocumentId {
+    /**
+     * Required. The id of the document.
+     */
+    docId?: string | null;
   }
   /**
    * Config that controls the output of documents. All documents will be written as a JSON file.
@@ -4352,6 +4466,9 @@ export namespace documentai_v1beta3 {
      */
     gcsUriPrefix?: string | null;
   }
+  export interface Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse {
+    document?: Schema$GoogleCloudDocumentaiV1beta3Document;
+  }
   /**
    * The status of human review on a processed document.
    */
@@ -4369,6 +4486,93 @@ export namespace documentai_v1beta3 {
      */
     stateMessage?: string | null;
   }
+  /**
+   * Metadata of the import document operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+    /**
+     * Validation statuses of the batch documents import config.
+     */
+    importConfigValidationResults?: Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadataImportConfigValidationResult[];
+    /**
+     * The list of response details of each document.
+     */
+    individualImportStatuses?: Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadataIndividualImportStatus[];
+    /**
+     * Total number of the documents that are qualified for importing.
+     */
+    totalDocumentCount?: number | null;
+  }
+  /**
+   * The validation status of each import config. Status is set to errors if there is no documents to import in the import_config, or OK if the operation will try to proceed at least one document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadataImportConfigValidationResult {
+    /**
+     * The source Cloud Storage URI specified in the import config.
+     */
+    inputGcsSource?: string | null;
+    /**
+     * The validation status of import config.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * The status of each individual document in the import process.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadataIndividualImportStatus {
+    /**
+     * The source Cloud Storage URI of the document.
+     */
+    inputGcsSource?: string | null;
+    /**
+     * The document id of imported document if it was successful, otherwise empty.
+     */
+    outputDocumentId?: Schema$GoogleCloudDocumentaiV1beta3DocumentId;
+    /**
+     * The status of the importing of the document.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsRequest {
+    /**
+     * Required. The Cloud Storage uri containing raw documents that must be imported.
+     */
+    batchDocumentsImportConfigs?: Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsRequestBatchDocumentsImportConfig[];
+  }
+  /**
+   * Config for importing documents. Each batch can have its own dataset split type.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsRequestBatchDocumentsImportConfig {
+    /**
+     * If set, documents will be automatically split into training and test split category with the specified ratio.
+     */
+    autoSplitConfig?: Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsRequestBatchDocumentsImportConfigAutoSplitConfig;
+    /**
+     * The common config to specify a set of documents used as input.
+     */
+    batchInputConfig?: Schema$GoogleCloudDocumentaiV1beta3BatchDocumentsInputConfig;
+    /**
+     * Target dataset split where the documents must be stored.
+     */
+    datasetSplit?: string | null;
+  }
+  /**
+   * The config for auto-split.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsRequestBatchDocumentsImportConfigAutoSplitConfig {
+    /**
+     * Ratio of training dataset split.
+     */
+    trainingSplitRatio?: number | null;
+  }
+  /**
+   * Response of the import document operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsResponse {}
   /**
    * The long-running operation metadata for the ImportProcessorVersion method.
    */
@@ -4658,6 +4862,10 @@ export namespace documentai_v1beta3 {
      */
     fieldMask?: string | null;
     /**
+     * A raw document on Google Cloud Storage.
+     */
+    gcsDocument?: Schema$GoogleCloudDocumentaiV1beta3GcsDocument;
+    /**
      * An inline document proto.
      */
     inlineDocument?: Schema$GoogleCloudDocumentaiV1beta3Document;
@@ -4783,6 +4991,23 @@ export namespace documentai_v1beta3 {
      * The state of the review operation.
      */
     state?: string | null;
+  }
+  /**
+   * The revision reference specifies which revision on the document to read.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3RevisionRef {
+    /**
+     * Reads the revision generated by the processor version. The format takes the full resource name of processor version. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
+     */
+    latestProcessorVersion?: string | null;
+    /**
+     * Reads the revision by the predefined case.
+     */
+    revisionCase?: string | null;
+    /**
+     * Reads the revision given by the id.
+     */
+    revisionId?: string | null;
   }
   /**
    * The long-running operation metadata for the SetDefaultProcessorVersion method.
@@ -4917,6 +5142,12 @@ export namespace documentai_v1beta3 {
    * Response message for the UndeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse {}
+  export interface Schema$GoogleCloudDocumentaiV1beta3UpdateDatasetOperationMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates are in the same scale as the original image.
    */
@@ -7422,6 +7653,7 @@ export namespace documentai_v1beta3 {
      *       // {
      *       //   "document": {},
      *       //   "fieldMask": "my_fieldMask",
+     *       //   "gcsDocument": {},
      *       //   "inlineDocument": {},
      *       //   "processOptions": {},
      *       //   "rawDocument": {},
@@ -7968,6 +8200,159 @@ export namespace documentai_v1beta3 {
     }
 
     /**
+     * Deletes a set of documents.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.dataset.batchDeleteDocuments(
+     *       {
+     *         // Required. The dataset resource name. Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
+     *         dataset:
+     *           'projects/my-project/locations/my-location/processors/my-processor/dataset',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "datasetDocuments": {}
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDeleteDocuments(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDeleteDocuments(
+      params?: Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchDeleteDocuments(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDeleteDocuments(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchDeleteDocuments(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchDeleteDocuments(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchDeleteDocuments(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+dataset}:batchDeleteDocuments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataset'],
+        pathParams: ['dataset'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Gets the `DatasetSchema` of a `Dataset`.
      * @example
      * ```js
@@ -8104,6 +8489,316 @@ export namespace documentai_v1beta3 {
         return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3DatasetSchema>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Returns relevant fields present in the requested document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.dataset.getDocument({
+     *       // Required. The resource name of the dataset that the document belongs to . Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
+     *       dataset:
+     *         'projects/my-project/locations/my-location/processors/my-processor/dataset',
+     *       // Id of the document (indexed) managed by Content Warehouse.
+     *       'documentId.gcsManagedDocId.cwDocId': 'placeholder-value',
+     *       // Required. The Cloud Storage URI where the actual document is stored.
+     *       'documentId.gcsManagedDocId.gcsUri': 'placeholder-value',
+     *       // Reads the revision generated by the processor version. The format takes the full resource name of processor version. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
+     *       'documentId.revisionRef.latestProcessorVersion': 'placeholder-value',
+     *       // Reads the revision by the predefined case.
+     *       'documentId.revisionRef.revisionCase': 'placeholder-value',
+     *       // Reads the revision given by the id.
+     *       'documentId.revisionRef.revisionId': 'placeholder-value',
+     *       // Required. The id of the document.
+     *       'documentId.unmanagedDocId.docId': 'placeholder-value',
+     *       // Last page number (one-based index) to be returned.
+     *       'pageRange.end': 'placeholder-value',
+     *       // First page number (one-based index) to be returned.
+     *       'pageRange.start': 'placeholder-value',
+     *       // If set, only fields listed here will be returned. Otherwise, all fields will be returned by default.
+     *       readMask: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "document": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getDocument(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Getdocument,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getDocument(
+      params?: Params$Resource$Projects$Locations$Processors$Dataset$Getdocument,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>;
+    getDocument(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Getdocument,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getDocument(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Getdocument,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>
+    ): void;
+    getDocument(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Getdocument,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>
+    ): void;
+    getDocument(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>
+    ): void;
+    getDocument(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Dataset$Getdocument
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Dataset$Getdocument;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Dataset$Getdocument;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+dataset}:getDocument').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataset'],
+        pathParams: ['dataset'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3GetDocumentResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Import documents into a dataset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.dataset.importDocuments({
+     *       // Required. The dataset resource name. Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
+     *       dataset:
+     *         'projects/my-project/locations/my-location/processors/my-processor/dataset',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "batchDocumentsImportConfigs": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    importDocuments(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    importDocuments(
+      params?: Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    importDocuments(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    importDocuments(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    importDocuments(
+      params: Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    importDocuments(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    importDocuments(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+dataset}:importDocuments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataset'],
+        pathParams: ['dataset'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -8257,6 +8952,18 @@ export namespace documentai_v1beta3 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments
+    extends StandardParameters {
+    /**
+     * Required. The dataset resource name. Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
+     */
+    dataset?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Processors$Dataset$Getdatasetschema
     extends StandardParameters {
     /**
@@ -8267,6 +8974,61 @@ export namespace documentai_v1beta3 {
      * If set, only returns the visible fields of the schema.
      */
     visibleFieldsOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Processors$Dataset$Getdocument
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the dataset that the document belongs to . Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
+     */
+    dataset?: string;
+    /**
+     * Id of the document (indexed) managed by Content Warehouse.
+     */
+    'documentId.gcsManagedDocId.cwDocId'?: string;
+    /**
+     * Required. The Cloud Storage URI where the actual document is stored.
+     */
+    'documentId.gcsManagedDocId.gcsUri'?: string;
+    /**
+     * Reads the revision generated by the processor version. The format takes the full resource name of processor version. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
+     */
+    'documentId.revisionRef.latestProcessorVersion'?: string;
+    /**
+     * Reads the revision by the predefined case.
+     */
+    'documentId.revisionRef.revisionCase'?: string;
+    /**
+     * Reads the revision given by the id.
+     */
+    'documentId.revisionRef.revisionId'?: string;
+    /**
+     * Required. The id of the document.
+     */
+    'documentId.unmanagedDocId.docId'?: string;
+    /**
+     * Last page number (one-based index) to be returned.
+     */
+    'pageRange.end'?: number;
+    /**
+     * First page number (one-based index) to be returned.
+     */
+    'pageRange.start'?: number;
+    /**
+     * If set, only fields listed here will be returned. Otherwise, all fields will be returned by default.
+     */
+    readMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments
+    extends StandardParameters {
+    /**
+     * Required. The dataset resource name. Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
+     */
+    dataset?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsRequest;
   }
   export interface Params$Resource$Projects$Locations$Processors$Dataset$Updatedatasetschema
     extends StandardParameters {
@@ -9550,6 +10312,7 @@ export namespace documentai_v1beta3 {
      *         // {
      *         //   "document": {},
      *         //   "fieldMask": "my_fieldMask",
+     *         //   "gcsDocument": {},
      *         //   "inlineDocument": {},
      *         //   "processOptions": {},
      *         //   "rawDocument": {},
