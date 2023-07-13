@@ -388,7 +388,7 @@ export namespace iam_v1 {
      */
     assertionClaimsBehavior?: string | null;
     /**
-     * Required. The Response Type to request for in the OIDC Authorization Request for web sign-in.
+     * Required. The Response Type to request for in the OIDC Authorization Request for web sign-in. The `CODE` Response Type is recommended to avoid the Implicit Flow, for security reasons.
      */
     responseType?: string | null;
   }
@@ -1088,6 +1088,10 @@ export namespace iam_v1 {
      */
     displayName?: string | null;
     /**
+     * Output only. Time after which the workforce pool will be permanently purged and cannot be recovered.
+     */
+    expireTime?: string | null;
+    /**
      * Output only. The resource name of the pool. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}`
      */
     name?: string | null;
@@ -1128,6 +1132,10 @@ export namespace iam_v1 {
      * A user-specified display name for the provider. Cannot exceed 32 characters.
      */
     displayName?: string | null;
+    /**
+     * Output only. Time after which the workload pool provider will be permanently purged and cannot be recovered.
+     */
+    expireTime?: string | null;
     /**
      * Output only. The resource name of the provider. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/providers/{provider_id\}`
      */
@@ -1187,9 +1195,9 @@ export namespace iam_v1 {
      */
     displayName?: string | null;
     /**
-     * Immutable. The identity mode of the pool.
+     * Output only. Time after which the workload identity pool will be permanently purged and cannot be recovered.
      */
-    identityMode?: string | null;
+    expireTime?: string | null;
     /**
      * Output only. The resource name of the pool.
      */
@@ -1231,6 +1239,10 @@ export namespace iam_v1 {
      * A display name for the provider. Cannot exceed 32 characters.
      */
     displayName?: string | null;
+    /**
+     * Output only. Time after which the workload identity pool provider will be permanently purged and cannot be recovered.
+     */
+    expireTime?: string | null;
     /**
      * Output only. The resource name of the provider.
      */
@@ -1643,6 +1655,7 @@ export namespace iam_v1 {
      *       //   "description": "my_description",
      *       //   "disabled": false,
      *       //   "displayName": "my_displayName",
+     *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
      *       //   "sessionDuration": "my_sessionDuration",
@@ -1920,6 +1933,7 @@ export namespace iam_v1 {
      *   //   "description": "my_description",
      *   //   "disabled": false,
      *   //   "displayName": "my_displayName",
+     *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "sessionDuration": "my_sessionDuration",
@@ -2339,6 +2353,7 @@ export namespace iam_v1 {
      *       //   "description": "my_description",
      *       //   "disabled": false,
      *       //   "displayName": "my_displayName",
+     *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
      *       //   "sessionDuration": "my_sessionDuration",
@@ -3191,6 +3206,7 @@ export namespace iam_v1 {
      *       //   "description": "my_description",
      *       //   "disabled": false,
      *       //   "displayName": "my_displayName",
+     *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "oidc": {},
      *       //   "saml": {},
@@ -3472,6 +3488,7 @@ export namespace iam_v1 {
      *   //   "description": "my_description",
      *   //   "disabled": false,
      *   //   "displayName": "my_displayName",
+     *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
      *   //   "oidc": {},
      *   //   "saml": {},
@@ -3758,6 +3775,7 @@ export namespace iam_v1 {
      *       //   "description": "my_description",
      *       //   "disabled": false,
      *       //   "displayName": "my_displayName",
+     *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "oidc": {},
      *       //   "saml": {},
@@ -6779,7 +6797,7 @@ export namespace iam_v1 {
      *       //   "description": "my_description",
      *       //   "disabled": false,
      *       //   "displayName": "my_displayName",
-     *       //   "identityMode": "my_identityMode",
+     *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "state": "my_state"
      *       // }
@@ -7057,7 +7075,7 @@ export namespace iam_v1 {
      *   //   "description": "my_description",
      *   //   "disabled": false,
      *   //   "displayName": "my_displayName",
-     *   //   "identityMode": "my_identityMode",
+     *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
      *   //   "state": "my_state"
      *   // }
@@ -7342,7 +7360,7 @@ export namespace iam_v1 {
      *       //   "description": "my_description",
      *       //   "disabled": false,
      *       //   "displayName": "my_displayName",
-     *       //   "identityMode": "my_identityMode",
+     *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "state": "my_state"
      *       // }
@@ -8535,6 +8553,7 @@ export namespace iam_v1 {
      *         //   "description": "my_description",
      *         //   "disabled": false,
      *         //   "displayName": "my_displayName",
+     *         //   "expireTime": "my_expireTime",
      *         //   "name": "my_name",
      *         //   "oidc": {},
      *         //   "saml": {},
@@ -8818,6 +8837,7 @@ export namespace iam_v1 {
      *   //   "description": "my_description",
      *   //   "disabled": false,
      *   //   "displayName": "my_displayName",
+     *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
      *   //   "oidc": {},
      *   //   "saml": {},
@@ -9115,6 +9135,7 @@ export namespace iam_v1 {
      *         //   "description": "my_description",
      *         //   "disabled": false,
      *         //   "displayName": "my_displayName",
+     *         //   "expireTime": "my_expireTime",
      *         //   "name": "my_name",
      *         //   "oidc": {},
      *         //   "saml": {},
