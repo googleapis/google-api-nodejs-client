@@ -1582,7 +1582,7 @@
               "type": "string"
             },
             "parent": {
-              "description": "Required.",
+              "description": "Required. Resource name for the parent of the TagValues to be listed, in the format `tagKeys/123` or `tagValues/123`.",
               "location": "query",
               "type": "string"
             }
@@ -1805,7 +1805,7 @@
       }
     }
   },
-  "revision": "20230528",
+  "revision": "20230709",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {

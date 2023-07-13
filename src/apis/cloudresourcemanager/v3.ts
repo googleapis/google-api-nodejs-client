@@ -8624,7 +8624,7 @@ export namespace cloudresourcemanager_v3 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A pagination token returned from a previous call to `ListTagValues` that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
-     *     // Required.
+     *     // Required. Resource name for the parent of the TagValues to be listed, in the format `tagKeys/123` or `tagValues/123`.
      *     parent: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9226,7 +9226,7 @@ export namespace cloudresourcemanager_v3 {
      */
     pageToken?: string;
     /**
-     * Required.
+     * Required. Resource name for the parent of the TagValues to be listed, in the format `tagKeys/123` or `tagValues/123`.
      */
     parent?: string;
   }
