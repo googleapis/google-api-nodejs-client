@@ -1239,7 +1239,7 @@
       }
     }
   },
-  "revision": "20230613",
+  "revision": "20230707",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitV1Argon2Parameters": {
@@ -1376,6 +1376,7 @@
       "id": "GoogleCloudIdentitytoolkitV1CreateAuthUriRequest",
       "properties": {
         "appId": {
+          "deprecated": true,
           "type": "string"
         },
         "authFlowType": {
@@ -1406,6 +1407,7 @@
           "type": "string"
         },
         "oauthConsumerKey": {
+          "deprecated": true,
           "type": "string"
         },
         "oauthScope": {
@@ -1413,9 +1415,11 @@
           "type": "string"
         },
         "openidRealm": {
+          "deprecated": true,
           "type": "string"
         },
         "otaApp": {
+          "deprecated": true,
           "type": "string"
         },
         "providerId": {
@@ -1438,6 +1442,7 @@
       "id": "GoogleCloudIdentitytoolkitV1CreateAuthUriResponse",
       "properties": {
         "allProviders": {
+          "deprecated": true,
           "items": {
             "type": "string"
           },
@@ -1456,6 +1461,7 @@
           "type": "boolean"
         },
         "kind": {
+          "deprecated": true,
           "type": "string"
         },
         "providerId": {
@@ -1516,6 +1522,7 @@
       "id": "GoogleCloudIdentitytoolkitV1DeleteAccountRequest",
       "properties": {
         "delegatedProjectNumber": {
+          "deprecated": true,
           "format": "int64",
           "type": "string"
         },
@@ -1543,6 +1550,7 @@
       "id": "GoogleCloudIdentitytoolkitV1DeleteAccountResponse",
       "properties": {
         "kind": {
+          "deprecated": true,
           "type": "string"
         }
       },
@@ -1553,6 +1561,7 @@
       "id": "GoogleCloudIdentitytoolkitV1DownloadAccountResponse",
       "properties": {
         "kind": {
+          "deprecated": true,
           "type": "string"
         },
         "nextPageToken": {
@@ -1673,6 +1682,7 @@
       "id": "GoogleCloudIdentitytoolkitV1GetAccountInfoRequest",
       "properties": {
         "delegatedProjectNumber": {
+          "deprecated": true,
           "format": "int64",
           "type": "string"
         },
@@ -1731,6 +1741,7 @@
       "id": "GoogleCloudIdentitytoolkitV1GetAccountInfoResponse",
       "properties": {
         "kind": {
+          "deprecated": true,
           "type": "string"
         },
         "users": {
@@ -1768,6 +1779,7 @@
           "type": "string"
         },
         "challenge": {
+          "deprecated": true,
           "type": "string"
         },
         "clientType": {
@@ -1839,6 +1851,17 @@
             "VERIFY_AND_CHANGE_EMAIL",
             "REVERT_SECOND_FACTOR_ADDITION"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            false,
+            true,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Oob code type is not specified.",
             "reset password",
@@ -1880,6 +1903,7 @@
           "type": "string"
         },
         "kind": {
+          "deprecated": true,
           "type": "string"
         },
         "oobCode": {
@@ -1963,6 +1987,7 @@
       "id": "GoogleCloudIdentitytoolkitV1GetRecaptchaParamResponse",
       "properties": {
         "kind": {
+          "deprecated": true,
           "type": "string"
         },
         "producerProjectNumber": {
@@ -1974,6 +1999,7 @@
           "type": "string"
         },
         "recaptchaStoken": {
+          "deprecated": true,
           "type": "string"
         }
       },
@@ -2366,6 +2392,7 @@
           "type": "string"
         },
         "kind": {
+          "deprecated": true,
           "type": "string"
         },
         "mfaInfo": {
@@ -2385,6 +2412,17 @@
             "EMAIL_SIGNIN",
             "VERIFY_AND_CHANGE_EMAIL",
             "REVERT_SECOND_FACTOR_ADDITION"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            false,
+            true,
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "Oob code type is not specified.",
@@ -2457,6 +2495,7 @@
       "id": "GoogleCloudIdentitytoolkitV1SetAccountInfoRequest",
       "properties": {
         "captchaChallenge": {
+          "deprecated": true,
           "type": "string"
         },
         "captchaResponse": {
@@ -2473,6 +2512,7 @@
           "type": "string"
         },
         "delegatedProjectNumber": {
+          "deprecated": true,
           "format": "int64",
           "type": "string"
         },
@@ -2529,6 +2569,7 @@
           "type": "string"
         },
         "instanceId": {
+          "deprecated": true,
           "type": "string"
         },
         "lastLoginAt": {
@@ -2600,10 +2641,12 @@
       "id": "GoogleCloudIdentitytoolkitV1SetAccountInfoResponse",
       "properties": {
         "displayName": {
+          "deprecated": true,
           "description": "The account's display name.",
           "type": "string"
         },
         "email": {
+          "deprecated": true,
           "description": "The account's email address.",
           "type": "string"
         },
@@ -2621,6 +2664,7 @@
           "type": "string"
         },
         "kind": {
+          "deprecated": true,
           "type": "string"
         },
         "localId": {
@@ -2632,10 +2676,12 @@
           "type": "string"
         },
         "passwordHash": {
+          "deprecated": true,
           "description": "Deprecated. No actual password hash is currently returned.",
           "type": "string"
         },
         "photoUrl": {
+          "deprecated": true,
           "description": "The user's photo URL for the account's profile photo.",
           "type": "string"
         },
@@ -2658,10 +2704,12 @@
       "id": "GoogleCloudIdentitytoolkitV1SignInWithCustomTokenRequest",
       "properties": {
         "delegatedProjectNumber": {
+          "deprecated": true,
           "format": "int64",
           "type": "string"
         },
         "instanceId": {
+          "deprecated": true,
           "type": "string"
         },
         "returnSecureToken": {
@@ -2697,6 +2745,7 @@
           "type": "boolean"
         },
         "kind": {
+          "deprecated": true,
           "type": "string"
         },
         "refreshToken": {
@@ -2751,6 +2800,7 @@
           "type": "boolean"
         },
         "kind": {
+          "deprecated": true,
           "type": "string"
         },
         "localId": {
@@ -2872,9 +2922,11 @@
       "id": "GoogleCloudIdentitytoolkitV1SignInWithIdpRequest",
       "properties": {
         "autoCreate": {
+          "deprecated": true,
           "type": "boolean"
         },
         "delegatedProjectNumber": {
+          "deprecated": true,
           "format": "int64",
           "type": "string"
         },
@@ -2883,6 +2935,7 @@
           "type": "string"
         },
         "pendingIdToken": {
+          "deprecated": true,
           "type": "string"
         },
         "pendingToken": {
@@ -2974,6 +3027,7 @@
           "type": "string"
         },
         "inputEmail": {
+          "deprecated": true,
           "type": "string"
         },
         "isNewUser": {
@@ -2981,6 +3035,7 @@
           "type": "boolean"
         },
         "kind": {
+          "deprecated": true,
           "type": "string"
         },
         "language": {
@@ -3011,6 +3066,7 @@
           "type": "boolean"
         },
         "needEmail": {
+          "deprecated": true,
           "type": "boolean"
         },
         "nickName": {
@@ -3093,6 +3149,7 @@
       "id": "GoogleCloudIdentitytoolkitV1SignInWithPasswordRequest",
       "properties": {
         "captchaChallenge": {
+          "deprecated": true,
           "type": "string"
         },
         "captchaResponse": {
@@ -3116,6 +3173,7 @@
           "type": "string"
         },
         "delegatedProjectNumber": {
+          "deprecated": true,
           "format": "int64",
           "type": "string"
         },
@@ -3124,9 +3182,11 @@
           "type": "string"
         },
         "idToken": {
+          "deprecated": true,
           "type": "string"
         },
         "instanceId": {
+          "deprecated": true,
           "type": "string"
         },
         "password": {
@@ -3134,6 +3194,7 @@
           "type": "string"
         },
         "pendingIdToken": {
+          "deprecated": true,
           "type": "string"
         },
         "recaptchaVersion": {
@@ -3181,6 +3242,7 @@
           "type": "string"
         },
         "kind": {
+          "deprecated": true,
           "type": "string"
         },
         "localId": {
@@ -3199,13 +3261,16 @@
           "type": "string"
         },
         "oauthAccessToken": {
+          "deprecated": true,
           "description": "The OAuth2 access token.",
           "type": "string"
         },
         "oauthAuthorizationCode": {
+          "deprecated": true,
           "type": "string"
         },
         "oauthExpireIn": {
+          "deprecated": true,
           "description": "The access token expiration time in seconds.",
           "format": "int32",
           "type": "integer"
@@ -3219,6 +3284,7 @@
           "type": "string"
         },
         "registered": {
+          "deprecated": true,
           "description": "Whether the email is for an existing account. Always true.",
           "type": "boolean"
         },
@@ -3245,6 +3311,7 @@
           "type": "string"
         },
         "operation": {
+          "deprecated": true,
           "enum": [
             "VERIFY_OP_UNSPECIFIED",
             "SIGN_UP_OR_IN",
@@ -3339,6 +3406,7 @@
       "id": "GoogleCloudIdentitytoolkitV1SignUpRequest",
       "properties": {
         "captchaChallenge": {
+          "deprecated": true,
           "type": "string"
         },
         "captchaResponse": {
@@ -3382,6 +3450,7 @@
           "type": "string"
         },
         "instanceId": {
+          "deprecated": true,
           "type": "string"
         },
         "localId": {
@@ -3513,6 +3582,7 @@
           "type": "integer"
         },
         "delegatedProjectNumber": {
+          "deprecated": true,
           "format": "int64",
           "type": "string"
         },
@@ -3594,6 +3664,7 @@
           "type": "array"
         },
         "kind": {
+          "deprecated": true,
           "type": "string"
         }
       },

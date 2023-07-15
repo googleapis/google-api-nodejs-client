@@ -1354,6 +1354,14 @@ export namespace identitytoolkit_v2 {
      */
     customStrengthOptions?: Schema$GoogleCloudIdentitytoolkitV2CustomStrengthOptions;
     /**
+     * Output only. Which enforcement mode to use for the password policy.
+     */
+    enforcementState?: string | null;
+    /**
+     * Users must have a password compliant with the password policy to sign-in.
+     */
+    forceUpgradeOnSignin?: boolean | null;
+    /**
      * Output only. schema version number for the password policy
      */
     schemaVersion?: number | null;
@@ -9665,6 +9673,8 @@ export namespace identitytoolkit_v2 {
      *   // {
      *   //   "allowedNonAlphanumericCharacters": [],
      *   //   "customStrengthOptions": {},
+     *   //   "enforcementState": "my_enforcementState",
+     *   //   "forceUpgradeOnSignin": false,
      *   //   "schemaVersion": 0
      *   // }
      * }
