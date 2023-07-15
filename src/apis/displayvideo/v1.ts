@@ -2933,7 +2933,7 @@ export namespace displayvideo_v1 {
      */
     bidStrategy?: Schema$BiddingStrategy;
     /**
-     * Immutable. The billable outcome of the insertion order.
+     * Immutable. The billable outcome of the insertion order. Outcome based buying will be deprecated on **August 1, 2023**. Read more on our [Announced Deprecations page](/display-video/api/deprecations#features.obb).
      */
     billableOutcome?: string | null;
     /**

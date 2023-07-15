@@ -9178,7 +9178,7 @@
       }
     }
   },
-  "revision": "20230627",
+  "revision": "20230713",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -15801,7 +15801,7 @@
           "description": "The bidding strategy of the insertion order. By default, fixed_bid is set."
         },
         "billableOutcome": {
-          "description": "Immutable. The billable outcome of the insertion order.",
+          "description": "Immutable. The billable outcome of the insertion order. Outcome based buying will be deprecated on **August 1, 2023**. Read more on our [Announced Deprecations page](/display-video/api/deprecations#features.obb).",
           "enum": [
             "BILLABLE_OUTCOME_UNSPECIFIED",
             "BILLABLE_OUTCOME_PAY_PER_IMPRESSION",
