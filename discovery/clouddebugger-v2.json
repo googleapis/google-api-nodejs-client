@@ -449,7 +449,7 @@
       }
     }
   },
-  "revision": "20230613",
+  "revision": "20230707",
   "rootUrl": "https://clouddebugger.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -617,6 +617,7 @@
           "description": "An alias, which may be a branch or tag."
         },
         "aliasName": {
+          "deprecated": true,
           "description": "The name of an alias (branch, tag, etc.).",
           "type": "string"
         },
@@ -692,6 +693,7 @@
           "type": "string"
         },
         "extSourceContexts": {
+          "deprecated": true,
           "description": "References to the locations and revisions of the source code used in the deployed application.",
           "items": {
             "$ref": "ExtendedSourceContext"
@@ -790,6 +792,7 @@
           "description": "An alias, which may be a branch or tag."
         },
         "aliasName": {
+          "deprecated": true,
           "description": "The name of an alias (branch, tag, etc.).",
           "type": "string"
         },

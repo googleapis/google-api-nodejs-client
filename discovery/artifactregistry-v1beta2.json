@@ -1135,7 +1135,7 @@
       }
     }
   },
-  "revision": "20230615",
+  "revision": "20230710",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1712,6 +1712,12 @@
             "REDIRECTION_FROM_GCR_IO_DISABLED",
             "REDIRECTION_FROM_GCR_IO_ENABLED",
             "REDIRECTION_FROM_GCR_IO_FINALIZED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "No redirection status has been set.",
