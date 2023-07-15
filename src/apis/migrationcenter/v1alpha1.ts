@@ -321,7 +321,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Asset performance data samples. Samples that are older than 40 days are ignored.
+     * Asset performance data samples. Samples that are from more than 40 days ago or after tomorrow are ignored.
      */
     performanceSamples?: Schema$PerformanceSample[];
     /**
@@ -1769,7 +1769,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     network?: Schema$NetworkUsageSample;
     /**
-     * Required. Time the sample was collected.
+     * Time the sample was collected.
      */
     sampleTime?: string | null;
   }

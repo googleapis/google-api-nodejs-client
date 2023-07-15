@@ -2102,7 +2102,7 @@
       }
     }
   },
-  "revision": "20230630",
+  "revision": "20230707",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2398,7 +2398,7 @@
           "type": "object"
         },
         "performanceSamples": {
-          "description": "Asset performance data samples. Samples that are older than 40 days are ignored.",
+          "description": "Asset performance data samples. Samples that are from more than 40 days ago or after tomorrow are ignored.",
           "items": {
             "$ref": "PerformanceSample"
           },
@@ -4448,7 +4448,7 @@
           "description": "Network usage sample."
         },
         "sampleTime": {
-          "description": "Required. Time the sample was collected.",
+          "description": "Time the sample was collected.",
           "format": "google-datetime",
           "type": "string"
         }
