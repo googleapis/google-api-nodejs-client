@@ -1655,7 +1655,7 @@
       }
     }
   },
-  "revision": "20230613",
+  "revision": "20230707",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitAdminV2AllowByDefault": {
@@ -2477,6 +2477,7 @@
           "type": "boolean"
         },
         "token": {
+          "deprecated": true,
           "description": "Do not use. The `token` response type is not supported at the moment.",
           "type": "boolean"
         }
@@ -3278,6 +3279,25 @@
         "customStrengthOptions": {
           "$ref": "GoogleCloudIdentitytoolkitV2CustomStrengthOptions",
           "description": "The custom strength options enforced by the password policy."
+        },
+        "enforcementState": {
+          "description": "Output only. Which enforcement mode to use for the password policy.",
+          "enum": [
+            "ENFORCEMENT_STATE_UNSPECIFIED",
+            "OFF",
+            "ENFORCE"
+          ],
+          "enumDescriptions": [
+            "Enforcement state has not been set.",
+            "Password Policy will not be used on the project.",
+            "Passwords non-compliant with the password policy will be rejected with an error thrown."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "forceUpgradeOnSignin": {
+          "description": "Users must have a password compliant with the password policy to sign-in.",
+          "type": "boolean"
         },
         "schemaVersion": {
           "description": "Output only. schema version number for the password policy",
