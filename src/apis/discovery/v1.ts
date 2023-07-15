@@ -153,6 +153,10 @@ export namespace discovery_v1 {
      */
     default?: string | null;
     /**
+     * Whether the parameter is deprecated.
+     */
+    deprecated?: boolean | null;
+    /**
      * A description of this object.
      */
     description?: string | null;
@@ -160,6 +164,10 @@ export namespace discovery_v1 {
      * Values this parameter may take (if it is an enum).
      */
     enum?: string[] | null;
+    /**
+     * The deprecation status for the enums. Each position maps to the corresponding value in the "enum" array.
+     */
+    enumDeprecated?: boolean[] | null;
     /**
      * The descriptions for the enums. Each position maps to the corresponding value in the "enum" array.
      */
@@ -341,6 +349,10 @@ export namespace discovery_v1 {
   }
   export interface Schema$RestMethod {
     /**
+     * Whether this method is deprecated.
+     */
+    deprecated?: boolean | null;
+    /**
      * Description of this method.
      */
     description?: string | null;
@@ -413,6 +425,10 @@ export namespace discovery_v1 {
     useMediaDownloadService?: boolean | null;
   }
   export interface Schema$RestResource {
+    /**
+     * Whether this resource is deprecated.
+     */
+    deprecated?: boolean | null;
     /**
      * Methods on this resource.
      */
