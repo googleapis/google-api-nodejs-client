@@ -150,7 +150,7 @@ export namespace tpu_v2 {
      */
     name?: string | null;
     /**
-     * the accelerator type.
+     * The accelerator type.
      */
     type?: string | null;
   }
@@ -403,7 +403,7 @@ export namespace tpu_v2 {
      */
     acceleratorConfig?: Schema$AcceleratorConfig;
     /**
-     * Required. The type of hardware accelerators associated with this node.
+     * Optional. The type of hardware accelerators associated with this node.
      */
     acceleratorType?: string | null;
     /**
@@ -447,6 +447,10 @@ export namespace tpu_v2 {
      */
     metadata?: {[key: string]: string} | null;
     /**
+     * Output only. Whether the Node belongs to a Multislice group.
+     */
+    multisliceNode?: boolean | null;
+    /**
      * Output only. Immutable. The name of the TPU.
      */
     name?: string | null;
@@ -458,6 +462,10 @@ export namespace tpu_v2 {
      * Output only. The network endpoints where TPU workers can be accessed and sent work. It is recommended that runtime clients of the node reach out to the 0th entry in this map first.
      */
     networkEndpoints?: Schema$NetworkEndpoint[];
+    /**
+     * Output only. The qualified name of the QueuedResource that requested this Node.
+     */
+    queuedResource?: string | null;
     /**
      * Required. The runtime version running in the Node.
      */
@@ -1502,9 +1510,11 @@ export namespace tpu_v2 {
      *       //   "id": "my_id",
      *       //   "labels": {},
      *       //   "metadata": {},
+     *       //   "multisliceNode": false,
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "networkEndpoints": [],
+     *       //   "queuedResource": "my_queuedResource",
      *       //   "runtimeVersion": "my_runtimeVersion",
      *       //   "schedulingConfig": {},
      *       //   "serviceAccount": {},
@@ -1794,9 +1804,11 @@ export namespace tpu_v2 {
      *   //   "id": "my_id",
      *   //   "labels": {},
      *   //   "metadata": {},
+     *   //   "multisliceNode": false,
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
      *   //   "networkEndpoints": [],
+     *   //   "queuedResource": "my_queuedResource",
      *   //   "runtimeVersion": "my_runtimeVersion",
      *   //   "schedulingConfig": {},
      *   //   "serviceAccount": {},
@@ -2227,9 +2239,11 @@ export namespace tpu_v2 {
      *       //   "id": "my_id",
      *       //   "labels": {},
      *       //   "metadata": {},
+     *       //   "multisliceNode": false,
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "networkEndpoints": [],
+     *       //   "queuedResource": "my_queuedResource",
      *       //   "runtimeVersion": "my_runtimeVersion",
      *       //   "schedulingConfig": {},
      *       //   "serviceAccount": {},
