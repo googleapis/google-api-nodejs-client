@@ -938,7 +938,7 @@
     "query": {
       "methods": {
         "removeActivity": {
-          "description": "Provides functionality to remove logged activity for a user. Currently to be used only for dynamite 1p clients **Note:** This API requires a standard end user account to execute. A service account can't perform Remove Activity requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
+          "description": "Provides functionality to remove logged activity for a user. Currently to be used only for Chat 1p clients **Note:** This API requires a standard end user account to execute. A service account can't perform Remove Activity requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
           "flatPath": "v1/query:removeActivity",
           "httpMethod": "POST",
           "id": "cloudsearch.query.removeActivity",
@@ -2096,7 +2096,7 @@
       }
     }
   },
-  "revision": "20230628",
+  "revision": "20230705",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "Action": {
@@ -3263,6 +3263,39 @@
             "PERSON_KNOWLEDGE_CARD",
             "PEOPLE_SEARCH_PROMOTION_CARD"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "The default type, an unknown card type.",
             "The user's agenda for the day.",
@@ -3300,6 +3333,7 @@
         },
         "conflictingMeetingsCard": {
           "$ref": "EnterpriseTopazSidekickConflictingEventsCardProto",
+          "deprecated": true,
           "description": "Conflicting events card."
         },
         "documentListCard": {
@@ -3308,6 +3342,7 @@
         },
         "documentsWithMentions": {
           "$ref": "EnterpriseTopazSidekickDocumentPerCategoryList",
+          "deprecated": true,
           "description": "Documents with mentions."
         },
         "findMeetingTimeCard": {
@@ -3324,6 +3359,7 @@
         },
         "meeting": {
           "$ref": "EnterpriseTopazSidekickAgendaEntry",
+          "deprecated": true,
           "description": "Meeting card."
         },
         "meetingNotesCard": {
@@ -3352,6 +3388,7 @@
         },
         "personalizedDocsCard": {
           "$ref": "EnterpriseTopazSidekickPersonalizedDocsCardProto",
+          "deprecated": true,
           "description": "Card with recommended documents for the user."
         },
         "relatedPeopleAnswerCard": {
@@ -3360,10 +3397,12 @@
         },
         "shareMeetingDocsCard": {
           "$ref": "EnterpriseTopazSidekickShareMeetingDocsCardProto",
+          "deprecated": true,
           "description": "Sahre meeting docs card."
         },
         "sharedDocuments": {
           "$ref": "EnterpriseTopazSidekickDocumentPerCategoryList",
+          "deprecated": true,
           "description": "Shared documents."
         },
         "suggestedQueryAnswerCard": {
@@ -3508,6 +3547,7 @@
           "type": "string"
         },
         "provenance": {
+          "deprecated": true,
           "description": "Document provenance.",
           "enum": [
             "UNKNOWN_PROVENANCE",
@@ -3526,6 +3566,7 @@
           "type": "string"
         },
         "reason": {
+          "deprecated": true,
           "description": "Justification of why this document is being returned.",
           "enum": [
             "UNKNOWN",
@@ -3649,6 +3690,7 @@
       "id": "EnterpriseTopazSidekickCommonDocumentDriveDocumentMetadata",
       "properties": {
         "documentId": {
+          "deprecated": true,
           "description": "The drive document cosmo id. Client could use the id to build a URL to open a document. Please use Document.document_id.",
           "type": "string"
         },
@@ -3796,6 +3838,7 @@
           "type": "string"
         },
         "gaiaId": {
+          "deprecated": true,
           "description": "This field is deprecated. The obfuscated_id should be used instead.",
           "format": "int64",
           "type": "string"
@@ -3860,6 +3903,7 @@
       "id": "EnterpriseTopazSidekickDocumentGroup",
       "properties": {
         "groupType": {
+          "deprecated": true,
           "description": "Document group type",
           "enum": [
             "UNKNOWN_TYPE",
@@ -3939,6 +3983,18 @@
             "SHARED_AND_VIEWED",
             "SHARED_NOT_VIEWED",
             "EDITED"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "",
@@ -4226,6 +4282,7 @@
       "id": "EnterpriseTopazSidekickPeopleAnswerPersonAnswerCard",
       "properties": {
         "answer": {
+          "deprecated": true,
           "description": "List of answers.",
           "items": {
             "$ref": "SafeHtmlProto"
@@ -4387,6 +4444,7 @@
           "type": "string"
         },
         "gaiaId": {
+          "deprecated": true,
           "description": "Gaia id.",
           "format": "int64",
           "type": "string"
