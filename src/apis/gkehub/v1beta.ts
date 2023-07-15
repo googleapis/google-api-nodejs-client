@@ -952,6 +952,10 @@ export namespace gkehub_v1beta {
      */
     displayName?: string | null;
     /**
+     * Optional. Labels for this Fleet.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Output only. The full, unique resource name of this fleet in the format of `projects/{project\}/locations/{location\}/fleets/{fleet\}`. Each Google Cloud project can have at most one fleet resource, named "default".
      */
     name?: string | null;
@@ -1112,7 +1116,7 @@ export namespace gkehub_v1beta {
      */
     azureadConfig?: Schema$IdentityServiceAzureADConfig;
     /**
-     * GoogleConfig specific configuration
+     * GoogleConfig specific configuration.
      */
     googleConfig?: Schema$IdentityServiceGoogleConfig;
     /**
@@ -1152,6 +1156,10 @@ export namespace gkehub_v1beta {
      * Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.
      */
     tenant?: string | null;
+    /**
+     * Optional. Claim in the AzureAD ID Token that holds the user details.
+     */
+    userClaim?: string | null;
   }
   /**
    * Configuration for the Google Plugin Auth flow.
@@ -1412,6 +1420,10 @@ export namespace gkehub_v1beta {
      */
     fleet?: boolean | null;
     /**
+     * Optional. Labels for this MembershipBinding.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * The resource name for the membershipbinding itself `projects/{project\}/locations/{location\}/memberships/{membership\}/bindings/{membershipbinding\}`
      */
     name?: string | null;
@@ -1566,6 +1578,10 @@ export namespace gkehub_v1beta {
      * Output only. When the namespace was deleted.
      */
     deleteTime?: string | null;
+    /**
+     * Optional. Labels for this Namespace.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * The resource name for the namespace `projects/{project\}/locations/{location\}/namespaces/{namespace\}`
      */
@@ -1924,6 +1940,10 @@ export namespace gkehub_v1beta {
      */
     group?: string | null;
     /**
+     * Optional. Labels for this RBACRolebinding.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/namespaces/{namespace\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
      */
     name?: string | null;
@@ -1982,6 +2002,10 @@ export namespace gkehub_v1beta {
      * Output only. When the scope was deleted.
      */
     deleteTime?: string | null;
+    /**
+     * Optional. Labels for this Scope.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * The resource name for the scope `projects/{project\}/locations/{location\}/scopes/{scope\}`
      */
@@ -3958,6 +3982,7 @@ export namespace gkehub_v1beta {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "state": {},
      *       //   "uid": "my_uid",
@@ -4235,6 +4260,7 @@ export namespace gkehub_v1beta {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "state": {},
      *   //   "uid": "my_uid",
@@ -4506,6 +4532,7 @@ export namespace gkehub_v1beta {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "state": {},
      *       //   "uid": "my_uid",
@@ -5195,6 +5222,7 @@ export namespace gkehub_v1beta {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "fleet": false,
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "scope": "my_scope",
      *       //   "state": {},
@@ -5475,6 +5503,7 @@ export namespace gkehub_v1beta {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "fleet": false,
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "scope": "my_scope",
      *   //   "state": {},
@@ -5761,6 +5790,7 @@ export namespace gkehub_v1beta {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "fleet": false,
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "scope": "my_scope",
      *       //   "state": {},
@@ -5984,6 +6014,7 @@ export namespace gkehub_v1beta {
      *         //   "createTime": "my_createTime",
      *         //   "deleteTime": "my_deleteTime",
      *         //   "group": "my_group",
+     *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "role": {},
      *         //   "state": {},
@@ -6271,6 +6302,7 @@ export namespace gkehub_v1beta {
      *           //   "createTime": "my_createTime",
      *           //   "deleteTime": "my_deleteTime",
      *           //   "group": "my_group",
+     *           //   "labels": {},
      *           //   "name": "my_name",
      *           //   "role": {},
      *           //   "state": {},
@@ -6427,6 +6459,7 @@ export namespace gkehub_v1beta {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "group": "my_group",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "role": {},
      *   //   "state": {},
@@ -6712,6 +6745,7 @@ export namespace gkehub_v1beta {
      *         //   "createTime": "my_createTime",
      *         //   "deleteTime": "my_deleteTime",
      *         //   "group": "my_group",
+     *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "role": {},
      *         //   "state": {},
@@ -6950,6 +6984,7 @@ export namespace gkehub_v1beta {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "scope": "my_scope",
      *       //   "state": {},
@@ -7227,6 +7262,7 @@ export namespace gkehub_v1beta {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "scope": "my_scope",
      *   //   "state": {},
@@ -7500,6 +7536,7 @@ export namespace gkehub_v1beta {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "scope": "my_scope",
      *       //   "state": {},
@@ -7718,6 +7755,7 @@ export namespace gkehub_v1beta {
      *         //   "createTime": "my_createTime",
      *         //   "deleteTime": "my_deleteTime",
      *         //   "group": "my_group",
+     *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "role": {},
      *         //   "state": {},
@@ -8000,6 +8038,7 @@ export namespace gkehub_v1beta {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "group": "my_group",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "role": {},
      *   //   "state": {},
@@ -8282,6 +8321,7 @@ export namespace gkehub_v1beta {
      *         //   "createTime": "my_createTime",
      *         //   "deleteTime": "my_deleteTime",
      *         //   "group": "my_group",
+     *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "role": {},
      *         //   "state": {},
@@ -9082,6 +9122,7 @@ export namespace gkehub_v1beta {
      *       //   "allMemberships": false,
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "state": {},
      *       //   "uid": "my_uid",
@@ -9359,6 +9400,7 @@ export namespace gkehub_v1beta {
      *   //   "allMemberships": false,
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "state": {},
      *   //   "uid": "my_uid",
@@ -9764,6 +9806,7 @@ export namespace gkehub_v1beta {
      *       //   "allMemberships": false,
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "state": {},
      *       //   "uid": "my_uid",
