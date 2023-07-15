@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20230621",
+  "revision": "20230705",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -619,7 +619,9 @@
             "UNSUPPORTED",
             "MISMATCHED_IP_VERSION",
             "GKE_KONNECTIVITY_PROXY_UNSUPPORTED",
-            "RESOURCE_CONFIG_NOT_FOUND"
+            "RESOURCE_CONFIG_NOT_FOUND",
+            "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
+            "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -640,7 +642,9 @@
             "Aborted because the test scenario is not supported.",
             "Aborted because the source and destination resources have no common IP version.",
             "Aborted because the connection between the control plane and the node of the source cluster is initiated by the node and managed by the Konnectivity proxy.",
-            "Aborted because expected resource configuration was missing."
+            "Aborted because expected resource configuration was missing.",
+            "Aborted because a PSC endpoint selection for the Google-managed service is ambiguous (several PSC endpoints satisfy test input).",
+            "Aborted because tests with a PSC-based Cloud SQL instance as a source are not supported."
           ],
           "type": "string"
         },
@@ -1117,7 +1121,7 @@
           "type": "string"
         },
         "forwardingRule": {
-          "description": "Forwarding rule URI. Forwarding rules are frontends for load balancers, PSC endpoints and Protocol Forwarding. Format: projects/{project}/global/forwardingRules/{id} or projects/{project}/regions/{region}/forwardingRules/{id}",
+          "description": "A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Format: projects/{project}/global/forwardingRules/{id} or projects/{project}/regions/{region}/forwardingRules/{id}",
           "type": "string"
         },
         "forwardingRuleTarget": {
@@ -1305,7 +1309,8 @@
             "VPC_FIREWALL_RULE",
             "IMPLIED_VPC_FIREWALL_RULE",
             "SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE",
-            "NETWORK_FIREWALL_POLICY_RULE"
+            "NETWORK_FIREWALL_POLICY_RULE",
+            "NETWORK_REGIONAL_FIREWALL_POLICY_RULE"
           ],
           "enumDescriptions": [
             "Unspecified type.",
@@ -1313,7 +1318,8 @@
             "VPC firewall rule. For details, see [VPC firewall rules overview](https://cloud.google.com/vpc/docs/firewalls).",
             "Implied VPC firewall rule. For details, see [Implied rules](https://cloud.google.com/vpc/docs/firewalls#default_firewall_rules).",
             "Implicit firewall rules that are managed by serverless VPC access to allow ingress access. They are not visible in the Google Cloud console. For details, see [VPC connector's implicit rules](https://cloud.google.com/functions/docs/networking/connecting-vpc#restrict-access).",
-            "Global network firewall policy rule. For details, see [Network firewall policies](https://cloud.google.com/vpc/docs/network-firewall-policies)."
+            "Global network firewall policy rule. For details, see [Network firewall policies](https://cloud.google.com/vpc/docs/network-firewall-policies).",
+            "Regional network firewall policy rule. For details, see [Regional network firewall policies](https://cloud.google.com/firewall/docs/regional-firewall-policies)."
           ],
           "type": "string"
         },

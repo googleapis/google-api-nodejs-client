@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20230621",
+  "revision": "20230705",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -619,7 +619,9 @@
             "UNSUPPORTED",
             "MISMATCHED_IP_VERSION",
             "GKE_KONNECTIVITY_PROXY_UNSUPPORTED",
-            "RESOURCE_CONFIG_NOT_FOUND"
+            "RESOURCE_CONFIG_NOT_FOUND",
+            "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
+            "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -640,7 +642,9 @@
             "Aborted because the test scenario is not supported.",
             "Aborted because the source and destination resources have no common IP version.",
             "Aborted because the connection between the control plane and the node of the source cluster is initiated by the node and managed by the Konnectivity proxy.",
-            "Aborted because expected resource configuration was missing."
+            "Aborted because expected resource configuration was missing.",
+            "Aborted because a PSC endpoint selection for the Google-managed service is ambiguous (several PSC endpoints satisfy test input).",
+            "Aborted because tests with a PSC-based Cloud SQL instance as a source are not supported."
           ],
           "type": "string"
         },
@@ -1091,6 +1095,10 @@
         },
         "cloudSqlInstance": {
           "description": "A [Cloud SQL](https://cloud.google.com/sql) instance URI.",
+          "type": "string"
+        },
+        "forwardingRule": {
+          "description": "A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Format: projects/{project}/global/forwardingRules/{id} or projects/{project}/regions/{region}/forwardingRules/{id}",
           "type": "string"
         },
         "gkeMasterCluster": {
