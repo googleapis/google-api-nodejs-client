@@ -2122,7 +2122,7 @@
       }
     }
   },
-  "revision": "20230710",
+  "revision": "20230627",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -3282,14 +3282,12 @@
               "enum": [
                 "BAK_TYPE_UNSPECIFIED",
                 "FULL",
-                "DIFF",
-                "TLOG"
+                "DIFF"
               ],
               "enumDescriptions": [
-                "Default type.",
+                "default type.",
                 "Full backup.",
-                "Differential backup.",
-                "Transaction Log backup"
+                "Differential backup."
               ],
               "type": "string"
             },
@@ -3684,14 +3682,12 @@
               "enum": [
                 "BAK_TYPE_UNSPECIFIED",
                 "FULL",
-                "DIFF",
-                "TLOG"
+                "DIFF"
               ],
               "enumDescriptions": [
-                "Default type.",
+                "default type.",
                 "Full backup.",
-                "Differential backup.",
-                "Transaction Log backup"
+                "Differential backup."
               ],
               "type": "string"
             },
@@ -3719,15 +3715,6 @@
             "recoveryOnly": {
               "description": "Whether or not the backup importing request will just bring database online without downloading Bak content only one of \"no_recovery\" and \"recovery_only\" can be true otherwise error will return. Applies only to Cloud SQL for SQL Server.",
               "type": "boolean"
-            },
-            "stopAt": {
-              "description": "Optional. StopAt keyword for transaction log import, Applies to Cloud SQL for SQL Server only",
-              "format": "google-datetime",
-              "type": "string"
-            },
-            "stopAtMark": {
-              "description": "Optional. StopAtMark keyword for transaction log import, Applies to Cloud SQL for SQL Server only",
-              "type": "string"
             },
             "striped": {
               "description": "Whether or not the backup set being restored is striped. Applies only to Cloud SQL for SQL Server.",
