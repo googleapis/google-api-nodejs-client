@@ -954,7 +954,7 @@
       }
     }
   },
-  "revision": "20230704",
+  "revision": "20230711",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -1297,6 +1297,17 @@
         "error": {
           "$ref": "Status",
           "description": "The error code and message."
+        }
+      },
+      "type": "object"
+    },
+    "ChatClientDataSourceMarkup": {
+      "description": "Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, a data source from Google Chat. For example, a list of Google Chat spaces of which the user is a member. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "ChatClientDataSourceMarkup",
+      "properties": {
+        "spaceDataSource": {
+          "$ref": "SpaceDataSource",
+          "description": "A data source representing a Google Chat space. Format: spaces/{space} [Developer Preview](https://developers.google.com/workspace/preview)."
         }
       },
       "type": "object"
@@ -1831,6 +1842,20 @@
           "$ref": "GoogleAppsCardV1CardHeader",
           "description": "When displaying contextual content, the peek card header acts as a placeholder so that the user can navigate forward between the homepage cards and the contextual cards. Not supported by Chat apps."
         },
+        "sectionDividerStyle": {
+          "description": "The divider style between sections.",
+          "enum": [
+            "DIVIDER_STYLE_UNSPECIFIED",
+            "SOLID_DIVIDER",
+            "NO_DIVIDER"
+          ],
+          "enumDescriptions": [
+            "Don't use. Unspecified.",
+            "Default option. Render a solid divider between sections.",
+            "If set, no divider is rendered between sections."
+          ],
+          "type": "string"
+        },
         "sections": {
           "description": "Contains a collection of widgets. Each section has its own, optional header. Sections are visually separated by a line divider.",
           "items": {
@@ -2306,6 +2331,29 @@
       },
       "type": "object"
     },
+    "GoogleAppsCardV1PlatformDataSource": {
+      "description": "Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, the data from a [Google Workspace host application](https://developers.google.com/chat/api/reference/rest/v1/HostApp). Used to populate the items in the multi-select menu. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "GoogleAppsCardV1PlatformDataSource",
+      "properties": {
+        "commonDataSource": {
+          "description": "For a `SelectionInput` widget that uses a multi-select menu, a data source shared by all Google Workspace host applications, such as users in a Google Workspace organization. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "enum": [
+            "UNKNOWN",
+            "USER"
+          ],
+          "enumDescriptions": [
+            "Default value. Don't use. [Developer Preview](https://developers.google.com/workspace/preview).",
+            "A list of users provided by the Google Workspace host application. For example, to source users from Google Chat, use the resource name of the [user](https://developers.google.com/chat/api/reference/rest/v1/User). Format: users/{user} [Developer Preview](https://developers.google.com/workspace/preview)."
+          ],
+          "type": "string"
+        },
+        "hostAppDataSource": {
+          "$ref": "HostAppDataSourceMarkup",
+          "description": "A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. [Developer Preview](https://developers.google.com/workspace/preview)."
+        }
+      },
+      "type": "object"
+    },
     "GoogleAppsCardV1Section": {
       "description": "A section contains a collection of widgets that are rendered vertically in the order that they're specified.",
       "id": "GoogleAppsCardV1Section",
@@ -2337,6 +2385,10 @@
       "description": "A widget that creates one or more UI items that users can select. For example, a dropdown menu or checkboxes. You can use this widget to collect data that can be predicted or enumerated. Chat apps can process the value of items that users select or input. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs). To collect undefined or abstract data from users, use the TextInput widget.",
       "id": "GoogleAppsCardV1SelectionInput",
       "properties": {
+        "externalDataSource": {
+          "$ref": "GoogleAppsCardV1Action",
+          "description": "An external data source, such as a relational data base. [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
         "items": {
           "description": "An array of selectable items. For example, an array of radio buttons or checkboxes. Supports up to 100 items.",
           "items": {
@@ -2348,6 +2400,16 @@
           "description": "The text that appears above the selection input field in the user interface. Specify text that helps the user enter the information your app needs. For example, if users are selecting the urgency of a work ticket from a drop-down menu, the label might be \"Urgency\" or \"Select urgency\".",
           "type": "string"
         },
+        "multiSelectMaxSelectedItems": {
+          "description": "For multi-select menus, the maximum number of items that a user can select. Minimum value is 1 item. If unspecified, set to 3 items. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "multiSelectMinQueryLength": {
+          "description": "For multi-select menus, the number of text characters that a user inputs before the Chat app queries autocomplete and displays suggested items on the card. If unspecified, set to 0 characters for static data sources and 3 characters for external data sources. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "format": "int32",
+          "type": "integer"
+        },
         "name": {
           "description": "The name that identifies the selection input in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).",
           "type": "string"
@@ -2356,19 +2418,25 @@
           "$ref": "GoogleAppsCardV1Action",
           "description": "If specified, the form is submitted when the selection changes. If not specified, you must specify a separate button that submits the form. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs)."
         },
+        "platformDataSource": {
+          "$ref": "GoogleAppsCardV1PlatformDataSource",
+          "description": "A data source from a [Google Workspace host application](https://developers.google.com/chat/api/reference/rest/v1/HostApp). [Developer Preview](https://developers.google.com/workspace/preview)."
+        },
         "type": {
           "description": "The type of items that are displayed to users in a `SelectionInput` widget. Selection types support different types of interactions. For example, users can select one or more checkboxes, but they can only select one value from a dropdown menu.",
           "enum": [
             "CHECK_BOX",
             "RADIO_BUTTON",
             "SWITCH",
-            "DROPDOWN"
+            "DROPDOWN",
+            "MULTI_SELECT"
           ],
           "enumDescriptions": [
             "A set of checkboxes. Users can select one or more checkboxes.",
             "A set of radio buttons. Users can select one radio button.",
             "A set of switches. Users can turn on one or more switches.",
-            "A dropdown menu. Users can select one item from the menu."
+            "A dropdown menu. Users can select one item from the menu.",
+            "Supported by Chat apps, but not Google Workspace Add-ons. A multi-select menu for static or dynamic data. From the menu bar, users select one or more items. Users can also input values to populate dynamic data. For example, users can start typing the name of a Google Chat space and the widget autosuggests the space. To populate items for a multi-select menu, you can use one of the following types of data sources: * Static data: Items are specified as `SelectionItem` objects in the widget. Up to 100 items. * Google Workspace data: Items are populated using data from a Google Workspace application, such as Google Chat users or spaces. * External data: Items are populated from a dynamic external data source. For examples of how to implement multi-select menus, see the [`SelectionInput` widget page](https://developers.google.com/chat/ui/widgets/selection-input). [Developer Preview](https://developers.google.com/workspace/preview)."
           ],
           "type": "string"
         }
@@ -2379,9 +2447,17 @@
       "description": "An item that users can select in a selection input, such as a checkbox or switch.",
       "id": "GoogleAppsCardV1SelectionItem",
       "properties": {
+        "bottomText": {
+          "description": "For multi-select menus, a text description or label that's displayed below the item's `text` field. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "type": "string"
+        },
         "selected": {
           "description": "Whether the item is selected by default. If the selection input only accepts one value (such as for radio buttons or a dropdown menu), only set this field for one item.",
           "type": "boolean"
+        },
+        "startIconUri": {
+          "description": "For multi-select menus, the URL for the icon displayed next to the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS` URL. For example, `https://developers.google.com/chat/images/quickstart-app-avatar.png`. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "type": "string"
         },
         "text": {
           "description": "The text that identifies or describes the item to users.",
@@ -2608,6 +2684,17 @@
         "textParagraph": {
           "$ref": "GoogleAppsCardV1TextParagraph",
           "description": "TextParagraph widget."
+        }
+      },
+      "type": "object"
+    },
+    "HostAppDataSourceMarkup": {
+      "description": "Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, a data source from a Google Workspace host application. [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "HostAppDataSourceMarkup",
+      "properties": {
+        "chatDataSource": {
+          "$ref": "ChatClientDataSourceMarkup",
+          "description": "The data source is Google Chat. [Developer Preview](https://developers.google.com/workspace/preview)."
         }
       },
       "type": "object"
@@ -3372,6 +3459,17 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SpaceDataSource": {
+      "description": "A data source representing a Google Chat space. Format: spaces/{space} [Developer Preview](https://developers.google.com/workspace/preview).",
+      "id": "SpaceDataSource",
+      "properties": {
+        "defaultToCurrentSpace": {
+          "description": "When `true`, uses the card's Google Chat space as the default selection. The default value is `false`. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "type": "boolean"
         }
       },
       "type": "object"
