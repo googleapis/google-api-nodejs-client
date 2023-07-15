@@ -251,6 +251,10 @@ export namespace assuredworkloads_v1 {
      */
     exceptionAuditLogLink?: string | null;
     /**
+     * Output only. List of all the exception detail added for the violation.
+     */
+    exceptionContexts?: Schema$GoogleCloudAssuredworkloadsV1ViolationExceptionContext[];
+    /**
      * Output only. Immutable. Name of the Violation. Format: organizations/{organization\}/locations/{location\}/workloads/{workload_id\}/violations/{violations_id\}
      */
     name?: string | null;
@@ -274,6 +278,23 @@ export namespace assuredworkloads_v1 {
      * Output only. The last time when the Violation record was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Violation exception detail. Next Id: 6
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1ViolationExceptionContext {
+    /**
+     * Timestamp when the violation was acknowledged.
+     */
+    acknowledgementTime?: string | null;
+    /**
+     * Business justification provided towards the acknowledgement of the violation.
+     */
+    comment?: string | null;
+    /**
+     * Name of the user (or service account) who acknowledged the violation.
+     */
+    userName?: string | null;
   }
   /**
    * Represents remediation guidance to resolve compliance violation for AssuredWorkload
@@ -2333,6 +2354,7 @@ export namespace assuredworkloads_v1 {
      *   //   "category": "my_category",
      *   //   "description": "my_description",
      *   //   "exceptionAuditLogLink": "my_exceptionAuditLogLink",
+     *   //   "exceptionContexts": [],
      *   //   "name": "my_name",
      *   //   "nonCompliantOrgPolicy": "my_nonCompliantOrgPolicy",
      *   //   "remediation": {},

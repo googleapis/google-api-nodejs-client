@@ -595,7 +595,7 @@
       }
     }
   },
-  "revision": "20230630",
+  "revision": "20230707",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -607,6 +607,7 @@
           "type": "string"
         },
         "nonCompliantOrgPolicy": {
+          "deprecated": true,
           "description": "Optional. This field is deprecated and will be removed in future version of the API. Name of the OrgPolicy which was modified with non-compliant change and resulted in this violation. Format: projects/{project_number}/policies/{constraint_name} folders/{folder_id}/policies/{constraint_name} organizations/{organization_id}/policies/{constraint_name}",
           "type": "string"
         }
@@ -806,6 +807,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "exceptionContexts": {
+          "description": "Output only. List of all the exception detail added for the violation.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "name": {
           "description": "Output only. Immutable. Name of the Violation. Format: organizations/{organization}/locations/{location}/workloads/{workload_id}/violations/{violations_id}",
           "readOnly": true,
@@ -848,6 +857,26 @@
           "description": "Output only. The last time when the Violation record was updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext": {
+      "description": "Violation exception detail. Next Id: 6",
+      "id": "GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext",
+      "properties": {
+        "acknowledgementTime": {
+          "description": "Timestamp when the violation was acknowledged.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "comment": {
+          "description": "Business justification provided towards the acknowledgement of the violation.",
+          "type": "string"
+        },
+        "userName": {
+          "description": "Name of the user (or service account) who acknowledged the violation.",
           "type": "string"
         }
       },
@@ -973,6 +1002,7 @@
         },
         "cjisSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadCJISSettings",
+          "deprecated": true,
           "description": "Input only. Immutable. Settings specific to resources needed for CJIS."
         },
         "complianceRegime": {
@@ -1059,14 +1089,17 @@
         },
         "fedrampHighSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampHighSettings",
+          "deprecated": true,
           "description": "Input only. Immutable. Settings specific to resources needed for FedRAMP High."
         },
         "fedrampModerateSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampModerateSettings",
+          "deprecated": true,
           "description": "Input only. Immutable. Settings specific to resources needed for FedRAMP Moderate."
         },
         "il4Settings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadIL4Settings",
+          "deprecated": true,
           "description": "Input only. Immutable. Settings specific to resources needed for IL4."
         },
         "kajEnrollmentState": {
@@ -1086,6 +1119,7 @@
         },
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings",
+          "deprecated": true,
           "description": "Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS CMEK key is provisioned. This field is deprecated as of Feb 28, 2022. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field."
         },
         "labels": {
@@ -1153,6 +1187,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1WorkloadCJISSettings": {
+      "deprecated": true,
       "description": "Settings specific to resources needed for CJIS.",
       "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadCJISSettings",
       "properties": {
@@ -1273,6 +1308,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampHighSettings": {
+      "deprecated": true,
       "description": "Settings specific to resources needed for FedRAMP High.",
       "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampHighSettings",
       "properties": {
@@ -1284,6 +1320,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampModerateSettings": {
+      "deprecated": true,
       "description": "Settings specific to resources needed for FedRAMP Moderate.",
       "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampModerateSettings",
       "properties": {
@@ -1295,6 +1332,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1WorkloadIL4Settings": {
+      "deprecated": true,
       "description": "Settings specific to resources needed for IL4.",
       "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadIL4Settings",
       "properties": {
@@ -1306,6 +1344,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings": {
+      "deprecated": true,
       "description": "Settings specific to the Key Management Service.",
       "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings",
       "properties": {
@@ -1331,6 +1370,7 @@
           "type": "boolean"
         },
         "remediateFolderViolations": {
+          "deprecated": true,
           "description": "Allow partner to monitor folder and remediate violations",
           "type": "boolean"
         }
@@ -1354,6 +1394,13 @@
             "CONSUMER_FOLDER",
             "ENCRYPTION_KEYS_PROJECT",
             "KEYRING"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Unknown resource type.",
@@ -1387,6 +1434,13 @@
             "CONSUMER_FOLDER",
             "ENCRYPTION_KEYS_PROJECT",
             "KEYRING"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Unknown resource type.",
