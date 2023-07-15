@@ -150,6 +150,36 @@ export namespace container_v1 {
     gpuSharingConfig?: Schema$GPUSharingConfig;
   }
   /**
+   * AdditionalNodeNetworkConfig is the configuration for additional node networks within the NodeNetworkConfig message
+   */
+  export interface Schema$AdditionalNodeNetworkConfig {
+    /**
+     * Name of the VPC where the additional interface belongs
+     */
+    network?: string | null;
+    /**
+     * Name of the subnetwork where the additional interface belongs
+     */
+    subnetwork?: string | null;
+  }
+  /**
+   * AdditionalPodNetworkConfig is the configuration for additional pod networks within the NodeNetworkConfig message
+   */
+  export interface Schema$AdditionalPodNetworkConfig {
+    /**
+     * The maximum number of pods per node which use this pod network
+     */
+    maxPodsPerNode?: Schema$MaxPodsConstraint;
+    /**
+     * The name of the secondary range on the subnet which provides IP address for this pod range
+     */
+    secondaryPodRange?: string | null;
+    /**
+     * Name of the subnetwork where the additional pod network belongs
+     */
+    subnetwork?: string | null;
+  }
+  /**
    * AdditionalPodRangesConfig is the configuration for additional pod secondary ranges supporting the ClusterUpdate message.
    */
   export interface Schema$AdditionalPodRangesConfig {
@@ -1838,6 +1868,10 @@ export namespace container_v1 {
      */
     enableL4ilbSubsetting?: boolean | null;
     /**
+     * Whether multi-networking is enabled for this cluster.
+     */
+    enableMultiNetworking?: boolean | null;
+    /**
      * GatewayAPIConfig contains the desired config of Gateway API on this cluster.
      */
     gatewayApiConfig?: Schema$GatewayAPIConfig;
@@ -2128,6 +2162,14 @@ export namespace container_v1 {
    * Parameters for node pool-level network config.
    */
   export interface Schema$NodeNetworkConfig {
+    /**
+     * We specify the additional node networks for this node pool using this list. Each node network corresponds to an additional interface
+     */
+    additionalNodeNetworkConfigs?: Schema$AdditionalNodeNetworkConfig[];
+    /**
+     * We specify the additional pod networks for this node pool using this list. Each pod network corresponds to an additional alias IP range for the node
+     */
+    additionalPodNetworkConfigs?: Schema$AdditionalPodNetworkConfig[];
     /**
      * Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
      */
@@ -2427,6 +2469,10 @@ export namespace container_v1 {
    * PlacementPolicy defines the placement policy used by the node pool.
    */
   export interface Schema$PlacementPolicy {
+    /**
+     * If set, refers to the name of a custom resource policy supplied by the user. The resource policy must be in the same project and region as the node pool. If not found, InvalidArgument error is returned.
+     */
+    policyName?: string | null;
     /**
      * The type of placement.
      */
