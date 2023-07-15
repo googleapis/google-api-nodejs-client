@@ -2008,14 +2008,10 @@ export namespace firestore_v1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.delete({
-     *     // If set to true and the Database is not found, the request will succeed but no action will be taken.
-     *     allowMissing: 'placeholder-value',
      *     // The current etag of the Database. If an etag is provided and does not match the current etag of the database, deletion will be blocked and a FAILED_PRECONDITION error will be returned.
      *     etag: 'placeholder-value',
      *     // Required. A name of the form `projects/{project_id\}/databases/{database_id\}`
      *     name: 'projects/my-project/databases/my-database',
-     *     // If set, validate the request and preview the response, but do not actually delete the database.
-     *     validateOnly: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -3058,10 +3054,6 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Databases$Delete
     extends StandardParameters {
     /**
-     * If set to true and the Database is not found, the request will succeed but no action will be taken.
-     */
-    allowMissing?: boolean;
-    /**
      * The current etag of the Database. If an etag is provided and does not match the current etag of the database, deletion will be blocked and a FAILED_PRECONDITION error will be returned.
      */
     etag?: string;
@@ -3069,10 +3061,6 @@ export namespace firestore_v1 {
      * Required. A name of the form `projects/{project_id\}/databases/{database_id\}`
      */
     name?: string;
-    /**
-     * If set, validate the request and preview the response, but do not actually delete the database.
-     */
-    validateOnly?: boolean;
   }
   export interface Params$Resource$Projects$Databases$Exportdocuments
     extends StandardParameters {
