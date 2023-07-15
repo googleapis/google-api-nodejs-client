@@ -1688,7 +1688,7 @@
       }
     }
   },
-  "revision": "20230609",
+  "revision": "20230705",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1740,7 +1740,7 @@
       "type": "object"
     },
     "Backup": {
-      "description": "Represents a request to perform a single point-in-time capture of some portion of the state of a GKE cluster, the record of the backup operation itself, and an anchor for the underlying artifacts that comprise the Backup (the config backup and VolumeBackups). Next id: 28",
+      "description": "Represents a request to perform a single point-in-time capture of some portion of the state of a GKE cluster, the record of the backup operation itself, and an anchor for the underlying artifacts that comprise the Backup (the config backup and VolumeBackups). Next id: 29",
       "id": "Backup",
       "properties": {
         "allNamespaces": {
