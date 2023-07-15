@@ -2144,7 +2144,7 @@
       }
     }
   },
-  "revision": "20230630",
+  "revision": "20230707",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -3740,6 +3740,7 @@
           "type": "array"
         },
         "includePublicTagTemplates": {
+          "deprecated": true,
           "description": "Optional. This field is deprecated. The search mechanism for public and private tag templates is the same.",
           "type": "boolean"
         },

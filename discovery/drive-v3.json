@@ -2433,7 +2433,7 @@
       }
     }
   },
-  "revision": "20230613",
+  "revision": "20230708",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2449,6 +2449,7 @@
           "type": "boolean"
         },
         "canCreateTeamDrives": {
+          "deprecated": true,
           "description": "Deprecated: Use `canCreateDrives` instead.",
           "type": "boolean"
         },
@@ -2545,18 +2546,22 @@
           "type": "object"
         },
         "teamDriveThemes": {
+          "deprecated": true,
           "description": "Deprecated: Use `driveThemes` instead.",
           "items": {
             "properties": {
               "backgroundImageLink": {
+                "deprecated": true,
                 "description": "Deprecated: Use `driveThemes/backgroundImageLink` instead.",
                 "type": "string"
               },
               "colorRgb": {
+                "deprecated": true,
                 "description": "Deprecated: Use `driveThemes/colorRgb` instead.",
                 "type": "string"
               },
               "id": {
+                "deprecated": true,
                 "description": "Deprecated: Use `driveThemes/id` instead.",
                 "type": "string"
               }
@@ -2607,9 +2612,11 @@
         },
         "teamDrive": {
           "$ref": "TeamDrive",
+          "deprecated": true,
           "description": "Deprecated: Use `drive` instead."
         },
         "teamDriveId": {
+          "deprecated": true,
           "description": "Deprecated: Use `driveId` instead.",
           "type": "string"
         },
@@ -2619,6 +2626,7 @@
           "type": "string"
         },
         "type": {
+          "deprecated": true,
           "description": "Deprecated: Use `changeType` instead.",
           "type": "string"
         }
@@ -3076,6 +3084,7 @@
               "type": "boolean"
             },
             "canChangeViewersCanCopyContent": {
+              "deprecated": true,
               "description": "Deprecated: Output only.",
               "type": "boolean"
             },
@@ -3124,6 +3133,7 @@
               "type": "boolean"
             },
             "canMoveChildrenOutOfTeamDrive": {
+              "deprecated": true,
               "description": "Deprecated: Output only. Use `canMoveChildrenOutOfDrive` instead.",
               "type": "boolean"
             },
@@ -3132,10 +3142,12 @@
               "type": "boolean"
             },
             "canMoveChildrenWithinTeamDrive": {
+              "deprecated": true,
               "description": "Deprecated: Output only. Use `canMoveChildrenWithinDrive` instead.",
               "type": "boolean"
             },
             "canMoveItemIntoTeamDrive": {
+              "deprecated": true,
               "description": "Deprecated: Output only. Use `canMoveItemOutOfDrive` instead.",
               "type": "boolean"
             },
@@ -3144,6 +3156,7 @@
               "type": "boolean"
             },
             "canMoveItemOutOfTeamDrive": {
+              "deprecated": true,
               "description": "Deprecated: Output only. Use `canMoveItemOutOfDrive` instead.",
               "type": "boolean"
             },
@@ -3152,10 +3165,12 @@
               "type": "boolean"
             },
             "canMoveItemWithinTeamDrive": {
+              "deprecated": true,
               "description": "Deprecated: Output only. Use `canMoveItemWithinDrive` instead.",
               "type": "boolean"
             },
             "canMoveTeamDriveItem": {
+              "deprecated": true,
               "description": "Deprecated: Output only. Use `canMoveItemWithinDrive` or `canMoveItemOutOfDrive` instead.",
               "type": "boolean"
             },
@@ -3172,6 +3187,7 @@
               "type": "boolean"
             },
             "canReadTeamDrive": {
+              "deprecated": true,
               "description": "Deprecated: Output only. Use `canReadDrive` instead.",
               "type": "boolean"
             },
@@ -3590,6 +3606,7 @@
           "type": "boolean"
         },
         "teamDriveId": {
+          "deprecated": true,
           "description": "Deprecated: Output only. Use `driveId` instead.",
           "type": "string"
         },
@@ -3651,6 +3668,7 @@
           "type": "string"
         },
         "viewersCanCopyContent": {
+          "deprecated": true,
           "description": "Deprecated: Use `copyRequiresWriterPermission` instead.",
           "type": "boolean"
         },
@@ -4028,22 +4046,27 @@
           "type": "string"
         },
         "teamDrivePermissionDetails": {
+          "deprecated": true,
           "description": "Output only. Deprecated: Output only. Use `permissionDetails` instead.",
           "items": {
             "properties": {
               "inherited": {
+                "deprecated": true,
                 "description": "Deprecated: Output only. Use `permissionDetails/inherited` instead.",
                 "type": "boolean"
               },
               "inheritedFrom": {
+                "deprecated": true,
                 "description": "Deprecated: Output only. Use `permissionDetails/inheritedFrom` instead.",
                 "type": "string"
               },
               "role": {
+                "deprecated": true,
                 "description": "Deprecated: Output only. Use `permissionDetails/role` instead.",
                 "type": "string"
               },
               "teamDrivePermissionType": {
+                "deprecated": true,
                 "description": "Deprecated: Output only. Use `permissionDetails/permissionType` instead.",
                 "type": "string"
               }
@@ -4370,6 +4393,7 @@
               "type": "boolean"
             },
             "canRemoveChildren": {
+              "deprecated": true,
               "description": "Deprecated: Use `canDeleteChildren` or `canTrashChildren` instead.",
               "type": "boolean"
             },
