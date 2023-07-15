@@ -346,6 +346,15 @@ export namespace chat_v1 {
     error?: Schema$Status;
   }
   /**
+   * Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, a data source from Google Chat. For example, a list of Google Chat spaces of which the user is a member. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$ChatClientDataSourceMarkup {
+    /**
+     * A data source representing a Google Chat space. Format: spaces/{space\} [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    spaceDataSource?: Schema$SpaceDataSource;
+  }
+  /**
    * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); \} public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); \} return resultBuilder.build(); \} // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; \} return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; \} static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; \} Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; \} [result autorelease]; return result; \} // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); \} var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); \}; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); \} resultBuilder.push(hexString); return resultBuilder.join(''); \}; // ...
    */
   export interface Schema$Color {
@@ -692,6 +701,10 @@ export namespace chat_v1 {
      */
     peekCardHeader?: Schema$GoogleAppsCardV1CardHeader;
     /**
+     * The divider style between sections.
+     */
+    sectionDividerStyle?: string | null;
+    /**
      * Contains a collection of widgets. Each section has its own, optional header. Sections are visually separated by a line divider.
      */
     sections?: Schema$GoogleAppsCardV1Section[];
@@ -1016,6 +1029,19 @@ export namespace chat_v1 {
     url?: string | null;
   }
   /**
+   * Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, the data from a [Google Workspace host application](https://developers.google.com/chat/api/reference/rest/v1/HostApp). Used to populate the items in the multi-select menu. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$GoogleAppsCardV1PlatformDataSource {
+    /**
+     * For a `SelectionInput` widget that uses a multi-select menu, a data source shared by all Google Workspace host applications, such as users in a Google Workspace organization. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commonDataSource?: string | null;
+    /**
+     * A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    hostAppDataSource?: Schema$HostAppDataSourceMarkup;
+  }
+  /**
    * A section contains a collection of widgets that are rendered vertically in the order that they're specified.
    */
   export interface Schema$GoogleAppsCardV1Section {
@@ -1041,6 +1067,10 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1SelectionInput {
     /**
+     * An external data source, such as a relational data base. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    externalDataSource?: Schema$GoogleAppsCardV1Action;
+    /**
      * An array of selectable items. For example, an array of radio buttons or checkboxes. Supports up to 100 items.
      */
     items?: Schema$GoogleAppsCardV1SelectionItem[];
@@ -1049,6 +1079,14 @@ export namespace chat_v1 {
      */
     label?: string | null;
     /**
+     * For multi-select menus, the maximum number of items that a user can select. Minimum value is 1 item. If unspecified, set to 3 items. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    multiSelectMaxSelectedItems?: number | null;
+    /**
+     * For multi-select menus, the number of text characters that a user inputs before the Chat app queries autocomplete and displays suggested items on the card. If unspecified, set to 0 characters for static data sources and 3 characters for external data sources. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    multiSelectMinQueryLength?: number | null;
+    /**
      * The name that identifies the selection input in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
      */
     name?: string | null;
@@ -1056,6 +1094,10 @@ export namespace chat_v1 {
      * If specified, the form is submitted when the selection changes. If not specified, you must specify a separate button that submits the form. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
+    /**
+     * A data source from a [Google Workspace host application](https://developers.google.com/chat/api/reference/rest/v1/HostApp). [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    platformDataSource?: Schema$GoogleAppsCardV1PlatformDataSource;
     /**
      * The type of items that are displayed to users in a `SelectionInput` widget. Selection types support different types of interactions. For example, users can select one or more checkboxes, but they can only select one value from a dropdown menu.
      */
@@ -1066,9 +1108,17 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1SelectionItem {
     /**
+     * For multi-select menus, a text description or label that's displayed below the item's `text` field. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    bottomText?: string | null;
+    /**
      * Whether the item is selected by default. If the selection input only accepts one value (such as for radio buttons or a dropdown menu), only set this field for one item.
      */
     selected?: boolean | null;
+    /**
+     * For multi-select menus, the URL for the icon displayed next to the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS` URL. For example, `https://developers.google.com/chat/images/quickstart-app-avatar.png`. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    startIconUri?: string | null;
     /**
      * The text that identifies or describes the item to users.
      */
@@ -1248,6 +1298,15 @@ export namespace chat_v1 {
      * TextParagraph widget.
      */
     textParagraph?: Schema$GoogleAppsCardV1TextParagraph;
+  }
+  /**
+   * Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, a data source from a Google Workspace host application. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$HostAppDataSourceMarkup {
+    /**
+     * The data source is Google Chat. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    chatDataSource?: Schema$ChatClientDataSourceMarkup;
   }
   /**
    * An image that's specified by a URL and can have an `onclick` action.
@@ -1682,6 +1741,15 @@ export namespace chat_v1 {
      * Output only. Deprecated: Use `space_type` instead. The type of a space.
      */
     type?: string | null;
+  }
+  /**
+   * A data source representing a Google Chat space. Format: spaces/{space\} [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$SpaceDataSource {
+    /**
+     * When `true`, uses the card's Google Chat space as the default selection. The default value is `false`. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    defaultToCurrentSpace?: boolean | null;
   }
   /**
    * Details about the space including description and rules.
