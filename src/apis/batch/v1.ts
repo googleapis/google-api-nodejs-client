@@ -133,6 +133,10 @@ export namespace batch_v1 {
      */
     count?: string | null;
     /**
+     * Optional. The NVIDIA GPU driver version that should be installed for this type. You can define the specific driver version such as "470.103.01", following the driver version requirements in https://cloud.google.com/compute/docs/gpus/install-drivers-gpu#minimum-driver. Batch will install the specific accelerator driver if qualified.
+     */
+    driverVersion?: string | null;
+    /**
      * Deprecated: please use instances[0].install_gpu_drivers instead.
      */
     installGpuDrivers?: boolean | null;
@@ -197,7 +201,7 @@ export namespace batch_v1 {
    */
   export interface Schema$AgentInfo {
     /**
-     * The assigned Job ID
+     * Optional. The assigned Job ID
      */
     jobId?: string | null;
     /**
@@ -520,7 +524,7 @@ export namespace batch_v1 {
      */
     diskInterface?: string | null;
     /**
-     * Name of a public or custom image used as the data source. For example, the following are all valid URLs: * Specify the image by its family name: projects/{project\}/global/images/family/{image_family\} * Specify the image version: projects/{project\}/global/images/{image_version\} You can also use Batch customized image in short names. The following image values are supported for a boot disk: * "batch-debian": use Batch Debian images. * "batch-centos": use Batch CentOS images. * "batch-cos": use Batch Container-Optimized images. * "batch-hpc-centos": use Batch HPC CentOS images.
+     * Name of an image used as the data source. For example, the following are all valid URLs: * Specify the image by its family name: projects/project/global/images/family/image_family * Specify the image version: projects/project/global/images/image_version You can also use Batch customized image in short names. The following image values are supported for a boot disk: * `batch-debian`: use Batch Debian images. * `batch-centos`: use Batch CentOS images. * `batch-cos`: use Batch Container-Optimized images. * `batch-hpc-centos`: use Batch HPC CentOS images.
      */
     image?: string | null;
     /**
@@ -600,7 +604,7 @@ export namespace batch_v1 {
    */
   export interface Schema$InstancePolicyOrTemplate {
     /**
-     * Set this field true if users want Batch to help fetch drivers from a third party location and install them for GPUs specified in policy.accelerators or instance_template on their behalf. Default is false.
+     * Set this field true if users want Batch to help fetch drivers from a third party location and install them for GPUs specified in policy.accelerators or instance_template on their behalf. Default is false. For Container-Optimized Image cases, Batch will install the accelerator driver following milestones of https://cloud.google.com/container-optimized-os/docs/release-notes. For non Container-Optimized Image cases, following https://github.com/GoogleCloudPlatform/compute-gpu-installation/blob/main/linux/install_gpu_driver.py.
      */
     installGpuDrivers?: boolean | null;
     /**
@@ -865,7 +869,7 @@ export namespace batch_v1 {
    */
   export interface Schema$NetworkInterface {
     /**
-     * The URL of an existing network resource. You can specify the network as a full or partial URL. For example, the following are all valid URLs: * https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\} * projects/{project\}/global/networks/{network\} * global/networks/{network\}
+     * The URL of an existing network resource. You can specify the network as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/project/global/networks/network projects/project/global/networks/network global/networks/network
      */
     network?: string | null;
     /**
@@ -873,7 +877,7 @@ export namespace batch_v1 {
      */
     noExternalIpAddress?: boolean | null;
     /**
-     * The URL of an existing subnetwork resource in the network. You can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: * https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} * projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} * regions/{region\}/subnetworks/{subnetwork\}
+     * The URL of an existing subnetwork resource in the network. You can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork projects/project/regions/region/subnetworks/subnetwork regions/region/subnetworks/subnetwork
      */
     subnetwork?: string | null;
   }
@@ -2054,6 +2058,8 @@ export namespace batch_v1 {
      *   const res = await batch.projects.locations.jobs.list({
      *     // List filter.
      *     filter: 'placeholder-value',
+     *     // Optional. Sort results. Supported are "name", "name desc", "create_time", and "create_time desc".
+     *     orderBy: 'placeholder-value',
      *     // Page size.
      *     pageSize: 'placeholder-value',
      *     // Page token.
@@ -2208,6 +2214,10 @@ export namespace batch_v1 {
      * List filter.
      */
     filter?: string;
+    /**
+     * Optional. Sort results. Supported are "name", "name desc", "create_time", and "create_time desc".
+     */
+    orderBy?: string;
     /**
      * Page size.
      */

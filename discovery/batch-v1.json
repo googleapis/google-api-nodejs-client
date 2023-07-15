@@ -291,6 +291,11 @@
                       "location": "query",
                       "type": "string"
                     },
+                    "orderBy": {
+                      "description": "Optional. Sort results. Supported are \"name\", \"name desc\", \"create_time\", and \"create_time desc\".",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Page size.",
                       "format": "int32",
@@ -556,7 +561,7 @@
       }
     }
   },
-  "revision": "20230621",
+  "revision": "20230705",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -566,6 +571,10 @@
         "count": {
           "description": "The number of accelerators of this type.",
           "format": "int64",
+          "type": "string"
+        },
+        "driverVersion": {
+          "description": "Optional. The NVIDIA GPU driver version that should be installed for this type. You can define the specific driver version such as \"470.103.01\", following the driver version requirements in https://cloud.google.com/compute/docs/gpus/install-drivers-gpu#minimum-driver. Batch will install the specific accelerator driver if qualified.",
           "type": "string"
         },
         "installGpuDrivers": {
@@ -658,7 +667,7 @@
       "id": "AgentInfo",
       "properties": {
         "jobId": {
-          "description": "The assigned Job ID",
+          "description": "Optional. The assigned Job ID",
           "type": "string"
         },
         "reportTime": {
@@ -1082,7 +1091,7 @@
           "type": "string"
         },
         "image": {
-          "description": "Name of a public or custom image used as the data source. For example, the following are all valid URLs: * Specify the image by its family name: projects/{project}/global/images/family/{image_family} * Specify the image version: projects/{project}/global/images/{image_version} You can also use Batch customized image in short names. The following image values are supported for a boot disk: * \"batch-debian\": use Batch Debian images. * \"batch-centos\": use Batch CentOS images. * \"batch-cos\": use Batch Container-Optimized images. * \"batch-hpc-centos\": use Batch HPC CentOS images.",
+          "description": "Name of an image used as the data source. For example, the following are all valid URLs: * Specify the image by its family name: projects/project/global/images/family/image_family * Specify the image version: projects/project/global/images/image_version You can also use Batch customized image in short names. The following image values are supported for a boot disk: * `batch-debian`: use Batch Debian images. * `batch-centos`: use Batch CentOS images. * `batch-cos`: use Batch Container-Optimized images. * `batch-hpc-centos`: use Batch HPC CentOS images.",
           "type": "string"
         },
         "sizeGb": {
@@ -1197,7 +1206,7 @@
       "id": "InstancePolicyOrTemplate",
       "properties": {
         "installGpuDrivers": {
-          "description": "Set this field true if users want Batch to help fetch drivers from a third party location and install them for GPUs specified in policy.accelerators or instance_template on their behalf. Default is false.",
+          "description": "Set this field true if users want Batch to help fetch drivers from a third party location and install them for GPUs specified in policy.accelerators or instance_template on their behalf. Default is false. For Container-Optimized Image cases, Batch will install the accelerator driver following milestones of https://cloud.google.com/container-optimized-os/docs/release-notes. For non Container-Optimized Image cases, following https://github.com/GoogleCloudPlatform/compute-gpu-installation/blob/main/linux/install_gpu_driver.py.",
           "type": "boolean"
         },
         "instanceTemplate": {
@@ -1660,7 +1669,7 @@
       "id": "NetworkInterface",
       "properties": {
         "network": {
-          "description": "The URL of an existing network resource. You can specify the network as a full or partial URL. For example, the following are all valid URLs: * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network} * projects/{project}/global/networks/{network} * global/networks/{network}",
+          "description": "The URL of an existing network resource. You can specify the network as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/project/global/networks/network projects/project/global/networks/network global/networks/network ",
           "type": "string"
         },
         "noExternalIpAddress": {
@@ -1668,7 +1677,7 @@
           "type": "boolean"
         },
         "subnetwork": {
-          "description": "The URL of an existing subnetwork resource in the network. You can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: * https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork} * projects/{project}/regions/{region}/subnetworks/{subnetwork} * regions/{region}/subnetworks/{subnetwork}",
+          "description": "The URL of an existing subnetwork resource in the network. You can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork projects/project/regions/region/subnetworks/subnetwork regions/region/subnetworks/subnetwork ",
           "type": "string"
         }
       },
