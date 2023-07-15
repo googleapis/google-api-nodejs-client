@@ -721,7 +721,7 @@
       }
     }
   },
-  "revision": "20230621",
+  "revision": "20230707",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -767,7 +767,7 @@
           "type": "string"
         },
         "type": {
-          "description": "the accelerator type.",
+          "description": "The accelerator type.",
           "type": "string"
         }
       },
@@ -1110,7 +1110,7 @@
           "description": "The AccleratorConfig for the TPU Node."
         },
         "acceleratorType": {
-          "description": "Required. The type of hardware accelerators associated with this node.",
+          "description": "Optional. The type of hardware accelerators associated with this node.",
           "type": "string"
         },
         "apiVersion": {
@@ -1196,6 +1196,11 @@
           "description": "Custom metadata to apply to the TPU Node. Can set startup-script and shutdown-script",
           "type": "object"
         },
+        "multisliceNode": {
+          "description": "Output only. Whether the Node belongs to a Multislice group.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "name": {
           "description": "Output only. Immutable. The name of the TPU.",
           "readOnly": true,
@@ -1212,6 +1217,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "queuedResource": {
+          "description": "Output only. The qualified name of the QueuedResource that requested this Node.",
+          "readOnly": true,
+          "type": "string"
         },
         "runtimeVersion": {
           "description": "Required. The runtime version running in the Node.",

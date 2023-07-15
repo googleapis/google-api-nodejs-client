@@ -655,7 +655,7 @@ export namespace tpu_v2alpha1 {
      */
     bestEffort?: Schema$BestEffort;
     /**
-     * The Guaranteed tier
+     * The Guaranteed tier.
      */
     guaranteed?: Schema$Guaranteed;
     /**
@@ -670,6 +670,10 @@ export namespace tpu_v2alpha1 {
      * Name of the reservation in which the resource should be provisioned. Format: projects/{project\}/locations/{zone\}/reservations/{reservation\}
      */
     reservationName?: string | null;
+    /**
+     * Optional. The Spot tier.
+     */
+    spot?: Schema$Spot;
     /**
      * Output only. State of the QueuedResource request.
      */
@@ -811,6 +815,10 @@ export namespace tpu_v2alpha1 {
      */
     workerIds?: string[] | null;
   }
+  /**
+   * Spot tier definition.
+   */
+  export interface Schema$Spot {}
   /**
    * Request for StartNode.
    */
@@ -3738,6 +3746,7 @@ export namespace tpu_v2alpha1 {
      *       //   "name": "my_name",
      *       //   "queueingPolicy": {},
      *       //   "reservationName": "my_reservationName",
+     *       //   "spot": {},
      *       //   "state": {},
      *       //   "tpu": {}
      *       // }
@@ -4021,6 +4030,7 @@ export namespace tpu_v2alpha1 {
      *   //   "name": "my_name",
      *   //   "queueingPolicy": {},
      *   //   "reservationName": "my_reservationName",
+     *   //   "spot": {},
      *   //   "state": {},
      *   //   "tpu": {}
      *   // }

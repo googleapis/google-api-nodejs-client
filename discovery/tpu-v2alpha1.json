@@ -897,7 +897,7 @@
       }
     }
   },
-  "revision": "20230601",
+  "revision": "20230707",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1676,7 +1676,7 @@
         },
         "guaranteed": {
           "$ref": "Guaranteed",
-          "description": "The Guaranteed tier"
+          "description": "The Guaranteed tier."
         },
         "name": {
           "description": "Output only. Immutable. The name of the QueuedResource.",
@@ -1690,6 +1690,10 @@
         "reservationName": {
           "description": "Name of the reservation in which the resource should be provisioned. Format: projects/{project}/locations/{zone}/reservations/{reservation}",
           "type": "string"
+        },
+        "spot": {
+          "$ref": "Spot",
+          "description": "Optional. The Spot tier."
         },
         "state": {
           "$ref": "QueuedResourceState",
@@ -1881,6 +1885,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "Spot": {
+      "description": "Spot tier definition.",
+      "id": "Spot",
+      "properties": {},
       "type": "object"
     },
     "StartNodeRequest": {
