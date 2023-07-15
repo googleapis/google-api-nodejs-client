@@ -1784,7 +1784,7 @@
       }
     }
   },
-  "revision": "20230627",
+  "revision": "20230707",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -3026,6 +3026,13 @@
           "description": "Optional. A user-assigned display name of the Fleet. When present, it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `Production Fleet`",
           "type": "string"
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for this Fleet.",
+          "type": "object"
+        },
         "name": {
           "description": "Output only. The full, unique resource name of this fleet in the format of `projects/{project}/locations/{location}/fleets/{fleet}`. Each Google Cloud project can have at most one fleet resource, named \"default\".",
           "readOnly": true,
@@ -3267,7 +3274,7 @@
         },
         "googleConfig": {
           "$ref": "IdentityServiceGoogleConfig",
-          "description": "GoogleConfig specific configuration"
+          "description": "GoogleConfig specific configuration."
         },
         "name": {
           "description": "Identifier for auth config.",
@@ -3308,6 +3315,10 @@
         },
         "tenant": {
           "description": "Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.",
+          "type": "string"
+        },
+        "userClaim": {
+          "description": "Optional. Claim in the AzureAD ID Token that holds the user details.",
           "type": "string"
         }
       },
@@ -3652,6 +3663,13 @@
           "description": "Whether the membershipbinding is Fleet-wide; true means that this Membership should be bound to all Namespaces in this entire Fleet.",
           "type": "boolean"
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for this MembershipBinding.",
+          "type": "object"
+        },
         "name": {
           "description": "The resource name for the membershipbinding itself `projects/{project}/locations/{location}/memberships/{membership}/bindings/{membershipbinding}`",
           "type": "string"
@@ -3866,6 +3884,13 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for this Namespace.",
+          "type": "object"
         },
         "name": {
           "description": "The resource name for the namespace `projects/{project}/locations/{location}/namespaces/{namespace}`",
@@ -4099,13 +4124,15 @@
             "INSTALL_SPEC_UNSPECIFIED",
             "INSTALL_SPEC_NOT_INSTALLED",
             "INSTALL_SPEC_ENABLED",
-            "INSTALL_SPEC_SUSPENDED"
+            "INSTALL_SPEC_SUSPENDED",
+            "INSTALL_SPEC_DETACHED"
           ],
           "enumDescriptions": [
             "Spec is unknown.",
             "Request to uninstall Policy Controller.",
             "Request to install and enable Policy Controller.",
-            "Request to suspend Policy Controller i.e. its webhooks. If Policy Controller is not installed, it will be installed but suspended."
+            "Request to suspend Policy Controller i.e. its webhooks. If Policy Controller is not installed, it will be installed but suspended.",
+            "Request to stop all reconciliation actions by PoCo Hub controller. This is a breakglass mechanism to stop PoCo Hub from affecting cluster resources."
           ],
           "type": "string"
         },
@@ -4173,7 +4200,8 @@
             "DECOMMISSIONING",
             "CLUSTER_ERROR",
             "HUB_ERROR",
-            "SUSPENDED"
+            "SUSPENDED",
+            "DETACHED"
           ],
           "enumDescriptions": [
             "The lifecycle state is unspecified.",
@@ -4184,7 +4212,8 @@
             "The PC may have resources on the cluster, but the PCH wishes to remove the Membership. The Membership still exists.",
             "The PC is not operational, and the PCH is unable to act to make it operational. Entering a CLUSTER_ERROR state happens automatically when the PCH determines that a PC installed on the cluster is non-operative or that the cluster does not meet requirements set for the PCH to administer the cluster but has nevertheless been given an instruction to do so (such as 'install').",
             "In this state, the PC may still be operational, and only the PCH is unable to act. The hub should not issue instructions to change the PC state, or otherwise interfere with the on-cluster resources. Entering a HUB_ERROR state happens automatically when the PCH determines the hub is in an unhealthy state and it wishes to 'take hands off' to avoid corrupting the PC or other data.",
-            "Policy Controller (PC) is installed but suspended. This means that the policies are not enforced, but violations are still recorded (through audit)."
+            "Policy Controller (PC) is installed but suspended. This means that the policies are not enforced, but violations are still recorded (through audit).",
+            "PoCo Hub is not taking any action to reconcile cluster objects. Changes to those objects will not be overwritten by PoCo Hub."
           ],
           "type": "string"
         }
@@ -4234,7 +4263,8 @@
             "DECOMMISSIONING",
             "CLUSTER_ERROR",
             "HUB_ERROR",
-            "SUSPENDED"
+            "SUSPENDED",
+            "DETACHED"
           ],
           "enumDescriptions": [
             "The lifecycle state is unspecified.",
@@ -4245,7 +4275,8 @@
             "The PC may have resources on the cluster, but the PCH wishes to remove the Membership. The Membership still exists.",
             "The PC is not operational, and the PCH is unable to act to make it operational. Entering a CLUSTER_ERROR state happens automatically when the PCH determines that a PC installed on the cluster is non-operative or that the cluster does not meet requirements set for the PCH to administer the cluster but has nevertheless been given an instruction to do so (such as 'install').",
             "In this state, the PC may still be operational, and only the PCH is unable to act. The hub should not issue instructions to change the PC state, or otherwise interfere with the on-cluster resources. Entering a HUB_ERROR state happens automatically when the PCH determines the hub is in an unhealthy state and it wishes to 'take hands off' to avoid corrupting the PC or other data.",
-            "Policy Controller (PC) is installed but suspended. This means that the policies are not enforced, but violations are still recorded (through audit)."
+            "Policy Controller (PC) is installed but suspended. This means that the policies are not enforced, but violations are still recorded (through audit).",
+            "PoCo Hub is not taking any action to reconcile cluster objects. Changes to those objects will not be overwritten by PoCo Hub."
           ],
           "type": "string"
         }
@@ -4427,6 +4458,13 @@
           "description": "group is the group, as seen by the kubernetes cluster.",
           "type": "string"
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for this RBACRolebinding.",
+          "type": "object"
+        },
         "name": {
           "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/namespaces/{namespace}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
           "type": "string"
@@ -4528,6 +4566,13 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for this Scope.",
+          "type": "object"
         },
         "name": {
           "description": "The resource name for the scope `projects/{project}/locations/{location}/scopes/{scope}`",
