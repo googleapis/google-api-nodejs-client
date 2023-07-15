@@ -7677,6 +7677,10 @@ export namespace contentwarehouse_v1 {
      * Specifies capabilities for handling on-device timers. The presence of this field, even if empty, implies that the device supports timers.
      */
     timer?: Schema$AssistantDevicesPlatformProtoTimerCapability;
+    /**
+     * Specifies whether client supports receiving `DeviceAction.tts_output`.
+     */
+    ttsOutput?: Schema$AssistantDevicesPlatformProtoTtsOutputCapability;
   }
   /**
    * An intent configures the behavior of a device action for this device. Next ID: 7
@@ -7905,6 +7909,15 @@ export namespace contentwarehouse_v1 {
     status?: string | null;
   }
   /**
+   * Capabilities with regard to support of outputting TTS.
+   */
+  export interface Schema$AssistantDevicesPlatformProtoTtsOutputCapability {
+    /**
+     * Specifies whether client supports out-of-band TTS synthesis. When this is enabled, client could receive TTS request message in `SpeechOutputArgs.structured_tts` which it can then use to make request to S3 for synthesizing TTS audio.
+     */
+    supportsStructuredTts?: boolean | null;
+  }
+  /**
    * Specifies the NLU level that Google performs, which determines the request format sent to the 3P cloud.
    */
   export interface Schema$AssistantDevicesPlatformProtoUnderstandingConfig {
@@ -8101,11 +8114,21 @@ export namespace contentwarehouse_v1 {
     isSelectedByLumos?: boolean | null;
   }
   /**
-   * Next ID: 6
+   * Features to be extracted from Endpoint GP for ranking in HGR. Next ID: 2
+   */
+  export interface Schema$AssistantGroundingRankerEndpointGroundingProviderFeatures {
+    /**
+     * Proxy signal which tells whether the user provided a confirmation to a prompt or not. See http://shortn/_XnZAJBIiwG for more details.
+     */
+    isUserConfirmed?: boolean | null;
+  }
+  /**
+   * Next ID: 7
    */
   export interface Schema$AssistantGroundingRankerGroundingProviderFeatures {
     contactGroundingProviderFeatures?: Schema$AssistantGroundingRankerContactGroundingProviderFeatures;
     deviceGroundingProviderFeatures?: Schema$AssistantGroundingRankerDeviceGroundingProviderFeatures;
+    endpointGroundingProviderFeatures?: Schema$AssistantGroundingRankerEndpointGroundingProviderFeatures;
     mediaGroundingProviderFeatures?: Schema$AssistantGroundingRankerMediaGroundingProviderFeatures;
     podcastGroundingProviderFeatures?: Schema$AssistantGroundingRankerPodcastGroundingProviderFeatures;
     providerGroundingProviderFeatures?: Schema$AssistantGroundingRankerProviderGroundingProviderFeatures;
@@ -8135,7 +8158,7 @@ export namespace contentwarehouse_v1 {
     assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
   }
   /**
-   * Features to be passed from Media GP to HGR. Next ID: 15
+   * Features to be passed from Media GP to HGR. Next ID: 16
    */
   export interface Schema$AssistantGroundingRankerMediaGroundingProviderFeatures {
     /**
@@ -8143,7 +8166,7 @@ export namespace contentwarehouse_v1 {
      */
     albumReleaseType?: string | null;
     /**
-     * Temporary ambiguity classifier signal.
+     * Temporary ambiguity classifier signals.
      */
     ambiguityClassifier?: string | null;
     /**
@@ -8158,6 +8181,7 @@ export namespace contentwarehouse_v1 {
      * True if the media search query is included in the entity name and artists.
      */
     isMediaSearchQuerySubsetOfEntityNameAndArtist?: boolean | null;
+    isMostRecentSongAlbumAmbiguous?: boolean | null;
     /**
      * True if the media deeplink has tag SEED_RADIO.
      */
@@ -11813,9 +11837,13 @@ export namespace contentwarehouse_v1 {
     value?: number[] | null;
   }
   /**
-   * The attributes of encoded thumbnail images. Next id: 8.
+   * The attributes of encoded thumbnail images. Next id: 9.
    */
   export interface Schema$DrishtiVesperEncodedThumbnail {
+    /**
+     * Image size in bytes. Meaningful when contents are not stored inline (e.g., via `image_blob_id`).
+     */
+    byteSize?: string | null;
     /**
      * JPEG/WEBP quality factor in range [0,100].
      */
@@ -15483,7 +15511,7 @@ export namespace contentwarehouse_v1 {
     segment?: Schema$GeostoreFeatureIdProto[];
   }
   /**
-   * A restriction is an expression that limits when an action can be taken. Each restriction has a set of conditions. If all of the conditions are true, then the restriction applies and the action cannot be taken. For example, the restriction "no turns 3-5pm except buses" would have two conditions: "time is 3-5pm" and "vehicle is not a bus". If both of these conditions apply, the restriction is true, and the turn is prohibited. Multiple restrictions may apply to the same action. Clients handle this by always declaring RestrictionProto as a "repeated" element. The semantics of having multiple restrictions are that if any restriction applies, then the action cannot be taken. In other words, restrictions are OR-ed together. Putting all of this together, a set of RestrictionProtos can be interpreted as an bool expression in disjunctive normal form: (A and B) or (D and E and F) or (G and H) The action is prohibited if this expression is true. Note that a restriction with no conditions is always true, i.e. its action is always prohibited.
+   * A restriction is an expression that limits when an action can be taken. Each restriction has a set of conditions. If all of the conditions are true, then the restriction applies and the action cannot be taken. For example, the restriction "no turns 3-5pm except buses" would have two conditions: "time is 3-5pm" and "vehicle is not a bus". If both of these conditions apply, the restriction is true, and the turn is prohibited. Multiple restrictions may apply to the same action. Clients handle this by always declaring RestrictionProto as a "repeated" element. The semantics of having multiple restrictions are that if any restriction applies, then the action cannot be taken. In other words, restrictions are OR-ed together. Putting all of this together, a set of RestrictionProtos can be interpreted as an bool expression in disjunctive normal form: (A and B) or (D and E and F) or (G and H) The action is prohibited if this expression is true. Note that a restriction with no conditions is always true, i.e. its action is always prohibited. NOTE: RestrictionProtos are often compared against one another (e.g. to check for duplicate/redundant restrictions) by canonicalizing them via GetCanonicalRestriction() in //geostore/base/public/restriction.cc. Any fields that don't contribute to the definition of a restriction in the real world should be bundled with the annotative fields near the bottom and excluded in GetCanonicalRestriction(). LINT.IfChange
    */
   export interface Schema$GeostoreRestrictionProto {
     /**
@@ -15595,6 +15623,10 @@ export namespace contentwarehouse_v1 {
      * The direction of traffic for the referenced TYPE_ROUTE feature.
      */
     routeDirection?: string | null;
+    /**
+     * The semantic type of sign.
+     */
+    semanticType?: string | null;
     /**
      * If this sign component is of type "TYPE_TEXT", this field contains the text of the component. A NameProto is used to allow language and flags to be associated with the text.
      */
@@ -17380,7 +17412,7 @@ export namespace contentwarehouse_v1 {
     surfaceIdentity?: Schema$GoogleAssistantEmbeddedV1SurfaceIdentity;
   }
   /**
-   * Information about the state of the device. This contains any state that Assistant may need to know about in order to fulfill requests, for example which timers and alarms are set. Next ID: 10
+   * Information about the state of the device. This contains any state that Assistant may need to know about in order to fulfill requests, for example which timers and alarms are set. Next ID: 11
    */
   export interface Schema$GoogleAssistantAccessoryV1DeviceState {
     /**
@@ -17411,6 +17443,10 @@ export namespace contentwarehouse_v1 {
      * *Optional* Information about on-device timers. For devices that support timers, all on-device timers must be sent up with the DeviceState in order for Assistant Server to be able to perform operations on them.
      */
     timerState?: Schema$GoogleAssistantEmbeddedV1Timers;
+    /**
+     * This indicates which specific settings are currently unavailable for modification, despite being listed as a supported setting. Assistant can use this field to trigger unavailability messages, rather than claiming that a setting is entirely unsupported on device.
+     */
+    unavailableSettings?: string[] | null;
   }
   /**
    * Configuration for the response. Next Id: 11
@@ -17495,6 +17531,10 @@ export namespace contentwarehouse_v1 {
      * A string key used as an identifier to this alarm. This key needs to be unique amongst all alarms on the device. The client can choose a mechanism of its choice to ensure this. If the server suggests an alarm_id, the client can either use the suggestion or create a new unique alarm_id of its choosing.
      */
     alarmId?: string | null;
+    /**
+     * The entity that created this alarm. Note this may be different from the device that reported this alarm. In particular, this field is meant for remote alarms which have been synced to the current device by the Clock app. Synced alarms exist in each device's Clock app and can be managed by either device; this field indicates their origin.
+     */
+    alarmSource?: string | null;
     /**
      * For single alarms: the one date the alarm should next be scheduled for.
      */
@@ -22973,6 +23013,7 @@ export namespace contentwarehouse_v1 {
    * Identifier for frames associated with a video.
    */
   export interface Schema$ImageRepositoryFrameIdentifier {
+    multiThumbnailVariant?: Schema$ImageRepositoryFrameIdentifierMultiThumbnailVariant;
     previewFrameZeroVariant?: Schema$ImageRepositoryFrameIdentifierPreviewFrameZeroVariant;
     thumbnailVariant?: Schema$ImageRepositoryFrameIdentifierThumbnailVariant;
     /**
@@ -22980,6 +23021,10 @@ export namespace contentwarehouse_v1 {
      */
     timestampMs?: number | null;
   }
+  /**
+   * This variant defines the frame to be used as multiple thumbnails per miuntes.
+   */
+  export interface Schema$ImageRepositoryFrameIdentifierMultiThumbnailVariant {}
   /**
    * This variant defines the frame to be the first frame of the video's generated preview.
    */
@@ -24172,7 +24217,7 @@ export namespace contentwarehouse_v1 {
     extraMessage?: Schema$Proto2BridgeMessageSet;
   }
   /**
-   * DataVersion tracks the version of data in CompositeDoc. The notion of "data" here is loose and people can define the name of their own. For example, a signal generated by Index Signals or an annotation generated by Goldmine (and other components) can all be considered as data here. Each field in this proto represents the human readable version string and the timestamp of one particular data. We choose to explicitly list out all of the data here for better understanding about which data are tracked. NOTE that human_readable_version is not intended for comparison, use timestamp_micros. In addition, we have an annotation about the field paths of each data. With proto reflection (using google3/net/proto2/util/public/field_path.h), downstream systems can take advantage of this annotation to automatically handle newly introduced data without modifying their code. Please also see the comment of FieldProjector above. There are also some fields in DataInfo that annotate who generates the data, the Index Signals or Goldmine annotator name. Next ID: 536
+   * DataVersion tracks the version of data in CompositeDoc. The notion of "data" here is loose and people can define the name of their own. For example, a signal generated by Index Signals or an annotation generated by Goldmine (and other components) can all be considered as data here. Each field in this proto represents the human readable version string and the timestamp of one particular data. We choose to explicitly list out all of the data here for better understanding about which data are tracked. NOTE that human_readable_version is not intended for comparison, use timestamp_micros. In addition, we have an annotation about the field paths of each data. With proto reflection (using google3/net/proto2/util/public/field_path.h), downstream systems can take advantage of this annotation to automatically handle newly introduced data without modifying their code. Please also see the comment of FieldProjector above. There are also some fields in DataInfo that annotate who generates the data, the Index Signals or Goldmine annotator name. Next ID: 537
    */
   export interface Schema$IndexingDocjoinerDataVersion {
     acceleratedShoppingSignal?: Schema$IndexingDocjoinerDataVersionVersionInfo;
@@ -24398,9 +24443,6 @@ export namespace contentwarehouse_v1 {
     newsCorpusLeafPageAnnotation?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     newsCorpusNewsAggregateSignal?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     newsCorpusNewsCorpusAnnotation?: Schema$IndexingDocjoinerDataVersionVersionInfo;
-    /**
-     * END DATA FIELDS
-     */
     newsCorpusNewsCorpusRootAnnotation?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     newsCorpusNewsCorpusStatusAnnotation?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     newsCorpusNewsinessAnnotation?: Schema$IndexingDocjoinerDataVersionVersionInfo;
@@ -24680,6 +24722,10 @@ export namespace contentwarehouse_v1 {
     timeAnnotationTags?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     timeRangeAnnotations?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     travelAssistantTravelDocClassification?: Schema$IndexingDocjoinerDataVersionVersionInfo;
+    /**
+     * END DATA FIELDS
+     */
+    ucpSignal?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     udrConverterDocumentShoppingData?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     udrConverterOffer?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     udrConverterProductBlockData?: Schema$IndexingDocjoinerDataVersionVersionInfo;
@@ -28517,6 +28563,9 @@ export namespace contentwarehouse_v1 {
     latentEntity?: string | null;
     mdvc?: string | null;
     property?: string | null;
+    /**
+     * Has not been useful since at least 2015 (before this was logged).
+     */
     resolution?: string | null;
   }
   /**
@@ -30828,6 +30877,9 @@ export namespace contentwarehouse_v1 {
   export interface Schema$NlpSemanticParsingLocalEvChargingStationConnectorConstraint {
     connectorType?: string | null;
   }
+  export interface Schema$NlpSemanticParsingLocalEvChargingStationPaymentConstraint {
+    paymentNetworkMid?: string | null;
+  }
   /**
    * There is an implicit AND relation if multiple EVCS constraint types are specified.
    */
@@ -31054,7 +31106,7 @@ export namespace contentwarehouse_v1 {
     vicinityLocation?: Schema$NlpSemanticParsingLocalVicinityLocation;
   }
   /**
-   * All the possible location constraints. This message is associated with a location and can be nested accordingly. E.g., for a compound location the constraint may be associated with the entire location or with either of the two internal locations (loc_1 and loc_2). There is an implicit AND relation between the different constraints. Next ID: 25.
+   * All the possible location constraints. This message is associated with a location and can be nested accordingly. E.g., for a compound location the constraint may be associated with the entire location or with either of the two internal locations (loc_1 and loc_2). There is an implicit AND relation between the different constraints. Next ID: 26.
    */
   export interface Schema$NlpSemanticParsingLocalLocationConstraint {
     /**
@@ -31067,6 +31119,10 @@ export namespace contentwarehouse_v1 {
      * Used for populating ElectricVehicleConnectorRefinement from QBF go/evcs-qbf-connector
      */
     evcsConnectorConstraint?: Schema$NlpSemanticParsingLocalEvChargingStationConnectorConstraint;
+    /**
+     * Used for populating ElectricVehiclePaymentRefinement from QBF go/evcs-qbf-payment
+     */
+    evcsPaymentConstraint?: Schema$NlpSemanticParsingLocalEvChargingStationPaymentConstraint;
     evcsSpeedConstraint?: Schema$NlpSemanticParsingLocalEvChargingStationSpeedConstraint;
     /**
      * Used for GCID filter. Unlike other grammar, for now this is populated in Superroot (currently based on QBLD classification, and an allowlist of GCID).
@@ -35794,10 +35850,6 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$PornFlagData {
     /**
-     * Score predicting how likely an image is offensive or suggestive about CSAI (child sexual abuse imagery).
-     */
-    csaiScore?: number | null;
-    /**
      * DebugInfo stores debug information from the overall classifier. This allows for instance to update counters related to blacklisting without running the full classifier again.
      */
     debugInfo?: Schema$ImagePornDebugInfo[];
@@ -35874,7 +35926,7 @@ export namespace contentwarehouse_v1 {
      */
     url?: string | null;
     /**
-     * Information about the URL porn scores for image URLs associated with this image.
+     * Information about the URL porn scores for image URLs associated with this image. IMPORTANT: This signal is not populated from June 2023. Refer to b/209748384 for more information.
      */
     urlPornScores?: Schema$ClassifierPornAggregatedUrlPornScores;
   }
@@ -36844,10 +36896,6 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$QualityDniExtendedNewsPreviews {
     /**
-     * Publisher's country code (ISO-3166) Used in V0.
-     */
-    countryCode?: string | null;
-    /**
      * List of countries that desnippet the publisher. ISO 3166-1-alpha-2 country code (such as FR). See go/iiuse#region-identifiers. Used in V1.
      */
     desnippetedCountryCode?: string[] | null;
@@ -36865,7 +36913,7 @@ export namespace contentwarehouse_v1 {
     version?: string | null;
   }
   /**
-   * PerDocData for fringe-query-prior (built into the shards for eventual consumption at Fringe classification time). Not stored in DocJoins. NEXT ID: 12
+   * PerDocData for fringe-query-prior (built into the shards for eventual consumption at Fringe classification time). Not stored in DocJoins. NEXT ID: 13
    */
   export interface Schema$QualityFringeFringeQueryPriorPerDocData {
     encodedCalibratedFringeSitePriorScore?: number | null;
@@ -36873,6 +36921,10 @@ export namespace contentwarehouse_v1 {
      * An encoding of the Chard XLQ-hoax prediction in [0,1].
      */
     encodedChardXlqHoaxPrediction?: number | null;
+    /**
+     * An encoding of the Chard XLQ prediction on translated content in [0,1].
+     */
+    encodedChardXlqTranslatedPrediction?: number | null;
     /**
      * An encoding of the Chard XLQ-YMYL prediction in [0,1].
      */
@@ -38074,6 +38126,10 @@ export namespace contentwarehouse_v1 {
    * Used as Mustang attachment DO NOT: - ACCESS THE PROTO FIELDS DIRECTLY - USE THE DECODING LIBRARY IN quality/rankembed/mustang/fixed_point_decoding_helpers.h INSTEAD. - USE HARDCODED MustangRankEmbedInfo TEXT PROTOS IN TESTS! USE quality/rankembed/test_utils/mustang_rankembed_info_utils.h INSTEAD.
    */
   export interface Schema$QualityRankembedMustangMustangRankEmbedInfo {
+    /**
+     * Each of the repeated elements in this field has the same scheme as 'fixed_point_encoding'; See go/rankembed-astro-rule-set-dd
+     */
+    additionalFixedPointEncodings?: string[] | null;
     /**
      * Each uint64 encodes 8 8-bit values for the quantized document embedding
      */
@@ -40459,7 +40515,6 @@ export namespace contentwarehouse_v1 {
     latentEntity?: string | null;
     mdvc?: string | null;
     property?: string | null;
-    resolution?: string | null;
   }
   /**
    * Information about one of the types of a linked entity.
@@ -41493,7 +41548,7 @@ export namespace contentwarehouse_v1 {
     anchor?: Schema$RepositoryWebrefSimplifiedAnchor[];
   }
   /**
-   * Represents an information which is very close to composite doc, but compresses how the anchors are represented to save space. Next available tag: 16.
+   * Represents an information which is very close to composite doc, but compresses how the anchors are represented to save space. Next available tag: 17.
    */
   export interface Schema$RepositoryWebrefSimplifiedCompositeDoc {
     /**
@@ -41509,6 +41564,10 @@ export namespace contentwarehouse_v1 {
      */
     documentMentionSpans?: Schema$RepositoryWebrefRefconDocumentMentionSpans;
     /**
+     * Forwarding dups generated by merging existing forwarding dups within cdoc_container and URLs from ReferencePageCandidateList. Populated only before writing to online CDocs Spanner table and used for keeping an index on non canonical URLs in table. [!] Do not use unless fetching CDocs from Enricher's online Spanner CDocs database knowledge-enricher-cdocs-spanner.
+     */
+    forwardingDups?: Schema$RepositoryWebrefSimplifiedForwardingDup[];
+    /**
      * Metadata related to why this doc was matched to its owning entity.
      */
     matchingMetadata?: Schema$RepositoryWebrefPreprocessingUrlMatchingMetadata;
@@ -41523,6 +41582,9 @@ export namespace contentwarehouse_v1 {
     url?: string | null;
     webrefOutlinkInfos?: Schema$RepositoryWebrefWebrefOutlinkInfos;
     webrefOutlinksLegacy?: Schema$Proto2BridgeMessageSet;
+  }
+  export interface Schema$RepositoryWebrefSimplifiedForwardingDup {
+    url?: string | null;
   }
   /**
    * LINT.IfChange Some document segments may consist of multiple sub-segments (e.g. a document might have multiple anchors or navboost queries). SubSegmentIndex contains all information needed to identify the sub-segment (e.g. specific query, query feature or or anchor) where the mention is located.
@@ -43068,9 +43130,10 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$SafesearchVideoClassifierOutput {}
   /**
-   * SafeSearch video content classification scores are computed based on go/golden7 video features. To access these scores see the library at: google3/quality/safesearch/video/api/video_score_info.h
+   * SafeSearch video content classification scores are computed based on go/golden7 video features. To access these scores see the library at: google3/quality/safesearch/video/api/video_score_info.h Next ID: 6
    */
   export interface Schema$SafesearchVideoContentSignals {
+    internalMultiLabelClassification?: Schema$SafesearchVideoContentSignalsMultiLabelClassificationInfo;
     /**
      * This is used by Amarna to determine whether it should notify Raffia for immediate reprocessing. This field will be generated in Amarna's image_metadata corpus and exported to references_video_search corpus and written to ExportState.module_state.critical_metadata_checksum for determining whether Amarna should immediately notify Raffia whenever is_abuse_with_high_confidence's value changes.
      */
@@ -43081,6 +43144,23 @@ export namespace contentwarehouse_v1 {
      * Output of all SafeSearch video classifiers in Amarna.
      */
     videoClassifierOutput?: Schema$SafesearchVideoClassifierOutput;
+  }
+  /**
+   * Information about multi-label classification result (the scores and whether frame features were used).
+   */
+  export interface Schema$SafesearchVideoContentSignalsMultiLabelClassificationInfo {
+    frameFeaturesPresent?: boolean | null;
+    output?: Schema$SafesearchVideoContentSignalsMultiLabelOutput;
+  }
+  /**
+   * Output of Multi-Label video classifier.
+   */
+  export interface Schema$SafesearchVideoContentSignalsMultiLabelOutput {
+    ageIndeterminate?: number | null;
+    csam?: number | null;
+    porn?: number | null;
+    racy?: number | null;
+    violence?: number | null;
   }
   export interface Schema$ScienceCitation {
     /**
@@ -45146,15 +45226,19 @@ export namespace contentwarehouse_v1 {
     profilePictureOption?: string | null;
   }
   /**
-   * Next ID: 9
+   * Next ID: 10
    */
   export interface Schema$SocialGraphApiProtoLimitedProfileSettings {
+    /**
+     * Created with user input in Android Messages.
+     */
+    androidMessages?: boolean | null;
     /**
      * Indicates why the limited profile has been disabled. Will be set iff the limited profile is disabled. Note: When mutating limited profiles, in order to disable them, MutateDataRequest.DisableLimitedProfile must be true. Currently, disables are only performed server-side, so this is read-only for clients.
      */
     disableReason?: string | null;
     /**
-     * Created with user input in GPay OOBE.
+     * Created with user input in GPay OOBE. This is not currently used because GPay does not setup mini profile, this might change in the future.
      */
     gpayOobe?: boolean | null;
     /**
