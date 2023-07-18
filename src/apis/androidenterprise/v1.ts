@@ -376,6 +376,10 @@ export namespace androidenterprise_v1 {
      */
     isProduction?: boolean | null;
     /**
+     * The SDK version this app targets, as specified in the manifest of the APK. See http://developer.android.com/guide/topics/manifest/uses-sdk-element.html
+     */
+    targetSdkVersion?: number | null;
+    /**
      * Deprecated, use trackId instead.
      */
     track?: string | null;
