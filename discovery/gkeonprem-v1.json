@@ -2996,7 +2996,7 @@
       }
     }
   },
-  "revision": "20230626",
+  "revision": "20230705",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -4909,14 +4909,16 @@
             "CREATE",
             "DELETE",
             "UPDATE",
-            "UPGRADE"
+            "UPGRADE",
+            "PLATFORM_UPGRADE"
           ],
           "enumDescriptions": [
             "Not set.",
             "The resource is being created.",
             "The resource is being deleted.",
             "The resource is being updated.",
-            "The resource is being upgraded."
+            "The resource is being upgraded.",
+            "The platform is being upgraded."
           ],
           "readOnly": true,
           "type": "string"
@@ -5932,10 +5934,6 @@
         "datastore": {
           "description": "The Vsphere datastore used by the control plane Node.",
           "type": "string"
-        },
-        "storagePolicyName": {
-          "description": "The Vsphere storage policy used by the control plane Node.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -6414,10 +6412,6 @@
         "resourcePool": {
           "description": "The name of the vCenter resource pool for the user cluster.",
           "type": "string"
-        },
-        "storagePolicyName": {
-          "description": "The name of the vCenter storage policy for the user cluster.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -6462,10 +6456,6 @@
       "properties": {
         "datastore": {
           "description": "The name of the vCenter datastore. Inherited from the user cluster.",
-          "type": "string"
-        },
-        "storagePolicyName": {
-          "description": "The name of the vCenter storage policy. Inherited from the user cluster.",
           "type": "string"
         },
         "tags": {
