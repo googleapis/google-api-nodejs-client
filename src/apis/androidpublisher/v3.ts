@@ -1857,6 +1857,10 @@ export namespace androidpublisher_v3 {
      */
     oldestAllowedPriceVersionTime?: string | null;
     /**
+     * Optional. The behavior the caller wants users to see if there is a price increase during migration. If left unset, the behavior defaults to PRICE_INCREASE_TYPE_OPT_IN.
+     */
+    priceIncreaseType?: string | null;
+    /**
      * Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US".
      */
     regionCode?: string | null;
