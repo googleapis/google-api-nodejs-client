@@ -125,6 +125,19 @@ export namespace notebooks_v2 {
   }
 
   /**
+   * An accelerator configuration for a VM instance Definition of a hardware accelerator. Note that there is no check on `type` and `core_count` combinations. TPUs are not supported. See [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid combination.
+   */
+  export interface Schema$AcceleratorConfig {
+    /**
+     * Optional. Count of cores of this accelerator.
+     */
+    coreCount?: string | null;
+    /**
+     * Optional. Type of this accelerator.
+     */
+    type?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -142,13 +155,140 @@ export namespace notebooks_v2 {
     role?: string | null;
   }
   /**
+   * The definition of a boot disk.
+   */
+  export interface Schema$BootDisk {
+    /**
+     * Optional. Input only. Disk encryption method used on the boot and data disks, defaults to GMEK.
+     */
+    diskEncryption?: string | null;
+    /**
+     * Optional. The size of the boot disk in GB attached to this instance, up to a maximum of 64000 GB (64 TB). If not specified, this defaults to the recommended value of 150GB.
+     */
+    diskSizeGb?: string | null;
+    /**
+     * Optional. Indicates the type of the disk.
+     */
+    diskType?: string | null;
+    /**
+     * Optional. Input only. The KMS key used to encrypt the disks, only applicable if disk_encryption is CMEK. Format: `projects/{project_id\}/locations/{location\}/keyRings/{key_ring_id\}/cryptoKeys/{key_id\}` Learn more about using your own encryption keys.
+     */
+    kmsKey?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Response for checking if a notebook instance is upgradeable.
+   */
+  export interface Schema$CheckInstanceUpgradabilityResponse {
+    /**
+     * If an instance is upgradeable.
+     */
+    upgradeable?: boolean | null;
+    /**
+     * The new image self link this instance will be upgraded to if calling the upgrade endpoint. This field will only be populated if field upgradeable is true.
+     */
+    upgradeImage?: string | null;
+    /**
+     * Additional information about upgrade.
+     */
+    upgradeInfo?: string | null;
+    /**
+     * The version this instance will be upgraded to if calling the upgrade endpoint. This field will only be populated if field upgradeable is true.
+     */
+    upgradeVersion?: string | null;
+  }
+  /**
+   * Definition of a container image for starting a notebook instance with the environment installed in a container.
+   */
+  export interface Schema$ContainerImage {
+    /**
+     * Required. The path to the container image repository. For example: `gcr.io/{project_id\}/{image_name\}`
+     */
+    repository?: string | null;
+    /**
+     * Optional. The tag of the container image. If not specified, this defaults to the latest tag.
+     */
+    tag?: string | null;
+  }
+  /**
+   * An instance-attached disk resource.
+   */
+  export interface Schema$DataDisk {
+    /**
+     * Optional. Input only. Disk encryption method used on the boot and data disks, defaults to GMEK.
+     */
+    diskEncryption?: string | null;
+    /**
+     * Optional. The size of the disk in GB attached to this VM instance, up to a maximum of 64000 GB (64 TB). If not specified, this defaults to 100.
+     */
+    diskSizeGb?: string | null;
+    /**
+     * Optional. Input only. Indicates the type of the disk.
+     */
+    diskType?: string | null;
+    /**
+     * Optional. Input only. The KMS key used to encrypt the disks, only applicable if disk_encryption is CMEK. Format: `projects/{project_id\}/locations/{location\}/keyRings/{key_ring_id\}/cryptoKeys/{key_id\}` Learn more about using your own encryption keys.
+     */
+    kmsKey?: string | null;
+  }
+  /**
+   * Request for creating a notebook instance diagnostic file.
+   */
+  export interface Schema$DiagnoseInstanceRequest {
+    /**
+     * Required. Defines flags that are used to run the diagnostic tool
+     */
+    diagnosticConfig?: Schema$DiagnosticConfig;
+  }
+  /**
+   * Defines flags that are used to run the diagnostic tool
+   */
+  export interface Schema$DiagnosticConfig {
+    /**
+     * Optional. Enables flag to copy all `/home/jupyter` folder contents
+     */
+    enableCopyHomeFilesFlag?: boolean | null;
+    /**
+     * Optional. Enables flag to capture packets from the instance for 30 seconds
+     */
+    enablePacketCaptureFlag?: boolean | null;
+    /**
+     * Optional. Enables flag to repair service for instance
+     */
+    enableRepairFlag?: boolean | null;
+    /**
+     * Required. User Cloud Storage bucket location (REQUIRED). Must be formatted with path prefix (`gs://$GCS_BUCKET`). Permissions: User Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account attached to VM. Google Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account or user credentials attached to VM depending on authentication mode. Cloud Storage bucket Log file will be written to `gs://$GCS_BUCKET/$RELATIVE_PATH/$VM_DATE_$TIME.tar.gz`
+     */
+    gcsBucket?: string | null;
+    /**
+     * Optional. Defines the relative storage path in the Cloud Storage bucket where the diagnostic logs will be written: Default path will be the root directory of the Cloud Storage bucket (`gs://$GCS_BUCKET/$DATE_$TIME.tar.gz`) Example of full path where Log file will be written: `gs://$GCS_BUCKET/$RELATIVE_PATH/`
+     */
+    relativePath?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * The definition of an Event for a managed / semi-managed notebook instance.
+   */
+  export interface Schema$Event {
+    /**
+     * Optional. Event details. This field is used to pass event information.
+     */
+    details?: {[key: string]: string} | null;
+    /**
+     * Optional. Event report time.
+     */
+    reportTime?: string | null;
+    /**
+     * Optional. Event type.
+     */
+    type?: string | null;
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -169,6 +309,158 @@ export namespace notebooks_v2 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * The definition of how to configure a VM instance outside of Resources and Identity.
+   */
+  export interface Schema$GceSetup {
+    /**
+     * Optional. The hardware accelerators used on this instance. If you use accelerators, make sure that your configuration has [enough vCPUs and memory to support the `machine_type` you have selected](https://cloud.google.com/compute/docs/gpus/#gpus-list). Currently supports only one accelerator configuration.
+     */
+    acceleratorConfigs?: Schema$AcceleratorConfig[];
+    /**
+     * Optional. The boot disk for the VM.
+     */
+    bootDisk?: Schema$BootDisk;
+    /**
+     * Optional. Use a container image to start the notebook instance.
+     */
+    containerImage?: Schema$ContainerImage;
+    /**
+     * Optional. Data disks attached to the VM instance. Currently supports only one data disk.
+     */
+    dataDisks?: Schema$DataDisk[];
+    /**
+     * Optional. If true, no external IP will be assigned to this VM instance.
+     */
+    disablePublicIp?: boolean | null;
+    /**
+     * Optional. Flag to enable ip forwarding or not, default false/off. https://cloud.google.com/vpc/docs/using-routes#canipforward
+     */
+    enableIpForwarding?: boolean | null;
+    /**
+     * Optional. Configuration for GPU drivers.
+     */
+    gpuDriverConfig?: Schema$GPUDriverConfig;
+    /**
+     * Optional. The machine type of the VM instance. https://cloud.google.com/compute/docs/machine-resource
+     */
+    machineType?: string | null;
+    /**
+     * Optional. Custom metadata to apply to this instance.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Optional. The network interfaces for the VM. Supports only one interface.
+     */
+    networkInterfaces?: Schema$NetworkInterface[];
+    /**
+     * Optional. The service account that serves as an identity for the VM instance. Currently supports only one service account.
+     */
+    serviceAccounts?: Schema$ServiceAccount[];
+    /**
+     * Optional. Shielded VM configuration. [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm).
+     */
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+    /**
+     * Optional. The Compute Engine tags to add to runtime (see [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     */
+    tags?: string[] | null;
+    /**
+     * Optional. Use a Compute Engine VM image to start the notebook instance.
+     */
+    vmImage?: Schema$VmImage;
+  }
+  /**
+   * A GPU driver configuration
+   */
+  export interface Schema$GPUDriverConfig {
+    /**
+     * Optional. Specify a custom Cloud Storage path where the GPU driver is stored. If not specified, we'll automatically choose from official GPU drivers.
+     */
+    customGpuDriverPath?: string | null;
+    /**
+     * Optional. Whether the end user authorizes Google Cloud to install GPU driver on this VM instance. If this field is empty or set to false, the GPU driver won't be installed. Only applicable to instances with GPUs.
+     */
+    enableGpuDriver?: boolean | null;
+  }
+  /**
+   * The definition of a notebook instance.
+   */
+  export interface Schema$Instance {
+    /**
+     * Output only. Instance creation time.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Email address of entity that sent original CreateInstance request.
+     */
+    creator?: string | null;
+    /**
+     * Optional. If true, the notebook instance will not register with the proxy.
+     */
+    disableProxyAccess?: boolean | null;
+    /**
+     * Optional. Compute Engine setup for the notebook. Uses notebook-defined fields.
+     */
+    gceSetup?: Schema$GceSetup;
+    /**
+     * Output only. Additional information about instance health. Example: healthInfo": { "docker_proxy_agent_status": "1", "docker_status": "1", "jupyterlab_api_status": "-1", "jupyterlab_status": "-1", "updated": "2020-10-18 09:40:03.573409" \}
+     */
+    healthInfo?: {[key: string]: string} | null;
+    /**
+     * Output only. Instance health_state.
+     */
+    healthState?: string | null;
+    /**
+     * Output only. Unique ID of the resource.
+     */
+    id?: string | null;
+    /**
+     * Optional. Input only. The owner of this instance after creation. Format: `alias@example.com` Currently supports one owner only. If not specified, all of the service account users of your VM instance's service account can use the instance.
+     */
+    instanceOwners?: string[] | null;
+    /**
+     * Optional. Labels to apply to this instance. These can be later modified by the UpdateInstance method.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The name of this notebook instance. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The proxy endpoint that is used to access the Jupyter notebook.
+     */
+    proxyUri?: string | null;
+    /**
+     * Output only. The state of this instance.
+     */
+    state?: string | null;
+    /**
+     * Output only. Instance update time.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. The upgrade history of this instance.
+     */
+    upgradeHistory?: Schema$UpgradeHistoryEntry[];
+  }
+  /**
+   * Response for listing notebook instances.
+   */
+  export interface Schema$ListInstancesResponse {
+    /**
+     * A list of returned instances.
+     */
+    instances?: Schema$Instance[];
+    /**
+     * Page token that can be used to continue listing from the last result in the next list call.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached. For example, ['us-west1-a', 'us-central1-b']. A ListInstancesResponse will only contain either instances or unreachables,
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -220,6 +512,23 @@ export namespace notebooks_v2 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * The definition of a network interface resource attached to a VM.
+   */
+  export interface Schema$NetworkInterface {
+    /**
+     * Optional. The name of the VPC that this VM instance is in. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     */
+    network?: string | null;
+    /**
+     * Optional. The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.
+     */
+    nicType?: string | null;
+    /**
+     * Optional. The name of the subnet that this VM instance is in. Format: `projects/{project_id\}/regions/{region\}/subnetworks/{subnetwork_id\}`
+     */
+    subnet?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -301,6 +610,49 @@ export namespace notebooks_v2 {
     version?: number | null;
   }
   /**
+   * Request for notebook instances to report information to Notebooks API.
+   */
+  export interface Schema$ReportInstanceInfoSystemRequest {
+    /**
+     * Required. The Event to be reported.
+     */
+    event?: Schema$Event;
+    /**
+     * Required. The VM hardware token for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+     */
+    vmId?: string | null;
+  }
+  /**
+   * Request for resetting a notebook instance
+   */
+  export interface Schema$ResetInstanceRequest {}
+  /**
+   * Request for rollbacking a notebook instance
+   */
+  export interface Schema$RollbackInstanceRequest {
+    /**
+     * Required. Output only. Revision Id
+     */
+    revisionId?: string | null;
+    /**
+     * Required. The snapshot for rollback. Example: "projects/test-project/global/snapshots/krwlzipynril".
+     */
+    targetSnapshot?: string | null;
+  }
+  /**
+   * A service account that acts as an identity.
+   */
+  export interface Schema$ServiceAccount {
+    /**
+     * Optional. Email address of the service account.
+     */
+    email?: string | null;
+    /**
+     * Output only. The list of scopes to be made available for this service account. Set by the CLH to https://www.googleapis.com/auth/cloud-platform
+     */
+    scopes?: string[] | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -309,6 +661,27 @@ export namespace notebooks_v2 {
      */
     policy?: Schema$Policy;
   }
+  /**
+   * A set of Shielded Instance options. See [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid.
+   */
+  export interface Schema$ShieldedInstanceConfig {
+    /**
+     * Optional. Defines whether the VM instance has integrity monitoring enabled. Enables monitoring and attestation of the boot integrity of the VM instance. The attestation is performed against the integrity policy baseline. This baseline is initially derived from the implicitly trusted boot image when the VM instance is created. Enabled by default.
+     */
+    enableIntegrityMonitoring?: boolean | null;
+    /**
+     * Optional. Defines whether the VM instance has Secure Boot enabled. Secure Boot helps ensure that the system only runs authentic software by verifying the digital signature of all boot components, and halting the boot process if signature verification fails. Disabled by default.
+     */
+    enableSecureBoot?: boolean | null;
+    /**
+     * Optional. Defines whether the VM instance has the vTPM enabled. Enabled by default.
+     */
+    enableVtpm?: boolean | null;
+  }
+  /**
+   * Request for starting a notebook instance
+   */
+  export interface Schema$StartInstanceRequest {}
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
@@ -327,6 +700,10 @@ export namespace notebooks_v2 {
     message?: string | null;
   }
   /**
+   * Request for stopping a notebook instance
+   */
+  export interface Schema$StopInstanceRequest {}
+  /**
    * Request message for `TestIamPermissions` method.
    */
   export interface Schema$TestIamPermissionsRequest {
@@ -343,6 +720,77 @@ export namespace notebooks_v2 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * The entry of VM image upgrade history.
+   */
+  export interface Schema$UpgradeHistoryEntry {
+    /**
+     * Optional. Action. Rolloback or Upgrade.
+     */
+    action?: string | null;
+    /**
+     * Optional. The container image before this instance upgrade.
+     */
+    containerImage?: string | null;
+    /**
+     * Immutable. The time that this instance upgrade history entry is created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The framework of this notebook instance.
+     */
+    framework?: string | null;
+    /**
+     * Optional. The snapshot of the boot disk of this notebook instance before upgrade.
+     */
+    snapshot?: string | null;
+    /**
+     * Output only. The state of this instance upgrade history entry.
+     */
+    state?: string | null;
+    /**
+     * Optional. Target VM Version, like m63.
+     */
+    targetVersion?: string | null;
+    /**
+     * Optional. The version of the notebook instance before this upgrade.
+     */
+    version?: string | null;
+    /**
+     * Optional. The VM image before this instance upgrade.
+     */
+    vmImage?: string | null;
+  }
+  /**
+   * Request for upgrading a notebook instance
+   */
+  export interface Schema$UpgradeInstanceRequest {}
+  /**
+   * Request for upgrading a notebook instance from within the VM
+   */
+  export interface Schema$UpgradeInstanceSystemRequest {
+    /**
+     * Required. The VM hardware token for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+     */
+    vmId?: string | null;
+  }
+  /**
+   * Definition of a custom Compute Engine virtual machine image for starting a notebook instance with the environment installed directly on the VM.
+   */
+  export interface Schema$VmImage {
+    /**
+     * Optional. Use this VM image family to find the image; the newest image in this family will be used.
+     */
+    family?: string | null;
+    /**
+     * Optional. Use VM image name to find the image.
+     */
+    name?: string | null;
+    /**
+     * Required. The name of the Google Cloud project that this VM image belongs to. Format: `{project_id\}`
+     */
+    project?: string | null;
   }
 
   export class Resource$Projects {
@@ -672,6 +1120,718 @@ export namespace notebooks_v2 {
     }
 
     /**
+     * Checks whether a notebook instance is upgradable.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.checkUpgradability({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     notebookInstance:
+     *       'projects/my-project/locations/my-location/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "upgradeImage": "my_upgradeImage",
+     *   //   "upgradeInfo": "my_upgradeInfo",
+     *   //   "upgradeVersion": "my_upgradeVersion",
+     *   //   "upgradeable": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkUpgradability(
+      params: Params$Resource$Projects$Locations$Instances$Checkupgradability,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkUpgradability(
+      params?: Params$Resource$Projects$Locations$Instances$Checkupgradability,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckInstanceUpgradabilityResponse>;
+    checkUpgradability(
+      params: Params$Resource$Projects$Locations$Instances$Checkupgradability,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkUpgradability(
+      params: Params$Resource$Projects$Locations$Instances$Checkupgradability,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckInstanceUpgradabilityResponse>,
+      callback: BodyResponseCallback<Schema$CheckInstanceUpgradabilityResponse>
+    ): void;
+    checkUpgradability(
+      params: Params$Resource$Projects$Locations$Instances$Checkupgradability,
+      callback: BodyResponseCallback<Schema$CheckInstanceUpgradabilityResponse>
+    ): void;
+    checkUpgradability(
+      callback: BodyResponseCallback<Schema$CheckInstanceUpgradabilityResponse>
+    ): void;
+    checkUpgradability(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Checkupgradability
+        | BodyResponseCallback<Schema$CheckInstanceUpgradabilityResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckInstanceUpgradabilityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckInstanceUpgradabilityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckInstanceUpgradabilityResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Checkupgradability;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Checkupgradability;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+notebookInstance}:checkUpgradability'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['notebookInstance'],
+        pathParams: ['notebookInstance'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckInstanceUpgradabilityResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckInstanceUpgradabilityResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates a new Instance in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.create({
+     *     // Required. User-defined unique ID of this instance.
+     *     instanceId: 'placeholder-value',
+     *     // Required. Format: `parent=projects/{project_id\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Idempotent request UUID.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "creator": "my_creator",
+     *       //   "disableProxyAccess": false,
+     *       //   "gceSetup": {},
+     *       //   "healthInfo": {},
+     *       //   "healthState": "my_healthState",
+     *       //   "id": "my_id",
+     *       //   "instanceOwners": [],
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "proxyUri": "my_proxyUri",
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "upgradeHistory": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Instances$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/instances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single Instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.delete({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *     // Optional. Idempotent request UUID.
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Instances$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Creates a Diagnostic File and runs Diagnostic Tool given an Instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.diagnose({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "diagnosticConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    diagnose(
+      params: Params$Resource$Projects$Locations$Instances$Diagnose,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    diagnose(
+      params?: Params$Resource$Projects$Locations$Instances$Diagnose,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    diagnose(
+      params: Params$Resource$Projects$Locations$Instances$Diagnose,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    diagnose(
+      params: Params$Resource$Projects$Locations$Instances$Diagnose,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    diagnose(
+      params: Params$Resource$Projects$Locations$Instances$Diagnose,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    diagnose(callback: BodyResponseCallback<Schema$Operation>): void;
+    diagnose(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Diagnose
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Diagnose;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Diagnose;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:diagnose').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single Instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.get({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": "my_creator",
+     *   //   "disableProxyAccess": false,
+     *   //   "gceSetup": {},
+     *   //   "healthInfo": {},
+     *   //   "healthState": "my_healthState",
+     *   //   "id": "my_id",
+     *   //   "instanceOwners": [],
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "proxyUri": "my_proxyUri",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upgradeHistory": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Instances$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Instance>;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Instance>,
+      callback: BodyResponseCallback<Schema$Instance>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Get,
+      callback: BodyResponseCallback<Schema$Instance>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Instance>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Get
+        | BodyResponseCallback<Schema$Instance>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Instance>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Instance>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Instance> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Instance>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Instance>(parameters);
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
      * ```js
@@ -802,6 +1962,722 @@ export namespace notebooks_v2 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists instances in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.list({
+     *     // Optional. Maximum return size of the list call.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A previous returned page token that can be used to continue listing from the last result.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Format: `parent=projects/{project_id\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "instances": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Instances$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Instances$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInstancesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstancesResponse>,
+      callback: BodyResponseCallback<Schema$ListInstancesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$List,
+      callback: BodyResponseCallback<Schema$ListInstancesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$List
+        | BodyResponseCallback<Schema$ListInstancesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInstancesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInstancesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInstancesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/instances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInstancesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInstancesResponse>(parameters);
+      }
+    }
+
+    /**
+     * UpdateInstance updates an Instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.patch({
+     *     // Output only. The name of this notebook instance. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *     // Optional. Idempotent request UUID.
+     *     requestId: 'placeholder-value',
+     *     // Required. Mask used to update an instance
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "creator": "my_creator",
+     *       //   "disableProxyAccess": false,
+     *       //   "gceSetup": {},
+     *       //   "healthInfo": {},
+     *       //   "healthState": "my_healthState",
+     *       //   "id": "my_id",
+     *       //   "instanceOwners": [],
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "proxyUri": "my_proxyUri",
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "upgradeHistory": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Instances$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Instances$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Instances$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Instances$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Instances$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Allows notebook instances to report their latest instance information to the Notebooks API server. The server will merge the reported information to the instance metadata store. Do not use this method directly.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.reportInfoSystem({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "event": {},
+     *       //   "vmId": "my_vmId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reportInfoSystem(
+      params: Params$Resource$Projects$Locations$Instances$Reportinfosystem,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reportInfoSystem(
+      params?: Params$Resource$Projects$Locations$Instances$Reportinfosystem,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    reportInfoSystem(
+      params: Params$Resource$Projects$Locations$Instances$Reportinfosystem,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reportInfoSystem(
+      params: Params$Resource$Projects$Locations$Instances$Reportinfosystem,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reportInfoSystem(
+      params: Params$Resource$Projects$Locations$Instances$Reportinfosystem,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reportInfoSystem(callback: BodyResponseCallback<Schema$Operation>): void;
+    reportInfoSystem(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Reportinfosystem
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Reportinfosystem;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Reportinfosystem;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:reportInfoSystem').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Resets a notebook instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.reset({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reset(
+      params: Params$Resource$Projects$Locations$Instances$Reset,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reset(
+      params?: Params$Resource$Projects$Locations$Instances$Reset,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    reset(
+      params: Params$Resource$Projects$Locations$Instances$Reset,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reset(
+      params: Params$Resource$Projects$Locations$Instances$Reset,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reset(
+      params: Params$Resource$Projects$Locations$Instances$Reset,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reset(callback: BodyResponseCallback<Schema$Operation>): void;
+    reset(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Reset
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Reset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Reset;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:reset').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Rollbacks a notebook instance to the previous version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.rollback({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "revisionId": "my_revisionId",
+     *       //   "targetSnapshot": "my_targetSnapshot"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rollback(
+      params: Params$Resource$Projects$Locations$Instances$Rollback,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rollback(
+      params?: Params$Resource$Projects$Locations$Instances$Rollback,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    rollback(
+      params: Params$Resource$Projects$Locations$Instances$Rollback,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rollback(
+      params: Params$Resource$Projects$Locations$Instances$Rollback,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rollback(
+      params: Params$Resource$Projects$Locations$Instances$Rollback,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rollback(callback: BodyResponseCallback<Schema$Operation>): void;
+    rollback(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Rollback
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Rollback;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Rollback;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:rollback').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -942,6 +2818,278 @@ export namespace notebooks_v2 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Starts a notebook instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.start({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    start(
+      params: Params$Resource$Projects$Locations$Instances$Start,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    start(
+      params?: Params$Resource$Projects$Locations$Instances$Start,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    start(
+      params: Params$Resource$Projects$Locations$Instances$Start,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Locations$Instances$Start,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Locations$Instances$Start,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    start(callback: BodyResponseCallback<Schema$Operation>): void;
+    start(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Start
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Start;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Start;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Stops a notebook instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.stop({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stop(
+      params: Params$Resource$Projects$Locations$Instances$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
+      params?: Params$Resource$Projects$Locations$Instances$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    stop(
+      params: Params$Resource$Projects$Locations$Instances$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Instances$Stop,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Instances$Stop,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(callback: BodyResponseCallback<Schema$Operation>): void;
+    stop(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Stop
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Stop;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -1089,8 +3237,346 @@ export namespace notebooks_v2 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+    /**
+     * Upgrades a notebook instance to the latest version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.upgrade({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upgrade(
+      params: Params$Resource$Projects$Locations$Instances$Upgrade,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upgrade(
+      params?: Params$Resource$Projects$Locations$Instances$Upgrade,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    upgrade(
+      params: Params$Resource$Projects$Locations$Instances$Upgrade,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upgrade(
+      params: Params$Resource$Projects$Locations$Instances$Upgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    upgrade(
+      params: Params$Resource$Projects$Locations$Instances$Upgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    upgrade(callback: BodyResponseCallback<Schema$Operation>): void;
+    upgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Upgrade
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Upgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Upgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:upgrade').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Allows notebook instances to upgrade themselves. Do not use this method directly.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.upgradeSystem({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "vmId": "my_vmId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upgradeSystem(
+      params: Params$Resource$Projects$Locations$Instances$Upgradesystem,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upgradeSystem(
+      params?: Params$Resource$Projects$Locations$Instances$Upgradesystem,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    upgradeSystem(
+      params: Params$Resource$Projects$Locations$Instances$Upgradesystem,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upgradeSystem(
+      params: Params$Resource$Projects$Locations$Instances$Upgradesystem,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    upgradeSystem(
+      params: Params$Resource$Projects$Locations$Instances$Upgradesystem,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    upgradeSystem(callback: BodyResponseCallback<Schema$Operation>): void;
+    upgradeSystem(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Upgradesystem
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Upgradesystem;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Upgradesystem;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:upgradeSystem').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Instances$Checkupgradability
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    notebookInstance?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Create
+    extends StandardParameters {
+    /**
+     * Required. User-defined unique ID of this instance.
+     */
+    instanceId?: string;
+    /**
+     * Required. Format: `parent=projects/{project_id\}/locations/{location\}`
+     */
+    parent?: string;
+    /**
+     * Optional. Idempotent request UUID.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Instance;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Delete
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+    /**
+     * Optional. Idempotent request UUID.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Diagnose
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DiagnoseInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Get
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Instances$Getiampolicy
     extends StandardParameters {
     /**
@@ -1101,6 +3587,77 @@ export namespace notebooks_v2 {
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum return size of the list call.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A previous returned page token that can be used to continue listing from the last result.
+     */
+    pageToken?: string;
+    /**
+     * Required. Format: `parent=projects/{project_id\}/locations/{location\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The name of this notebook instance. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+    /**
+     * Optional. Idempotent request UUID.
+     */
+    requestId?: string;
+    /**
+     * Required. Mask used to update an instance
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Instance;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Reportinfosystem
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReportInstanceInfoSystemRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Reset
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResetInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Rollback
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RollbackInstanceRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Setiampolicy
     extends StandardParameters {
@@ -1114,6 +3671,30 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
+  export interface Params$Resource$Projects$Locations$Instances$Start
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StartInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Stop
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StopInstanceRequest;
+  }
   export interface Params$Resource$Projects$Locations$Instances$Testiampermissions
     extends StandardParameters {
     /**
@@ -1125,6 +3706,30 @@ export namespace notebooks_v2 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Upgrade
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpgradeInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Upgradesystem
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpgradeInstanceSystemRequest;
   }
 
   export class Resource$Projects$Locations$Operations {
