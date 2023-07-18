@@ -419,6 +419,10 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$Container {
     /**
+     * The time that the container was created.
+     */
+    createTime?: string | null;
+    /**
      * Optional container image ID, if provided by the container runtime. Uniquely identifies the container image launched using a container image digest.
      */
     imageId?: string | null;

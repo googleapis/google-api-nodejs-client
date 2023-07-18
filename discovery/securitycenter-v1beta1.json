@@ -896,7 +896,7 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20230713",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -1273,6 +1273,11 @@
       "description": "Container associated with the finding.",
       "id": "Container",
       "properties": {
+        "createTime": {
+          "description": "The time that the container was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "imageId": {
           "description": "Optional container image ID, if provided by the container runtime. Uniquely identifies the container image launched using a container image digest.",
           "type": "string"
