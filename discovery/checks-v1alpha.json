@@ -160,9 +160,46 @@
           }
         }
       }
+    },
+    "projects": {
+      "resources": {
+        "privacypolicy": {
+          "resources": {
+            "operations": {
+              "methods": {
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1alpha/projects/{projectsId}/privacypolicy/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "checks.projects.privacypolicy.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/privacypolicy/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/xapi.zoo"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "revision": "20230620",
+  "revision": "20230716",
   "rootUrl": "https://checks.googleapis.com/",
   "schemas": {
     "AnalyzePrivacyPolicyRequest": {
