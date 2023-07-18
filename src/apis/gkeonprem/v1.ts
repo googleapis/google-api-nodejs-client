@@ -2262,10 +2262,6 @@ export namespace gkeonprem_v1 {
      * The Vsphere datastore used by the control plane Node.
      */
     datastore?: string | null;
-    /**
-     * The Vsphere storage policy used by the control plane Node.
-     */
-    storagePolicyName?: string | null;
   }
   /**
    * Contains configurations for Dataplane V2, which is optimized dataplane for Kubernetes networking. For more information, see: https://cloud.google.com/kubernetes-engine/docs/concepts/dataplane-v2
@@ -2631,10 +2627,6 @@ export namespace gkeonprem_v1 {
      * The name of the vCenter resource pool for the user cluster.
      */
     resourcePool?: string | null;
-    /**
-     * The name of the vCenter storage policy for the user cluster.
-     */
-    storagePolicyName?: string | null;
   }
   /**
    * Contains information about a specific Anthos on VMware version.
@@ -2674,10 +2666,6 @@ export namespace gkeonprem_v1 {
      * The name of the vCenter datastore. Inherited from the user cluster.
      */
     datastore?: string | null;
-    /**
-     * The name of the vCenter storage policy. Inherited from the user cluster.
-     */
-    storagePolicyName?: string | null;
     /**
      * Tags to apply to VMs.
      */
