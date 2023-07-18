@@ -1,5 +1,19 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v9.0.0...calendar-v9.1.0) (2023-07-18)
+
+
+### Features
+
+* regenerate index files ([46817cf](https://github.com/googleapis/google-api-nodejs-client/commit/46817cfbbdb7030ef55c89dcd5dd54b85d14da5b))
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+
+
+### Bug Fixes
+
+* **calendar:** update the API ([1c28b92](https://github.com/googleapis/google-api-nodejs-client/commit/1c28b925de8ce4eaf56248518880c87cf56dac9a))
+* **calendar:** update the API ([71b067c](https://github.com/googleapis/google-api-nodejs-client/commit/71b067c5fa9b59cb6717ec9f2370b8697e70d887))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v8.0.0...calendar-v9.0.0) (2023-07-10)
 
 
