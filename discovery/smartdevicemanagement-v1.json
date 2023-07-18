@@ -4,6 +4,9 @@
       "scopes": {
         "https://www.googleapis.com/auth/sdm.service": {
           "description": "See and/or control the devices that you selected"
+        },
+        "https://www.googleapis.com/auth/userinfo.email": {
+          "description": "See your primary Google Account email address"
         }
       }
     }
@@ -134,7 +137,8 @@
                 "$ref": "GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/sdm.service"
+                "https://www.googleapis.com/auth/sdm.service",
+                "https://www.googleapis.com/auth/userinfo.email"
               ]
             },
             "get": {
@@ -159,7 +163,8 @@
                 "$ref": "GoogleHomeEnterpriseSdmV1Device"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/sdm.service"
+                "https://www.googleapis.com/auth/sdm.service",
+                "https://www.googleapis.com/auth/userinfo.email"
               ]
             },
             "list": {
@@ -200,7 +205,8 @@
                 "$ref": "GoogleHomeEnterpriseSdmV1ListDevicesResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/sdm.service"
+                "https://www.googleapis.com/auth/sdm.service",
+                "https://www.googleapis.com/auth/userinfo.email"
               ]
             }
           }
@@ -229,7 +235,8 @@
                 "$ref": "GoogleHomeEnterpriseSdmV1Structure"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/sdm.service"
+                "https://www.googleapis.com/auth/sdm.service",
+                "https://www.googleapis.com/auth/userinfo.email"
               ]
             },
             "list": {
@@ -270,7 +277,8 @@
                 "$ref": "GoogleHomeEnterpriseSdmV1ListStructuresResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/sdm.service"
+                "https://www.googleapis.com/auth/sdm.service",
+                "https://www.googleapis.com/auth/userinfo.email"
               ]
             }
           },
@@ -299,7 +307,8 @@
                     "$ref": "GoogleHomeEnterpriseSdmV1Room"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/sdm.service"
+                    "https://www.googleapis.com/auth/sdm.service",
+                    "https://www.googleapis.com/auth/userinfo.email"
                   ]
                 },
                 "list": {
@@ -335,7 +344,8 @@
                     "$ref": "GoogleHomeEnterpriseSdmV1ListRoomsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/sdm.service"
+                    "https://www.googleapis.com/auth/sdm.service",
+                    "https://www.googleapis.com/auth/userinfo.email"
                   ]
                 }
               }
@@ -345,7 +355,7 @@
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20230708",
   "rootUrl": "https://smartdevicemanagement.googleapis.com/",
   "schemas": {
     "GoogleHomeEnterpriseSdmV1Device": {
