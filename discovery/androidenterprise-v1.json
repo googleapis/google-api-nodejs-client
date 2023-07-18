@@ -2649,7 +2649,7 @@
       }
     }
   },
-  "revision": "20230704",
+  "revision": "20230713",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -2974,6 +2974,11 @@
         "isProduction": {
           "description": "True if this version is a production APK.",
           "type": "boolean"
+        },
+        "targetSdkVersion": {
+          "description": "The SDK version this app targets, as specified in the manifest of the APK. See http://developer.android.com/guide/topics/manifest/uses-sdk-element.html",
+          "format": "int32",
+          "type": "integer"
         },
         "track": {
           "description": "Deprecated, use trackId instead.",
