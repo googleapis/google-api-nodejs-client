@@ -3257,7 +3257,7 @@
       }
     }
   },
-  "revision": "20230613",
+  "revision": "20230713",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -3328,6 +3328,70 @@
             "TRANSFORM_EXPRESSION_EVALUATION_ERROR",
             "HTTP_EXCEPTION",
             "EXECUTION_CANCELLED"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            true,
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "",
@@ -3506,6 +3570,7 @@
           "type": "boolean"
         },
         "isSearchable": {
+          "deprecated": true,
           "description": "Used to indicate if a ParameterEntry should be converted to ParamIndexes for ST-Spanner full-text search. DEPRECATED: use searchable.",
           "type": "boolean"
         },
@@ -3788,6 +3853,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoCombinedCondition": {
+      "deprecated": true,
       "description": "This message recursively combines constituent conditions using logical AND.",
       "id": "EnterpriseCrmEventbusProtoCombinedCondition",
       "properties": {
@@ -3802,6 +3868,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoCondition": {
+      "deprecated": true,
       "description": "Condition that uses `operator` to evaluate the key against the value.",
       "id": "EnterpriseCrmEventbusProtoCondition",
       "properties": {
@@ -4242,6 +4309,7 @@
           "type": "array"
         },
         "taskName": {
+          "deprecated": true,
           "description": "The task name associated with this snapshot. Could be empty.",
           "type": "string"
         }
@@ -4823,6 +4891,7 @@
       "id": "EnterpriseCrmEventbusProtoNextTask",
       "properties": {
         "combinedConditions": {
+          "deprecated": true,
           "description": "Combined condition for this task to become an eligible next task. Each of these combined_conditions are joined with logical OR. DEPRECATED: use `condition`",
           "items": {
             "$ref": "EnterpriseCrmEventbusProtoCombinedCondition"
@@ -6718,6 +6787,7 @@
           "type": "array"
         },
         "taskName": {
+          "deprecated": true,
           "description": "The task name associated with this snapshot. Could be empty.",
           "type": "string"
         }
@@ -7355,6 +7425,7 @@
         },
         "stats": {
           "$ref": "EnterpriseCrmEventbusStats",
+          "deprecated": true,
           "description": "Deprecated - statistics from the Monarch query."
         },
         "taskType": {
@@ -7562,6 +7633,10 @@
         "defaultValue": {
           "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterValueType",
           "description": "Default values for the defined keys. Each value can either be string, int, double or any proto message or a serialized object."
+        },
+        "description": {
+          "description": "Optional. The description about the parameter",
+          "type": "string"
         },
         "inOutType": {
           "description": "Specifies the input/output type for the parameter.",
@@ -8009,6 +8084,11 @@
           "description": "Required. Connector version on which the connection is created. The format is: projects/*/locations/*/providers/*/connectors/*/versions/* Only global location is supported for ConnectorVersion resource.",
           "type": "string"
         },
+        "connectorVersionInfraConfig": {
+          "$ref": "GoogleCloudConnectorsV1ConnectorVersionInfraConfig",
+          "description": "Output only. Infra configs supported by Connector Version.",
+          "readOnly": true
+        },
         "connectorVersionLaunchStage": {
           "description": "Output only. Flag to mark the version indicating the launch stage.",
           "enum": [
@@ -8049,6 +8129,29 @@
           "description": "Output only. GCR location where the envoy image is stored. formatted like: gcr.io/{bucketName}/{imageName}",
           "readOnly": true,
           "type": "string"
+        },
+        "eventingConfig": {
+          "$ref": "GoogleCloudConnectorsV1EventingConfig",
+          "description": "Optional. Eventing config of a connection"
+        },
+        "eventingEnablementType": {
+          "description": "Optional. Eventing enablement type. Will be nil if eventing is not enabled.",
+          "enum": [
+            "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
+            "EVENTING_AND_CONNECTION",
+            "ONLY_EVENTING"
+          ],
+          "enumDescriptions": [
+            "Eventing Enablement Type Unspecifeied.",
+            "Both connection and eventing.",
+            "Only Eventing."
+          ],
+          "type": "string"
+        },
+        "eventingRuntimeData": {
+          "$ref": "GoogleCloudConnectorsV1EventingRuntimeData",
+          "description": "Output only. Eventing Runtime Data.",
+          "readOnly": true
         },
         "imageLocation": {
           "description": "Output only. GCR location where the runtime image is stored. formatted like: gcr.io/{bucketName}/{imageName}",
@@ -8164,6 +8267,19 @@
       },
       "type": "object"
     },
+    "GoogleCloudConnectorsV1ConnectorVersionInfraConfig": {
+      "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
+      "id": "GoogleCloudConnectorsV1ConnectorVersionInfraConfig",
+      "properties": {
+        "ratelimitThreshold": {
+          "description": "Output only. Max QPS supported by the connector version before throttling of requests.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudConnectorsV1Destination": {
       "id": "GoogleCloudConnectorsV1Destination",
       "properties": {
@@ -8221,6 +8337,80 @@
             "Google Managed.",
             "Customer Managed."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1EventingConfig": {
+      "description": "Eventing Configuration of a connection",
+      "id": "GoogleCloudConnectorsV1EventingConfig",
+      "properties": {
+        "additionalVariables": {
+          "description": "Additional eventing related field values",
+          "items": {
+            "$ref": "GoogleCloudConnectorsV1ConfigVariable"
+          },
+          "type": "array"
+        },
+        "authConfig": {
+          "$ref": "GoogleCloudConnectorsV1AuthConfig",
+          "description": "Auth details for the webhook adapter."
+        },
+        "encryptionKey": {
+          "$ref": "GoogleCloudConnectorsV1ConfigVariable",
+          "description": "Encryption key (can be either Google managed or CMEK)."
+        },
+        "enrichmentEnabled": {
+          "description": "Enrichment Enabled.",
+          "type": "boolean"
+        },
+        "registrationDestinationConfig": {
+          "$ref": "GoogleCloudConnectorsV1DestinationConfig",
+          "description": "Registration endpoint for auto regsitration."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1EventingRuntimeData": {
+      "description": "Eventing runtime data has the details related to eventing managed by the system.",
+      "id": "GoogleCloudConnectorsV1EventingRuntimeData",
+      "properties": {
+        "eventsListenerEndpoint": {
+          "description": "Output only. Events listener endpoint. The value will populated after provisioning the events listener.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleCloudConnectorsV1EventingStatus",
+          "description": "Output only. Current status of eventing.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1EventingStatus": {
+      "description": "EventingStatus indicates the state of eventing.",
+      "id": "GoogleCloudConnectorsV1EventingStatus",
+      "properties": {
+        "description": {
+          "description": "Output only. Description of error if State is set to \"ERROR\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Default state.",
+            "Eventing is enabled and ready to receive events.",
+            "Eventing is not active due to an error."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8471,7 +8661,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "The name of the auth config.",
+          "description": "Required. The name of the auth config.",
           "type": "string"
         },
         "encryptedCredential": {
@@ -8944,6 +9134,7 @@
           "type": "boolean"
         },
         "executionId": {
+          "deprecated": true,
           "description": "Optional. The id of the ON_HOLD execution to be resumed.",
           "type": "string"
         },
@@ -8955,6 +9146,7 @@
           "type": "object"
         },
         "parameterEntries": {
+          "deprecated": true,
           "description": "Optional. Parameters are a part of Event and can be used to communicate between different tasks that are part of the same integration execution.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
@@ -8963,6 +9155,7 @@
         },
         "parameters": {
           "$ref": "EnterpriseCrmFrontendsEventbusProtoEventParameters",
+          "deprecated": true,
           "description": "Optional. Passed in as parameters to each integration execution. Redacted"
         },
         "requestId": {
@@ -8982,9 +9175,11 @@
       "properties": {
         "eventParameters": {
           "$ref": "EnterpriseCrmFrontendsEventbusProtoEventParameters",
+          "deprecated": true,
           "description": "Details for the integration that were executed."
         },
         "executionFailed": {
+          "deprecated": true,
           "description": "Is true if any execution in the integration failed. False otherwise.",
           "type": "boolean"
         },
@@ -9001,6 +9196,7 @@
           "type": "object"
         },
         "parameterEntries": {
+          "deprecated": true,
           "description": "Parameters are a part of Event and can be used to communicate between different tasks that are part of the same integration execution.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
@@ -9029,6 +9225,7 @@
         },
         "eventExecutionDetails": {
           "$ref": "EnterpriseCrmEventbusProtoEventExecutionDetails",
+          "deprecated": true,
           "description": "The execution info about this event."
         },
         "executionDetails": {
@@ -9063,6 +9260,7 @@
           "type": "object"
         },
         "requestParams": {
+          "deprecated": true,
           "description": "Event parameters come in as part of the request.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
@@ -9077,6 +9275,7 @@
           "type": "object"
         },
         "responseParams": {
+          "deprecated": true,
           "description": "Event parameters come out as part of the response.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
@@ -9619,6 +9818,7 @@
         },
         "integrationParametersInternal": {
           "$ref": "EnterpriseCrmFrontendsEventbusProtoWorkflowParameters",
+          "deprecated": true,
           "description": "Optional. Parameters that are expected to be passed to the integration when an event is triggered. This consists of all the parameters that are expected in the integration execution. This gives the user the ability to provide default values, add information like PII and also provide data types of each parameter."
         },
         "lastModifierEmail": {
@@ -9635,6 +9835,7 @@
           "type": "string"
         },
         "origin": {
+          "deprecated": true,
           "description": "Optional. The origin that indicates where this integration is coming from.",
           "enum": [
             "UNSPECIFIED",
@@ -9642,6 +9843,13 @@
             "PIPER_V2",
             "PIPER_V3",
             "APPLICATION_IP_PROVISIONING"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            false
           ],
           "enumDescriptions": [
             "",
@@ -9685,6 +9893,7 @@
           "type": "string"
         },
         "status": {
+          "deprecated": true,
           "description": "Output only. Generated by eventbus. User should not set it as an input.",
           "enum": [
             "UNKNOWN",
@@ -9711,6 +9920,7 @@
           "type": "array"
         },
         "taskConfigsInternal": {
+          "deprecated": true,
           "description": "Optional. Task configuration for the integration. It's optional, but the integration doesn't do anything without task_configs.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoTaskConfig"
@@ -9719,6 +9929,7 @@
         },
         "teardown": {
           "$ref": "EnterpriseCrmEventbusProtoTeardown",
+          "deprecated": true,
           "description": "Optional. Contains a graph of tasks that will be executed before putting the event in a terminal state (SUCCEEDED/FAILED/FATAL), regardless of success or failure, similar to \"finally\" in code."
         },
         "triggerConfigs": {
@@ -9729,6 +9940,7 @@
           "type": "array"
         },
         "triggerConfigsInternal": {
+          "deprecated": true,
           "description": "Optional. Trigger configurations.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoTriggerConfig"
@@ -9874,6 +10086,7 @@
       "id": "GoogleCloudIntegrationsV1alphaListExecutionsResponse",
       "properties": {
         "executionInfos": {
+          "deprecated": true,
           "description": "Required. The detailed information of requested executions.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo"
@@ -10445,6 +10658,7 @@
           "type": "object"
         },
         "parameterEntries": {
+          "deprecated": true,
           "description": "Parameters are a part of Event and can be used to communicate between different tasks that are part of the same integration execution.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
@@ -10453,6 +10667,7 @@
         },
         "parameters": {
           "$ref": "EnterpriseCrmEventbusProtoEventParameters",
+          "deprecated": true,
           "description": "Passed in as parameters to each integration execution."
         },
         "requestId": {
@@ -10690,6 +10905,7 @@
         },
         "suspensionConfig": {
           "$ref": "EnterpriseCrmEventbusProtoSuspensionConfig",
+          "deprecated": true,
           "description": "Controls the notifications and resolver permissions for this suspension."
         },
         "taskId": {

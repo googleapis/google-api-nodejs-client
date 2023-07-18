@@ -1548,7 +1548,7 @@
       }
     }
   },
-  "revision": "20230628",
+  "revision": "20230710",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -3181,6 +3181,10 @@
       "properties": {
         "id": {
           "description": "Immutable. The identifier of the attachment within vrf.",
+          "type": "string"
+        },
+        "interconnectAttachment": {
+          "description": "Optional. The name of the vlan attachment within vrf. This is of the form projects/{project_number}/regions/{region}/interconnectAttachments/{interconnect_attachment}",
           "type": "string"
         },
         "pairingKey": {

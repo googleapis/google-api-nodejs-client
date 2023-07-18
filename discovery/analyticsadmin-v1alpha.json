@@ -4322,7 +4322,7 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20230716",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -4876,8 +4876,8 @@
           "enumDescriptions": [
             "Default value. This value is unused.",
             "No data export scope selected yet. Export scope can never be changed back to this value.",
-            "The Ads Web Conversion Data export scope is Cross Channel.",
-            "The Ads Web Conversion Data export scope is Ads Preferred."
+            "Paid and organic channels are eligible to receive conversion credit, but only credit assigned to Google Ads channels will appear in your Ads accounts. To learn more, see [Paid and Organic channels](https://support.google.com/analytics/answer/10632359).",
+            "Only Google Ads paid channels are eligible to receive conversion credit. To learn more, see [Google Paid channels](https://support.google.com/analytics/answer/10632359)."
           ],
           "type": "string"
         },
