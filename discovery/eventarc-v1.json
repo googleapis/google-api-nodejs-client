@@ -1197,7 +1197,7 @@
       }
     }
   },
-  "revision": "20230623",
+  "revision": "20230711",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1426,7 +1426,7 @@
           "type": "string"
         },
         "operator": {
-          "description": "Optional. The operator used for matching the events with the value of the filter. If not specified, only events that have an exact key-value pair specified in the filter are matched. The only allowed value is `match-path-pattern`.",
+          "description": "Optional. The operator used for matching the events with the value of the filter. If not specified, only events that have an exact key-value pair specified in the filter are matched. The allowed values are `path_pattern` and `match-path-pattern`. `path_pattern` is only allowed for GCFv1 triggers.",
           "type": "string"
         },
         "value": {
