@@ -2097,7 +2097,7 @@
       }
     }
   },
-  "revision": "20230703",
+  "revision": "20230710",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -5490,7 +5490,12 @@
     "StartMigrationJobRequest": {
       "description": "Request message for 'StartMigrationJob' request.",
       "id": "StartMigrationJobRequest",
-      "properties": {},
+      "properties": {
+        "skipValidation": {
+          "description": "Optional. Start the migration job without running prior configuration verification. Defaults to `false`.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "StaticIpConnectivity": {

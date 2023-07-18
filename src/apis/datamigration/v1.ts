@@ -2316,7 +2316,12 @@ export namespace datamigration_v1 {
   /**
    * Request message for 'StartMigrationJob' request.
    */
-  export interface Schema$StartMigrationJobRequest {}
+  export interface Schema$StartMigrationJobRequest {
+    /**
+     * Optional. Start the migration job without running prior configuration verification. Defaults to `false`.
+     */
+    skipValidation?: boolean | null;
+  }
   /**
    * The source database will allow incoming connections from the public IP of the destination database. You can retrieve the public IP of the Cloud SQL instance from the Cloud SQL console or using Cloud SQL APIs. No additional configuration is required.
    */
@@ -9670,7 +9675,9 @@ export namespace datamigration_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "skipValidation": false
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
