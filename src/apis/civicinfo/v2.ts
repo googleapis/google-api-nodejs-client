@@ -782,7 +782,7 @@ export namespace civicinfo_v2 {
     pollingLocations?: Schema$PollingLocation[];
     precinctId?: string | null;
     /**
-     * The precincts that match this voter's address. Will only be returned for project IDs which have been whitelisted as "partner projects".
+     * The precincts that match this voter's address. Will only be returned for project IDs which have been allowlisted as "partner projects".
      */
     precincts?: Schema$Precinct[];
     /**
@@ -971,7 +971,10 @@ export namespace civicinfo_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await civicinfo.elections.electionQuery({});
+     *   const res = await civicinfo.elections.electionQuery({
+     *     // Whether to include data that has not been allowlisted yet
+     *     productionDataOnly: 'placeholder-value',
+     *   });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1112,6 +1115,8 @@ export namespace civicinfo_v2 {
      *     electionId: 'placeholder-value',
      *     // If set to true, only data from official state sources will be returned.
      *     officialOnly: 'placeholder-value',
+     *     // Whether to include data that has not been vetted yet. Should only be made available to internal IPs or trusted partners. This is a non-discoverable parameter in the One Platform API config.
+     *     productionDataOnly: 'placeholder-value',
      *     // If set to true, the query will return the success code and include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
      *     returnAllAvailableData: 'placeholder-value',
      *   });
@@ -1232,7 +1237,12 @@ export namespace civicinfo_v2 {
   }
 
   export interface Params$Resource$Elections$Electionquery
-    extends StandardParameters {}
+    extends StandardParameters {
+    /**
+     * Whether to include data that has not been allowlisted yet
+     */
+    productionDataOnly?: boolean;
+  }
   export interface Params$Resource$Elections$Voterinfoquery
     extends StandardParameters {
     /**
@@ -1247,6 +1257,10 @@ export namespace civicinfo_v2 {
      * If set to true, only data from official state sources will be returned.
      */
     officialOnly?: boolean;
+    /**
+     * Whether to include data that has not been vetted yet. Should only be made available to internal IPs or trusted partners. This is a non-discoverable parameter in the One Platform API config.
+     */
+    productionDataOnly?: boolean;
     /**
      * If set to true, the query will return the success code and include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
      */
