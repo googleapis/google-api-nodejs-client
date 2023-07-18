@@ -1,5 +1,21 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v8.0.0...civicinfo-v9.0.0) (2023-07-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **civicinfo:** This release has breaking changes.
+
+### Features
+
+* **civicinfo:** update the API ([6215ccb](https://github.com/googleapis/google-api-nodejs-client/commit/6215ccb4493ab58c39f6b69e24dd0353f6db28c0))
+* **civicinfo:** update the API ([c862028](https://github.com/googleapis/google-api-nodejs-client/commit/c86202891454b2ae6777717a351e9d38aef1404c))
+* **civicinfo:** update the API ([8b298c6](https://github.com/googleapis/google-api-nodejs-client/commit/8b298c651a2a125cd644556d40e7ad3841992488))
+* regenerate index files ([46817cf](https://github.com/googleapis/google-api-nodejs-client/commit/46817cfbbdb7030ef55c89dcd5dd54b85d14da5b))
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+* regenerate index files ([4216892](https://github.com/googleapis/google-api-nodejs-client/commit/42168925208e087c952d1fc8267847731d05ae9f))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v7.0.0...civicinfo-v8.0.0) (2023-07-11)
 
 

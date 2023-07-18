@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workflowexecutions-v4.0.0...workflowexecutions-v4.1.0) (2023-07-18)
+
+
+### Features
+
+* regenerate index files ([46817cf](https://github.com/googleapis/google-api-nodejs-client/commit/46817cfbbdb7030ef55c89dcd5dd54b85d14da5b))
+
+
+### Bug Fixes
+
+* **workflowexecutions:** update the API ([9fb1ae5](https://github.com/googleapis/google-api-nodejs-client/commit/9fb1ae5fba86270a81d94795ba5d244c2b0fbe76))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workflowexecutions-v3.0.0...workflowexecutions-v4.0.0) (2023-06-22)
 
 

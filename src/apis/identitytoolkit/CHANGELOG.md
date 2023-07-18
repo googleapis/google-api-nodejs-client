@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v6.0.0...identitytoolkit-v6.1.0) (2023-07-18)
+
+
+### Features
+
+* **identitytoolkit:** update the API ([9daa895](https://github.com/googleapis/google-api-nodejs-client/commit/9daa8953e11fadbd01e6e17d1413e64fde71891b))
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v5.0.0...identitytoolkit-v6.0.0) (2023-07-10)
 
 

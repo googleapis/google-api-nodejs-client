@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/smartdevicemanagement-v1.0.0...smartdevicemanagement-v1.1.0) (2023-07-18)
+
+
+### Features
+
+* regenerate index files ([46817cf](https://github.com/googleapis/google-api-nodejs-client/commit/46817cfbbdb7030ef55c89dcd5dd54b85d14da5b))
+* **smartdevicemanagement:** update the API ([dd15bc4](https://github.com/googleapis/google-api-nodejs-client/commit/dd15bc4a61d10efd612fe25df2d1d229b12a3bf4))
+
 ## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/smartdevicemanagement-v0.4.2...smartdevicemanagement-v1.0.0) (2022-10-28)
 
 

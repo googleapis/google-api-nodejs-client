@@ -1,5 +1,17 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v12.0.0...displayvideo-v12.1.0) (2023-07-18)
+
+
+### Features
+
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+
+
+### Bug Fixes
+
+* **displayvideo:** update the API ([4e93f2e](https://github.com/googleapis/google-api-nodejs-client/commit/4e93f2e4c38c02246a24d2e55e75e8fa5d169803))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v11.0.0...displayvideo-v12.0.0) (2023-07-10)
 
 

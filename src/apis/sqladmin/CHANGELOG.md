@@ -1,5 +1,19 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v9.1.0...sqladmin-v10.0.0) (2023-07-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **sqladmin:** This release has breaking changes.
+
+### Features
+
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+* regenerate index files ([4216892](https://github.com/googleapis/google-api-nodejs-client/commit/42168925208e087c952d1fc8267847731d05ae9f))
+* **sqladmin:** update the API ([f7abe37](https://github.com/googleapis/google-api-nodejs-client/commit/f7abe379b0b8b5dfb9a354e6a1164b3de84b6d13))
+* **sqladmin:** update the API ([2f12d8b](https://github.com/googleapis/google-api-nodejs-client/commit/2f12d8b83580f40d55a4e9419c7289fa2b52f494))
+
 ## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v9.0.0...sqladmin-v9.1.0) (2023-07-10)
 
 
