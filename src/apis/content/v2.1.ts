@@ -1494,6 +1494,59 @@ export namespace content_v2_1 {
     servability?: string | null;
   }
   /**
+   * Fields related to [competitive visibility reports] (https://support.google.com/merchants/answer/11366442).
+   */
+  export interface Schema$CompetitiveVisibility {
+    /**
+     * [Ads / organic ratio] (https://support.google.com/merchants/answer/11366442#zippy=%2Cadsfree-ratio) shows how often a merchant receives impressions from Shopping ads compared to organic traffic. The number is rounded and bucketed. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.
+     */
+    adsOrganicRatio?: number | null;
+    /**
+     * Change in visibility based on impressions with respect to the start of the selected time range (or first day with non-zero impressions) for a combined set of merchants with highest visibility approximating the market. Available only in `CompetitiveVisibilityBenchmarkView`. Cannot be filtered on in the 'WHERE' clause.
+     */
+    categoryBenchmarkVisibilityTrend?: number | null;
+    /**
+     * Google product category ID to calculate the report for, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436). Required in the `SELECT` clause. A `WHERE` condition on `competitive_visibility.category_id` is required in the query.
+     */
+    categoryId?: string | null;
+    /**
+     * The country where impression appeared. Required in the `SELECT` clause. A `WHERE` condition on `competitive_visibility.country_code` is required in the query.
+     */
+    countryCode?: string | null;
+    /**
+     * Date of this row. Available only in `CompetitiveVisibilityBenchmarkView`. Required in the `SELECT` clause for `CompetitiveVisibilityMarketBenchmarkView`.
+     */
+    date?: Schema$Date;
+    /**
+     * Domain of your competitor or your domain, if 'is_your_domain' is true. Available only in `CompetitiveVisibilityTopMerchantView`. Required in the `SELECT` clause for `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.
+     */
+    domain?: string | null;
+    /**
+     * Higher position rate shows how often a competitor’s offer got placed in a higher position on the page than your offer. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.
+     */
+    higherPositionRate?: number | null;
+    /**
+     * True if this row contains data for your domain. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.
+     */
+    isYourDomain?: boolean | null;
+    /**
+     * Page overlap rate describes how frequently competing retailers’ offers are shown together with your offers on the same page. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.
+     */
+    pageOverlapRate?: number | null;
+    /**
+     * Position of the domain in the top merchants ranking for the selected keys (`date`, `category_id`, `country_code`, `listing_type`) based on impressions. 1 is the highest. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.
+     */
+    rank?: string | null;
+    /**
+     * Type of impression listing. Required in the `SELECT` clause for `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityMarketBenchmarkView`. Cannot be filtered on in the 'WHERE' clause.
+     */
+    trafficSource?: string | null;
+    /**
+     * Change in visibility based on impressions for your domain with respect to the start of the selected time range (or first day with non-zero impressions). Available only in `CompetitiveVisibilityBenchmarkView`. Cannot be filtered on in the 'WHERE' clause.
+     */
+    yourDomainVisibilityTrend?: number | null;
+  }
+  /**
    * Represents a conversion source owned by a Merchant account. A merchant account can have up to 200 conversion sources.
    */
   export interface Schema$ConversionSource {
@@ -1547,6 +1600,9 @@ export namespace content_v2_1 {
      */
     labelIds?: string[] | null;
   }
+  /**
+   * A message that represents custom attributes. Exactly one of `value` or `groupValues` must be provided. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set per merchant, with total size of 102.4kB.
+   */
   export interface Schema$CustomAttribute {
     /**
      * Subattributes within this attribute group. Exactly one of value or groupValues must be provided.
@@ -5810,6 +5866,10 @@ export namespace content_v2_1 {
      * The measure and dimension of an item.
      */
     unitPricingMeasure?: Schema$ProductUnitPricingMeasure;
+    /**
+     * URL of the 3D model of the item to provide more visuals.
+     */
+    virtualModelLink?: string | null;
   }
   export interface Schema$ProductAmount {
     /**
@@ -7092,6 +7152,10 @@ export namespace content_v2_1 {
      * Brand fields requested by the merchant in the query. Field values are only set if the merchant queries `BestSellersBrandView`.
      */
     brand?: Schema$Brand;
+    /**
+     * Competitive visibility fields requested by the merchant in the query. Field values are only set if the merchant queries `CompetitiveVisibilityTopMerchantView` or `CompetitiveVisibilityBenchmarkView`.
+     */
+    competitiveVisibility?: Schema$CompetitiveVisibility;
     /**
      * Metrics requested by the merchant in the query. Metric values are only set for metrics requested explicitly in the query.
      */
@@ -28106,7 +28170,8 @@ export namespace content_v2_1 {
      *   //   "title": "my_title",
      *   //   "transitTimeLabel": "my_transitTimeLabel",
      *   //   "unitPricingBaseMeasure": {},
-     *   //   "unitPricingMeasure": {}
+     *   //   "unitPricingMeasure": {},
+     *   //   "virtualModelLink": "my_virtualModelLink"
      *   // }
      * }
      *
@@ -28331,7 +28396,8 @@ export namespace content_v2_1 {
      *       //   "title": "my_title",
      *       //   "transitTimeLabel": "my_transitTimeLabel",
      *       //   "unitPricingBaseMeasure": {},
-     *       //   "unitPricingMeasure": {}
+     *       //   "unitPricingMeasure": {},
+     *       //   "virtualModelLink": "my_virtualModelLink"
      *       // }
      *     },
      *   });
@@ -28434,7 +28500,8 @@ export namespace content_v2_1 {
      *   //   "title": "my_title",
      *   //   "transitTimeLabel": "my_transitTimeLabel",
      *   //   "unitPricingBaseMeasure": {},
-     *   //   "unitPricingMeasure": {}
+     *   //   "unitPricingMeasure": {},
+     *   //   "virtualModelLink": "my_virtualModelLink"
      *   // }
      * }
      *
@@ -28802,7 +28869,8 @@ export namespace content_v2_1 {
      *       //   "title": "my_title",
      *       //   "transitTimeLabel": "my_transitTimeLabel",
      *       //   "unitPricingBaseMeasure": {},
-     *       //   "unitPricingMeasure": {}
+     *       //   "unitPricingMeasure": {},
+     *       //   "virtualModelLink": "my_virtualModelLink"
      *       // }
      *     },
      *   });
@@ -28905,7 +28973,8 @@ export namespace content_v2_1 {
      *   //   "title": "my_title",
      *   //   "transitTimeLabel": "my_transitTimeLabel",
      *   //   "unitPricingBaseMeasure": {},
-     *   //   "unitPricingMeasure": {}
+     *   //   "unitPricingMeasure": {},
+     *   //   "virtualModelLink": "my_virtualModelLink"
      *   // }
      * }
      *
