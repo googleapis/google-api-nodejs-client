@@ -569,6 +569,10 @@ export namespace notebooks_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
+     * Output only. Bool indicating whether this notebook has been migrated to a Workbench Instance
+     */
+    migrated?: boolean | null;
+    /**
      * Output only. The name of this notebook instance. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
     name?: string | null;
@@ -1118,6 +1122,10 @@ export namespace notebooks_v1 {
      * Output only. Contains Runtime daemon metrics such as Service status and JupyterLab stats.
      */
     metrics?: Schema$RuntimeMetrics;
+    /**
+     * Output only. Bool indicating whether this notebook has been migrated to a Workbench Instance
+     */
+    migrated?: boolean | null;
     /**
      * Output only. The resource name of the runtime. Format: `projects/{project\}/locations/{location\}/runtimes/{runtimeId\}`
      */
@@ -3304,6 +3312,7 @@ export namespace notebooks_v1 {
      *       //   "labels": {},
      *       //   "machineType": "my_machineType",
      *       //   "metadata": {},
+     *       //   "migrated": false,
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "nicType": "my_nicType",
@@ -3752,6 +3761,7 @@ export namespace notebooks_v1 {
      *   //   "labels": {},
      *   //   "machineType": "my_machineType",
      *   //   "metadata": {},
+     *   //   "migrated": false,
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "nicType": "my_nicType",
@@ -7738,6 +7748,7 @@ export namespace notebooks_v1 {
      *       //   "healthState": "my_healthState",
      *       //   "labels": {},
      *       //   "metrics": {},
+     *       //   "migrated": false,
      *       //   "name": "my_name",
      *       //   "softwareConfig": {},
      *       //   "state": "my_state",
@@ -8161,6 +8172,7 @@ export namespace notebooks_v1 {
      *   //   "healthState": "my_healthState",
      *   //   "labels": {},
      *   //   "metrics": {},
+     *   //   "migrated": false,
      *   //   "name": "my_name",
      *   //   "softwareConfig": {},
      *   //   "state": "my_state",
@@ -8573,6 +8585,7 @@ export namespace notebooks_v1 {
      *       //   "healthState": "my_healthState",
      *       //   "labels": {},
      *       //   "metrics": {},
+     *       //   "migrated": false,
      *       //   "name": "my_name",
      *       //   "softwareConfig": {},
      *       //   "state": "my_state",

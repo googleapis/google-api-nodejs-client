@@ -1932,7 +1932,7 @@
       }
     }
   },
-  "revision": "20230627",
+  "revision": "20230710",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2616,6 +2616,11 @@
           },
           "description": "Custom metadata to apply to this instance.",
           "type": "object"
+        },
+        "migrated": {
+          "description": "Output only. Bool indicating whether this notebook has been migrated to a Workbench Instance",
+          "readOnly": true,
+          "type": "boolean"
         },
         "name": {
           "description": "Output only. The name of this notebook instance. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
@@ -3416,6 +3421,11 @@
           "$ref": "RuntimeMetrics",
           "description": "Output only. Contains Runtime daemon metrics such as Service status and JupyterLab stats.",
           "readOnly": true
+        },
+        "migrated": {
+          "description": "Output only. Bool indicating whether this notebook has been migrated to a Workbench Instance",
+          "readOnly": true,
+          "type": "boolean"
         },
         "name": {
           "description": "Output only. The resource name of the runtime. Format: `projects/{project}/locations/{location}/runtimes/{runtimeId}`",
