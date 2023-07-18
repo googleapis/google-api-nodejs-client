@@ -1816,7 +1816,7 @@
       }
     }
   },
-  "revision": "20230701",
+  "revision": "20230707",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2369,6 +2369,10 @@
             "$ref": "Target"
           },
           "type": "array"
+        },
+        "serviceAccount": {
+          "description": "Optional. The service account to run workflow invocations under.",
+          "type": "string"
         },
         "transitiveDependenciesIncluded": {
           "description": "Optional. When set to true, transitive dependencies of included actions will be executed.",
@@ -3040,6 +3044,10 @@
         },
         "npmrcEnvironmentVariablesSecretVersion": {
           "description": "Optional. The name of the Secret Manager secret version to be used to interpolate variables into the .npmrc file for package installation operations. Must be in the format `projects/*/secrets/*/versions/*`. The file itself must be in a JSON format.",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Optional. The service account to run workflow invocations under.",
           "type": "string"
         },
         "workspaceCompilationOverrides": {

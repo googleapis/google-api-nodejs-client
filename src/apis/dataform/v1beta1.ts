@@ -542,6 +542,10 @@ export namespace dataform_v1beta1 {
      */
     includedTargets?: Schema$Target[];
     /**
+     * Optional. The service account to run workflow invocations under.
+     */
+    serviceAccount?: string | null;
+    /**
      * Optional. When set to true, transitive dependencies of included actions will be executed.
      */
     transitiveDependenciesIncluded?: boolean | null;
@@ -1031,6 +1035,10 @@ export namespace dataform_v1beta1 {
      * Optional. The name of the Secret Manager secret version to be used to interpolate variables into the .npmrc file for package installation operations. Must be in the format `projects/x/secrets/x/versions/x`. The file itself must be in a JSON format.
      */
     npmrcEnvironmentVariablesSecretVersion?: string | null;
+    /**
+     * Optional. The service account to run workflow invocations under.
+     */
+    serviceAccount?: string | null;
     /**
      * Optional. If set, fields of `workspace_compilation_overrides` override the default compilation settings that are specified in dataform.json when creating workspace-scoped compilation results. See documentation for `WorkspaceCompilationOverrides` for more information.
      */
@@ -1814,6 +1822,7 @@ export namespace dataform_v1beta1 {
      *       //   "gitRemoteSettings": {},
      *       //   "name": "my_name",
      *       //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "workspaceCompilationOverrides": {}
      *       // }
      *     },
@@ -1825,6 +1834,7 @@ export namespace dataform_v1beta1 {
      *   //   "gitRemoteSettings": {},
      *   //   "name": "my_name",
      *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "workspaceCompilationOverrides": {}
      *   // }
      * }
@@ -2221,6 +2231,7 @@ export namespace dataform_v1beta1 {
      *   //   "gitRemoteSettings": {},
      *   //   "name": "my_name",
      *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "workspaceCompilationOverrides": {}
      *   // }
      * }
@@ -2631,6 +2642,7 @@ export namespace dataform_v1beta1 {
      *       //   "gitRemoteSettings": {},
      *       //   "name": "my_name",
      *       //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "workspaceCompilationOverrides": {}
      *       // }
      *     },
@@ -2642,6 +2654,7 @@ export namespace dataform_v1beta1 {
      *   //   "gitRemoteSettings": {},
      *   //   "name": "my_name",
      *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "workspaceCompilationOverrides": {}
      *   // }
      * }
