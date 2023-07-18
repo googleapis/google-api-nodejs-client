@@ -1555,6 +1555,10 @@ export namespace containeranalysis_v1 {
      * The last time this resource was scanned.
      */
     lastScanTime?: string | null;
+    /**
+     * The status of an SBOM generation.
+     */
+    sbomStatus?: Schema$SBOMStatus;
   }
   /**
    * This represents a particular channel of distribution for a given package. E.g., Debian's jessie-backports dpkg mirror.
@@ -2573,6 +2577,19 @@ export namespace containeranalysis_v1 {
      * The signatures over the payload.
      */
     signatures?: Schema$EnvelopeSignature[];
+  }
+  /**
+   * The status of an SBOM generation.
+   */
+  export interface Schema$SBOMStatus {
+    /**
+     * If there was an error generating an SBOM, this will indicate what that error was.
+     */
+    error?: string | null;
+    /**
+     * The progress of the SBOM generation.
+     */
+    sbomState?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.

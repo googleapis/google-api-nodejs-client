@@ -755,7 +755,7 @@
       }
     }
   },
-  "revision": "20230612",
+  "revision": "20230707",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2218,6 +2218,14 @@
             "CLOUD_LOGGING_ONLY",
             "NONE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "The service determines the logging mode. The default is `LEGACY`. Do not rely on the default logging behavior as it may change in the future.",
             "Build logs are stored in Cloud Logging and Cloud Storage.",
@@ -2235,14 +2243,16 @@
             "N1_HIGHCPU_8",
             "N1_HIGHCPU_32",
             "E2_HIGHCPU_8",
-            "E2_HIGHCPU_32"
+            "E2_HIGHCPU_32",
+            "E2_MEDIUM"
           ],
           "enumDescriptions": [
             "Standard machine type.",
             "Highcpu machine with 8 CPUs.",
             "Highcpu machine with 32 CPUs.",
             "Highcpu e2 machine with 8 CPUs.",
-            "Highcpu e2 machine with 32 CPUs."
+            "Highcpu e2 machine with 32 CPUs.",
+            "E2 machine with 1 CPU."
           ],
           "type": "string"
         },
@@ -2308,6 +2318,7 @@
           "type": "array"
         },
         "workerPool": {
+          "deprecated": true,
           "description": "This field deprecated; please use `pool.name` instead.",
           "type": "string"
         }
@@ -3208,6 +3219,10 @@
           "description": "The last time this resource was scanned.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "sbomStatus": {
+          "$ref": "SBOMStatus",
+          "description": "The status of an SBOM generation."
         }
       },
       "type": "object"
@@ -4599,6 +4614,31 @@
             "$ref": "EnvelopeSignature"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SBOMStatus": {
+      "description": "The status of an SBOM generation.",
+      "id": "SBOMStatus",
+      "properties": {
+        "error": {
+          "description": "If there was an error generating an SBOM, this will indicate what that error was.",
+          "type": "string"
+        },
+        "sbomState": {
+          "description": "The progress of the SBOM generation.",
+          "enum": [
+            "SBOM_STATE_UNSPECIFIED",
+            "PENDING",
+            "COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Default unknown state.",
+            "SBOM scanning is pending.",
+            "SBOM scanning has completed."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
