@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20230627",
+  "revision": "20230711",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -1232,6 +1232,7 @@
       "properties": {
         "firstBandColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The first color that is alternating. (Required) Deprecated: Use first_band_color_style."
         },
         "firstBandColorStyle": {
@@ -1240,6 +1241,7 @@
         },
         "footerColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the last row or column. If this field is not set, the last row or column is filled with either first_band_color or second_band_color, depending on the color of the previous row or column. Deprecated: Use footer_color_style."
         },
         "footerColorStyle": {
@@ -1248,6 +1250,7 @@
         },
         "headerColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the first row or column. If this field is set, the first row or column is filled with this color and the colors alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column is filled with first_band_color and the colors proceed to alternate as they normally would. Deprecated: Use header_color_style."
         },
         "headerColorStyle": {
@@ -1256,6 +1259,7 @@
         },
         "secondBandColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The second color that is alternating. (Required) Deprecated: Use second_band_color_style."
         },
         "secondBandColorStyle": {
@@ -1289,6 +1293,7 @@
         },
         "negativeColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "Color to be used, in case baseline value represents a negative change for key value. This field is optional. Deprecated: Use negative_color_style."
         },
         "negativeColorStyle": {
@@ -1301,6 +1306,7 @@
         },
         "positiveColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "Color to be used, in case baseline value represents a positive change for key value. This field is optional. Deprecated: Use positive_color_style."
         },
         "positiveColorStyle": {
@@ -1374,6 +1380,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color for elements (such as bars, lines, and points) associated with this series. If empty, a default color is used. Deprecated: Use color_style."
         },
         "colorStyle": {
@@ -1577,6 +1584,7 @@
           "additionalProperties": {
             "$ref": "FilterCriteria"
           },
+          "deprecated": true,
           "description": "The criteria for showing/hiding values per column. The map's key is the column index, and the value is the criteria for that column. This field is deprecated in favor of filter_specs.",
           "type": "object"
         },
@@ -1607,6 +1615,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "Color of the series data point. If empty, the series default is used. Deprecated: Use color_style."
         },
         "colorStyle": {
@@ -2180,6 +2189,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the border. Deprecated: Use color_style."
         },
         "colorStyle": {
@@ -2211,6 +2221,7 @@
           "type": "string"
         },
         "width": {
+          "deprecated": true,
           "description": "The width of the border, in pixels. Deprecated; the width is determined by the \"style\" field.",
           "format": "int32",
           "type": "integer"
@@ -2247,6 +2258,7 @@
       "properties": {
         "bubbleBorderColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The bubble border color. Deprecated: Use bubble_border_color_style."
         },
         "bubbleBorderColorStyle": {
@@ -2449,6 +2461,7 @@
       "properties": {
         "backgroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color of the cell. Deprecated: Use background_color_style."
         },
         "backgroundColorStyle": {
@@ -2753,6 +2766,7 @@
         },
         "backgroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color of the entire chart. Not applicable to Org charts. Deprecated: Use background_color_style."
         },
         "backgroundColorStyle": {
@@ -4344,6 +4358,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the border. Deprecated: Use color_style."
         },
         "colorStyle": {
@@ -4457,6 +4472,7 @@
         },
         "visibleBackgroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with visible_foreground_color. Deprecated: Use visible_background_color_style."
         },
         "visibleBackgroundColorStyle": {
@@ -4465,6 +4481,7 @@
         },
         "visibleForegroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The foreground color to filter by; only cells with this foreground color are shown. Mutually exclusive with visible_background_color. Deprecated: Use visible_foreground_color_style."
         },
         "visibleForegroundColorStyle": {
@@ -4502,6 +4519,7 @@
           "additionalProperties": {
             "$ref": "FilterCriteria"
           },
+          "deprecated": true,
           "description": "The criteria for showing/hiding values per column. The map's key is the column index, and the value is the criteria for that column. This field is deprecated in favor of filter_specs.",
           "type": "object"
         },
@@ -4861,6 +4879,7 @@
       "properties": {
         "barColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the column representing this series in each bucket. This field is optional. Deprecated: Use bar_color_style."
         },
         "barColorStyle": {
@@ -4920,6 +4939,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color this interpolation point should use. Deprecated: Use color_style."
         },
         "colorStyle": {
@@ -5226,6 +5246,7 @@
         },
         "nodeColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the org chart nodes. Deprecated: Use node_color_style."
         },
         "nodeColorStyle": {
@@ -5254,6 +5275,7 @@
         },
         "selectedNodeColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the selected org chart nodes. Deprecated: Use selected_node_color_style."
         },
         "selectedNodeColorStyle": {
@@ -5604,6 +5626,7 @@
           "additionalProperties": {
             "$ref": "PivotFilterCriteria"
           },
+          "deprecated": true,
           "description": "An optional mapping of filters per source column offset. The filters are applied before aggregating data into the pivot table. The map's key is the column offset of the source range that you want to filter, and the value is the criteria for that column. For example, if the source was `C10:E15`, a key of `0` will have the filter for column `C`, whereas the key `1` is for column `D`. This field is deprecated in favor of filter_specs.",
           "type": "object"
         },
@@ -6541,6 +6564,7 @@
         },
         "tabColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the tab in the UI. Deprecated: Use tab_color_style."
         },
         "tabColorStyle": {
@@ -6584,6 +6608,7 @@
         },
         "backgroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color of the slicer. Deprecated: Use background_color_style."
         },
         "backgroundColorStyle": {
@@ -6654,6 +6679,7 @@
       "properties": {
         "backgroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background fill color to sort by; cells with this fill color are sorted to the top. Mutually exclusive with foreground_color. Deprecated: Use background_color_style."
         },
         "backgroundColorStyle": {
@@ -6671,6 +6697,7 @@
         },
         "foregroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The foreground color to sort by; cells with this foreground color are sorted to the top. Mutually exclusive with background_color. Deprecated: Use foreground_color_style."
         },
         "foregroundColorStyle": {
@@ -6863,6 +6890,7 @@
         },
         "foregroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The foreground color of the text. Deprecated: Use foreground_color_style."
         },
         "foregroundColorStyle": {
@@ -7052,6 +7080,7 @@
       "properties": {
         "maxValueColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color for cells with a color value greater than or equal to maxValue. Defaults to #109618 if not specified. Deprecated: Use max_value_color_style."
         },
         "maxValueColorStyle": {
@@ -7060,6 +7089,7 @@
         },
         "midValueColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color for cells with a color value at the midpoint between minValue and maxValue. Defaults to #efe6dc if not specified. Deprecated: Use mid_value_color_style."
         },
         "midValueColorStyle": {
@@ -7068,6 +7098,7 @@
         },
         "minValueColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color for cells with a color value less than or equal to minValue. Defaults to #dc3912 if not specified. Deprecated: Use min_value_color_style."
         },
         "minValueColorStyle": {
@@ -7076,6 +7107,7 @@
         },
         "noDataColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color for cells that have no color data associated with them. Defaults to #000000 if not specified. Deprecated: Use no_data_color_style."
         },
         "noDataColorStyle": {
@@ -7099,6 +7131,7 @@
         },
         "headerColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color for header cells. Deprecated: Use header_color_style."
         },
         "headerColorStyle": {
@@ -7698,6 +7731,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the column. Deprecated: Use color_style."
         },
         "colorStyle": {

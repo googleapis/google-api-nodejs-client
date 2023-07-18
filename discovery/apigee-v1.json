@@ -9242,7 +9242,7 @@
       }
     }
   },
-  "revision": "20230630",
+  "revision": "20230715",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -9583,6 +9583,10 @@
         "graphqlOperationGroup": {
           "$ref": "GoogleCloudApigeeV1GraphQLOperationGroup",
           "description": "Configuration used to group Apigee proxies or remote services with graphQL operation name, graphQL operation type and quotas. This grouping allows us to precisely set quota for a particular combination of graphQL name and operation type for a particular proxy request. If graphQL name is not set, this would imply quota will be applied on all graphQL requests matching the operation type."
+        },
+        "grpcOperationGroup": {
+          "$ref": "GoogleCloudApigeeV1GrpcOperationGroup",
+          "description": "Optional. Configuration used to group Apigee proxies with gRPC services and method names. This grouping allows us to set quota for a particular proxy with the gRPC service name and method. If a method name is not set, this implies quota and authorization are applied to all gRPC methods implemented by that proxy for that particular gRPC service."
         },
         "lastModifiedAt": {
           "description": "Response only. Modified time of this environment as milliseconds since epoch.",
@@ -11857,6 +11861,9 @@
           "description": "Optional. Url of the forward proxy to be applied to the runtime instances in this environment. Must be in the format of {scheme}://{hostname}:{port}. Note that scheme must be one of \"http\" or \"https\", and port must be supplied.",
           "type": "string"
         },
+        "hasAttachedFlowHooks": {
+          "type": "boolean"
+        },
         "lastModifiedAt": {
           "description": "Output only. Last modification time of this environment as milliseconds since epoch.",
           "format": "int64",
@@ -12402,6 +12409,53 @@
           "description": "Required. List of operation configurations for either Apigee API proxies or other remote services that are associated with this API product.",
           "items": {
             "$ref": "GoogleCloudApigeeV1GraphQLOperationConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1GrpcOperationConfig": {
+      "description": "Binds the resources in a proxy or remote service with the gRPC operation and its associated quota enforcement.",
+      "id": "GoogleCloudApigeeV1GrpcOperationConfig",
+      "properties": {
+        "apiSource": {
+          "description": "Required. Name of the API proxy with which the gRPC operation and quota are associated.",
+          "type": "string"
+        },
+        "attributes": {
+          "description": "Custom attributes associated with the operation.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Attribute"
+          },
+          "type": "array"
+        },
+        "methods": {
+          "description": "List of unqualified gRPC method names for the proxy to which quota will be applied. If this field is empty, the Quota will apply to all operations on the gRPC service defined on the proxy. Example: Given a proxy that is configured to serve com.petstore.PetService, the methods com.petstore.PetService.ListPets and com.petstore.PetService.GetPet would be specified here as simply [\"ListPets\", \"GetPet\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "quota": {
+          "$ref": "GoogleCloudApigeeV1Quota",
+          "description": "Quota parameters to be enforced for the methods and API source combination. If none are specified, quota enforcement will not be done."
+        },
+        "service": {
+          "description": "Required. gRPC Service name associated to be associated with the API proxy, on which quota rules can be applied upon.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1GrpcOperationGroup": {
+      "description": "List of gRPC operation configuration details associated with Apigee API proxies.",
+      "id": "GoogleCloudApigeeV1GrpcOperationGroup",
+      "properties": {
+        "operationConfigs": {
+          "description": "Required. List of operation configurations for either Apigee API proxies that are associated with this API product.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1GrpcOperationConfig"
           },
           "type": "array"
         }
@@ -15794,12 +15848,18 @@
           "enum": [
             "PROTOCOL_UNSPECIFIED",
             "HTTP",
-            "GRPC"
+            "HTTP2",
+            "GRPC_TARGET",
+            "GRPC",
+            "EXTERNAL_CALLOUT"
           ],
           "enumDescriptions": [
             "UNSPECIFIED defaults to HTTP for backwards compatibility.",
             "The TargetServer uses HTTP.",
-            "GRPC TargetServer to be used in ExternalCallout Policy. Prefer to use EXTERNAL_CALLOUT instead. TODO(b/266125112) deprecate once EXTERNAL _CALLOUT generally available."
+            "The TargetSever uses HTTP2.",
+            "The TargetServer uses GRPC.",
+            "GRPC TargetServer to be used in ExternalCallout Policy. Prefer to use EXTERNAL_CALLOUT instead. TODO(b/266125112) deprecate once EXTERNAL _CALLOUT generally available.",
+            "The TargetServer is to be used in the ExternalCallout Policy"
           ],
           "type": "string"
         },
@@ -15835,12 +15895,18 @@
           "enum": [
             "PROTOCOL_UNSPECIFIED",
             "HTTP",
-            "GRPC"
+            "HTTP2",
+            "GRPC_TARGET",
+            "GRPC",
+            "EXTERNAL_CALLOUT"
           ],
           "enumDescriptions": [
             "UNSPECIFIED defaults to HTTP for backwards compatibility.",
             "The TargetServer uses HTTP.",
-            "GRPC TargetServer to be used in ExternalCallout Policy. Prefer to use EXTERNAL_CALLOUT instead. TODO(b/266125112) deprecate once EXTERNAL _CALLOUT generally available."
+            "The TargetSever uses HTTP2.",
+            "The TargetServer uses GRPC.",
+            "GRPC TargetServer to be used in ExternalCallout Policy. Prefer to use EXTERNAL_CALLOUT instead. TODO(b/266125112) deprecate once EXTERNAL _CALLOUT generally available.",
+            "The TargetServer is to be used in the ExternalCallout Policy"
           ],
           "type": "string"
         },
