@@ -4047,7 +4047,7 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20230717",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -6388,6 +6388,20 @@
         "oldestAllowedPriceVersionTime": {
           "description": "Required. The cutoff time for historical prices that subscribers can remain paying. Subscribers who are on a price that was created before this cutoff time will be migrated to the currently-offered price. These subscribers will receive a notification that they will be paying a different price. Subscribers who do not agree to the new price will have their subscription ended at the next renewal.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "priceIncreaseType": {
+          "description": "Optional. The behavior the caller wants users to see if there is a price increase during migration. If left unset, the behavior defaults to PRICE_INCREASE_TYPE_OPT_IN.",
+          "enum": [
+            "PRICE_INCREASE_TYPE_UNSPECIFIED",
+            "PRICE_INCREASE_TYPE_OPT_IN",
+            "PRICE_INCREASE_TYPE_OPT_OUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Price increase will be presented to users on an opt-in basis.",
+            "Price increase will be presented to users on an opt-out basis."
+          ],
           "type": "string"
         },
         "regionCode": {
