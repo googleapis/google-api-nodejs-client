@@ -7,7 +7,7 @@
   "main": "./build/src/index.js",
   "types": "./build/src/index.d.ts",
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   },
   "files": [
     "build/src",
@@ -54,8 +54,8 @@
     "client library"
   ],
   "dependencies": {
-    "google-auth-library": "^8.0.2",
-    "googleapis-common": "^6.0.0"
+    "google-auth-library": "^9.0.0",
+    "googleapis-common": "^7.0.0"
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.10",
@@ -76,8 +76,8 @@
     "codecov": "^3.4.0",
     "cross-env": "^7.0.3",
     "execa": "^5.0.0",
-    "gaxios": "^5.0.0",
-    "gts": "^3.1.0",
+    "gaxios": "^6.0.3",
+    "gts": "^5.0.0",
     "js-green-licenses": "^4.0.0",
     "linkinator": "^4.0.0",
     "mocha": "^9.2.2",
@@ -93,7 +93,7 @@
     "server-destroy": "^1.0.1",
     "sinon": "^15.0.0",
     "tmp": "^0.2.0",
-    "typescript": "^4.6.4",
+    "typescript": "5.1.6",
     "yargs-parser": "^20.2.0"
   }
 }
