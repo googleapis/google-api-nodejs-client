@@ -20,8 +20,8 @@ import {addFragments, getAllMethods} from '../src/generator/samplegen';
 const schema = require('../../test/fixtures/discovery/webfonts-v1.json');
 
 describe(__filename, () => {
-  it('should add fragments', () => {
-    addFragments(schema);
+  it('should add fragments', async () => {
+    await addFragments(schema);
     const methods = getAllMethods(schema);
     assert.strictEqual(methods.length, 1);
     assert.ok(methods[0].fragment);

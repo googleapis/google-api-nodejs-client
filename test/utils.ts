@@ -57,7 +57,9 @@ export abstract class Utils {
     const filePath = `./discovery/${name}-${version}.json`;
     nock('https://www.googleapis.com')
       .get(`${rootPrefix}/${name}/${version}/rest`)
-      .replyWithFile(200, filePath);
+      .replyWithFile(200, filePath, {
+        'Content-Type': 'application/json',
+      });
     return google.discoverAPI<T>(url, options);
   }
 

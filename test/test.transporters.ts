@@ -134,7 +134,7 @@ async function testNotObjectError(oauth2: APIEndpoint) {
     (err: NodeJS.ErrnoException) => {
       assert(err instanceof Error);
       assert.strictEqual(err.message, 'invalid_grant');
-      assert.strictEqual(err.code, '400');
+      assert.strictEqual((err as any).status, 400);
       return true;
     }
   );
@@ -151,7 +151,7 @@ async function testBackendError(blogger: APIEndpoint) {
     (err: NodeJS.ErrnoException) => {
       assert(err instanceof Error);
       console.log(err);
-      assert.strictEqual(Number(err.code), 500);
+      assert.strictEqual(Number((err as any).status), 500);
       assert.strictEqual(err.message, 'There was an error!');
       return true;
     }

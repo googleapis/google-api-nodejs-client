@@ -443,7 +443,9 @@ describe('Media', () => {
       .times(2)
       .reply(201, () => {
         return JSON.stringify({hello: 'world'});
-      });
+      }, {
+          'Content-Type': 'application/json',
+        });
 
     let requestBody = {
       message: {raw: Buffer.from('hello', 'binary').toString('base64')},
