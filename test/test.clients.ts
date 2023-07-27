@@ -22,7 +22,9 @@ function createNock(qs?: string) {
   const query = qs ? `?${qs}` : '';
   return nock('https://datastore.googleapis.com')
     .post(`/v1/projects/test-project-id:lookup${query}`)
-    .reply(200);
+    .reply(200, {
+      'Content-Type': 'application/json',
+    });
 }
 
 describe('Clients', () => {

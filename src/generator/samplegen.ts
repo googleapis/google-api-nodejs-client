@@ -61,7 +61,7 @@ export async function addFragments(schema: Schema) {
     const sampleData = getSample(schema, method);
     sampleData.standalone = false;
     let sample = env.render('sample.njk', sampleData);
-    sample = prettier.format(sample, prettierConfig);
+    sample = await prettier.format(sample, prettierConfig);
     method.fragment = sample;
   }
 }
@@ -80,7 +80,7 @@ export async function generateSamples(apiPath: string, schema: Schema) {
     sampleData.standalone = true;
     const samplePath = path.join(samplesPath, `${method.id}.js`);
     let sample = env.render('sample.njk', sampleData);
-    sample = prettier.format(sample, prettierConfig);
+    sample = await prettier.format(sample, prettierConfig);
     await writeFile(samplePath, sample, {encoding: 'utf8'});
   }
 }

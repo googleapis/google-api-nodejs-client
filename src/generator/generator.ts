@@ -291,7 +291,7 @@ export class Generator {
     let output = this.env.render(templatePath, data);
     const ext = path.extname(outputPath);
     if (ext === '.js' || ext === '.ts') {
-      output = prettier.format(output, {
+      output = await prettier.format(output, {
         bracketSpacing: false,
         singleQuote: true,
         trailingComma: 'es5',

@@ -81,8 +81,10 @@ describe(__filename, () => {
     const scopes = [
       nock('https://www.googleapis.com')
         .get('/discovery/v1/apis/')
-        .replyWithFile(200, fakeIndexPath),
-      nock('http://localhost:3030').get('/path').reply(200, {}),
+        .replyWithFile(200, fakeIndexPath, {
+          'Content-Type': 'application/json',
+        }),
+      nock('http://localhost:3030').get('/path').reply(200),
     ];
     const mkdirpStub = sandbox.stub(dn.gfs, 'mkdir').resolves();
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
@@ -99,7 +101,9 @@ describe(__filename, () => {
     const scopes = [
       nock('https://www.googleapis.com')
         .get('/discovery/v1/apis/')
-        .replyWithFile(200, fakeIndexPath),
+        .replyWithFile(200, fakeIndexPath, {
+          'Content-Type': 'application/json',
+        }),
       nock('http://localhost:3030').get('/path').reply(200, {
         revision: '1234',
       }),
