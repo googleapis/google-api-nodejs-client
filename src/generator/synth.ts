@@ -116,7 +116,11 @@ export async function synth(options: SynthOptions = {}) {
   } catch (e) {
     if ((e as gaxios.GaxiosError).response?.data) {
       console.error((e as gaxios.GaxiosError).response?.data);
-      if ((e as gaxios.GaxiosError).response?.data?.errors) {
+      if (
+        (e as gaxios.GaxiosError).response?.data &&
+        (e as gaxios.GaxiosError).response?.data?.errors
+      ) {
+        /* eslint-disable-next-line no-unsafe-optional-chaining */
         for (const err of (e as gaxios.GaxiosError).response?.data.errors) {
           console.error(err);
         }
