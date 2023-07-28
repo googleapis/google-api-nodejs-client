@@ -441,11 +441,15 @@ describe('Media', () => {
     nock(Utils.gmailUrl)
       .post('/upload/gmail/v1/users/me/drafts?uploadType=multipart')
       .times(2)
-      .reply(201, () => {
-        return JSON.stringify({hello: 'world'});
-      }, {
+      .reply(
+        201,
+        () => {
+          return JSON.stringify({hello: 'world'});
+        },
+        {
           'Content-Type': 'application/json',
-        });
+        }
+      );
 
     let requestBody = {
       message: {raw: Buffer.from('hello', 'binary').toString('base64')},
