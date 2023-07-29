@@ -15,7 +15,7 @@
 import * as assert from 'assert';
 import {describe, it} from 'mocha';
 import {google} from '../src';
-import {OAuth2Client} from 'googleapis-common';
+import {OAuth2Client} from 'google-auth-library';
 const compute = google.compute('v1');
 
 describe('google.auth', async () => {
@@ -26,7 +26,7 @@ describe('google.auth', async () => {
       });
       const projectId = await google.auth.getProjectId();
       const result = await compute.instances.aggregatedList({
-        auth: authClient,
+        auth: authClient as unknown as OAuth2Client,
         project: projectId,
       });
       const vms = result.data;
@@ -48,7 +48,7 @@ describe('google.auth', async () => {
       });
       const projectId = await google.auth.getProjectId();
       const result = await compute.instances.aggregatedList({
-        auth: authClient,
+        auth: authClient as unknown as OAuth2Client,
         project: projectId,
       });
       const vms = result.data;
