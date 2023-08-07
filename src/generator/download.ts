@@ -61,6 +61,9 @@ export async function downloadDiscoveryDocs(
   const headers: Headers = options.includePrivate
     ? {}
     : {'X-User-Ip': '0.0.0.0'};
+  headers['Content-Type'] = headers['Content-Type']
+    ? headers['Content-Type']
+    : 'json';
   console.log(`sending request to ${options.discoveryUrl}`);
   const res = await request<gapi.Schemas>({url: options.discoveryUrl, headers});
   const apis = res.data.items;
