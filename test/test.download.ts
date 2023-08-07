@@ -129,18 +129,24 @@ describe(__filename, () => {
     const port = 3030;
     const server = http
       .createServer((req, res) => {
-        res.writeHead(200);
+        res.writeHead(200, {
+          'Content-Type': 'application/json',
+        });
         const indexPath = path.join(
           __dirname,
           '../../test/fixtures/index.json'
         );
         fs.readFile(indexPath, (err, data) => {
           if (err) {
-            res.writeHead(404);
+            res.writeHead(404, {
+              'Content-Type': 'application/json',
+            });
             res.end(JSON.stringify(err));
             return;
           }
-          res.writeHead(200);
+          res.writeHead(200, {
+            'Content-Type': 'application/json',
+          });
           res.end(data);
         });
       })
