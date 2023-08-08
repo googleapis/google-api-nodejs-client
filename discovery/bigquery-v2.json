@@ -1183,35 +1183,6 @@
             "https://www.googleapis.com/auth/cloud-platform.read-only"
           ]
         },
-        "setIamPolicy": {
-          "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-          "flatPath": "projects/{projectsId}/datasets/{datasetsId}/tables/{tablesId}/rowAccessPolicies/{rowAccessPoliciesId}:setIamPolicy",
-          "httpMethod": "POST",
-          "id": "bigquery.rowAccessPolicies.setIamPolicy",
-          "parameterOrder": [
-            "resource"
-          ],
-          "parameters": {
-            "resource": {
-              "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-              "location": "path",
-              "pattern": "^projects/[^/]+/datasets/[^/]+/tables/[^/]+/rowAccessPolicies/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "{+resource}:setIamPolicy",
-          "request": {
-            "$ref": "SetIamPolicyRequest"
-          },
-          "response": {
-            "$ref": "Policy"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/bigquery",
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
         "testIamPermissions": {
           "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
           "flatPath": "projects/{projectsId}/datasets/{datasetsId}/tables/{tablesId}/rowAccessPolicies/{rowAccessPoliciesId}:testIamPermissions",
@@ -1710,7 +1681,7 @@
       }
     }
   },
-  "revision": "20230708",
+  "revision": "20230715",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -5229,6 +5200,14 @@
             "$ref": "TrainingRun"
           },
           "type": "array"
+        },
+        "transformColumns": {
+          "description": "Output only. This field will be populated if a TRANSFORM clause was used to train a model. TRANSFORM clause (if used) takes feature_columns as input and outputs transform_columns. transform_columns then are used to train the model.",
+          "items": {
+            "$ref": "TransformColumn"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -7905,6 +7884,28 @@
         "transactionId": {
           "description": "[Output-only] // [Alpha] Id of the transaction.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TransformColumn": {
+      "description": "Information about a single transform column.",
+      "id": "TransformColumn",
+      "properties": {
+        "name": {
+          "description": "Output only. Name of the column.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "transformSql": {
+          "description": "Output only. The SQL expression used in the column transform.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "$ref": "StandardSqlDataType",
+          "description": "Output only. Data type of the column after the transform.",
+          "readOnly": true
         }
       },
       "type": "object"
