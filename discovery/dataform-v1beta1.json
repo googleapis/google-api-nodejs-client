@@ -178,6 +178,34 @@
           "resources": {
             "repositories": {
               "methods": {
+                "commit": {
+                  "description": "Applies a Git commit to a Repository. The Repository must not have a value for `git_remote_settings.url`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:commit",
+                  "httpMethod": "POST",
+                  "id": "dataform.projects.locations.repositories.commit",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The repository's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:commit",
+                  "request": {
+                    "$ref": "CommitRepositoryChangesRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "computeAccessTokenStatus": {
                   "description": "Computes a Repository's Git access token status.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:computeAccessTokenStatus",
@@ -261,6 +289,42 @@
                   "path": "v1beta1/{+name}",
                   "response": {
                     "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "fetchHistory": {
+                  "description": "Fetches a Repository's history of commits. The Repository must not have a value for `git_remote_settings.url`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:fetchHistory",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.repositories.fetchHistory",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The repository's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of commits to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:fetchHistory",
+                  "response": {
+                    "$ref": "FetchRepositoryHistoryResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -422,6 +486,87 @@
                   },
                   "response": {
                     "$ref": "Repository"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "queryDirectoryContents": {
+                  "description": "Returns the contents of a given Repository directory. The Repository must not have a value for `git_remote_settings.url`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:queryDirectoryContents",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.repositories.queryDirectoryContents",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "commitSha": {
+                      "description": "Optional. The Commit SHA for the commit to query from. If unset, the directory will be queried from HEAD.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The repository's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "path": {
+                      "description": "Optional. The directory's full path including directory name, relative to root. If left unset, the root is used.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:queryDirectoryContents",
+                  "response": {
+                    "$ref": "QueryRepositoryDirectoryContentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "readFile": {
+                  "description": "Returns the contents of a file (inside a Repository). The Repository must not have a value for `git_remote_settings.url`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:readFile",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.repositories.readFile",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "commitSha": {
+                      "description": "Optional. The commit SHA for the commit to read from. If unset, the file will be read from HEAD.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The repository's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "path": {
+                      "description": "Required. Full file path to read including filename, from repository root.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:readFile",
+                  "response": {
+                    "$ref": "ReadRepositoryFileResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1816,7 +1961,7 @@
       }
     }
   },
-  "revision": "20230707",
+  "revision": "20230805",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -1973,6 +2118,67 @@
         },
         "name": {
           "description": "Required. The commit author's name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CommitLogEntry": {
+      "description": "Represents a single commit log.",
+      "id": "CommitLogEntry",
+      "properties": {
+        "author": {
+          "$ref": "CommitAuthor",
+          "description": "The commit author for this commit log entry."
+        },
+        "commitMessage": {
+          "description": "The commit message for this commit log entry.",
+          "type": "string"
+        },
+        "commitSha": {
+          "description": "The commit SHA for this commit log entry.",
+          "type": "string"
+        },
+        "commitTime": {
+          "description": "Commit timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CommitMetadata": {
+      "description": "Represents a Dataform Git commit.",
+      "id": "CommitMetadata",
+      "properties": {
+        "author": {
+          "$ref": "CommitAuthor",
+          "description": "Required. The commit's author."
+        },
+        "commitMessage": {
+          "description": "Optional. The commit's message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CommitRepositoryChangesRequest": {
+      "description": "`CommitRepositoryChanges` request message.",
+      "id": "CommitRepositoryChangesRequest",
+      "properties": {
+        "commitMetadata": {
+          "$ref": "CommitMetadata",
+          "description": "Required. The changes to commit to the repository."
+        },
+        "fileOperations": {
+          "additionalProperties": {
+            "$ref": "FileOperation"
+          },
+          "description": "A map to the path of the file to the operation. The path is the ull file path including filename, from repository root.",
+          "type": "object"
+        },
+        "requiredHeadCommitSha": {
+          "description": "Optional. The commit SHA which must be the repository's current HEAD before applying this commit; otherwise this request will fail. If unset, no validation on the current HEAD commit SHA is performed.",
           "type": "string"
         }
       },
@@ -2142,6 +2348,12 @@
       },
       "type": "object"
     },
+    "DeleteFile": {
+      "description": "Represents the delete file operation.",
+      "id": "DeleteFile",
+      "properties": {},
+      "type": "object"
+    },
     "DirectoryEntry": {
       "description": "Represents a single entry in a directory.",
       "id": "DirectoryEntry",
@@ -2242,12 +2454,45 @@
       },
       "type": "object"
     },
+    "FetchRepositoryHistoryResponse": {
+      "description": "`FetchRepositoryHistory` response message.",
+      "id": "FetchRepositoryHistoryResponse",
+      "properties": {
+        "commits": {
+          "description": "A list of commit logs, ordered by 'git log' default order.",
+          "items": {
+            "$ref": "CommitLogEntry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FileOperation": {
+      "description": "Represents a single file operation to the repository.",
+      "id": "FileOperation",
+      "properties": {
+        "deleteFile": {
+          "$ref": "DeleteFile",
+          "description": "Represents the delete operation."
+        },
+        "writeFile": {
+          "$ref": "WriteFile",
+          "description": "Represents the write operation."
+        }
+      },
+      "type": "object"
+    },
     "GitRemoteSettings": {
       "description": "Controls Git remote configuration for a repository.",
       "id": "GitRemoteSettings",
       "properties": {
         "authenticationTokenSecretVersion": {
-          "description": "Required. The name of the Secret Manager secret version to use as an authentication token for Git operations. Must be in the format `projects/*/secrets/*/versions/*`.",
+          "description": "Optional. The name of the Secret Manager secret version to use as an authentication token for Git operations. Must be in the format `projects/*/secrets/*/versions/*`.",
           "type": "string"
         },
         "defaultBranch": {
@@ -2731,7 +2976,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "bindings": {
@@ -2816,6 +3061,24 @@
       },
       "type": "object"
     },
+    "QueryRepositoryDirectoryContentsResponse": {
+      "description": "`QueryRepositoryDirectoryContents` response message.",
+      "id": "QueryRepositoryDirectoryContentsResponse",
+      "properties": {
+        "directoryEntries": {
+          "description": "List of entries in the directory.",
+          "items": {
+            "$ref": "DirectoryEntry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "QueryWorkflowInvocationActionsResponse": {
       "description": "`QueryWorkflowInvocationActions` response message.",
       "id": "QueryWorkflowInvocationActionsResponse",
@@ -2839,6 +3102,18 @@
       "id": "ReadFileResponse",
       "properties": {
         "fileContents": {
+          "description": "The file's contents.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReadRepositoryFileResponse": {
+      "description": "`ReadRepositoryFile` response message.",
+      "id": "ReadRepositoryFileResponse",
+      "properties": {
+        "contents": {
           "description": "The file's contents.",
           "format": "byte",
           "type": "string"
@@ -3033,9 +3308,20 @@
       "description": "Represents a Dataform Git repository.",
       "id": "Repository",
       "properties": {
+        "displayName": {
+          "description": "Optional. The repository's user-friendly name.",
+          "type": "string"
+        },
         "gitRemoteSettings": {
           "$ref": "GitRemoteSettings",
           "description": "Optional. If set, configures this repository to be linked to a Git remote."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Repository user labels.",
+          "type": "object"
         },
         "name": {
           "description": "Output only. The repository's name.",
@@ -3049,6 +3335,10 @@
         "serviceAccount": {
           "description": "Optional. The service account to run workflow invocations under.",
           "type": "string"
+        },
+        "setAuthenticatedUserAdmin": {
+          "description": "Optional. Input only. If set to true, the authenticated user will be granted the roles/dataform.admin role on the created repository. To modify access to the created repository later apply setIamPolicy from https://cloud.google.com/dataform/reference/rest#rest-resource:-v1beta1.projects.locations.repositories",
+          "type": "boolean"
         },
         "workspaceCompilationOverrides": {
           "$ref": "WorkspaceCompilationOverrides",
@@ -3396,6 +3686,18 @@
         },
         "tablePrefix": {
           "description": "Optional. The prefix that should be prepended to all table names.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WriteFile": {
+      "description": "Represents the write file operation (for files added or modified).",
+      "id": "WriteFile",
+      "properties": {
+        "contents": {
+          "description": "The file's contents.",
+          "format": "byte",
           "type": "string"
         }
       },
