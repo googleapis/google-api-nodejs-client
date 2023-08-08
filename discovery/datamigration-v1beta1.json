@@ -1049,7 +1049,7 @@
       }
     }
   },
-  "revision": "20230703",
+  "revision": "20230726",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1772,7 +1772,8 @@
             "UNSUPPORTED_DATABASE_FDW_CONFIG",
             "ERROR_RDBMS",
             "SOURCE_SIZE_EXCEEDS_THRESHOLD",
-            "EXISTING_CONFLICTING_DATABASES"
+            "EXISTING_CONFLICTING_DATABASES",
+            "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE"
           ],
           "enumDescriptions": [
             "An unknown error occurred",
@@ -1789,7 +1790,8 @@
             "The source uses an unsupported Foreign Data Wrapper configuration.",
             "There was an underlying RDBMS error.",
             "The source DB size in Bytes exceeds a certain threshold. The migration might require an increase of quota, or might not be supported.",
-            "The destination DB contains existing databases that are conflicting with those in the source DB."
+            "The destination DB contains existing databases that are conflicting with those in the source DB.",
+            "Insufficient privilege to enable the parallelism configuration."
           ],
           "readOnly": true,
           "type": "string"
