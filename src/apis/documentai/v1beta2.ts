@@ -129,7 +129,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -160,7 +160,7 @@ export namespace documentai_v1beta2 {
   export interface Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsResponse {}
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -195,7 +195,7 @@ export namespace documentai_v1beta2 {
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsResponse {}
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -390,7 +390,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -459,7 +459,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -476,7 +476,7 @@ export namespace documentai_v1beta2 {
     totalDocumentCount?: number | null;
   }
   /**
-   * The validation status of each import config. Status is set to errors if there is no documents to import in the import_config, or OK if the operation will try to proceed at least one document.
+   * The validation status of each import config. Status is set to an error if there are no documents to import in the `import_config`, or `OK` if the operation will try to proceed with at least one document.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataImportConfigValidationResult {
     /**
@@ -536,7 +536,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -604,7 +604,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3SampleDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
@@ -706,7 +706,7 @@ export namespace documentai_v1beta2 {
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionResponse {}
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UpdateDatasetOperationMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
@@ -2946,7 +2946,7 @@ export namespace documentai_v1beta2 {
   }
   export interface Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
     /**
@@ -3262,7 +3262,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
     /**
@@ -3279,7 +3279,7 @@ export namespace documentai_v1beta2 {
     totalDocumentCount?: number | null;
   }
   /**
-   * The validation status of each import config. Status is set to errors if there is no documents to import in the import_config, or OK if the operation will try to proceed at least one document.
+   * The validation status of each import config. Status is set to an error if there are no documents to import in the `import_config`, or `OK` if the operation will try to proceed with at least one document.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadataImportConfigValidationResult {
     /**
@@ -3468,7 +3468,7 @@ export namespace documentai_v1beta2 {
   export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse {}
   export interface Schema$GoogleCloudDocumentaiV1beta3UpdateDatasetOperationMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }

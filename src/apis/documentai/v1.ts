@@ -131,7 +131,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -162,7 +162,7 @@ export namespace documentai_v1 {
   export interface Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsResponse {}
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -197,7 +197,7 @@ export namespace documentai_v1 {
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsResponse {}
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -392,7 +392,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ExportDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -461,7 +461,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -478,7 +478,7 @@ export namespace documentai_v1 {
     totalDocumentCount?: number | null;
   }
   /**
-   * The validation status of each import config. Status is set to errors if there is no documents to import in the import_config, or OK if the operation will try to proceed at least one document.
+   * The validation status of each import config. Status is set to an error if there are no documents to import in the `import_config`, or `OK` if the operation will try to proceed with at least one document.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataImportConfigValidationResult {
     /**
@@ -538,7 +538,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -606,7 +606,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3SampleDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
@@ -708,7 +708,7 @@ export namespace documentai_v1 {
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionResponse {}
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UpdateDatasetOperationMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
@@ -2854,7 +2854,7 @@ export namespace documentai_v1 {
   }
   export interface Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
     /**
@@ -3170,7 +3170,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
     /**
@@ -3187,7 +3187,7 @@ export namespace documentai_v1 {
     totalDocumentCount?: number | null;
   }
   /**
-   * The validation status of each import config. Status is set to errors if there is no documents to import in the import_config, or OK if the operation will try to proceed at least one document.
+   * The validation status of each import config. Status is set to an error if there are no documents to import in the `import_config`, or `OK` if the operation will try to proceed with at least one document.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ImportDocumentsMetadataImportConfigValidationResult {
     /**
@@ -3376,7 +3376,7 @@ export namespace documentai_v1 {
   export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse {}
   export interface Schema$GoogleCloudDocumentaiV1beta3UpdateDatasetOperationMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
@@ -4879,6 +4879,10 @@ export namespace documentai_v1 {
      */
     processEndpoint?: string | null;
     /**
+     * Output only. The processor version aliases.
+     */
+    processorVersionAliases?: Schema$GoogleCloudDocumentaiV1ProcessorVersionAlias[];
+    /**
      * Output only. The state of the processor.
      */
     state?: string | null;
@@ -4950,7 +4954,7 @@ export namespace documentai_v1 {
      */
     documentSchema?: Schema$GoogleCloudDocumentaiV1DocumentSchema;
     /**
-     * Denotes that this `ProcessorVersion` is managed by Google.
+     * Output only. Denotes that this `ProcessorVersion` is managed by Google.
      */
     googleManaged?: boolean | null;
     /**
@@ -4973,6 +4977,19 @@ export namespace documentai_v1 {
      * The state of the processor version.
      */
     state?: string | null;
+  }
+  /**
+   * Contains the alias and the aliased resource name of processor version.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1ProcessorVersionAlias {
+    /**
+     * The alias in the form of `processor_version` resource name.
+     */
+    alias?: string | null;
+    /**
+     * The resource name of aliased processor version.
+     */
+    processorVersion?: string | null;
   }
   /**
    * Information about the upcoming deprecation of this processor version.
@@ -5037,6 +5054,10 @@ export namespace documentai_v1 {
      * Inline document content.
      */
     content?: string | null;
+    /**
+     * The display name of the document, it supports all Unicode characters except the following: `*`, `?`, `[`, `]`, `%`, `{`, `\}`,`'`, `\"`, `,` `~`, `=` and `:` are reserved. If not specified, a default ID will be generated.
+     */
+    displayName?: string | null;
     /**
      * An IANA MIME type (RFC6838) indicating the nature and format of the content.
      */
@@ -6776,6 +6797,7 @@ export namespace documentai_v1 {
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "name": "my_name",
      *       //   "processEndpoint": "my_processEndpoint",
+     *       //   "processorVersionAliases": [],
      *       //   "state": "my_state",
      *       //   "type": "my_type"
      *       // }
@@ -6791,6 +6813,7 @@ export namespace documentai_v1 {
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "name": "my_name",
      *   //   "processEndpoint": "my_processEndpoint",
+     *   //   "processorVersionAliases": [],
      *   //   "state": "my_state",
      *   //   "type": "my_type"
      *   // }
@@ -7362,6 +7385,7 @@ export namespace documentai_v1 {
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "name": "my_name",
      *   //   "processEndpoint": "my_processEndpoint",
+     *   //   "processorVersionAliases": [],
      *   //   "state": "my_state",
      *   //   "type": "my_type"
      *   // }
