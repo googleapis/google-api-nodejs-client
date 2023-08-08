@@ -40,7 +40,7 @@ export function datastore<
   T =
     | datastore_v1.Datastore
     | datastore_v1beta1.Datastore
-    | datastore_v1beta3.Datastore
+    | datastore_v1beta3.Datastore,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
