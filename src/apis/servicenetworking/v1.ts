@@ -682,6 +682,10 @@ export namespace servicenetworking_v1 {
      * The service controller environment to use. If empty, no control plane feature (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com
      */
     environment?: string | null;
+    /**
+     * Defines policies applying to the API methods of the service.
+     */
+    methodPolicies?: Schema$MethodPolicy[];
   }
   /**
    * Settings for C++ client libraries.
@@ -790,6 +794,19 @@ export namespace servicenetworking_v1 {
      * User assigned name for this resource. Must be unique within the project. The name must be 1-63 characters long, must begin with a letter, end with a letter or digit, and only contain lowercase letters, digits or dashes.
      */
     name?: string | null;
+  }
+  /**
+   * * Represents a pair of private and peering DNS zone resources. *
+   */
+  export interface Schema$DnsZonePair {
+    /**
+     * The DNS peering zone in the consumer project.
+     */
+    consumerPeeringZone?: Schema$DnsZone;
+    /**
+     * The private DNS zone in the shared producer host project.
+     */
+    producerPrivateZone?: Schema$DnsZone;
   }
   /**
    * `Documentation` provides the information for describing a service. Example: documentation: summary: \> The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages: - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: \> ... - selector: google.calendar.Calendar.Put description: \> ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.
@@ -1000,6 +1017,36 @@ export namespace servicenetworking_v1 {
     typeUrl?: string | null;
   }
   /**
+   * Google API Policy Annotation This message defines a simple API policy annotation that can be used to annotate API request and response message fields with applicable policies. One field may have multiple applicable policies that must all be satisfied before a request can be processed. This policy annotation is used to generate the overall policy that will be used for automatic runtime policy enforcement and documentation generation.
+   */
+  export interface Schema$FieldPolicy {
+    /**
+     * Specifies the required permission(s) for the resource referred to by the field. It requires the field contains a valid resource reference, and the request must pass the permission checks to proceed. For example, "resourcemanager.projects.get".
+     */
+    resourcePermission?: string | null;
+    /**
+     * Specifies the resource type for the resource referred to by the field.
+     */
+    resourceType?: string | null;
+    /**
+     * Selects one or more request or response message fields to apply this `FieldPolicy`. When a `FieldPolicy` is used in proto annotation, the selector must be left as empty. The service config generator will automatically fill the correct value. When a `FieldPolicy` is used in service config, the selector must be a comma-separated string with valid request or response field paths, such as "foo.bar" or "foo.bar,foo.baz".
+     */
+    selector?: string | null;
+  }
+  /**
+   * Represents managed DNS zones created in the shared Producer host and consumer projects.
+   */
+  export interface Schema$GetDnsZoneResponse {
+    /**
+     * The DNS peering zone created in the consumer project.
+     */
+    consumerPeeringZone?: Schema$DnsZone;
+    /**
+     * The private DNS zone created in the shared producer host project.
+     */
+    producerPrivateZone?: Schema$DnsZone;
+  }
+  /**
    * Represents a private connection resource. A private connection is implemented as a VPC Network Peering connection between a service producer's VPC network and a service consumer's VPC network.
    */
   export interface Schema$GoogleCloudServicenetworkingV1betaConnection {
@@ -1190,6 +1237,24 @@ export namespace servicenetworking_v1 {
     connections?: Schema$Connection[];
   }
   /**
+   * Represents all DNS RecordSets associated with the producer network
+   */
+  export interface Schema$ListDnsRecordSetsResponse {
+    /**
+     * DNS record Set Resource
+     */
+    dnsRecordSets?: Schema$DnsRecordSet[];
+  }
+  /**
+   * Represents all DNS zones in the shared producer host project and the matching peering zones in the consumer project.
+   */
+  export interface Schema$ListDnsZonesResponse {
+    /**
+     * All pairs of private DNS zones in the shared producer host project and the matching peering zones in the consumer project..
+     */
+    dnsZonePairs?: Schema$DnsZonePair[];
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -1311,6 +1376,19 @@ export namespace servicenetworking_v1 {
      * The source syntax of this method.
      */
     syntax?: string | null;
+  }
+  /**
+   * Defines policies applying to an RPC method.
+   */
+  export interface Schema$MethodPolicy {
+    /**
+     * Policies that are applicable to the request message.
+     */
+    requestPolicies?: Schema$FieldPolicy[];
+    /**
+     * Selects a method to which these policies should be enforced, for example, "google.pubsub.v1.Subscriber.CreateSubscription". Refer to selector for syntax details. NOTE: This field must not be set in the proto annotation. It will be automatically filled by the service config compiler .
+     */
+    selector?: string | null;
   }
   /**
    * Describes the generator configuration for a method.
@@ -1511,7 +1589,7 @@ export namespace servicenetworking_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -4428,6 +4506,294 @@ export namespace servicenetworking_v1 {
     }
 
     /**
+     * Producers can use this method to retrieve information about the DNS record set added to the private zone inside the shared tenant host project associated with a consumer network.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicenetworking = google.servicenetworking('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await servicenetworking.services.dnsRecordSets.get({
+     *     // Required. The consumer network containing the record set. Must be in the form of projects/{project\}/global/networks/{network\}
+     *     consumerNetwork: 'placeholder-value',
+     *     // Required. The domain name of the zone containing the recordset.
+     *     domain: 'placeholder-value',
+     *     // Required. Parent resource identifying the connection which owns this collection of DNS zones in the format services/{service\}.
+     *     parent: 'services/my-service',
+     *     // Required. RecordSet Type eg. type='A'. See the list of [Supported DNS Types](https://cloud.google.com/dns/records/json-record).
+     *     type: 'placeholder-value',
+     *     // Required. The name of the zone containing the record set.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "data": [],
+     *   //   "domain": "my_domain",
+     *   //   "ttl": "my_ttl",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Services$Dnsrecordsets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Services$Dnsrecordsets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DnsRecordSet>;
+    get(
+      params: Params$Resource$Services$Dnsrecordsets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Services$Dnsrecordsets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DnsRecordSet>,
+      callback: BodyResponseCallback<Schema$DnsRecordSet>
+    ): void;
+    get(
+      params: Params$Resource$Services$Dnsrecordsets$Get,
+      callback: BodyResponseCallback<Schema$DnsRecordSet>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DnsRecordSet>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Dnsrecordsets$Get
+        | BodyResponseCallback<Schema$DnsRecordSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DnsRecordSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DnsRecordSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DnsRecordSet> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Dnsrecordsets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Dnsrecordsets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dnsRecordSets:get').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DnsRecordSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DnsRecordSet>(parameters);
+      }
+    }
+
+    /**
+     * Producers can use this method to retrieve a list of available DNS RecordSets available inside the private zone on the tenant host project accessible from their network.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicenetworking = google.servicenetworking('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await servicenetworking.services.dnsRecordSets.list({
+     *     // Required. The network that the consumer is using to connect with services. Must be in the form of projects/{project\}/global/networks/{network\} {project\} is the project number, as in '12345' {network\} is the network name.
+     *     consumerNetwork: 'placeholder-value',
+     *     // Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
+     *     parent: 'services/my-service',
+     *     // Required. The name of the private DNS zone in the shared producer host project from which the record set will be removed.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dnsRecordSets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Services$Dnsrecordsets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Services$Dnsrecordsets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDnsRecordSetsResponse>;
+    list(
+      params: Params$Resource$Services$Dnsrecordsets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Services$Dnsrecordsets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDnsRecordSetsResponse>,
+      callback: BodyResponseCallback<Schema$ListDnsRecordSetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$Dnsrecordsets$List,
+      callback: BodyResponseCallback<Schema$ListDnsRecordSetsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDnsRecordSetsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$Dnsrecordsets$List
+        | BodyResponseCallback<Schema$ListDnsRecordSetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDnsRecordSetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDnsRecordSetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDnsRecordSetsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Dnsrecordsets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Dnsrecordsets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dnsRecordSets:list').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDnsRecordSetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDnsRecordSetsResponse>(parameters);
+      }
+    }
+
+    /**
      * Service producers can use this method to remove DNS record sets from private DNS zones in the shared producer host project.
      * @example
      * ```js
@@ -4734,6 +5100,44 @@ export namespace servicenetworking_v1 {
      * Request body metadata
      */
     requestBody?: Schema$AddDnsRecordSetRequest;
+  }
+  export interface Params$Resource$Services$Dnsrecordsets$Get
+    extends StandardParameters {
+    /**
+     * Required. The consumer network containing the record set. Must be in the form of projects/{project\}/global/networks/{network\}
+     */
+    consumerNetwork?: string;
+    /**
+     * Required. The domain name of the zone containing the recordset.
+     */
+    domain?: string;
+    /**
+     * Required. Parent resource identifying the connection which owns this collection of DNS zones in the format services/{service\}.
+     */
+    parent?: string;
+    /**
+     * Required. RecordSet Type eg. type='A'. See the list of [Supported DNS Types](https://cloud.google.com/dns/records/json-record).
+     */
+    type?: string;
+    /**
+     * Required. The name of the zone containing the record set.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Services$Dnsrecordsets$List
+    extends StandardParameters {
+    /**
+     * Required. The network that the consumer is using to connect with services. Must be in the form of projects/{project\}/global/networks/{network\} {project\} is the project number, as in '12345' {network\} is the network name.
+     */
+    consumerNetwork?: string;
+    /**
+     * Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
+     */
+    parent?: string;
+    /**
+     * Required. The name of the private DNS zone in the shared producer host project from which the record set will be removed.
+     */
+    zone?: string;
   }
   export interface Params$Resource$Services$Dnsrecordsets$Remove
     extends StandardParameters {
@@ -5107,9 +5511,13 @@ export namespace servicenetworking_v1 {
 
   export class Resource$Services$Projects$Global$Networks {
     context: APIRequestContext;
+    dnsZones: Resource$Services$Projects$Global$Networks$Dnszones;
     peeredDnsDomains: Resource$Services$Projects$Global$Networks$Peereddnsdomains;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.dnsZones = new Resource$Services$Projects$Global$Networks$Dnszones(
+        this.context
+      );
       this.peeredDnsDomains =
         new Resource$Services$Projects$Global$Networks$Peereddnsdomains(
           this.context
@@ -5435,6 +5843,305 @@ export namespace servicenetworking_v1 {
      * Request body metadata
      */
     requestBody?: Schema$UpdateConsumerConfigRequest;
+  }
+
+  export class Resource$Services$Projects$Global$Networks$Dnszones {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Service producers can use this method to retrieve a DNS zone in the shared producer host project and the matching peering zones in consumer project
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicenetworking = google.servicenetworking('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await servicenetworking.services.projects.global.networks.dnsZones.get({
+     *       // Required. The network that the consumer is using to connect with services. Must be in the form of services/{service\}/projects/{project\}/global/networks/{network\}/zones/{zoneName\} Where {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this {project\} is the project number, as in '12345' {network\} is the network name. {zoneName\} is the DNS zone name
+     *       name: 'services/my-service/projects/my-project/global/networks/my-network/dnsZones/my-dnsZone',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consumerPeeringZone": {},
+     *   //   "producerPrivateZone": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Services$Projects$Global$Networks$Dnszones$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetDnsZoneResponse>;
+    get(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$GetDnsZoneResponse>,
+      callback: BodyResponseCallback<Schema$GetDnsZoneResponse>
+    ): void;
+    get(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$Get,
+      callback: BodyResponseCallback<Schema$GetDnsZoneResponse>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GetDnsZoneResponse>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Projects$Global$Networks$Dnszones$Get
+        | BodyResponseCallback<Schema$GetDnsZoneResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetDnsZoneResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetDnsZoneResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetDnsZoneResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Projects$Global$Networks$Dnszones$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Services$Projects$Global$Networks$Dnszones$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetDnsZoneResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetDnsZoneResponse>(parameters);
+      }
+    }
+
+    /**
+     * * Service producers can use this method to retrieve a list of available DNS zones in the shared producer host project and the matching peering zones in the consumer project. *
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicenetworking = google.servicenetworking('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await servicenetworking.services.projects.global.networks.dnsZones.list({
+     *       // Required. Parent resource identifying the connection which owns this collection of DNS zones in the format services/{service\}/projects/{project\}/global/networks/{network\} Service: The service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. Projects: the consumer project containing the consumer network. Network: The consumer network accessible from the tenant project.
+     *       parent:
+     *         'services/my-service/projects/my-project/global/networks/my-network',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dnsZonePairs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Services$Projects$Global$Networks$Dnszones$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDnsZonesResponse>;
+    list(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDnsZonesResponse>,
+      callback: BodyResponseCallback<Schema$ListDnsZonesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$List,
+      callback: BodyResponseCallback<Schema$ListDnsZonesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListDnsZonesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$Projects$Global$Networks$Dnszones$List
+        | BodyResponseCallback<Schema$ListDnsZonesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDnsZonesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDnsZonesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDnsZonesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Projects$Global$Networks$Dnszones$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Services$Projects$Global$Networks$Dnszones$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dnsZones:list').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDnsZonesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDnsZonesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Services$Projects$Global$Networks$Dnszones$Get
+    extends StandardParameters {
+    /**
+     * Required. The network that the consumer is using to connect with services. Must be in the form of services/{service\}/projects/{project\}/global/networks/{network\}/zones/{zoneName\} Where {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this {project\} is the project number, as in '12345' {network\} is the network name. {zoneName\} is the DNS zone name
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Services$Projects$Global$Networks$Dnszones$List
+    extends StandardParameters {
+    /**
+     * Required. Parent resource identifying the connection which owns this collection of DNS zones in the format services/{service\}/projects/{project\}/global/networks/{network\} Service: The service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. Projects: the consumer project containing the consumer network. Network: The consumer network accessible from the tenant project.
+     */
+    parent?: string;
   }
 
   export class Resource$Services$Projects$Global$Networks$Peereddnsdomains {
