@@ -577,6 +577,48 @@ export namespace dataflow_v1b3 {
     vmInstance?: string | null;
   }
   /**
+   * Configuration options for sampling elements.
+   */
+  export interface Schema$DataSamplingConfig {
+    /**
+     * List of given sampling behaviors to enable. For example, specifying behaviors = [ALWAYS_ON] samples in-flight elements but does not sample exceptions. Can be used to specify multiple behaviors like, behaviors = [ALWAYS_ON, EXCEPTIONS] for specifying periodic sampling and exception sampling. If DISABLED is in the list, then sampling will be disabled and ignore the other given behaviors. Ordering does not matter.
+     */
+    behaviors?: string[] | null;
+  }
+  /**
+   * Contains per-worker telemetry about the data sampling feature.
+   */
+  export interface Schema$DataSamplingReport {
+    /**
+     * Optional. Delta of bytes written to file from previous report.
+     */
+    bytesWrittenDelta?: string | null;
+    /**
+     * Optional. Delta of bytes sampled from previous report.
+     */
+    elementsSampledBytes?: string | null;
+    /**
+     * Optional. Delta of number of elements sampled from previous report.
+     */
+    elementsSampledCount?: string | null;
+    /**
+     * Optional. Delta of number of samples taken from user code exceptions from previous report.
+     */
+    exceptionsSampledCount?: string | null;
+    /**
+     * Optional. Delta of number of PCollections sampled from previous report.
+     */
+    pcollectionsSampledCount?: string | null;
+    /**
+     * Optional. Delta of errors counts from persisting the samples from previous report.
+     */
+    persistenceErrorsCount?: string | null;
+    /**
+     * Optional. Delta of errors counts from retrieving, or translating the samples from previous report.
+     */
+    translationErrorsCount?: string | null;
+  }
+  /**
    * Metadata for a Datastore connector used by the job.
    */
   export interface Schema$DatastoreIODetails {
@@ -593,6 +635,10 @@ export namespace dataflow_v1b3 {
    * Describes any options that have an effect on the debugging of pipelines.
    */
   export interface Schema$DebugOptions {
+    /**
+     * Configuration options for sampling elements from a running pipeline.
+     */
+    dataSampling?: Schema$DataSamplingConfig;
     /**
      * When true, enables the logging of the literal hot key to the user's Cloud Logging.
      */
@@ -783,6 +829,10 @@ export namespace dataflow_v1b3 {
      * A description of the process that generated the request.
      */
     userAgent?: {[key: string]: any} | null;
+    /**
+     * Output only. Whether the job uses the new streaming engine billing model based on resource usage.
+     */
+    useStreamingEngineResourceBasedBilling?: boolean | null;
     /**
      * A structure describing which components and their versions of the service are required in order to run the job.
      */
@@ -2286,6 +2336,23 @@ export namespace dataflow_v1b3 {
     minNumWorkers?: number | null;
   }
   /**
+   * A bug found in the Dataflow SDK.
+   */
+  export interface Schema$SdkBug {
+    /**
+     * Output only. How severe the SDK bug is.
+     */
+    severity?: string | null;
+    /**
+     * Output only. Describes the impact of this SDK bug.
+     */
+    type?: string | null;
+    /**
+     * Output only. Link to more information on the bug.
+     */
+    uri?: string | null;
+  }
+  /**
    * Defines an SDK harness container for executing Dataflow pipelines.
    */
   export interface Schema$SdkHarnessContainerImage {
@@ -2323,6 +2390,10 @@ export namespace dataflow_v1b3 {
    * The version of the SDK used to run the job.
    */
   export interface Schema$SdkVersion {
+    /**
+     * Output only. Known bugs found in this SDK version.
+     */
+    bugs?: Schema$SdkBug[];
     /**
      * The support status for this SDK version.
      */
@@ -3361,6 +3432,10 @@ export namespace dataflow_v1b3 {
    * WorkerMessage provides information to the backend about a worker.
    */
   export interface Schema$WorkerMessage {
+    /**
+     * Optional. Contains metrics related to go/dataflow-data-sampling-telemetry.
+     */
+    dataSamplingReport?: Schema$DataSamplingReport;
     /**
      * Labels are used to group WorkerMessages. For example, a worker_message about a particular container might have the labels: { "JOB_ID": "2015-04-22", "WORKER_ID": "wordcount-vm-2015…" "CONTAINER_TYPE": "worker", "CONTAINER_ID": "ac1234def"\} Label tags typically correspond to Label enum values. However, for ease of development other strings can be used as tags. LABEL_UNSPECIFIED should not be used here.
      */
