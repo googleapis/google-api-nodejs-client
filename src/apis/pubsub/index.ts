@@ -33,7 +33,7 @@ export function pubsub(
 export function pubsub(version: 'v1beta2'): pubsub_v1beta2.Pubsub;
 export function pubsub(options: pubsub_v1beta2.Options): pubsub_v1beta2.Pubsub;
 export function pubsub<
-  T = pubsub_v1.Pubsub | pubsub_v1beta1a.Pubsub | pubsub_v1beta2.Pubsub
+  T = pubsub_v1.Pubsub | pubsub_v1beta1a.Pubsub | pubsub_v1beta2.Pubsub,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

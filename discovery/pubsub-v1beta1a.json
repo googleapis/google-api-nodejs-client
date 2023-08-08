@@ -457,7 +457,7 @@
       }
     }
   },
-  "revision": "20210816",
+  "revision": "20230725",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -550,6 +550,7 @@
           "type": "integer"
         },
         "ackId": {
+          "deprecated": true,
           "description": "The acknowledgment ID. Either this or ack_ids must be populated, not both.",
           "type": "string"
         },
