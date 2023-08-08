@@ -532,74 +532,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * Creates a new ScanConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.create({
-     *     // Required. The parent resource name where the scan is created, which should be a project resource name in the format 'projects/{projectId\}'.
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authentication": {},
-     *       //   "blacklistPatterns": [],
-     *       //   "displayName": "my_displayName",
-     *       //   "latestRun": {},
-     *       //   "maxQps": 0,
-     *       //   "name": "my_name",
-     *       //   "schedule": {},
-     *       //   "startingUrls": [],
-     *       //   "targetPlatforms": [],
-     *       //   "userAgent": "my_userAgent"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authentication": {},
-     *   //   "blacklistPatterns": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "latestRun": {},
-     *   //   "maxQps": 0,
-     *   //   "name": "my_name",
-     *   //   "schedule": {},
-     *   //   "startingUrls": [],
-     *   //   "targetPlatforms": [],
-     *   //   "userAgent": "my_userAgent"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -688,46 +620,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * Deletes an existing ScanConfig and its child resources.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.delete({
-     *     // Required. The resource name of the ScanConfig to be deleted. The name follows the format of 'projects/{projectId\}/scanConfigs/{scanConfigId\}'.
-     *     name: 'projects/my-project/scanConfigs/my-scanConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -813,57 +705,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * Gets a ScanConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.get({
-     *     // Required. The resource name of the ScanConfig to be returned. The name follows the format of 'projects/{projectId\}/scanConfigs/{scanConfigId\}'.
-     *     name: 'projects/my-project/scanConfigs/my-scanConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authentication": {},
-     *   //   "blacklistPatterns": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "latestRun": {},
-     *   //   "maxQps": 0,
-     *   //   "name": "my_name",
-     *   //   "schedule": {},
-     *   //   "startingUrls": [],
-     *   //   "targetPlatforms": [],
-     *   //   "userAgent": "my_userAgent"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -949,53 +790,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * Lists ScanConfigs under a given project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.list({
-     *     // The maximum number of ScanConfigs to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, which should be a project resource name in the format 'projects/{projectId\}'.
-     *     parent: 'projects/my-project',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "scanConfigs": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1089,76 +883,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * Updates a ScanConfig. This method support partial update of a ScanConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.patch({
-     *     // The resource name of the ScanConfig. The name follows the format of 'projects/{projectId\}/scanConfigs/{scanConfigId\}'. The ScanConfig IDs are generated by the system.
-     *     name: 'projects/my-project/scanConfigs/my-scanConfig',
-     *     // Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authentication": {},
-     *       //   "blacklistPatterns": [],
-     *       //   "displayName": "my_displayName",
-     *       //   "latestRun": {},
-     *       //   "maxQps": 0,
-     *       //   "name": "my_name",
-     *       //   "schedule": {},
-     *       //   "startingUrls": [],
-     *       //   "targetPlatforms": [],
-     *       //   "userAgent": "my_userAgent"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authentication": {},
-     *   //   "blacklistPatterns": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "latestRun": {},
-     *   //   "maxQps": 0,
-     *   //   "name": "my_name",
-     *   //   "schedule": {},
-     *   //   "startingUrls": [],
-     *   //   "targetPlatforms": [],
-     *   //   "userAgent": "my_userAgent"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1244,62 +968,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * Start a ScanRun according to the given ScanConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.start({
-     *     // Required. The resource name of the ScanConfig to be used. The name follows the format of 'projects/{projectId\}/scanConfigs/{scanConfigId\}'.
-     *     name: 'projects/my-project/scanConfigs/my-scanConfig',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "endTime": "my_endTime",
-     *   //   "executionState": "my_executionState",
-     *   //   "hasVulnerabilities": false,
-     *   //   "name": "my_name",
-     *   //   "progressPercent": 0,
-     *   //   "resultState": "my_resultState",
-     *   //   "startTime": "my_startTime",
-     *   //   "urlsCrawledCount": "my_urlsCrawledCount",
-     *   //   "urlsTestedCount": "my_urlsTestedCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1478,56 +1146,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * Gets a ScanRun.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.get({
-     *     // Required. The resource name of the ScanRun to be returned. The name follows the format of 'projects/{projectId\}/scanConfigs/{scanConfigId\}/scanRuns/{scanRunId\}'.
-     *     name: 'projects/my-project/scanConfigs/my-scanConfig/scanRuns/my-scanRun',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "endTime": "my_endTime",
-     *   //   "executionState": "my_executionState",
-     *   //   "hasVulnerabilities": false,
-     *   //   "name": "my_name",
-     *   //   "progressPercent": 0,
-     *   //   "resultState": "my_resultState",
-     *   //   "startTime": "my_startTime",
-     *   //   "urlsCrawledCount": "my_urlsCrawledCount",
-     *   //   "urlsTestedCount": "my_urlsTestedCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1613,53 +1231,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * Lists ScanRuns under a given ScanConfig, in descending order of ScanRun stop time.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.list({
-     *     // The maximum number of ScanRuns to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, which should be a scan resource name in the format 'projects/{projectId\}/scanConfigs/{scanConfigId\}'.
-     *     parent: 'projects/my-project/scanConfigs/my-scanConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "scanRuns": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1753,62 +1324,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * Stops a ScanRun. The stopped ScanRun is returned.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.stop({
-     *     // Required. The resource name of the ScanRun to be stopped. The name follows the format of 'projects/{projectId\}/scanConfigs/{scanConfigId\}/scanRuns/{scanRunId\}'.
-     *     name: 'projects/my-project/scanConfigs/my-scanConfig/scanRuns/my-scanRun',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "endTime": "my_endTime",
-     *   //   "executionState": "my_executionState",
-     *   //   "hasVulnerabilities": false,
-     *   //   "name": "my_name",
-     *   //   "progressPercent": 0,
-     *   //   "resultState": "my_resultState",
-     *   //   "startTime": "my_startTime",
-     *   //   "urlsCrawledCount": "my_urlsCrawledCount",
-     *   //   "urlsTestedCount": "my_urlsTestedCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1939,55 +1454,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * List CrawledUrls under a given ScanRun.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await websecurityscanner.projects.scanConfigs.scanRuns.crawledUrls.list({
-     *       // The maximum number of CrawledUrls to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
-     *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId\}/scanConfigs/{scanConfigId\}/scanRuns/{scanRunId\}'.
-     *       parent:
-     *         'projects/my-project/scanConfigs/my-scanConfig/scanRuns/my-scanRun',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "crawledUrls": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2105,63 +1571,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * Gets a Finding.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await websecurityscanner.projects.scanConfigs.scanRuns.findings.get({
-     *       // Required. The resource name of the Finding to be returned. The name follows the format of 'projects/{projectId\}/scanConfigs/{scanConfigId\}/scanRuns/{scanRunId\}/findings/{findingId\}'.
-     *       name: 'projects/my-project/scanConfigs/my-scanConfig/scanRuns/my-scanRun/findings/my-finding',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "body": "my_body",
-     *   //   "description": "my_description",
-     *   //   "finalUrl": "my_finalUrl",
-     *   //   "findingType": "my_findingType",
-     *   //   "frameUrl": "my_frameUrl",
-     *   //   "fuzzedUrl": "my_fuzzedUrl",
-     *   //   "httpMethod": "my_httpMethod",
-     *   //   "name": "my_name",
-     *   //   "outdatedLibrary": {},
-     *   //   "reproductionUrl": "my_reproductionUrl",
-     *   //   "trackingId": "my_trackingId",
-     *   //   "violatingResource": {},
-     *   //   "vulnerableHeaders": {},
-     *   //   "vulnerableParameters": {},
-     *   //   "xss": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2248,57 +1657,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * List Findings under a given ScanRun.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await websecurityscanner.projects.scanConfigs.scanRuns.findings.list({
-     *       // Required. The filter expression. The expression must be in the format: . Supported field: 'finding_type'. Supported operator: '='.
-     *       filter: 'placeholder-value',
-     *       // The maximum number of Findings to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
-     *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId\}/scanConfigs/{scanConfigId\}/scanRuns/{scanRunId\}'.
-     *       parent:
-     *         'projects/my-project/scanConfigs/my-scanConfig/scanRuns/my-scanRun',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "findings": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2427,52 +1785,6 @@ export namespace websecurityscanner_v1alpha {
 
     /**
      * List all FindingTypeStats under a given ScanRun.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/websecurityscanner.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const websecurityscanner = google.websecurityscanner('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list(
-     *       {
-     *         // Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId\}/scanConfigs/{scanConfigId\}/scanRuns/{scanRunId\}'.
-     *         parent:
-     *           'projects/my-project/scanConfigs/my-scanConfig/scanRuns/my-scanRun',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "findingTypeStats": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
