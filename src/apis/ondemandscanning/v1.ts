@@ -1586,7 +1586,7 @@ export namespace ondemandscanning_v1 {
    */
   export interface Schema$VexAssessment {
     /**
-     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.
+     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability. Deprecated: Use vulnerability_id instead to denote CVEs.
      */
     cve?: string | null;
     /**
@@ -1613,6 +1613,10 @@ export namespace ondemandscanning_v1 {
      * Provides the state of this Vulnerability assessment.
      */
     state?: string | null;
+    /**
+     * The vulnerability identifier for this Assessment. Will hold one of common identifiers e.g. CVE, GHSA etc.
+     */
+    vulnerabilityId?: string | null;
   }
   /**
    * An occurrence of a severity vulnerability on a resource.

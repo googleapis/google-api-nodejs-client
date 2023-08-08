@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20230710",
+  "revision": "20230731",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2733,7 +2733,8 @@
       "id": "VexAssessment",
       "properties": {
         "cve": {
-          "description": "Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.",
+          "deprecated": true,
+          "description": "Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability. Deprecated: Use vulnerability_id instead to denote CVEs.",
           "type": "string"
         },
         "impacts": {
@@ -2781,6 +2782,10 @@
             "This product contains a fix for this vulnerability.",
             "It is not known yet whether these versions are or are not affected by the vulnerability. However, it is still under investigation."
           ],
+          "type": "string"
+        },
+        "vulnerabilityId": {
+          "description": "The vulnerability identifier for this Assessment. Will hold one of common identifiers e.g. CVE, GHSA etc.",
           "type": "string"
         }
       },
