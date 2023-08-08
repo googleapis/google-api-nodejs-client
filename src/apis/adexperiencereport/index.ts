@@ -27,7 +27,7 @@ export function adexperiencereport(
   options: adexperiencereport_v1.Options
 ): adexperiencereport_v1.Adexperiencereport;
 export function adexperiencereport<
-  T = adexperiencereport_v1.Adexperiencereport
+  T = adexperiencereport_v1.Adexperiencereport,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | adexperiencereport_v1.Options
