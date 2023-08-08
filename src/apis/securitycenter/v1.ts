@@ -265,6 +265,123 @@ export namespace securitycenter_v1 {
     projectIds?: string[] | null;
   }
   /**
+   * An attack exposure contains the results of an attack path simulation run.
+   */
+  export interface Schema$AttackExposure {
+    /**
+     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/attackExposureResults/456
+     */
+    attackExposureResult?: string | null;
+    /**
+     * The number of high value resources that are exposed as a result of this finding.
+     */
+    exposedHighValueResourcesCount?: number | null;
+    /**
+     * The number of high value resources that are exposed as a result of this finding.
+     */
+    exposedLowValueResourcesCount?: number | null;
+    /**
+     * The number of medium value resources that are exposed as a result of this finding.
+     */
+    exposedMediumValueResourcesCount?: number | null;
+    /**
+     * The most recent time the attack exposure was updated on this finding.
+     */
+    latestCalculationTime?: string | null;
+    /**
+     * A number between 0 (inclusive) and infinity that represents how important this finding is to remediate. The higher the score, the more important it is to remediate.
+     */
+    score?: number | null;
+    /**
+     * What state this AttackExposure is in. This captures whether or not an attack exposure has been calculated or not.
+     */
+    state?: string | null;
+  }
+  /**
+   * A path that an attacker could take to reach an exposed resource.
+   */
+  export interface Schema$AttackPath {
+    /**
+     * A list of the edges between nodes in this attack path.
+     */
+    edges?: Schema$AttackPathEdge[];
+    /**
+     * The attack path name, for example, `organizations/12/simulation/34/valuedResources/56/attackPaths/78`
+     */
+    name?: string | null;
+    /**
+     * A list of nodes that exist in this attack path.
+     */
+    pathNodes?: Schema$AttackPathNode[];
+  }
+  /**
+   * Represents a connection between a source node and a destination node in this attack path.
+   */
+  export interface Schema$AttackPathEdge {
+    /**
+     * The attack node uuid of the destination node.
+     */
+    destination?: string | null;
+    /**
+     * The attack node uuid of the source node.
+     */
+    source?: string | null;
+  }
+  /**
+   * Represents one point that an attacker passes through in this attack path.
+   */
+  export interface Schema$AttackPathNode {
+    /**
+     * The findings associated with this node in the attack path.
+     */
+    associatedFindings?: Schema$PathNodeAssociatedFinding[];
+    /**
+     * A list of attack step nodes that exist in this attack path node.
+     */
+    attackSteps?: Schema$AttackStepNode[];
+    /**
+     * Human-readable name of this resource.
+     */
+    displayName?: string | null;
+    /**
+     * The name of the resource at this point in the attack path. The format of the name follows the Cloud Asset Inventory [resource name format]("https://cloud.google.com/asset-inventory/docs/resource-name-format")
+     */
+    resource?: string | null;
+    /**
+     * The [supported resource type](https://cloud.google.com/asset-inventory/docs/supported-asset-types")
+     */
+    resourceType?: string | null;
+    /**
+     * Unique id of the attack path node.
+     */
+    uuid?: string | null;
+  }
+  /**
+   * Detailed steps the attack can take between path nodes.
+   */
+  export interface Schema$AttackStepNode {
+    /**
+     * Attack step description
+     */
+    description?: string | null;
+    /**
+     * User friendly name of the attack step
+     */
+    displayName?: string | null;
+    /**
+     * Attack step labels for metadata
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Attack step type. Can be either AND, OR or DEFENSE
+     */
+    type?: string | null;
+    /**
+     * Unique ID for one Node
+     */
+    uuid?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -289,6 +406,24 @@ export namespace securitycenter_v1 {
      * The log type that this config enables.
      */
     logType?: string | null;
+  }
+  /**
+   * Request message to create multiple resource value configs
+   */
+  export interface Schema$BatchCreateResourceValueConfigsRequest {
+    /**
+     * Required. The resource value configs to be created.
+     */
+    requests?: Schema$CreateResourceValueConfigRequest[];
+  }
+  /**
+   * Response message for BatchCreateResourceValueConfigs
+   */
+  export interface Schema$BatchCreateResourceValueConfigsResponse {
+    /**
+     * The resource value configs created
+     */
+    resourceValueConfigs?: Schema$GoogleCloudSecuritycenterV1ResourceValueConfig[];
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -440,6 +575,46 @@ export namespace securitycenter_v1 {
     uri?: string | null;
   }
   /**
+   * Request message to create single resource value config
+   */
+  export interface Schema$CreateResourceValueConfigRequest {
+    /**
+     * Required. Resource name of the new ResourceValueConfig's parent.
+     */
+    parent?: string | null;
+    /**
+     * Required. The resource value config being created.
+     */
+    resourceValueConfig?: Schema$GoogleCloudSecuritycenterV1ResourceValueConfig;
+  }
+  /**
+   * An error encountered while validating the uploaded configuration of an Event Threat Detection Custom Module.
+   */
+  export interface Schema$CustomModuleValidationError {
+    /**
+     * A description of the error, suitable for human consumption. Required.
+     */
+    description?: string | null;
+    /**
+     * The end position of the error in the uploaded text version of the module. This field may be omitted if no specific position applies, or if one could not be computed..
+     */
+    end?: Schema$Position;
+    /**
+     * The path, in RFC 8901 JSON Pointer format, to the field that failed validation. This may be left empty if no specific field is affected.
+     */
+    fieldPath?: string | null;
+    /**
+     * The initial position of the error in the uploaded text version of the module. This field may be omitted if no specific position applies, or if one could not be computed.
+     */
+    start?: Schema$Position;
+  }
+  /**
+   * A list of zero or more errors encountered while validating the uploaded configuration of an Event Threat Detection Custom Module.
+   */
+  export interface Schema$CustomModuleValidationErrors {
+    errors?: Schema$CustomModuleValidationError[];
+  }
+  /**
    * CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org
    */
   export interface Schema$Cve {
@@ -561,6 +736,43 @@ export namespace securitycenter_v1 {
     val?: string | null;
   }
   /**
+   * Represents an instance of an Event Threat Detection custom module, including its full module name, display name, enablement state, and last updated time. You can create a custom module at the organization level only.
+   */
+  export interface Schema$EventThreatDetectionCustomModule {
+    /**
+     * Config for the module. For the resident module, its config value is defined at this level. For the inherited module, its config value is inherited from the ancestor module.
+     */
+    config?: {[key: string]: any} | null;
+    /**
+     * The description for the module.
+     */
+    description?: string | null;
+    /**
+     * The human readable name to be displayed for the module.
+     */
+    displayName?: string | null;
+    /**
+     * The state of enablement for the module at the given level of the hierarchy.
+     */
+    enablementState?: string | null;
+    /**
+     * Output only. The editor the module was last updated by.
+     */
+    lastEditor?: string | null;
+    /**
+     * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     */
+    name?: string | null;
+    /**
+     * Type for the module. e.g. CONFIGURABLE_BAD_IP.
+     */
+    type?: string | null;
+    /**
+     * Output only. The time the module was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Resource where data was exfiltrated from or exfiltrated to.
    */
   export interface Schema$ExfilResource {
@@ -644,6 +856,10 @@ export namespace securitycenter_v1 {
      * Access details associated with the finding, such as more information on the caller, which method was accessed, and from where.
      */
     access?: Schema$Access;
+    /**
+     * The results of an attack path simulation relevant to this finding.
+     */
+    attackExposure?: Schema$AttackExposure;
     /**
      * The canonical name of the finding. It's either "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}" or "projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
      */
@@ -1246,6 +1462,47 @@ export namespace securitycenter_v1 {
     resourceTypes?: string[] | null;
   }
   /**
+   * A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceValueConfig {
+    /**
+     * Output only. Timestamp this resource value config was created.
+     */
+    createTime?: string | null;
+    /**
+     * Description of the resource value config.
+     */
+    description?: string | null;
+    /**
+     * Name for the resource value config
+     */
+    name?: string | null;
+    /**
+     * List of resource labels to search for, evaluated with AND. E.g. "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     */
+    resourceLabelsSelector?: {[key: string]: string} | null;
+    /**
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     */
+    resourceType?: string | null;
+    /**
+     * Required. Resource value level this expression represents
+     */
+    resourceValue?: string | null;
+    /**
+     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
+     */
+    scope?: string | null;
+    /**
+     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     */
+    tagValues?: string[] | null;
+    /**
+     * Output only. Timestamp this resource value config was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Response of asset discovery run
    */
   export interface Schema$GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse {
@@ -1569,6 +1826,19 @@ export namespace securitycenter_v1 {
     stateChange?: string | null;
   }
   /**
+   * Response message for listing the attack paths for a given simulation or valued resource.
+   */
+  export interface Schema$ListAttackPathsResponse {
+    /**
+     * The attack paths that the attack path simulation identified.
+     */
+    attackPaths?: Schema$AttackPath[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for listing BigQuery exports.
    */
   export interface Schema$ListBigQueryExportsResponse {
@@ -1604,6 +1874,19 @@ export namespace securitycenter_v1 {
     effectiveSecurityHealthAnalyticsCustomModules?: Schema$GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule[];
     /**
      * If not empty, indicates that there may be more effective custom modules to be returned.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response for listing Event Threat Detection custom modules.
+   */
+  export interface Schema$ListEventThreatDetectionCustomModulesResponse {
+    /**
+     * Custom modules belonging to the requested parent.
+     */
+    eventThreatDetectionCustomModules?: Schema$EventThreatDetectionCustomModule[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
   }
@@ -1685,6 +1968,19 @@ export namespace securitycenter_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Response message to list resource value configs
+   */
+  export interface Schema$ListResourceValueConfigsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The resource value configs from the specified parent.
+     */
+    resourceValueConfigs?: Schema$GoogleCloudSecuritycenterV1ResourceValueConfig[];
+  }
+  /**
    * Response message for listing Security Health Analytics custom modules.
    */
   export interface Schema$ListSecurityHealthAnalyticsCustomModulesResponse {
@@ -1709,6 +2005,23 @@ export namespace securitycenter_v1 {
      * Sources belonging to the requested parent.
      */
     sources?: Schema$Source[];
+  }
+  /**
+   * Response message for listing the valued resources for a given simulation.
+   */
+  export interface Schema$ListValuedResourcesResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The estimated total number of results matching the query.
+     */
+    totalSize?: number | null;
+    /**
+     * The valued resources that the attack path simulation identified.
+     */
+    valuedResources?: Schema$ValuedResource[];
   }
   /**
    * A signature corresponding to memory page hashes.
@@ -1816,7 +2129,7 @@ export namespace securitycenter_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1834,6 +2147,23 @@ export namespace securitycenter_v1 {
     enableAssetDiscovery?: boolean | null;
     /**
      * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/organizationSettings".
+     */
+    name?: string | null;
+  }
+  /**
+   * A finding that is associated with this node in the attack path.
+   */
+  export interface Schema$PathNodeAssociatedFinding {
+    /**
+     * Canonical name of the associated findings. Example: organizations/123/sources/456/findings/789
+     */
+    canonicalFinding?: string | null;
+    /**
+     * The additional taxonomy group within findings from a given source.
+     */
+    findingCategory?: string | null;
+    /**
+     * Full resource name of the finding.
      */
     name?: string | null;
   }
@@ -1859,7 +2189,7 @@ export namespace securitycenter_v1 {
     ns?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -1878,6 +2208,13 @@ export namespace securitycenter_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * A position in the uploaded text version of a module.
+   */
+  export interface Schema$Position {
+    columnNumber?: number | null;
+    lineNumber?: number | null;
   }
   /**
    * Represents an operating system process.
@@ -1986,6 +2323,15 @@ export namespace securitycenter_v1 {
      * The full resource type of the resource.
      */
     type?: string | null;
+  }
+  /**
+   * Metadata about a ResourceValueConfig. For example, id and name.
+   */
+  export interface Schema$ResourceValueConfigMetadata {
+    /**
+     * Resource value config name
+     */
+    name?: string | null;
   }
   /**
    * Kubernetes Role or ClusterRole.
@@ -2115,6 +2461,23 @@ export namespace securitycenter_v1 {
     mute?: string | null;
   }
   /**
+   * Attack path simulation
+   */
+  export interface Schema$Simulation {
+    /**
+     * Output only. Time simulation was created
+     */
+    createTime?: string | null;
+    /**
+     * Full resource name of the Simulation: organizations/123/simulations/456
+     */
+    name?: string | null;
+    /**
+     * Resource value configurations' metadata used in this simulation. Maximum of 100.
+     */
+    resourceValueConfigsMetadata?: Schema$ResourceValueConfigMetadata[];
+  }
+  /**
    * Security Command Center finding source. A finding source is an entity or a mechanism that can produce a finding. A source is like a container of findings that come from the same scanner, logger, monitor, and other tools.
    */
   export interface Schema$Source {
@@ -2195,6 +2558,61 @@ export namespace securitycenter_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Request to validate an Event Threat Detection custom module.
+   */
+  export interface Schema$ValidateEventThreatDetectionCustomModuleRequest {
+    /**
+     * Required. The raw text of the module's contents. Used to generate error messages.
+     */
+    rawText?: string | null;
+    /**
+     * Required. The type of the module (e.g. CONFIGURABLE_BAD_IP).
+     */
+    type?: string | null;
+  }
+  /**
+   * Response to validating an Event Threat Detection custom module.
+   */
+  export interface Schema$ValidateEventThreatDetectionCustomModuleResponse {
+    /**
+     * A list of errors returned by the validator. If the list is empty, there were no errors.
+     */
+    errors?: Schema$CustomModuleValidationErrors;
+  }
+  /**
+   * A resource that is determined to have value to a user's system
+   */
+  export interface Schema$ValuedResource {
+    /**
+     * Human-readable name of the valued resource.
+     */
+    displayName?: string | null;
+    /**
+     * Exposed score for this valued resource. A value of 0 means no exposure was detected exposure.
+     */
+    exposedScore?: number | null;
+    /**
+     * Valued resource name, for example, e.g.: `organizations/123/simulations/456/valuedResources/789`
+     */
+    name?: string | null;
+    /**
+     * The [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) of the valued resource.
+     */
+    resource?: string | null;
+    /**
+     * The [resource type](https://cloud.google.com/asset-inventory/docs/supported-asset-types) of the valued resource.
+     */
+    resourceType?: string | null;
+    /**
+     * How valuable this resource is.
+     */
+    resourceValue?: string | null;
+    /**
+     * List of resource value configurations' metadata used to determine the value of this resource. Maximum of 100.
+     */
+    resourceValueConfigsUsed?: Schema$ResourceValueConfigMetadata[];
   }
   /**
    * Refers to common vulnerability fields e.g. cve, cvss, cwe etc.
@@ -7114,6 +7532,7 @@ export namespace securitycenter_v1 {
      *       // request body parameters
      *       // {
      *       //   "access": {},
+     *       //   "attackExposure": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
      *       //   "cloudDlpDataProfile": {},
@@ -7159,6 +7578,7 @@ export namespace securitycenter_v1 {
      *   // Example response
      *   // {
      *   //   "access": {},
+     *   //   "attackExposure": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "cloudDlpDataProfile": {},
@@ -7331,6 +7751,7 @@ export namespace securitycenter_v1 {
      *   // Example response
      *   // {
      *   //   "access": {},
+     *   //   "attackExposure": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "cloudDlpDataProfile": {},
@@ -7507,6 +7928,7 @@ export namespace securitycenter_v1 {
      *   // Example response
      *   // {
      *   //   "access": {},
+     *   //   "attackExposure": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "cloudDlpDataProfile": {},
@@ -8080,11 +8502,14 @@ export namespace securitycenter_v1 {
     context: APIRequestContext;
     assets: Resource$Organizations$Assets;
     bigQueryExports: Resource$Organizations$Bigqueryexports;
+    eventThreatDetectionSettings: Resource$Organizations$Eventthreatdetectionsettings;
     findings: Resource$Organizations$Findings;
     muteConfigs: Resource$Organizations$Muteconfigs;
     notificationConfigs: Resource$Organizations$Notificationconfigs;
     operations: Resource$Organizations$Operations;
+    resourceValueConfigs: Resource$Organizations$Resourcevalueconfigs;
     securityHealthAnalyticsSettings: Resource$Organizations$Securityhealthanalyticssettings;
+    simulations: Resource$Organizations$Simulations;
     sources: Resource$Organizations$Sources;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -8092,16 +8517,21 @@ export namespace securitycenter_v1 {
       this.bigQueryExports = new Resource$Organizations$Bigqueryexports(
         this.context
       );
+      this.eventThreatDetectionSettings =
+        new Resource$Organizations$Eventthreatdetectionsettings(this.context);
       this.findings = new Resource$Organizations$Findings(this.context);
       this.muteConfigs = new Resource$Organizations$Muteconfigs(this.context);
       this.notificationConfigs = new Resource$Organizations$Notificationconfigs(
         this.context
       );
       this.operations = new Resource$Organizations$Operations(this.context);
+      this.resourceValueConfigs =
+        new Resource$Organizations$Resourcevalueconfigs(this.context);
       this.securityHealthAnalyticsSettings =
         new Resource$Organizations$Securityhealthanalyticssettings(
           this.context
         );
+      this.simulations = new Resource$Organizations$Simulations(this.context);
       this.sources = new Resource$Organizations$Sources(this.context);
     }
 
@@ -9885,6 +10315,1001 @@ export namespace securitycenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1BigQueryExport;
+  }
+
+  export class Resource$Organizations$Eventthreatdetectionsettings {
+    context: APIRequestContext;
+    customModules: Resource$Organizations$Eventthreatdetectionsettings$Custommodules;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.customModules =
+        new Resource$Organizations$Eventthreatdetectionsettings$Custommodules(
+          this.context
+        );
+    }
+
+    /**
+     * Validates the given Event Threat Detection custom module.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.eventThreatDetectionSettings.validateCustomModule(
+     *       {
+     *         // Required. Resource name of the parent to validate the Custom Module under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings".
+     *         parent: 'organizations/my-organization/eventThreatDetectionSettings',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "rawText": "my_rawText",
+     *           //   "type": "my_type"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errors": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    validateCustomModule(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validateCustomModule(
+      params?: Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValidateEventThreatDetectionCustomModuleResponse>;
+    validateCustomModule(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    validateCustomModule(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>,
+      callback: BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+    ): void;
+    validateCustomModule(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule,
+      callback: BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+    ): void;
+    validateCustomModule(
+      callback: BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+    ): void;
+    validateCustomModule(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule
+        | BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ValidateEventThreatDetectionCustomModuleResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:validateCustomModule').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValidateEventThreatDetectionCustomModuleResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ValidateEventThreatDetectionCustomModuleResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the parent to validate the Custom Module under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ValidateEventThreatDetectionCustomModuleRequest;
+  }
+
+  export class Resource$Organizations$Eventthreatdetectionsettings$Custommodules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an Event Threat Detection custom module.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.eventThreatDetectionSettings.customModules.create(
+     *       {
+     *         // Required. The new custom module's parent. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings".
+     *         parent: 'organizations/my-organization/eventThreatDetectionSettings',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "config": {},
+     *           //   "description": "my_description",
+     *           //   "displayName": "my_displayName",
+     *           //   "enablementState": "my_enablementState",
+     *           //   "lastEditor": "my_lastEditor",
+     *           //   "name": "my_name",
+     *           //   "type": "my_type",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "enablementState": "my_enablementState",
+     *   //   "lastEditor": "my_lastEditor",
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventThreatDetectionCustomModule>;
+    create(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventThreatDetectionCustomModule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/customModules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an Event Threat Detection custom module.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.eventThreatDetectionSettings.customModules.delete(
+     *       {
+     *         // Required. Name of the custom module to delete. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}".
+     *         name: 'organizations/my-organization/eventThreatDetectionSettings/customModules/my-customModule',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets an Event Threat Detection custom module.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.eventThreatDetectionSettings.customModules.get(
+     *       {
+     *         // Required. Name of the custom module to get. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}".
+     *         name: 'organizations/my-organization/eventThreatDetectionSettings/customModules/my-customModule',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "enablementState": "my_enablementState",
+     *   //   "lastEditor": "my_lastEditor",
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventThreatDetectionCustomModule>;
+    get(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventThreatDetectionCustomModule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists Event Threat Detection custom modules.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.eventThreatDetectionSettings.customModules.list(
+     *       {
+     *         // The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `ListEventThreatDetectionCustomModules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEventThreatDetectionCustomModules` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings".
+     *         parent: 'organizations/my-organization/eventThreatDetectionSettings',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "eventThreatDetectionCustomModules": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEventThreatDetectionCustomModulesResponse>;
+    list(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>,
+      callback: BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$List,
+      callback: BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$List
+        | BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEventThreatDetectionCustomModulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEventThreatDetectionCustomModulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/customModules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEventThreatDetectionCustomModulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEventThreatDetectionCustomModulesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an Event Threat Detection custom module.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.eventThreatDetectionSettings.customModules.patch(
+     *       {
+     *         // Immutable. The resource name of the Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     *         name: 'organizations/my-organization/eventThreatDetectionSettings/customModules/my-customModule',
+     *         // The list of fields to be updated. If empty all mutable fields will be updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "config": {},
+     *           //   "description": "my_description",
+     *           //   "displayName": "my_displayName",
+     *           //   "enablementState": "my_enablementState",
+     *           //   "lastEditor": "my_lastEditor",
+     *           //   "name": "my_name",
+     *           //   "type": "my_type",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "enablementState": "my_enablementState",
+     *   //   "lastEditor": "my_lastEditor",
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventThreatDetectionCustomModule>;
+    patch(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Patch,
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Patch
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventThreatDetectionCustomModule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventThreatDetectionCustomModule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EventThreatDetectionCustomModule>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create
+    extends StandardParameters {
+    /**
+     * Required. The new custom module's parent. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EventThreatDetectionCustomModule;
+  }
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the custom module to delete. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the custom module to get. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$List
+    extends StandardParameters {
+    /**
+     * The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListEventThreatDetectionCustomModules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEventThreatDetectionCustomModules` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EventThreatDetectionCustomModule;
   }
 
   export class Resource$Organizations$Findings {
@@ -12184,6 +13609,795 @@ export namespace securitycenter_v1 {
     pageToken?: string;
   }
 
+  export class Resource$Organizations$Resourcevalueconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a ResourceValueConfig for an organization. Maps user's tags to difference resource values for use by the attack path simulation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.resourceValueConfigs.batchCreate({
+     *       // Required. Resource name of the new ResourceValueConfig's parent. The parent field in the CreateResourceValueConfigRequest messages must either be empty or match this field.
+     *       parent: 'organizations/my-organization',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "requests": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resourceValueConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreate(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
+      params?: Params$Resource$Organizations$Resourcevalueconfigs$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchCreateResourceValueConfigsResponse>;
+    batchCreate(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchCreateResourceValueConfigsResponse>,
+      callback: BodyResponseCallback<Schema$BatchCreateResourceValueConfigsResponse>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Batchcreate,
+      callback: BodyResponseCallback<Schema$BatchCreateResourceValueConfigsResponse>
+    ): void;
+    batchCreate(
+      callback: BodyResponseCallback<Schema$BatchCreateResourceValueConfigsResponse>
+    ): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Resourcevalueconfigs$Batchcreate
+        | BodyResponseCallback<Schema$BatchCreateResourceValueConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchCreateResourceValueConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchCreateResourceValueConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchCreateResourceValueConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Resourcevalueconfigs$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Resourcevalueconfigs$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/resourceValueConfigs:batchCreate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchCreateResourceValueConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchCreateResourceValueConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a ResourceValueConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.resourceValueConfigs.delete({
+     *     // Required. Name of the ResourceValueConfig to delete
+     *     name: 'organizations/my-organization/resourceValueConfigs/my-resourceValueConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Resourcevalueconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Resourcevalueconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Resourcevalueconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Resourcevalueconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a ResourceValueConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.resourceValueConfigs.get({
+     *     // Required. Name of the resource value config to retrieve. Its format is organizations/{organization\}/resourceValueConfigs/{config_id\}.
+     *     name: 'organizations/my-organization/resourceValueConfigs/my-resourceValueConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "resourceLabelsSelector": {},
+     *   //   "resourceType": "my_resourceType",
+     *   //   "resourceValue": "my_resourceValue",
+     *   //   "scope": "my_scope",
+     *   //   "tagValues": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Resourcevalueconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>;
+    get(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Resourcevalueconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Resourcevalueconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Resourcevalueconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all ResourceValueConfigs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.resourceValueConfigs.list({
+     *     // The number of results to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListResourceValueConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListResourceValueConfigs` must match the call that provided the page token. page_size can be specified, and the new page_size will be used.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns the collection of resource value configs. Its format is "organizations/[organization_id]"
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resourceValueConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Resourcevalueconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListResourceValueConfigsResponse>;
+    list(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListResourceValueConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListResourceValueConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$List,
+      callback: BodyResponseCallback<Schema$ListResourceValueConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListResourceValueConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Resourcevalueconfigs$List
+        | BodyResponseCallback<Schema$ListResourceValueConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListResourceValueConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListResourceValueConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListResourceValueConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Resourcevalueconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Resourcevalueconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/resourceValueConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListResourceValueConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListResourceValueConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an existing ResourceValueConfigs with new rules.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.resourceValueConfigs.patch({
+     *     // Name for the resource value config
+     *     name: 'organizations/my-organization/resourceValueConfigs/my-resourceValueConfig',
+     *     // The list of fields to be updated. If empty all mutable fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "resourceLabelsSelector": {},
+     *       //   "resourceType": "my_resourceType",
+     *       //   "resourceValue": "my_resourceValue",
+     *       //   "scope": "my_scope",
+     *       //   "tagValues": [],
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "resourceLabelsSelector": {},
+     *   //   "resourceType": "my_resourceType",
+     *   //   "resourceValue": "my_resourceValue",
+     *   //   "scope": "my_scope",
+     *   //   "tagValues": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Resourcevalueconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>;
+    patch(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Resourcevalueconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Resourcevalueconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Resourcevalueconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Resourcevalueconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1ResourceValueConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Resourcevalueconfigs$Batchcreate
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the new ResourceValueConfig's parent. The parent field in the CreateResourceValueConfigRequest messages must either be empty or match this field.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchCreateResourceValueConfigsRequest;
+  }
+  export interface Params$Resource$Organizations$Resourcevalueconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the ResourceValueConfig to delete
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Resourcevalueconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource value config to retrieve. Its format is organizations/{organization\}/resourceValueConfigs/{config_id\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Resourcevalueconfigs$List
+    extends StandardParameters {
+    /**
+     * The number of results to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListResourceValueConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListResourceValueConfigs` must match the call that provided the page token. page_size can be specified, and the new page_size will be used.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns the collection of resource value configs. Its format is "organizations/[organization_id]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Resourcevalueconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Name for the resource value config
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1ResourceValueConfig;
+  }
+
   export class Resource$Organizations$Securityhealthanalyticssettings {
     context: APIRequestContext;
     customModules: Resource$Organizations$Securityhealthanalyticssettings$Custommodules;
@@ -13497,6 +15711,1053 @@ export namespace securitycenter_v1 {
     parent?: string;
   }
 
+  export class Resource$Organizations$Simulations {
+    context: APIRequestContext;
+    attackExposureResults: Resource$Organizations$Simulations$Attackexposureresults;
+    attackPaths: Resource$Organizations$Simulations$Attackpaths;
+    valuedResources: Resource$Organizations$Simulations$Valuedresources;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.attackExposureResults =
+        new Resource$Organizations$Simulations$Attackexposureresults(
+          this.context
+        );
+      this.attackPaths = new Resource$Organizations$Simulations$Attackpaths(
+        this.context
+      );
+      this.valuedResources =
+        new Resource$Organizations$Simulations$Valuedresources(this.context);
+    }
+
+    /**
+     * Get the simulation by name or the latest simulation for the given organization.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.simulations.get({
+     *     // Required. The organization name or simulation name of this simulation Valid format: "organizations/{organization\}/simulations/latest" "organizations/{organization\}/simulations/{simulation\}"
+     *     name: 'organizations/my-organization/simulations/my-simulation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "resourceValueConfigsMetadata": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Simulations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Simulations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Simulation>;
+    get(
+      params: Params$Resource$Organizations$Simulations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Simulations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Simulation>,
+      callback: BodyResponseCallback<Schema$Simulation>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Simulations$Get,
+      callback: BodyResponseCallback<Schema$Simulation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Simulation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Simulations$Get
+        | BodyResponseCallback<Schema$Simulation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Simulation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Simulation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Simulation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Simulations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Simulations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Simulation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Simulation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Simulations$Get
+    extends StandardParameters {
+    /**
+     * Required. The organization name or simulation name of this simulation Valid format: "organizations/{organization\}/simulations/latest" "organizations/{organization\}/simulations/{simulation\}"
+     */
+    name?: string;
+  }
+
+  export class Resource$Organizations$Simulations$Attackexposureresults {
+    context: APIRequestContext;
+    attackPaths: Resource$Organizations$Simulations$Attackexposureresults$Attackpaths;
+    valuedResources: Resource$Organizations$Simulations$Attackexposureresults$Valuedresources;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.attackPaths =
+        new Resource$Organizations$Simulations$Attackexposureresults$Attackpaths(
+          this.context
+        );
+      this.valuedResources =
+        new Resource$Organizations$Simulations$Attackexposureresults$Valuedresources(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Organizations$Simulations$Attackexposureresults$Attackpaths {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the attack paths for a set of simulation results or valued resources and filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.simulations.attackExposureResults.attackPaths.list(
+     *       {
+     *         // The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =
+     *         filter: 'placeholder-value',
+     *         // The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     *         pageSize: 'placeholder-value',
+     *         // The value returned by the last `ListAttackPathsResponse`; indicates that this is a continuation of a prior `ListAttackPaths` call, and that the system should return the next page of data.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Name of parent to list attack paths. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}" "organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}"
+     *         parent:
+     *           'organizations/my-organization/simulations/my-simulation/attackExposureResults/my-attackExposureResult',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attackPaths": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Simulations$Attackexposureresults$Attackpaths$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Simulations$Attackexposureresults$Attackpaths$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAttackPathsResponse>;
+    list(
+      params: Params$Resource$Organizations$Simulations$Attackexposureresults$Attackpaths$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Simulations$Attackexposureresults$Attackpaths$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>,
+      callback: BodyResponseCallback<Schema$ListAttackPathsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Simulations$Attackexposureresults$Attackpaths$List,
+      callback: BodyResponseCallback<Schema$ListAttackPathsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAttackPathsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Simulations$Attackexposureresults$Attackpaths$List
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAttackPathsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Simulations$Attackexposureresults$Attackpaths$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Simulations$Attackexposureresults$Attackpaths$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/attackPaths').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAttackPathsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAttackPathsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Simulations$Attackexposureresults$Attackpaths$List
+    extends StandardParameters {
+    /**
+     * The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =
+     */
+    filter?: string;
+    /**
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListAttackPathsResponse`; indicates that this is a continuation of a prior `ListAttackPaths` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of parent to list attack paths. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}" "organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}"
+     */
+    parent?: string;
+  }
+
+  export class Resource$Organizations$Simulations$Attackexposureresults$Valuedresources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the valued resources for a set of simulation results and filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.simulations.attackExposureResults.valuedResources.list(
+     *       {
+     *         // The filter expression that filters the valued resources in the response. Supported fields: * `resource_value` supports = * `resource_type` supports =
+     *         filter: 'placeholder-value',
+     *         // The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     *         pageSize: 'placeholder-value',
+     *         // The value returned by the last `ListValuedResourcesResponse`; indicates that this is a continuation of a prior `ListValuedResources` call, and that the system should return the next page of data.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Name of parent to list valued resources. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}"
+     *         parent:
+     *           'organizations/my-organization/simulations/my-simulation/attackExposureResults/my-attackExposureResult',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0,
+     *   //   "valuedResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Simulations$Attackexposureresults$Valuedresources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Simulations$Attackexposureresults$Valuedresources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListValuedResourcesResponse>;
+    list(
+      params: Params$Resource$Organizations$Simulations$Attackexposureresults$Valuedresources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Simulations$Attackexposureresults$Valuedresources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListValuedResourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListValuedResourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Simulations$Attackexposureresults$Valuedresources$List,
+      callback: BodyResponseCallback<Schema$ListValuedResourcesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListValuedResourcesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Simulations$Attackexposureresults$Valuedresources$List
+        | BodyResponseCallback<Schema$ListValuedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListValuedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListValuedResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListValuedResourcesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Simulations$Attackexposureresults$Valuedresources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Simulations$Attackexposureresults$Valuedresources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/valuedResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListValuedResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListValuedResourcesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Simulations$Attackexposureresults$Valuedresources$List
+    extends StandardParameters {
+    /**
+     * The filter expression that filters the valued resources in the response. Supported fields: * `resource_value` supports = * `resource_type` supports =
+     */
+    filter?: string;
+    /**
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListValuedResourcesResponse`; indicates that this is a continuation of a prior `ListValuedResources` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of parent to list valued resources. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}"
+     */
+    parent?: string;
+  }
+
+  export class Resource$Organizations$Simulations$Attackpaths {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the attack paths for a set of simulation results or valued resources and filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.simulations.attackPaths.list({
+     *     // The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListAttackPathsResponse`; indicates that this is a continuation of a prior `ListAttackPaths` call, and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of parent to list attack paths. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}" "organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}"
+     *     parent: 'organizations/my-organization/simulations/my-simulation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attackPaths": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Simulations$Attackpaths$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Simulations$Attackpaths$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAttackPathsResponse>;
+    list(
+      params: Params$Resource$Organizations$Simulations$Attackpaths$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Simulations$Attackpaths$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>,
+      callback: BodyResponseCallback<Schema$ListAttackPathsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Simulations$Attackpaths$List,
+      callback: BodyResponseCallback<Schema$ListAttackPathsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAttackPathsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Simulations$Attackpaths$List
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAttackPathsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Simulations$Attackpaths$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Simulations$Attackpaths$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/attackPaths').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAttackPathsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAttackPathsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Simulations$Attackpaths$List
+    extends StandardParameters {
+    /**
+     * The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =
+     */
+    filter?: string;
+    /**
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListAttackPathsResponse`; indicates that this is a continuation of a prior `ListAttackPaths` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of parent to list attack paths. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}" "organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}"
+     */
+    parent?: string;
+  }
+
+  export class Resource$Organizations$Simulations$Valuedresources {
+    context: APIRequestContext;
+    attackPaths: Resource$Organizations$Simulations$Valuedresources$Attackpaths;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.attackPaths =
+        new Resource$Organizations$Simulations$Valuedresources$Attackpaths(
+          this.context
+        );
+    }
+
+    /**
+     * Lists the valued resources for a set of simulation results and filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.simulations.valuedResources.list({
+     *       // The filter expression that filters the valued resources in the response. Supported fields: * `resource_value` supports = * `resource_type` supports =
+     *       filter: 'placeholder-value',
+     *       // The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     *       pageSize: 'placeholder-value',
+     *       // The value returned by the last `ListValuedResourcesResponse`; indicates that this is a continuation of a prior `ListValuedResources` call, and that the system should return the next page of data.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Name of parent to list valued resources. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}"
+     *       parent: 'organizations/my-organization/simulations/my-simulation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0,
+     *   //   "valuedResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Simulations$Valuedresources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Simulations$Valuedresources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListValuedResourcesResponse>;
+    list(
+      params: Params$Resource$Organizations$Simulations$Valuedresources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Simulations$Valuedresources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListValuedResourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListValuedResourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Simulations$Valuedresources$List,
+      callback: BodyResponseCallback<Schema$ListValuedResourcesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListValuedResourcesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Simulations$Valuedresources$List
+        | BodyResponseCallback<Schema$ListValuedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListValuedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListValuedResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListValuedResourcesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Simulations$Valuedresources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Simulations$Valuedresources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/valuedResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListValuedResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListValuedResourcesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Simulations$Valuedresources$List
+    extends StandardParameters {
+    /**
+     * The filter expression that filters the valued resources in the response. Supported fields: * `resource_value` supports = * `resource_type` supports =
+     */
+    filter?: string;
+    /**
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListValuedResourcesResponse`; indicates that this is a continuation of a prior `ListValuedResources` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of parent to list valued resources. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}"
+     */
+    parent?: string;
+  }
+
+  export class Resource$Organizations$Simulations$Valuedresources$Attackpaths {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the attack paths for a set of simulation results or valued resources and filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.simulations.valuedResources.attackPaths.list(
+     *       {
+     *         // The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =
+     *         filter: 'placeholder-value',
+     *         // The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     *         pageSize: 'placeholder-value',
+     *         // The value returned by the last `ListAttackPathsResponse`; indicates that this is a continuation of a prior `ListAttackPaths` call, and that the system should return the next page of data.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Name of parent to list attack paths. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}" "organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}"
+     *         parent:
+     *           'organizations/my-organization/simulations/my-simulation/valuedResources/my-valuedResource',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attackPaths": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Simulations$Valuedresources$Attackpaths$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Simulations$Valuedresources$Attackpaths$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAttackPathsResponse>;
+    list(
+      params: Params$Resource$Organizations$Simulations$Valuedresources$Attackpaths$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Simulations$Valuedresources$Attackpaths$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>,
+      callback: BodyResponseCallback<Schema$ListAttackPathsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Simulations$Valuedresources$Attackpaths$List,
+      callback: BodyResponseCallback<Schema$ListAttackPathsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAttackPathsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Simulations$Valuedresources$Attackpaths$List
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAttackPathsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Simulations$Valuedresources$Attackpaths$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Simulations$Valuedresources$Attackpaths$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/attackPaths').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAttackPathsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAttackPathsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Simulations$Valuedresources$Attackpaths$List
+    extends StandardParameters {
+    /**
+     * The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =
+     */
+    filter?: string;
+    /**
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListAttackPathsResponse`; indicates that this is a continuation of a prior `ListAttackPaths` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of parent to list attack paths. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}" "organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}"
+     */
+    parent?: string;
+  }
+
   export class Resource$Organizations$Sources {
     context: APIRequestContext;
     findings: Resource$Organizations$Sources$Findings;
@@ -14624,6 +17885,7 @@ export namespace securitycenter_v1 {
      *       // request body parameters
      *       // {
      *       //   "access": {},
+     *       //   "attackExposure": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
      *       //   "cloudDlpDataProfile": {},
@@ -14669,6 +17931,7 @@ export namespace securitycenter_v1 {
      *   // Example response
      *   // {
      *   //   "access": {},
+     *   //   "attackExposure": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "cloudDlpDataProfile": {},
@@ -15141,6 +18404,7 @@ export namespace securitycenter_v1 {
      *       // request body parameters
      *       // {
      *       //   "access": {},
+     *       //   "attackExposure": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
      *       //   "cloudDlpDataProfile": {},
@@ -15186,6 +18450,7 @@ export namespace securitycenter_v1 {
      *   // Example response
      *   // {
      *   //   "access": {},
+     *   //   "attackExposure": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "cloudDlpDataProfile": {},
@@ -15358,6 +18623,7 @@ export namespace securitycenter_v1 {
      *   // Example response
      *   // {
      *   //   "access": {},
+     *   //   "attackExposure": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "cloudDlpDataProfile": {},
@@ -15534,6 +18800,7 @@ export namespace securitycenter_v1 {
      *   // Example response
      *   // {
      *   //   "access": {},
+     *   //   "attackExposure": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "cloudDlpDataProfile": {},
@@ -21019,6 +24286,7 @@ export namespace securitycenter_v1 {
      *       // request body parameters
      *       // {
      *       //   "access": {},
+     *       //   "attackExposure": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
      *       //   "cloudDlpDataProfile": {},
@@ -21064,6 +24332,7 @@ export namespace securitycenter_v1 {
      *   // Example response
      *   // {
      *   //   "access": {},
+     *   //   "attackExposure": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "cloudDlpDataProfile": {},
@@ -21236,6 +24505,7 @@ export namespace securitycenter_v1 {
      *   // Example response
      *   // {
      *   //   "access": {},
+     *   //   "attackExposure": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "cloudDlpDataProfile": {},
@@ -21412,6 +24682,7 @@ export namespace securitycenter_v1 {
      *   // Example response
      *   // {
      *   //   "access": {},
+     *   //   "attackExposure": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "cloudDlpDataProfile": {},

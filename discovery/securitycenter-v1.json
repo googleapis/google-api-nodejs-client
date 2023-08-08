@@ -1702,6 +1702,192 @@
             }
           }
         },
+        "eventThreatDetectionSettings": {
+          "methods": {
+            "validateCustomModule": {
+              "description": "Validates the given Event Threat Detection custom module.",
+              "flatPath": "v1/organizations/{organizationsId}/eventThreatDetectionSettings:validateCustomModule",
+              "httpMethod": "POST",
+              "id": "securitycenter.organizations.eventThreatDetectionSettings.validateCustomModule",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Resource name of the parent to validate the Custom Module under. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\".",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/eventThreatDetectionSettings$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}:validateCustomModule",
+              "request": {
+                "$ref": "ValidateEventThreatDetectionCustomModuleRequest"
+              },
+              "response": {
+                "$ref": "ValidateEventThreatDetectionCustomModuleResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "customModules": {
+              "methods": {
+                "create": {
+                  "description": "Creates an Event Threat Detection custom module.",
+                  "flatPath": "v1/organizations/{organizationsId}/eventThreatDetectionSettings/customModules",
+                  "httpMethod": "POST",
+                  "id": "securitycenter.organizations.eventThreatDetectionSettings.customModules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The new custom module's parent. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\".",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/eventThreatDetectionSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules",
+                  "request": {
+                    "$ref": "EventThreatDetectionCustomModule"
+                  },
+                  "response": {
+                    "$ref": "EventThreatDetectionCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an Event Threat Detection custom module.",
+                  "flatPath": "v1/organizations/{organizationsId}/eventThreatDetectionSettings/customModules/{customModulesId}",
+                  "httpMethod": "DELETE",
+                  "id": "securitycenter.organizations.eventThreatDetectionSettings.customModules.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the custom module to delete. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\".",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/eventThreatDetectionSettings/customModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets an Event Threat Detection custom module.",
+                  "flatPath": "v1/organizations/{organizationsId}/eventThreatDetectionSettings/customModules/{customModulesId}",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.organizations.eventThreatDetectionSettings.customModules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the custom module to get. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\".",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/eventThreatDetectionSettings/customModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "EventThreatDetectionCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Event Threat Detection custom modules.",
+                  "flatPath": "v1/organizations/{organizationsId}/eventThreatDetectionSettings/customModules",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.organizations.eventThreatDetectionSettings.customModules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of modules to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListEventThreatDetectionCustomModules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEventThreatDetectionCustomModules` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of the parent to list custom modules under. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\".",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/eventThreatDetectionSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules",
+                  "response": {
+                    "$ref": "ListEventThreatDetectionCustomModulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an Event Threat Detection custom module.",
+                  "flatPath": "v1/organizations/{organizationsId}/eventThreatDetectionSettings/customModules/{customModulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "securitycenter.organizations.eventThreatDetectionSettings.customModules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The resource name of the Event Threat Detection custom module. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/customModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/customModules/{module}\".",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/eventThreatDetectionSettings/customModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated. If empty all mutable fields will be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "EventThreatDetectionCustomModule"
+                  },
+                  "response": {
+                    "$ref": "EventThreatDetectionCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "findings": {
           "methods": {
             "bulkMute": {
@@ -2168,6 +2354,158 @@
             }
           }
         },
+        "resourceValueConfigs": {
+          "methods": {
+            "batchCreate": {
+              "description": "Creates a ResourceValueConfig for an organization. Maps user's tags to difference resource values for use by the attack path simulation.",
+              "flatPath": "v1/organizations/{organizationsId}/resourceValueConfigs:batchCreate",
+              "httpMethod": "POST",
+              "id": "securitycenter.organizations.resourceValueConfigs.batchCreate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Resource name of the new ResourceValueConfig's parent. The parent field in the CreateResourceValueConfigRequest messages must either be empty or match this field.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/resourceValueConfigs:batchCreate",
+              "request": {
+                "$ref": "BatchCreateResourceValueConfigsRequest"
+              },
+              "response": {
+                "$ref": "BatchCreateResourceValueConfigsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a ResourceValueConfig.",
+              "flatPath": "v1/organizations/{organizationsId}/resourceValueConfigs/{resourceValueConfigsId}",
+              "httpMethod": "DELETE",
+              "id": "securitycenter.organizations.resourceValueConfigs.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the ResourceValueConfig to delete",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/resourceValueConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets a ResourceValueConfig.",
+              "flatPath": "v1/organizations/{organizationsId}/resourceValueConfigs/{resourceValueConfigsId}",
+              "httpMethod": "GET",
+              "id": "securitycenter.organizations.resourceValueConfigs.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the resource value config to retrieve. Its format is organizations/{organization}/resourceValueConfigs/{config_id}.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/resourceValueConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1ResourceValueConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists all ResourceValueConfigs.",
+              "flatPath": "v1/organizations/{organizationsId}/resourceValueConfigs",
+              "httpMethod": "GET",
+              "id": "securitycenter.organizations.resourceValueConfigs.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The number of results to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListResourceValueConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListResourceValueConfigs` must match the call that provided the page token. page_size can be specified, and the new page_size will be used.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent, which owns the collection of resource value configs. Its format is \"organizations/[organization_id]\"",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/resourceValueConfigs",
+              "response": {
+                "$ref": "ListResourceValueConfigsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates an existing ResourceValueConfigs with new rules.",
+              "flatPath": "v1/organizations/{organizationsId}/resourceValueConfigs/{resourceValueConfigsId}",
+              "httpMethod": "PATCH",
+              "id": "securitycenter.organizations.resourceValueConfigs.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Name for the resource value config",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/resourceValueConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. If empty all mutable fields will be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1ResourceValueConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1ResourceValueConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "securityHealthAnalyticsSettings": {
           "resources": {
             "customModules": {
@@ -2420,6 +2758,268 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              }
+            }
+          }
+        },
+        "simulations": {
+          "methods": {
+            "get": {
+              "description": "Get the simulation by name or the latest simulation for the given organization.",
+              "flatPath": "v1/organizations/{organizationsId}/simulations/{simulationsId}",
+              "httpMethod": "GET",
+              "id": "securitycenter.organizations.simulations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The organization name or simulation name of this simulation Valid format: \"organizations/{organization}/simulations/latest\" \"organizations/{organization}/simulations/{simulation}\"",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/simulations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Simulation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "attackExposureResults": {
+              "resources": {
+                "attackPaths": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists the attack paths for a set of simulation results or valued resources and filter.",
+                      "flatPath": "v1/organizations/{organizationsId}/simulations/{simulationsId}/attackExposureResults/{attackExposureResultsId}/attackPaths",
+                      "httpMethod": "GET",
+                      "id": "securitycenter.organizations.simulations.attackExposureResults.attackPaths.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The value returned by the last `ListAttackPathsResponse`; indicates that this is a continuation of a prior `ListAttackPaths` call, and that the system should return the next page of data.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Name of parent to list attack paths. Valid formats: \"organizations/{organization}\", \"organizations/{organization}/simulations/{simulation}\" \"organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}\" \"organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}\"",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/simulations/[^/]+/attackExposureResults/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/attackPaths",
+                      "response": {
+                        "$ref": "ListAttackPathsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "valuedResources": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists the valued resources for a set of simulation results and filter.",
+                      "flatPath": "v1/organizations/{organizationsId}/simulations/{simulationsId}/attackExposureResults/{attackExposureResultsId}/valuedResources",
+                      "httpMethod": "GET",
+                      "id": "securitycenter.organizations.simulations.attackExposureResults.valuedResources.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The filter expression that filters the valued resources in the response. Supported fields: * `resource_value` supports = * `resource_type` supports =",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The value returned by the last `ListValuedResourcesResponse`; indicates that this is a continuation of a prior `ListValuedResources` call, and that the system should return the next page of data.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Name of parent to list valued resources. Valid formats: \"organizations/{organization}\", \"organizations/{organization}/simulations/{simulation}\" \"organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}\"",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/simulations/[^/]+/attackExposureResults/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/valuedResources",
+                      "response": {
+                        "$ref": "ListValuedResourcesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "attackPaths": {
+              "methods": {
+                "list": {
+                  "description": "Lists the attack paths for a set of simulation results or valued resources and filter.",
+                  "flatPath": "v1/organizations/{organizationsId}/simulations/{simulationsId}/attackPaths",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.organizations.simulations.attackPaths.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListAttackPathsResponse`; indicates that this is a continuation of a prior `ListAttackPaths` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of parent to list attack paths. Valid formats: \"organizations/{organization}\", \"organizations/{organization}/simulations/{simulation}\" \"organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}\" \"organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/simulations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/attackPaths",
+                  "response": {
+                    "$ref": "ListAttackPathsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "valuedResources": {
+              "methods": {
+                "list": {
+                  "description": "Lists the valued resources for a set of simulation results and filter.",
+                  "flatPath": "v1/organizations/{organizationsId}/simulations/{simulationsId}/valuedResources",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.organizations.simulations.valuedResources.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter expression that filters the valued resources in the response. Supported fields: * `resource_value` supports = * `resource_type` supports =",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListValuedResourcesResponse`; indicates that this is a continuation of a prior `ListValuedResources` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of parent to list valued resources. Valid formats: \"organizations/{organization}\", \"organizations/{organization}/simulations/{simulation}\" \"organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/simulations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/valuedResources",
+                  "response": {
+                    "$ref": "ListValuedResourcesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "attackPaths": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists the attack paths for a set of simulation results or valued resources and filter.",
+                      "flatPath": "v1/organizations/{organizationsId}/simulations/{simulationsId}/valuedResources/{valuedResourcesId}/attackPaths",
+                      "httpMethod": "GET",
+                      "id": "securitycenter.organizations.simulations.valuedResources.attackPaths.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The value returned by the last `ListAttackPathsResponse`; indicates that this is a continuation of a prior `ListAttackPaths` call, and that the system should return the next page of data.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Name of parent to list attack paths. Valid formats: \"organizations/{organization}\", \"organizations/{organization}/simulations/{simulation}\" \"organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}\" \"organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}\"",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/simulations/[^/]+/valuedResources/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/attackPaths",
+                      "response": {
+                        "$ref": "ListAttackPathsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -4150,7 +4750,7 @@
       }
     }
   },
-  "revision": "20230713",
+  "revision": "20230803",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -4321,6 +4921,177 @@
       },
       "type": "object"
     },
+    "AttackExposure": {
+      "description": "An attack exposure contains the results of an attack path simulation run.",
+      "id": "AttackExposure",
+      "properties": {
+        "attackExposureResult": {
+          "description": "The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/attackExposureResults/456",
+          "type": "string"
+        },
+        "exposedHighValueResourcesCount": {
+          "description": "The number of high value resources that are exposed as a result of this finding.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "exposedLowValueResourcesCount": {
+          "description": "The number of high value resources that are exposed as a result of this finding.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "exposedMediumValueResourcesCount": {
+          "description": "The number of medium value resources that are exposed as a result of this finding.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "latestCalculationTime": {
+          "description": "The most recent time the attack exposure was updated on this finding.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "score": {
+          "description": "A number between 0 (inclusive) and infinity that represents how important this finding is to remediate. The higher the score, the more important it is to remediate.",
+          "format": "double",
+          "type": "number"
+        },
+        "state": {
+          "description": "What state this AttackExposure is in. This captures whether or not an attack exposure has been calculated or not.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CALCULATED",
+            "NOT_CALCULATED"
+          ],
+          "enumDescriptions": [
+            "The state is not specified.",
+            "The attack exposure has been calculated.",
+            "The attack exposure has not been calculated."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AttackPath": {
+      "description": "A path that an attacker could take to reach an exposed resource.",
+      "id": "AttackPath",
+      "properties": {
+        "edges": {
+          "description": "A list of the edges between nodes in this attack path.",
+          "items": {
+            "$ref": "AttackPathEdge"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The attack path name, for example, `organizations/12/simulation/34/valuedResources/56/attackPaths/78`",
+          "type": "string"
+        },
+        "pathNodes": {
+          "description": "A list of nodes that exist in this attack path.",
+          "items": {
+            "$ref": "AttackPathNode"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AttackPathEdge": {
+      "description": "Represents a connection between a source node and a destination node in this attack path.",
+      "id": "AttackPathEdge",
+      "properties": {
+        "destination": {
+          "description": "The attack node uuid of the destination node.",
+          "type": "string"
+        },
+        "source": {
+          "description": "The attack node uuid of the source node.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AttackPathNode": {
+      "description": "Represents one point that an attacker passes through in this attack path.",
+      "id": "AttackPathNode",
+      "properties": {
+        "associatedFindings": {
+          "description": "The findings associated with this node in the attack path.",
+          "items": {
+            "$ref": "PathNodeAssociatedFinding"
+          },
+          "type": "array"
+        },
+        "attackSteps": {
+          "description": "A list of attack step nodes that exist in this attack path node.",
+          "items": {
+            "$ref": "AttackStepNode"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Human-readable name of this resource.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "The name of the resource at this point in the attack path. The format of the name follows the Cloud Asset Inventory [resource name format](\"https://cloud.google.com/asset-inventory/docs/resource-name-format\")",
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "The [supported resource type](https://cloud.google.com/asset-inventory/docs/supported-asset-types\")",
+          "type": "string"
+        },
+        "uuid": {
+          "description": "Unique id of the attack path node.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AttackStepNode": {
+      "description": "Detailed steps the attack can take between path nodes.",
+      "id": "AttackStepNode",
+      "properties": {
+        "description": {
+          "description": "Attack step description",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User friendly name of the attack step",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Attack step labels for metadata",
+          "type": "object"
+        },
+        "type": {
+          "description": "Attack step type. Can be either AND, OR or DEFENSE",
+          "enum": [
+            "NODE_TYPE_UNSPECIFIED",
+            "NODE_TYPE_AND",
+            "NODE_TYPE_OR",
+            "NODE_TYPE_DEFENSE",
+            "NODE_TYPE_ATTACKER"
+          ],
+          "enumDescriptions": [
+            "Type not specified",
+            "Incoming edge joined with AND",
+            "Incoming edge joined with OR",
+            "Incoming edge is defense",
+            "Incoming edge is attacker"
+          ],
+          "type": "string"
+        },
+        "uuid": {
+          "description": "Unique ID for one Node",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AuditConfig": {
       "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.",
       "id": "AuditConfig",
@@ -4365,6 +5136,34 @@
             "Data reads. Example: CloudSQL Users list"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BatchCreateResourceValueConfigsRequest": {
+      "description": "Request message to create multiple resource value configs",
+      "id": "BatchCreateResourceValueConfigsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The resource value configs to be created.",
+          "items": {
+            "$ref": "CreateResourceValueConfigRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchCreateResourceValueConfigsResponse": {
+      "description": "Response message for BatchCreateResourceValueConfigs",
+      "id": "BatchCreateResourceValueConfigsResponse",
+      "properties": {
+        "resourceValueConfigs": {
+          "description": "The resource value configs created",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1ResourceValueConfig"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4575,6 +5374,57 @@
         "uri": {
           "description": "Container image URI provided when configuring a pod or container. This string can identify a container image version using mutable tags.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateResourceValueConfigRequest": {
+      "description": "Request message to create single resource value config",
+      "id": "CreateResourceValueConfigRequest",
+      "properties": {
+        "parent": {
+          "description": "Required. Resource name of the new ResourceValueConfig's parent.",
+          "type": "string"
+        },
+        "resourceValueConfig": {
+          "$ref": "GoogleCloudSecuritycenterV1ResourceValueConfig",
+          "description": "Required. The resource value config being created."
+        }
+      },
+      "type": "object"
+    },
+    "CustomModuleValidationError": {
+      "description": "An error encountered while validating the uploaded configuration of an Event Threat Detection Custom Module.",
+      "id": "CustomModuleValidationError",
+      "properties": {
+        "description": {
+          "description": "A description of the error, suitable for human consumption. Required.",
+          "type": "string"
+        },
+        "end": {
+          "$ref": "Position",
+          "description": "The end position of the error in the uploaded text version of the module. This field may be omitted if no specific position applies, or if one could not be computed.."
+        },
+        "fieldPath": {
+          "description": "The path, in RFC 8901 JSON Pointer format, to the field that failed validation. This may be left empty if no specific field is affected.",
+          "type": "string"
+        },
+        "start": {
+          "$ref": "Position",
+          "description": "The initial position of the error in the uploaded text version of the module. This field may be omitted if no specific position applies, or if one could not be computed."
+        }
+      },
+      "type": "object"
+    },
+    "CustomModuleValidationErrors": {
+      "description": "A list of zero or more errors encountered while validating the uploaded configuration of an Event Threat Detection Custom Module.",
+      "id": "CustomModuleValidationErrors",
+      "properties": {
+        "errors": {
+          "items": {
+            "$ref": "CustomModuleValidationError"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4812,6 +5662,62 @@
       },
       "type": "object"
     },
+    "EventThreatDetectionCustomModule": {
+      "description": "Represents an instance of an Event Threat Detection custom module, including its full module name, display name, enablement state, and last updated time. You can create a custom module at the organization level only.",
+      "id": "EventThreatDetectionCustomModule",
+      "properties": {
+        "config": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Config for the module. For the resident module, its config value is defined at this level. For the inherited module, its config value is inherited from the ancestor module.",
+          "type": "object"
+        },
+        "description": {
+          "description": "The description for the module.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The human readable name to be displayed for the module.",
+          "type": "string"
+        },
+        "enablementState": {
+          "description": "The state of enablement for the module at the given level of the hierarchy.",
+          "enum": [
+            "ENABLEMENT_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified enablement state.",
+            "The module is enabled at the given level.",
+            "The module is disabled at the given level."
+          ],
+          "type": "string"
+        },
+        "lastEditor": {
+          "description": "Output only. The editor the module was last updated by.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the Event Threat Detection custom module. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/customModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/customModules/{module}\".",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type for the module. e.g. CONFIGURABLE_BAD_IP.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the module was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ExfilResource": {
       "description": "Resource where data was exfiltrated from or exfiltrated to.",
       "id": "ExfilResource",
@@ -4914,6 +5820,10 @@
         "access": {
           "$ref": "Access",
           "description": "Access details associated with the finding, such as more information on the caller, which method was accessed, and from where."
+        },
+        "attackExposure": {
+          "$ref": "AttackExposure",
+          "description": "The results of an attack path simulation relevant to this finding."
         },
         "canonicalName": {
           "description": "The canonical name of the finding. It's either \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\" or \"projects/{project_number}/sources/{source_id}/findings/{finding_id}\", depending on the closest CRM ancestor of the resource associated with the finding.",
@@ -5534,6 +6444,73 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1ResourceValueConfig": {
+      "description": "A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.",
+      "id": "GoogleCloudSecuritycenterV1ResourceValueConfig",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp this resource value config was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the resource value config.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name for the resource value config",
+          "type": "string"
+        },
+        "resourceLabelsSelector": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "List of resource labels to search for, evaluated with AND. E.g. \"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"} will match resources with labels \"key\": \"value\" AND \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
+          "type": "object"
+        },
+        "resourceType": {
+          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with \"AND\" of other resources. E.g. \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
+          "type": "string"
+        },
+        "resourceValue": {
+          "description": "Required. Resource value level this expression represents",
+          "enum": [
+            "RESOURCE_VALUE_UNSPECIFIED",
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecific value",
+            "High resource value",
+            "Medium resource value",
+            "Low resource value",
+            "No resource value, e.g. ignore these resources"
+          ],
+          "type": "string"
+        },
+        "scope": {
+          "description": "Project or folder to scope this config to. For example, \"project/456\" would apply this config only to resources in \"project/456\" scope will be checked with \"AND\" of other resources.",
+          "type": "string"
+        },
+        "tagValues": {
+          "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" E.g. [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp this resource value config was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -6229,6 +7206,24 @@
       },
       "type": "object"
     },
+    "ListAttackPathsResponse": {
+      "description": "Response message for listing the attack paths for a given simulation or valued resource.",
+      "id": "ListAttackPathsResponse",
+      "properties": {
+        "attackPaths": {
+          "description": "The attack paths that the attack path simulation identified.",
+          "items": {
+            "$ref": "AttackPath"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListBigQueryExportsResponse": {
       "description": "Response message for listing BigQuery exports.",
       "id": "ListBigQueryExportsResponse",
@@ -6278,6 +7273,24 @@
         },
         "nextPageToken": {
           "description": "If not empty, indicates that there may be more effective custom modules to be returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListEventThreatDetectionCustomModulesResponse": {
+      "description": "Response for listing Event Threat Detection custom modules.",
+      "id": "ListEventThreatDetectionCustomModulesResponse",
+      "properties": {
+        "eventThreatDetectionCustomModules": {
+          "description": "Custom modules belonging to the requested parent.",
+          "items": {
+            "$ref": "EventThreatDetectionCustomModule"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -6399,6 +7412,24 @@
       },
       "type": "object"
     },
+    "ListResourceValueConfigsResponse": {
+      "description": "Response message to list resource value configs",
+      "id": "ListResourceValueConfigsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.",
+          "type": "string"
+        },
+        "resourceValueConfigs": {
+          "description": "The resource value configs from the specified parent.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1ResourceValueConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSecurityHealthAnalyticsCustomModulesResponse": {
       "description": "Response message for listing Security Health Analytics custom modules.",
       "id": "ListSecurityHealthAnalyticsCustomModulesResponse",
@@ -6429,6 +7460,29 @@
           "description": "Sources belonging to the requested parent.",
           "items": {
             "$ref": "Source"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListValuedResourcesResponse": {
+      "description": "Response message for listing the valued resources for a given simulation.",
+      "id": "ListValuedResourcesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results.",
+          "type": "string"
+        },
+        "totalSize": {
+          "description": "The estimated total number of results matching the query.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "valuedResources": {
+          "description": "The valued resources that the attack path simulation identified.",
+          "items": {
+            "$ref": "ValuedResource"
           },
           "type": "array"
         }
@@ -6799,7 +7853,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -6819,6 +7873,25 @@
         },
         "name": {
           "description": "The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/organizationSettings\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PathNodeAssociatedFinding": {
+      "description": "A finding that is associated with this node in the attack path.",
+      "id": "PathNodeAssociatedFinding",
+      "properties": {
+        "canonicalFinding": {
+          "description": "Canonical name of the associated findings. Example: organizations/123/sources/456/findings/789",
+          "type": "string"
+        },
+        "findingCategory": {
+          "description": "The additional taxonomy group within findings from a given source.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Full resource name of the finding.",
           "type": "string"
         }
       },
@@ -6854,7 +7927,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -6878,6 +7951,21 @@
         },
         "version": {
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Position": {
+      "description": "A position in the uploaded text version of a module.",
+      "id": "Position",
+      "properties": {
+        "columnNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "lineNumber": {
           "format": "int32",
           "type": "integer"
         }
@@ -7009,6 +8097,17 @@
         },
         "type": {
           "description": "The full resource type of the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceValueConfigMetadata": {
+      "description": "Metadata about a ResourceValueConfig. For example, id and name.",
+      "id": "ResourceValueConfigMetadata",
+      "properties": {
+        "name": {
+          "description": "Resource value config name",
           "type": "string"
         }
       },
@@ -7200,6 +8299,30 @@
       },
       "type": "object"
     },
+    "Simulation": {
+      "description": "Attack path simulation",
+      "id": "Simulation",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time simulation was created",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Full resource name of the Simulation: organizations/123/simulations/456",
+          "type": "string"
+        },
+        "resourceValueConfigsMetadata": {
+          "description": "Resource value configurations' metadata used in this simulation. Maximum of 100.",
+          "items": {
+            "$ref": "ResourceValueConfigMetadata"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Source": {
       "description": "Security Command Center finding source. A finding source is an entity or a mechanism that can produce a finding. A source is like a container of findings that come from the same scanner, logger, monitor, and other tools.",
       "id": "Source",
@@ -7314,6 +8437,83 @@
           "description": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ValidateEventThreatDetectionCustomModuleRequest": {
+      "description": "Request to validate an Event Threat Detection custom module.",
+      "id": "ValidateEventThreatDetectionCustomModuleRequest",
+      "properties": {
+        "rawText": {
+          "description": "Required. The raw text of the module's contents. Used to generate error messages.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The type of the module (e.g. CONFIGURABLE_BAD_IP).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ValidateEventThreatDetectionCustomModuleResponse": {
+      "description": "Response to validating an Event Threat Detection custom module.",
+      "id": "ValidateEventThreatDetectionCustomModuleResponse",
+      "properties": {
+        "errors": {
+          "$ref": "CustomModuleValidationErrors",
+          "description": "A list of errors returned by the validator. If the list is empty, there were no errors."
+        }
+      },
+      "type": "object"
+    },
+    "ValuedResource": {
+      "description": "A resource that is determined to have value to a user's system",
+      "id": "ValuedResource",
+      "properties": {
+        "displayName": {
+          "description": "Human-readable name of the valued resource.",
+          "type": "string"
+        },
+        "exposedScore": {
+          "description": "Exposed score for this valued resource. A value of 0 means no exposure was detected exposure.",
+          "format": "double",
+          "type": "number"
+        },
+        "name": {
+          "description": "Valued resource name, for example, e.g.: `organizations/123/simulations/456/valuedResources/789`",
+          "type": "string"
+        },
+        "resource": {
+          "description": "The [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) of the valued resource.",
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "The [resource type](https://cloud.google.com/asset-inventory/docs/supported-asset-types) of the valued resource.",
+          "type": "string"
+        },
+        "resourceValue": {
+          "description": "How valuable this resource is.",
+          "enum": [
+            "RESOURCE_VALUE_UNSPECIFIED",
+            "RESOURCE_VALUE_LOW",
+            "RESOURCE_VALUE_MEDIUM",
+            "RESOURCE_VALUE_HIGH"
+          ],
+          "enumDescriptions": [
+            "The resource value isn't specified.",
+            "This is a low-value resource.",
+            "This is a medium-value resource.",
+            "This is a high-value resource."
+          ],
+          "type": "string"
+        },
+        "resourceValueConfigsUsed": {
+          "description": "List of resource value configurations' metadata used to determine the value of this resource. Maximum of 100.",
+          "items": {
+            "$ref": "ResourceValueConfigMetadata"
           },
           "type": "array"
         }

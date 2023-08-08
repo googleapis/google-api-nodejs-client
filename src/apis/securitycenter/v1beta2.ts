@@ -211,6 +211,39 @@ export namespace securitycenter_v1beta2 {
     version?: string | null;
   }
   /**
+   * An attack exposure contains the results of an attack path simulation run.
+   */
+  export interface Schema$AttackExposure {
+    /**
+     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/attackExposureResults/456
+     */
+    attackExposureResult?: string | null;
+    /**
+     * The number of high value resources that are exposed as a result of this finding.
+     */
+    exposedHighValueResourcesCount?: number | null;
+    /**
+     * The number of high value resources that are exposed as a result of this finding.
+     */
+    exposedLowValueResourcesCount?: number | null;
+    /**
+     * The number of medium value resources that are exposed as a result of this finding.
+     */
+    exposedMediumValueResourcesCount?: number | null;
+    /**
+     * The most recent time the attack exposure was updated on this finding.
+     */
+    latestCalculationTime?: string | null;
+    /**
+     * A number between 0 (inclusive) and infinity that represents how important this finding is to remediate. The higher the score, the more important it is to remediate.
+     */
+    score?: number | null;
+    /**
+     * What state this AttackExposure is in. This captures whether or not an attack exposure has been calculated or not.
+     */
+    state?: string | null;
+  }
+  /**
    * The [data profile](https://cloud.google.com/dlp/docs/data-profiles) associated with the finding.
    */
   export interface Schema$CloudDlpDataProfile {
@@ -606,6 +639,10 @@ export namespace securitycenter_v1beta2 {
      * Access details associated with the finding, such as more information on the caller, which method was accessed, and from where.
      */
     access?: Schema$Access;
+    /**
+     * The results of an attack path simulation relevant to this finding.
+     */
+    attackExposure?: Schema$AttackExposure;
     /**
      * The canonical name of the finding. It's either "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}" or "projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
      */
@@ -1188,6 +1225,47 @@ export namespace securitycenter_v1beta2 {
      * The resource types to run the detector on.
      */
     resourceTypes?: string[] | null;
+  }
+  /**
+   * A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceValueConfig {
+    /**
+     * Output only. Timestamp this resource value config was created.
+     */
+    createTime?: string | null;
+    /**
+     * Description of the resource value config.
+     */
+    description?: string | null;
+    /**
+     * Name for the resource value config
+     */
+    name?: string | null;
+    /**
+     * List of resource labels to search for, evaluated with AND. E.g. "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     */
+    resourceLabelsSelector?: {[key: string]: string} | null;
+    /**
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     */
+    resourceType?: string | null;
+    /**
+     * Required. Resource value level this expression represents
+     */
+    resourceValue?: string | null;
+    /**
+     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
+     */
+    scope?: string | null;
+    /**
+     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     */
+    tagValues?: string[] | null;
+    /**
+     * Output only. Timestamp this resource value config was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Response of asset discovery run
