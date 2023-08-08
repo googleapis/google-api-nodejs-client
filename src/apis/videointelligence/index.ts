@@ -64,7 +64,7 @@ export function videointelligence<
     | videointelligence_v1beta2.Videointelligence
     | videointelligence_v1p1beta1.Videointelligence
     | videointelligence_v1p2beta1.Videointelligence
-    | videointelligence_v1p3beta1.Videointelligence
+    | videointelligence_v1p3beta1.Videointelligence,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
