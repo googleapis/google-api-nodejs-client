@@ -37,7 +37,7 @@ export function servicedirectory(
 export function servicedirectory<
   T =
     | servicedirectory_v1.Servicedirectory
-    | servicedirectory_v1beta1.Servicedirectory
+    | servicedirectory_v1beta1.Servicedirectory,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

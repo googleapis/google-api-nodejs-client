@@ -428,94 +428,6 @@
                 }
               },
               "resources": {
-                "serviceWorkloads": {
-                  "methods": {
-                    "getIamPolicy": {
-                      "description": "Gets the IAM Policy for a resource",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/serviceWorkloads/{serviceWorkloadsId}:getIamPolicy",
-                      "httpMethod": "POST",
-                      "id": "servicedirectory.projects.locations.namespaces.serviceWorkloads.getIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/serviceWorkloads/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+resource}:getIamPolicy",
-                      "request": {
-                        "$ref": "GetIamPolicyRequest"
-                      },
-                      "response": {
-                        "$ref": "Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "setIamPolicy": {
-                      "description": "Sets the IAM Policy for a resource",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/serviceWorkloads/{serviceWorkloadsId}:setIamPolicy",
-                      "httpMethod": "POST",
-                      "id": "servicedirectory.projects.locations.namespaces.serviceWorkloads.setIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/serviceWorkloads/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+resource}:setIamPolicy",
-                      "request": {
-                        "$ref": "SetIamPolicyRequest"
-                      },
-                      "response": {
-                        "$ref": "Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "testIamPermissions": {
-                      "description": "Tests IAM permissions for a resource (namespace, service or service workload only).",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/serviceWorkloads/{serviceWorkloadsId}:testIamPermissions",
-                      "httpMethod": "POST",
-                      "id": "servicedirectory.projects.locations.namespaces.serviceWorkloads.testIamPermissions",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/serviceWorkloads/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+resource}:testIamPermissions",
-                      "request": {
-                        "$ref": "TestIamPermissionsRequest"
-                      },
-                      "response": {
-                        "$ref": "TestIamPermissionsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                },
                 "services": {
                   "methods": {
                     "create": {
@@ -1059,7 +971,7 @@
       }
     }
   },
-  "revision": "20230618",
+  "revision": "20230729",
   "rootUrl": "https://servicedirectory.googleapis.com/",
   "schemas": {
     "Binding": {
