@@ -55,7 +55,7 @@ export function androidpublisher<
     | androidpublisher_v1_1.Androidpublisher
     | androidpublisher_v1.Androidpublisher
     | androidpublisher_v2.Androidpublisher
-    | androidpublisher_v3.Androidpublisher
+    | androidpublisher_v3.Androidpublisher,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

@@ -1857,7 +1857,7 @@ export namespace androidpublisher_v3 {
      */
     oldestAllowedPriceVersionTime?: string | null;
     /**
-     * Optional. The behavior the caller wants users to see if there is a price increase during migration. If left unset, the behavior defaults to PRICE_INCREASE_TYPE_OPT_IN.
+     * Optional. The behavior the caller wants users to see when there is a price increase during migration. If left unset, the behavior defaults to PRICE_INCREASE_TYPE_OPT_IN. Note that the first opt-out price increase migration for each app must be initiated in Play Console.
      */
     priceIncreaseType?: string | null;
     /**
@@ -2995,64 +2995,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Creates a new device tier config for an app.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.applications.deviceTierConfigs.create({
-     *     // Whether the service should accept device IDs that are unknown to Play's device catalog.
-     *     allowUnknownDevices: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "deviceGroups": [],
-     *       //   "deviceTierConfigId": "my_deviceTierConfigId",
-     *       //   "deviceTierSet": {},
-     *       //   "userCountrySets": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "deviceGroups": [],
-     *   //   "deviceTierConfigId": "my_deviceTierConfigId",
-     *   //   "deviceTierSet": {},
-     *   //   "userCountrySets": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3141,53 +3083,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Returns a particular device tier config.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.applications.deviceTierConfigs.get({
-     *     // Required. Id of an existing device tier config.
-     *     deviceTierConfigId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "deviceGroups": [],
-     *   //   "deviceTierConfigId": "my_deviceTierConfigId",
-     *   //   "deviceTierSet": {},
-     *   //   "userCountrySets": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3276,53 +3171,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Returns created device tier configs, ordered by descending creation time.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.applications.deviceTierConfigs.list({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // The maximum number of device tier configs to return. The service may return fewer than this value. If unspecified, at most 10 device tier configs will be returned. The maximum value for this field is 100; values above 100 will be coerced to 100. Device tier configs will be ordered by descending creation time.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListDeviceTierConfigs` call. Provide this to retrieve the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "deviceTierConfigs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3494,53 +3342,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Commits an app edit.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.commit({
-     *     // Indicates that the changes in this edit will not be reviewed until they are explicitly sent for review from the Google Play Console UI. These changes will be added to any other changes that are not yet sent for review.
-     *     changesNotSentForReview: 'placeholder-value',
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "expiryTimeSeconds": "my_expiryTimeSeconds",
-     *   //   "id": "my_id"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3628,45 +3429,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Deletes an app edit.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.delete({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3752,51 +3514,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Gets an app edit.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.get({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "expiryTimeSeconds": "my_expiryTimeSeconds",
-     *   //   "id": "my_id"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3884,58 +3601,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Creates a new edit for an app.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.insert({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "expiryTimeSeconds": "my_expiryTimeSeconds",
-     *       //   "id": "my_id"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "expiryTimeSeconds": "my_expiryTimeSeconds",
-     *   //   "id": "my_id"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4022,51 +3687,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Validates an app edit.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.validate({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "expiryTimeSeconds": "my_expiryTimeSeconds",
-     *   //   "id": "my_id"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4217,58 +3837,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Creates a new APK without uploading the APK itself to Google Play, instead hosting the APK at a specified URL. This function is only available to organizations using Managed Play whose application is configured to restrict distribution to the organizations.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.apks.addexternallyhosted({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "externallyHostedApk": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "externallyHostedApk": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4366,51 +3934,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Lists all current APKs of the app and edit.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.apks.list({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apks": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4498,59 +4021,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Uploads an APK and adds to the current edit.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.apks.upload({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     requestBody: {
-     *       // request body parameters
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "binary": {},
-     *   //   "versionCode": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4708,51 +4178,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Lists all current Android App Bundles of the app and edit.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.bundles.list({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bundles": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4844,64 +4269,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Uploads a new Android App Bundle to this edit. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.bundles.upload({
-     *     // Must be set to true if the app bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
-     *     ackBundleInstallationWarning: 'placeholder-value',
-     *     // Device tier config (DTC) to be used for generating deliverables (APKs). Contains id of the DTC or "LATEST" for last uploaded DTC.
-     *     deviceTierConfigId: 'placeholder-value',
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     requestBody: {
-     *       // request body parameters
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "sha1": "my_sha1",
-     *   //   "sha256": "my_sha256",
-     *   //   "versionCode": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5052,54 +4419,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Gets country availability.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.countryavailability.get({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // The track to read from.
-     *     track: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "countries": [],
-     *   //   "restOfWorld": false,
-     *   //   "syncWithProduction": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5216,62 +4535,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Uploads a new deobfuscation file and attaches to the specified APK.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.deobfuscationfiles.upload({
-     *     // The version code of the APK whose Deobfuscation File is being uploaded.
-     *     apkVersionCode: 'placeholder-value',
-     *     // The type of the deobfuscation file.
-     *     deobfuscationFileType: 'placeholder-value',
-     *     // Unique identifier for this edit.
-     *     editId: 'placeholder-value',
-     *     // Unique identifier for the Android app.
-     *     packageName: 'placeholder-value',
-     *
-     *     requestBody: {
-     *       // request body parameters
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "deobfuscationFile": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5430,53 +4693,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Gets details of an app.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.details.get({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contactEmail": "my_contactEmail",
-     *   //   "contactPhone": "my_contactPhone",
-     *   //   "contactWebsite": "my_contactWebsite",
-     *   //   "defaultLanguage": "my_defaultLanguage"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5565,64 +4781,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Patches details of an app.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.details.patch({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contactEmail": "my_contactEmail",
-     *       //   "contactPhone": "my_contactPhone",
-     *       //   "contactWebsite": "my_contactWebsite",
-     *       //   "defaultLanguage": "my_defaultLanguage"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contactEmail": "my_contactEmail",
-     *   //   "contactPhone": "my_contactPhone",
-     *   //   "contactWebsite": "my_contactWebsite",
-     *   //   "defaultLanguage": "my_defaultLanguage"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5711,64 +4869,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Updates details of an app.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.details.update({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contactEmail": "my_contactEmail",
-     *       //   "contactPhone": "my_contactPhone",
-     *       //   "contactWebsite": "my_contactWebsite",
-     *       //   "defaultLanguage": "my_defaultLanguage"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contactEmail": "my_contactEmail",
-     *   //   "contactPhone": "my_contactPhone",
-     *   //   "contactWebsite": "my_contactWebsite",
-     *   //   "defaultLanguage": "my_defaultLanguage"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5908,55 +5008,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Fetches the expansion file configuration for the specified APK.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.expansionfiles.get({
-     *     // The version code of the APK whose expansion file configuration is being read or modified.
-     *     apkVersionCode: 'placeholder-value',
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // The file type of the file configuration which is being read or modified.
-     *     expansionFileType: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "fileSize": "my_fileSize",
-     *   //   "referencesVersion": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6055,64 +5106,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Patches the APK's expansion file configuration to reference another APK's expansion file. To add a new expansion file use the Upload method.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.expansionfiles.patch({
-     *     // The version code of the APK whose expansion file configuration is being read or modified.
-     *     apkVersionCode: 'placeholder-value',
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // The file type of the expansion file configuration which is being updated.
-     *     expansionFileType: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "fileSize": "my_fileSize",
-     *       //   "referencesVersion": 0
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "fileSize": "my_fileSize",
-     *   //   "referencesVersion": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6211,64 +5204,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Updates the APK's expansion file configuration to reference another APK's expansion file. To add a new expansion file use the Upload method.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.expansionfiles.update({
-     *     // The version code of the APK whose expansion file configuration is being read or modified.
-     *     apkVersionCode: 'placeholder-value',
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // The file type of the file configuration which is being read or modified.
-     *     expansionFileType: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "fileSize": "my_fileSize",
-     *       //   "referencesVersion": 0
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "fileSize": "my_fileSize",
-     *   //   "referencesVersion": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6367,62 +5302,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Uploads a new expansion file and attaches to the specified APK.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.expansionfiles.upload({
-     *     // The version code of the APK whose expansion file configuration is being read or modified.
-     *     apkVersionCode: 'placeholder-value',
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // The file type of the expansion file configuration which is being updated.
-     *     expansionFileType: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     requestBody: {
-     *       // request body parameters
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "expansionFile": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6648,51 +5527,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Deletes the image (specified by id) from the edit.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.images.delete({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Unique identifier an image within the set of images attached to this edit.
-     *     imageId: 'placeholder-value',
-     *     // Type of the Image.
-     *     imageType: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
-     *     language: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6791,54 +5625,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Deletes all images for the specified language and image type. Returns an empty response if no images are found.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.images.deleteall({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Type of the Image. Providing an image type that refers to no images is a no-op.
-     *     imageType: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op.
-     *     language: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "deleted": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6934,54 +5720,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Lists all images. The response may be empty.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.images.list({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Type of the Image. Providing an image type that refers to no images will return an empty response.
-     *     imageType: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). There must be a store listing for the specified language.
-     *     language: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "images": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7073,62 +5811,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Uploads an image of the specified language and image type, and adds to the edit.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.images.upload({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Type of the Image.
-     *     imageType: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). Providing a language that is not supported by the App is a no-op.
-     *     language: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     requestBody: {
-     *       // request body parameters
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "image": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7334,47 +6016,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Deletes a localized store listing.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.listings.delete({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
-     *     language: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7461,45 +6102,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Deletes all store listings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.listings.deleteall({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7586,56 +6188,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Gets a localized store listing.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.listings.get({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
-     *     language: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "fullDescription": "my_fullDescription",
-     *   //   "language": "my_language",
-     *   //   "shortDescription": "my_shortDescription",
-     *   //   "title": "my_title",
-     *   //   "video": "my_video"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7724,51 +6276,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Lists all localized store listings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.listings.list({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "listings": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7862,68 +6369,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Patches a localized store listing.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.listings.patch({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
-     *     language: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "fullDescription": "my_fullDescription",
-     *       //   "language": "my_language",
-     *       //   "shortDescription": "my_shortDescription",
-     *       //   "title": "my_title",
-     *       //   "video": "my_video"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "fullDescription": "my_fullDescription",
-     *   //   "language": "my_language",
-     *   //   "shortDescription": "my_shortDescription",
-     *   //   "title": "my_title",
-     *   //   "video": "my_video"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8012,68 +6457,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Creates or updates a localized store listing.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.listings.update({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German).
-     *     language: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "fullDescription": "my_fullDescription",
-     *       //   "language": "my_language",
-     *       //   "shortDescription": "my_shortDescription",
-     *       //   "title": "my_title",
-     *       //   "video": "my_video"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "fullDescription": "my_fullDescription",
-     *   //   "language": "my_language",
-     *   //   "shortDescription": "my_shortDescription",
-     *   //   "title": "my_title",
-     *   //   "video": "my_video"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8262,52 +6645,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Gets testers. Note: Testers resource does not support email lists.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.testers.get({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // The track to read from.
-     *     track: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "googleGroups": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8396,60 +6733,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Patches testers. Note: Testers resource does not support email lists.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.testers.patch({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // The track to update.
-     *     track: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "googleGroups": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "googleGroups": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8538,60 +6821,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Updates testers. Note: Testers resource does not support email lists.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.testers.update({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // The track to update.
-     *     track: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "googleGroups": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "googleGroups": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8743,53 +6972,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Gets a track.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.tracks.get({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
-     *     track: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "releases": [],
-     *   //   "track": "my_track"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8877,51 +7059,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Lists all tracks.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.tracks.list({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "tracks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9013,62 +7150,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Patches a track.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.tracks.patch({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
-     *     track: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "releases": [],
-     *       //   "track": "my_track"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "releases": [],
-     *   //   "track": "my_track"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9157,62 +7238,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Updates a track.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.edits.tracks.update({
-     *     // Identifier of the edit.
-     *     editId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
-     *     track: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "releases": [],
-     *       //   "track": "my_track"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "releases": [],
-     *   //   "track": "my_track"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9374,83 +7399,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Creates a new external transaction.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.externaltransactions.createexternaltransaction({
-     *       // Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-z0-9_-/. Do not use this field to store any Personally Identifiable Information (PII) such as emails. Attempting to store PII in this field may result in requests being blocked.
-     *       externalTransactionId: 'placeholder-value',
-     *       // Required. The parent resource where this external transaction will be created. Format: applications/{package_name\}
-     *       parent: 'applications/my-application',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createTime": "my_createTime",
-     *         //   "currentPreTaxAmount": {},
-     *         //   "currentTaxAmount": {},
-     *         //   "externalTransactionId": "my_externalTransactionId",
-     *         //   "oneTimeTransaction": {},
-     *         //   "originalPreTaxAmount": {},
-     *         //   "originalTaxAmount": {},
-     *         //   "packageName": "my_packageName",
-     *         //   "recurringTransaction": {},
-     *         //   "testPurchase": {},
-     *         //   "transactionState": "my_transactionState",
-     *         //   "transactionTime": "my_transactionTime",
-     *         //   "userTaxAddress": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "currentPreTaxAmount": {},
-     *   //   "currentTaxAmount": {},
-     *   //   "externalTransactionId": "my_externalTransactionId",
-     *   //   "oneTimeTransaction": {},
-     *   //   "originalPreTaxAmount": {},
-     *   //   "originalTaxAmount": {},
-     *   //   "packageName": "my_packageName",
-     *   //   "recurringTransaction": {},
-     *   //   "testPurchase": {},
-     *   //   "transactionState": "my_transactionState",
-     *   //   "transactionTime": "my_transactionTime",
-     *   //   "userTaxAddress": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9544,61 +7492,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Gets an existing external transaction.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.externaltransactions.getexternaltransaction({
-     *       // Required. The name of the external transaction to retrieve. Format: applications/{package_name\}/externalTransactions/{external_transaction\}
-     *       name: 'applications/my-application/externalTransactions/my-externalTransaction',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "currentPreTaxAmount": {},
-     *   //   "currentTaxAmount": {},
-     *   //   "externalTransactionId": "my_externalTransactionId",
-     *   //   "oneTimeTransaction": {},
-     *   //   "originalPreTaxAmount": {},
-     *   //   "originalTaxAmount": {},
-     *   //   "packageName": "my_packageName",
-     *   //   "recurringTransaction": {},
-     *   //   "testPurchase": {},
-     *   //   "transactionState": "my_transactionState",
-     *   //   "transactionTime": "my_transactionTime",
-     *   //   "userTaxAddress": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9693,71 +7586,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Refunds or partially refunds an existing external transaction.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.externaltransactions.refundexternaltransaction({
-     *       // Required. The name of the external transaction that will be refunded. Format: applications/{package_name\}/externalTransactions/{external_transaction\}
-     *       name: 'applications/my-application/externalTransactions/my-externalTransaction',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "fullRefund": {},
-     *         //   "partialRefund": {},
-     *         //   "refundTime": "my_refundTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "currentPreTaxAmount": {},
-     *   //   "currentTaxAmount": {},
-     *   //   "externalTransactionId": "my_externalTransactionId",
-     *   //   "oneTimeTransaction": {},
-     *   //   "originalPreTaxAmount": {},
-     *   //   "originalTaxAmount": {},
-     *   //   "packageName": "my_packageName",
-     *   //   "recurringTransaction": {},
-     *   //   "testPurchase": {},
-     *   //   "transactionState": "my_transactionState",
-     *   //   "transactionTime": "my_transactionTime",
-     *   //   "userTaxAddress": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9895,47 +7723,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Downloads a single signed APK generated from an app bundle.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.generatedapks.download({
-     *     // Download ID, which uniquely identifies the APK to download. Can be obtained from the response of `generatedapks.list` method.
-     *     downloadId: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // Version code of the app bundle.
-     *     versionCode: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10022,50 +7809,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Returns download metadata for all APKs that were generated from a given app bundle.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.generatedapks.list({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // Version code of the app bundle.
-     *     versionCode: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "generatedApks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10195,60 +7938,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Grant access for a user to the given package.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.grants.create({
-     *     // Required. The user which needs permission. Format: developers/{developer\}/users/{user\}
-     *     parent: 'developers/my-developer/users/my-user',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "appLevelPermissions": [],
-     *       //   "name": "my_name",
-     *       //   "packageName": "my_packageName"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appLevelPermissions": [],
-     *   //   "name": "my_name",
-     *   //   "packageName": "my_packageName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10336,43 +8025,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Removes all access for the user to the given package or developer account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.grants.delete({
-     *     // Required. The name of the grant to delete. Format: developers/{developer\}/users/{email\}/grants/{package_name\}
-     *     name: 'developers/my-developer/users/my-user/grants/my-grant',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10458,62 +8110,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Updates access for the user to the given package.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.grants.patch({
-     *     // Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}". If this grant is for a draft app, the app ID will be used in this resource name instead of the package name.
-     *     name: 'developers/my-developer/users/my-user/grants/my-grant',
-     *     // Optional. The list of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "appLevelPermissions": [],
-     *       //   "name": "my_name",
-     *       //   "packageName": "my_packageName"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appLevelPermissions": [],
-     *   //   "name": "my_name",
-     *   //   "packageName": "my_packageName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10640,46 +8236,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Deletes an in-app product (i.e. a managed product or a subscription). This method should no longer be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.inappproducts.delete({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // Unique identifier for the in-app product.
-     *     sku: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deletes an in-app product (a managed product or a subscription). This method should no longer be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10766,62 +8323,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Gets an in-app product, which can be a managed product or a subscription. This method should no longer be used to retrieve subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.inappproducts.get({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // Unique identifier for the in-app product.
-     *     sku: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "defaultLanguage": "my_defaultLanguage",
-     *   //   "defaultPrice": {},
-     *   //   "gracePeriod": "my_gracePeriod",
-     *   //   "listings": {},
-     *   //   "managedProductTaxesAndComplianceSettings": {},
-     *   //   "packageName": "my_packageName",
-     *   //   "prices": {},
-     *   //   "purchaseType": "my_purchaseType",
-     *   //   "sku": "my_sku",
-     *   //   "status": "my_status",
-     *   //   "subscriptionPeriod": "my_subscriptionPeriod",
-     *   //   "subscriptionTaxesAndComplianceSettings": {},
-     *   //   "trialPeriod": "my_trialPeriod"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10909,83 +8410,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Creates an in-app product (i.e. a managed product or a subscription). This method should no longer be used to create subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.inappproducts.insert({
-     *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     *     autoConvertMissingPrices: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "defaultLanguage": "my_defaultLanguage",
-     *       //   "defaultPrice": {},
-     *       //   "gracePeriod": "my_gracePeriod",
-     *       //   "listings": {},
-     *       //   "managedProductTaxesAndComplianceSettings": {},
-     *       //   "packageName": "my_packageName",
-     *       //   "prices": {},
-     *       //   "purchaseType": "my_purchaseType",
-     *       //   "sku": "my_sku",
-     *       //   "status": "my_status",
-     *       //   "subscriptionPeriod": "my_subscriptionPeriod",
-     *       //   "subscriptionTaxesAndComplianceSettings": {},
-     *       //   "trialPeriod": "my_trialPeriod"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "defaultLanguage": "my_defaultLanguage",
-     *   //   "defaultPrice": {},
-     *   //   "gracePeriod": "my_gracePeriod",
-     *   //   "listings": {},
-     *   //   "managedProductTaxesAndComplianceSettings": {},
-     *   //   "packageName": "my_packageName",
-     *   //   "prices": {},
-     *   //   "purchaseType": "my_purchaseType",
-     *   //   "sku": "my_sku",
-     *   //   "status": "my_status",
-     *   //   "subscriptionPeriod": "my_subscriptionPeriod",
-     *   //   "subscriptionTaxesAndComplianceSettings": {},
-     *   //   "trialPeriod": "my_trialPeriod"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates an in-app product (a managed product or a subscription). This method should no longer be used to create subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11074,57 +8499,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Lists all in-app products - both managed products and subscriptions. If an app has a large number of in-app products, the response may be paginated. In this case the response field `tokenPagination.nextPageToken` will be set and the caller should provide its value as a `token` request parameter to retrieve the next page. This method should no longer be used to retrieve subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.inappproducts.list({
-     *     // Deprecated and ignored. The page size is determined by the server.
-     *     maxResults: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // Deprecated and ignored. Set the `token` parameter to retrieve the next page.
-     *     startIndex: 'placeholder-value',
-     *     // Pagination token. If empty, list starts at the first product.
-     *     token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "inappproduct": [],
-     *   //   "kind": "my_kind",
-     *   //   "pageInfo": {},
-     *   //   "tokenPagination": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11219,85 +8593,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Patches an in-app product (i.e. a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.inappproducts.patch({
-     *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     *     autoConvertMissingPrices: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // Unique identifier for the in-app product.
-     *     sku: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "defaultLanguage": "my_defaultLanguage",
-     *       //   "defaultPrice": {},
-     *       //   "gracePeriod": "my_gracePeriod",
-     *       //   "listings": {},
-     *       //   "managedProductTaxesAndComplianceSettings": {},
-     *       //   "packageName": "my_packageName",
-     *       //   "prices": {},
-     *       //   "purchaseType": "my_purchaseType",
-     *       //   "sku": "my_sku",
-     *       //   "status": "my_status",
-     *       //   "subscriptionPeriod": "my_subscriptionPeriod",
-     *       //   "subscriptionTaxesAndComplianceSettings": {},
-     *       //   "trialPeriod": "my_trialPeriod"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "defaultLanguage": "my_defaultLanguage",
-     *   //   "defaultPrice": {},
-     *   //   "gracePeriod": "my_gracePeriod",
-     *   //   "listings": {},
-     *   //   "managedProductTaxesAndComplianceSettings": {},
-     *   //   "packageName": "my_packageName",
-     *   //   "prices": {},
-     *   //   "purchaseType": "my_purchaseType",
-     *   //   "sku": "my_sku",
-     *   //   "status": "my_status",
-     *   //   "subscriptionPeriod": "my_subscriptionPeriod",
-     *   //   "subscriptionTaxesAndComplianceSettings": {},
-     *   //   "trialPeriod": "my_trialPeriod"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Patches an in-app product (a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11385,87 +8681,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Updates an in-app product (i.e. a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.inappproducts.update({
-     *     // If set to true, and the in-app product with the given package_name and sku doesn't exist, the in-app product will be created.
-     *     allowMissing: 'placeholder-value',
-     *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
-     *     autoConvertMissingPrices: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // Unique identifier for the in-app product.
-     *     sku: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "defaultLanguage": "my_defaultLanguage",
-     *       //   "defaultPrice": {},
-     *       //   "gracePeriod": "my_gracePeriod",
-     *       //   "listings": {},
-     *       //   "managedProductTaxesAndComplianceSettings": {},
-     *       //   "packageName": "my_packageName",
-     *       //   "prices": {},
-     *       //   "purchaseType": "my_purchaseType",
-     *       //   "sku": "my_sku",
-     *       //   "status": "my_status",
-     *       //   "subscriptionPeriod": "my_subscriptionPeriod",
-     *       //   "subscriptionTaxesAndComplianceSettings": {},
-     *       //   "trialPeriod": "my_trialPeriod"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "defaultLanguage": "my_defaultLanguage",
-     *   //   "defaultPrice": {},
-     *   //   "gracePeriod": "my_gracePeriod",
-     *   //   "listings": {},
-     *   //   "managedProductTaxesAndComplianceSettings": {},
-     *   //   "packageName": "my_packageName",
-     *   //   "prices": {},
-     *   //   "purchaseType": "my_purchaseType",
-     *   //   "sku": "my_sku",
-     *   //   "status": "my_status",
-     *   //   "subscriptionPeriod": "my_subscriptionPeriod",
-     *   //   "subscriptionTaxesAndComplianceSettings": {},
-     *   //   "trialPeriod": "my_trialPeriod"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Updates an in-app product (a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11663,58 +8879,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Uploads an APK to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.internalappsharingartifacts.uploadapk({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     requestBody: {
-     *       // request body parameters
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificateFingerprint": "my_certificateFingerprint",
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "sha256": "my_sha256"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11814,58 +8978,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Uploads an app bundle to internal app sharing. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See [Timeouts and Errors](https://developers.google.com/api-client-library/java/google-api-java-client/errors) for an example in java.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.internalappsharingartifacts.uploadbundle({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *
-     *     requestBody: {
-     *       // request body parameters
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificateFingerprint": "my_certificateFingerprint",
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "sha256": "my_sha256"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12031,57 +9143,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Calculates the region prices, using today's exchange rate and country-specific pricing patterns, based on the price in the request for a set of regions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.monetization.convertRegionPrices({
-     *     // Required. The app package name.
-     *     packageName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "price": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "convertedOtherRegionsPrice": {},
-     *   //   "convertedRegionPrices": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12201,61 +9262,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Archives a subscription. Can only be done if at least one base plan was active in the past, and no base plan is available for new or existing subscribers currently. This action is irreversible, and the subscription ID will remain reserved.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.monetization.subscriptions.archive({
-     *     // Required. The parent app (package name) of the app of the subscription to delete.
-     *     packageName: 'placeholder-value',
-     *     // Required. The unique product ID of the subscription to delete.
-     *     productId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "archived": false,
-     *   //   "basePlans": [],
-     *   //   "listings": [],
-     *   //   "packageName": "my_packageName",
-     *   //   "productId": "my_productId",
-     *   //   "taxAndComplianceSettings": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12344,70 +9350,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Creates a new subscription. Newly added base plans will remain in draft state until activated.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.monetization.subscriptions.create({
-     *     // Required. The parent app (package name) for which the subscription should be created. Must be equal to the package_name field on the Subscription resource.
-     *     packageName: 'placeholder-value',
-     *     // Required. The ID to use for the subscription. For the requirements on this format, see the documentation of the product_id field on the Subscription resource.
-     *     productId: 'placeholder-value',
-     *     // Required. The latest version is 2022/02.
-     *     'regionsVersion.version': 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "archived": false,
-     *       //   "basePlans": [],
-     *       //   "listings": [],
-     *       //   "packageName": "my_packageName",
-     *       //   "productId": "my_productId",
-     *       //   "taxAndComplianceSettings": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "archived": false,
-     *   //   "basePlans": [],
-     *   //   "listings": [],
-     *   //   "packageName": "my_packageName",
-     *   //   "productId": "my_productId",
-     *   //   "taxAndComplianceSettings": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12496,45 +9438,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Deletes a subscription. A subscription can only be deleted if it has never had a base plan published.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.monetization.subscriptions.delete({
-     *     // Required. The parent app (package name) of the app of the subscription to delete.
-     *     packageName: 'placeholder-value',
-     *     // Required. The unique product ID of the subscription to delete.
-     *     productId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12621,55 +9524,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Reads a single subscription.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.monetization.subscriptions.get({
-     *     // Required. The parent app (package name) of the subscription to get.
-     *     packageName: 'placeholder-value',
-     *     // Required. The unique product ID of the subscription to get.
-     *     productId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "archived": false,
-     *   //   "basePlans": [],
-     *   //   "listings": [],
-     *   //   "packageName": "my_packageName",
-     *   //   "productId": "my_productId",
-     *   //   "taxAndComplianceSettings": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12758,55 +9612,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Lists all subscriptions under a given app.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.monetization.subscriptions.list({
-     *     // Required. The parent app (package name) for which the subscriptions should be read.
-     *     packageName: 'placeholder-value',
-     *     // The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Whether archived subscriptions should be included in the response. Defaults to false.
-     *     showArchived: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "subscriptions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12902,72 +9707,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Updates an existing subscription.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.monetization.subscriptions.patch({
-     *     // Immutable. Package name of the parent app.
-     *     packageName: 'placeholder-value',
-     *     // Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must be composed of lower-case letters (a-z), numbers (0-9), underscores (_) and dots (.). It must start with a lower-case letter or number, and be between 1 and 40 (inclusive) characters in length.
-     *     productId: 'placeholder-value',
-     *     // Required. The latest version is 2022/02.
-     *     'regionsVersion.version': 'placeholder-value',
-     *     // Required. The list of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "archived": false,
-     *       //   "basePlans": [],
-     *       //   "listings": [],
-     *       //   "packageName": "my_packageName",
-     *       //   "productId": "my_productId",
-     *       //   "taxAndComplianceSettings": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "archived": false,
-     *   //   "basePlans": [],
-     *   //   "listings": [],
-     *   //   "packageName": "my_packageName",
-     *   //   "productId": "my_productId",
-     *   //   "taxAndComplianceSettings": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13169,64 +9908,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Activates a base plan. Once activated, base plans will be available to new subscribers.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.monetization.subscriptions.basePlans.activate({
-     *       // Required. The unique base plan ID of the base plan to activate.
-     *       basePlanId: 'placeholder-value',
-     *       // Required. The parent app (package name) of the base plan to activate.
-     *       packageName: 'placeholder-value',
-     *       // Required. The parent subscription (ID) of the base plan to activate.
-     *       productId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "archived": false,
-     *   //   "basePlans": [],
-     *   //   "listings": [],
-     *   //   "packageName": "my_packageName",
-     *   //   "productId": "my_productId",
-     *   //   "taxAndComplianceSettings": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13316,64 +9997,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Deactivates a base plan. Once deactivated, the base plan will become unavailable to new subscribers, but existing subscribers will maintain their subscription
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.monetization.subscriptions.basePlans.deactivate({
-     *       // Required. The unique base plan ID of the base plan to deactivate.
-     *       basePlanId: 'placeholder-value',
-     *       // Required. The parent app (package name) of the base plan to deactivate.
-     *       packageName: 'placeholder-value',
-     *       // Required. The parent subscription (ID) of the base plan to deactivate.
-     *       productId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "archived": false,
-     *   //   "basePlans": [],
-     *   //   "listings": [],
-     *   //   "packageName": "my_packageName",
-     *   //   "productId": "my_productId",
-     *   //   "taxAndComplianceSettings": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13463,48 +10086,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Deletes a base plan. Can only be done for draft base plans. This action is irreversible.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.monetization.subscriptions.basePlans.delete({
-     *       // Required. The unique offer ID of the base plan to delete.
-     *       basePlanId: 'placeholder-value',
-     *       // Required. The parent app (package name) of the base plan to delete.
-     *       packageName: 'placeholder-value',
-     *       // Required. The parent subscription (ID) of the base plan to delete.
-     *       productId: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13592,60 +10173,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Migrates subscribers who are receiving an historical subscription price to the currently-offered price for the specified region. Requests will cause price change notifications to be sent to users who are currently receiving an historical price older than the supplied timestamp. Subscribers who do not agree to the new price will have their subscription ended at the next renewal.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.monetization.subscriptions.basePlans.migratePrices({
-     *       // Required. The unique base plan ID of the base plan to update prices on.
-     *       basePlanId: 'placeholder-value',
-     *       // Required. Package name of the parent app. Must be equal to the package_name field on the Subscription resource.
-     *       packageName: 'placeholder-value',
-     *       // Required. The ID of the subscription to update. Must be equal to the product_id field on the Subscription resource.
-     *       productId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "regionalPriceMigrations": [],
-     *         //   "regionsVersion": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13827,72 +10354,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Activates a subscription offer. Once activated, subscription offers will be available to new subscribers.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.monetization.subscriptions.basePlans.offers.activate(
-     *       {
-     *         // Required. The parent base plan (ID) of the offer to activate.
-     *         basePlanId: 'placeholder-value',
-     *         // Required. The unique offer ID of the offer to activate.
-     *         offerId: 'placeholder-value',
-     *         // Required. The parent app (package name) of the offer to activate.
-     *         packageName: 'placeholder-value',
-     *         // Required. The parent subscription (ID) of the offer to activate.
-     *         productId: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "basePlanId": "my_basePlanId",
-     *   //   "offerId": "my_offerId",
-     *   //   "offerTags": [],
-     *   //   "otherRegionsConfig": {},
-     *   //   "packageName": "my_packageName",
-     *   //   "phases": [],
-     *   //   "productId": "my_productId",
-     *   //   "regionalConfigs": [],
-     *   //   "state": "my_state",
-     *   //   "targeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13985,83 +10446,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Creates a new subscription offer. Only auto-renewing base plans can have subscription offers. The offer state will be DRAFT until it is activated.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.monetization.subscriptions.basePlans.offers.create({
-     *       // Required. The parent base plan (ID) for which the offer should be created. Must be equal to the base_plan_id field on the SubscriptionOffer resource.
-     *       basePlanId: 'placeholder-value',
-     *       // Required. The ID to use for the offer. For the requirements on this format, see the documentation of the offer_id field on the SubscriptionOffer resource.
-     *       offerId: 'placeholder-value',
-     *       // Required. The parent app (package name) for which the offer should be created. Must be equal to the package_name field on the Subscription resource.
-     *       packageName: 'placeholder-value',
-     *       // Required. The parent subscription (ID) for which the offer should be created. Must be equal to the product_id field on the SubscriptionOffer resource.
-     *       productId: 'placeholder-value',
-     *       // Required. The latest version is 2022/02.
-     *       'regionsVersion.version': 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "basePlanId": "my_basePlanId",
-     *         //   "offerId": "my_offerId",
-     *         //   "offerTags": [],
-     *         //   "otherRegionsConfig": {},
-     *         //   "packageName": "my_packageName",
-     *         //   "phases": [],
-     *         //   "productId": "my_productId",
-     *         //   "regionalConfigs": [],
-     *         //   "state": "my_state",
-     *         //   "targeting": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "basePlanId": "my_basePlanId",
-     *   //   "offerId": "my_offerId",
-     *   //   "offerTags": [],
-     *   //   "otherRegionsConfig": {},
-     *   //   "packageName": "my_packageName",
-     *   //   "phases": [],
-     *   //   "productId": "my_productId",
-     *   //   "regionalConfigs": [],
-     *   //   "state": "my_state",
-     *   //   "targeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14154,72 +10538,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Deactivates a subscription offer. Once deactivated, existing subscribers will maintain their subscription, but the offer will become unavailable to new subscribers.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.monetization.subscriptions.basePlans.offers.deactivate(
-     *       {
-     *         // Required. The parent base plan (ID) of the offer to deactivate.
-     *         basePlanId: 'placeholder-value',
-     *         // Required. The unique offer ID of the offer to deactivate.
-     *         offerId: 'placeholder-value',
-     *         // Required. The parent app (package name) of the offer to deactivate.
-     *         packageName: 'placeholder-value',
-     *         // Required. The parent subscription (ID) of the offer to deactivate.
-     *         productId: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "basePlanId": "my_basePlanId",
-     *   //   "offerId": "my_offerId",
-     *   //   "offerTags": [],
-     *   //   "otherRegionsConfig": {},
-     *   //   "packageName": "my_packageName",
-     *   //   "phases": [],
-     *   //   "productId": "my_productId",
-     *   //   "regionalConfigs": [],
-     *   //   "state": "my_state",
-     *   //   "targeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14312,50 +10630,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Deletes a subscription offer. Can only be done for draft offers. This action is irreversible.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.monetization.subscriptions.basePlans.offers.delete({
-     *       // Required. The parent base plan (ID) of the offer to delete.
-     *       basePlanId: 'placeholder-value',
-     *       // Required. The unique offer ID of the offer to delete.
-     *       offerId: 'placeholder-value',
-     *       // Required. The parent app (package name) of the offer to delete.
-     *       packageName: 'placeholder-value',
-     *       // Required. The parent subscription (ID) of the offer to delete.
-     *       productId: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14443,64 +10717,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Reads a single offer
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.monetization.subscriptions.basePlans.offers.get({
-     *       // Required. The parent base plan (ID) of the offer to get.
-     *       basePlanId: 'placeholder-value',
-     *       // Required. The unique offer ID of the offer to get.
-     *       offerId: 'placeholder-value',
-     *       // Required. The parent app (package name) of the offer to get.
-     *       packageName: 'placeholder-value',
-     *       // Required. The parent subscription (ID) of the offer to get.
-     *       productId: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "basePlanId": "my_basePlanId",
-     *   //   "offerId": "my_offerId",
-     *   //   "offerTags": [],
-     *   //   "otherRegionsConfig": {},
-     *   //   "packageName": "my_packageName",
-     *   //   "phases": [],
-     *   //   "productId": "my_productId",
-     *   //   "regionalConfigs": [],
-     *   //   "state": "my_state",
-     *   //   "targeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14593,58 +10809,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Lists all offers under a given subscription.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.monetization.subscriptions.basePlans.offers.list({
-     *       // Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription.
-     *       basePlanId: 'placeholder-value',
-     *       // Required. The parent app (package name) for which the subscriptions should be read.
-     *       packageName: 'placeholder-value',
-     *       // The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *       pageSize: 'placeholder-value',
-     *       // A page token, received from a previous `ListSubscriptionsOffers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptionOffers` must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent subscription (ID) for which the offers should be read.
-     *       productId: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "subscriptionOffers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14743,85 +10907,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Updates an existing subscription offer.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await androidpublisher.monetization.subscriptions.basePlans.offers.patch({
-     *       // Required. Immutable. The ID of the base plan to which this offer is an extension.
-     *       basePlanId: 'placeholder-value',
-     *       // Required. Immutable. Unique ID of this subscription offer. Must be unique within the base plan.
-     *       offerId: 'placeholder-value',
-     *       // Required. Immutable. The package name of the app the parent subscription belongs to.
-     *       packageName: 'placeholder-value',
-     *       // Required. Immutable. The ID of the parent subscription this offer belongs to.
-     *       productId: 'placeholder-value',
-     *       // Required. The latest version is 2022/02.
-     *       'regionsVersion.version': 'placeholder-value',
-     *       // Required. The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "basePlanId": "my_basePlanId",
-     *         //   "offerId": "my_offerId",
-     *         //   "offerTags": [],
-     *         //   "otherRegionsConfig": {},
-     *         //   "packageName": "my_packageName",
-     *         //   "phases": [],
-     *         //   "productId": "my_productId",
-     *         //   "regionalConfigs": [],
-     *         //   "state": "my_state",
-     *         //   "targeting": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "basePlanId": "my_basePlanId",
-     *   //   "offerId": "my_offerId",
-     *   //   "offerTags": [],
-     *   //   "otherRegionsConfig": {},
-     *   //   "packageName": "my_packageName",
-     *   //   "phases": [],
-     *   //   "productId": "my_productId",
-     *   //   "regionalConfigs": [],
-     *   //   "state": "my_state",
-     *   //   "targeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15030,7 +11115,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List
     extends StandardParameters {
     /**
-     * Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription.
+     * Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription or an app. Must be specified as '-' if product_id is specified as '-'.
      */
     basePlanId?: string;
     /**
@@ -15046,7 +11131,7 @@ export namespace androidpublisher_v3 {
      */
     pageToken?: string;
     /**
-     * Required. The parent subscription (ID) for which the offers should be read.
+     * Required. The parent subscription (ID) for which the offers should be read. May be specified as '-' to read all offers under an app.
      */
     productId?: string;
   }
@@ -15091,47 +11176,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Refunds a user's subscription or in-app purchase order. Orders older than 1 year cannot be refunded.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.orders.refund({
-     *     // The order ID provided to the user when the subscription or in-app order was purchased.
-     *     orderId: 'placeholder-value',
-     *     // The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional).
-     *     revoke: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15258,55 +11302,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Acknowledges a purchase of an inapp item.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.products.acknowledge({
-     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // The inapp product SKU (for example, 'com.some.thing.inapp1').
-     *     productId: 'placeholder-value',
-     *     // The token provided to the user's device when the inapp product was purchased.
-     *     token: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "developerPayload": "my_developerPayload"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15393,47 +11388,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Consumes a purchase for an inapp item.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.products.consume({
-     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // The inapp product SKU (for example, 'com.some.thing.inapp1').
-     *     productId: 'placeholder-value',
-     *     // The token provided to the user's device when the inapp product was purchased.
-     *     token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15520,65 +11474,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Checks the purchase and consumption status of an inapp item.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.products.get({
-     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // The inapp product SKU (for example, 'com.some.thing.inapp1').
-     *     productId: 'placeholder-value',
-     *     // The token provided to the user's device when the inapp product was purchased.
-     *     token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acknowledgementState": 0,
-     *   //   "consumptionState": 0,
-     *   //   "developerPayload": "my_developerPayload",
-     *   //   "kind": "my_kind",
-     *   //   "obfuscatedExternalAccountId": "my_obfuscatedExternalAccountId",
-     *   //   "obfuscatedExternalProfileId": "my_obfuscatedExternalProfileId",
-     *   //   "orderId": "my_orderId",
-     *   //   "productId": "my_productId",
-     *   //   "purchaseState": 0,
-     *   //   "purchaseTimeMillis": "my_purchaseTimeMillis",
-     *   //   "purchaseToken": "my_purchaseToken",
-     *   //   "purchaseType": 0,
-     *   //   "quantity": 0,
-     *   //   "regionCode": "my_regionCode"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15725,55 +11620,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Acknowledges a subscription purchase.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.subscriptions.acknowledge({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // The purchased subscription ID (for example, 'monthly001').
-     *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
-     *     token: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "developerPayload": "my_developerPayload"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15860,47 +11706,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Cancels a user's subscription purchase. The subscription remains valid until its expiration time.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.subscriptions.cancel({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // The purchased subscription ID (for example, 'monthly001').
-     *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
-     *     token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15987,60 +11792,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Defers a user's subscription purchase until a specified future expiration time.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.subscriptions.defer({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // The purchased subscription ID (for example, 'monthly001').
-     *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
-     *     token: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "deferralInfo": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "newExpiryTimeMillis": "my_newExpiryTimeMillis"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16138,80 +11889,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Checks whether a user's subscription purchase is valid and returns its expiry time.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.subscriptions.get({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // The purchased subscription ID (for example, 'monthly001').
-     *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
-     *     token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acknowledgementState": 0,
-     *   //   "autoRenewing": false,
-     *   //   "autoResumeTimeMillis": "my_autoResumeTimeMillis",
-     *   //   "cancelReason": 0,
-     *   //   "cancelSurveyResult": {},
-     *   //   "countryCode": "my_countryCode",
-     *   //   "developerPayload": "my_developerPayload",
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "expiryTimeMillis": "my_expiryTimeMillis",
-     *   //   "externalAccountId": "my_externalAccountId",
-     *   //   "familyName": "my_familyName",
-     *   //   "givenName": "my_givenName",
-     *   //   "introductoryPriceInfo": {},
-     *   //   "kind": "my_kind",
-     *   //   "linkedPurchaseToken": "my_linkedPurchaseToken",
-     *   //   "obfuscatedExternalAccountId": "my_obfuscatedExternalAccountId",
-     *   //   "obfuscatedExternalProfileId": "my_obfuscatedExternalProfileId",
-     *   //   "orderId": "my_orderId",
-     *   //   "paymentState": 0,
-     *   //   "priceAmountMicros": "my_priceAmountMicros",
-     *   //   "priceChange": {},
-     *   //   "priceCurrencyCode": "my_priceCurrencyCode",
-     *   //   "profileId": "my_profileId",
-     *   //   "profileName": "my_profileName",
-     *   //   "promotionCode": "my_promotionCode",
-     *   //   "promotionType": 0,
-     *   //   "purchaseType": 0,
-     *   //   "startTimeMillis": "my_startTimeMillis",
-     *   //   "userCancellationTimeMillis": "my_userCancellationTimeMillis"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16305,47 +11982,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.subscriptions.refund({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // "The purchased subscription ID (for example, 'monthly001').
-     *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
-     *     token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16432,47 +12068,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.subscriptions.revoke({
-     *     // The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // The purchased subscription ID (for example, 'monthly001').
-     *     subscriptionId: 'placeholder-value',
-     *     // The token provided to the user's device when the subscription was purchased.
-     *     token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16667,62 +12262,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Get metadata about a subscription
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.subscriptionsv2.get({
-     *     // The package of the application for which this subscription was purchased (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // Required. The token provided to the user's device when the subscription was purchased.
-     *     token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acknowledgementState": "my_acknowledgementState",
-     *   //   "canceledStateContext": {},
-     *   //   "externalAccountIdentifiers": {},
-     *   //   "kind": "my_kind",
-     *   //   "latestOrderId": "my_latestOrderId",
-     *   //   "lineItems": [],
-     *   //   "linkedPurchaseToken": "my_linkedPurchaseToken",
-     *   //   "pausedStateContext": {},
-     *   //   "regionCode": "my_regionCode",
-     *   //   "startTime": "my_startTime",
-     *   //   "subscribeWithGoogleInfo": {},
-     *   //   "subscriptionState": "my_subscriptionState",
-     *   //   "testPurchase": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16835,62 +12374,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Lists the purchases that were canceled, refunded or charged-back.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.purchases.voidedpurchases.list({
-     *     // The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
-     *     endTime: 'placeholder-value',
-     *     // Defines how many results the list operation should return. The default number depends on the resource collection.
-     *     maxResults: 'placeholder-value',
-     *     // The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').
-     *     packageName: 'placeholder-value',
-     *     // Defines the index of the first element to return. This can only be used if indexed paging is enabled.
-     *     startIndex: 'placeholder-value',
-     *     // The time, in milliseconds since the Epoch, of the oldest voided purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
-     *     startTime: 'placeholder-value',
-     *     // Defines the token of the page to return, usually taken from TokenPagination. This can only be used if token paging is enabled.
-     *     token: 'placeholder-value',
-     *     // The type of voided purchases that you want to see in the response. Possible values are: 0. Only voided in-app product purchases will be returned in the response. This is the default value. 1. Both voided in-app purchases and voided subscription purchases will be returned in the response. Note: Before requesting to receive voided subscription purchases, you must switch to use orderId in the response which uniquely identifies one-time purchases and subscriptions. Otherwise, you will receive multiple subscription orders with the same PurchaseToken, because subscription renewal orders share the same PurchaseToken.
-     *     type: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "pageInfo": {},
-     *   //   "tokenPagination": {},
-     *   //   "voidedPurchases": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17025,54 +12508,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Gets a single review.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.reviews.get({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // Unique identifier for a review.
-     *     reviewId: 'placeholder-value',
-     *     // Language localization code.
-     *     translationLanguage: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authorName": "my_authorName",
-     *   //   "comments": [],
-     *   //   "reviewId": "my_reviewId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17160,58 +12595,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Lists all reviews.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.reviews.list({
-     *     // How many results the list operation should return.
-     *     maxResults: 'placeholder-value',
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // The index of the first element to return.
-     *     startIndex: 'placeholder-value',
-     *     // Pagination token. If empty, list starts at the first review.
-     *     token: 'placeholder-value',
-     *     // Language localization code.
-     *     translationLanguage: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "pageInfo": {},
-     *   //   "reviews": [],
-     *   //   "tokenPagination": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17302,58 +12685,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Replies to a single review, or updates an existing reply.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.reviews.reply({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // Unique identifier for a review.
-     *     reviewId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "replyText": "my_replyText"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "result": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17514,60 +12845,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Creates an APK which is suitable for inclusion in a system image from an already uploaded Android App Bundle.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.systemapks.variants.create({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // The version code of the App Bundle.
-     *     versionCode: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "deviceSpec": {},
-     *       //   "variantId": 0
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "deviceSpec": {},
-     *   //   "variantId": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17656,47 +12933,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Downloads a previously created system APK which is suitable for inclusion in a system image.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.systemapks.variants.download({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // The ID of a previously created system APK variant.
-     *     variantId: 'placeholder-value',
-     *     // The version code of the App Bundle.
-     *     versionCode: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17783,53 +13019,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Returns a previously created system APK variant.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.systemapks.variants.get({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // The ID of a previously created system APK variant.
-     *     variantId: 'placeholder-value',
-     *     // The version code of the App Bundle.
-     *     versionCode: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "deviceSpec": {},
-     *   //   "variantId": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17918,50 +13107,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Returns the list of previously created system APK variants.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.systemapks.variants.list({
-     *     // Package name of the app.
-     *     packageName: 'placeholder-value',
-     *     // The version code of the App Bundle.
-     *     versionCode: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "variants": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18120,68 +13265,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Grant access for a user to the given developer account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.users.create({
-     *     // Required. The developer account to add the user to. Format: developers/{developer\}
-     *     parent: 'developers/my-developer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accessState": "my_accessState",
-     *       //   "developerAccountPermissions": [],
-     *       //   "email": "my_email",
-     *       //   "expirationTime": "my_expirationTime",
-     *       //   "grants": [],
-     *       //   "name": "my_name",
-     *       //   "partial": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accessState": "my_accessState",
-     *   //   "developerAccountPermissions": [],
-     *   //   "email": "my_email",
-     *   //   "expirationTime": "my_expirationTime",
-     *   //   "grants": [],
-     *   //   "name": "my_name",
-     *   //   "partial": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18269,43 +13352,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Removes all access for the user to the given developer account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.users.delete({
-     *     // Required. The name of the user to delete. Format: developers/{developer\}/users/{email\}
-     *     name: 'developers/my-developer/users/my-user',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18391,53 +13437,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Lists all users with access to a developer account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.users.list({
-     *     // The maximum number of results to return. This must be set to -1 to disable pagination.
-     *     pageSize: 'placeholder-value',
-     *     // A token received from a previous call to this method, in order to retrieve further results.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The developer account to fetch users from. Format: developers/{developer\}
-     *     parent: 'developers/my-developer',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "users": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18528,70 +13527,6 @@ export namespace androidpublisher_v3 {
 
     /**
      * Updates access for the user to the developer account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidpublisher = google.androidpublisher('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidpublisher.users.patch({
-     *     // Required. Resource name for this user, following the pattern "developers/{developer\}/users/{email\}".
-     *     name: 'developers/my-developer/users/my-user',
-     *     // Optional. The list of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accessState": "my_accessState",
-     *       //   "developerAccountPermissions": [],
-     *       //   "email": "my_email",
-     *       //   "expirationTime": "my_expirationTime",
-     *       //   "grants": [],
-     *       //   "name": "my_name",
-     *       //   "partial": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accessState": "my_accessState",
-     *   //   "developerAccountPermissions": [],
-     *   //   "email": "my_email",
-     *   //   "expirationTime": "my_expirationTime",
-     *   //   "grants": [],
-     *   //   "name": "my_name",
-     *   //   "partial": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
