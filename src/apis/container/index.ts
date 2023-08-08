@@ -31,7 +31,7 @@ export function container(
   options: container_v1beta1.Options
 ): container_v1beta1.Container;
 export function container<
-  T = container_v1.Container | container_v1beta1.Container
+  T = container_v1.Container | container_v1beta1.Container,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
