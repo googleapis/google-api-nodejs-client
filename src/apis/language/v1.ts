@@ -562,7 +562,7 @@ export namespace language_v1 {
     message?: string | null;
   }
   /**
-   * Represents an output piece of text.
+   * Represents a text span in the input document.
    */
   export interface Schema$TextSpan {
     /**
@@ -570,7 +570,7 @@ export namespace language_v1 {
      */
     beginOffset?: number | null;
     /**
-     * The content of the output text.
+     * The content of the text span, which is a substring of the document.
      */
     content?: string | null;
   }
