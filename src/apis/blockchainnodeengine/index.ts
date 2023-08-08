@@ -27,7 +27,7 @@ export function blockchainnodeengine(
   options: blockchainnodeengine_v1.Options
 ): blockchainnodeengine_v1.Blockchainnodeengine;
 export function blockchainnodeengine<
-  T = blockchainnodeengine_v1.Blockchainnodeengine
+  T = blockchainnodeengine_v1.Blockchainnodeengine,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | blockchainnodeengine_v1.Options
