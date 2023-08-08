@@ -37,7 +37,7 @@ export function networkconnectivity(
 export function networkconnectivity<
   T =
     | networkconnectivity_v1.Networkconnectivity
-    | networkconnectivity_v1alpha1.Networkconnectivity
+    | networkconnectivity_v1alpha1.Networkconnectivity,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
