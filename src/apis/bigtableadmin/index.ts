@@ -31,7 +31,7 @@ export function bigtableadmin(
   options: bigtableadmin_v2.Options
 ): bigtableadmin_v2.Bigtableadmin;
 export function bigtableadmin<
-  T = bigtableadmin_v1.Bigtableadmin | bigtableadmin_v2.Bigtableadmin
+  T = bigtableadmin_v1.Bigtableadmin | bigtableadmin_v2.Bigtableadmin,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

@@ -1877,108 +1877,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
-              },
-              "resources": {
-                "views": {
-                  "methods": {
-                    "getIamPolicy": {
-                      "description": "Gets the access control policy for a Table resource. Returns an empty policy if the resource exists but does not have a policy set.",
-                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/views/{viewsId}:getIamPolicy",
-                      "httpMethod": "POST",
-                      "id": "bigtableadmin.projects.instances.tables.views.getIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/views/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v2/{+resource}:getIamPolicy",
-                      "request": {
-                        "$ref": "GetIamPolicyRequest"
-                      },
-                      "response": {
-                        "$ref": "Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/bigtable.admin",
-                        "https://www.googleapis.com/auth/bigtable.admin.table",
-                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
-                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "setIamPolicy": {
-                      "description": "Sets the access control policy on a Table resource. Replaces any existing policy.",
-                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/views/{viewsId}:setIamPolicy",
-                      "httpMethod": "POST",
-                      "id": "bigtableadmin.projects.instances.tables.views.setIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/views/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v2/{+resource}:setIamPolicy",
-                      "request": {
-                        "$ref": "SetIamPolicyRequest"
-                      },
-                      "response": {
-                        "$ref": "Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/bigtable.admin",
-                        "https://www.googleapis.com/auth/bigtable.admin.table",
-                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
-                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "testIamPermissions": {
-                      "description": "Returns permissions that the caller has on the specified table resource.",
-                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/views/{viewsId}:testIamPermissions",
-                      "httpMethod": "POST",
-                      "id": "bigtableadmin.projects.instances.tables.views.testIamPermissions",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/views/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v2/{+resource}:testIamPermissions",
-                      "request": {
-                        "$ref": "TestIamPermissionsRequest"
-                      },
-                      "response": {
-                        "$ref": "TestIamPermissionsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/bigtable.admin",
-                        "https://www.googleapis.com/auth/bigtable.admin.table",
-                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
-                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                }
               }
             }
           }
@@ -2068,7 +1966,7 @@
       }
     }
   },
-  "revision": "20230619",
+  "revision": "20230731",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -2196,7 +2094,7 @@
           "type": "string"
         },
         "expireTime": {
-          "description": "Required. The expiration time of the backup, with microseconds granularity that must be at least 6 hours and at most 30 days from the time the request is received. Once the `expire_time` has passed, Cloud Bigtable will delete the backup and free the resources used by the backup.",
+          "description": "Required. The expiration time of the backup, with microseconds granularity that must be at least 6 hours and at most 90 days from the time the request is received. Once the `expire_time` has passed, Cloud Bigtable will delete the backup and free the resources used by the backup.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2368,7 +2266,7 @@
           "type": "string"
         },
         "serveNodes": {
-          "description": "The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.",
+          "description": "The number of nodes in the cluster. If no value is set, Cloud Bigtable automatically allocates nodes based on your data footprint and optimized for 50% storage utilization.",
           "format": "int32",
           "type": "integer"
         },
