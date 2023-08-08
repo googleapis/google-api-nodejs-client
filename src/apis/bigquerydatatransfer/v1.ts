@@ -297,6 +297,15 @@ export namespace bigquerydatatransfer_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Represents the encryption configuration for a transfer.
+   */
+  export interface Schema$EncryptionConfiguration {
+    /**
+     * The name of the KMS key used for encrypting BigQuery data.
+     */
+    kmsKeyName?: string | null;
+  }
+  /**
    * A request to enroll a set of data sources so they are visible in the BigQuery UI's `Transfer` tab.
    */
   export interface Schema$EnrollDataSourcesRequest {
@@ -439,11 +448,11 @@ export namespace bigquerydatatransfer_v1 {
    */
   export interface Schema$StartManualTransferRunsRequest {
     /**
-     * Specific run_time for a transfer run to be started. The requested_run_time must not be in the future.
+     * A run_time timestamp for historical data files or reports that are scheduled to be transferred by the scheduled transfer run. requested_run_time must be a past time and cannot include future time values.
      */
     requestedRunTime?: string | null;
     /**
-     * Time range for the transfer runs that should be started.
+     * A time_range start and end timestamp for historical data files or reports that are scheduled to be transferred by the scheduled transfer run. requested_time_range must be a past time and cannot include future time values.
      */
     requestedTimeRange?: Schema$TimeRange;
   }
@@ -518,6 +527,10 @@ export namespace bigquerydatatransfer_v1 {
      * Email notifications will be sent according to these preferences to the email address of the user who owns this transfer config.
      */
     emailPreferences?: Schema$EmailPreferences;
+    /**
+     * The encryption configuration part. Currently, it is only used for the optional KMS key name. The BigQuery service account of your project must be granted permissions to use the key. Read methods will return the key name applied in effect. Write methods will apply the key if it is present, or otherwise try to apply project default keys if it is absent.
+     */
+    encryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
      * The resource name of the transfer config. Transfer config names have the form `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
      */
@@ -2314,6 +2327,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "disabled": false,
      *         //   "displayName": "my_displayName",
      *         //   "emailPreferences": {},
+     *         //   "encryptionConfiguration": {},
      *         //   "name": "my_name",
      *         //   "nextRunTime": "my_nextRunTime",
      *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -2338,6 +2352,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "disabled": false,
      *   //   "displayName": "my_displayName",
      *   //   "emailPreferences": {},
+     *   //   "encryptionConfiguration": {},
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -2621,6 +2636,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "disabled": false,
      *   //   "displayName": "my_displayName",
      *   //   "emailPreferences": {},
+     *   //   "encryptionConfiguration": {},
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -2922,6 +2938,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "disabled": false,
      *         //   "displayName": "my_displayName",
      *         //   "emailPreferences": {},
+     *         //   "encryptionConfiguration": {},
      *         //   "name": "my_name",
      *         //   "nextRunTime": "my_nextRunTime",
      *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -2946,6 +2963,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "disabled": false,
      *   //   "displayName": "my_displayName",
      *   //   "emailPreferences": {},
+     *   //   "encryptionConfiguration": {},
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -4177,6 +4195,7 @@ export namespace bigquerydatatransfer_v1 {
      *       //   "disabled": false,
      *       //   "displayName": "my_displayName",
      *       //   "emailPreferences": {},
+     *       //   "encryptionConfiguration": {},
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -4201,6 +4220,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "disabled": false,
      *   //   "displayName": "my_displayName",
      *   //   "emailPreferences": {},
+     *   //   "encryptionConfiguration": {},
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -4479,6 +4499,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "disabled": false,
      *   //   "displayName": "my_displayName",
      *   //   "emailPreferences": {},
+     *   //   "encryptionConfiguration": {},
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -4778,6 +4799,7 @@ export namespace bigquerydatatransfer_v1 {
      *       //   "disabled": false,
      *       //   "displayName": "my_displayName",
      *       //   "emailPreferences": {},
+     *       //   "encryptionConfiguration": {},
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
@@ -4802,6 +4824,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "disabled": false,
      *   //   "displayName": "my_displayName",
      *   //   "emailPreferences": {},
+     *   //   "encryptionConfiguration": {},
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
