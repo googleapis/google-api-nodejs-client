@@ -27,7 +27,7 @@ export function contactcenteraiplatform(
   options: contactcenteraiplatform_v1alpha1.Options
 ): contactcenteraiplatform_v1alpha1.Contactcenteraiplatform;
 export function contactcenteraiplatform<
-  T = contactcenteraiplatform_v1alpha1.Contactcenteraiplatform
+  T = contactcenteraiplatform_v1alpha1.Contactcenteraiplatform,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1alpha1' | contactcenteraiplatform_v1alpha1.Options

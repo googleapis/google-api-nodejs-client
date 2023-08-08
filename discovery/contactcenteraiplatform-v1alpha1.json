@@ -297,31 +297,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "getAuthentication-config": {
-                  "description": "",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/contactCenters/{contactCentersId}/authentication-config",
-                  "httpMethod": "GET",
-                  "id": "contactcenteraiplatform.projects.locations.contactCenters.getAuthentication-config",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the AuthenticationConfig resource. Format: projects/{project}/locations/{location}/contactCenters/{contact_center}/authentication-config",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/contactCenters/[^/]+/authentication-config$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha1/{+name}",
-                  "response": {
-                    "$ref": "AuthenticationConfig"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "list": {
                   "description": "Lists ContactCenters in a given project and location.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/contactCenters",
@@ -402,40 +377,6 @@
                   },
                   "response": {
                     "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "updateAuthentication-config": {
-                  "description": "",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/contactCenters/{contactCentersId}/authentication-config",
-                  "httpMethod": "PATCH",
-                  "id": "contactcenteraiplatform.projects.locations.contactCenters.updateAuthentication-config",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Name of authentication config. Format: projects/{project}/locations/{location}/contactCenters/{contact_center}/authentication-config",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/contactCenters/[^/]+/authentication-config$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "Required. Indicates which fields in the provided authentication config to update. Must be specified and non-empty.",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha1/{+name}",
-                  "request": {
-                    "$ref": "AuthenticationConfig"
-                  },
-                  "response": {
-                    "$ref": "AuthenticationConfig"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -571,7 +512,7 @@
       }
     }
   },
-  "revision": "20230628",
+  "revision": "20230731",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -585,31 +526,6 @@
         "givenName": {
           "description": "Optional. First/given name of the first admin user.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "AuthenticationConfig": {
-      "id": "AuthenticationConfig",
-      "properties": {
-        "basicAuthSetting": {
-          "$ref": "BasicAuthConfig"
-        },
-        "name": {
-          "description": "Name of authentication config. Format: projects/{project}/locations/{location}/contactCenters/{contact_center}/authentication-config",
-          "type": "string"
-        },
-        "samlSetting": {
-          "$ref": "SamlConfig"
-        }
-      },
-      "type": "object"
-    },
-    "BasicAuthConfig": {
-      "id": "BasicAuthConfig",
-      "properties": {
-        "enabled": {
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -678,7 +594,8 @@
             "STATE_TERMINATING",
             "STATE_FAILED",
             "STATE_TERMINATING_FAILED",
-            "STATE_TERMINATED"
+            "STATE_TERMINATED",
+            "STATE_IN_GRACE_PERIOD"
           ],
           "enumDescriptions": [
             "The default value. This value is used if the state is omitted.",
@@ -687,7 +604,8 @@
             "State TERMINATING",
             "State FAILED",
             "State TERMINATING_FAILED",
-            "State TERMINATED"
+            "State TERMINATED",
+            "State IN_GRACE_PERIOD"
           ],
           "readOnly": true,
           "type": "string"
@@ -1055,28 +973,6 @@
         "userEmail": {
           "deprecated": true,
           "description": "Email address of the first admin users.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SamlConfig": {
-      "id": "SamlConfig",
-      "properties": {
-        "cert": {
-          "description": "X.509 public certificate for IdP",
-          "type": "string"
-        },
-        "emailMapping": {
-          "description": "IdP field that maps to the user’s email address",
-          "type": "string"
-        },
-        "entityId": {
-          "description": "The entity ID for the identity provider. Example: https://[IDP Domain]/saml/metadata",
-          "type": "string"
-        },
-        "loginUri": {
-          "description": "The sso login url. Example: https://[IDP Domain]/saml/sso/login",
           "type": "string"
         }
       },
