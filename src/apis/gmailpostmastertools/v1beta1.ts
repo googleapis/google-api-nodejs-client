@@ -278,50 +278,6 @@ export namespace gmailpostmastertools_v1beta1 {
 
     /**
      * Gets a specific domain registered by the client. Returns NOT_FOUND if the domain does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const gmailpostmastertools = google.gmailpostmastertools('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/postmaster.readonly'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await gmailpostmastertools.domains.get({
-     *     // The resource name of the domain. It should have the form `domains/{domain_name\}`, where domain_name is the fully qualified domain name.
-     *     name: 'domains/my-domain',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "name": "my_name",
-     *   //   "permission": "my_permission"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -406,51 +362,6 @@ export namespace gmailpostmastertools_v1beta1 {
 
     /**
      * Lists the domains that have been registered by the client. The order of domains in the response is unspecified and non-deterministic. Newly created domains will not necessarily be added to the end of this list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const gmailpostmastertools = google.gmailpostmastertools('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/postmaster.readonly'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await gmailpostmastertools.domains.list({
-     *     // Requested page size. Server may return fewer domains than requested. If unspecified, server will pick an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any. This is the value of ListDomainsResponse.next_page_token returned from the previous call to `ListDomains` method.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "domains": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -562,58 +473,6 @@ export namespace gmailpostmastertools_v1beta1 {
 
     /**
      * Get traffic statistics for a domain on a specific date. Returns PERMISSION_DENIED if user does not have permission to access TrafficStats for the domain.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const gmailpostmastertools = google.gmailpostmastertools('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/postmaster.readonly'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await gmailpostmastertools.domains.trafficStats.get({
-     *     // The resource name of the traffic statistics to get. E.g., domains/mymail.mydomain.com/trafficStats/20160807.
-     *     name: 'domains/my-domain/trafficStats/my-trafficStat',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "deliveryErrors": [],
-     *   //   "dkimSuccessRatio": {},
-     *   //   "dmarcSuccessRatio": {},
-     *   //   "domainReputation": "my_domainReputation",
-     *   //   "inboundEncryptionRatio": {},
-     *   //   "ipReputations": [],
-     *   //   "name": "my_name",
-     *   //   "outboundEncryptionRatio": {},
-     *   //   "spammyFeedbackLoops": [],
-     *   //   "spfSuccessRatio": {},
-     *   //   "userReportedSpamRatio": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -699,65 +558,6 @@ export namespace gmailpostmastertools_v1beta1 {
 
     /**
      * List traffic statistics for all available days. Returns PERMISSION_DENIED if user does not have permission to access TrafficStats for the domain.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const gmailpostmastertools = google.gmailpostmastertools('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/postmaster.readonly'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await gmailpostmastertools.domains.trafficStats.list({
-     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     *     'endDate.day': 'placeholder-value',
-     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     *     'endDate.month': 'placeholder-value',
-     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     *     'endDate.year': 'placeholder-value',
-     *     // Requested page size. Server may return fewer TrafficStats than requested. If unspecified, server will pick an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any. This is the value of ListTrafficStatsResponse.next_page_token returned from the previous call to `ListTrafficStats` method.
-     *     pageToken: 'placeholder-value',
-     *     // The resource name of the domain whose traffic statistics we'd like to list. It should have the form `domains/{domain_name\}`, where domain_name is the fully qualified domain name.
-     *     parent: 'domains/my-domain',
-     *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     *     'startDate.day': 'placeholder-value',
-     *     // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     *     'startDate.month': 'placeholder-value',
-     *     // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     *     'startDate.year': 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "trafficStats": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
