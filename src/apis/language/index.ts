@@ -38,7 +38,7 @@ export function language<
   T =
     | language_v1.Language
     | language_v1beta1.Language
-    | language_v1beta2.Language
+    | language_v1beta2.Language,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

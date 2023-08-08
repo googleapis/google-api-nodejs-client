@@ -246,7 +246,7 @@
       }
     }
   },
-  "revision": "20230616",
+  "revision": "20230805",
   "rootUrl": "https://language.googleapis.com/",
   "schemas": {
     "AnalyzeEntitiesRequest": {
@@ -1302,7 +1302,7 @@
       "type": "object"
     },
     "TextSpan": {
-      "description": "Represents an output piece of text.",
+      "description": "Represents a text span in the input document.",
       "id": "TextSpan",
       "properties": {
         "beginOffset": {
@@ -1311,7 +1311,7 @@
           "type": "integer"
         },
         "content": {
-          "description": "The content of the output text.",
+          "description": "The content of the text span, which is a substring of the document.",
           "type": "string"
         }
       },
