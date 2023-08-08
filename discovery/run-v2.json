@@ -1087,7 +1087,7 @@
       }
     }
   },
-  "revision": "20230702",
+  "revision": "20230730",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1130,14 +1130,16 @@
             "JOB_STATUS_SERVICE_POLLING_ERROR",
             "NON_ZERO_EXIT_CODE",
             "CANCELLED",
-            "CANCELLING"
+            "CANCELLING",
+            "DELETED"
           ],
           "enumDescriptions": [
             "Default value.",
             "Internal system error getting execution status. System will retry.",
             "A task reached its retry limit and the last attempt failed due to the user container exiting with a non-zero exit code.",
             "The execution was cancelled by users.",
-            "The execution is in the process of being cancelled."
+            "The execution is in the process of being cancelled.",
+            "The execution was deleted."
           ],
           "type": "string"
         },
@@ -1282,7 +1284,7 @@
           "type": "array"
         },
         "dependsOn": {
-          "description": "Container names which must start before this container.",
+          "description": "Names of the containers that must start before this container.",
           "items": {
             "type": "string"
           },
@@ -1353,7 +1355,7 @@
       "type": "object"
     },
     "GoogleCloudRunV2EmptyDirVolumeSource": {
-      "description": "Ephemeral storage which can be backed by real disks (HD, SSD), network storage or memory (i.e. tmpfs). For now only in memory (tmpfs) is supported. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).",
+      "description": "In memory (tmpfs) ephemeral storage. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).",
       "id": "GoogleCloudRunV2EmptyDirVolumeSource",
       "properties": {
         "medium": {
@@ -1369,7 +1371,7 @@
           "type": "string"
         },
         "sizeLimit": {
-          "description": "Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. This field's values are of the 'Quantity' k8s type: https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir",
+          "description": "Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers. The default is nil which means that the limit is undefined. More info: https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume. Info in Kubernetes: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir",
           "type": "string"
         }
       },
