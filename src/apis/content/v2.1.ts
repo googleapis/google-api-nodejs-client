@@ -1292,6 +1292,39 @@ export namespace content_v2_1 {
     services?: string[] | null;
   }
   /**
+   * `CheckoutSettings` for a specific merchant ID.
+   */
+  export interface Schema$CheckoutSettings {
+    /**
+     * Output only. The effective value of enrollment state for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account.
+     */
+    effectiveEnrollmentState?: string | null;
+    /**
+     * Output only. The effective value of review state for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account.
+     */
+    effectiveReviewState?: string | null;
+    /**
+     * The effective value of `url_settings` for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account.
+     */
+    effectiveUriSettings?: Schema$UrlSettings;
+    /**
+     * Output only. Reflects the merchant enrollment state in `Checkout` feature.
+     */
+    enrollmentState?: string | null;
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string | null;
+    /**
+     * Output only. Reflects the merchant review state in `Checkout` feature. This is set based on the data quality reviews of the URL provided by the merchant. A merchant with enrollment state as `ENROLLED` can be in the following review states: `IN_REVIEW`, `APPROVED` or `DISAPPROVED`. A merchant must be in an enrollment_state of `ENROLLED` before a review can begin for the merchant.
+     */
+    reviewState?: string | null;
+    /**
+     * URL settings for cart or checkout URL.
+     */
+    uriSettings?: Schema$UrlSettings;
+  }
+  /**
    * Product property for the Cloud Retail API. For example, properties for a TV product could be "Screen-Resolution" or "Screen-Size".
    */
   export interface Schema$CloudExportAdditionalProperties {
@@ -1498,7 +1531,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$CompetitiveVisibility {
     /**
-     * [Ads / organic ratio] (https://support.google.com/merchants/answer/11366442#zippy=%2Cadsfree-ratio) shows how often a merchant receives impressions from Shopping ads compared to organic traffic. The number is rounded and bucketed. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.
+     * [Ads / organic ratio] (https://support.google.com/merchants/answer/11366442#zippy=%2Cadsfree-ratio) shows how often a merchant receives impressions from Shopping ads compared to organic traffic. The number is rounded and bucketed. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.
      */
     adsOrganicRatio?: number | null;
     /**
@@ -1514,31 +1547,35 @@ export namespace content_v2_1 {
      */
     countryCode?: string | null;
     /**
-     * Date of this row. Available only in `CompetitiveVisibilityBenchmarkView`. Required in the `SELECT` clause for `CompetitiveVisibilityMarketBenchmarkView`.
+     * Date of this row. Available only in `CompetitiveVisibilityBenchmarkView` and `CompetitiveVisibilityCompetitorView`. Required in the `SELECT` clause for `CompetitiveVisibilityMarketBenchmarkView`.
      */
     date?: Schema$Date;
     /**
-     * Domain of your competitor or your domain, if 'is_your_domain' is true. Available only in `CompetitiveVisibilityTopMerchantView`. Required in the `SELECT` clause for `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.
+     * Domain of your competitor or your domain, if 'is_your_domain' is true. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Required in the `SELECT` clause for `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.
      */
     domain?: string | null;
     /**
-     * Higher position rate shows how often a competitor’s offer got placed in a higher position on the page than your offer. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.
+     * Higher position rate shows how often a competitor’s offer got placed in a higher position on the page than your offer. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.
      */
     higherPositionRate?: number | null;
     /**
-     * True if this row contains data for your domain. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.
+     * True if this row contains data for your domain. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.
      */
     isYourDomain?: boolean | null;
     /**
-     * Page overlap rate describes how frequently competing retailers’ offers are shown together with your offers on the same page. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.
+     * Page overlap rate describes how frequently competing retailers’ offers are shown together with your offers on the same page. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.
      */
     pageOverlapRate?: number | null;
     /**
-     * Position of the domain in the top merchants ranking for the selected keys (`date`, `category_id`, `country_code`, `listing_type`) based on impressions. 1 is the highest. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.
+     * Position of the domain in the top merchants ranking for the selected keys (`date`, `category_id`, `country_code`, `listing_type`) based on impressions. 1 is the highest. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.
      */
     rank?: string | null;
     /**
-     * Type of impression listing. Required in the `SELECT` clause for `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityMarketBenchmarkView`. Cannot be filtered on in the 'WHERE' clause.
+     * Relative visibility shows how often your competitors’ offers are shown compared to your offers. In other words, this is the number of displayed impressions of a competitor retailer divided by the number of your displayed impressions during a selected time range for a selected product category and country. Available only in `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.
+     */
+    relativeVisibility?: number | null;
+    /**
+     * Type of impression listing. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause.
      */
     trafficSource?: string | null;
     /**
@@ -2394,6 +2431,15 @@ export namespace content_v2_1 {
      * Reason code this rule was not applicable.
      */
     inapplicableReason?: string | null;
+  }
+  /**
+   * Request message for the `InsertCheckoutSettings` method.
+   */
+  export interface Schema$InsertCheckoutSettingsRequest {
+    /**
+     * Required. The `UrlSettings` for the request. The presence of URL settings indicates `Checkout` enrollment.
+     */
+    uriSettings?: Schema$UrlSettings;
   }
   export interface Schema$Installment {
     /**
@@ -5116,6 +5162,14 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
+     * Optional. Supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).
+     */
+    pickupMethod?: string | null;
+    /**
+     * Optional. Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).
+     */
+    pickupSla?: string | null;
+    /**
      * Required. The current price of the item.
      */
     price?: Schema$Price;
@@ -5149,6 +5203,14 @@ export namespace content_v2_1 {
      * Required. A unique identifier for the item.
      */
     itemId?: string | null;
+    /**
+     * Optional. Supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).
+     */
+    pickupMethod?: string | null;
+    /**
+     * Optional. Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).
+     */
+    pickupSla?: string | null;
     /**
      * Required. The current price of the item.
      */
@@ -5187,6 +5249,14 @@ export namespace content_v2_1 {
      * Identifies what kind of resource this is. Value: the fixed string "`content#posInventoryResponse`".
      */
     kind?: string | null;
+    /**
+     * Optional. Supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).
+     */
+    pickupMethod?: string | null;
+    /**
+     * Optional. Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).
+     */
+    pickupSla?: string | null;
     /**
      * Required. The current price of the item.
      */
@@ -7153,7 +7223,7 @@ export namespace content_v2_1 {
      */
     brand?: Schema$Brand;
     /**
-     * Competitive visibility fields requested by the merchant in the query. Field values are only set if the merchant queries `CompetitiveVisibilityTopMerchantView` or `CompetitiveVisibilityBenchmarkView`.
+     * Competitive visibility fields requested by the merchant in the query. Field values are only set if the merchant queries `CompetitiveVisibilityTopMerchantView`, `CompetitiveVisibilityBenchmarkView` or `CompetitiveVisibilityCompetitorView`.
      */
     competitiveVisibility?: Schema$CompetitiveVisibility;
     /**
@@ -8840,6 +8910,19 @@ export namespace content_v2_1 {
     taxType?: string | null;
   }
   /**
+   * Specifications related to the `Checkout` URL. The `UriTemplate` is of the form `https://www.mystore.com/checkout?item_id={id\}` where `{id\}` will be automatically replaced with data from the merchant account with this attribute [offer_id](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.offer_id)
+   */
+  export interface Schema$UrlSettings {
+    /**
+     * URL template when the placeholders are expanded will redirect the buyer to the cart page on the merchant website with the selected item in cart.
+     */
+    cartUriTemplate?: string | null;
+    /**
+     * URL template when the placeholders are expanded will redirect the buyer to the merchant checkout page with the item in the cart.
+     */
+    checkoutUriTemplate?: string | null;
+  }
+  /**
    * The single value of a rate group or the value of a rate group table's cell. Exactly one of `noShipping`, `flatRate`, `pricePercentage`, `carrierRateName`, `subtableName` must be set.
    */
   export interface Schema$Value {
@@ -8984,46 +9067,6 @@ export namespace content_v2_1 {
 
     /**
      * Returns information about the authenticated user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.authinfo({});
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountIdentifiers": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9119,52 +9162,6 @@ export namespace content_v2_1 {
 
     /**
      * Claims the website of a Merchant Center sub-account. Merchant accounts with approved third-party CSSs aren't required to claim a website.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.claimwebsite({
-     *     // The ID of the account whose website is claimed.
-     *     accountId: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *     // Only available to selected merchants, for example multi-client accounts (MCAs) and their sub-accounts. When set to `True`, this option removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.
-     *     overwrite: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9262,54 +9259,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves, inserts, updates, and deletes multiple Merchant Center (sub-)accounts in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9405,47 +9354,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a Merchant Center sub-account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.delete({
-     *     // The ID of the account.
-     *     accountId: 'placeholder-value',
-     *     // Option to delete sub-accounts with products. The default value is false.
-     *     force: 'placeholder-value',
-     *     // The ID of the managing account. This must be a multi-client account, and accountId must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9530,68 +9438,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.get({
-     *     // The ID of the account.
-     *     accountId: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *     // Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountManagement": "my_accountManagement",
-     *   //   "adsLinks": [],
-     *   //   "adultContent": false,
-     *   //   "automaticImprovements": {},
-     *   //   "automaticLabelIds": [],
-     *   //   "businessInformation": {},
-     *   //   "conversionSettings": {},
-     *   //   "cssId": "my_cssId",
-     *   //   "googleMyBusinessLink": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "labelIds": [],
-     *   //   "name": "my_name",
-     *   //   "sellerId": "my_sellerId",
-     *   //   "users": [],
-     *   //   "websiteUrl": "my_websiteUrl",
-     *   //   "youtubeChannelLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9678,88 +9524,6 @@ export namespace content_v2_1 {
 
     /**
      * Creates a Merchant Center sub-account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.insert({
-     *     // The ID of the managing account. This must be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountManagement": "my_accountManagement",
-     *       //   "adsLinks": [],
-     *       //   "adultContent": false,
-     *       //   "automaticImprovements": {},
-     *       //   "automaticLabelIds": [],
-     *       //   "businessInformation": {},
-     *       //   "conversionSettings": {},
-     *       //   "cssId": "my_cssId",
-     *       //   "googleMyBusinessLink": {},
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "labelIds": [],
-     *       //   "name": "my_name",
-     *       //   "sellerId": "my_sellerId",
-     *       //   "users": [],
-     *       //   "websiteUrl": "my_websiteUrl",
-     *       //   "youtubeChannelLinks": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountManagement": "my_accountManagement",
-     *   //   "adsLinks": [],
-     *   //   "adultContent": false,
-     *   //   "automaticImprovements": {},
-     *   //   "automaticLabelIds": [],
-     *   //   "businessInformation": {},
-     *   //   "conversionSettings": {},
-     *   //   "cssId": "my_cssId",
-     *   //   "googleMyBusinessLink": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "labelIds": [],
-     *   //   "name": "my_name",
-     *   //   "sellerId": "my_sellerId",
-     *   //   "users": [],
-     *   //   "websiteUrl": "my_websiteUrl",
-     *   //   "youtubeChannelLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9847,63 +9611,6 @@ export namespace content_v2_1 {
 
     /**
      * Performs an action on a link between two Merchant Center accounts, namely accountId and linkedAccountId.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.link({
-     *     // The ID of the account that should be linked.
-     *     accountId: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "action": "my_action",
-     *       //   "eCommercePlatformLinkInfo": {},
-     *       //   "linkType": "my_linkType",
-     *       //   "linkedAccountId": "my_linkedAccountId",
-     *       //   "paymentServiceProviderLinkInfo": {},
-     *       //   "services": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9995,60 +9702,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the sub-accounts in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.list({
-     *     // If view is set to "css", only return accounts that are assigned label with given ID.
-     *     label: 'placeholder-value',
-     *     // The maximum number of accounts to return in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the managing account. This must be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // If set, only the accounts with the given name (case sensitive) will be returned.
-     *     name: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *     // Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10141,56 +9794,6 @@ export namespace content_v2_1 {
 
     /**
      * Returns the list of accounts linked to your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.listlinks({
-     *     // The ID of the account for which to list links.
-     *     accountId: 'placeholder-value',
-     *     // The maximum number of links to return in the response, used for pagination. The minimum allowed value is 5 results per page. If provided value is lower than 5, it will be automatically increased to 5.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "links": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10286,61 +9889,6 @@ export namespace content_v2_1 {
 
     /**
      * Request verification code to start phone verification.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.requestphoneverification({
-     *     // Required. The ID of the account.
-     *     accountId: 'placeholder-value',
-     *     // Required. The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "languageCode": "my_languageCode",
-     *       //   "phoneNumber": "my_phoneNumber",
-     *       //   "phoneRegionCode": "my_phoneRegionCode",
-     *       //   "phoneVerificationMethod": "my_phoneVerificationMethod"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "verificationId": "my_verificationId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10438,90 +9986,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates a Merchant Center account. Any fields that are not provided are deleted from the resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.update({
-     *     // The ID of the account.
-     *     accountId: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountManagement": "my_accountManagement",
-     *       //   "adsLinks": [],
-     *       //   "adultContent": false,
-     *       //   "automaticImprovements": {},
-     *       //   "automaticLabelIds": [],
-     *       //   "businessInformation": {},
-     *       //   "conversionSettings": {},
-     *       //   "cssId": "my_cssId",
-     *       //   "googleMyBusinessLink": {},
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "labelIds": [],
-     *       //   "name": "my_name",
-     *       //   "sellerId": "my_sellerId",
-     *       //   "users": [],
-     *       //   "websiteUrl": "my_websiteUrl",
-     *       //   "youtubeChannelLinks": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountManagement": "my_accountManagement",
-     *   //   "adsLinks": [],
-     *   //   "adultContent": false,
-     *   //   "automaticImprovements": {},
-     *   //   "automaticLabelIds": [],
-     *   //   "businessInformation": {},
-     *   //   "conversionSettings": {},
-     *   //   "cssId": "my_cssId",
-     *   //   "googleMyBusinessLink": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "labelIds": [],
-     *   //   "name": "my_name",
-     *   //   "sellerId": "my_sellerId",
-     *   //   "users": [],
-     *   //   "websiteUrl": "my_websiteUrl",
-     *   //   "youtubeChannelLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10608,58 +10072,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates labels that are assigned to the Merchant Center account by CSS user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.updatelabels({
-     *     // The ID of the account whose labels are updated.
-     *     accountId: 'placeholder-value',
-     *     // The ID of the managing account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "labelIds": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10757,60 +10169,6 @@ export namespace content_v2_1 {
 
     /**
      * Validates verification code to verify phone number for the account. If successful this will overwrite the value of `accounts.businessinformation.phoneNumber`. Only verified phone number will replace an existing verified phone number.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.verifyphonenumber({
-     *     // Required. The ID of the account.
-     *     accountId: 'placeholder-value',
-     *     // Required. The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "phoneVerificationMethod": "my_phoneVerificationMethod",
-     *       //   "verificationCode": "my_verificationCode",
-     *       //   "verificationId": "my_verificationId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "verifiedPhoneNumber": "my_verifiedPhoneNumber"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11100,60 +10458,6 @@ export namespace content_v2_1 {
 
     /**
      * Uploads credentials for the Merchant Center account. If credentials already exist for this Merchant Center account and purpose, this method updates them.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.credentials.create({
-     *     // Required. The merchant id of the account these credentials belong to.
-     *     accountId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accessToken": "my_accessToken",
-     *       //   "expiresIn": "my_expiresIn",
-     *       //   "purpose": "my_purpose"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accessToken": "my_accessToken",
-     *   //   "expiresIn": "my_expiresIn",
-     *   //   "purpose": "my_purpose"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11264,64 +10568,6 @@ export namespace content_v2_1 {
 
     /**
      * Creates a new label, not assigned to any account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.labels.create({
-     *     // Required. The id of the account this label belongs to.
-     *     accountId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "description": "my_description",
-     *       //   "labelId": "my_labelId",
-     *       //   "labelType": "my_labelType",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "description": "my_description",
-     *   //   "labelId": "my_labelId",
-     *   //   "labelType": "my_labelType",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11409,45 +10655,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a label and removes it from all accounts to which it was assigned.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.labels.delete({
-     *     // Required. The id of the account that owns the label.
-     *     accountId: 'placeholder-value',
-     *     // Required. The id of the label to delete.
-     *     labelId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11533,53 +10740,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the labels assigned to an account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.labels.list({
-     *     // Required. The account id for whose labels are to be listed.
-     *     accountId: 'placeholder-value',
-     *     // The maximum number of labels to return. The service may return fewer than this value. If unspecified, at most 50 labels will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListAccountLabels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccountLabels` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountLabels": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11674,66 +10834,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates a label.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.labels.patch({
-     *     // Required. The id of the account this label belongs to.
-     *     accountId: 'placeholder-value',
-     *     // Required. The id of the label to update.
-     *     labelId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "description": "my_description",
-     *       //   "labelId": "my_labelId",
-     *       //   "labelType": "my_labelType",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "description": "my_description",
-     *   //   "labelId": "my_labelId",
-     *   //   "labelType": "my_labelType",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11883,62 +10983,6 @@ export namespace content_v2_1 {
 
     /**
      * Links return carrier to a merchant account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.returncarrier.create({
-     *     // Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
-     *     accountId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "carrierAccountId": "my_carrierAccountId",
-     *       //   "carrierAccountName": "my_carrierAccountName",
-     *       //   "carrierAccountNumber": "my_carrierAccountNumber",
-     *       //   "carrierCode": "my_carrierCode"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "carrierAccountId": "my_carrierAccountId",
-     *   //   "carrierAccountName": "my_carrierAccountName",
-     *   //   "carrierAccountNumber": "my_carrierAccountNumber",
-     *   //   "carrierCode": "my_carrierCode"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12031,45 +11075,6 @@ export namespace content_v2_1 {
 
     /**
      * Delete a return carrier in the merchant account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.returncarrier.delete({
-     *     // Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
-     *     accountId: 'placeholder-value',
-     *     // Required. The Google-provided unique carrier ID, used to update the resource.
-     *     carrierAccountId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12156,48 +11161,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists available return carriers in the merchant account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.returncarrier.list({
-     *     // Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
-     *     accountId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountReturnCarriers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12294,64 +11257,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates a return carrier in the merchant account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounts.returncarrier.patch({
-     *     // Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
-     *     accountId: 'placeholder-value',
-     *     // Required. The Google-provided unique carrier ID, used to update the resource.
-     *     carrierAccountId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "carrierAccountId": "my_carrierAccountId",
-     *       //   "carrierAccountName": "my_carrierAccountName",
-     *       //   "carrierAccountNumber": "my_carrierAccountNumber",
-     *       //   "carrierCode": "my_carrierCode"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "carrierAccountId": "my_carrierAccountId",
-     *   //   "carrierAccountName": "my_carrierAccountName",
-     *   //   "carrierAccountNumber": "my_carrierAccountNumber",
-     *   //   "carrierCode": "my_carrierCode"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12499,54 +11404,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves multiple Merchant Center account statuses in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accountstatuses.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12644,57 +11501,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the status of a Merchant Center account. No itemLevelIssues are returned for multi-client accounts.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accountstatuses.get({
-     *     // The ID of the account.
-     *     accountId: 'placeholder-value',
-     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
-     *     destinations: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "accountLevelIssues": [],
-     *   //   "accountManagement": "my_accountManagement",
-     *   //   "kind": "my_kind",
-     *   //   "products": [],
-     *   //   "websiteClaimed": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12782,58 +11588,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the statuses of the sub-accounts in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accountstatuses.list({
-     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
-     *     destinations: 'placeholder-value',
-     *     // The maximum number of account statuses to return in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the managing account. This must be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // If set, only the accounts with the given name (case sensitive) will be returned.
-     *     name: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12981,54 +11735,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves and updates tax settings of multiple accounts in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounttax.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13126,52 +11832,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the tax settings of the account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounttax.get({
-     *     // The ID of the account for which to get/update account tax settings.
-     *     accountId: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "kind": "my_kind",
-     *   //   "rules": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13258,54 +11918,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the tax settings of the sub-accounts in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounttax.list({
-     *     // The maximum number of tax settings to return in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the managing account. This must be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13398,62 +12010,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates the tax settings of the account. Any fields that are not provided are deleted from the resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.accounttax.update({
-     *     // The ID of the account for which to get/update account tax settings.
-     *     accountId: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "kind": "my_kind",
-     *       //   "rules": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "kind": "my_kind",
-     *   //   "rules": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13596,51 +12152,6 @@ export namespace content_v2_1 {
 
     /**
      * Reactivates the BoG program in your Merchant Center account. Moves the program to the active state when allowed, for example, when paused. This method is only available to selected merchants.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.buyongoogleprograms.activate({
-     *     // Required. The ID of the account.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
-     *     regionCode: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13727,58 +12238,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a status of the BoG program for your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.buyongoogleprograms.get({
-     *     // Required. The ID of the account.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The Program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
-     *     regionCode: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "businessModel": [],
-     *   //   "customerServicePendingEmail": "my_customerServicePendingEmail",
-     *   //   "customerServicePendingPhoneNumber": "my_customerServicePendingPhoneNumber",
-     *   //   "customerServicePendingPhoneRegionCode": "my_customerServicePendingPhoneRegionCode",
-     *   //   "customerServiceVerifiedEmail": "my_customerServiceVerifiedEmail",
-     *   //   "customerServiceVerifiedPhoneNumber": "my_customerServiceVerifiedPhoneNumber",
-     *   //   "customerServiceVerifiedPhoneRegionCode": "my_customerServiceVerifiedPhoneRegionCode",
-     *   //   "onlineSalesChannel": "my_onlineSalesChannel",
-     *   //   "participationStage": "my_participationStage"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13872,53 +12331,6 @@ export namespace content_v2_1 {
 
     /**
      * Onboards the BoG program in your Merchant Center account. By using this method, you agree to the [Terms of Service](https://merchants.google.com/mc/termsofservice/transactions/US/latest). Calling this method is only possible if the authenticated account is the same as the merchant id in the request. Calling this method multiple times will only accept Terms of Service if the latest version is not currently signed.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.buyongoogleprograms.onboard({
-     *     // Required. The ID of the account.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
-     *     regionCode: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "customerServiceEmail": "my_customerServiceEmail"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14005,76 +12417,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates the status of the BoG program for your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.buyongoogleprograms.patch({
-     *     // Required. The ID of the account.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
-     *     regionCode: 'placeholder-value',
-     *     // The list of fields to update. If the update mask is not provided, then all the fields set in buyOnGoogleProgramStatus will be updated. Clearing fields is only possible if update mask is provided.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "businessModel": [],
-     *       //   "customerServicePendingEmail": "my_customerServicePendingEmail",
-     *       //   "customerServicePendingPhoneNumber": "my_customerServicePendingPhoneNumber",
-     *       //   "customerServicePendingPhoneRegionCode": "my_customerServicePendingPhoneRegionCode",
-     *       //   "customerServiceVerifiedEmail": "my_customerServiceVerifiedEmail",
-     *       //   "customerServiceVerifiedPhoneNumber": "my_customerServiceVerifiedPhoneNumber",
-     *       //   "customerServiceVerifiedPhoneRegionCode": "my_customerServiceVerifiedPhoneRegionCode",
-     *       //   "onlineSalesChannel": "my_onlineSalesChannel",
-     *       //   "participationStage": "my_participationStage"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "businessModel": [],
-     *   //   "customerServicePendingEmail": "my_customerServicePendingEmail",
-     *   //   "customerServicePendingPhoneNumber": "my_customerServicePendingPhoneNumber",
-     *   //   "customerServicePendingPhoneRegionCode": "my_customerServicePendingPhoneRegionCode",
-     *   //   "customerServiceVerifiedEmail": "my_customerServiceVerifiedEmail",
-     *   //   "customerServiceVerifiedPhoneNumber": "my_customerServiceVerifiedPhoneNumber",
-     *   //   "customerServiceVerifiedPhoneRegionCode": "my_customerServiceVerifiedPhoneRegionCode",
-     *   //   "onlineSalesChannel": "my_onlineSalesChannel",
-     *   //   "participationStage": "my_participationStage"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14170,51 +12512,6 @@ export namespace content_v2_1 {
 
     /**
      * Pauses the BoG program in your Merchant Center account. This method is only available to selected merchants.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.buyongoogleprograms.pause({
-     *     // Required. The ID of the account.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
-     *     regionCode: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14301,51 +12598,6 @@ export namespace content_v2_1 {
 
     /**
      * Requests review and then activates the BoG program in your Merchant Center account for the first time. Moves the program to the REVIEW_PENDING state. This method is only available to selected merchants.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.buyongoogleprograms.requestreview({
-     *     // Required. The ID of the account.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
-     *     regionCode: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14535,80 +12787,6 @@ export namespace content_v2_1 {
 
     /**
      * Uploads a collection to your Merchant Center account. If a collection with the same collectionId already exists, this method updates that entry. In each update, the collection is completely replaced by the fields in the body of the update request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.collections.create({
-     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "customLabel0": "my_customLabel0",
-     *       //   "customLabel1": "my_customLabel1",
-     *       //   "customLabel2": "my_customLabel2",
-     *       //   "customLabel3": "my_customLabel3",
-     *       //   "customLabel4": "my_customLabel4",
-     *       //   "featuredProduct": [],
-     *       //   "headline": [],
-     *       //   "id": "my_id",
-     *       //   "imageLink": [],
-     *       //   "language": "my_language",
-     *       //   "link": "my_link",
-     *       //   "mobileLink": "my_mobileLink",
-     *       //   "productCountry": "my_productCountry"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customLabel0": "my_customLabel0",
-     *   //   "customLabel1": "my_customLabel1",
-     *   //   "customLabel2": "my_customLabel2",
-     *   //   "customLabel3": "my_customLabel3",
-     *   //   "customLabel4": "my_customLabel4",
-     *   //   "featuredProduct": [],
-     *   //   "headline": [],
-     *   //   "id": "my_id",
-     *   //   "imageLink": [],
-     *   //   "language": "my_language",
-     *   //   "link": "my_link",
-     *   //   "mobileLink": "my_mobileLink",
-     *   //   "productCountry": "my_productCountry"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14697,45 +12875,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a collection from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.collections.delete({
-     *     // Required. The collectionId of the collection. CollectionId is the same as the REST ID of the collection.
-     *     collectionId: 'placeholder-value',
-     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14821,62 +12960,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a collection from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.collections.get({
-     *     // Required. The REST ID of the collection.
-     *     collectionId: 'placeholder-value',
-     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customLabel0": "my_customLabel0",
-     *   //   "customLabel1": "my_customLabel1",
-     *   //   "customLabel2": "my_customLabel2",
-     *   //   "customLabel3": "my_customLabel3",
-     *   //   "customLabel4": "my_customLabel4",
-     *   //   "featuredProduct": [],
-     *   //   "headline": [],
-     *   //   "id": "my_id",
-     *   //   "imageLink": [],
-     *   //   "language": "my_language",
-     *   //   "link": "my_link",
-     *   //   "mobileLink": "my_mobileLink",
-     *   //   "productCountry": "my_productCountry"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14963,53 +13046,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the collections in your Merchant Center account. The response might contain fewer items than specified by page_size. Rely on next_page_token to determine if there are more items to be requested.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.collections.list({
-     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The maximum number of collections to return in the response, used for paging. Defaults to 50; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15157,54 +13193,6 @@ export namespace content_v2_1 {
 
     /**
      * Gets the status of a collection from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.collectionstatuses.get({
-     *     // Required. The collectionId of the collection. CollectionId is the same as the REST ID of the collection.
-     *     collectionId: 'placeholder-value',
-     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "collectionLevelIssuses": [],
-     *   //   "creationDate": "my_creationDate",
-     *   //   "destinationStatuses": [],
-     *   //   "id": "my_id",
-     *   //   "lastUpdateDate": "my_lastUpdateDate"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15293,53 +13281,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the statuses of the collections in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.collectionstatuses.list({
-     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The maximum number of collection statuses to return in the response, used for paging. Defaults to 50; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15470,64 +13411,6 @@ export namespace content_v2_1 {
 
     /**
      * Creates a new conversion source.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.conversionsources.create({
-     *     // Required. The ID of the account that owns the new conversion source.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "conversionSourceId": "my_conversionSourceId",
-     *       //   "expireTime": "my_expireTime",
-     *       //   "googleAnalyticsLink": {},
-     *       //   "merchantCenterDestination": {},
-     *       //   "state": "my_state"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "conversionSourceId": "my_conversionSourceId",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "googleAnalyticsLink": {},
-     *   //   "merchantCenterDestination": {},
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15615,45 +13498,6 @@ export namespace content_v2_1 {
 
     /**
      * Archives an existing conversion source. It will be recoverable for 30 days. This archiving behavior is not typical in the Content API and unique to this service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.conversionsources.delete({
-     *     // Required. The ID of the conversion source to be deleted.
-     *     conversionSourceId: 'placeholder-value',
-     *     // Required. The ID of the account that owns the new conversion source.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15740,54 +13584,6 @@ export namespace content_v2_1 {
 
     /**
      * Fetches a conversion source.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.conversionsources.get({
-     *     // Required. The REST ID of the collection.
-     *     conversionSourceId: 'placeholder-value',
-     *     // Required. The ID of the account that owns the new conversion source.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "conversionSourceId": "my_conversionSourceId",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "googleAnalyticsLink": {},
-     *   //   "merchantCenterDestination": {},
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15876,55 +13672,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the list of conversion sources the caller has access to.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.conversionsources.list({
-     *     // Required. The ID of the account that owns the new conversion source.
-     *     merchantId: 'placeholder-value',
-     *     // The maximum number of conversion sources to return in a page. If no `page_size` is specified, `100` is used as the default value. The maximum value is `200`. Values above `200` will be coerced to `200`. Regardless of pagination, at most `200` conversion sources are returned in total.
-     *     pageSize: 'placeholder-value',
-     *     // Page token.
-     *     pageToken: 'placeholder-value',
-     *     // If true, also returns archived conversion sources.
-     *     showDeleted: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "conversionSources": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16021,68 +13768,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates information of an existing conversion source.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.conversionsources.patch({
-     *     // Required. The ID of the conversion source to be updated.
-     *     conversionSourceId: 'placeholder-value',
-     *     // Required. The ID of the account that owns the new conversion source.
-     *     merchantId: 'placeholder-value',
-     *     // Required. List of fields being updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "conversionSourceId": "my_conversionSourceId",
-     *       //   "expireTime": "my_expireTime",
-     *       //   "googleAnalyticsLink": {},
-     *       //   "merchantCenterDestination": {},
-     *       //   "state": "my_state"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "conversionSourceId": "my_conversionSourceId",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "googleAnalyticsLink": {},
-     *   //   "merchantCenterDestination": {},
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16171,51 +13856,6 @@ export namespace content_v2_1 {
 
     /**
      * Re-enables an archived conversion source.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.conversionsources.undelete({
-     *     // Required. The ID of the conversion source to be undeleted.
-     *     conversionSourceId: 'placeholder-value',
-     *     // Required. The ID of the account that owns the new conversion source.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16399,55 +14039,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a single CSS domain by ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.csses.get({
-     *     // Required. The ID of the CSS domain to return.
-     *     cssDomainId: 'placeholder-value',
-     *     // Required. The ID of the managing account. If this parameter is not the same as [cssDomainId](#cssDomainId), then this ID must be a CSS group ID and `cssDomainId` must be the ID of a CSS domain affiliated with this group.
-     *     cssGroupId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cssDomainId": "my_cssDomainId",
-     *   //   "cssGroupId": "my_cssGroupId",
-     *   //   "displayName": "my_displayName",
-     *   //   "fullName": "my_fullName",
-     *   //   "homepageUri": "my_homepageUri",
-     *   //   "labelIds": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16534,53 +14125,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists CSS domains affiliated with a CSS group.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.csses.list({
-     *     // Required. The CSS group ID of CSS domains to be listed.
-     *     cssGroupId: 'placeholder-value',
-     *     // The maximum number of CSS domains to return. The service may return fewer than this value. If unspecified, at most 50 CSS domains will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListCsses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCsses` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "csses": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16671,63 +14215,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates labels that are assigned to a CSS domain by its CSS group.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.csses.updatelabels({
-     *     // Required. The ID of the updated CSS domain.
-     *     cssDomainId: 'placeholder-value',
-     *     // Required. The CSS group ID of the updated CSS domain.
-     *     cssGroupId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "labelIds": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cssDomainId": "my_cssDomainId",
-     *   //   "cssGroupId": "my_cssGroupId",
-     *   //   "displayName": "my_displayName",
-     *   //   "fullName": "my_fullName",
-     *   //   "homepageUri": "my_homepageUri",
-     *   //   "labelIds": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16864,54 +14351,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes, fetches, gets, inserts and updates multiple datafeeds in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.datafeeds.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17009,45 +14448,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a datafeed configuration from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.datafeeds.delete({
-     *     // The ID of the datafeed.
-     *     datafeedId: 'placeholder-value',
-     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17132,50 +14532,6 @@ export namespace content_v2_1 {
 
     /**
      * Invokes a fetch for the datafeed in your Merchant Center account. If you need to call this method more than once per day, we recommend you use the [Products service](https://developers.google.com/shopping-content/reference/rest/v2.1/products) to update your product data.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.datafeeds.fetchnow({
-     *     // The ID of the datafeed to be fetched.
-     *     datafeedId: 'placeholder-value',
-     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17271,58 +14627,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a datafeed configuration from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.datafeeds.get({
-     *     // The ID of the datafeed.
-     *     datafeedId: 'placeholder-value',
-     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attributeLanguage": "my_attributeLanguage",
-     *   //   "contentType": "my_contentType",
-     *   //   "fetchSchedule": {},
-     *   //   "fileName": "my_fileName",
-     *   //   "format": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "targets": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17409,72 +14713,6 @@ export namespace content_v2_1 {
 
     /**
      * Registers a datafeed configuration with your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.datafeeds.insert({
-     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "attributeLanguage": "my_attributeLanguage",
-     *       //   "contentType": "my_contentType",
-     *       //   "fetchSchedule": {},
-     *       //   "fileName": "my_fileName",
-     *       //   "format": {},
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "targets": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attributeLanguage": "my_attributeLanguage",
-     *   //   "contentType": "my_contentType",
-     *   //   "fetchSchedule": {},
-     *   //   "fileName": "my_fileName",
-     *   //   "format": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "targets": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17562,54 +14800,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the configurations for datafeeds in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.datafeeds.list({
-     *     // The maximum number of products to return in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17702,74 +14892,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates a datafeed configuration of your Merchant Center account. Any fields that are not provided are deleted from the resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.datafeeds.update({
-     *     // The ID of the datafeed.
-     *     datafeedId: 'placeholder-value',
-     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "attributeLanguage": "my_attributeLanguage",
-     *       //   "contentType": "my_contentType",
-     *       //   "fetchSchedule": {},
-     *       //   "fileName": "my_fileName",
-     *       //   "format": {},
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "targets": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attributeLanguage": "my_attributeLanguage",
-     *   //   "contentType": "my_contentType",
-     *   //   "fetchSchedule": {},
-     *   //   "fileName": "my_fileName",
-     *   //   "format": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "targets": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17942,54 +15064,6 @@ export namespace content_v2_1 {
 
     /**
      * Gets multiple Merchant Center datafeed statuses in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.datafeedstatuses.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18087,66 +15161,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the status of a datafeed from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.datafeedstatuses.get({
-     *     // Deprecated. Use `feedLabel` instead. The country to get the datafeed status for. If this parameter is provided then `language` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
-     *     country: 'placeholder-value',
-     *     // The ID of the datafeed.
-     *     datafeedId: 'placeholder-value',
-     *     // The feed label to get the datafeed status for. If this parameter is provided then `language` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
-     *     feedLabel: 'placeholder-value',
-     *     // The language to get the datafeed status for. If this parameter is provided then `country` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
-     *     language: 'placeholder-value',
-     *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "country": "my_country",
-     *   //   "datafeedId": "my_datafeedId",
-     *   //   "errors": [],
-     *   //   "feedLabel": "my_feedLabel",
-     *   //   "itemsTotal": "my_itemsTotal",
-     *   //   "itemsValid": "my_itemsValid",
-     *   //   "kind": "my_kind",
-     *   //   "language": "my_language",
-     *   //   "lastUploadDate": "my_lastUploadDate",
-     *   //   "processingStatus": "my_processingStatus",
-     *   //   "warnings": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18235,54 +15249,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the statuses of the datafeeds in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.datafeedstatuses.list({
-     *     // The maximum number of products to return in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18426,55 +15392,16 @@ export namespace content_v2_1 {
 
   export class Resource$Freelistingsprogram {
     context: APIRequestContext;
+    checkoutsettings: Resource$Freelistingsprogram$Checkoutsettings;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.checkoutsettings = new Resource$Freelistingsprogram$Checkoutsettings(
+        this.context
+      );
     }
 
     /**
      * Retrieves the status and review eligibility for the free listing program. Returns errors and warnings if they require action to resolve, will become disapprovals, or impact impressions. Use `accountstatuses` to view all issues for an account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.freelistingsprogram.get({
-     *     // Required. The ID of the account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "globalState": "my_globalState",
-     *   //   "regionStatuses": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18567,51 +15494,6 @@ export namespace content_v2_1 {
 
     /**
      * Requests a review of free listings in a specific region. This method is only available to selected merchants.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.freelistingsprogram.requestreview({
-     *     // Required. The ID of the account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "regionCode": "my_regionCode"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18717,6 +15599,304 @@ export namespace content_v2_1 {
     requestBody?: Schema$RequestReviewFreeListingsRequest;
   }
 
+  export class Resource$Freelistingsprogram$Checkoutsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes `Checkout` settings and unenrolls merchant from `Checkout` program.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Freelistingsprogram$Checkoutsettings$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Freelistingsprogram$Checkoutsettings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Freelistingsprogram$Checkoutsettings$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/freelistingsprogram/checkoutsettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Gets Checkout settings for the given merchant. This includes information about review state, enrollment state and URL settings.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckoutSettings>;
+    get(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CheckoutSettings>,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    get(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CheckoutSettings>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Freelistingsprogram$Checkoutsettings$Get
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CheckoutSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Freelistingsprogram$Checkoutsettings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Freelistingsprogram$Checkoutsettings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/freelistingsprogram/checkoutsettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckoutSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckoutSettings>(parameters);
+      }
+    }
+
+    /**
+     * Enrolls merchant in `Checkout` program.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
+      params?: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckoutSettings>;
+    insert(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$CheckoutSettings>,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    insert(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$CheckoutSettings>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Freelistingsprogram$Checkoutsettings$Insert
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CheckoutSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Freelistingsprogram$Checkoutsettings$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Freelistingsprogram$Checkoutsettings$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/freelistingsprogram/checkoutsettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckoutSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckoutSettings>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Freelistingsprogram$Checkoutsettings$Delete
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+  }
+  export interface Params$Resource$Freelistingsprogram$Checkoutsettings$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+  }
+  export interface Params$Resource$Freelistingsprogram$Checkoutsettings$Insert
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InsertCheckoutSettingsRequest;
+  }
+
   export class Resource$Liasettings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -18725,54 +15905,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves and/or updates the LIA settings of multiple accounts in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.liasettings.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18870,52 +16002,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the LIA settings of the account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.liasettings.get({
-     *     // The ID of the account for which to get or update LIA settings.
-     *     accountId: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "countrySettings": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19002,52 +16088,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the list of accessible Business Profiles.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.liasettings.getaccessiblegmbaccounts({
-     *     // The ID of the account for which to retrieve accessible Business Profiles.
-     *     accountId: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "gmbAccounts": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19145,54 +16185,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the LIA settings of the sub-accounts in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.liasettings.list({
-     *     // The maximum number of LIA settings to return in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the managing account. This must be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19285,46 +16277,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the list of POS data providers that have active settings for the all eiligible countries.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.liasettings.listposdataproviders({});
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "posDataProviders": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19421,52 +16373,6 @@ export namespace content_v2_1 {
 
     /**
      * Requests access to a specified Business Profile.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.liasettings.requestgmbaccess({
-     *     // The ID of the account for which Business Profile access is requested.
-     *     accountId: 'placeholder-value',
-     *     // The email of the Business Profile.
-     *     gmbEmail: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19564,52 +16470,6 @@ export namespace content_v2_1 {
 
     /**
      * Requests inventory validation for the specified country.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.liasettings.requestinventoryverification({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     accountId: 'placeholder-value',
-     *     // The country for which inventory validation is requested.
-     *     country: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19707,58 +16567,6 @@ export namespace content_v2_1 {
 
     /**
      * Sets the inventory verification contract for the specified country.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.liasettings.setinventoryverificationcontact({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     accountId: 'placeholder-value',
-     *     // The email of the inventory verification contact.
-     *     contactEmail: 'placeholder-value',
-     *     // The name of the inventory verification contact.
-     *     contactName: 'placeholder-value',
-     *     // The country for which inventory verification is requested.
-     *     country: 'placeholder-value',
-     *     // The language for which inventory verification is requested.
-     *     language: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19864,56 +16672,6 @@ export namespace content_v2_1 {
 
     /**
      * Sets the POS data provider for the specified country.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.liasettings.setposdataprovider({
-     *     // The ID of the account for which to retrieve accessible Business Profiles.
-     *     accountId: 'placeholder-value',
-     *     // The country for which the POS data provider is selected.
-     *     country: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of POS data provider.
-     *     posDataProviderId: 'placeholder-value',
-     *     // The account ID by which this merchant is known to the POS data provider.
-     *     posExternalAccountId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20011,62 +16769,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates the LIA settings of the account. Any fields that are not provided are deleted from the resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.liasettings.update({
-     *     // The ID of the account for which to get or update LIA settings.
-     *     accountId: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "countrySettings": [],
-     *       //   "kind": "my_kind"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "countrySettings": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20302,54 +17004,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates local inventory for multiple products or stores in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.localinventory.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20447,78 +17101,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates the local inventory of a product in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.localinventory.insert({
-     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The REST ID of the product for which to update local inventory.
-     *     productId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "availability": "my_availability",
-     *       //   "customAttributes": [],
-     *       //   "instoreProductLocation": "my_instoreProductLocation",
-     *       //   "kind": "my_kind",
-     *       //   "pickupMethod": "my_pickupMethod",
-     *       //   "pickupSla": "my_pickupSla",
-     *       //   "price": {},
-     *       //   "quantity": 0,
-     *       //   "salePrice": {},
-     *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
-     *       //   "storeCode": "my_storeCode"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "availability": "my_availability",
-     *   //   "customAttributes": [],
-     *   //   "instoreProductLocation": "my_instoreProductLocation",
-     *   //   "kind": "my_kind",
-     *   //   "pickupMethod": "my_pickupMethod",
-     *   //   "pickupSla": "my_pickupSla",
-     *   //   "price": {},
-     *   //   "quantity": 0,
-     *   //   "salePrice": {},
-     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
-     *   //   "storeCode": "my_storeCode"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20638,63 +17220,6 @@ export namespace content_v2_1 {
 
     /**
      * Creates a charge invoice for a shipment group, and triggers a charge capture for orderinvoice enabled orders.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orderinvoices.createchargeinvoice({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "invoiceId": "my_invoiceId",
-     *       //   "invoiceSummary": {},
-     *       //   "lineItemInvoices": [],
-     *       //   "operationId": "my_operationId",
-     *       //   "shipmentGroupId": "my_shipmentGroupId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20792,63 +17317,6 @@ export namespace content_v2_1 {
 
     /**
      * Creates a refund invoice for one or more shipment groups, and triggers a refund for orderinvoice enabled orders. This can only be used for line items that have previously been charged using `createChargeInvoice`. All amounts (except for the summary) are incremental with respect to the previous invoice.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orderinvoices.createrefundinvoice({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "invoiceId": "my_invoiceId",
-     *       //   "operationId": "my_operationId",
-     *       //   "refundOnlyOption": {},
-     *       //   "returnOption": {},
-     *       //   "shipmentInvoices": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20986,58 +17454,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a report for disbursements from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orderreports.listdisbursements({
-     *     // The last date which disbursements occurred. In ISO 8601 format. Default: current date.
-     *     disbursementEndDate: 'placeholder-value',
-     *     // The first date which disbursements occurred. In ISO 8601 format.
-     *     disbursementStartDate: 'placeholder-value',
-     *     // The maximum number of disbursements to return in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "disbursements": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21134,60 +17550,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a list of transactions for a disbursement from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orderreports.listtransactions({
-     *     // The Google-provided ID of the disbursement (found in Wallet).
-     *     disbursementId: 'placeholder-value',
-     *     // The maximum number of disbursements to return in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *     // The last date in which transaction occurred. In ISO 8601 format. Default: current date.
-     *     transactionEndDate: 'placeholder-value',
-     *     // The first date in which transaction occurred. In ISO 8601 format.
-     *     transactionStartDate: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "transactions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21345,59 +17707,6 @@ export namespace content_v2_1 {
 
     /**
      * Acks an order return in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orderreturns.acknowledge({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the return.
-     *     returnId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "operationId": "my_operationId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21495,61 +17804,6 @@ export namespace content_v2_1 {
 
     /**
      * Create return in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orderreturns.createorderreturn({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "lineItems": [],
-     *       //   "operationId": "my_operationId",
-     *       //   "orderId": "my_orderId",
-     *       //   "returnMethodType": "my_returnMethodType"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind",
-     *   //   "orderReturn": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21647,56 +17901,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves an order return from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orderreturns.get({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // Merchant order return ID generated by Google.
-     *     returnId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creationDate": "my_creationDate",
-     *   //   "merchantOrderId": "my_merchantOrderId",
-     *   //   "orderId": "my_orderId",
-     *   //   "orderReturnId": "my_orderReturnId",
-     *   //   "returnItems": [],
-     *   //   "returnPricingInfo": {},
-     *   //   "returnShipments": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21786,72 +17990,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists order returns in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orderreturns.list({
-     *     // Obtains order returns that match the acknowledgement status. When set to true, obtains order returns that have been acknowledged. When false, obtains order returns that have not been acknowledged. When not provided, obtains order returns regardless of their acknowledgement status. We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged order returns are returned.
-     *     acknowledged: 'placeholder-value',
-     *     // Obtains order returns created before this date (inclusively), in ISO 8601 format.
-     *     createdEndDate: 'placeholder-value',
-     *     // Obtains order returns created after this date (inclusively), in ISO 8601 format.
-     *     createdStartDate: 'placeholder-value',
-     *     // Obtains order returns with the specified order ids. If this parameter is provided, createdStartDate, createdEndDate, shipmentType, shipmentStatus, shipmentState and acknowledged parameters must be not set. Note: if googleOrderId and shipmentTrackingNumber parameters are provided, the obtained results will include all order returns that either match the specified order id or the specified tracking number.
-     *     googleOrderIds: 'placeholder-value',
-     *     // The maximum number of order returns to return in the response, used for paging. The default value is 25 returns per page, and the maximum allowed value is 250 returns per page.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // Return the results in the specified order.
-     *     orderBy: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *     // Obtains order returns that match any shipment state provided in this parameter. When this parameter is not provided, order returns are obtained regardless of their shipment states.
-     *     shipmentStates: 'placeholder-value',
-     *     // Obtains order returns that match any shipment status provided in this parameter. When this parameter is not provided, order returns are obtained regardless of their shipment statuses.
-     *     shipmentStatus: 'placeholder-value',
-     *     // Obtains order returns with the specified tracking numbers. If this parameter is provided, createdStartDate, createdEndDate, shipmentType, shipmentStatus, shipmentState and acknowledged parameters must be not set. Note: if googleOrderId and shipmentTrackingNumber parameters are provided, the obtained results will include all order returns that either match the specified order id or the specified tracking number.
-     *     shipmentTrackingNumbers: 'placeholder-value',
-     *     // Obtains order returns that match any shipment type provided in this parameter. When this parameter is not provided, order returns are obtained regardless of their shipment types.
-     *     shipmentTypes: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21945,62 +18083,6 @@ export namespace content_v2_1 {
 
     /**
      * Processes return in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orderreturns.process({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the return.
-     *     returnId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "fullChargeReturnShippingCost": false,
-     *       //   "operationId": "my_operationId",
-     *       //   "refundShippingFee": {},
-     *       //   "returnItems": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22209,62 +18291,6 @@ export namespace content_v2_1 {
 
     /**
      * Links a return shipping label to a return id. You can only create one return label per return id. Since the label is sent to the buyer, the linked return label cannot be updated or deleted. If you try to create multiple return shipping labels for a single return id, every create request except the first will fail.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orderreturns.labels.create({
-     *     // Required. The merchant the Return Shipping Label belongs to.
-     *     merchantId: 'placeholder-value',
-     *     // Required. Provide the Google-generated merchant order return ID.
-     *     returnId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "carrier": "my_carrier",
-     *       //   "labelUri": "my_labelUri",
-     *       //   "trackingId": "my_trackingId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "carrier": "my_carrier",
-     *   //   "labelUri": "my_labelUri",
-     *   //   "trackingId": "my_trackingId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22380,59 +18406,6 @@ export namespace content_v2_1 {
 
     /**
      * Marks an order as acknowledged.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.acknowledge({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "operationId": "my_operationId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22528,50 +18501,6 @@ export namespace content_v2_1 {
 
     /**
      * Sandbox only. Moves a test order from state "`inProgress`" to state "`pendingShipment`".
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.advancetestorder({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the test order to modify.
-     *     orderId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22669,61 +18598,6 @@ export namespace content_v2_1 {
 
     /**
      * Cancels all line items in an order, making a full refund.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.cancel({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order to cancel.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "operationId": "my_operationId",
-     *       //   "reason": "my_reason",
-     *       //   "reasonText": "my_reasonText"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22815,64 +18689,6 @@ export namespace content_v2_1 {
 
     /**
      * Cancels a line item, making a full refund.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.cancellineitem({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "lineItemId": "my_lineItemId",
-     *       //   "operationId": "my_operationId",
-     *       //   "productId": "my_productId",
-     *       //   "quantity": 0,
-     *       //   "reason": "my_reason",
-     *       //   "reasonText": "my_reasonText"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22970,58 +18786,6 @@ export namespace content_v2_1 {
 
     /**
      * Sandbox only. Cancels a test order for customer-initiated cancellation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.canceltestorderbycustomer({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the test order to cancel.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "reason": "my_reason"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23119,56 +18883,6 @@ export namespace content_v2_1 {
 
     /**
      * Capture funds from the customer for the current order total. This method should be called after the merchant verifies that they are able and ready to start shipping the order. This method blocks until a response is received from the payment processsor. If this method succeeds, the merchant is guaranteed to receive funds for the order after shipment. If the request fails, it can be retried or the order may be cancelled. This method cannot be called after the entire order is already shipped. A rejected error code is returned when the payment service provider has declined the charge. This indicates a problem between the PSP and either the merchant's or customer's account. Sometimes this error will be resolved by the customer. We recommend retrying these errors once per day or cancelling the order with reason `failedToCaptureFunds` if the items cannot be held.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.captureOrder({
-     *     // Required. The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The ID of the Order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23264,59 +18978,6 @@ export namespace content_v2_1 {
 
     /**
      * Sandbox only. Creates a test order.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.createtestorder({
-     *     // The ID of the account that should manage the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "country": "my_country",
-     *       //   "templateName": "my_templateName",
-     *       //   "testOrder": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "orderId": "my_orderId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23414,59 +19075,6 @@ export namespace content_v2_1 {
 
     /**
      * Sandbox only. Creates a test return.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.createtestreturn({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "items": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "returnId": "my_returnId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23563,71 +19171,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves an order from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.get({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acknowledged": false,
-     *   //   "annotations": [],
-     *   //   "billingAddress": {},
-     *   //   "customer": {},
-     *   //   "deliveryDetails": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "lineItems": [],
-     *   //   "merchantId": "my_merchantId",
-     *   //   "merchantOrderId": "my_merchantOrderId",
-     *   //   "netPriceAmount": {},
-     *   //   "netTaxAmount": {},
-     *   //   "paymentStatus": "my_paymentStatus",
-     *   //   "pickupDetails": {},
-     *   //   "placedDate": "my_placedDate",
-     *   //   "promotions": [],
-     *   //   "refunds": [],
-     *   //   "shipments": [],
-     *   //   "shippingCost": {},
-     *   //   "shippingCostTax": {},
-     *   //   "status": "my_status",
-     *   //   "taxCollector": "my_taxCollector"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23714,51 +19257,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves an order using merchant order ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.getbymerchantorderid({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The merchant order ID to be looked for.
-     *     merchantOrderId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "order": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23856,53 +19354,6 @@ export namespace content_v2_1 {
 
     /**
      * Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.gettestordertemplate({
-     *     // The country of the template to retrieve. Defaults to "`US`".
-     *     country: 'placeholder-value',
-     *     // The ID of the account that should manage the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The name of the template to retrieve.
-     *     templateName: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "template": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24000,66 +19451,6 @@ export namespace content_v2_1 {
 
     /**
      * Deprecated. Notifies that item return and refund was handled directly by merchant outside of Google payments processing (for example, cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding through Google then through an in-store return.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.instorerefundlineitem({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "lineItemId": "my_lineItemId",
-     *       //   "operationId": "my_operationId",
-     *       //   "priceAmount": {},
-     *       //   "productId": "my_productId",
-     *       //   "quantity": 0,
-     *       //   "reason": "my_reason",
-     *       //   "reasonText": "my_reasonText",
-     *       //   "taxAmount": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24157,64 +19548,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the orders in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.list({
-     *     // Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged orders are returned.
-     *     acknowledged: 'placeholder-value',
-     *     // The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // Order results by placement date in descending or ascending order. Acceptable values are: - placedDateAsc - placedDateDesc
-     *     orderBy: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *     // Obtains orders placed before this date (exclusively), in ISO 8601 format.
-     *     placedDateEnd: 'placeholder-value',
-     *     // Obtains orders placed after this date (inclusively), in ISO 8601 format.
-     *     placedDateStart: 'placeholder-value',
-     *     // Obtains orders that match any of the specified statuses. Note that `active` is a shortcut for `pendingShipment` and `partiallyShipped`, and `completed` is a shortcut for `shipped`, `partiallyDelivered`, `delivered`, `partiallyReturned`, `returned`, and `canceled`.
-     *     statuses: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24305,63 +19638,6 @@ export namespace content_v2_1 {
 
     /**
      * Issues a partial or total refund for items and shipment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.refunditem({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order to refund.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "items": [],
-     *       //   "operationId": "my_operationId",
-     *       //   "reason": "my_reason",
-     *       //   "reasonText": "my_reasonText",
-     *       //   "shipping": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24456,63 +19732,6 @@ export namespace content_v2_1 {
 
     /**
      * Issues a partial or total refund for an order.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.refundorder({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order to refund.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "amount": {},
-     *       //   "fullRefund": false,
-     *       //   "operationId": "my_operationId",
-     *       //   "reason": "my_reason",
-     *       //   "reasonText": "my_reasonText"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24608,64 +19827,6 @@ export namespace content_v2_1 {
 
     /**
      * Rejects return on an line item.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.rejectreturnlineitem({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "lineItemId": "my_lineItemId",
-     *       //   "operationId": "my_operationId",
-     *       //   "productId": "my_productId",
-     *       //   "quantity": 0,
-     *       //   "reason": "my_reason",
-     *       //   "reasonText": "my_reasonText"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24763,66 +19924,6 @@ export namespace content_v2_1 {
 
     /**
      * Returns and refunds a line item. Note that this method can only be called on fully shipped orders. The Orderreturns API is the preferred way to handle returns after you receive a return from a customer. You can use Orderreturns.list or Orderreturns.get to search for the return, and then use Orderreturns.processreturn to issue the refund. If the return cannot be found, then we recommend using this API to issue a refund.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.returnrefundlineitem({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "lineItemId": "my_lineItemId",
-     *       //   "operationId": "my_operationId",
-     *       //   "priceAmount": {},
-     *       //   "productId": "my_productId",
-     *       //   "quantity": 0,
-     *       //   "reason": "my_reason",
-     *       //   "reasonText": "my_reasonText",
-     *       //   "taxAmount": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24920,62 +20021,6 @@ export namespace content_v2_1 {
 
     /**
      * Sets (or overrides if it already exists) merchant provided annotations in the form of key-value pairs. A common use case would be to supply us with additional structured information about a line item that cannot be provided through other methods. Submitted key-value pairs can be retrieved as part of the orders resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.setlineitemmetadata({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "annotations": [],
-     *       //   "lineItemId": "my_lineItemId",
-     *       //   "operationId": "my_operationId",
-     *       //   "productId": "my_productId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25073,62 +20118,6 @@ export namespace content_v2_1 {
 
     /**
      * Marks line item(s) as shipped.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.shiplineitems({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "lineItems": [],
-     *       //   "operationId": "my_operationId",
-     *       //   "shipmentGroupId": "my_shipmentGroupId",
-     *       //   "shipmentInfos": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25224,63 +20213,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates ship by and delivery by dates for a line item.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.updatelineitemshippingdetails({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "deliverByDate": "my_deliverByDate",
-     *       //   "lineItemId": "my_lineItemId",
-     *       //   "operationId": "my_operationId",
-     *       //   "productId": "my_productId",
-     *       //   "shipByDate": "my_shipByDate"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25378,60 +20310,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates the merchant order ID for a given order.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.updatemerchantorderid({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "merchantOrderId": "my_merchantOrderId",
-     *       //   "operationId": "my_operationId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25529,68 +20407,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates a shipment's status, carrier, and/or tracking ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.orders.updateshipment({
-     *     // The ID of the account that manages the order. This cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the order.
-     *     orderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "carrier": "my_carrier",
-     *       //   "deliveryDate": "my_deliveryDate",
-     *       //   "lastPickupDate": "my_lastPickupDate",
-     *       //   "operationId": "my_operationId",
-     *       //   "readyPickupDate": "my_readyPickupDate",
-     *       //   "scheduledDeliveryDetails": {},
-     *       //   "shipmentId": "my_shipmentId",
-     *       //   "status": "my_status",
-     *       //   "trackingId": "my_trackingId",
-     *       //   "undeliveredDate": "my_undeliveredDate"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionStatus": "my_executionStatus",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26044,74 +20860,6 @@ export namespace content_v2_1 {
 
     /**
      * Creates new order tracking signal.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.ordertrackingsignals.create({
-     *     // The ID of the merchant for which the order signal is created.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "customerShippingFee": {},
-     *       //   "deliveryPostalCode": "my_deliveryPostalCode",
-     *       //   "deliveryRegionCode": "my_deliveryRegionCode",
-     *       //   "lineItems": [],
-     *       //   "merchantId": "my_merchantId",
-     *       //   "orderCreatedTime": {},
-     *       //   "orderId": "my_orderId",
-     *       //   "orderTrackingSignalId": "my_orderTrackingSignalId",
-     *       //   "shipmentLineItemMapping": [],
-     *       //   "shippingInfo": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customerShippingFee": {},
-     *   //   "deliveryPostalCode": "my_deliveryPostalCode",
-     *   //   "deliveryRegionCode": "my_deliveryRegionCode",
-     *   //   "lineItems": [],
-     *   //   "merchantId": "my_merchantId",
-     *   //   "orderCreatedTime": {},
-     *   //   "orderId": "my_orderId",
-     *   //   "orderTrackingSignalId": "my_orderTrackingSignalId",
-     *   //   "shipmentLineItemMapping": [],
-     *   //   "shippingInfo": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26222,54 +20970,6 @@ export namespace content_v2_1 {
 
     /**
      * Batches multiple POS-related calls in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.pos.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26364,47 +21064,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a store for the given merchant.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.pos.delete({
-     *     // The ID of the POS or inventory data provider.
-     *     merchantId: 'placeholder-value',
-     *     // A store code that is unique per merchant.
-     *     storeCode: 'placeholder-value',
-     *     // The ID of the target merchant.
-     *     targetMerchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26490,59 +21149,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves information about the given store.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.pos.get({
-     *     // The ID of the POS or inventory data provider.
-     *     merchantId: 'placeholder-value',
-     *     // A store code that is unique per merchant.
-     *     storeCode: 'placeholder-value',
-     *     // The ID of the target merchant.
-     *     targetMerchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "gcidCategory": [],
-     *   //   "kind": "my_kind",
-     *   //   "phoneNumber": "my_phoneNumber",
-     *   //   "placeId": "my_placeId",
-     *   //   "storeAddress": "my_storeAddress",
-     *   //   "storeCode": "my_storeCode",
-     *   //   "storeName": "my_storeName",
-     *   //   "websiteUrl": "my_websiteUrl"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26630,72 +21236,6 @@ export namespace content_v2_1 {
 
     /**
      * Creates a store for the given merchant.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.pos.insert({
-     *     // The ID of the POS or inventory data provider.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the target merchant.
-     *     targetMerchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "gcidCategory": [],
-     *       //   "kind": "my_kind",
-     *       //   "phoneNumber": "my_phoneNumber",
-     *       //   "placeId": "my_placeId",
-     *       //   "storeAddress": "my_storeAddress",
-     *       //   "storeCode": "my_storeCode",
-     *       //   "storeName": "my_storeName",
-     *       //   "websiteUrl": "my_websiteUrl"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "gcidCategory": [],
-     *   //   "kind": "my_kind",
-     *   //   "phoneNumber": "my_phoneNumber",
-     *   //   "placeId": "my_placeId",
-     *   //   "storeAddress": "my_storeAddress",
-     *   //   "storeCode": "my_storeCode",
-     *   //   "storeName": "my_storeName",
-     *   //   "websiteUrl": "my_websiteUrl"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26783,73 +21323,6 @@ export namespace content_v2_1 {
 
     /**
      * Submit inventory for the given merchant.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.pos.inventory({
-     *     // The ID of the POS or inventory data provider.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the target merchant.
-     *     targetMerchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentLanguage": "my_contentLanguage",
-     *       //   "gtin": "my_gtin",
-     *       //   "itemId": "my_itemId",
-     *       //   "price": {},
-     *       //   "quantity": "my_quantity",
-     *       //   "storeCode": "my_storeCode",
-     *       //   "targetCountry": "my_targetCountry",
-     *       //   "timestamp": "my_timestamp"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "gtin": "my_gtin",
-     *   //   "itemId": "my_itemId",
-     *   //   "kind": "my_kind",
-     *   //   "price": {},
-     *   //   "quantity": "my_quantity",
-     *   //   "storeCode": "my_storeCode",
-     *   //   "targetCountry": "my_targetCountry",
-     *   //   "timestamp": "my_timestamp"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26944,51 +21417,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the stores of the target merchant.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.pos.list({
-     *     // The ID of the POS or inventory data provider.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the target merchant.
-     *     targetMerchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27076,75 +21504,6 @@ export namespace content_v2_1 {
 
     /**
      * Submit a sale event for the given merchant.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.pos.sale({
-     *     // The ID of the POS or inventory data provider.
-     *     merchantId: 'placeholder-value',
-     *     // The ID of the target merchant.
-     *     targetMerchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentLanguage": "my_contentLanguage",
-     *       //   "gtin": "my_gtin",
-     *       //   "itemId": "my_itemId",
-     *       //   "price": {},
-     *       //   "quantity": "my_quantity",
-     *       //   "saleId": "my_saleId",
-     *       //   "storeCode": "my_storeCode",
-     *       //   "targetCountry": "my_targetCountry",
-     *       //   "timestamp": "my_timestamp"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "gtin": "my_gtin",
-     *   //   "itemId": "my_itemId",
-     *   //   "kind": "my_kind",
-     *   //   "price": {},
-     *   //   "quantity": "my_quantity",
-     *   //   "saleId": "my_saleId",
-     *   //   "storeCode": "my_storeCode",
-     *   //   "targetCountry": "my_targetCountry",
-     *   //   "timestamp": "my_timestamp"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27328,58 +21687,6 @@ export namespace content_v2_1 {
 
     /**
      * Creates or updates the delivery time of a product.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.productdeliverytime.create({
-     *     // The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "areaDeliveryTimes": [],
-     *       //   "productId": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "areaDeliveryTimes": [],
-     *   //   "productId": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27470,45 +21777,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes the delivery time of a product.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.productdeliverytime.delete({
-     *     // Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.
-     *     productId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27595,51 +21863,6 @@ export namespace content_v2_1 {
 
     /**
      * Gets `productDeliveryTime` by `productId`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.productdeliverytime.get({
-     *     // Required. The Google merchant ID of the account that contains the product. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The Content API ID of the product, in the form `channel:contentLanguage:targetCountry:offerId`.
-     *     productId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "areaDeliveryTimes": [],
-     *   //   "productId": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27773,54 +21996,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves, inserts, and deletes multiple products in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.products.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27916,47 +22091,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a product from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.products.delete({
-     *     // The Content API Supplemental Feed ID. If present then product deletion applies to the data in a supplemental feed. If absent, entire product will be deleted.
-     *     feedId: 'placeholder-value',
-     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The REST ID of the product.
-     *     productId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28041,146 +22175,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a product from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.products.get({
-     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The REST ID of the product.
-     *     productId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalImageLinks": [],
-     *   //   "additionalSizeType": "my_additionalSizeType",
-     *   //   "adsGrouping": "my_adsGrouping",
-     *   //   "adsLabels": [],
-     *   //   "adsRedirect": "my_adsRedirect",
-     *   //   "adult": false,
-     *   //   "ageGroup": "my_ageGroup",
-     *   //   "availability": "my_availability",
-     *   //   "availabilityDate": "my_availabilityDate",
-     *   //   "brand": "my_brand",
-     *   //   "canonicalLink": "my_canonicalLink",
-     *   //   "certifications": [],
-     *   //   "channel": "my_channel",
-     *   //   "cloudExportAdditionalProperties": [],
-     *   //   "color": "my_color",
-     *   //   "condition": "my_condition",
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "costOfGoodsSold": {},
-     *   //   "customAttributes": [],
-     *   //   "customLabel0": "my_customLabel0",
-     *   //   "customLabel1": "my_customLabel1",
-     *   //   "customLabel2": "my_customLabel2",
-     *   //   "customLabel3": "my_customLabel3",
-     *   //   "customLabel4": "my_customLabel4",
-     *   //   "description": "my_description",
-     *   //   "disclosureDate": "my_disclosureDate",
-     *   //   "displayAdsId": "my_displayAdsId",
-     *   //   "displayAdsLink": "my_displayAdsLink",
-     *   //   "displayAdsSimilarIds": [],
-     *   //   "displayAdsTitle": "my_displayAdsTitle",
-     *   //   "displayAdsValue": {},
-     *   //   "energyEfficiencyClass": "my_energyEfficiencyClass",
-     *   //   "excludedDestinations": [],
-     *   //   "expirationDate": "my_expirationDate",
-     *   //   "externalSellerId": "my_externalSellerId",
-     *   //   "feedLabel": "my_feedLabel",
-     *   //   "gender": "my_gender",
-     *   //   "googleProductCategory": "my_googleProductCategory",
-     *   //   "gtin": "my_gtin",
-     *   //   "id": "my_id",
-     *   //   "identifierExists": false,
-     *   //   "imageLink": "my_imageLink",
-     *   //   "includedDestinations": [],
-     *   //   "installment": {},
-     *   //   "isBundle": false,
-     *   //   "itemGroupId": "my_itemGroupId",
-     *   //   "kind": "my_kind",
-     *   //   "lifestyleImageLinks": [],
-     *   //   "link": "my_link",
-     *   //   "linkTemplate": "my_linkTemplate",
-     *   //   "loyaltyPoints": {},
-     *   //   "material": "my_material",
-     *   //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
-     *   //   "maxHandlingTime": "my_maxHandlingTime",
-     *   //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
-     *   //   "minHandlingTime": "my_minHandlingTime",
-     *   //   "mobileLink": "my_mobileLink",
-     *   //   "mobileLinkTemplate": "my_mobileLinkTemplate",
-     *   //   "mpn": "my_mpn",
-     *   //   "multipack": "my_multipack",
-     *   //   "offerId": "my_offerId",
-     *   //   "pattern": "my_pattern",
-     *   //   "pause": "my_pause",
-     *   //   "pickupMethod": "my_pickupMethod",
-     *   //   "pickupSla": "my_pickupSla",
-     *   //   "price": {},
-     *   //   "productDetails": [],
-     *   //   "productHeight": {},
-     *   //   "productHighlights": [],
-     *   //   "productLength": {},
-     *   //   "productTypes": [],
-     *   //   "productWeight": {},
-     *   //   "productWidth": {},
-     *   //   "promotionIds": [],
-     *   //   "salePrice": {},
-     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
-     *   //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
-     *   //   "shipping": [],
-     *   //   "shippingHeight": {},
-     *   //   "shippingLabel": "my_shippingLabel",
-     *   //   "shippingLength": {},
-     *   //   "shippingWeight": {},
-     *   //   "shippingWidth": {},
-     *   //   "shoppingAdsExcludedCountries": [],
-     *   //   "sizeSystem": "my_sizeSystem",
-     *   //   "sizeType": "my_sizeType",
-     *   //   "sizes": [],
-     *   //   "source": "my_source",
-     *   //   "subscriptionCost": {},
-     *   //   "targetCountry": "my_targetCountry",
-     *   //   "taxCategory": "my_taxCategory",
-     *   //   "taxes": [],
-     *   //   "title": "my_title",
-     *   //   "transitTimeLabel": "my_transitTimeLabel",
-     *   //   "unitPricingBaseMeasure": {},
-     *   //   "unitPricingMeasure": {},
-     *   //   "virtualModelLink": "my_virtualModelLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28267,250 +22261,6 @@ export namespace content_v2_1 {
 
     /**
      * Uploads a product to your Merchant Center account. If an item with the same channel, contentLanguage, offerId, and targetCountry already exists, this method updates that entry.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.products.insert({
-     *     // The Content API Supplemental Feed ID. If present then product insertion applies to the data in a supplemental feed.
-     *     feedId: 'placeholder-value',
-     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "additionalImageLinks": [],
-     *       //   "additionalSizeType": "my_additionalSizeType",
-     *       //   "adsGrouping": "my_adsGrouping",
-     *       //   "adsLabels": [],
-     *       //   "adsRedirect": "my_adsRedirect",
-     *       //   "adult": false,
-     *       //   "ageGroup": "my_ageGroup",
-     *       //   "availability": "my_availability",
-     *       //   "availabilityDate": "my_availabilityDate",
-     *       //   "brand": "my_brand",
-     *       //   "canonicalLink": "my_canonicalLink",
-     *       //   "certifications": [],
-     *       //   "channel": "my_channel",
-     *       //   "cloudExportAdditionalProperties": [],
-     *       //   "color": "my_color",
-     *       //   "condition": "my_condition",
-     *       //   "contentLanguage": "my_contentLanguage",
-     *       //   "costOfGoodsSold": {},
-     *       //   "customAttributes": [],
-     *       //   "customLabel0": "my_customLabel0",
-     *       //   "customLabel1": "my_customLabel1",
-     *       //   "customLabel2": "my_customLabel2",
-     *       //   "customLabel3": "my_customLabel3",
-     *       //   "customLabel4": "my_customLabel4",
-     *       //   "description": "my_description",
-     *       //   "disclosureDate": "my_disclosureDate",
-     *       //   "displayAdsId": "my_displayAdsId",
-     *       //   "displayAdsLink": "my_displayAdsLink",
-     *       //   "displayAdsSimilarIds": [],
-     *       //   "displayAdsTitle": "my_displayAdsTitle",
-     *       //   "displayAdsValue": {},
-     *       //   "energyEfficiencyClass": "my_energyEfficiencyClass",
-     *       //   "excludedDestinations": [],
-     *       //   "expirationDate": "my_expirationDate",
-     *       //   "externalSellerId": "my_externalSellerId",
-     *       //   "feedLabel": "my_feedLabel",
-     *       //   "gender": "my_gender",
-     *       //   "googleProductCategory": "my_googleProductCategory",
-     *       //   "gtin": "my_gtin",
-     *       //   "id": "my_id",
-     *       //   "identifierExists": false,
-     *       //   "imageLink": "my_imageLink",
-     *       //   "includedDestinations": [],
-     *       //   "installment": {},
-     *       //   "isBundle": false,
-     *       //   "itemGroupId": "my_itemGroupId",
-     *       //   "kind": "my_kind",
-     *       //   "lifestyleImageLinks": [],
-     *       //   "link": "my_link",
-     *       //   "linkTemplate": "my_linkTemplate",
-     *       //   "loyaltyPoints": {},
-     *       //   "material": "my_material",
-     *       //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
-     *       //   "maxHandlingTime": "my_maxHandlingTime",
-     *       //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
-     *       //   "minHandlingTime": "my_minHandlingTime",
-     *       //   "mobileLink": "my_mobileLink",
-     *       //   "mobileLinkTemplate": "my_mobileLinkTemplate",
-     *       //   "mpn": "my_mpn",
-     *       //   "multipack": "my_multipack",
-     *       //   "offerId": "my_offerId",
-     *       //   "pattern": "my_pattern",
-     *       //   "pause": "my_pause",
-     *       //   "pickupMethod": "my_pickupMethod",
-     *       //   "pickupSla": "my_pickupSla",
-     *       //   "price": {},
-     *       //   "productDetails": [],
-     *       //   "productHeight": {},
-     *       //   "productHighlights": [],
-     *       //   "productLength": {},
-     *       //   "productTypes": [],
-     *       //   "productWeight": {},
-     *       //   "productWidth": {},
-     *       //   "promotionIds": [],
-     *       //   "salePrice": {},
-     *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
-     *       //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
-     *       //   "shipping": [],
-     *       //   "shippingHeight": {},
-     *       //   "shippingLabel": "my_shippingLabel",
-     *       //   "shippingLength": {},
-     *       //   "shippingWeight": {},
-     *       //   "shippingWidth": {},
-     *       //   "shoppingAdsExcludedCountries": [],
-     *       //   "sizeSystem": "my_sizeSystem",
-     *       //   "sizeType": "my_sizeType",
-     *       //   "sizes": [],
-     *       //   "source": "my_source",
-     *       //   "subscriptionCost": {},
-     *       //   "targetCountry": "my_targetCountry",
-     *       //   "taxCategory": "my_taxCategory",
-     *       //   "taxes": [],
-     *       //   "title": "my_title",
-     *       //   "transitTimeLabel": "my_transitTimeLabel",
-     *       //   "unitPricingBaseMeasure": {},
-     *       //   "unitPricingMeasure": {},
-     *       //   "virtualModelLink": "my_virtualModelLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalImageLinks": [],
-     *   //   "additionalSizeType": "my_additionalSizeType",
-     *   //   "adsGrouping": "my_adsGrouping",
-     *   //   "adsLabels": [],
-     *   //   "adsRedirect": "my_adsRedirect",
-     *   //   "adult": false,
-     *   //   "ageGroup": "my_ageGroup",
-     *   //   "availability": "my_availability",
-     *   //   "availabilityDate": "my_availabilityDate",
-     *   //   "brand": "my_brand",
-     *   //   "canonicalLink": "my_canonicalLink",
-     *   //   "certifications": [],
-     *   //   "channel": "my_channel",
-     *   //   "cloudExportAdditionalProperties": [],
-     *   //   "color": "my_color",
-     *   //   "condition": "my_condition",
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "costOfGoodsSold": {},
-     *   //   "customAttributes": [],
-     *   //   "customLabel0": "my_customLabel0",
-     *   //   "customLabel1": "my_customLabel1",
-     *   //   "customLabel2": "my_customLabel2",
-     *   //   "customLabel3": "my_customLabel3",
-     *   //   "customLabel4": "my_customLabel4",
-     *   //   "description": "my_description",
-     *   //   "disclosureDate": "my_disclosureDate",
-     *   //   "displayAdsId": "my_displayAdsId",
-     *   //   "displayAdsLink": "my_displayAdsLink",
-     *   //   "displayAdsSimilarIds": [],
-     *   //   "displayAdsTitle": "my_displayAdsTitle",
-     *   //   "displayAdsValue": {},
-     *   //   "energyEfficiencyClass": "my_energyEfficiencyClass",
-     *   //   "excludedDestinations": [],
-     *   //   "expirationDate": "my_expirationDate",
-     *   //   "externalSellerId": "my_externalSellerId",
-     *   //   "feedLabel": "my_feedLabel",
-     *   //   "gender": "my_gender",
-     *   //   "googleProductCategory": "my_googleProductCategory",
-     *   //   "gtin": "my_gtin",
-     *   //   "id": "my_id",
-     *   //   "identifierExists": false,
-     *   //   "imageLink": "my_imageLink",
-     *   //   "includedDestinations": [],
-     *   //   "installment": {},
-     *   //   "isBundle": false,
-     *   //   "itemGroupId": "my_itemGroupId",
-     *   //   "kind": "my_kind",
-     *   //   "lifestyleImageLinks": [],
-     *   //   "link": "my_link",
-     *   //   "linkTemplate": "my_linkTemplate",
-     *   //   "loyaltyPoints": {},
-     *   //   "material": "my_material",
-     *   //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
-     *   //   "maxHandlingTime": "my_maxHandlingTime",
-     *   //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
-     *   //   "minHandlingTime": "my_minHandlingTime",
-     *   //   "mobileLink": "my_mobileLink",
-     *   //   "mobileLinkTemplate": "my_mobileLinkTemplate",
-     *   //   "mpn": "my_mpn",
-     *   //   "multipack": "my_multipack",
-     *   //   "offerId": "my_offerId",
-     *   //   "pattern": "my_pattern",
-     *   //   "pause": "my_pause",
-     *   //   "pickupMethod": "my_pickupMethod",
-     *   //   "pickupSla": "my_pickupSla",
-     *   //   "price": {},
-     *   //   "productDetails": [],
-     *   //   "productHeight": {},
-     *   //   "productHighlights": [],
-     *   //   "productLength": {},
-     *   //   "productTypes": [],
-     *   //   "productWeight": {},
-     *   //   "productWidth": {},
-     *   //   "promotionIds": [],
-     *   //   "salePrice": {},
-     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
-     *   //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
-     *   //   "shipping": [],
-     *   //   "shippingHeight": {},
-     *   //   "shippingLabel": "my_shippingLabel",
-     *   //   "shippingLength": {},
-     *   //   "shippingWeight": {},
-     *   //   "shippingWidth": {},
-     *   //   "shoppingAdsExcludedCountries": [],
-     *   //   "sizeSystem": "my_sizeSystem",
-     *   //   "sizeType": "my_sizeType",
-     *   //   "sizes": [],
-     *   //   "source": "my_source",
-     *   //   "subscriptionCost": {},
-     *   //   "targetCountry": "my_targetCountry",
-     *   //   "taxCategory": "my_taxCategory",
-     *   //   "taxes": [],
-     *   //   "title": "my_title",
-     *   //   "transitTimeLabel": "my_transitTimeLabel",
-     *   //   "unitPricingBaseMeasure": {},
-     *   //   "unitPricingMeasure": {},
-     *   //   "virtualModelLink": "my_virtualModelLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28598,54 +22348,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the products in your Merchant Center account. The response might contain fewer items than specified by maxResults. Rely on nextPageToken to determine if there are more items to be requested.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.products.list({
-     *     // The maximum number of products to return in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the account that contains the products. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28738,252 +22440,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates an existing product in your Merchant Center account. Only updates attributes provided in the request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.products.update({
-     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The REST ID of the product for which to update.
-     *     productId: 'placeholder-value',
-     *     // The comma-separated list of product attributes to be updated. Example: `"title,salePrice"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. *You must specify the update mask to delete attributes.* Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "additionalImageLinks": [],
-     *       //   "additionalSizeType": "my_additionalSizeType",
-     *       //   "adsGrouping": "my_adsGrouping",
-     *       //   "adsLabels": [],
-     *       //   "adsRedirect": "my_adsRedirect",
-     *       //   "adult": false,
-     *       //   "ageGroup": "my_ageGroup",
-     *       //   "availability": "my_availability",
-     *       //   "availabilityDate": "my_availabilityDate",
-     *       //   "brand": "my_brand",
-     *       //   "canonicalLink": "my_canonicalLink",
-     *       //   "certifications": [],
-     *       //   "channel": "my_channel",
-     *       //   "cloudExportAdditionalProperties": [],
-     *       //   "color": "my_color",
-     *       //   "condition": "my_condition",
-     *       //   "contentLanguage": "my_contentLanguage",
-     *       //   "costOfGoodsSold": {},
-     *       //   "customAttributes": [],
-     *       //   "customLabel0": "my_customLabel0",
-     *       //   "customLabel1": "my_customLabel1",
-     *       //   "customLabel2": "my_customLabel2",
-     *       //   "customLabel3": "my_customLabel3",
-     *       //   "customLabel4": "my_customLabel4",
-     *       //   "description": "my_description",
-     *       //   "disclosureDate": "my_disclosureDate",
-     *       //   "displayAdsId": "my_displayAdsId",
-     *       //   "displayAdsLink": "my_displayAdsLink",
-     *       //   "displayAdsSimilarIds": [],
-     *       //   "displayAdsTitle": "my_displayAdsTitle",
-     *       //   "displayAdsValue": {},
-     *       //   "energyEfficiencyClass": "my_energyEfficiencyClass",
-     *       //   "excludedDestinations": [],
-     *       //   "expirationDate": "my_expirationDate",
-     *       //   "externalSellerId": "my_externalSellerId",
-     *       //   "feedLabel": "my_feedLabel",
-     *       //   "gender": "my_gender",
-     *       //   "googleProductCategory": "my_googleProductCategory",
-     *       //   "gtin": "my_gtin",
-     *       //   "id": "my_id",
-     *       //   "identifierExists": false,
-     *       //   "imageLink": "my_imageLink",
-     *       //   "includedDestinations": [],
-     *       //   "installment": {},
-     *       //   "isBundle": false,
-     *       //   "itemGroupId": "my_itemGroupId",
-     *       //   "kind": "my_kind",
-     *       //   "lifestyleImageLinks": [],
-     *       //   "link": "my_link",
-     *       //   "linkTemplate": "my_linkTemplate",
-     *       //   "loyaltyPoints": {},
-     *       //   "material": "my_material",
-     *       //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
-     *       //   "maxHandlingTime": "my_maxHandlingTime",
-     *       //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
-     *       //   "minHandlingTime": "my_minHandlingTime",
-     *       //   "mobileLink": "my_mobileLink",
-     *       //   "mobileLinkTemplate": "my_mobileLinkTemplate",
-     *       //   "mpn": "my_mpn",
-     *       //   "multipack": "my_multipack",
-     *       //   "offerId": "my_offerId",
-     *       //   "pattern": "my_pattern",
-     *       //   "pause": "my_pause",
-     *       //   "pickupMethod": "my_pickupMethod",
-     *       //   "pickupSla": "my_pickupSla",
-     *       //   "price": {},
-     *       //   "productDetails": [],
-     *       //   "productHeight": {},
-     *       //   "productHighlights": [],
-     *       //   "productLength": {},
-     *       //   "productTypes": [],
-     *       //   "productWeight": {},
-     *       //   "productWidth": {},
-     *       //   "promotionIds": [],
-     *       //   "salePrice": {},
-     *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
-     *       //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
-     *       //   "shipping": [],
-     *       //   "shippingHeight": {},
-     *       //   "shippingLabel": "my_shippingLabel",
-     *       //   "shippingLength": {},
-     *       //   "shippingWeight": {},
-     *       //   "shippingWidth": {},
-     *       //   "shoppingAdsExcludedCountries": [],
-     *       //   "sizeSystem": "my_sizeSystem",
-     *       //   "sizeType": "my_sizeType",
-     *       //   "sizes": [],
-     *       //   "source": "my_source",
-     *       //   "subscriptionCost": {},
-     *       //   "targetCountry": "my_targetCountry",
-     *       //   "taxCategory": "my_taxCategory",
-     *       //   "taxes": [],
-     *       //   "title": "my_title",
-     *       //   "transitTimeLabel": "my_transitTimeLabel",
-     *       //   "unitPricingBaseMeasure": {},
-     *       //   "unitPricingMeasure": {},
-     *       //   "virtualModelLink": "my_virtualModelLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalImageLinks": [],
-     *   //   "additionalSizeType": "my_additionalSizeType",
-     *   //   "adsGrouping": "my_adsGrouping",
-     *   //   "adsLabels": [],
-     *   //   "adsRedirect": "my_adsRedirect",
-     *   //   "adult": false,
-     *   //   "ageGroup": "my_ageGroup",
-     *   //   "availability": "my_availability",
-     *   //   "availabilityDate": "my_availabilityDate",
-     *   //   "brand": "my_brand",
-     *   //   "canonicalLink": "my_canonicalLink",
-     *   //   "certifications": [],
-     *   //   "channel": "my_channel",
-     *   //   "cloudExportAdditionalProperties": [],
-     *   //   "color": "my_color",
-     *   //   "condition": "my_condition",
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "costOfGoodsSold": {},
-     *   //   "customAttributes": [],
-     *   //   "customLabel0": "my_customLabel0",
-     *   //   "customLabel1": "my_customLabel1",
-     *   //   "customLabel2": "my_customLabel2",
-     *   //   "customLabel3": "my_customLabel3",
-     *   //   "customLabel4": "my_customLabel4",
-     *   //   "description": "my_description",
-     *   //   "disclosureDate": "my_disclosureDate",
-     *   //   "displayAdsId": "my_displayAdsId",
-     *   //   "displayAdsLink": "my_displayAdsLink",
-     *   //   "displayAdsSimilarIds": [],
-     *   //   "displayAdsTitle": "my_displayAdsTitle",
-     *   //   "displayAdsValue": {},
-     *   //   "energyEfficiencyClass": "my_energyEfficiencyClass",
-     *   //   "excludedDestinations": [],
-     *   //   "expirationDate": "my_expirationDate",
-     *   //   "externalSellerId": "my_externalSellerId",
-     *   //   "feedLabel": "my_feedLabel",
-     *   //   "gender": "my_gender",
-     *   //   "googleProductCategory": "my_googleProductCategory",
-     *   //   "gtin": "my_gtin",
-     *   //   "id": "my_id",
-     *   //   "identifierExists": false,
-     *   //   "imageLink": "my_imageLink",
-     *   //   "includedDestinations": [],
-     *   //   "installment": {},
-     *   //   "isBundle": false,
-     *   //   "itemGroupId": "my_itemGroupId",
-     *   //   "kind": "my_kind",
-     *   //   "lifestyleImageLinks": [],
-     *   //   "link": "my_link",
-     *   //   "linkTemplate": "my_linkTemplate",
-     *   //   "loyaltyPoints": {},
-     *   //   "material": "my_material",
-     *   //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
-     *   //   "maxHandlingTime": "my_maxHandlingTime",
-     *   //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
-     *   //   "minHandlingTime": "my_minHandlingTime",
-     *   //   "mobileLink": "my_mobileLink",
-     *   //   "mobileLinkTemplate": "my_mobileLinkTemplate",
-     *   //   "mpn": "my_mpn",
-     *   //   "multipack": "my_multipack",
-     *   //   "offerId": "my_offerId",
-     *   //   "pattern": "my_pattern",
-     *   //   "pause": "my_pause",
-     *   //   "pickupMethod": "my_pickupMethod",
-     *   //   "pickupSla": "my_pickupSla",
-     *   //   "price": {},
-     *   //   "productDetails": [],
-     *   //   "productHeight": {},
-     *   //   "productHighlights": [],
-     *   //   "productLength": {},
-     *   //   "productTypes": [],
-     *   //   "productWeight": {},
-     *   //   "productWidth": {},
-     *   //   "promotionIds": [],
-     *   //   "salePrice": {},
-     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
-     *   //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
-     *   //   "shipping": [],
-     *   //   "shippingHeight": {},
-     *   //   "shippingLabel": "my_shippingLabel",
-     *   //   "shippingLength": {},
-     *   //   "shippingWeight": {},
-     *   //   "shippingWidth": {},
-     *   //   "shoppingAdsExcludedCountries": [],
-     *   //   "sizeSystem": "my_sizeSystem",
-     *   //   "sizeType": "my_sizeType",
-     *   //   "sizes": [],
-     *   //   "source": "my_source",
-     *   //   "subscriptionCost": {},
-     *   //   "targetCountry": "my_targetCountry",
-     *   //   "taxCategory": "my_taxCategory",
-     *   //   "taxes": [],
-     *   //   "title": "my_title",
-     *   //   "transitTimeLabel": "my_transitTimeLabel",
-     *   //   "unitPricingBaseMeasure": {},
-     *   //   "unitPricingMeasure": {},
-     *   //   "virtualModelLink": "my_virtualModelLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29161,54 +22617,6 @@ export namespace content_v2_1 {
 
     /**
      * Gets the statuses of multiple products in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.productstatuses.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29306,60 +22714,6 @@ export namespace content_v2_1 {
 
     /**
      * Gets the status of a product from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.productstatuses.get({
-     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
-     *     destinations: 'placeholder-value',
-     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The REST ID of the product.
-     *     productId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creationDate": "my_creationDate",
-     *   //   "destinationStatuses": [],
-     *   //   "googleExpirationDate": "my_googleExpirationDate",
-     *   //   "itemLevelIssues": [],
-     *   //   "kind": "my_kind",
-     *   //   "lastUpdateDate": "my_lastUpdateDate",
-     *   //   "link": "my_link",
-     *   //   "productId": "my_productId",
-     *   //   "title": "my_title"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29447,56 +22801,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the statuses of the products in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.productstatuses.list({
-     *     // If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
-     *     destinations: 'placeholder-value',
-     *     // The maximum number of product statuses to return in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the account that contains the products. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29640,61 +22944,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the metrics report for a given Repricing product.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.productstatuses.repricingreports.list({
-     *     // Gets Repricing reports on and before this date in the merchant's timezone. You can only retrieve data up to 7 days ago (default) or earlier. Format is YYYY-MM-DD.
-     *     endDate: 'placeholder-value',
-     *     // Required. Id of the merchant who owns the Repricing rule.
-     *     merchantId: 'placeholder-value',
-     *     // Maximum number of days of reports to return. There can be more than one rule report returned per day. For example, if 3 rule types got applied to the same product within a 24-hour period, then a page_size of 1 will return 3 rule reports. The page size defaults to 50 and values above 1000 are coerced to 1000. This service may return fewer days of reports than this value, for example, if the time between your start and end date is less than the page size.
-     *     pageSize: 'placeholder-value',
-     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Id of the Repricing product. Also known as the [REST_ID](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.id)
-     *     productId: 'placeholder-value',
-     *     // Id of the Repricing rule. If specified, only gets this rule's reports.
-     *     ruleId: 'placeholder-value',
-     *     // Gets Repricing reports on and after this date in the merchant's timezone, up to one year ago. Do not use a start date later than 7 days ago (default). Format is YYYY-MM-DD.
-     *     startDate: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "repricingProductReports": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29831,136 +23080,6 @@ export namespace content_v2_1 {
 
     /**
      * Inserts a promotion for your Merchant Center account. If the promotion already exists, then it updates the promotion instead. To [end or delete] (https://developers.google.com/shopping-content/guides/promotions#end_a_promotion) a promotion update the time period of the promotion to a time that has already passed.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.promotions.create({
-     *     // Required. The ID of the account that contains the collection.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "brand": [],
-     *       //   "brandExclusion": [],
-     *       //   "contentLanguage": "my_contentLanguage",
-     *       //   "couponValueType": "my_couponValueType",
-     *       //   "freeGiftDescription": "my_freeGiftDescription",
-     *       //   "freeGiftItemId": "my_freeGiftItemId",
-     *       //   "freeGiftValue": {},
-     *       //   "genericRedemptionCode": "my_genericRedemptionCode",
-     *       //   "getThisQuantityDiscounted": 0,
-     *       //   "id": "my_id",
-     *       //   "itemGroupId": [],
-     *       //   "itemGroupIdExclusion": [],
-     *       //   "itemId": [],
-     *       //   "itemIdExclusion": [],
-     *       //   "limitQuantity": 0,
-     *       //   "limitValue": {},
-     *       //   "longTitle": "my_longTitle",
-     *       //   "minimumPurchaseAmount": {},
-     *       //   "minimumPurchaseQuantity": 0,
-     *       //   "moneyBudget": {},
-     *       //   "moneyOffAmount": {},
-     *       //   "offerType": "my_offerType",
-     *       //   "orderLimit": 0,
-     *       //   "percentOff": 0,
-     *       //   "productApplicability": "my_productApplicability",
-     *       //   "productType": [],
-     *       //   "productTypeExclusion": [],
-     *       //   "promotionDestinationIds": [],
-     *       //   "promotionDisplayDates": "my_promotionDisplayDates",
-     *       //   "promotionDisplayTimePeriod": {},
-     *       //   "promotionEffectiveDates": "my_promotionEffectiveDates",
-     *       //   "promotionEffectiveTimePeriod": {},
-     *       //   "promotionId": "my_promotionId",
-     *       //   "promotionStatus": {},
-     *       //   "promotionUrl": "my_promotionUrl",
-     *       //   "redemptionChannel": [],
-     *       //   "shippingServiceNames": [],
-     *       //   "storeApplicability": "my_storeApplicability",
-     *       //   "storeCode": [],
-     *       //   "storeCodeExclusion": [],
-     *       //   "targetCountry": "my_targetCountry"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "brand": [],
-     *   //   "brandExclusion": [],
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "couponValueType": "my_couponValueType",
-     *   //   "freeGiftDescription": "my_freeGiftDescription",
-     *   //   "freeGiftItemId": "my_freeGiftItemId",
-     *   //   "freeGiftValue": {},
-     *   //   "genericRedemptionCode": "my_genericRedemptionCode",
-     *   //   "getThisQuantityDiscounted": 0,
-     *   //   "id": "my_id",
-     *   //   "itemGroupId": [],
-     *   //   "itemGroupIdExclusion": [],
-     *   //   "itemId": [],
-     *   //   "itemIdExclusion": [],
-     *   //   "limitQuantity": 0,
-     *   //   "limitValue": {},
-     *   //   "longTitle": "my_longTitle",
-     *   //   "minimumPurchaseAmount": {},
-     *   //   "minimumPurchaseQuantity": 0,
-     *   //   "moneyBudget": {},
-     *   //   "moneyOffAmount": {},
-     *   //   "offerType": "my_offerType",
-     *   //   "orderLimit": 0,
-     *   //   "percentOff": 0,
-     *   //   "productApplicability": "my_productApplicability",
-     *   //   "productType": [],
-     *   //   "productTypeExclusion": [],
-     *   //   "promotionDestinationIds": [],
-     *   //   "promotionDisplayDates": "my_promotionDisplayDates",
-     *   //   "promotionDisplayTimePeriod": {},
-     *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
-     *   //   "promotionEffectiveTimePeriod": {},
-     *   //   "promotionId": "my_promotionId",
-     *   //   "promotionStatus": {},
-     *   //   "promotionUrl": "my_promotionUrl",
-     *   //   "redemptionChannel": [],
-     *   //   "shippingServiceNames": [],
-     *   //   "storeApplicability": "my_storeApplicability",
-     *   //   "storeCode": [],
-     *   //   "storeCodeExclusion": [],
-     *   //   "targetCountry": "my_targetCountry"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30049,90 +23168,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a promotion from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.promotions.get({
-     *     // Required. REST ID of the promotion to retrieve.
-     *     id: 'placeholder-value',
-     *     // Required. The ID of the account that contains the collection.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "brand": [],
-     *   //   "brandExclusion": [],
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "couponValueType": "my_couponValueType",
-     *   //   "freeGiftDescription": "my_freeGiftDescription",
-     *   //   "freeGiftItemId": "my_freeGiftItemId",
-     *   //   "freeGiftValue": {},
-     *   //   "genericRedemptionCode": "my_genericRedemptionCode",
-     *   //   "getThisQuantityDiscounted": 0,
-     *   //   "id": "my_id",
-     *   //   "itemGroupId": [],
-     *   //   "itemGroupIdExclusion": [],
-     *   //   "itemId": [],
-     *   //   "itemIdExclusion": [],
-     *   //   "limitQuantity": 0,
-     *   //   "limitValue": {},
-     *   //   "longTitle": "my_longTitle",
-     *   //   "minimumPurchaseAmount": {},
-     *   //   "minimumPurchaseQuantity": 0,
-     *   //   "moneyBudget": {},
-     *   //   "moneyOffAmount": {},
-     *   //   "offerType": "my_offerType",
-     *   //   "orderLimit": 0,
-     *   //   "percentOff": 0,
-     *   //   "productApplicability": "my_productApplicability",
-     *   //   "productType": [],
-     *   //   "productTypeExclusion": [],
-     *   //   "promotionDestinationIds": [],
-     *   //   "promotionDisplayDates": "my_promotionDisplayDates",
-     *   //   "promotionDisplayTimePeriod": {},
-     *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
-     *   //   "promotionEffectiveTimePeriod": {},
-     *   //   "promotionId": "my_promotionId",
-     *   //   "promotionStatus": {},
-     *   //   "promotionUrl": "my_promotionUrl",
-     *   //   "redemptionChannel": [],
-     *   //   "shippingServiceNames": [],
-     *   //   "storeApplicability": "my_storeApplicability",
-     *   //   "storeCode": [],
-     *   //   "storeCodeExclusion": [],
-     *   //   "targetCountry": "my_targetCountry"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30219,57 +23254,6 @@ export namespace content_v2_1 {
 
     /**
      * List all promotions from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.promotions.list({
-     *     // [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (for example, "US"), used as a filter on promotions target country.
-     *     countryCode: 'placeholder-value',
-     *     // The two-letter ISO 639-1 language code associated with the promotions, used as a filter.
-     *     languageCode: 'placeholder-value',
-     *     // Required. The ID of the account that contains the collection.
-     *     merchantId: 'placeholder-value',
-     *     // The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 labels will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListPromotion` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotion` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "promotions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30414,50 +23398,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a Merchant Center account's pubsub notification settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.pubsubnotificationsettings.get({
-     *     // The ID of the account for which to get pubsub notification settings.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cloudTopicName": "my_cloudTopicName",
-     *   //   "kind": "my_kind",
-     *   //   "registeredEvents": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30552,60 +23492,6 @@ export namespace content_v2_1 {
 
     /**
      * Register a Merchant Center account for pubsub notifications. Note that cloud topic name shouldn't be provided as part of the request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.pubsubnotificationsettings.update({
-     *     // The ID of the account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "cloudTopicName": "my_cloudTopicName",
-     *       //   "kind": "my_kind",
-     *       //   "registeredEvents": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cloudTopicName": "my_cloudTopicName",
-     *   //   "kind": "my_kind",
-     *   //   "registeredEvents": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30727,53 +23613,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the daily call quota and usage per method for your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.quotas.list({
-     *     // Required. The ID of the account that has quota. This account must be an admin.
-     *     merchantId: 'placeholder-value',
-     *     // The maximum number of quotas to return in the response, used for paging. Defaults to 500; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "methodQuotas": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30888,53 +23727,6 @@ export namespace content_v2_1 {
 
     /**
      * Generates recommendations for a merchant.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.recommendations.generate({
-     *     // Optional. List of allowed tags. Tags are a set of predefined strings that describe the category that individual recommendation types belong to. User can specify zero or more tags in this field to indicate what categories of recommendations they want to receive. Current list of supported tags: - TREND
-     *     allowedTag: 'placeholder-value',
-     *     // Optional. Language code of the client. If not set, the result will be in default language (English). This language code affects all fields prefixed with "localized". This should be set to ISO 639-1 country code. List of currently verified supported language code: en, fr, cs, da, de, es, it, nl, no, pl, pt, pt, fi, sv, vi, tr, th, ko, zh-CN, zh-TW, ja, id, hi
-     *     languageCode: 'placeholder-value',
-     *     // Required. The ID of the account to fetch recommendations for.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "recommendations": [],
-     *   //   "responseToken": "my_responseToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31031,54 +23823,6 @@ export namespace content_v2_1 {
 
     /**
      * Reports an interaction on a recommendation for a merchant.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.recommendations.reportInteraction({
-     *     // Required. The ID of the account that wants to report an interaction.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "interactionType": "my_interactionType",
-     *       //   "responseToken": "my_responseToken",
-     *       //   "subtype": "my_subtype",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31200,54 +23944,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates regional inventory for multiple products or regions in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.regionalinventory.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31345,70 +24041,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates the regional inventory of a product in your Merchant Center account. If a regional inventory with the same region ID already exists, this method updates that entry.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.regionalinventory.insert({
-     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The REST ID of the product for which to update the regional inventory.
-     *     productId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "availability": "my_availability",
-     *       //   "customAttributes": [],
-     *       //   "kind": "my_kind",
-     *       //   "price": {},
-     *       //   "regionId": "my_regionId",
-     *       //   "salePrice": {},
-     *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "availability": "my_availability",
-     *   //   "customAttributes": [],
-     *   //   "kind": "my_kind",
-     *   //   "price": {},
-     *   //   "regionId": "my_regionId",
-     *   //   "salePrice": {},
-     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31531,70 +24163,6 @@ export namespace content_v2_1 {
 
     /**
      * Creates a region definition in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.regions.create({
-     *     // Required. The id of the merchant for which to create region definition.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The id of the region to create.
-     *     regionId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "geotargetArea": {},
-     *       //   "merchantId": "my_merchantId",
-     *       //   "postalCodeArea": {},
-     *       //   "regionId": "my_regionId",
-     *       //   "regionalInventoryEligible": false,
-     *       //   "shippingEligible": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "geotargetArea": {},
-     *   //   "merchantId": "my_merchantId",
-     *   //   "postalCodeArea": {},
-     *   //   "regionId": "my_regionId",
-     *   //   "regionalInventoryEligible": false,
-     *   //   "shippingEligible": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31682,45 +24250,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a region definition from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.regions.delete({
-     *     // Required. The id of the merchant for which to delete region definition.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The id of the region to delete.
-     *     regionId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31805,56 +24334,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a region defined in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.regions.get({
-     *     // Required. The id of the merchant for which to retrieve region definition.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The id of the region to retrieve.
-     *     regionId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "geotargetArea": {},
-     *   //   "merchantId": "my_merchantId",
-     *   //   "postalCodeArea": {},
-     *   //   "regionId": "my_regionId",
-     *   //   "regionalInventoryEligible": false,
-     *   //   "shippingEligible": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31941,53 +24420,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the regions in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.regions.list({
-     *     // Required. The id of the merchant for which to list region definitions.
-     *     merchantId: 'placeholder-value',
-     *     // The maximum number of regions to return. The service may return fewer than this value. If unspecified, at most 50 rules will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListRegions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRegions` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "regions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32078,72 +24510,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates a region definition in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.regions.patch({
-     *     // Required. The id of the merchant for which to update region definition.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The id of the region to update.
-     *     regionId: 'placeholder-value',
-     *     // Optional. The comma-separated field mask indicating the fields to update. Example: `"displayName,postalCodeArea.regionCode"`.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "geotargetArea": {},
-     *       //   "merchantId": "my_merchantId",
-     *       //   "postalCodeArea": {},
-     *       //   "regionId": "my_regionId",
-     *       //   "regionalInventoryEligible": false,
-     *       //   "shippingEligible": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "geotargetArea": {},
-     *   //   "merchantId": "my_merchantId",
-     *   //   "postalCodeArea": {},
-     *   //   "regionId": "my_regionId",
-     *   //   "regionalInventoryEligible": false,
-     *   //   "shippingEligible": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32306,59 +24672,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves merchant performance mertrics matching the search query and optionally segmented by selected dimensions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.reports.search({
-     *     // Required. Id of the merchant making the call. Must be a standalone account or an MCA subaccount.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken",
-     *       //   "query": "my_query"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "results": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32468,80 +24781,6 @@ export namespace content_v2_1 {
 
     /**
      * Creates a repricing rule for your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.repricingrules.create({
-     *     // Required. The id of the merchant who owns the repricing rule.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The id of the rule to create.
-     *     ruleId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "cogsBasedRule": {},
-     *       //   "countryCode": "my_countryCode",
-     *       //   "effectiveTimePeriod": {},
-     *       //   "eligibleOfferMatcher": {},
-     *       //   "languageCode": "my_languageCode",
-     *       //   "merchantId": "my_merchantId",
-     *       //   "paused": false,
-     *       //   "restriction": {},
-     *       //   "ruleId": "my_ruleId",
-     *       //   "statsBasedRule": {},
-     *       //   "title": "my_title",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cogsBasedRule": {},
-     *   //   "countryCode": "my_countryCode",
-     *   //   "effectiveTimePeriod": {},
-     *   //   "eligibleOfferMatcher": {},
-     *   //   "languageCode": "my_languageCode",
-     *   //   "merchantId": "my_merchantId",
-     *   //   "paused": false,
-     *   //   "restriction": {},
-     *   //   "ruleId": "my_ruleId",
-     *   //   "statsBasedRule": {},
-     *   //   "title": "my_title",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32629,45 +24868,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a repricing rule in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.repricingrules.delete({
-     *     // Required. The id of the merchant who owns the repricing rule.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The id of the rule to Delete.
-     *     ruleId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32753,61 +24953,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a repricing rule from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.repricingrules.get({
-     *     // Required. The id of the merchant who owns the repricing rule.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The id of the rule to retrieve.
-     *     ruleId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cogsBasedRule": {},
-     *   //   "countryCode": "my_countryCode",
-     *   //   "effectiveTimePeriod": {},
-     *   //   "eligibleOfferMatcher": {},
-     *   //   "languageCode": "my_languageCode",
-     *   //   "merchantId": "my_merchantId",
-     *   //   "paused": false,
-     *   //   "restriction": {},
-     *   //   "ruleId": "my_ruleId",
-     *   //   "statsBasedRule": {},
-     *   //   "title": "my_title",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32895,57 +25040,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the repricing rules in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.repricingrules.list({
-     *     // [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (e.g. "US"), used as a filter on repricing rules.
-     *     countryCode: 'placeholder-value',
-     *     // The two-letter ISO 639-1 language code associated with the repricing rule, used as a filter.
-     *     languageCode: 'placeholder-value',
-     *     // Required. The id of the merchant who owns the repricing rule.
-     *     merchantId: 'placeholder-value',
-     *     // The maximum number of repricing rules to return. The service may return fewer than this value. If unspecified, at most 50 rules will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListRepricingRules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepricingRules` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "repricingRules": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33040,80 +25134,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates a repricing rule in your Merchant Center account. All mutable fields will be overwritten in each update request. In each update, you must provide all required mutable fields, or an error will be thrown. If you do not provide an optional field in the update request, if that field currently exists, it will be deleted from the rule.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.repricingrules.patch({
-     *     // Required. The id of the merchant who owns the repricing rule.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The id of the rule to update.
-     *     ruleId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "cogsBasedRule": {},
-     *       //   "countryCode": "my_countryCode",
-     *       //   "effectiveTimePeriod": {},
-     *       //   "eligibleOfferMatcher": {},
-     *       //   "languageCode": "my_languageCode",
-     *       //   "merchantId": "my_merchantId",
-     *       //   "paused": false,
-     *       //   "restriction": {},
-     *       //   "ruleId": "my_ruleId",
-     *       //   "statsBasedRule": {},
-     *       //   "title": "my_title",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cogsBasedRule": {},
-     *   //   "countryCode": "my_countryCode",
-     *   //   "effectiveTimePeriod": {},
-     *   //   "eligibleOfferMatcher": {},
-     *   //   "languageCode": "my_languageCode",
-     *   //   "merchantId": "my_merchantId",
-     *   //   "paused": false,
-     *   //   "restriction": {},
-     *   //   "ruleId": "my_ruleId",
-     *   //   "statsBasedRule": {},
-     *   //   "title": "my_title",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33286,59 +25306,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the metrics report for a given Repricing rule.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.repricingrules.repricingreports.list({
-     *     // Gets Repricing reports on and before this date in the merchant's timezone. You can only retrieve data up to 7 days ago (default) or earlier. Format: YYYY-MM-DD.
-     *     endDate: 'placeholder-value',
-     *     // Required. Id of the merchant who owns the Repricing rule.
-     *     merchantId: 'placeholder-value',
-     *     // Maximum number of daily reports to return. Each report includes data from a single 24-hour period. The page size defaults to 50 and values above 1000 are coerced to 1000. This service may return fewer days than this value, for example, if the time between your start and end date is less than page size.
-     *     pageSize: 'placeholder-value',
-     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Id of the Repricing rule.
-     *     ruleId: 'placeholder-value',
-     *     // Gets Repricing reports on and after this date in the merchant's timezone, up to one year ago. Do not use a start date later than 7 days ago (default). Format: YYYY-MM-DD.
-     *     startDate: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "repricingRuleReports": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33471,54 +25438,6 @@ export namespace content_v2_1 {
 
     /**
      * Batches multiple return address related calls in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnaddress.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33616,45 +25535,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a return address for the given Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnaddress.delete({
-     *     // The Merchant Center account from which to delete the given return address.
-     *     merchantId: 'placeholder-value',
-     *     // Return address ID generated by Google.
-     *     returnAddressId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33741,55 +25621,6 @@ export namespace content_v2_1 {
 
     /**
      * Gets a return address of the Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnaddress.get({
-     *     // The Merchant Center account to get a return address for.
-     *     merchantId: 'placeholder-value',
-     *     // Return address ID generated by Google.
-     *     returnAddressId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "address": {},
-     *   //   "country": "my_country",
-     *   //   "kind": "my_kind",
-     *   //   "label": "my_label",
-     *   //   "phoneNumber": "my_phoneNumber",
-     *   //   "returnAddressId": "my_returnAddressId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33878,66 +25709,6 @@ export namespace content_v2_1 {
 
     /**
      * Inserts a return address for the Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnaddress.insert({
-     *     // The Merchant Center account to insert a return address for.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "address": {},
-     *       //   "country": "my_country",
-     *       //   "kind": "my_kind",
-     *       //   "label": "my_label",
-     *       //   "phoneNumber": "my_phoneNumber",
-     *       //   "returnAddressId": "my_returnAddressId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "address": {},
-     *   //   "country": "my_country",
-     *   //   "kind": "my_kind",
-     *   //   "label": "my_label",
-     *   //   "phoneNumber": "my_phoneNumber",
-     *   //   "returnAddressId": "my_returnAddressId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34026,56 +25797,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the return addresses of the Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnaddress.list({
-     *     // List only return addresses applicable to the given country of sale. When omitted, all return addresses are listed.
-     *     country: 'placeholder-value',
-     *     // The maximum number of addresses in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The Merchant Center account to list return addresses for.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34239,54 +25960,6 @@ export namespace content_v2_1 {
 
     /**
      * Batches multiple return policy related calls in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnpolicy.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34384,45 +26057,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes a return policy for the given Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnpolicy.delete({
-     *     // The Merchant Center account from which to delete the given return policy.
-     *     merchantId: 'placeholder-value',
-     *     // Return policy ID generated by Google.
-     *     returnPolicyId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34509,58 +26143,6 @@ export namespace content_v2_1 {
 
     /**
      * Gets a return policy of the Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnpolicy.get({
-     *     // The Merchant Center account to get a return policy for.
-     *     merchantId: 'placeholder-value',
-     *     // Return policy ID generated by Google.
-     *     returnPolicyId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "country": "my_country",
-     *   //   "kind": "my_kind",
-     *   //   "label": "my_label",
-     *   //   "name": "my_name",
-     *   //   "nonFreeReturnReasons": [],
-     *   //   "policy": {},
-     *   //   "returnPolicyId": "my_returnPolicyId",
-     *   //   "returnShippingFee": {},
-     *   //   "seasonalOverrides": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34648,72 +26230,6 @@ export namespace content_v2_1 {
 
     /**
      * Inserts a return policy for the Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnpolicy.insert({
-     *     // The Merchant Center account to insert a return policy for.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "country": "my_country",
-     *       //   "kind": "my_kind",
-     *       //   "label": "my_label",
-     *       //   "name": "my_name",
-     *       //   "nonFreeReturnReasons": [],
-     *       //   "policy": {},
-     *       //   "returnPolicyId": "my_returnPolicyId",
-     *       //   "returnShippingFee": {},
-     *       //   "seasonalOverrides": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "country": "my_country",
-     *   //   "kind": "my_kind",
-     *   //   "label": "my_label",
-     *   //   "name": "my_name",
-     *   //   "nonFreeReturnReasons": [],
-     *   //   "policy": {},
-     *   //   "returnPolicyId": "my_returnPolicyId",
-     *   //   "returnShippingFee": {},
-     *   //   "seasonalOverrides": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34802,49 +26318,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the return policies of the Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnpolicy.list({
-     *     // The Merchant Center account to list return policies for.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34993,74 +26466,6 @@ export namespace content_v2_1 {
 
     /**
      * Creates a new return policy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnpolicyonline.create({
-     *     // Required. The id of the merchant for which to retrieve the return policy online object.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "countries": [],
-     *       //   "itemConditions": [],
-     *       //   "label": "my_label",
-     *       //   "name": "my_name",
-     *       //   "policy": {},
-     *       //   "restockingFee": {},
-     *       //   "returnMethods": [],
-     *       //   "returnPolicyId": "my_returnPolicyId",
-     *       //   "returnPolicyUri": "my_returnPolicyUri",
-     *       //   "returnReasonCategoryInfo": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "countries": [],
-     *   //   "itemConditions": [],
-     *   //   "label": "my_label",
-     *   //   "name": "my_name",
-     *   //   "policy": {},
-     *   //   "restockingFee": {},
-     *   //   "returnMethods": [],
-     *   //   "returnPolicyId": "my_returnPolicyId",
-     *   //   "returnPolicyUri": "my_returnPolicyUri",
-     *   //   "returnReasonCategoryInfo": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35151,45 +26556,6 @@ export namespace content_v2_1 {
 
     /**
      * Deletes an existing return policy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnpolicyonline.delete({
-     *     // Required. The id of the merchant for which to retrieve the return policy online object.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The id of the return policy to delete.
-     *     returnPolicyId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35276,59 +26642,6 @@ export namespace content_v2_1 {
 
     /**
      * Gets an existing return policy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnpolicyonline.get({
-     *     // Required. The id of the merchant for which to retrieve the return policy online object.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The id of the return policy to retrieve.
-     *     returnPolicyId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "countries": [],
-     *   //   "itemConditions": [],
-     *   //   "label": "my_label",
-     *   //   "name": "my_name",
-     *   //   "policy": {},
-     *   //   "restockingFee": {},
-     *   //   "returnMethods": [],
-     *   //   "returnPolicyId": "my_returnPolicyId",
-     *   //   "returnPolicyUri": "my_returnPolicyUri",
-     *   //   "returnReasonCategoryInfo": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35420,48 +26733,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists all existing return policies.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnpolicyonline.list({
-     *     // Required. The id of the merchant for which to retrieve the return policy online object.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "returnPolicies": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35558,76 +26829,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates an existing return policy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.returnpolicyonline.patch({
-     *     // Required. The id of the merchant for which to retrieve the return policy online object.
-     *     merchantId: 'placeholder-value',
-     *     // Required. The id of the return policy to update.
-     *     returnPolicyId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "countries": [],
-     *       //   "itemConditions": [],
-     *       //   "label": "my_label",
-     *       //   "name": "my_name",
-     *       //   "policy": {},
-     *       //   "restockingFee": {},
-     *       //   "returnMethods": [],
-     *       //   "returnPolicyId": "my_returnPolicyId",
-     *       //   "returnPolicyUri": "my_returnPolicyUri",
-     *       //   "returnReasonCategoryInfo": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "countries": [],
-     *   //   "itemConditions": [],
-     *   //   "label": "my_label",
-     *   //   "name": "my_name",
-     *   //   "policy": {},
-     *   //   "restockingFee": {},
-     *   //   "returnMethods": [],
-     *   //   "returnPolicyId": "my_returnPolicyId",
-     *   //   "returnPolicyUri": "my_returnPolicyUri",
-     *   //   "returnReasonCategoryInfo": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35784,57 +26985,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a settlement report from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.settlementreports.get({
-     *     // The Merchant Center account of the settlement report.
-     *     merchantId: 'placeholder-value',
-     *     // The Google-provided ID of the settlement.
-     *     settlementId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "endDate": "my_endDate",
-     *   //   "kind": "my_kind",
-     *   //   "previousBalance": {},
-     *   //   "settlementId": "my_settlementId",
-     *   //   "startDate": "my_startDate",
-     *   //   "transferAmount": {},
-     *   //   "transferDate": "my_transferDate",
-     *   //   "transferIds": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35923,58 +27073,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a list of settlement reports from your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.settlementreports.list({
-     *     // The maximum number of settlements to return in the response, used for paging. The default value is 200 returns per page, and the maximum allowed value is 5000 returns per page.
-     *     maxResults: 'placeholder-value',
-     *     // The Merchant Center account to list settlements for.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *     // Obtains settlements which have transactions before this date (inclusively), in ISO 8601 format.
-     *     transferEndDate: 'placeholder-value',
-     *     // Obtains settlements which have transactions after this date (inclusively), in ISO 8601 format.
-     *     transferStartDate: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36113,58 +27211,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves a list of transactions for the settlement.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.settlementtransactions.list({
-     *     // The maximum number of transactions to return in the response, used for paging. The default value is 200 transactions per page, and the maximum allowed value is 5000 transactions per page.
-     *     maxResults: 'placeholder-value',
-     *     // The Merchant Center account to list transactions for.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *     // The Google-provided ID of the settlement.
-     *     settlementId: 'placeholder-value',
-     *     // The list of transactions to return. If not set, all transactions will be returned.
-     *     transactionIds: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36293,54 +27339,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves and updates the shipping settings of multiple accounts in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.shippingsettings.custombatch({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entries": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36438,53 +27436,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the shipping settings of the account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.shippingsettings.get({
-     *     // The ID of the account for which to get/update shipping settings.
-     *     accountId: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "postalCodeGroups": [],
-     *   //   "services": [],
-     *   //   "warehouses": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36573,49 +27524,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves supported carriers and carrier services for an account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.shippingsettings.getsupportedcarriers({
-     *     // The ID of the account for which to retrieve the supported carriers.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "carriers": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36712,49 +27620,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves supported holidays for an account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.shippingsettings.getsupportedholidays({
-     *     // The ID of the account for which to retrieve the supported holidays.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "holidays": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36851,49 +27716,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves supported pickup services for an account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.shippingsettings.getsupportedpickupservices({
-     *     // The ID of the account for which to retrieve the supported pickup services.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "pickupServices": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36991,54 +27813,6 @@ export namespace content_v2_1 {
 
     /**
      * Lists the shipping settings of the sub-accounts in your Merchant Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.shippingsettings.list({
-     *     // The maximum number of shipping settings to return in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The ID of the managing account. This must be a multi-client account.
-     *     merchantId: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37135,64 +27909,6 @@ export namespace content_v2_1 {
 
     /**
      * Updates the shipping settings of the account. Any fields that are not provided are deleted from the resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.shippingsettings.update({
-     *     // The ID of the account for which to get/update shipping settings.
-     *     accountId: 'placeholder-value',
-     *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "postalCodeGroups": [],
-     *       //   "services": [],
-     *       //   "warehouses": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "postalCodeGroups": [],
-     *   //   "services": [],
-     *   //   "warehouses": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37359,49 +28075,6 @@ export namespace content_v2_1 {
 
     /**
      * Retrieves the status and review eligibility for the Shopping Ads program. Returns errors and warnings if they require action to resolve, will become disapprovals, or impact impressions. Use `accountstatuses` to view all issues for an account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.shoppingadsprogram.get({
-     *     // Required. The ID of the account.
-     *     merchantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "globalState": "my_globalState",
-     *   //   "regionStatuses": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37494,51 +28167,6 @@ export namespace content_v2_1 {
 
     /**
      * Requests a review of Shopping ads in a specific region. This method is only available to selected merchants.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/content.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const content = google.content('v2.1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await content.shoppingadsprogram.requestreview({
-     *     // Required. The ID of the account.
-     *     merchantId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "regionCode": "my_regionCode"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
