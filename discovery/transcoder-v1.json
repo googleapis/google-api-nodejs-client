@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20230621",
+  "revision": "20230731",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -426,7 +426,7 @@
       "type": "object"
     },
     "AnimationEnd": {
-      "description": "End previous overlay animation from the video. Without AnimationEnd, the overlay object will keep the state of previous animation until the end of the video.",
+      "description": "End previous overlay animation from the video. Without `AnimationEnd`, the overlay object will keep the state of previous animation until the end of the video.",
       "id": "AnimationEnd",
       "properties": {
         "startTimeOffset": {
@@ -509,11 +509,11 @@
       "type": "object"
     },
     "AudioMapping": {
-      "description": "The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.",
+      "description": "The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs.",
       "id": "AudioMapping",
       "properties": {
         "atomKey": {
-          "description": "Required. The `EditAtom.key` that references the atom with audio inputs in the `Job.edit_list`.",
+          "description": "Required. The EditAtom.key that references the atom with audio inputs in the JobConfig.edit_list.",
           "type": "string"
         },
         "gainDb": {
@@ -527,7 +527,7 @@
           "type": "integer"
         },
         "inputKey": {
-          "description": "Required. The `Input.key` that identifies the input file.",
+          "description": "Required. The Input.key that identifies the input file.",
           "type": "string"
         },
         "inputTrack": {
@@ -577,7 +577,7 @@
           "type": "string"
         },
         "mapping": {
-          "description": "The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.",
+          "description": "The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs.",
           "items": {
             "$ref": "AudioMapping"
           },
@@ -670,7 +670,7 @@
       "id": "DashConfig",
       "properties": {
         "segmentReferenceScheme": {
-          "description": "The segment reference scheme for a `DASH` manifest. The default is `SEGMENT_LIST`",
+          "description": "The segment reference scheme for a `DASH` manifest. The default is `SEGMENT_LIST`.",
           "enum": [
             "SEGMENT_REFERENCE_SCHEME_UNSPECIFIED",
             "SEGMENT_LIST",
@@ -678,8 +678,8 @@
           ],
           "enumDescriptions": [
             "The segment reference scheme is not specified.",
-            "Lists the URLs of media files for each segment.",
-            "Lists each segment from a template with $Number$ variable."
+            "Explicitly lists the URLs of media files for each segment. For example, if SegmentSettings.individual_segments is `true`, then the manifest contains fields similar to the following: ```xml ... ```",
+            "SegmentSettings.individual_segments must be set to `true` to use this segment reference scheme. Uses the DASH specification `` tag to determine the URLs of media files for each segment. For example: ```xml ... ```"
           ],
           "type": "string"
         }
@@ -766,7 +766,7 @@
           "type": "string"
         },
         "inputs": {
-          "description": "List of `Input.key`s identifying files that should be used in this atom. The listed `inputs` must have the same timeline.",
+          "description": "List of Input.key values identifying files that should be used in this atom. The listed `inputs` must have the same timeline.",
           "items": {
             "type": "string"
           },
@@ -864,7 +864,7 @@
           "type": "number"
         },
         "bFrameCount": {
-          "description": "The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than `VideoStream.gop_frame_count` if set. The default is 0.",
+          "description": "The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H264CodecSettings.gop_frame_count if set. The default is 0.",
           "format": "int32",
           "type": "integer"
         },
@@ -883,7 +883,7 @@
           "type": "integer"
         },
         "enableTwoPass": {
-          "description": "Use two-pass encoding strategy to achieve better video quality. `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.",
+          "description": "Use two-pass encoding strategy to achieve better video quality. H264CodecSettings.rate_control_mode must be `vbr`. The default is `false`.",
           "type": "boolean"
         },
         "entropyCoder": {
@@ -923,7 +923,7 @@
           "type": "string"
         },
         "rateControlMode": {
-          "description": "Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor",
+          "description": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor",
           "type": "string"
         },
         "tune": {
@@ -931,12 +931,12 @@
           "type": "string"
         },
         "vbvFullnessBits": {
-          "description": "Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of `VideoStream.vbv_size_bits`.",
+          "description": "Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H264CodecSettings.vbv_size_bits.",
           "format": "int32",
           "type": "integer"
         },
         "vbvSizeBits": {
-          "description": "Size of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to `VideoStream.bitrate_bps`.",
+          "description": "Size of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to H264CodecSettings.bitrate_bps.",
           "format": "int32",
           "type": "integer"
         },
@@ -962,7 +962,7 @@
           "type": "number"
         },
         "bFrameCount": {
-          "description": "The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than `VideoStream.gop_frame_count` if set. The default is 0.",
+          "description": "The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H265CodecSettings.gop_frame_count if set. The default is 0.",
           "format": "int32",
           "type": "integer"
         },
@@ -981,7 +981,7 @@
           "type": "integer"
         },
         "enableTwoPass": {
-          "description": "Use two-pass encoding strategy to achieve better video quality. `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.",
+          "description": "Use two-pass encoding strategy to achieve better video quality. H265CodecSettings.rate_control_mode must be `vbr`. The default is `false`.",
           "type": "boolean"
         },
         "frameRate": {
@@ -1017,7 +1017,7 @@
           "type": "string"
         },
         "rateControlMode": {
-          "description": "Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor",
+          "description": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor",
           "type": "string"
         },
         "tune": {
@@ -1025,7 +1025,7 @@
           "type": "string"
         },
         "vbvFullnessBits": {
-          "description": "Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of `VideoStream.vbv_size_bits`.",
+          "description": "Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H265CodecSettings.vbv_size_bits.",
           "format": "int32",
           "type": "integer"
         },
@@ -1075,7 +1075,7 @@
           "description": "Preprocessing configurations."
         },
         "uri": {
-          "description": "URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from `Job.input_uri`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).",
+          "description": "URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from Job.input_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).",
           "type": "string"
         }
       },
@@ -1086,7 +1086,7 @@
       "id": "Job",
       "properties": {
         "batchModePriority": {
-          "description": "The processing priority of a batch job. This field can only be set for batch mode jobs, and the default value is 0. This value cannot be negative. Higher values correspond to higher priorities for the job.",
+          "description": "The processing priority of a batch job. This field can only be set for batch mode jobs. The default value is 0. This value cannot be negative. Higher values correspond to higher priorities for the job.",
           "format": "int32",
           "type": "integer"
         },
@@ -1108,7 +1108,7 @@
         },
         "error": {
           "$ref": "Status",
-          "description": "Output only. An error object that describes the reason for the failure. This property is always present when `state` is `FAILED`.",
+          "description": "Output only. An error object that describes the reason for the failure. This property is always present when ProcessingState is `FAILED`.",
           "readOnly": true
         },
         "inputUri": {
@@ -1178,7 +1178,7 @@
             "The job is enqueued and will be picked up for processing soon.",
             "The job is being processed.",
             "The job has been completed successfully.",
-            "The job has failed. For additional information, see `failure_reason` and `failure_details`"
+            "The job has failed. For additional information, see [Troubleshooting](https://cloud.google.com/transcoder/docs/troubleshooting)."
           ],
           "readOnly": true,
           "type": "string"
@@ -1207,7 +1207,7 @@
           "type": "array"
         },
         "editList": {
-          "description": "List of `Edit atom`s. Defines the ultimate timeline of the resulting file or manifest.",
+          "description": "List of edit atoms. Defines the ultimate timeline of the resulting file or manifest.",
           "items": {
             "$ref": "EditAtom"
           },
@@ -1354,11 +1354,11 @@
           "description": "`DASH` manifest configuration."
         },
         "fileName": {
-          "description": "The name of the generated file. The default is `manifest` with the extension suffix corresponding to the `Manifest.type`.",
+          "description": "The name of the generated file. The default is `manifest` with the extension suffix corresponding to the Manifest.type.",
           "type": "string"
         },
         "muxStreams": {
-          "description": "Required. List of user given `MuxStream.key`s that should appear in this manifest. When `Manifest.type` is `HLS`, a media manifest with name `MuxStream.key` and `.m3u8` extension is generated for each element of the `Manifest.mux_streams`.",
+          "description": "Required. List of user supplied MuxStream.key values that should appear in this manifest. When Manifest.type is `HLS`, a media manifest with name MuxStream.key and `.m3u8` extension is generated for each element in this list.",
           "items": {
             "type": "string"
           },
@@ -1401,7 +1401,7 @@
           "type": "string"
         },
         "elementaryStreams": {
-          "description": "List of `ElementaryStream.key`s multiplexed in this stream.",
+          "description": "List of ElementaryStream.key values multiplexed in this stream.",
           "items": {
             "type": "string"
           },
@@ -1412,11 +1412,11 @@
           "type": "string"
         },
         "fileName": {
-          "description": "The name of the generated file. The default is `MuxStream.key` with the extension suffix corresponding to the `MuxStream.container`. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.",
+          "description": "The name of the generated file. The default is MuxStream.key with the extension suffix corresponding to the MuxStream.container. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.",
           "type": "string"
         },
         "key": {
-          "description": "A unique key for this multiplexed stream. HLS media manifests will be named `MuxStream.key` with the `.m3u8` extension suffix.",
+          "description": "A unique key for this multiplexed stream.",
           "type": "string"
         },
         "segmentSettings": {
@@ -1448,7 +1448,7 @@
       "id": "Output",
       "properties": {
         "uri": {
-          "description": "URI for the output file(s). For example, `gs://my-bucket/outputs/`. If empty, the value is populated from `Job.output_uri`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).",
+          "description": "URI for the output file(s). For example, `gs://my-bucket/outputs/`. If empty, the value is populated from Job.output_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).",
           "type": "string"
         }
       },
@@ -1459,7 +1459,7 @@
       "id": "Overlay",
       "properties": {
         "animations": {
-          "description": "List of Animations. The list should be chronological, without any time overlap.",
+          "description": "List of animations. The list should be chronological, without any time overlap.",
           "items": {
             "$ref": "Animation"
           },
@@ -1672,15 +1672,15 @@
       "type": "object"
     },
     "TextMapping": {
-      "description": "The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.",
+      "description": "The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs.",
       "id": "TextMapping",
       "properties": {
         "atomKey": {
-          "description": "Required. The `EditAtom.key` that references atom with text inputs in the `Job.edit_list`.",
+          "description": "Required. The EditAtom.key that references atom with text inputs in the JobConfig.edit_list.",
           "type": "string"
         },
         "inputKey": {
-          "description": "Required. The `Input.key` that identifies the input file.",
+          "description": "Required. The Input.key that identifies the input file.",
           "type": "string"
         },
         "inputTrack": {
@@ -1708,7 +1708,7 @@
           "type": "string"
         },
         "mapping": {
-          "description": "The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.",
+          "description": "The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs.",
           "items": {
             "$ref": "TextMapping"
           },
@@ -1779,7 +1779,7 @@
           "type": "string"
         },
         "rateControlMode": {
-          "description": "Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate",
+          "description": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate",
           "type": "string"
         },
         "widthPixels": {
