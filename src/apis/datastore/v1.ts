@@ -133,9 +133,17 @@ export namespace datastore_v1 {
      */
     alias?: string | null;
     /**
+     * Average aggregator.
+     */
+    avg?: Schema$Avg;
+    /**
      * Count aggregator.
      */
     count?: Schema$Count;
+    /**
+     * Sum aggregator.
+     */
+    sum?: Schema$Sum;
   }
   /**
    * Datastore query for running an aggregation over a Query.
@@ -206,6 +214,15 @@ export namespace datastore_v1 {
      * Values in the array. The order of values in an array is preserved as long as all values have identical settings for 'exclude_from_indexes'.
      */
     values?: Schema$Value[];
+  }
+  /**
+   * Average of the values of the requested property. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. * If the aggregated value set is empty, returns `NULL`. * Always returns the result as a double.
+   */
+  export interface Schema$Avg {
+    /**
+     * The property to aggregate on.
+     */
+    property?: Schema$PropertyReference;
   }
   /**
    * The request for Datastore.BeginTransaction.
@@ -1099,7 +1116,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$ReadOnly {
     /**
-     * Reads entities at the given time. This may not be older than 60 seconds.
+     * Reads entities at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
   }
@@ -1116,7 +1133,7 @@ export namespace datastore_v1 {
      */
     readConsistency?: string | null;
     /**
-     * Reads entities as they were at the given time. This may not be older than 270 seconds. This value is only supported for Cloud Firestore in Datastore mode.
+     * Reads entities as they were at the given time. This value is only supported for Cloud Firestore in Datastore mode. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
     /**
@@ -1267,6 +1284,15 @@ export namespace datastore_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Sum of the values of the requested property. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. * If the aggregated value set is empty, returns 0. * Returns a 64-bit integer if the sum result is an integer value and does not overflow. Otherwise, the result is returned as a double. Note that even if all the aggregated values are integers, the result is returned as a double if it cannot fit within a 64-bit signed integer. When this occurs, the returned value will lose precision. * When underflow occurs, floating-point aggregation is non-deterministic. This means that running the same query repeatedly without any changes to the underlying values could produce slightly different results each time. In those cases, values should be stored as integers over floating-point numbers.
+   */
+  export interface Schema$Sum {
+    /**
+     * The property to aggregate on.
+     */
+    property?: Schema$PropertyReference;
   }
   /**
    * Options for beginning a new transaction. Transactions can be created explicitly with calls to Datastore.BeginTransaction or implicitly by setting ReadOptions.new_transaction in read requests.
