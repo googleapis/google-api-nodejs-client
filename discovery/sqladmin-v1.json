@@ -2122,7 +2122,7 @@
       }
     }
   },
-  "revision": "20230627",
+  "revision": "20230728",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2672,6 +2672,10 @@
           "description": "This is always `sql#connectSettings`.",
           "type": "string"
         },
+        "pscEnabled": {
+          "description": "Whether PSC connectivity is enabled for this instance.",
+          "type": "boolean"
+        },
         "region": {
           "description": "The cloud region for the instance. For example, `us-central1`, `europe-west1`. The region cannot be changed after instance creation.",
           "type": "string"
@@ -2935,6 +2939,11 @@
           "$ref": "DiskEncryptionStatus",
           "description": "Disk encryption status specific to an instance."
         },
+        "dnsName": {
+          "description": "Output only. The dns name of the instance.",
+          "readOnly": true,
+          "type": "string"
+        },
         "etag": {
           "description": "This field is deprecated and will be removed from a future version of the API. Use the `settings.settingsVersion` field instead.",
           "type": "string"
@@ -3017,6 +3026,11 @@
         },
         "project": {
           "description": "The project ID of the project containing the Cloud SQL instance. The Google apps domain is prefixed if applicable.",
+          "type": "string"
+        },
+        "pscServiceAttachmentLink": {
+          "description": "Output only. The link to service attachment of PSC instance.",
+          "readOnly": true,
           "type": "string"
         },
         "region": {
@@ -3282,12 +3296,14 @@
               "enum": [
                 "BAK_TYPE_UNSPECIFIED",
                 "FULL",
-                "DIFF"
+                "DIFF",
+                "TLOG"
               ],
               "enumDescriptions": [
-                "default type.",
+                "Default type.",
                 "Full backup.",
-                "Differential backup."
+                "Differential backup.",
+                "Transaction Log backup"
               ],
               "type": "string"
             },
@@ -3682,12 +3698,14 @@
               "enum": [
                 "BAK_TYPE_UNSPECIFIED",
                 "FULL",
-                "DIFF"
+                "DIFF",
+                "TLOG"
               ],
               "enumDescriptions": [
-                "default type.",
+                "Default type.",
                 "Full backup.",
-                "Differential backup."
+                "Differential backup.",
+                "Transaction Log backup"
               ],
               "type": "string"
             },
@@ -3715,6 +3733,15 @@
             "recoveryOnly": {
               "description": "Whether or not the backup importing request will just bring database online without downloading Bak content only one of \"no_recovery\" and \"recovery_only\" can be true otherwise error will return. Applies only to Cloud SQL for SQL Server.",
               "type": "boolean"
+            },
+            "stopAt": {
+              "description": "Optional. StopAt keyword for transaction log import, Applies to Cloud SQL for SQL Server only",
+              "format": "google-datetime",
+              "type": "string"
+            },
+            "stopAtMark": {
+              "description": "Optional. StopAtMark keyword for transaction log import, Applies to Cloud SQL for SQL Server only",
+              "type": "string"
             },
             "striped": {
               "description": "Whether or not the backup set being restored is striped. Applies only to Cloud SQL for SQL Server.",
@@ -4014,6 +4041,10 @@
         "privateNetwork": {
           "description": "The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, `/projects/myProject/global/networks/default`. This setting can be updated, but it cannot be removed after it is set.",
           "type": "string"
+        },
+        "pscConfig": {
+          "$ref": "PscConfig",
+          "description": "PSC settings for this instance."
         },
         "requireSsl": {
           "description": "Whether SSL connections over IP are enforced or not.",
@@ -4602,6 +4633,24 @@
           "description": "The target disk shrink size in GigaBytes.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscConfig": {
+      "description": "PSC settings for a Cloud SQL instance.",
+      "id": "PscConfig",
+      "properties": {
+        "allowedConsumerProjects": {
+          "description": "List of consumer projects that are allow-listed for PSC connections to this instance. This instance can be connected to with PSC from any network in these projects. Each consumer project in this list may be represented by a project number (numeric) or by a project id (alphanumeric).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pscEnabled": {
+          "description": "Whether PSC connectivity is enabled for this instance.",
+          "type": "boolean"
         }
       },
       "type": "object"
