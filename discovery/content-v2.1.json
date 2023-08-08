@@ -2198,6 +2198,87 @@
             "https://www.googleapis.com/auth/content"
           ]
         }
+      },
+      "resources": {
+        "checkoutsettings": {
+          "methods": {
+            "delete": {
+              "description": "Deletes `Checkout` settings and unenrolls merchant from `Checkout` program.",
+              "flatPath": "{merchantId}/freelistingsprogram/checkoutsettings",
+              "httpMethod": "DELETE",
+              "id": "content.freelistingsprogram.checkoutsettings.delete",
+              "parameterOrder": [
+                "merchantId"
+              ],
+              "parameters": {
+                "merchantId": {
+                  "description": "Required. The ID of the account.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "{merchantId}/freelistingsprogram/checkoutsettings",
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "get": {
+              "description": "Gets Checkout settings for the given merchant. This includes information about review state, enrollment state and URL settings.",
+              "flatPath": "{merchantId}/freelistingsprogram/checkoutsettings",
+              "httpMethod": "GET",
+              "id": "content.freelistingsprogram.checkoutsettings.get",
+              "parameterOrder": [
+                "merchantId"
+              ],
+              "parameters": {
+                "merchantId": {
+                  "description": "Required. The ID of the account.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "{merchantId}/freelistingsprogram/checkoutsettings",
+              "response": {
+                "$ref": "CheckoutSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "insert": {
+              "description": "Enrolls merchant in `Checkout` program.",
+              "flatPath": "{merchantId}/freelistingsprogram/checkoutsettings",
+              "httpMethod": "POST",
+              "id": "content.freelistingsprogram.checkoutsettings.insert",
+              "parameterOrder": [
+                "merchantId"
+              ],
+              "parameters": {
+                "merchantId": {
+                  "description": "Required. The ID of the account.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "{merchantId}/freelistingsprogram/checkoutsettings",
+              "request": {
+                "$ref": "InsertCheckoutSettingsRequest"
+              },
+              "response": {
+                "$ref": "CheckoutSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        }
       }
     },
     "liasettings": {
@@ -6271,7 +6352,7 @@
       }
     }
   },
-  "revision": "20230714",
+  "revision": "20230803",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -7867,6 +7948,90 @@
       },
       "type": "object"
     },
+    "CheckoutSettings": {
+      "description": "`CheckoutSettings` for a specific merchant ID.",
+      "id": "CheckoutSettings",
+      "properties": {
+        "effectiveEnrollmentState": {
+          "description": "Output only. The effective value of enrollment state for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account.",
+          "enum": [
+            "CHECKOUT_ON_MERCHANT_ENROLLMENT_STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ENROLLED"
+          ],
+          "enumDescriptions": [
+            "Default enrollment state when enrollment state is not specified.",
+            "Merchant has not enrolled into the feature.",
+            "Merchant has enrolled into the feature by providing either an account level URL or checkout URLs as part of their feed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "effectiveReviewState": {
+          "description": "Output only. The effective value of review state for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account.",
+          "enum": [
+            "CHECKOUT_ON_MERCHANT_REVIEW_STATE_UNSPECIFIED",
+            "IN_REVIEW",
+            "APPROVED",
+            "DISAPPROVED"
+          ],
+          "enumDescriptions": [
+            "Default review state when review state is not specified.",
+            "Merchant provided URLs are being reviewed for data quality issues.",
+            "Merchant account has been approved. Indicates the data quality checks have passed.",
+            "Merchant account has been disapproved due to data quality issues."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "effectiveUriSettings": {
+          "$ref": "UrlSettings",
+          "description": "The effective value of `url_settings` for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account."
+        },
+        "enrollmentState": {
+          "description": "Output only. Reflects the merchant enrollment state in `Checkout` feature.",
+          "enum": [
+            "CHECKOUT_ON_MERCHANT_ENROLLMENT_STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ENROLLED"
+          ],
+          "enumDescriptions": [
+            "Default enrollment state when enrollment state is not specified.",
+            "Merchant has not enrolled into the feature.",
+            "Merchant has enrolled into the feature by providing either an account level URL or checkout URLs as part of their feed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "merchantId": {
+          "description": "Required. The ID of the account.",
+          "format": "int64",
+          "type": "string"
+        },
+        "reviewState": {
+          "description": "Output only. Reflects the merchant review state in `Checkout` feature. This is set based on the data quality reviews of the URL provided by the merchant. A merchant with enrollment state as `ENROLLED` can be in the following review states: `IN_REVIEW`, `APPROVED` or `DISAPPROVED`. A merchant must be in an enrollment_state of `ENROLLED` before a review can begin for the merchant.",
+          "enum": [
+            "CHECKOUT_ON_MERCHANT_REVIEW_STATE_UNSPECIFIED",
+            "IN_REVIEW",
+            "APPROVED",
+            "DISAPPROVED"
+          ],
+          "enumDescriptions": [
+            "Default review state when review state is not specified.",
+            "Merchant provided URLs are being reviewed for data quality issues.",
+            "Merchant account has been approved. Indicates the data quality checks have passed.",
+            "Merchant account has been disapproved due to data quality issues."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uriSettings": {
+          "$ref": "UrlSettings",
+          "description": "URL settings for cart or checkout URL."
+        }
+      },
+      "type": "object"
+    },
     "CloudExportAdditionalProperties": {
       "description": "Product property for the Cloud Retail API. For example, properties for a TV product could be \"Screen-Resolution\" or \"Screen-Size\".",
       "id": "CloudExportAdditionalProperties",
@@ -8128,7 +8293,7 @@
       "id": "CompetitiveVisibility",
       "properties": {
         "adsOrganicRatio": {
-          "description": "[Ads / organic ratio] (https://support.google.com/merchants/answer/11366442#zippy=%2Cadsfree-ratio) shows how often a merchant receives impressions from Shopping ads compared to organic traffic. The number is rounded and bucketed. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.",
+          "description": "[Ads / organic ratio] (https://support.google.com/merchants/answer/11366442#zippy=%2Cadsfree-ratio) shows how often a merchant receives impressions from Shopping ads compared to organic traffic. The number is rounded and bucketed. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
           "format": "double",
           "type": "number"
         },
@@ -8148,33 +8313,38 @@
         },
         "date": {
           "$ref": "Date",
-          "description": "Date of this row. Available only in `CompetitiveVisibilityBenchmarkView`. Required in the `SELECT` clause for `CompetitiveVisibilityMarketBenchmarkView`."
+          "description": "Date of this row. Available only in `CompetitiveVisibilityBenchmarkView` and `CompetitiveVisibilityCompetitorView`. Required in the `SELECT` clause for `CompetitiveVisibilityMarketBenchmarkView`."
         },
         "domain": {
-          "description": "Domain of your competitor or your domain, if 'is_your_domain' is true. Available only in `CompetitiveVisibilityTopMerchantView`. Required in the `SELECT` clause for `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.",
+          "description": "Domain of your competitor or your domain, if 'is_your_domain' is true. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Required in the `SELECT` clause for `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
           "type": "string"
         },
         "higherPositionRate": {
-          "description": "Higher position rate shows how often a competitor’s offer got placed in a higher position on the page than your offer. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.",
+          "description": "Higher position rate shows how often a competitor’s offer got placed in a higher position on the page than your offer. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
           "format": "double",
           "type": "number"
         },
         "isYourDomain": {
-          "description": "True if this row contains data for your domain. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.",
+          "description": "True if this row contains data for your domain. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
           "type": "boolean"
         },
         "pageOverlapRate": {
-          "description": "Page overlap rate describes how frequently competing retailers’ offers are shown together with your offers on the same page. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.",
+          "description": "Page overlap rate describes how frequently competing retailers’ offers are shown together with your offers on the same page. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
           "format": "double",
           "type": "number"
         },
         "rank": {
-          "description": "Position of the domain in the top merchants ranking for the selected keys (`date`, `category_id`, `country_code`, `listing_type`) based on impressions. 1 is the highest. Available only in `CompetitiveVisibilityTopMerchantView`. Cannot be filtered on in the 'WHERE' clause.",
+          "description": "Position of the domain in the top merchants ranking for the selected keys (`date`, `category_id`, `country_code`, `listing_type`) based on impressions. 1 is the highest. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
           "format": "uint64",
           "type": "string"
         },
+        "relativeVisibility": {
+          "description": "Relative visibility shows how often your competitors’ offers are shown compared to your offers. In other words, this is the number of displayed impressions of a competitor retailer divided by the number of your displayed impressions during a selected time range for a selected product category and country. Available only in `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
+          "format": "double",
+          "type": "number"
+        },
         "trafficSource": {
-          "description": "Type of impression listing. Required in the `SELECT` clause for `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityMarketBenchmarkView`. Cannot be filtered on in the 'WHERE' clause.",
+          "description": "Type of impression listing. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause.",
           "enum": [
             "UNKNOWN",
             "ORGANIC",
@@ -9405,6 +9575,17 @@
             "The floor defined in the rule is invalid. For example, it has the wrong sign which results in a floor < 0."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InsertCheckoutSettingsRequest": {
+      "description": "Request message for the `InsertCheckoutSettings` method.",
+      "id": "InsertCheckoutSettingsRequest",
+      "properties": {
+        "uriSettings": {
+          "$ref": "UrlSettings",
+          "description": "Required. The `UrlSettings` for the request. The presence of URL settings indicates `Checkout` enrollment."
         }
       },
       "type": "object"
@@ -12994,6 +13175,14 @@
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#posInventory`\"",
           "type": "string"
         },
+        "pickupMethod": {
+          "description": "Optional. Supported pickup method for this offer. Unless the value is \"not supported\", this field must be submitted together with `pickupSla`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).",
+          "type": "string"
+        },
+        "pickupSla": {
+          "description": "Optional. Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).",
+          "type": "string"
+        },
         "price": {
           "$ref": "Price",
           "description": "Required. The current price of the item."
@@ -13031,6 +13220,14 @@
         },
         "itemId": {
           "description": "Required. A unique identifier for the item.",
+          "type": "string"
+        },
+        "pickupMethod": {
+          "description": "Optional. Supported pickup method for this offer. Unless the value is \"not supported\", this field must be submitted together with `pickupSla`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).",
+          "type": "string"
+        },
+        "pickupSla": {
+          "description": "Optional. Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).",
           "type": "string"
         },
         "price": {
@@ -13074,6 +13271,14 @@
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#posInventoryResponse`\".",
+          "type": "string"
+        },
+        "pickupMethod": {
+          "description": "Optional. Supported pickup method for this offer. Unless the value is \"not supported\", this field must be submitted together with `pickupSla`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).",
+          "type": "string"
+        },
+        "pickupSla": {
+          "description": "Optional. Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).",
           "type": "string"
         },
         "price": {
@@ -15707,7 +15912,7 @@
         },
         "competitiveVisibility": {
           "$ref": "CompetitiveVisibility",
-          "description": "Competitive visibility fields requested by the merchant in the query. Field values are only set if the merchant queries `CompetitiveVisibilityTopMerchantView` or `CompetitiveVisibilityBenchmarkView`."
+          "description": "Competitive visibility fields requested by the merchant in the query. Field values are only set if the merchant queries `CompetitiveVisibilityTopMerchantView`, `CompetitiveVisibilityBenchmarkView` or `CompetitiveVisibilityCompetitorView`."
         },
         "metrics": {
           "$ref": "Metrics",
@@ -18097,6 +18302,21 @@
         },
         "taxType": {
           "description": "[required] Type of the tax. Acceptable values are: - \"`otherFee`\" - \"`otherFeeTax`\" - \"`sales`\" ",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UrlSettings": {
+      "description": "Specifications related to the `Checkout` URL. The `UriTemplate` is of the form `https://www.mystore.com/checkout?item_id={id}` where `{id}` will be automatically replaced with data from the merchant account with this attribute [offer_id](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.offer_id)",
+      "id": "UrlSettings",
+      "properties": {
+        "cartUriTemplate": {
+          "description": "URL template when the placeholders are expanded will redirect the buyer to the cart page on the merchant website with the selected item in cart.",
+          "type": "string"
+        },
+        "checkoutUriTemplate": {
+          "description": "URL template when the placeholders are expanded will redirect the buyer to the merchant checkout page with the item in the cart.",
           "type": "string"
         }
       },
