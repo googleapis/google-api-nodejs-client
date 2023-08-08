@@ -37,7 +37,7 @@ export function serviceconsumermanagement(
 export function serviceconsumermanagement<
   T =
     | serviceconsumermanagement_v1.Serviceconsumermanagement
-    | serviceconsumermanagement_v1beta1.Serviceconsumermanagement
+    | serviceconsumermanagement_v1beta1.Serviceconsumermanagement,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
