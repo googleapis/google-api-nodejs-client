@@ -1732,7 +1732,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1918,7 +1921,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2048,7 +2054,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2195,7 +2204,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2365,7 +2377,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2530,7 +2545,12 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2691,7 +2711,12 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2840,7 +2865,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3008,7 +3036,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3178,7 +3209,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3497,7 +3531,12 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3663,7 +3702,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3804,7 +3846,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3951,7 +3996,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4109,7 +4157,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4238,7 +4289,12 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4467,7 +4523,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4649,7 +4708,12 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4815,7 +4879,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4956,7 +5023,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5103,7 +5173,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5261,7 +5334,10 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5390,7 +5466,12 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5613,7 +5694,12 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5767,7 +5853,12 @@ export namespace drivelabels_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive.admin.labels',
+     *       'https://www.googleapis.com/auth/drive.admin.labels.readonly',
+     *       'https://www.googleapis.com/auth/drive.labels',
+     *       'https://www.googleapis.com/auth/drive.labels.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
