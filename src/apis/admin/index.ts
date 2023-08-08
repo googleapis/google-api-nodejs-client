@@ -40,7 +40,7 @@ export function admin<
   T =
     | admin_datatransfer_v1.Admin
     | admin_directory_v1.Admin
-    | admin_reports_v1.Admin
+    | admin_reports_v1.Admin,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
