@@ -6987,7 +6987,7 @@ export namespace artifactregistry_v1 {
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
-     *       // The name of the parent package whose tags will be listed. Example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1
+     *       // The name of the parent package whose tags will be listed. For example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`.
      *       parent:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
      *     });
@@ -7277,7 +7277,7 @@ export namespace artifactregistry_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the parent package whose tags will be listed. Example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1
+     * The name of the parent package whose tags will be listed. For example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`.
      */
     parent?: string;
   }
