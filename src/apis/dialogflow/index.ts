@@ -47,7 +47,7 @@ export function dialogflow<
     | dialogflow_v2.Dialogflow
     | dialogflow_v2beta1.Dialogflow
     | dialogflow_v3.Dialogflow
-    | dialogflow_v3beta1.Dialogflow
+    | dialogflow_v3beta1.Dialogflow,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
