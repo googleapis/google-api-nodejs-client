@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "migrationcenter:v1alpha1",
+  "id": "migrationcenter:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://migrationcenter.mtls.googleapis.com/",
   "name": "migrationcenter",
@@ -111,7 +111,7 @@
           "methods": {
             "get": {
               "description": "Gets information about a location.",
-              "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
               "httpMethod": "GET",
               "id": "migrationcenter.projects.locations.get",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1alpha1/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "Location"
               },
@@ -136,7 +136,7 @@
             },
             "getSettings": {
               "description": "Gets the details of regional settings.",
-              "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/settings",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/settings",
               "httpMethod": "GET",
               "id": "migrationcenter.projects.locations.getSettings",
               "parameterOrder": [
@@ -151,7 +151,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1alpha1/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "Settings"
               },
@@ -161,7 +161,7 @@
             },
             "list": {
               "description": "Lists information about the supported locations for this service.",
-              "flatPath": "v1alpha1/projects/{projectsId}/locations",
+              "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "migrationcenter.projects.locations.list",
               "parameterOrder": [
@@ -192,7 +192,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1alpha1/{+name}/locations",
+              "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
               },
@@ -202,7 +202,7 @@
             },
             "updateSettings": {
               "description": "Updates the regional-level project settings.",
-              "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/settings",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/settings",
               "httpMethod": "PATCH",
               "id": "migrationcenter.projects.locations.updateSettings",
               "parameterOrder": [
@@ -228,7 +228,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1alpha1/{+name}",
+              "path": "v1/{+name}",
               "request": {
                 "$ref": "Settings"
               },
@@ -245,7 +245,7 @@
               "methods": {
                 "aggregateValues": {
                   "description": "Aggregates the requested fields based on provided function.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/assets:aggregateValues",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assets:aggregateValues",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.assets.aggregateValues",
                   "parameterOrder": [
@@ -260,7 +260,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/assets:aggregateValues",
+                  "path": "v1/{+parent}/assets:aggregateValues",
                   "request": {
                     "$ref": "AggregateAssetsValuesRequest"
                   },
@@ -273,7 +273,7 @@
                 },
                 "batchDelete": {
                   "description": "Deletes list of Assets.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/assets:batchDelete",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assets:batchDelete",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.assets.batchDelete",
                   "parameterOrder": [
@@ -288,7 +288,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/assets:batchDelete",
+                  "path": "v1/{+parent}/assets:batchDelete",
                   "request": {
                     "$ref": "BatchDeleteAssetsRequest"
                   },
@@ -301,7 +301,7 @@
                 },
                 "batchUpdate": {
                   "description": "Updates the parameters of a list of assets.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/assets:batchUpdate",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assets:batchUpdate",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.assets.batchUpdate",
                   "parameterOrder": [
@@ -316,7 +316,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/assets:batchUpdate",
+                  "path": "v1/{+parent}/assets:batchUpdate",
                   "request": {
                     "$ref": "BatchUpdateAssetsRequest"
                   },
@@ -329,7 +329,7 @@
                 },
                 "delete": {
                   "description": "Deletes an asset.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/assets/{assetsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assets/{assetsId}",
                   "httpMethod": "DELETE",
                   "id": "migrationcenter.projects.locations.assets.delete",
                   "parameterOrder": [
@@ -349,7 +349,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -359,7 +359,7 @@
                 },
                 "get": {
                   "description": "Gets the details of an asset.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/assets/{assetsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assets/{assetsId}",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.assets.get",
                   "parameterOrder": [
@@ -378,20 +378,18 @@
                       "enum": [
                         "ASSET_VIEW_UNSPECIFIED",
                         "ASSET_VIEW_BASIC",
-                        "ASSET_VIEW_FULL",
-                        "ASSET_VIEW_STANDARD"
+                        "ASSET_VIEW_FULL"
                       ],
                       "enumDescriptions": [
                         "The asset view is not specified. The API displays the basic view by default.",
                         "The asset view includes only basic metadata of the asset.",
-                        "The asset view includes all the metadata of an asset and performance data.",
-                        "The asset view includes the standard metadata of an asset."
+                        "The asset view includes all the metadata of an asset and performance data."
                       ],
                       "location": "query",
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Asset"
                   },
@@ -401,7 +399,7 @@
                 },
                 "list": {
                   "description": "Lists all the assets in a given project and location.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/assets",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assets",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.assets.list",
                   "parameterOrder": [
@@ -441,20 +439,18 @@
                       "enum": [
                         "ASSET_VIEW_UNSPECIFIED",
                         "ASSET_VIEW_BASIC",
-                        "ASSET_VIEW_FULL",
-                        "ASSET_VIEW_STANDARD"
+                        "ASSET_VIEW_FULL"
                       ],
                       "enumDescriptions": [
                         "The asset view is not specified. The API displays the basic view by default.",
                         "The asset view includes only basic metadata of the asset.",
-                        "The asset view includes all the metadata of an asset and performance data.",
-                        "The asset view includes the standard metadata of an asset."
+                        "The asset view includes all the metadata of an asset and performance data."
                       ],
                       "location": "query",
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/assets",
+                  "path": "v1/{+parent}/assets",
                   "response": {
                     "$ref": "ListAssetsResponse"
                   },
@@ -464,7 +460,7 @@
                 },
                 "patch": {
                   "description": "Updates the parameters of an asset.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/assets/{assetsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assets/{assetsId}",
                   "httpMethod": "PATCH",
                   "id": "migrationcenter.projects.locations.assets.patch",
                   "parameterOrder": [
@@ -490,7 +486,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Asset"
                   },
@@ -503,7 +499,7 @@
                 },
                 "reportAssetFrames": {
                   "description": "Reports a set of frames.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/assets:reportAssetFrames",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assets:reportAssetFrames",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.assets.reportAssetFrames",
                   "parameterOrder": [
@@ -523,7 +519,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/assets:reportAssetFrames",
+                  "path": "v1/{+parent}/assets:reportAssetFrames",
                   "request": {
                     "$ref": "Frames"
                   },
@@ -540,7 +536,7 @@
               "methods": {
                 "addAssets": {
                   "description": "Adds assets to a group.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/groups/{groupsId}:addAssets",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/groups/{groupsId}:addAssets",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.groups.addAssets",
                   "parameterOrder": [
@@ -555,7 +551,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+group}:addAssets",
+                  "path": "v1/{+group}:addAssets",
                   "request": {
                     "$ref": "AddAssetsToGroupRequest"
                   },
@@ -568,7 +564,7 @@
                 },
                 "create": {
                   "description": "Creates a new group in a given project and location.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/groups",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/groups",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.groups.create",
                   "parameterOrder": [
@@ -593,7 +589,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/groups",
+                  "path": "v1/{+parent}/groups",
                   "request": {
                     "$ref": "Group"
                   },
@@ -606,7 +602,7 @@
                 },
                 "delete": {
                   "description": "Deletes a group.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/groups/{groupsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/groups/{groupsId}",
                   "httpMethod": "DELETE",
                   "id": "migrationcenter.projects.locations.groups.delete",
                   "parameterOrder": [
@@ -626,7 +622,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -636,7 +632,7 @@
                 },
                 "get": {
                   "description": "Gets the details of a group.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/groups/{groupsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/groups/{groupsId}",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.groups.get",
                   "parameterOrder": [
@@ -651,7 +647,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Group"
                   },
@@ -661,7 +657,7 @@
                 },
                 "list": {
                   "description": "Lists all groups in a given project and location.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/groups",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/groups",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.groups.list",
                   "parameterOrder": [
@@ -697,7 +693,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/groups",
+                  "path": "v1/{+parent}/groups",
                   "response": {
                     "$ref": "ListGroupsResponse"
                   },
@@ -707,7 +703,7 @@
                 },
                 "patch": {
                   "description": "Updates the parameters of a group.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/groups/{groupsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/groups/{groupsId}",
                   "httpMethod": "PATCH",
                   "id": "migrationcenter.projects.locations.groups.patch",
                   "parameterOrder": [
@@ -733,7 +729,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Group"
                   },
@@ -746,7 +742,7 @@
                 },
                 "removeAssets": {
                   "description": "Removes assets from a group.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/groups/{groupsId}:removeAssets",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/groups/{groupsId}:removeAssets",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.groups.removeAssets",
                   "parameterOrder": [
@@ -761,7 +757,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+group}:removeAssets",
+                  "path": "v1/{+group}:removeAssets",
                   "request": {
                     "$ref": "RemoveAssetsFromGroupRequest"
                   },
@@ -778,7 +774,7 @@
               "methods": {
                 "create": {
                   "description": "Creates an import job.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/importJobs",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/importJobs",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.importJobs.create",
                   "parameterOrder": [
@@ -803,7 +799,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/importJobs",
+                  "path": "v1/{+parent}/importJobs",
                   "request": {
                     "$ref": "ImportJob"
                   },
@@ -816,7 +812,7 @@
                 },
                 "delete": {
                   "description": "Deletes an import job.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}",
                   "httpMethod": "DELETE",
                   "id": "migrationcenter.projects.locations.importJobs.delete",
                   "parameterOrder": [
@@ -841,7 +837,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -851,7 +847,7 @@
                 },
                 "get": {
                   "description": "Gets the details of an import job.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.importJobs.get",
                   "parameterOrder": [
@@ -881,7 +877,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "ImportJob"
                   },
@@ -891,7 +887,7 @@
                 },
                 "list": {
                   "description": "Lists all import jobs.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/importJobs",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/importJobs",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.importJobs.list",
                   "parameterOrder": [
@@ -942,7 +938,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/importJobs",
+                  "path": "v1/{+parent}/importJobs",
                   "response": {
                     "$ref": "ListImportJobsResponse"
                   },
@@ -952,7 +948,7 @@
                 },
                 "patch": {
                   "description": "Updates an import job.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}",
                   "httpMethod": "PATCH",
                   "id": "migrationcenter.projects.locations.importJobs.patch",
                   "parameterOrder": [
@@ -978,7 +974,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "ImportJob"
                   },
@@ -991,7 +987,7 @@
                 },
                 "run": {
                   "description": "Runs an import job.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}:run",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}:run",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.importJobs.run",
                   "parameterOrder": [
@@ -1006,7 +1002,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}:run",
+                  "path": "v1/{+name}:run",
                   "request": {
                     "$ref": "RunImportJobRequest"
                   },
@@ -1019,7 +1015,7 @@
                 },
                 "validate": {
                   "description": "Validates an import job.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}:validate",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}:validate",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.importJobs.validate",
                   "parameterOrder": [
@@ -1034,7 +1030,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}:validate",
+                  "path": "v1/{+name}:validate",
                   "request": {
                     "$ref": "ValidateImportJobRequest"
                   },
@@ -1051,7 +1047,7 @@
                   "methods": {
                     "create": {
                       "description": "Creates an import data file.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}/importDataFiles",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}/importDataFiles",
                       "httpMethod": "POST",
                       "id": "migrationcenter.projects.locations.importJobs.importDataFiles.create",
                       "parameterOrder": [
@@ -1076,7 +1072,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+parent}/importDataFiles",
+                      "path": "v1/{+parent}/importDataFiles",
                       "request": {
                         "$ref": "ImportDataFile"
                       },
@@ -1089,7 +1085,7 @@
                     },
                     "delete": {
                       "description": "Delete an import data file.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}/importDataFiles/{importDataFilesId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}/importDataFiles/{importDataFilesId}",
                       "httpMethod": "DELETE",
                       "id": "migrationcenter.projects.locations.importJobs.importDataFiles.delete",
                       "parameterOrder": [
@@ -1109,7 +1105,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Operation"
                       },
@@ -1119,7 +1115,7 @@
                     },
                     "get": {
                       "description": "Gets an import data file.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}/importDataFiles/{importDataFilesId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}/importDataFiles/{importDataFilesId}",
                       "httpMethod": "GET",
                       "id": "migrationcenter.projects.locations.importJobs.importDataFiles.get",
                       "parameterOrder": [
@@ -1134,7 +1130,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "ImportDataFile"
                       },
@@ -1144,7 +1140,7 @@
                     },
                     "list": {
                       "description": "List import data files.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}/importDataFiles",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/importJobs/{importJobsId}/importDataFiles",
                       "httpMethod": "GET",
                       "id": "migrationcenter.projects.locations.importJobs.importDataFiles.list",
                       "parameterOrder": [
@@ -1180,7 +1176,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+parent}/importDataFiles",
+                      "path": "v1/{+parent}/importDataFiles",
                       "response": {
                         "$ref": "ListImportDataFilesResponse"
                       },
@@ -1196,7 +1192,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.operations.cancel",
                   "parameterOrder": [
@@ -1211,7 +1207,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}:cancel",
+                  "path": "v1/{+name}:cancel",
                   "request": {
                     "$ref": "CancelOperationRequest"
                   },
@@ -1224,7 +1220,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "migrationcenter.projects.locations.operations.delete",
                   "parameterOrder": [
@@ -1239,7 +1235,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -1249,7 +1245,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.operations.get",
                   "parameterOrder": [
@@ -1264,7 +1260,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -1274,7 +1270,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.operations.list",
                   "parameterOrder": [
@@ -1305,7 +1301,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}/operations",
+                  "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -1319,7 +1315,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new preference set in a given project and location.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/preferenceSets",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/preferenceSets",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.preferenceSets.create",
                   "parameterOrder": [
@@ -1334,6 +1330,7 @@
                       "type": "string"
                     },
                     "preferenceSetId": {
+                      "description": "Required. User specified ID for the preference set. It will become the last component of the preference set name. The ID must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The ID must match the regular expression `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1343,7 +1340,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/preferenceSets",
+                  "path": "v1/{+parent}/preferenceSets",
                   "request": {
                     "$ref": "PreferenceSet"
                   },
@@ -1356,7 +1353,7 @@
                 },
                 "delete": {
                   "description": "Deletes a preference set.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/preferenceSets/{preferenceSetsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/preferenceSets/{preferenceSetsId}",
                   "httpMethod": "DELETE",
                   "id": "migrationcenter.projects.locations.preferenceSets.delete",
                   "parameterOrder": [
@@ -1376,7 +1373,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -1386,7 +1383,7 @@
                 },
                 "get": {
                   "description": "Gets the details of a preference set.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/preferenceSets/{preferenceSetsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/preferenceSets/{preferenceSetsId}",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.preferenceSets.get",
                   "parameterOrder": [
@@ -1401,7 +1398,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "PreferenceSet"
                   },
@@ -1411,7 +1408,7 @@
                 },
                 "list": {
                   "description": "Lists all the preference sets in a given project and location.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/preferenceSets",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/preferenceSets",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.preferenceSets.list",
                   "parameterOrder": [
@@ -1442,7 +1439,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/preferenceSets",
+                  "path": "v1/{+parent}/preferenceSets",
                   "response": {
                     "$ref": "ListPreferenceSetsResponse"
                   },
@@ -1452,7 +1449,7 @@
                 },
                 "patch": {
                   "description": "Updates the parameters of a preference set.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/preferenceSets/{preferenceSetsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/preferenceSets/{preferenceSetsId}",
                   "httpMethod": "PATCH",
                   "id": "migrationcenter.projects.locations.preferenceSets.patch",
                   "parameterOrder": [
@@ -1478,7 +1475,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "PreferenceSet"
                   },
@@ -1495,7 +1492,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a report configuration.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reportConfigs",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.reportConfigs.create",
                   "parameterOrder": [
@@ -1520,7 +1517,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/reportConfigs",
+                  "path": "v1/{+parent}/reportConfigs",
                   "request": {
                     "$ref": "ReportConfig"
                   },
@@ -1533,7 +1530,7 @@
                 },
                 "delete": {
                   "description": "Deletes a ReportConfig.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}",
                   "httpMethod": "DELETE",
                   "id": "migrationcenter.projects.locations.reportConfigs.delete",
                   "parameterOrder": [
@@ -1558,7 +1555,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -1568,7 +1565,7 @@
                 },
                 "get": {
                   "description": "Gets details of a single ReportConfig.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.reportConfigs.get",
                   "parameterOrder": [
@@ -1583,7 +1580,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "ReportConfig"
                   },
@@ -1593,7 +1590,7 @@
                 },
                 "list": {
                   "description": "Lists ReportConfigs in a given project and location.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reportConfigs",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.reportConfigs.list",
                   "parameterOrder": [
@@ -1629,7 +1626,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/reportConfigs",
+                  "path": "v1/{+parent}/reportConfigs",
                   "response": {
                     "$ref": "ListReportConfigsResponse"
                   },
@@ -1643,7 +1640,7 @@
                   "methods": {
                     "create": {
                       "description": "Creates a report.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports",
                       "httpMethod": "POST",
                       "id": "migrationcenter.projects.locations.reportConfigs.reports.create",
                       "parameterOrder": [
@@ -1668,7 +1665,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+parent}/reports",
+                      "path": "v1/{+parent}/reports",
                       "request": {
                         "$ref": "Report"
                       },
@@ -1681,7 +1678,7 @@
                     },
                     "delete": {
                       "description": "Deletes a Report.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}",
                       "httpMethod": "DELETE",
                       "id": "migrationcenter.projects.locations.reportConfigs.reports.delete",
                       "parameterOrder": [
@@ -1701,7 +1698,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Operation"
                       },
@@ -1711,7 +1708,7 @@
                     },
                     "get": {
                       "description": "Gets details of a single Report.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}",
                       "httpMethod": "GET",
                       "id": "migrationcenter.projects.locations.reportConfigs.reports.get",
                       "parameterOrder": [
@@ -1743,7 +1740,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Report"
                       },
@@ -1753,7 +1750,7 @@
                     },
                     "list": {
                       "description": "Lists Reports in a given ReportConfig.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports",
                       "httpMethod": "GET",
                       "id": "migrationcenter.projects.locations.reportConfigs.reports.list",
                       "parameterOrder": [
@@ -1806,7 +1803,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+parent}/reports",
+                      "path": "v1/{+parent}/reports",
                       "response": {
                         "$ref": "ListReportsResponse"
                       },
@@ -1822,7 +1819,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new source in a given project and location.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.sources.create",
                   "parameterOrder": [
@@ -1847,7 +1844,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/sources",
+                  "path": "v1/{+parent}/sources",
                   "request": {
                     "$ref": "Source"
                   },
@@ -1860,7 +1857,7 @@
                 },
                 "delete": {
                   "description": "Deletes a source.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}",
                   "httpMethod": "DELETE",
                   "id": "migrationcenter.projects.locations.sources.delete",
                   "parameterOrder": [
@@ -1880,7 +1877,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -1890,7 +1887,7 @@
                 },
                 "get": {
                   "description": "Gets the details of a source.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.sources.get",
                   "parameterOrder": [
@@ -1905,7 +1902,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Source"
                   },
@@ -1915,7 +1912,7 @@
                 },
                 "list": {
                   "description": "Lists all the sources in a given project and location.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources",
                   "httpMethod": "GET",
                   "id": "migrationcenter.projects.locations.sources.list",
                   "parameterOrder": [
@@ -1951,7 +1948,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/sources",
+                  "path": "v1/{+parent}/sources",
                   "response": {
                     "$ref": "ListSourcesResponse"
                   },
@@ -1961,7 +1958,7 @@
                 },
                 "patch": {
                   "description": "Updates the parameters of a source.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}",
                   "httpMethod": "PATCH",
                   "id": "migrationcenter.projects.locations.sources.patch",
                   "parameterOrder": [
@@ -1987,7 +1984,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Source"
                   },
@@ -2004,7 +2001,7 @@
                   "methods": {
                     "get": {
                       "description": "Gets the details of an error frame.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/errorFrames/{errorFramesId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/errorFrames/{errorFramesId}",
                       "httpMethod": "GET",
                       "id": "migrationcenter.projects.locations.sources.errorFrames.get",
                       "parameterOrder": [
@@ -2034,7 +2031,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "ErrorFrame"
                       },
@@ -2044,7 +2041,7 @@
                     },
                     "list": {
                       "description": "Lists all error frames in a given source and location.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/errorFrames",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/errorFrames",
                       "httpMethod": "GET",
                       "id": "migrationcenter.projects.locations.sources.errorFrames.list",
                       "parameterOrder": [
@@ -2085,7 +2082,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+parent}/errorFrames",
+                      "path": "v1/{+parent}/errorFrames",
                       "response": {
                         "$ref": "ListErrorFramesResponse"
                       },
@@ -2347,6 +2344,11 @@
           "description": "Labels as key value pairs.",
           "type": "object"
         },
+        "machineDetails": {
+          "$ref": "MachineDetails",
+          "description": "Output only. Asset information specific for virtual and physical machines.",
+          "readOnly": true
+        },
         "name": {
           "description": "Output only. The full name of the asset.",
           "readOnly": true,
@@ -2370,11 +2372,6 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
-        },
-        "virtualMachineDetails": {
-          "$ref": "VirtualMachineDetails",
-          "description": "Output only. Asset information specific for virtual machines.",
-          "readOnly": true
         }
       },
       "type": "object"
@@ -2397,6 +2394,10 @@
           "description": "Labels as key value pairs.",
           "type": "object"
         },
+        "machineDetails": {
+          "$ref": "MachineDetails",
+          "description": "Asset information specific for virtual machines."
+        },
         "performanceSamples": {
           "description": "Asset performance data samples. Samples that are from more than 40 days ago or after tomorrow are ignored.",
           "items": {
@@ -2412,10 +2413,6 @@
         "traceToken": {
           "description": "Optional. Trace token is optionally provided to assist with debugging and traceability.",
           "type": "string"
-        },
-        "virtualMachineDetails": {
-          "$ref": "VirtualMachineDetails",
-          "description": "Asset information specific for virtual machines."
         }
       },
       "type": "object"
@@ -2532,24 +2529,29 @@
       "description": "Details about the BIOS.",
       "id": "BiosDetails",
       "properties": {
-        "biosManufacturer": {
+        "biosName": {
+          "deprecated": true,
+          "description": "BIOS name. This fields is deprecated. Please use the `id` field instead.",
+          "type": "string"
+        },
+        "id": {
+          "description": "BIOS ID.",
+          "type": "string"
+        },
+        "manufacturer": {
           "description": "BIOS manufacturer.",
           "type": "string"
         },
-        "biosName": {
-          "description": "BIOS name.",
-          "type": "string"
-        },
-        "biosReleaseDate": {
-          "description": "BIOS release date.",
-          "type": "string"
-        },
-        "biosVersion": {
-          "description": "BIOS version.",
-          "type": "string"
+        "releaseDate": {
+          "$ref": "Date",
+          "description": "BIOS release date."
         },
         "smbiosUuid": {
           "description": "SMBIOS UUID.",
+          "type": "string"
+        },
+        "version": {
+          "description": "BIOS version.",
           "type": "string"
         }
       },
@@ -2593,22 +2595,6 @@
         "machinePreferences": {
           "$ref": "MachinePreferences",
           "description": "Preferences concerning the machine types to consider on Compute Engine."
-        },
-        "persistentDiskType": {
-          "description": "Persistent disk type to use. If unspecified (default), all types are considered, based on available usage data.",
-          "enum": [
-            "PERSISTENT_DISK_TYPE_UNSPECIFIED",
-            "PERSISTENT_DISK_TYPE_STANDARD",
-            "PERSISTENT_DISK_TYPE_BALANCED",
-            "PERSISTENT_DISK_TYPE_SSD"
-          ],
-          "enumDescriptions": [
-            "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
-            "Standard HDD Persistent Disk.",
-            "Balanced Persistent Disk.",
-            "SSD Persistent Disk."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -2814,61 +2800,15 @@
       },
       "type": "object"
     },
-    "DateTime": {
-      "description": "Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year, month, or day are 0, the DateTime is considered not to have a specific year, month, or day respectively. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.",
-      "id": "DateTime",
-      "properties": {
-        "day": {
-          "description": "Optional. Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a datetime without a day.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "hours": {
-          "description": "Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults to 0 (midnight). An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "minutes": {
-          "description": "Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "month": {
-          "description": "Optional. Month of year. Must be from 1 to 12, or 0 if specifying a datetime without a month.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "nanos": {
-          "description": "Optional. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999, defaults to 0.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "seconds": {
-          "description": "Optional. Seconds of minutes of the time. Must normally be from 0 to 59, defaults to 0. An API may allow the value 60 if it allows leap-seconds.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "timeZone": {
-          "$ref": "TimeZone",
-          "description": "Time zone."
-        },
-        "utcOffset": {
-          "description": "UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 }.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "year": {
-          "description": "Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "DiskEntry": {
       "description": "Single disk entry.",
       "id": "DiskEntry",
       "properties": {
+        "capacityBytes": {
+          "description": "Disk capacity.",
+          "format": "int64",
+          "type": "string"
+        },
         "diskLabel": {
           "description": "Disk label.",
           "type": "string"
@@ -2877,33 +2817,44 @@
           "description": "Disk label type (e.g. BIOS/GPT)",
           "type": "string"
         },
+        "freeBytes": {
+          "description": "Disk free space.",
+          "format": "int64",
+          "type": "string"
+        },
         "hwAddress": {
           "description": "Disk hardware address (e.g. 0:1 for SCSI).",
           "type": "string"
         },
         "interfaceType": {
-          "description": "Disks interface type (e.g. SATA/SCSI)",
+          "description": "Disks interface type.",
+          "enum": [
+            "INTERFACE_TYPE_UNSPECIFIED",
+            "IDE",
+            "SATA",
+            "SAS",
+            "SCSI",
+            "NVME",
+            "FC",
+            "ISCSI"
+          ],
+          "enumDescriptions": [
+            "Interface type unknown or unspecified.",
+            "IDE interface type.",
+            "SATA interface type.",
+            "SAS interface type.",
+            "SCSI interface type.",
+            "NVME interface type.",
+            "FC interface type.",
+            "iSCSI interface type."
+          ],
           "type": "string"
         },
         "partitions": {
           "$ref": "DiskPartitionList",
           "description": "Partition layout."
         },
-        "status": {
-          "description": "Disk status (e.g. online).",
-          "type": "string"
-        },
-        "totalCapacityBytes": {
-          "description": "Disk capacity.",
-          "format": "int64",
-          "type": "string"
-        },
-        "totalFreeBytes": {
-          "description": "Disk free space.",
-          "format": "int64",
-          "type": "string"
-        },
-        "vmwareConfig": {
+        "vmware": {
           "$ref": "VmwareDiskConfig",
           "description": "VMware disk details."
         }
@@ -2951,7 +2902,7 @@
           "description": "Sub-partitions."
         },
         "type": {
-          "description": "Partition type (e.g. BIOS boot).",
+          "description": "Partition type.",
           "type": "string"
         },
         "uuid": {
@@ -3036,14 +2987,6 @@
           "description": "Total number of asset frames reported for the import job.",
           "format": "int32",
           "type": "integer"
-        },
-        "jobErrors": {
-          "deprecated": true,
-          "description": "List of job-level errors. Deprecated, use the job errors under execution_errors instead.",
-          "items": {
-            "$ref": "ImportError"
-          },
-          "type": "array"
         },
         "totalRowsCount": {
           "description": "Total number of rows in the import job.",
@@ -3181,48 +3124,6 @@
       },
       "type": "object"
     },
-    "GCSPayloadInfo": {
-      "description": "A resource that represents a payload hosted on Google Cloud Storage.",
-      "id": "GCSPayloadInfo",
-      "properties": {
-        "format": {
-          "description": "The import job format.",
-          "enum": [
-            "IMPORT_JOB_FORMAT_UNSPECIFIED",
-            "IMPORT_JOB_FORMAT_CMDB",
-            "IMPORT_JOB_FORMAT_RVTOOLS_XLSX",
-            "IMPORT_JOB_FORMAT_RVTOOLS_CSV",
-            "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
-            "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
-            "IMPORT_JOB_FORMAT_MANUAL_CSV"
-          ],
-          "enumDeprecated": [
-            false,
-            true,
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
-          "enumDescriptions": [
-            "Default value.",
-            "Configuration management DB format.",
-            "RVTools format (XLSX).",
-            "RVTools format (CSV).",
-            "CSV format exported from AWS using the AWS collection script.",
-            "CSV format exported from Azure using the Azure collection script.",
-            "CSV format created manually. For more information, see Manually create and upload data tables."
-          ],
-          "type": "string"
-        },
-        "path": {
-          "description": "The payload path in Google Cloud Storage.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GenericPlatformDetails": {
       "description": "Generic platform details.",
       "id": "GenericPlatformDetails",
@@ -3232,12 +3133,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "GoogleKubernetesEngineMigrationTarget": {
-      "description": "GKE migration target.",
-      "id": "GoogleKubernetesEngineMigrationTarget",
-      "properties": {},
       "type": "object"
     },
     "Group": {
@@ -3299,9 +3194,21 @@
           "$ref": "NfsExportList",
           "description": "NFS exports."
         },
-        "selinux": {
-          "$ref": "Selinux",
-          "description": "SELinux details."
+        "selinuxMode": {
+          "description": "Security-Enhanced Linux (SELinux) mode.",
+          "enum": [
+            "SE_LINUX_MODE_UNSPECIFIED",
+            "SE_LINUX_MODE_DISABLED",
+            "SE_LINUX_MODE_PERMISSIVE",
+            "SE_LINUX_MODE_ENFORCING"
+          ],
+          "enumDescriptions": [
+            "SELinux mode unknown or unspecified.",
+            "SELinux is disabled.",
+            "SELinux permissive mode.",
+            "SELinux enforcing mode."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3310,16 +3217,17 @@
       "description": "Guest installed application information.",
       "id": "GuestInstalledApplication",
       "properties": {
-        "name": {
+        "applicationName": {
           "description": "Installed application name.",
+          "type": "string"
+        },
+        "installTime": {
+          "description": "The time when the application was installed.",
+          "format": "google-datetime",
           "type": "string"
         },
         "path": {
           "description": "Source path.",
-          "type": "string"
-        },
-        "time": {
-          "description": "Date application was installed.",
           "type": "string"
         },
         "vendor": {
@@ -3355,9 +3263,33 @@
           "$ref": "GuestConfigDetails",
           "description": "OS and app configuration."
         },
+        "family": {
+          "description": "What family the OS belong to, if known.",
+          "enum": [
+            "OS_FAMILY_UNKNOWN",
+            "OS_FAMILY_WINDOWS",
+            "OS_FAMILY_LINUX",
+            "OS_FAMILY_UNIX"
+          ],
+          "enumDescriptions": [
+            "",
+            "Microsoft Windows Server and Desktop.",
+            "Various Linux flavors.",
+            "Non-Linux Unix flavors."
+          ],
+          "type": "string"
+        },
+        "osName": {
+          "description": "The name of the operating system.",
+          "type": "string"
+        },
         "runtime": {
           "$ref": "GuestRuntimeDetails",
           "description": "Runtime information."
+        },
+        "version": {
+          "description": "The version of the operating system.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3374,15 +3306,16 @@
           "$ref": "GuestInstalledApplicationList",
           "description": "Installed applications information."
         },
-        "lastUptime": {
-          "$ref": "Date",
-          "description": "Date since last booted (last uptime date)."
+        "lastBootTime": {
+          "description": "Last time the OS was booted.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "machineName": {
           "description": "Machine name.",
           "type": "string"
         },
-        "networkInfo": {
+        "network": {
           "$ref": "RuntimeNetworkInfo",
           "description": "Runtime network information (connections, ports)."
         },
@@ -3451,30 +3384,19 @@
           "description": "Required. The payload format.",
           "enum": [
             "IMPORT_JOB_FORMAT_UNSPECIFIED",
-            "IMPORT_JOB_FORMAT_CMDB",
             "IMPORT_JOB_FORMAT_RVTOOLS_XLSX",
             "IMPORT_JOB_FORMAT_RVTOOLS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
-            "IMPORT_JOB_FORMAT_MANUAL_CSV"
-          ],
-          "enumDeprecated": [
-            false,
-            true,
-            false,
-            false,
-            false,
-            false,
-            false
+            "IMPORT_JOB_FORMAT_STRATOZONE_CSV"
           ],
           "enumDescriptions": [
             "Default value.",
-            "Configuration management DB format.",
             "RVTools format (XLSX).",
             "RVTools format (CSV).",
             "CSV format exported from AWS using the AWS collection script.",
             "CSV format exported from Azure using the Azure collection script.",
-            "CSV format created manually. For more information, see Manually create and upload data tables."
+            "CSV format created manually and following the StratoZone format. For more information, see Manually create and upload data tables."
           ],
           "type": "string"
         },
@@ -3561,15 +3483,6 @@
           "description": "Output only. The report with the results of running the import job.",
           "readOnly": true
         },
-        "gcsPayload": {
-          "$ref": "GCSPayloadInfo",
-          "deprecated": true,
-          "description": "The payload is in Google Cloud Storage."
-        },
-        "inlinePayload": {
-          "$ref": "InlinePayloadInfo",
-          "description": "The payload is included in the request, mainly used for small import jobs."
-        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -3645,51 +3558,6 @@
         "vmUuid": {
           "description": "The VM UUID.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "InlinePayloadInfo": {
-      "description": "A resource that represents the inline import job payload.",
-      "id": "InlinePayloadInfo",
-      "properties": {
-        "format": {
-          "description": "The import job format.",
-          "enum": [
-            "IMPORT_JOB_FORMAT_UNSPECIFIED",
-            "IMPORT_JOB_FORMAT_CMDB",
-            "IMPORT_JOB_FORMAT_RVTOOLS_XLSX",
-            "IMPORT_JOB_FORMAT_RVTOOLS_CSV",
-            "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
-            "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
-            "IMPORT_JOB_FORMAT_MANUAL_CSV"
-          ],
-          "enumDeprecated": [
-            false,
-            true,
-            false,
-            false,
-            false,
-            false,
-            false
-          ],
-          "enumDescriptions": [
-            "Default value.",
-            "Configuration management DB format.",
-            "RVTools format (XLSX).",
-            "RVTools format (CSV).",
-            "CSV format exported from AWS using the AWS collection script.",
-            "CSV format exported from Azure using the Azure collection script.",
-            "CSV format created manually. For more information, see Manually create and upload data tables."
-          ],
-          "type": "string"
-        },
-        "payload": {
-          "description": "List of payload files.",
-          "items": {
-            "$ref": "PayloadFile"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -4022,6 +3890,183 @@
       },
       "type": "object"
     },
+    "MachineArchitectureDetails": {
+      "description": "Details of the machine architecture.",
+      "id": "MachineArchitectureDetails",
+      "properties": {
+        "bios": {
+          "$ref": "BiosDetails",
+          "description": "BIOS Details."
+        },
+        "cpuArchitecture": {
+          "description": "CPU architecture, e.g., \"x64-based PC\", \"x86_64\", \"i686\" etc.",
+          "type": "string"
+        },
+        "cpuName": {
+          "description": "CPU name, e.g., \"Intel Xeon E5-2690\", \"AMD EPYC 7571\" etc.",
+          "type": "string"
+        },
+        "cpuSocketCount": {
+          "description": "Number of processor sockets allocated to the machine.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "cpuThreadCount": {
+          "description": "Number of CPU threads allocated to the machine.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "firmwareType": {
+          "description": "Firmware type.",
+          "enum": [
+            "FIRMWARE_TYPE_UNSPECIFIED",
+            "BIOS",
+            "EFI"
+          ],
+          "enumDescriptions": [
+            "Unspecified or unknown.",
+            "BIOS firmware.",
+            "EFI firmware."
+          ],
+          "type": "string"
+        },
+        "hyperthreading": {
+          "description": "CPU hyper-threading support.",
+          "enum": [
+            "CPU_HYPER_THREADING_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified or unknown.",
+            "Hyper-threading is disabled.",
+            "Hyper-threading is enabled."
+          ],
+          "type": "string"
+        },
+        "vendor": {
+          "description": "Hardware vendor.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MachineDetails": {
+      "description": "Details of a machine.",
+      "id": "MachineDetails",
+      "properties": {
+        "architecture": {
+          "$ref": "MachineArchitectureDetails",
+          "description": "Architecture details (vendor, CPU architecture)."
+        },
+        "coreCount": {
+          "description": "Number of CPU cores in the machine. Must be non-negative.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "createTime": {
+          "description": "Machine creation time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "disks": {
+          "$ref": "MachineDiskDetails",
+          "description": "Disk details."
+        },
+        "guestOs": {
+          "$ref": "GuestOsDetails",
+          "description": "Guest OS information."
+        },
+        "machineName": {
+          "description": "Machine name.",
+          "type": "string"
+        },
+        "memoryMb": {
+          "description": "The amount of memory in the machine. Must be non-negative.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "network": {
+          "$ref": "MachineNetworkDetails",
+          "description": "Network details."
+        },
+        "platform": {
+          "$ref": "PlatformDetails",
+          "description": "Platform specific information."
+        },
+        "powerState": {
+          "description": "Power state of the machine.",
+          "enum": [
+            "POWER_STATE_UNSPECIFIED",
+            "PENDING",
+            "ACTIVE",
+            "SUSPENDING",
+            "SUSPENDED",
+            "DELETING",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "Power state is unknown.",
+            "The machine is preparing to enter the ACTIVE state. An instance may enter the PENDING state when it launches for the first time, or when it is started after being in the SUSPENDED state.",
+            "The machine is active.",
+            "The machine is being turned off.",
+            "The machine is off.",
+            "The machine is being deleted from the hosting platform.",
+            "The machine is deleted from the hosting platform."
+          ],
+          "type": "string"
+        },
+        "uuid": {
+          "description": "Machine unique identifier.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MachineDiskDetails": {
+      "description": "Details of machine disks.",
+      "id": "MachineDiskDetails",
+      "properties": {
+        "disks": {
+          "$ref": "DiskEntryList",
+          "description": "List of disks."
+        },
+        "totalCapacityBytes": {
+          "description": "Disk total Capacity.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalFreeBytes": {
+          "description": "Total disk free space.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MachineNetworkDetails": {
+      "description": "Details of network adapters and settings.",
+      "id": "MachineNetworkDetails",
+      "properties": {
+        "adapters": {
+          "$ref": "NetworkAdapterList",
+          "description": "List of network adapters."
+        },
+        "primaryIpAddress": {
+          "description": "The primary IP address of the machine.",
+          "type": "string"
+        },
+        "primaryMacAddress": {
+          "description": "MAC address of the machine. This property is used to uniqly identify the machine.",
+          "type": "string"
+        },
+        "publicIpAddress": {
+          "description": "The public IP address of the machine.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MachinePreferences": {
       "description": "The type of machines to consider when calculating virtual machine migration insights and recommendations. Not all machine types are available in all zones and regions.",
       "id": "MachinePreferences",
@@ -4072,16 +4117,6 @@
           "$ref": "FitDescriptor",
           "description": "Output only. Description of how well the asset this insight is associated with fits the proposed migration.",
           "readOnly": true
-        },
-        "gkeTarget": {
-          "$ref": "GoogleKubernetesEngineMigrationTarget",
-          "description": "Output only. A Google Kubernetes Engine target.",
-          "readOnly": true
-        },
-        "vmwareEngineTarget": {
-          "$ref": "VmwareEngineMigrationTarget",
-          "description": "Output only. A VMWare Engine target.",
-          "readOnly": true
         }
       },
       "type": "object"
@@ -4130,8 +4165,8 @@
       "description": "List of network adapters.",
       "id": "NetworkAdapterList",
       "properties": {
-        "networkAdapters": {
-          "description": "Network adapter descriptions.",
+        "entries": {
+          "description": "Network adapter entries.",
           "items": {
             "$ref": "NetworkAdapterDetails"
           },
@@ -4181,7 +4216,7 @@
       "description": "List of allocated/assigned network addresses.",
       "id": "NetworkAddressList",
       "properties": {
-        "addresses": {
+        "entries": {
           "description": "Network address entries.",
           "items": {
             "$ref": "NetworkAddress"
@@ -4226,7 +4261,23 @@
           "type": "integer"
         },
         "state": {
-          "description": "Connection state (e.g. CONNECTED).",
+          "description": "Network connection state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "OPENING",
+            "OPEN",
+            "LISTEN",
+            "CLOSING",
+            "CLOSED"
+          ],
+          "enumDescriptions": [
+            "Connection state is unknown or unspecified.",
+            "The connection is being opened.",
+            "The connection is open.",
+            "Listening for incoming connections.",
+            "The connection is being closed.",
+            "The connection is closed."
+          ],
           "type": "string"
         }
       },
@@ -4411,22 +4462,6 @@
       },
       "type": "object"
     },
-    "PayloadFile": {
-      "description": "Payload file for inline import job payload.",
-      "id": "PayloadFile",
-      "properties": {
-        "data": {
-          "description": "The file data.",
-          "format": "byte",
-          "type": "string"
-        },
-        "name": {
-          "description": "The file name.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "PerformanceSample": {
       "description": "Performance data sample.",
       "id": "PerformanceSample",
@@ -4448,7 +4483,7 @@
           "description": "Network usage sample."
         },
         "sampleTime": {
-          "description": "Time the sample was collected. If omitted, the frame report time will be used.",
+          "description": "Time the sample was If omitted, the frame report time will be used.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -4709,11 +4744,6 @@
       "description": "Aggregate statistics for a collection of assets.",
       "id": "ReportSummaryAssetAggregateStats",
       "properties": {
-        "assetAge": {
-          "$ref": "ReportSummaryChartData",
-          "deprecated": true,
-          "description": "Count of assets grouped by age."
-        },
         "coreCountHistogram": {
           "$ref": "ReportSummaryHistogramChartData",
           "description": "Histogram showing a distribution of CPU core counts."
@@ -4721,11 +4751,6 @@
         "memoryBytesHistogram": {
           "$ref": "ReportSummaryHistogramChartData",
           "description": "Histogram showing a distribution of memory sizes."
-        },
-        "memoryUtilization": {
-          "$ref": "ReportSummaryChartData",
-          "deprecated": true,
-          "description": "Total memory split into Used/Free buckets."
         },
         "memoryUtilizationChart": {
           "$ref": "ReportSummaryUtilizationChartData",
@@ -4738,11 +4763,6 @@
         "storageBytesHistogram": {
           "$ref": "ReportSummaryHistogramChartData",
           "description": "Histogram showing a distribution of memory sizes."
-        },
-        "storageUtilization": {
-          "$ref": "ReportSummaryChartData",
-          "deprecated": true,
-          "description": "Total storage split into Used/Free buckets."
         },
         "storageUtilizationChart": {
           "$ref": "ReportSummaryUtilizationChartData",
@@ -4801,146 +4821,9 @@
       },
       "type": "object"
     },
-    "ReportSummaryGroupFinding": {
-      "description": "Summary Findings for a specific Group.",
-      "id": "ReportSummaryGroupFinding",
-      "properties": {
-        "assetAggregateStats": {
-          "$ref": "ReportSummaryAssetAggregateStats",
-          "description": "Summary statistics for all the assets in this group."
-        },
-        "description": {
-          "description": "Description for the Group.",
-          "type": "string"
-        },
-        "displayName": {
-          "description": "Display Name for the Group.",
-          "type": "string"
-        },
-        "overlappingAssetCount": {
-          "description": "Count of the number of assets in this group which are also included in another group within the same report.",
-          "format": "int64",
-          "type": "string"
-        },
-        "preferenceSetFindings": {
-          "description": "Findings for each of the PreferenceSets for this group.",
-          "items": {
-            "$ref": "ReportSummaryGroupPreferenceSetFinding"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ReportSummaryGroupPreferenceSetFinding": {
-      "description": "Summary Findings for a specific Group/PreferenceSet combination.",
-      "id": "ReportSummaryGroupPreferenceSetFinding",
-      "properties": {
-        "description": {
-          "description": "Description for the Preference Set.",
-          "type": "string"
-        },
-        "displayName": {
-          "description": "Display Name of the Preference Set",
-          "type": "string"
-        },
-        "machineFinding": {
-          "$ref": "ReportSummaryMachineFinding",
-          "description": "A set of findings that applies to all machines in the input."
-        },
-        "machinePreferences": {
-          "$ref": "VirtualMachinePreferences",
-          "description": "A set of preferences that applies to all machines in the context."
-        },
-        "monthlyCostCompute": {
-          "$ref": "Money",
-          "description": "Compute monthly cost for this preference set."
-        },
-        "monthlyCostNetworkEgress": {
-          "$ref": "Money",
-          "description": "Network Egress monthly cost for this preference set."
-        },
-        "monthlyCostOsLicense": {
-          "$ref": "Money",
-          "description": "Licensing monthly cost for this preference set."
-        },
-        "monthlyCostOther": {
-          "$ref": "Money",
-          "description": "Miscellaneous monthly cost for this preference set."
-        },
-        "monthlyCostStorage": {
-          "$ref": "Money",
-          "description": "Storage monthly cost for this preference set."
-        },
-        "monthlyCostTotal": {
-          "$ref": "Money",
-          "description": "Total monthly cost for this preference set."
-        },
-        "preferredRegion": {
-          "deprecated": true,
-          "description": "Target region for this Preference Set",
-          "type": "string"
-        },
-        "pricingTrack": {
-          "deprecated": true,
-          "description": "Text describing the pricing track specified for this Preference Set",
-          "type": "string"
-        },
-        "soleTenantFinding": {
-          "$ref": "ReportSummarySoleTenantFinding",
-          "description": "A set of findings that applies to Stole-Tenant machines in the input."
-        },
-        "topPriority": {
-          "deprecated": true,
-          "description": "Text describing the business priority specified for this Preference Set",
-          "type": "string"
-        },
-        "vmwareEngineFinding": {
-          "$ref": "ReportSummaryVMWareEngineFinding",
-          "description": "A set of findings that applies to VMWare machines in the input."
-        }
-      },
-      "type": "object"
-    },
-    "ReportSummaryHistogramChartData": {
-      "description": "A Histogram Chart shows a distribution of values into buckets, showing a count of values which fall into a bucket.",
-      "id": "ReportSummaryHistogramChartData",
-      "properties": {
-        "buckets": {
-          "description": "Buckets in the histogram. There will be `n+1` buckets matching `n` lower bounds in the request. The first bucket will be from -infinity to the first bound. Subsequent buckets will be between one bound and the next. The final bucket will be from the final bound to infinity.",
-          "items": {
-            "$ref": "ReportSummaryHistogramChartDataBucket"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ReportSummaryHistogramChartDataBucket": {
-      "description": "A histogram bucket with a lower and upper bound, and a count of items with a field value between those bounds. The lower bound is inclusive and the upper bound is exclusive. Lower bound may be -infinity and upper bound may be infinity.",
-      "id": "ReportSummaryHistogramChartDataBucket",
-      "properties": {
-        "count": {
-          "description": "Count of items in the bucket.",
-          "format": "int64",
-          "type": "string"
-        },
-        "lowerBound": {
-          "description": "Lower bound - inclusive.",
-          "format": "int64",
-          "type": "string"
-        },
-        "upperBound": {
-          "description": "Upper bound - exclusive.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ReportSummaryMachineFinding": {
-      "description": "A set of findings that applies to assets of type Virtual/Physical Machine.",
-      "id": "ReportSummaryMachineFinding",
+    "ReportSummaryComputeEngineFinding": {
+      "description": "A set of findings that applies to assets destined for Compute Engine.",
+      "id": "ReportSummaryComputeEngineFinding",
       "properties": {
         "allocatedAssetCount": {
           "description": "Count of assets which were allocated.",
@@ -4979,6 +4862,128 @@
             "$ref": "ReportSummaryMachineSeriesAllocation"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryGroupFinding": {
+      "description": "Summary Findings for a specific Group.",
+      "id": "ReportSummaryGroupFinding",
+      "properties": {
+        "assetAggregateStats": {
+          "$ref": "ReportSummaryAssetAggregateStats",
+          "description": "Summary statistics for all the assets in this group."
+        },
+        "description": {
+          "description": "Description for the Group.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display Name for the Group.",
+          "type": "string"
+        },
+        "overlappingAssetCount": {
+          "description": "Count of the number of assets in this group which are also included in another group within the same report.",
+          "format": "int64",
+          "type": "string"
+        },
+        "preferenceSetFindings": {
+          "description": "Findings for each of the PreferenceSets for this group.",
+          "items": {
+            "$ref": "ReportSummaryGroupPreferenceSetFinding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryGroupPreferenceSetFinding": {
+      "description": "Summary Findings for a specific Group/PreferenceSet combination.",
+      "id": "ReportSummaryGroupPreferenceSetFinding",
+      "properties": {
+        "computeEngineFinding": {
+          "$ref": "ReportSummaryComputeEngineFinding",
+          "description": "A set of findings that applies to Compute Engine machines in the input."
+        },
+        "description": {
+          "description": "Description for the Preference Set.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display Name of the Preference Set",
+          "type": "string"
+        },
+        "machinePreferences": {
+          "$ref": "VirtualMachinePreferences",
+          "description": "A set of preferences that applies to all machines in the context."
+        },
+        "monthlyCostCompute": {
+          "$ref": "Money",
+          "description": "Compute monthly cost for this preference set."
+        },
+        "monthlyCostNetworkEgress": {
+          "$ref": "Money",
+          "description": "Network Egress monthly cost for this preference set."
+        },
+        "monthlyCostOsLicense": {
+          "$ref": "Money",
+          "description": "Licensing monthly cost for this preference set."
+        },
+        "monthlyCostOther": {
+          "$ref": "Money",
+          "description": "Miscellaneous monthly cost for this preference set."
+        },
+        "monthlyCostStorage": {
+          "$ref": "Money",
+          "description": "Storage monthly cost for this preference set."
+        },
+        "monthlyCostTotal": {
+          "$ref": "Money",
+          "description": "Total monthly cost for this preference set."
+        },
+        "soleTenantFinding": {
+          "$ref": "ReportSummarySoleTenantFinding",
+          "description": "A set of findings that applies to Sole-Tenant machines in the input."
+        },
+        "vmwareEngineFinding": {
+          "$ref": "ReportSummaryVmwareEngineFinding",
+          "description": "A set of findings that applies to VMWare machines in the input."
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryHistogramChartData": {
+      "description": "A Histogram Chart shows a distribution of values into buckets, showing a count of values which fall into a bucket.",
+      "id": "ReportSummaryHistogramChartData",
+      "properties": {
+        "buckets": {
+          "description": "Buckets in the histogram. There will be `n+1` buckets matching `n` lower bounds in the request. The first bucket will be from -infinity to the first bound. Subsequent buckets will be between one bound and the next. The final bucket will be from the final bound to infinity.",
+          "items": {
+            "$ref": "ReportSummaryHistogramChartDataBucket"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryHistogramChartDataBucket": {
+      "description": "A histogram bucket with a lower and upper bound, and a count of items with a field value between those bounds. The lower bound is inclusive and the upper bound is exclusive. Lower bound may be -infinity and upper bound may be infinity.",
+      "id": "ReportSummaryHistogramChartDataBucket",
+      "properties": {
+        "count": {
+          "description": "Count of items in the bucket.",
+          "format": "int64",
+          "type": "string"
+        },
+        "lowerBound": {
+          "description": "Lower bound - inclusive.",
+          "format": "int64",
+          "type": "string"
+        },
+        "upperBound": {
+          "description": "Upper bound - exclusive.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5063,9 +5068,9 @@
       },
       "type": "object"
     },
-    "ReportSummaryVMWareEngineFinding": {
+    "ReportSummaryVmwareEngineFinding": {
       "description": "A set of findings that applies to assets destined for VMWare Engine.",
-      "id": "ReportSummaryVMWareEngineFinding",
+      "id": "ReportSummaryVmwareEngineFinding",
       "properties": {
         "allocatedAssetCount": {
           "description": "Count of assets which are allocated",
@@ -5082,16 +5087,16 @@
         "nodeAllocations": {
           "description": "Set of per-nodetype allocation records",
           "items": {
-            "$ref": "ReportSummaryVMWareNodeAllocation"
+            "$ref": "ReportSummaryVmwareNodeAllocation"
           },
           "type": "array"
         }
       },
       "type": "object"
     },
-    "ReportSummaryVMWareNode": {
+    "ReportSummaryVmwareNode": {
       "description": "A VMWare Engine Node",
-      "id": "ReportSummaryVMWareNode",
+      "id": "ReportSummaryVmwareNode",
       "properties": {
         "code": {
           "description": "Code to identify VMware Engine node series, e.g. \"ve1-standard-72\". Based on the displayName of cloud.google.com/vmware-engine/docs/reference/rest/v1/projects.locations.nodeTypes",
@@ -5100,9 +5105,9 @@
       },
       "type": "object"
     },
-    "ReportSummaryVMWareNodeAllocation": {
+    "ReportSummaryVmwareNodeAllocation": {
       "description": "Represents assets allocated to a specific VMWare Node type.",
-      "id": "ReportSummaryVMWareNodeAllocation",
+      "id": "ReportSummaryVmwareNodeAllocation",
       "properties": {
         "allocatedAssetCount": {
           "description": "Count of assets allocated to these nodes",
@@ -5115,7 +5120,7 @@
           "type": "string"
         },
         "vmwareNode": {
-          "$ref": "ReportSummaryVMWareNode",
+          "$ref": "ReportSummaryVmwareNode",
           "description": "VMWare node type, e.g. \"ve1-standard-72\""
         }
       },
@@ -5167,7 +5172,7 @@
       "description": "List of running guest OS processes.",
       "id": "RunningProcessList",
       "properties": {
-        "processes": {
+        "entries": {
           "description": "Running process entries.",
           "items": {
             "$ref": "RunningProcess"
@@ -5189,25 +5194,49 @@
           "description": "Service binary path.",
           "type": "string"
         },
-        "name": {
-          "description": "Service name.",
-          "type": "string"
-        },
         "pid": {
           "description": "Service pid.",
           "format": "int64",
           "type": "string"
         },
+        "serviceName": {
+          "description": "Service name.",
+          "type": "string"
+        },
         "startMode": {
-          "description": "Service start mode (raw, OS-agnostic).",
+          "description": "Service start mode (OS-agnostic).",
+          "enum": [
+            "START_MODE_UNSPECIFIED",
+            "BOOT",
+            "SYSTEM",
+            "AUTO",
+            "MANUAL",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Start mode unspecified.",
+            "The service is a device driver started by the system loader.",
+            "The service is a device driver started by the IOInitSystem function.",
+            "The service is started by the operating system, at system start-up",
+            "The service is started only manually, by a user.",
+            "The service is disabled."
+          ],
           "type": "string"
         },
         "state": {
-          "description": "Service state (raw, OS-agnostic).",
-          "type": "string"
-        },
-        "status": {
-          "description": "Service status.",
+          "description": "Service state (OS-agnostic).",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PAUSED",
+            "STOPPED"
+          ],
+          "enumDescriptions": [
+            "Service state unspecified.",
+            "Service is active.",
+            "Service is paused.",
+            "Service is stopped."
+          ],
           "type": "string"
         }
       },
@@ -5217,7 +5246,7 @@
       "description": "List of running guest OS services.",
       "id": "RunningServiceList",
       "properties": {
-        "services": {
+        "entries": {
           "description": "Running service entries.",
           "items": {
             "$ref": "RunningService"
@@ -5235,27 +5264,9 @@
           "$ref": "NetworkConnectionList",
           "description": "Network connections."
         },
-        "netstat": {
-          "description": "Netstat (raw, OS-agnostic).",
-          "type": "string"
-        },
-        "netstatTime": {
-          "$ref": "DateTime",
-          "description": "Netstat time collected."
-        }
-      },
-      "type": "object"
-    },
-    "Selinux": {
-      "description": "SELinux details.",
-      "id": "Selinux",
-      "properties": {
-        "enabled": {
-          "description": "Is SELinux enabled.",
-          "type": "boolean"
-        },
-        "mode": {
-          "description": "SELinux mode enforcing / permissive.",
+        "scanTime": {
+          "description": "Time of the last network scan.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -5265,10 +5276,6 @@
       "description": "Describes the Migration Center settings related to the project.",
       "id": "Settings",
       "properties": {
-        "disableCloudLogging": {
-          "description": "Disable Cloud Logging for the Migration Center API. Users are billed for the logs.",
-          "type": "boolean"
-        },
         "name": {
           "description": "Output only. The name of the resource.",
           "readOnly": true,
@@ -5367,7 +5374,7 @@
           "readOnly": true,
           "type": "integer"
         },
-        "isManaged": {
+        "managed": {
           "description": "If `true`, the source is managed by other service(s).",
           "type": "boolean"
         },
@@ -5458,21 +5465,6 @@
       },
       "type": "object"
     },
-    "TimeZone": {
-      "description": "Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).",
-      "id": "TimeZone",
-      "properties": {
-        "id": {
-          "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
-          "type": "string"
-        },
-        "version": {
-          "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "UpdateAssetRequest": {
       "description": "A request to update an asset.",
       "id": "UpdateAssetRequest",
@@ -5501,7 +5493,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Output only. The headers that were used to sign the URL.",
+          "description": "Output only. The headers that were used to sign the URI.",
           "readOnly": true,
           "type": "object"
         },
@@ -5547,203 +5539,6 @@
             "$ref": "ImportError"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "VirtualMachineArchitectureDetails": {
-      "description": "Details of the VM architecture.",
-      "id": "VirtualMachineArchitectureDetails",
-      "properties": {
-        "bios": {
-          "$ref": "BiosDetails",
-          "description": "BIOS Details."
-        },
-        "cpuArchitecture": {
-          "description": "CPU architecture, e.g., \"x64-based PC\", \"x86_64\", \"i686\" etc.",
-          "type": "string"
-        },
-        "cpuManufacturer": {
-          "description": "CPU manufacturer, e.g., \"Intel\", \"AMD\".",
-          "type": "string"
-        },
-        "cpuName": {
-          "description": "CPU name, e.g., \"Intel Xeon E5-2690\", \"AMD EPYC 7571\" etc.",
-          "type": "string"
-        },
-        "cpuSocketCount": {
-          "description": "Number of processor sockets allocated to the machine.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "cpuThreadCount": {
-          "description": "Number of CPU threads allocated to the machine.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "firmware": {
-          "description": "Firmware (BIOS/efi).",
-          "type": "string"
-        },
-        "hyperthreading": {
-          "description": "CPU hyperthreading support.",
-          "enum": [
-            "HYPER_THREADING_UNSPECIFIED",
-            "HYPER_THREADING_DISABLED",
-            "HYPER_THREADING_ENABLED"
-          ],
-          "enumDescriptions": [
-            "Unknown (default value).",
-            "Hyperthreading is disabled.",
-            "Hyperthreading is enabled."
-          ],
-          "type": "string"
-        },
-        "vendor": {
-          "description": "Hardware vendor.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "VirtualMachineDetails": {
-      "description": "Details of a VirtualMachine.",
-      "id": "VirtualMachineDetails",
-      "properties": {
-        "coreCount": {
-          "description": "Number of CPU cores in the VirtualMachine. Must be non-negative.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "createTime": {
-          "description": "VM creation timestamp.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "guestOs": {
-          "$ref": "GuestOsDetails",
-          "description": "Guest OS information."
-        },
-        "memoryMb": {
-          "description": "The amount of memory in the VirtualMachine. Must be non-negative.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "osFamily": {
-          "description": "What family the OS belong to, if known.",
-          "enum": [
-            "OS_FAMILY_UNKNOWN",
-            "OS_FAMILY_WINDOWS",
-            "OS_FAMILY_LINUX",
-            "OS_FAMILY_UNIX"
-          ],
-          "enumDescriptions": [
-            "",
-            "Microsoft Windows Server and Desktop.",
-            "Various Linux flavors.",
-            "Non-Linux Unix flavors."
-          ],
-          "type": "string"
-        },
-        "osName": {
-          "description": "The name of the operating system running on the VirtualMachine.",
-          "type": "string"
-        },
-        "osVersion": {
-          "description": "The version of the operating system running on the virtual machine.",
-          "type": "string"
-        },
-        "platform": {
-          "$ref": "PlatformDetails",
-          "description": "Platform information."
-        },
-        "powerState": {
-          "description": "Power state of VM (poweredOn or poweredOff).",
-          "type": "string"
-        },
-        "vcenterFolder": {
-          "description": "Folder name in vCenter where asset resides.",
-          "type": "string"
-        },
-        "vcenterUrl": {
-          "description": "vCenter URL used in collection.",
-          "type": "string"
-        },
-        "vcenterVmId": {
-          "description": "vCenter VM ID.",
-          "type": "string"
-        },
-        "vmArchitecture": {
-          "$ref": "VirtualMachineArchitectureDetails",
-          "description": "VM architecture details (vendor, cpu arch)."
-        },
-        "vmDisks": {
-          "$ref": "VirtualMachineDiskDetails",
-          "description": "VM disk details."
-        },
-        "vmName": {
-          "description": "Virtual Machine display name.",
-          "type": "string"
-        },
-        "vmNetwork": {
-          "$ref": "VirtualMachineNetworkDetails",
-          "description": "VM network details."
-        },
-        "vmUuid": {
-          "description": "Virtual Machine unique identifier.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "VirtualMachineDiskDetails": {
-      "description": "Details of VM disks.",
-      "id": "VirtualMachineDiskDetails",
-      "properties": {
-        "disks": {
-          "$ref": "DiskEntryList",
-          "description": "List of disks."
-        },
-        "hddTotalCapacityBytes": {
-          "description": "Disk total Capacity.",
-          "format": "int64",
-          "type": "string"
-        },
-        "hddTotalFreeBytes": {
-          "description": "Total Disk Free Space.",
-          "format": "int64",
-          "type": "string"
-        },
-        "lsblkJson": {
-          "description": "Raw lsblk output in json.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "VirtualMachineNetworkDetails": {
-      "description": "Details of network adapters and settings.",
-      "id": "VirtualMachineNetworkDetails",
-      "properties": {
-        "defaultGw": {
-          "description": "Default gateway address.",
-          "type": "string"
-        },
-        "networkAdapters": {
-          "$ref": "NetworkAdapterList",
-          "description": "List of network adapters."
-        },
-        "primaryIpAddress": {
-          "description": "IP address of the machine.",
-          "type": "string"
-        },
-        "primaryMacAddress": {
-          "description": "MAC address of the machine. This property is used to uniqly identify the machine.",
-          "type": "string"
-        },
-        "publicIpAddress": {
-          "description": "Public IP address of the machine.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -5849,25 +5644,41 @@
           ],
           "type": "string"
         },
-        "rdmCompatibilityMode": {
+        "rdmCompatibility": {
           "description": "RDM compatibility mode.",
+          "enum": [
+            "RDM_COMPATIBILITY_UNSPECIFIED",
+            "PHYSICAL_COMPATIBILITY",
+            "VIRTUAL_COMPATIBILITY"
+          ],
+          "enumDescriptions": [
+            "Compatibility mode unspecified or unknown.",
+            "Physical compatibility mode.",
+            "Virtual compatibility mode."
+          ],
           "type": "string"
         },
         "shared": {
           "description": "Is VMDK shared with other VMs.",
           "type": "boolean"
         },
-        "vmdkDiskMode": {
+        "vmdkMode": {
           "description": "VMDK disk mode.",
+          "enum": [
+            "VMDK_MODE_UNSPECIFIED",
+            "DEPENDENT",
+            "INDEPENDENT_PERSISTENT",
+            "INDEPENDENT_NONPERSISTENT"
+          ],
+          "enumDescriptions": [
+            "VMDK disk mode unspecified or unknown.",
+            "Dependent disk mode.",
+            "Independent - Persistent disk mode.",
+            "Independent - Nonpersistent disk mode."
+          ],
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "VmwareEngineMigrationTarget": {
-      "description": "VMWare engine migration target.",
-      "id": "VmwareEngineMigrationTarget",
-      "properties": {},
       "type": "object"
     },
     "VmwareEnginePreferences": {
@@ -5924,8 +5735,20 @@
           "description": "VMware os enum - https://vdc-repo.vmware.com/vmwb-repository/dcr-public/da47f910-60ac-438b-8b9b-6122f4d14524/16b7274a-bf8b-4b4c-a05e-746f2aa93c8c/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html.",
           "type": "string"
         },
+        "vcenterFolder": {
+          "description": "Folder name in vCenter where asset resides.",
+          "type": "string"
+        },
+        "vcenterUri": {
+          "description": "vCenter URI used in collection.",
+          "type": "string"
+        },
         "vcenterVersion": {
           "description": "vCenter version.",
+          "type": "string"
+        },
+        "vcenterVmId": {
+          "description": "vCenter VM ID.",
           "type": "string"
         }
       },
@@ -5934,6 +5757,6 @@
   },
   "servicePath": "",
   "title": "Migration Center API",
-  "version": "v1alpha1",
+  "version": "v1",
   "version_module": true
 }
