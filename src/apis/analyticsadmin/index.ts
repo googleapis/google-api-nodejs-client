@@ -37,7 +37,7 @@ export function analyticsadmin(
 export function analyticsadmin<
   T =
     | analyticsadmin_v1alpha.Analyticsadmin
-    | analyticsadmin_v1beta.Analyticsadmin
+    | analyticsadmin_v1beta.Analyticsadmin,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
