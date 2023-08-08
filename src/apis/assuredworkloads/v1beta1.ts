@@ -261,6 +261,10 @@ export namespace assuredworkloads_v1beta1 {
      */
     nonCompliantOrgPolicy?: string | null;
     /**
+     * Output only. Immutable. The org-policy-constraint that was incorrectly changed, which resulted in this violation.
+     */
+    orgPolicyConstraint?: string | null;
+    /**
      * Output only. Compliance violation remediation
      */
     remediation?: Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediation;
@@ -383,10 +387,6 @@ export namespace assuredworkloads_v1beta1 {
      */
     compliantButDisallowedServices?: string[] | null;
     /**
-     * Output only. Controls associated with the customer workload
-     */
-    controls?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControls;
-    /**
      * Output only. Immutable. The Workload creation timestamp.
      */
     createTime?: string | null;
@@ -473,28 +473,6 @@ export namespace assuredworkloads_v1beta1 {
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings;
   }
   /**
-   * Controls enabled to the user associated with this workload
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControls {
-    /**
-     * Output only. Org policies currently applied by this Assured Workload
-     */
-    appliedOrgPolicies?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControlsOrgPolicyControl[];
-  }
-  /**
-   * An org policy control applied by Assured Workloads
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControlsOrgPolicyControl {
-    /**
-     * Output only. Constraint name of the org policy control Example: constraints/gcp.resourcelocations
-     */
-    constraint?: string | null;
-    /**
-     * Output only. Org policy version
-     */
-    version?: number | null;
-  }
-  /**
    * Represents the Compliance Status of this workload
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus {
@@ -569,13 +547,17 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadPartnerPermissions {
     /**
+     * Optional. Allow partner to view violation alerts.
+     */
+    assuredWorkloadsMonitoring?: boolean | null;
+    /**
      * Allow the partner to view inspectability logs and monitoring violations.
      */
     dataLogsViewer?: boolean | null;
     /**
-     * Allow partner to monitor folder and remediate violations
+     * Optional. Allow partner to view access approval logs.
      */
-    remediateFolderViolations?: boolean | null;
+    serviceAccessApprover?: boolean | null;
   }
   /**
    * Represent the resources that are children of this Workload.
@@ -1077,7 +1059,6 @@ export namespace assuredworkloads_v1beta1 {
      *       //   "complianceRegime": "my_complianceRegime",
      *       //   "complianceStatus": {},
      *       //   "compliantButDisallowedServices": [],
-     *       //   "controls": {},
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "ekmProvisioningResponse": {},
@@ -1380,7 +1361,6 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "complianceRegime": "my_complianceRegime",
      *   //   "complianceStatus": {},
      *   //   "compliantButDisallowedServices": [],
-     *   //   "controls": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "ekmProvisioningResponse": {},
@@ -1688,7 +1668,6 @@ export namespace assuredworkloads_v1beta1 {
      *       //   "complianceRegime": "my_complianceRegime",
      *       //   "complianceStatus": {},
      *       //   "compliantButDisallowedServices": [],
-     *       //   "controls": {},
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "ekmProvisioningResponse": {},
@@ -1720,7 +1699,6 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "complianceRegime": "my_complianceRegime",
      *   //   "complianceStatus": {},
      *   //   "compliantButDisallowedServices": [],
-     *   //   "controls": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "ekmProvisioningResponse": {},
@@ -2103,7 +2081,7 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * Analyzes a hypothetical move of a source project or project-based workload to a target (destination) folder-based workload.
+     * Analyzes a hypothetical move of a source project to a target (destination) folder-based workload.
      * @example
      * ```js
      * // Before running the sample:
@@ -2133,7 +2111,7 @@ export namespace assuredworkloads_v1beta1 {
      *       {
      *         // The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
      *         project: 'placeholder-value',
-     *         // The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1"
+     *         // The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1" This option is now deprecated
      *         source:
      *           'organizations/my-organization/locations/my-location/workloads/my-workload',
      *         // Required. The resource ID of the folder-based destination workload. This workload is where the source project will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
@@ -2258,7 +2236,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     project?: string;
     /**
-     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1"
+     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1" This option is now deprecated
      */
     source?: string;
     /**
@@ -2468,6 +2446,7 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "exceptionContexts": [],
      *   //   "name": "my_name",
      *   //   "nonCompliantOrgPolicy": "my_nonCompliantOrgPolicy",
+     *   //   "orgPolicyConstraint": "my_orgPolicyConstraint",
      *   //   "remediation": {},
      *   //   "resolveTime": "my_resolveTime",
      *   //   "state": "my_state",
@@ -2813,7 +2792,7 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * Analyzes a hypothetical move of a source project or project-based workload to a target (destination) folder-based workload.
+     * Analyzes a hypothetical move of a source project to a target (destination) folder-based workload.
      * @example
      * ```js
      * // Before running the sample:
@@ -2843,7 +2822,7 @@ export namespace assuredworkloads_v1beta1 {
      *       {
      *         // The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
      *         project: 'projects/my-project',
-     *         // The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1"
+     *         // The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1" This option is now deprecated
      *         source: 'placeholder-value',
      *         // Required. The resource ID of the folder-based destination workload. This workload is where the source project will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
      *         target:
@@ -2967,7 +2946,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     project?: string;
     /**
-     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1"
+     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1" This option is now deprecated
      */
     source?: string;
     /**

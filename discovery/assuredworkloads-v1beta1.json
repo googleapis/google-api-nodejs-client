@@ -381,7 +381,7 @@
                         "workloads": {
                           "methods": {
                             "analyzeWorkloadMove": {
-                              "description": "Analyzes a hypothetical move of a source project or project-based workload to a target (destination) folder-based workload.",
+                              "description": "Analyzes a hypothetical move of a source project to a target (destination) folder-based workload.",
                               "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}/organizations/{organizationsId1}/locations/{locationsId1}/workloads/{workloadsId1}:analyzeWorkloadMove",
                               "httpMethod": "GET",
                               "id": "assuredworkloads.organizations.locations.workloads.organizations.locations.workloads.analyzeWorkloadMove",
@@ -396,7 +396,7 @@
                                   "type": "string"
                                 },
                                 "source": {
-                                  "description": "The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: \"organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}\" For example: \"organizations/123/locations/us-east1/workloads/assured-workload-1\"",
+                                  "description": "The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: \"organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}\" For example: \"organizations/123/locations/us-east1/workloads/assured-workload-1\" This option is now deprecated",
                                   "location": "path",
                                   "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
                                   "required": true,
@@ -549,7 +549,7 @@
                 "workloads": {
                   "methods": {
                     "analyzeWorkloadMove": {
-                      "description": "Analyzes a hypothetical move of a source project or project-based workload to a target (destination) folder-based workload.",
+                      "description": "Analyzes a hypothetical move of a source project to a target (destination) folder-based workload.",
                       "flatPath": "v1beta1/projects/{projectsId}/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}:analyzeWorkloadMove",
                       "httpMethod": "GET",
                       "id": "assuredworkloads.projects.organizations.locations.workloads.analyzeWorkloadMove",
@@ -566,7 +566,8 @@
                           "type": "string"
                         },
                         "source": {
-                          "description": "The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: \"organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}\" For example: \"organizations/123/locations/us-east1/workloads/assured-workload-1\"",
+                          "deprecated": true,
+                          "description": "The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: \"organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}\" For example: \"organizations/123/locations/us-east1/workloads/assured-workload-1\" This option is now deprecated",
                           "location": "query",
                           "type": "string"
                         },
@@ -595,7 +596,7 @@
       }
     }
   },
-  "revision": "20230707",
+  "revision": "20230731",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -822,6 +823,12 @@
         },
         "nonCompliantOrgPolicy": {
           "description": "Output only. Immutable. Name of the OrgPolicy which was modified with non-compliant change and resulted this violation. Format: projects/{project_number}/policies/{constraint_name} folders/{folder_id}/policies/{constraint_name} organizations/{organization_id}/policies/{constraint_name}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "orgPolicyConstraint": {
+          "deprecated": true,
+          "description": "Output only. Immutable. The org-policy-constraint that was incorrectly changed, which resulted in this violation.",
           "readOnly": true,
           "type": "string"
         },
@@ -1060,11 +1067,6 @@
           "readOnly": true,
           "type": "array"
         },
-        "controls": {
-          "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControls",
-          "description": "Output only. Controls associated with the customer workload",
-          "readOnly": true
-        },
         "createTime": {
           "description": "Output only. Immutable. The Workload creation timestamp.",
           "format": "google-datetime",
@@ -1194,39 +1196,6 @@
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings",
           "description": "Input only. Immutable. Settings used to create a CMEK crypto key."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControls": {
-      "description": "Controls enabled to the user associated with this workload",
-      "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControls",
-      "properties": {
-        "appliedOrgPolicies": {
-          "description": "Output only. Org policies currently applied by this Assured Workload",
-          "items": {
-            "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControlsOrgPolicyControl"
-          },
-          "readOnly": true,
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControlsOrgPolicyControl": {
-      "description": "An org policy control applied by Assured Workloads",
-      "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControlsOrgPolicyControl",
-      "properties": {
-        "constraint": {
-          "description": "Output only. Constraint name of the org policy control Example: constraints/gcp.resourcelocations",
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "description": "Output only. Org policy version",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
         }
       },
       "type": "object"
@@ -1365,13 +1334,16 @@
       "description": "Permissions granted to the AW Partner SA account for the customer workload",
       "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadPartnerPermissions",
       "properties": {
+        "assuredWorkloadsMonitoring": {
+          "description": "Optional. Allow partner to view violation alerts.",
+          "type": "boolean"
+        },
         "dataLogsViewer": {
           "description": "Allow the partner to view inspectability logs and monitoring violations.",
           "type": "boolean"
         },
-        "remediateFolderViolations": {
-          "deprecated": true,
-          "description": "Allow partner to monitor folder and remediate violations",
+        "serviceAccessApprover": {
+          "description": "Optional. Allow partner to view access approval logs.",
           "type": "boolean"
         }
       },

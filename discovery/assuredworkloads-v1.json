@@ -519,7 +519,7 @@
       }
     }
   },
-  "revision": "20230707",
+  "revision": "20230731",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest": {
@@ -745,6 +745,12 @@
         },
         "nonCompliantOrgPolicy": {
           "description": "Output only. Immutable. Name of the OrgPolicy which was modified with non-compliant change and resulted this violation. Format: projects/{project_number}/policies/{constraint_name} folders/{folder_id}/policies/{constraint_name} organizations/{organization_id}/policies/{constraint_name}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "orgPolicyConstraint": {
+          "deprecated": true,
+          "description": "Output only. Immutable. The org-policy-constraint that was incorrectly changed, which resulted in this violation.",
           "readOnly": true,
           "type": "string"
         },
@@ -1182,13 +1188,16 @@
       "description": "Permissions granted to the AW Partner SA account for the customer workload",
       "id": "GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions",
       "properties": {
+        "assuredWorkloadsMonitoring": {
+          "description": "Optional. Allow partner to view violation alerts.",
+          "type": "boolean"
+        },
         "dataLogsViewer": {
           "description": "Allow the partner to view inspectability logs and monitoring violations.",
           "type": "boolean"
         },
-        "remediateFolderViolations": {
-          "deprecated": true,
-          "description": "Allow partner to monitor folder and remediate violations",
+        "serviceAccessApprover": {
+          "description": "Optional. Allow partner to view access approval logs.",
           "type": "boolean"
         }
       },

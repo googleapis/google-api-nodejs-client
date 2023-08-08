@@ -263,6 +263,10 @@ export namespace assuredworkloads_v1 {
      */
     nonCompliantOrgPolicy?: string | null;
     /**
+     * Output only. Immutable. The org-policy-constraint that was incorrectly changed, which resulted in this violation.
+     */
+    orgPolicyConstraint?: string | null;
+    /**
      * Output only. Compliance violation remediation
      */
     remediation?: Schema$GoogleCloudAssuredworkloadsV1ViolationRemediation;
@@ -493,13 +497,17 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions {
     /**
+     * Optional. Allow partner to view violation alerts.
+     */
+    assuredWorkloadsMonitoring?: boolean | null;
+    /**
      * Allow the partner to view inspectability logs and monitoring violations.
      */
     dataLogsViewer?: boolean | null;
     /**
-     * Allow partner to monitor folder and remediate violations
+     * Optional. Allow partner to view access approval logs.
      */
-    remediateFolderViolations?: boolean | null;
+    serviceAccessApprover?: boolean | null;
   }
   /**
    * Represent the resources that are children of this Workload.
@@ -2357,6 +2365,7 @@ export namespace assuredworkloads_v1 {
      *   //   "exceptionContexts": [],
      *   //   "name": "my_name",
      *   //   "nonCompliantOrgPolicy": "my_nonCompliantOrgPolicy",
+     *   //   "orgPolicyConstraint": "my_orgPolicyConstraint",
      *   //   "remediation": {},
      *   //   "resolveTime": "my_resolveTime",
      *   //   "state": "my_state",
