@@ -37,7 +37,7 @@ export function servicenetworking(
 export function servicenetworking<
   T =
     | servicenetworking_v1.Servicenetworking
-    | servicenetworking_v1beta.Servicenetworking
+    | servicenetworking_v1beta.Servicenetworking,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
