@@ -1307,7 +1307,7 @@
       }
     }
   },
-  "revision": "20230621",
+  "revision": "20230808",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -2801,7 +2801,8 @@
             "OPPO",
             "SAMSUNG",
             "VIVO",
-            "XIAOMI"
+            "XIAOMI",
+            "LG_TV"
           ],
           "enumDescriptions": [
             "A placeholder for an unknown app store.",
@@ -2816,7 +2817,8 @@
             "OPPO App Market",
             "Samsung Galaxy Store",
             "VIVO App Store",
-            "Xiaomi GetApps"
+            "Xiaomi GetApps",
+            "LG TV"
           ],
           "type": "string"
         },

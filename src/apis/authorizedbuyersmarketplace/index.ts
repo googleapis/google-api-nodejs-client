@@ -27,7 +27,7 @@ export function authorizedbuyersmarketplace(
   options: authorizedbuyersmarketplace_v1.Options
 ): authorizedbuyersmarketplace_v1.Authorizedbuyersmarketplace;
 export function authorizedbuyersmarketplace<
-  T = authorizedbuyersmarketplace_v1.Authorizedbuyersmarketplace
+  T = authorizedbuyersmarketplace_v1.Authorizedbuyersmarketplace,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | authorizedbuyersmarketplace_v1.Options
