@@ -31,7 +31,7 @@ export function tagmanager(
   options: tagmanager_v2.Options
 ): tagmanager_v2.Tagmanager;
 export function tagmanager<
-  T = tagmanager_v1.Tagmanager | tagmanager_v2.Tagmanager
+  T = tagmanager_v1.Tagmanager | tagmanager_v2.Tagmanager,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | tagmanager_v1.Options | 'v2' | tagmanager_v2.Options

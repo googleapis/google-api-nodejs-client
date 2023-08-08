@@ -3890,7 +3890,7 @@
       }
     }
   },
-  "revision": "20230705",
+  "revision": "20230807",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5526,6 +5526,10 @@
       "description": "Represents a Google Tag Manager Parameter.",
       "id": "Parameter",
       "properties": {
+        "isWeakReference": {
+          "description": "Whether or not a reference type parameter is strongly or weakly referenced. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update",
+          "type": "boolean"
+        },
         "key": {
           "description": "The named key that uniquely identifies a parameter. Required for top-level parameters, as well as map values. Ignored for list values. @mutable tagmanager.accounts.containers.workspaces.variables.create @mutable tagmanager.accounts.containers.workspaces.variables.update @mutable tagmanager.accounts.containers.workspaces.triggers.create @mutable tagmanager.accounts.containers.workspaces.triggers.update @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "type": "string"
