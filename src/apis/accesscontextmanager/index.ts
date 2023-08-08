@@ -37,7 +37,7 @@ export function accesscontextmanager(
 export function accesscontextmanager<
   T =
     | accesscontextmanager_v1.Accesscontextmanager
-    | accesscontextmanager_v1beta.Accesscontextmanager
+    | accesscontextmanager_v1beta.Accesscontextmanager,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
