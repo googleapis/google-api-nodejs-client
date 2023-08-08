@@ -2376,11 +2376,13 @@
               "description": "Whether to return all sub-organizations or just immediate children.",
               "enum": [
                 "all",
-                "children"
+                "children",
+                "allIncludingParent"
               ],
               "enumDescriptions": [
                 "All sub-organizational units.",
-                "Immediate children only (default)."
+                "Immediate children only (default).",
+                "All sub-organizational units and the specified organizational unit (root if not specified)."
               ],
               "location": "query",
               "type": "string"
@@ -4635,7 +4637,7 @@
       }
     }
   },
-  "revision": "20230619",
+  "revision": "20230802",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5403,6 +5405,29 @@
         },
         "deviceId": {
           "description": "The unique ID of the Chrome device.",
+          "type": "string"
+        },
+        "deviceLicenseType": {
+          "description": "Output only. Device license type.",
+          "enum": [
+            "deviceLicenseTypeUnspecified",
+            "enterprise",
+            "enterpriseUpgrade",
+            "educationUpgrade",
+            "education",
+            "terminal",
+            "kioskUpgrade"
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED type.",
+            "Indicating the device is a Chromebook/Chromebox/Chromebase enterprise, which is packaged with an upgrade(license).",
+            "Indicating the device is consuming standalone Chrome Enterprise Upgrade, a Chrome Enterprise license.",
+            "Indicating the device is consuming Chrome Education Upgrade(AKA Chrome EDU perpetual license).",
+            "Packaged with a license as education.",
+            "Packaged with a license as terminal.",
+            "Indicating the device is consuming standalone Chrome Kiosk Upgrade, a Chrome Kiosk (annual) license."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "diskVolumeReports": {
