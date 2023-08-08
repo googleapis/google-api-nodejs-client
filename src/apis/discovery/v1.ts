@@ -262,6 +262,15 @@ export namespace discovery_v1 {
      */
     documentationLink?: string | null;
     /**
+     * A list of location-based endpoint objects for this API. Each object contains the endpoint URL, location, description and deprecation status.
+     */
+    endpoints?: Array<{
+      deprecated?: boolean;
+      description?: string;
+      endpointUrl?: string;
+      location?: string;
+    }> | null;
+    /**
      * The ETag for this response.
      */
     etag?: string | null;
@@ -489,6 +498,7 @@ export namespace discovery_v1 {
      *   //   "description": "my_description",
      *   //   "discoveryVersion": "my_discoveryVersion",
      *   //   "documentationLink": "my_documentationLink",
+     *   //   "endpoints": [],
      *   //   "etag": "my_etag",
      *   //   "exponentialBackoffDefault": false,
      *   //   "features": [],
