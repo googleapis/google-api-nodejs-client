@@ -27,7 +27,7 @@ export function readerrevenuesubscriptionlinking(
   options: readerrevenuesubscriptionlinking_v1.Options
 ): readerrevenuesubscriptionlinking_v1.Readerrevenuesubscriptionlinking;
 export function readerrevenuesubscriptionlinking<
-  T = readerrevenuesubscriptionlinking_v1.Readerrevenuesubscriptionlinking
+  T = readerrevenuesubscriptionlinking_v1.Readerrevenuesubscriptionlinking,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | readerrevenuesubscriptionlinking_v1.Options
