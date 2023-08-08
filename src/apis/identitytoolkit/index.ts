@@ -35,7 +35,7 @@ export function identitytoolkit(
   options: identitytoolkit_v3.Options
 ): identitytoolkit_v3.Identitytoolkit;
 export function identitytoolkit<
-  T = identitytoolkit_v2.Identitytoolkit | identitytoolkit_v3.Identitytoolkit
+  T = identitytoolkit_v2.Identitytoolkit | identitytoolkit_v3.Identitytoolkit,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
