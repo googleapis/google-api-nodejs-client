@@ -488,7 +488,7 @@ export namespace chromepolicy_v1 {
      */
     definition?: Schema$Proto2FileDescriptorProto;
     /**
-     * Output only. Detailed description of each field that is part of the schema.
+     * Output only. Detailed description of each field that is part of the schema. Fields are suggested to be displayed by the ordering in this list, not by field number.
      */
     fieldDescriptions?: Schema$GoogleChromePolicyVersionsV1PolicySchemaFieldDescription[];
     /**
@@ -574,7 +574,7 @@ export namespace chromepolicy_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Provides the description of the fields nested in this field, if the field is a message type that defines multiple fields.
+     * Output only. Provides the description of the fields nested in this field, if the field is a message type that defines multiple fields. Fields are suggested to be displayed by the ordering in this list, not by field number.
      */
     nestedFieldDescriptions?: Schema$GoogleChromePolicyVersionsV1PolicySchemaFieldDescription[];
     /**
