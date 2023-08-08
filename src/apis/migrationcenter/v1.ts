@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace migrationcenter_v1alpha1 {
+export namespace migrationcenter_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1alpha1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace migrationcenter_v1alpha1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const migrationcenter = google.migrationcenter('v1alpha1');
+   * const migrationcenter = google.migrationcenter('v1');
    * ```
    */
   export class Migrationcenter {
@@ -288,6 +288,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Output only. Asset information specific for virtual and physical machines.
+     */
+    machineDetails?: Schema$MachineDetails;
+    /**
      * Output only. The full name of the asset.
      */
     name?: string | null;
@@ -303,10 +307,6 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. The timestamp when the asset was last updated.
      */
     updateTime?: string | null;
-    /**
-     * Output only. Asset information specific for virtual machines.
-     */
-    virtualMachineDetails?: Schema$VirtualMachineDetails;
   }
   /**
    * Contains data reported from an inventory source on an asset.
@@ -321,6 +321,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Asset information specific for virtual machines.
+     */
+    machineDetails?: Schema$MachineDetails;
+    /**
      * Asset performance data samples. Samples that are from more than 40 days ago or after tomorrow are ignored.
      */
     performanceSamples?: Schema$PerformanceSample[];
@@ -332,10 +336,6 @@ export namespace migrationcenter_v1alpha1 {
      * Optional. Trace token is optionally provided to assist with debugging and traceability.
      */
     traceToken?: string | null;
-    /**
-     * Asset information specific for virtual machines.
-     */
-    virtualMachineDetails?: Schema$VirtualMachineDetails;
   }
   /**
    * Lists the asset IDs of all assets.
@@ -421,25 +421,29 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$BiosDetails {
     /**
-     * BIOS manufacturer.
-     */
-    biosManufacturer?: string | null;
-    /**
-     * BIOS name.
+     * BIOS name. This fields is deprecated. Please use the `id` field instead.
      */
     biosName?: string | null;
     /**
+     * BIOS ID.
+     */
+    id?: string | null;
+    /**
+     * BIOS manufacturer.
+     */
+    manufacturer?: string | null;
+    /**
      * BIOS release date.
      */
-    biosReleaseDate?: string | null;
-    /**
-     * BIOS version.
-     */
-    biosVersion?: string | null;
+    releaseDate?: Schema$Date;
     /**
      * SMBIOS UUID.
      */
     smbiosUuid?: string | null;
+    /**
+     * BIOS version.
+     */
+    version?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -466,10 +470,6 @@ export namespace migrationcenter_v1alpha1 {
      * Preferences concerning the machine types to consider on Compute Engine.
      */
     machinePreferences?: Schema$MachinePreferences;
-    /**
-     * Persistent disk type to use. If unspecified (default), all types are considered, based on available usage data.
-     */
-    persistentDiskType?: string | null;
   }
   /**
    * Compute Engine target shape descriptor.
@@ -626,50 +626,13 @@ export namespace migrationcenter_v1alpha1 {
     year?: number | null;
   }
   /**
-   * Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year, month, or day are 0, the DateTime is considered not to have a specific year, month, or day respectively. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
-   */
-  export interface Schema$DateTime {
-    /**
-     * Optional. Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a datetime without a day.
-     */
-    day?: number | null;
-    /**
-     * Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults to 0 (midnight). An API may choose to allow the value "24:00:00" for scenarios like business closing time.
-     */
-    hours?: number | null;
-    /**
-     * Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.
-     */
-    minutes?: number | null;
-    /**
-     * Optional. Month of year. Must be from 1 to 12, or 0 if specifying a datetime without a month.
-     */
-    month?: number | null;
-    /**
-     * Optional. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999, defaults to 0.
-     */
-    nanos?: number | null;
-    /**
-     * Optional. Seconds of minutes of the time. Must normally be from 0 to 59, defaults to 0. An API may allow the value 60 if it allows leap-seconds.
-     */
-    seconds?: number | null;
-    /**
-     * Time zone.
-     */
-    timeZone?: Schema$TimeZone;
-    /**
-     * UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 \}.
-     */
-    utcOffset?: string | null;
-    /**
-     * Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.
-     */
-    year?: number | null;
-  }
-  /**
    * Single disk entry.
    */
   export interface Schema$DiskEntry {
+    /**
+     * Disk capacity.
+     */
+    capacityBytes?: string | null;
     /**
      * Disk label.
      */
@@ -679,11 +642,15 @@ export namespace migrationcenter_v1alpha1 {
      */
     diskLabelType?: string | null;
     /**
+     * Disk free space.
+     */
+    freeBytes?: string | null;
+    /**
      * Disk hardware address (e.g. 0:1 for SCSI).
      */
     hwAddress?: string | null;
     /**
-     * Disks interface type (e.g. SATA/SCSI)
+     * Disks interface type.
      */
     interfaceType?: string | null;
     /**
@@ -691,21 +658,9 @@ export namespace migrationcenter_v1alpha1 {
      */
     partitions?: Schema$DiskPartitionList;
     /**
-     * Disk status (e.g. online).
-     */
-    status?: string | null;
-    /**
-     * Disk capacity.
-     */
-    totalCapacityBytes?: string | null;
-    /**
-     * Disk free space.
-     */
-    totalFreeBytes?: string | null;
-    /**
      * VMware disk details.
      */
-    vmwareConfig?: Schema$VmwareDiskConfig;
+    vmware?: Schema$VmwareDiskConfig;
   }
   /**
    * VM disks.
@@ -741,7 +696,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     subPartitions?: Schema$DiskPartitionList;
     /**
-     * Partition type (e.g. BIOS boot).
+     * Partition type.
      */
     type?: string | null;
     /**
@@ -804,10 +759,6 @@ export namespace migrationcenter_v1alpha1 {
      * Total number of asset frames reported for the import job.
      */
     framesReported?: number | null;
-    /**
-     * List of job-level errors. Deprecated, use the job errors under execution_errors instead.
-     */
-    jobErrors?: Schema$ImportError[];
     /**
      * Total number of rows in the import job.
      */
@@ -904,19 +855,6 @@ export namespace migrationcenter_v1alpha1 {
     entries?: Schema$FstabEntry[];
   }
   /**
-   * A resource that represents a payload hosted on Google Cloud Storage.
-   */
-  export interface Schema$GCSPayloadInfo {
-    /**
-     * The import job format.
-     */
-    format?: string | null;
-    /**
-     * The payload path in Google Cloud Storage.
-     */
-    path?: string | null;
-  }
-  /**
    * Generic platform details.
    */
   export interface Schema$GenericPlatformDetails {
@@ -925,10 +863,6 @@ export namespace migrationcenter_v1alpha1 {
      */
     location?: string | null;
   }
-  /**
-   * GKE migration target.
-   */
-  export interface Schema$GoogleKubernetesEngineMigrationTarget {}
   /**
    * A resource that represents an asset group. The purpose of an asset group is to bundle a set of assets that have something in common, while allowing users to add annotations to the group. An asset can belong to multiple groups.
    */
@@ -979,9 +913,9 @@ export namespace migrationcenter_v1alpha1 {
      */
     nfsExports?: Schema$NfsExportList;
     /**
-     * SELinux details.
+     * Security-Enhanced Linux (SELinux) mode.
      */
-    selinux?: Schema$Selinux;
+    selinuxMode?: string | null;
   }
   /**
    * Guest installed application information.
@@ -990,15 +924,15 @@ export namespace migrationcenter_v1alpha1 {
     /**
      * Installed application name.
      */
-    name?: string | null;
+    applicationName?: string | null;
+    /**
+     * The time when the application was installed.
+     */
+    installTime?: string | null;
     /**
      * Source path.
      */
     path?: string | null;
-    /**
-     * Date application was installed.
-     */
-    time?: string | null;
     /**
      * Installed application vendor.
      */
@@ -1026,9 +960,21 @@ export namespace migrationcenter_v1alpha1 {
      */
     config?: Schema$GuestConfigDetails;
     /**
+     * What family the OS belong to, if known.
+     */
+    family?: string | null;
+    /**
+     * The name of the operating system.
+     */
+    osName?: string | null;
+    /**
      * Runtime information.
      */
     runtime?: Schema$GuestRuntimeDetails;
+    /**
+     * The version of the operating system.
+     */
+    version?: string | null;
   }
   /**
    * Guest OS runtime information.
@@ -1043,9 +989,9 @@ export namespace migrationcenter_v1alpha1 {
      */
     installedApps?: Schema$GuestInstalledApplicationList;
     /**
-     * Date since last booted (last uptime date).
+     * Last time the OS was booted.
      */
-    lastUptime?: Schema$Date;
+    lastBootTime?: string | null;
     /**
      * Machine name.
      */
@@ -1053,7 +999,7 @@ export namespace migrationcenter_v1alpha1 {
     /**
      * Runtime network information (connections, ports).
      */
-    networkInfo?: Schema$RuntimeNetworkInfo;
+    network?: Schema$RuntimeNetworkInfo;
     /**
      * Open files information.
      */
@@ -1156,14 +1102,6 @@ export namespace migrationcenter_v1alpha1 {
      */
     executionReport?: Schema$ExecutionReport;
     /**
-     * The payload is in Google Cloud Storage.
-     */
-    gcsPayload?: Schema$GCSPayloadInfo;
-    /**
-     * The payload is included in the request, mainly used for small import jobs.
-     */
-    inlinePayload?: Schema$InlinePayloadInfo;
-    /**
      * Labels as key value pairs.
      */
     labels?: {[key: string]: string} | null;
@@ -1204,19 +1142,6 @@ export namespace migrationcenter_v1alpha1 {
      * The VM UUID.
      */
     vmUuid?: string | null;
-  }
-  /**
-   * A resource that represents the inline import job payload.
-   */
-  export interface Schema$InlinePayloadInfo {
-    /**
-     * The import job format.
-     */
-    format?: string | null;
-    /**
-     * List of payload files.
-     */
-    payload?: Schema$PayloadFile[];
   }
   /**
    * An insight about an asset.
@@ -1445,6 +1370,130 @@ export namespace migrationcenter_v1alpha1 {
     name?: string | null;
   }
   /**
+   * Details of the machine architecture.
+   */
+  export interface Schema$MachineArchitectureDetails {
+    /**
+     * BIOS Details.
+     */
+    bios?: Schema$BiosDetails;
+    /**
+     * CPU architecture, e.g., "x64-based PC", "x86_64", "i686" etc.
+     */
+    cpuArchitecture?: string | null;
+    /**
+     * CPU name, e.g., "Intel Xeon E5-2690", "AMD EPYC 7571" etc.
+     */
+    cpuName?: string | null;
+    /**
+     * Number of processor sockets allocated to the machine.
+     */
+    cpuSocketCount?: number | null;
+    /**
+     * Number of CPU threads allocated to the machine.
+     */
+    cpuThreadCount?: number | null;
+    /**
+     * Firmware type.
+     */
+    firmwareType?: string | null;
+    /**
+     * CPU hyper-threading support.
+     */
+    hyperthreading?: string | null;
+    /**
+     * Hardware vendor.
+     */
+    vendor?: string | null;
+  }
+  /**
+   * Details of a machine.
+   */
+  export interface Schema$MachineDetails {
+    /**
+     * Architecture details (vendor, CPU architecture).
+     */
+    architecture?: Schema$MachineArchitectureDetails;
+    /**
+     * Number of CPU cores in the machine. Must be non-negative.
+     */
+    coreCount?: number | null;
+    /**
+     * Machine creation time.
+     */
+    createTime?: string | null;
+    /**
+     * Disk details.
+     */
+    disks?: Schema$MachineDiskDetails;
+    /**
+     * Guest OS information.
+     */
+    guestOs?: Schema$GuestOsDetails;
+    /**
+     * Machine name.
+     */
+    machineName?: string | null;
+    /**
+     * The amount of memory in the machine. Must be non-negative.
+     */
+    memoryMb?: number | null;
+    /**
+     * Network details.
+     */
+    network?: Schema$MachineNetworkDetails;
+    /**
+     * Platform specific information.
+     */
+    platform?: Schema$PlatformDetails;
+    /**
+     * Power state of the machine.
+     */
+    powerState?: string | null;
+    /**
+     * Machine unique identifier.
+     */
+    uuid?: string | null;
+  }
+  /**
+   * Details of machine disks.
+   */
+  export interface Schema$MachineDiskDetails {
+    /**
+     * List of disks.
+     */
+    disks?: Schema$DiskEntryList;
+    /**
+     * Disk total Capacity.
+     */
+    totalCapacityBytes?: string | null;
+    /**
+     * Total disk free space.
+     */
+    totalFreeBytes?: string | null;
+  }
+  /**
+   * Details of network adapters and settings.
+   */
+  export interface Schema$MachineNetworkDetails {
+    /**
+     * List of network adapters.
+     */
+    adapters?: Schema$NetworkAdapterList;
+    /**
+     * The primary IP address of the machine.
+     */
+    primaryIpAddress?: string | null;
+    /**
+     * MAC address of the machine. This property is used to uniqly identify the machine.
+     */
+    primaryMacAddress?: string | null;
+    /**
+     * The public IP address of the machine.
+     */
+    publicIpAddress?: string | null;
+  }
+  /**
    * The type of machines to consider when calculating virtual machine migration insights and recommendations. Not all machine types are available in all zones and regions.
    */
   export interface Schema$MachinePreferences {
@@ -1483,14 +1532,6 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. Description of how well the asset this insight is associated with fits the proposed migration.
      */
     fit?: Schema$FitDescriptor;
-    /**
-     * Output only. A Google Kubernetes Engine target.
-     */
-    gkeTarget?: Schema$GoogleKubernetesEngineMigrationTarget;
-    /**
-     * Output only. A VMWare Engine target.
-     */
-    vmwareEngineTarget?: Schema$VmwareEngineMigrationTarget;
   }
   /**
    * Represents an amount of money with its currency type.
@@ -1531,9 +1572,9 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$NetworkAdapterList {
     /**
-     * Network adapter descriptions.
+     * Network adapter entries.
      */
-    networkAdapters?: Schema$NetworkAdapterDetails[];
+    entries?: Schema$NetworkAdapterDetails[];
   }
   /**
    * Details of network address.
@@ -1567,7 +1608,7 @@ export namespace migrationcenter_v1alpha1 {
     /**
      * Network address entries.
      */
-    addresses?: Schema$NetworkAddress[];
+    entries?: Schema$NetworkAddress[];
   }
   export interface Schema$NetworkConnection {
     /**
@@ -1599,7 +1640,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     remotePort?: number | null;
     /**
-     * Connection state (e.g. CONNECTED).
+     * Network connection state.
      */
     state?: string | null;
   }
@@ -1736,19 +1777,6 @@ export namespace migrationcenter_v1alpha1 {
     verb?: string | null;
   }
   /**
-   * Payload file for inline import job payload.
-   */
-  export interface Schema$PayloadFile {
-    /**
-     * The file data.
-     */
-    data?: string | null;
-    /**
-     * The file name.
-     */
-    name?: string | null;
-  }
-  /**
    * Performance data sample.
    */
   export interface Schema$PerformanceSample {
@@ -1769,7 +1797,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     network?: Schema$NetworkUsageSample;
     /**
-     * Time the sample was collected. If omitted, the frame report time will be used.
+     * Time the sample was If omitted, the frame report time will be used.
      */
     sampleTime?: string | null;
   }
@@ -1963,10 +1991,6 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$ReportSummaryAssetAggregateStats {
     /**
-     * Count of assets grouped by age.
-     */
-    assetAge?: Schema$ReportSummaryChartData;
-    /**
      * Histogram showing a distribution of CPU core counts.
      */
     coreCountHistogram?: Schema$ReportSummaryHistogramChartData;
@@ -1974,10 +1998,6 @@ export namespace migrationcenter_v1alpha1 {
      * Histogram showing a distribution of memory sizes.
      */
     memoryBytesHistogram?: Schema$ReportSummaryHistogramChartData;
-    /**
-     * Total memory split into Used/Free buckets.
-     */
-    memoryUtilization?: Schema$ReportSummaryChartData;
     /**
      * Total memory split into Used/Free buckets.
      */
@@ -1990,10 +2010,6 @@ export namespace migrationcenter_v1alpha1 {
      * Histogram showing a distribution of memory sizes.
      */
     storageBytesHistogram?: Schema$ReportSummaryHistogramChartData;
-    /**
-     * Total storage split into Used/Free buckets.
-     */
-    storageUtilization?: Schema$ReportSummaryChartData;
     /**
      * Total memory split into Used/Free buckets.
      */
@@ -2038,6 +2054,27 @@ export namespace migrationcenter_v1alpha1 {
     value?: number | null;
   }
   /**
+   * A set of findings that applies to assets destined for Compute Engine.
+   */
+  export interface Schema$ReportSummaryComputeEngineFinding {
+    /**
+     * Count of assets which were allocated.
+     */
+    allocatedAssetCount?: string | null;
+    /**
+     * Set of disk types allocated to assets.
+     */
+    allocatedDiskTypes?: string[] | null;
+    /**
+     * Set of regions in which the assets were allocated.
+     */
+    allocatedRegions?: string[] | null;
+    /**
+     * Distribution of assets based on the Machine Series.
+     */
+    machineSeriesAllocations?: Schema$ReportSummaryMachineSeriesAllocation[];
+  }
+  /**
    * Summary Findings for a specific Group.
    */
   export interface Schema$ReportSummaryGroupFinding {
@@ -2067,6 +2104,10 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$ReportSummaryGroupPreferenceSetFinding {
     /**
+     * A set of findings that applies to Compute Engine machines in the input.
+     */
+    computeEngineFinding?: Schema$ReportSummaryComputeEngineFinding;
+    /**
      * Description for the Preference Set.
      */
     description?: string | null;
@@ -2074,10 +2115,6 @@ export namespace migrationcenter_v1alpha1 {
      * Display Name of the Preference Set
      */
     displayName?: string | null;
-    /**
-     * A set of findings that applies to all machines in the input.
-     */
-    machineFinding?: Schema$ReportSummaryMachineFinding;
     /**
      * A set of preferences that applies to all machines in the context.
      */
@@ -2107,25 +2144,13 @@ export namespace migrationcenter_v1alpha1 {
      */
     monthlyCostTotal?: Schema$Money;
     /**
-     * Target region for this Preference Set
-     */
-    preferredRegion?: string | null;
-    /**
-     * Text describing the pricing track specified for this Preference Set
-     */
-    pricingTrack?: string | null;
-    /**
-     * A set of findings that applies to Stole-Tenant machines in the input.
+     * A set of findings that applies to Sole-Tenant machines in the input.
      */
     soleTenantFinding?: Schema$ReportSummarySoleTenantFinding;
     /**
-     * Text describing the business priority specified for this Preference Set
-     */
-    topPriority?: string | null;
-    /**
      * A set of findings that applies to VMWare machines in the input.
      */
-    vmwareEngineFinding?: Schema$ReportSummaryVMWareEngineFinding;
+    vmwareEngineFinding?: Schema$ReportSummaryVmwareEngineFinding;
   }
   /**
    * A Histogram Chart shows a distribution of values into buckets, showing a count of values which fall into a bucket.
@@ -2152,27 +2177,6 @@ export namespace migrationcenter_v1alpha1 {
      * Upper bound - exclusive.
      */
     upperBound?: string | null;
-  }
-  /**
-   * A set of findings that applies to assets of type Virtual/Physical Machine.
-   */
-  export interface Schema$ReportSummaryMachineFinding {
-    /**
-     * Count of assets which were allocated.
-     */
-    allocatedAssetCount?: string | null;
-    /**
-     * Set of disk types allocated to assets.
-     */
-    allocatedDiskTypes?: string[] | null;
-    /**
-     * Set of regions in which the assets were allocated.
-     */
-    allocatedRegions?: string[] | null;
-    /**
-     * Distribution of assets based on the Machine Series.
-     */
-    machineSeriesAllocations?: Schema$ReportSummaryMachineSeriesAllocation[];
   }
   /**
    * Represents a data point tracking the count of assets allocated for a specific Machine Series.
@@ -2237,7 +2241,7 @@ export namespace migrationcenter_v1alpha1 {
   /**
    * A set of findings that applies to assets destined for VMWare Engine.
    */
-  export interface Schema$ReportSummaryVMWareEngineFinding {
+  export interface Schema$ReportSummaryVmwareEngineFinding {
     /**
      * Count of assets which are allocated
      */
@@ -2249,12 +2253,12 @@ export namespace migrationcenter_v1alpha1 {
     /**
      * Set of per-nodetype allocation records
      */
-    nodeAllocations?: Schema$ReportSummaryVMWareNodeAllocation[];
+    nodeAllocations?: Schema$ReportSummaryVmwareNodeAllocation[];
   }
   /**
    * A VMWare Engine Node
    */
-  export interface Schema$ReportSummaryVMWareNode {
+  export interface Schema$ReportSummaryVmwareNode {
     /**
      * Code to identify VMware Engine node series, e.g. "ve1-standard-72". Based on the displayName of cloud.google.com/vmware-engine/docs/reference/rest/v1/projects.locations.nodeTypes
      */
@@ -2263,7 +2267,7 @@ export namespace migrationcenter_v1alpha1 {
   /**
    * Represents assets allocated to a specific VMWare Node type.
    */
-  export interface Schema$ReportSummaryVMWareNodeAllocation {
+  export interface Schema$ReportSummaryVmwareNodeAllocation {
     /**
      * Count of assets allocated to these nodes
      */
@@ -2275,7 +2279,7 @@ export namespace migrationcenter_v1alpha1 {
     /**
      * VMWare node type, e.g. "ve1-standard-72"
      */
-    vmwareNode?: Schema$ReportSummaryVMWareNode;
+    vmwareNode?: Schema$ReportSummaryVmwareNode;
   }
   /**
    * A request to run an import job.
@@ -2318,7 +2322,7 @@ export namespace migrationcenter_v1alpha1 {
     /**
      * Running process entries.
      */
-    processes?: Schema$RunningProcess[];
+    entries?: Schema$RunningProcess[];
   }
   /**
    * Guest OS running service details.
@@ -2333,25 +2337,21 @@ export namespace migrationcenter_v1alpha1 {
      */
     exePath?: string | null;
     /**
-     * Service name.
-     */
-    name?: string | null;
-    /**
      * Service pid.
      */
     pid?: string | null;
     /**
-     * Service start mode (raw, OS-agnostic).
+     * Service name.
+     */
+    serviceName?: string | null;
+    /**
+     * Service start mode (OS-agnostic).
      */
     startMode?: string | null;
     /**
-     * Service state (raw, OS-agnostic).
+     * Service state (OS-agnostic).
      */
     state?: string | null;
-    /**
-     * Service status.
-     */
-    status?: string | null;
   }
   /**
    * List of running guest OS services.
@@ -2360,7 +2360,7 @@ export namespace migrationcenter_v1alpha1 {
     /**
      * Running service entries.
      */
-    services?: Schema$RunningService[];
+    entries?: Schema$RunningService[];
   }
   /**
    * Runtime networking information.
@@ -2371,35 +2371,14 @@ export namespace migrationcenter_v1alpha1 {
      */
     connections?: Schema$NetworkConnectionList;
     /**
-     * Netstat (raw, OS-agnostic).
+     * Time of the last network scan.
      */
-    netstat?: string | null;
-    /**
-     * Netstat time collected.
-     */
-    netstatTime?: Schema$DateTime;
-  }
-  /**
-   * SELinux details.
-   */
-  export interface Schema$Selinux {
-    /**
-     * Is SELinux enabled.
-     */
-    enabled?: boolean | null;
-    /**
-     * SELinux mode enforcing / permissive.
-     */
-    mode?: string | null;
+    scanTime?: string | null;
   }
   /**
    * Describes the Migration Center settings related to the project.
    */
   export interface Schema$Settings {
-    /**
-     * Disable Cloud Logging for the Migration Center API. Users are billed for the logs.
-     */
-    disableCloudLogging?: boolean | null;
     /**
      * Output only. The name of the resource.
      */
@@ -2462,7 +2441,7 @@ export namespace migrationcenter_v1alpha1 {
     /**
      * If `true`, the source is managed by other service(s).
      */
-    isManaged?: boolean | null;
+    managed?: boolean | null;
     /**
      * Output only. The full name of the source.
      */
@@ -2506,19 +2485,6 @@ export namespace migrationcenter_v1alpha1 {
     message?: string | null;
   }
   /**
-   * Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).
-   */
-  export interface Schema$TimeZone {
-    /**
-     * IANA Time Zone Database time zone, e.g. "America/New_York".
-     */
-    id?: string | null;
-    /**
-     * Optional. IANA Time Zone Database version number, e.g. "2019a".
-     */
-    version?: string | null;
-  }
-  /**
    * A request to update an asset.
    */
   export interface Schema$UpdateAssetRequest {
@@ -2540,7 +2506,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$UploadFileInfo {
     /**
-     * Output only. The headers that were used to sign the URL.
+     * Output only. The headers that were used to sign the URI.
      */
     headers?: {[key: string]: string} | null;
     /**
@@ -2573,166 +2539,6 @@ export namespace migrationcenter_v1alpha1 {
      * List of job level errors.
      */
     jobErrors?: Schema$ImportError[];
-  }
-  /**
-   * Details of the VM architecture.
-   */
-  export interface Schema$VirtualMachineArchitectureDetails {
-    /**
-     * BIOS Details.
-     */
-    bios?: Schema$BiosDetails;
-    /**
-     * CPU architecture, e.g., "x64-based PC", "x86_64", "i686" etc.
-     */
-    cpuArchitecture?: string | null;
-    /**
-     * CPU manufacturer, e.g., "Intel", "AMD".
-     */
-    cpuManufacturer?: string | null;
-    /**
-     * CPU name, e.g., "Intel Xeon E5-2690", "AMD EPYC 7571" etc.
-     */
-    cpuName?: string | null;
-    /**
-     * Number of processor sockets allocated to the machine.
-     */
-    cpuSocketCount?: number | null;
-    /**
-     * Number of CPU threads allocated to the machine.
-     */
-    cpuThreadCount?: number | null;
-    /**
-     * Firmware (BIOS/efi).
-     */
-    firmware?: string | null;
-    /**
-     * CPU hyperthreading support.
-     */
-    hyperthreading?: string | null;
-    /**
-     * Hardware vendor.
-     */
-    vendor?: string | null;
-  }
-  /**
-   * Details of a VirtualMachine.
-   */
-  export interface Schema$VirtualMachineDetails {
-    /**
-     * Number of CPU cores in the VirtualMachine. Must be non-negative.
-     */
-    coreCount?: number | null;
-    /**
-     * VM creation timestamp.
-     */
-    createTime?: string | null;
-    /**
-     * Guest OS information.
-     */
-    guestOs?: Schema$GuestOsDetails;
-    /**
-     * The amount of memory in the VirtualMachine. Must be non-negative.
-     */
-    memoryMb?: number | null;
-    /**
-     * What family the OS belong to, if known.
-     */
-    osFamily?: string | null;
-    /**
-     * The name of the operating system running on the VirtualMachine.
-     */
-    osName?: string | null;
-    /**
-     * The version of the operating system running on the virtual machine.
-     */
-    osVersion?: string | null;
-    /**
-     * Platform information.
-     */
-    platform?: Schema$PlatformDetails;
-    /**
-     * Power state of VM (poweredOn or poweredOff).
-     */
-    powerState?: string | null;
-    /**
-     * Folder name in vCenter where asset resides.
-     */
-    vcenterFolder?: string | null;
-    /**
-     * vCenter URL used in collection.
-     */
-    vcenterUrl?: string | null;
-    /**
-     * vCenter VM ID.
-     */
-    vcenterVmId?: string | null;
-    /**
-     * VM architecture details (vendor, cpu arch).
-     */
-    vmArchitecture?: Schema$VirtualMachineArchitectureDetails;
-    /**
-     * VM disk details.
-     */
-    vmDisks?: Schema$VirtualMachineDiskDetails;
-    /**
-     * Virtual Machine display name.
-     */
-    vmName?: string | null;
-    /**
-     * VM network details.
-     */
-    vmNetwork?: Schema$VirtualMachineNetworkDetails;
-    /**
-     * Virtual Machine unique identifier.
-     */
-    vmUuid?: string | null;
-  }
-  /**
-   * Details of VM disks.
-   */
-  export interface Schema$VirtualMachineDiskDetails {
-    /**
-     * List of disks.
-     */
-    disks?: Schema$DiskEntryList;
-    /**
-     * Disk total Capacity.
-     */
-    hddTotalCapacityBytes?: string | null;
-    /**
-     * Total Disk Free Space.
-     */
-    hddTotalFreeBytes?: string | null;
-    /**
-     * Raw lsblk output in json.
-     */
-    lsblkJson?: string | null;
-  }
-  /**
-   * Details of network adapters and settings.
-   */
-  export interface Schema$VirtualMachineNetworkDetails {
-    /**
-     * Default gateway address.
-     */
-    defaultGw?: string | null;
-    /**
-     * List of network adapters.
-     */
-    networkAdapters?: Schema$NetworkAdapterList;
-    /**
-     * IP address of the machine.
-     */
-    primaryIpAddress?: string | null;
-    /**
-     * MAC address of the machine. This property is used to uniqly identify the machine.
-     */
-    primaryMacAddress?: string | null;
-    /**
-     * Public IP address of the machine.
-     */
-    publicIpAddress?: string | null;
   }
   /**
    * VirtualMachinePreferences enables you to create sets of assumptions, for example, a geographical location and pricing track, for your migrated virtual machines. The set of preferences influence recommendations for migrating virtual machine assets.
@@ -2778,7 +2584,7 @@ export namespace migrationcenter_v1alpha1 {
     /**
      * RDM compatibility mode.
      */
-    rdmCompatibilityMode?: string | null;
+    rdmCompatibility?: string | null;
     /**
      * Is VMDK shared with other VMs.
      */
@@ -2786,12 +2592,8 @@ export namespace migrationcenter_v1alpha1 {
     /**
      * VMDK disk mode.
      */
-    vmdkDiskMode?: string | null;
+    vmdkMode?: string | null;
   }
-  /**
-   * VMWare engine migration target.
-   */
-  export interface Schema$VmwareEngineMigrationTarget {}
   /**
    * The user preferences relating to Google Cloud VMware Engine target platform.
    */
@@ -2826,9 +2628,21 @@ export namespace migrationcenter_v1alpha1 {
      */
     osid?: string | null;
     /**
+     * Folder name in vCenter where asset resides.
+     */
+    vcenterFolder?: string | null;
+    /**
+     * vCenter URI used in collection.
+     */
+    vcenterUri?: string | null;
+    /**
      * vCenter version.
      */
     vcenterVersion?: string | null;
+    /**
+     * vCenter VM ID.
+     */
+    vcenterVmId?: string | null;
   }
 
   export class Resource$Projects {
@@ -2933,7 +2747,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -3018,7 +2832,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -3108,7 +2922,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3196,7 +3010,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -3350,9 +3164,10 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1alpha1/{+parent}/assets:aggregateValues'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/assets:aggregateValues').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
@@ -3439,7 +3254,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/assets:batchDelete').replace(
+            url: (rootUrl + '/v1/{+parent}/assets:batchDelete').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3534,7 +3349,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/assets:batchUpdate').replace(
+            url: (rootUrl + '/v1/{+parent}/assets:batchUpdate').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3622,7 +3437,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -3707,7 +3522,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -3795,7 +3610,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/assets').replace(
+            url: (rootUrl + '/v1/{+parent}/assets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3883,7 +3698,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -3976,9 +3791,10 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1alpha1/{+parent}/assets:reportAssetFrames'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/assets:reportAssetFrames').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
@@ -4192,7 +4008,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+group}:addAssets').replace(
+            url: (rootUrl + '/v1/{+group}:addAssets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4280,7 +4096,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/groups').replace(
+            url: (rootUrl + '/v1/{+parent}/groups').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4368,7 +4184,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -4453,7 +4269,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -4541,7 +4357,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/groups').replace(
+            url: (rootUrl + '/v1/{+parent}/groups').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4629,7 +4445,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -4714,7 +4530,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+group}:removeAssets').replace(
+            url: (rootUrl + '/v1/{+group}:removeAssets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4920,7 +4736,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/importJobs').replace(
+            url: (rootUrl + '/v1/{+parent}/importJobs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5008,7 +4824,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -5093,7 +4909,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -5183,7 +4999,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/importJobs').replace(
+            url: (rootUrl + '/v1/{+parent}/importJobs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5271,7 +5087,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -5356,10 +5172,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}:run').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -5444,7 +5257,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}:validate').replace(
+            url: (rootUrl + '/v1/{+name}:validate').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5658,7 +5471,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/importDataFiles').replace(
+            url: (rootUrl + '/v1/{+parent}/importDataFiles').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5747,7 +5560,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -5833,7 +5646,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -5926,7 +5739,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/importDataFiles').replace(
+            url: (rootUrl + '/v1/{+parent}/importDataFiles').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6083,10 +5896,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -6171,7 +5981,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -6256,7 +6066,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -6346,7 +6156,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6487,7 +6297,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/preferenceSets').replace(
+            url: (rootUrl + '/v1/{+parent}/preferenceSets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6575,7 +6385,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -6660,7 +6470,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -6752,7 +6562,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/preferenceSets').replace(
+            url: (rootUrl + '/v1/{+parent}/preferenceSets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6840,7 +6650,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -6868,7 +6678,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     parent?: string;
     /**
-     *
+     * Required. User specified ID for the preference set. It will become the last component of the preference set name. The ID must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The ID must match the regular expression `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      */
     preferenceSetId?: string;
     /**
@@ -7014,7 +6824,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/reportConfigs').replace(
+            url: (rootUrl + '/v1/{+parent}/reportConfigs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7102,7 +6912,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -7187,7 +6997,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -7279,7 +7089,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/reportConfigs').replace(
+            url: (rootUrl + '/v1/{+parent}/reportConfigs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7441,7 +7251,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/reports').replace(
+            url: (rootUrl + '/v1/{+parent}/reports').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7530,7 +7340,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -7616,7 +7426,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -7705,7 +7515,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/reports').replace(
+            url: (rootUrl + '/v1/{+parent}/reports').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7874,7 +7684,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/sources').replace(
+            url: (rootUrl + '/v1/{+parent}/sources').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7962,7 +7772,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -8047,7 +7857,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -8135,7 +7945,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/sources').replace(
+            url: (rootUrl + '/v1/{+parent}/sources').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -8223,7 +8033,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -8398,7 +8208,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -8489,7 +8299,7 @@ export namespace migrationcenter_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/errorFrames').replace(
+            url: (rootUrl + '/v1/{+parent}/errorFrames').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
