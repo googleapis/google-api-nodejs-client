@@ -14,27 +14,44 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {migrationcenter_v1} from './v1';
 import {migrationcenter_v1alpha1} from './v1alpha1';
 
 export const VERSIONS = {
+  v1: migrationcenter_v1.Migrationcenter,
   v1alpha1: migrationcenter_v1alpha1.Migrationcenter,
 };
 
+export function migrationcenter(
+  version: 'v1'
+): migrationcenter_v1.Migrationcenter;
+export function migrationcenter(
+  options: migrationcenter_v1.Options
+): migrationcenter_v1.Migrationcenter;
 export function migrationcenter(
   version: 'v1alpha1'
 ): migrationcenter_v1alpha1.Migrationcenter;
 export function migrationcenter(
   options: migrationcenter_v1alpha1.Options
 ): migrationcenter_v1alpha1.Migrationcenter;
-export function migrationcenter<T = migrationcenter_v1alpha1.Migrationcenter>(
+export function migrationcenter<
+  T =
+    | migrationcenter_v1.Migrationcenter
+    | migrationcenter_v1alpha1.Migrationcenter
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1alpha1' | migrationcenter_v1alpha1.Options
+  versionOrOptions:
+    | 'v1'
+    | migrationcenter_v1.Options
+    | 'v1alpha1'
+    | migrationcenter_v1alpha1.Options
 ) {
   return getAPI<T>('migrationcenter', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {migrationcenter_v1};
 export {migrationcenter_v1alpha1};
 export {
   AuthPlus,
