@@ -33,7 +33,7 @@ export function cloudidentity(
   options: cloudidentity_v1beta1.Options
 ): cloudidentity_v1beta1.Cloudidentity;
 export function cloudidentity<
-  T = cloudidentity_v1.Cloudidentity | cloudidentity_v1beta1.Cloudidentity
+  T = cloudidentity_v1.Cloudidentity | cloudidentity_v1beta1.Cloudidentity,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
