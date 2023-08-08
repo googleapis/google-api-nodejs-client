@@ -415,13 +415,30 @@
       }
     }
   },
-  "revision": "20230629",
+  "revision": "20230729",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1Progress": {
+      "description": "Describes the progress of the operation. Unit of work is generic and must be interpreted based on where Progress is used.",
+      "id": "GoogleFirestoreAdminV1Progress",
+      "properties": {
+        "completedWork": {
+          "description": "The amount of work completed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "estimatedWork": {
+          "description": "The amount of work estimated.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleFirestoreAdminV1RestoreDatabaseMetadata": {
@@ -464,6 +481,10 @@
             "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
           ],
           "type": "string"
+        },
+        "progressPercentage": {
+          "$ref": "GoogleFirestoreAdminV1Progress",
+          "description": "How far along the restore is as an estimated percentage of remaining time."
         },
         "startTime": {
           "description": "The time the restore was started.",

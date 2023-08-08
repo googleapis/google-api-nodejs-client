@@ -962,7 +962,7 @@
                       "type": "string"
                     },
                     "readTime": {
-                      "description": "Reads the version of the document at the given time. This may not be older than 270 seconds.",
+                      "description": "Reads the version of the document at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
@@ -1029,7 +1029,7 @@
                       "type": "string"
                     },
                     "readTime": {
-                      "description": "Perform the read at the provided time. This may not be older than 270 seconds.",
+                      "description": "Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
@@ -1130,7 +1130,7 @@
                       "type": "string"
                     },
                     "readTime": {
-                      "description": "Perform the read at the provided time. This may not be older than 270 seconds.",
+                      "description": "Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
@@ -1672,7 +1672,7 @@
       }
     }
   },
-  "revision": "20230708",
+  "revision": "20230729",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1683,9 +1683,17 @@
           "description": "Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations.",
           "type": "string"
         },
+        "avg": {
+          "$ref": "Avg",
+          "description": "Average aggregator."
+        },
         "count": {
           "$ref": "Count",
           "description": "Count aggregator."
+        },
+        "sum": {
+          "$ref": "Sum",
+          "description": "Sum aggregator."
         }
       },
       "type": "object"
@@ -1718,6 +1726,17 @@
       },
       "type": "object"
     },
+    "Avg": {
+      "description": "Average of the values of the requested field. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. * If the aggregated value set is empty, returns `NULL`. * Always returns the result as a double.",
+      "id": "Avg",
+      "properties": {
+        "field": {
+          "$ref": "FieldReference",
+          "description": "The field to aggregate on."
+        }
+      },
+      "type": "object"
+    },
     "BatchGetDocumentsRequest": {
       "description": "The request for Firestore.BatchGetDocuments.",
       "id": "BatchGetDocumentsRequest",
@@ -1738,7 +1757,7 @@
           "description": "Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream."
         },
         "readTime": {
-          "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+          "description": "Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2144,7 +2163,7 @@
       "id": "ExistenceFilter",
       "properties": {
         "count": {
-          "description": "The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target. The client can use the `unchanged_names` bloom filter to assist with this determination.",
+          "description": "The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target. The client can use the `unchanged_names` bloom filter to assist with this determination by testing ALL the document names against the filter; if the document name is NOT in the filter, it means the document no longer matches the target.",
           "format": "int32",
           "type": "integer"
         },
@@ -2155,7 +2174,7 @@
         },
         "unchangedNames": {
           "$ref": "BloomFilter",
-          "description": "A bloom filter that contains the UTF-8 byte encodings of the resource names of the documents that match target_id, in the form `projects/{project_id}/databases/{database_id}/documents/{document_path}` that have NOT changed since the query results indicated by the resume token or timestamp given in `Target.resume_type`. This bloom filter may be omitted at the server's discretion, such as if it is deemed that the client will not make use of it or if it is too computationally expensive to calculate or transmit. Clients must gracefully handle this field being absent by falling back to the logic used before this field existed; that is, re-add the target without a resume token to figure out which documents in the client's cache are out of sync."
+          "description": "A bloom filter that, despite its name, contains the UTF-8 byte encodings of the resource names of ALL the documents that match target_id, in the form `projects/{project_id}/databases/{database_id}/documents/{document_path}`. This bloom filter may be omitted at the server's discretion, such as if it is deemed that the client will not make use of it or if it is too computationally expensive to calculate or transmit. Clients must gracefully handle this field being absent by falling back to the logic used before this field existed; that is, re-add the target without a resume token to figure out which documents in the client's cache are out of sync."
         }
       },
       "type": "object"
@@ -2354,7 +2373,7 @@
           "type": "string"
         },
         "retention": {
-          "description": "At what relative time in the future, compared to the creation time of the backup should the backup be deleted, i.e. keep backups for 7 days.",
+          "description": "At what relative time in the future, compared to its creation time, the backup should be deleted, e.g. keep backups for 7 days.",
           "format": "google-duration",
           "type": "string"
         },
@@ -2560,6 +2579,11 @@
         "progressDocuments": {
           "$ref": "GoogleFirestoreAdminV1Progress",
           "description": "The progress, in documents, of this operation."
+        },
+        "snapshotTime": {
+          "description": "The timestamp that corresponds to the version of the database that is being exported. If unspecified, there are no guarantees about the consistency of the documents being exported.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "startTime": {
           "description": "The time this operation started.",
@@ -3137,6 +3161,10 @@
           ],
           "type": "string"
         },
+        "progressPercentage": {
+          "$ref": "GoogleFirestoreAdminV1Progress",
+          "description": "How far along the restore is as an estimated percentage of remaining time."
+        },
         "startTime": {
           "description": "The time the restore was started.",
           "format": "google-datetime",
@@ -3357,7 +3385,7 @@
           "type": "string"
         },
         "readTime": {
-          "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+          "description": "Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -3560,7 +3588,7 @@
           "type": "string"
         },
         "readTime": {
-          "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+          "description": "Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3639,7 +3667,7 @@
       "id": "ReadOnly",
       "properties": {
         "readTime": {
-          "description": "Reads documents at the given time. This may not be older than 60 seconds.",
+          "description": "Reads documents at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -3679,7 +3707,7 @@
           "description": "Starts a new transaction as part of the query, defaulting to read-only. The new transaction ID will be returned as the first response in the stream."
         },
         "readTime": {
-          "description": "Executes the query at the given timestamp. Requires: * Cannot be more than 270 seconds in the past.",
+          "description": "Executes the query at the given timestamp. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3725,7 +3753,7 @@
           "description": "Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream."
         },
         "readTime": {
-          "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+          "description": "Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3859,6 +3887,17 @@
         "where": {
           "$ref": "Filter",
           "description": "The filter to apply."
+        }
+      },
+      "type": "object"
+    },
+    "Sum": {
+      "description": "Sum of the values of the requested field. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. * If the aggregated value set is empty, returns 0. * Returns a 64-bit integer if the sum result is an integer value and does not overflow. Otherwise, the result is returned as a double. Note that even if all the aggregated values are integers, the result is returned as a double if it cannot fit within a 64-bit signed integer. When this occurs, the returned value will lose precision. * When underflow occurs, floating-point aggregation is non-deterministic. This means that running the same query repeatedly without any changes to the underlying values could produce slightly different results each time. In those cases, values should be stored as integers over floating-point numbers.",
+      "id": "Sum",
+      "properties": {
+        "field": {
+          "$ref": "FieldReference",
+          "description": "The field to aggregate on."
         }
       },
       "type": "object"
