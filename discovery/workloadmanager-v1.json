@@ -707,7 +707,7 @@
       }
     }
   },
-  "revision": "20230630",
+  "revision": "20230724",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1368,13 +1368,13 @@
       "description": "Message describing the system component.",
       "id": "SapDiscoveryComponent",
       "properties": {
-        "applicationType": {
-          "description": "The component is a SAP application.",
-          "type": "string"
+        "applicationProperties": {
+          "$ref": "SapDiscoveryComponentApplicationProperties",
+          "description": "Optional. The component is a SAP application."
         },
-        "databaseType": {
-          "description": "The component is a SAP database.",
-          "type": "string"
+        "databaseProperties": {
+          "$ref": "SapDiscoveryComponentDatabaseProperties",
+          "description": "Optional. The component is a SAP database."
         },
         "hostProject": {
           "description": "Pantheon Project in which the resources reside.",
@@ -1389,6 +1389,64 @@
         },
         "sid": {
           "description": "The sap identifier, used by the SAP software and helps differentiate systems for customers.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SapDiscoveryComponentApplicationProperties": {
+      "description": "A set of properties describing an SAP Application layer.",
+      "id": "SapDiscoveryComponentApplicationProperties",
+      "properties": {
+        "applicationType": {
+          "description": "Required. Type of the application. Netweaver, etc.",
+          "enum": [
+            "APPLICATION_TYPE_UNSPECIFIED",
+            "NETWEAVER"
+          ],
+          "enumDescriptions": [
+            "Unspecified application type",
+            "SAP Netweaver"
+          ],
+          "type": "string"
+        },
+        "ascsUri": {
+          "description": "Required. Resource URI of the recognized ASCS host of the application.",
+          "type": "string"
+        },
+        "nfsUri": {
+          "description": "Optional. Resource URI of the recognized shared NFS of the application. May be empty if the application server has only a single node.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SapDiscoveryComponentDatabaseProperties": {
+      "description": "A set of properties describing an SAP Database layer.",
+      "id": "SapDiscoveryComponentDatabaseProperties",
+      "properties": {
+        "databaseType": {
+          "description": "Required. Type of the database. HANA, DB2, etc.",
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "HANA",
+            "MAX_DB",
+            "DB2"
+          ],
+          "enumDescriptions": [
+            "Unspecified database type.",
+            "SAP HANA",
+            "SAP MAX_DB",
+            "IBM DB2"
+          ],
+          "type": "string"
+        },
+        "primaryInstanceUri": {
+          "description": "Required. URI of the recognized primary instance of the database.",
+          "type": "string"
+        },
+        "sharedNfsUri": {
+          "description": "Optional. URI of the recognized shared NFS of the database. May be empty if the database has only a single node.",
           "type": "string"
         }
       },
@@ -1464,9 +1522,9 @@
           "description": "Required. The type of this resource.",
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
-            "COMPUTE",
-            "STORAGE",
-            "NETWORK"
+            "RESOURCE_TYPE_COMPUTE",
+            "RESOURCE_TYPE_STORAGE",
+            "RESOURCE_TYPE_NETWORK"
           ],
           "enumDescriptions": [
             "Undefined resource type.",
@@ -1609,18 +1667,20 @@
             "DB_TRANSACTION_LOG_HANDLING",
             "DB_VIRTUAL_LOG_FILE_COUNT",
             "DB_BUFFER_POOL_EXTENSION",
-            "DB_MAX_SERVER_MEMORY"
+            "DB_MAX_SERVER_MEMORY",
+            "INSTANCE_METRICS"
           ],
           "enumDescriptions": [
             "Unspecified type.",
-            "The Sqlserver system named OS",
-            "The LOG_DISK_SEPARATION table",
-            "The MAX_PARALLELISM table",
-            "The CXPACKET_WAITS table",
-            "The TRANSACTION_LOG_HANDLING table",
-            "The VIRTUAL_LOG_FILE_COUNT table",
-            "The BUFFER_POOL_EXTENSION table",
-            "The MAX_SERVER_MEMORY table"
+            "The Sqlserver system named OS.",
+            "The LOG_DISK_SEPARATION table.",
+            "The MAX_PARALLELISM table.",
+            "The CXPACKET_WAITS table.",
+            "The TRANSACTION_LOG_HANDLING table.",
+            "The VIRTUAL_LOG_FILE_COUNT table.",
+            "The BUFFER_POOL_EXTENSION table.",
+            "The MAX_SERVER_MEMORY table.",
+            "The INSTANCE_METRICS table."
           ],
           "type": "string"
         }
