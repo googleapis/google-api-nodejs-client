@@ -35,7 +35,7 @@ export function tpu(options: tpu_v2.Options): tpu_v2.Tpu;
 export function tpu(version: 'v2alpha1'): tpu_v2alpha1.Tpu;
 export function tpu(options: tpu_v2alpha1.Options): tpu_v2alpha1.Tpu;
 export function tpu<
-  T = tpu_v1.Tpu | tpu_v1alpha1.Tpu | tpu_v2.Tpu | tpu_v2alpha1.Tpu
+  T = tpu_v1.Tpu | tpu_v1alpha1.Tpu | tpu_v2.Tpu | tpu_v2alpha1.Tpu,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
