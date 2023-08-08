@@ -49,6 +49,7 @@ import {
   VERSIONS as advisorynotificationsVersions,
   advisorynotifications,
 } from './advisorynotifications';
+import {VERSIONS as aiplatformVersions, aiplatform} from './aiplatform';
 import {VERSIONS as alertcenterVersions, alertcenter} from './alertcenter';
 import {VERSIONS as analyticsVersions, analytics} from './analytics';
 import {
@@ -461,6 +462,7 @@ import {
   paymentsresellersubscription,
 } from './paymentsresellersubscription';
 import {VERSIONS as peopleVersions, people} from './people';
+import {VERSIONS as placesVersions, places} from './places';
 import {
   VERSIONS as playablelocationsVersions,
   playablelocations,
@@ -673,6 +675,7 @@ export const APIS: APIList = {
   adsense: adsenseVersions,
   adsensehost: adsensehostVersions,
   advisorynotifications: advisorynotificationsVersions,
+  aiplatform: aiplatformVersions,
   alertcenter: alertcenterVersions,
   analytics: analyticsVersions,
   analyticsadmin: analyticsadminVersions,
@@ -851,6 +854,7 @@ export const APIS: APIList = {
   pagespeedonline: pagespeedonlineVersions,
   paymentsresellersubscription: paymentsresellersubscriptionVersions,
   people: peopleVersions,
+  places: placesVersions,
   playablelocations: playablelocationsVersions,
   playcustomapp: playcustomappVersions,
   playdeveloperreporting: playdeveloperreportingVersions,
@@ -948,6 +952,7 @@ export class GeneratedAPIs {
   adsense = adsense;
   adsensehost = adsensehost;
   advisorynotifications = advisorynotifications;
+  aiplatform = aiplatform;
   alertcenter = alertcenter;
   analytics = analytics;
   analyticsadmin = analyticsadmin;
@@ -1126,6 +1131,7 @@ export class GeneratedAPIs {
   pagespeedonline = pagespeedonline;
   paymentsresellersubscription = paymentsresellersubscription;
   people = people;
+  places = places;
   playablelocations = playablelocations;
   playcustomapp = playcustomapp;
   playdeveloperreporting = playdeveloperreporting;
