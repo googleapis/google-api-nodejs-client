@@ -35,7 +35,7 @@ export function analyticsdata(
   options: analyticsdata_v1beta.Options
 ): analyticsdata_v1beta.Analyticsdata;
 export function analyticsdata<
-  T = analyticsdata_v1alpha.Analyticsdata | analyticsdata_v1beta.Analyticsdata
+  T = analyticsdata_v1alpha.Analyticsdata | analyticsdata_v1beta.Analyticsdata,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
