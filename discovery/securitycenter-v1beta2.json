@@ -1981,7 +1981,7 @@
       }
     }
   },
-  "revision": "20230713",
+  "revision": "20230727",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2068,6 +2068,56 @@
         },
         "version": {
           "description": "The API version of the resource. \"*\" means all.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AttackExposure": {
+      "description": "An attack exposure contains the results of an attack path simulation run.",
+      "id": "AttackExposure",
+      "properties": {
+        "attackExposureResult": {
+          "description": "The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/attackExposureResults/456",
+          "type": "string"
+        },
+        "exposedHighValueResourcesCount": {
+          "description": "The number of high value resources that are exposed as a result of this finding.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "exposedLowValueResourcesCount": {
+          "description": "The number of high value resources that are exposed as a result of this finding.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "exposedMediumValueResourcesCount": {
+          "description": "The number of medium value resources that are exposed as a result of this finding.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "latestCalculationTime": {
+          "description": "The most recent time the attack exposure was updated on this finding.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "score": {
+          "description": "A number between 0 (inclusive) and infinity that represents how important this finding is to remediate. The higher the score, the more important it is to remediate.",
+          "format": "double",
+          "type": "number"
+        },
+        "state": {
+          "description": "What state this AttackExposure is in. This captures whether or not an attack exposure has been calculated or not.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CALCULATED",
+            "NOT_CALCULATED"
+          ],
+          "enumDescriptions": [
+            "The state is not specified.",
+            "The attack exposure has been calculated.",
+            "The attack exposure has not been calculated."
+          ],
           "type": "string"
         }
       },
@@ -2728,6 +2778,10 @@
           "$ref": "Access",
           "description": "Access details associated with the finding, such as more information on the caller, which method was accessed, and from where."
         },
+        "attackExposure": {
+          "$ref": "AttackExposure",
+          "description": "The results of an attack path simulation relevant to this finding."
+        },
         "canonicalName": {
           "description": "The canonical name of the finding. It's either \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\" or \"projects/{project_number}/sources/{source_id}/findings/{finding_id}\", depending on the closest CRM ancestor of the resource associated with the finding.",
           "type": "string"
@@ -3324,6 +3378,73 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1ResourceValueConfig": {
+      "description": "A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.",
+      "id": "GoogleCloudSecuritycenterV1ResourceValueConfig",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp this resource value config was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the resource value config.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name for the resource value config",
+          "type": "string"
+        },
+        "resourceLabelsSelector": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "List of resource labels to search for, evaluated with AND. E.g. \"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"} will match resources with labels \"key\": \"value\" AND \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
+          "type": "object"
+        },
+        "resourceType": {
+          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with \"AND\" of other resources. E.g. \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
+          "type": "string"
+        },
+        "resourceValue": {
+          "description": "Required. Resource value level this expression represents",
+          "enum": [
+            "RESOURCE_VALUE_UNSPECIFIED",
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecific value",
+            "High resource value",
+            "Medium resource value",
+            "Low resource value",
+            "No resource value, e.g. ignore these resources"
+          ],
+          "type": "string"
+        },
+        "scope": {
+          "description": "Project or folder to scope this config to. For example, \"project/456\" would apply this config only to resources in \"project/456\" scope will be checked with \"AND\" of other resources.",
+          "type": "string"
+        },
+        "tagValues": {
+          "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" E.g. [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp this resource value config was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
