@@ -200,6 +200,23 @@ export namespace datastream_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * The strategy that the stream uses for CDC replication.
+   */
+  export interface Schema$CdcStrategy {
+    /**
+     * Optional. Start replicating from the most recent position in the source.
+     */
+    mostRecentStartPosition?: Schema$MostRecentStartPosition;
+    /**
+     * Optional. Resume replication from the next available position in the source.
+     */
+    nextAvailableStartPosition?: Schema$NextAvailableStartPosition;
+    /**
+     * Optional. Start replicating from a specific position in the source.
+     */
+    specificStartPosition?: Schema$SpecificStartPosition;
+  }
+  /**
    * A set of reusable connection configurations to be used as a source or destination for a stream.
    */
   export interface Schema$ConnectionProfile {
@@ -604,6 +621,10 @@ export namespace datastream_v1 {
     sourceObjectIdentifier?: Schema$SourceObjectIdentifier;
   }
   /**
+   * CDC strategy to start replicating from the most recent position in the source.
+   */
+  export interface Schema$MostRecentStartPosition {}
+  /**
    * MySQL Column.
    */
   export interface Schema$MysqlColumn {
@@ -632,9 +653,17 @@ export namespace datastream_v1 {
      */
     ordinalPosition?: number | null;
     /**
+     * Column precision.
+     */
+    precision?: number | null;
+    /**
      * Whether or not the column represents a primary key.
      */
     primaryKey?: boolean | null;
+    /**
+     * Column scale.
+     */
+    scale?: number | null;
   }
   /**
    * MySQL database.
@@ -648,6 +677,19 @@ export namespace datastream_v1 {
      * Tables in the database.
      */
     mysqlTables?: Schema$MysqlTable[];
+  }
+  /**
+   * MySQL log position
+   */
+  export interface Schema$MysqlLogPosition {
+    /**
+     * The binary log file name.
+     */
+    logFile?: string | null;
+    /**
+     * The position within the binary log file. Default is head of file.
+     */
+    logPosition?: number | null;
   }
   /**
    * Mysql data source object identifier.
@@ -759,6 +801,10 @@ export namespace datastream_v1 {
      */
     table?: string | null;
   }
+  /**
+   * CDC strategy to resume replication from the next available position in the source.
+   */
+  export interface Schema$NextAvailableStartPosition {}
   /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
@@ -1183,6 +1229,15 @@ export namespace datastream_v1 {
     updateTime?: string | null;
   }
   /**
+   * Request message for running a stream.
+   */
+  export interface Schema$RunStreamRequest {
+    /**
+     * Optional. The CDC strategy of the stream. If not set, the system's default value will be used.
+     */
+    cdcStrategy?: Schema$CdcStrategy;
+  }
+  /**
    * A single target dataset to which all data will be streamed.
    */
   export interface Schema$SingleTargetDataset {
@@ -1237,6 +1292,15 @@ export namespace datastream_v1 {
      * PostgreSQL data source object identifier.
      */
     postgresqlIdentifier?: Schema$PostgresqlObjectIdentifier;
+  }
+  /**
+   * CDC strategy to start replicating from a specific position in the source.
+   */
+  export interface Schema$SpecificStartPosition {
+    /**
+     * MySQL specific log position to start replicating from.
+     */
+    mysqlLogPosition?: Schema$MysqlLogPosition;
   }
   /**
    * Request for manually initiating a backfill job for a specific stream object.
@@ -5553,6 +5617,144 @@ export namespace datastream_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Use this method to start, resume or recover a stream with a non default CDC strategy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastream.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastream = google.datastream('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastream.projects.locations.streams.run({
+     *     // Required. Name of the stream resource to start, in the format: projects/{project_id\}/locations/{location\}/streams/{stream_name\}
+     *     name: 'projects/my-project/locations/my-location/streams/my-stream',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cdcStrategy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    run(
+      params: Params$Resource$Projects$Locations$Streams$Run,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    run(
+      params?: Params$Resource$Projects$Locations$Streams$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    run(
+      params: Params$Resource$Projects$Locations$Streams$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Streams$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Streams$Run,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(callback: BodyResponseCallback<Schema$Operation>): void;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Streams$Run
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Streams$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Streams$Run;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datastream.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Streams$Create
@@ -5659,6 +5861,18 @@ export namespace datastream_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Stream;
+  }
+  export interface Params$Resource$Projects$Locations$Streams$Run
+    extends StandardParameters {
+    /**
+     * Required. Name of the stream resource to start, in the format: projects/{project_id\}/locations/{location\}/streams/{stream_name\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RunStreamRequest;
   }
 
   export class Resource$Projects$Locations$Streams$Objects {
