@@ -606,13 +606,13 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapDiscoveryComponent {
     /**
-     * The component is a SAP application.
+     * Optional. The component is a SAP application.
      */
-    applicationType?: string | null;
+    applicationProperties?: Schema$SapDiscoveryComponentApplicationProperties;
     /**
-     * The component is a SAP database.
+     * Optional. The component is a SAP database.
      */
-    databaseType?: string | null;
+    databaseProperties?: Schema$SapDiscoveryComponentDatabaseProperties;
     /**
      * Pantheon Project in which the resources reside.
      */
@@ -625,6 +625,40 @@ export namespace workloadmanager_v1 {
      * The sap identifier, used by the SAP software and helps differentiate systems for customers.
      */
     sid?: string | null;
+  }
+  /**
+   * A set of properties describing an SAP Application layer.
+   */
+  export interface Schema$SapDiscoveryComponentApplicationProperties {
+    /**
+     * Required. Type of the application. Netweaver, etc.
+     */
+    applicationType?: string | null;
+    /**
+     * Required. Resource URI of the recognized ASCS host of the application.
+     */
+    ascsUri?: string | null;
+    /**
+     * Optional. Resource URI of the recognized shared NFS of the application. May be empty if the application server has only a single node.
+     */
+    nfsUri?: string | null;
+  }
+  /**
+   * A set of properties describing an SAP Database layer.
+   */
+  export interface Schema$SapDiscoveryComponentDatabaseProperties {
+    /**
+     * Required. Type of the database. HANA, DB2, etc.
+     */
+    databaseType?: string | null;
+    /**
+     * Required. URI of the recognized primary instance of the database.
+     */
+    primaryInstanceUri?: string | null;
+    /**
+     * Optional. URI of the recognized shared NFS of the database. May be empty if the database has only a single node.
+     */
+    sharedNfsUri?: string | null;
   }
   /**
    * Message describing SAP discovery system metadata
