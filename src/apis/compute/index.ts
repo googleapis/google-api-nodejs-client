@@ -31,7 +31,7 @@ export function compute(options: compute_beta.Options): compute_beta.Compute;
 export function compute(version: 'v1'): compute_v1.Compute;
 export function compute(options: compute_v1.Options): compute_v1.Compute;
 export function compute<
-  T = compute_alpha.Compute | compute_beta.Compute | compute_v1.Compute
+  T = compute_alpha.Compute | compute_beta.Compute | compute_v1.Compute,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
