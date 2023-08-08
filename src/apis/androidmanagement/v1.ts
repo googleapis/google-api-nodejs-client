@@ -663,6 +663,22 @@ export namespace androidmanagement_v1 {
      */
     resetPasswordFlags?: string[] | null;
     /**
+     * Parameters for the START_LOST_MODE command to put the device into lost mode. See StartLostModeParams. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to START_LOST_MODE. It is also acceptable to explicitly set type to START_LOST_MODE.
+     */
+    startLostModeParams?: Schema$StartLostModeParams;
+    /**
+     * Output only. Status of the START_LOST_MODE command to put the device into lost mode. See StartLostModeStatus.
+     */
+    startLostModeStatus?: Schema$StartLostModeStatus;
+    /**
+     * Parameters for the STOP_LOST_MODE command to take the device out of lost mode. See StopLostModeParams. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to STOP_LOST_MODE. It is also acceptable to explicitly set type to STOP_LOST_MODE.
+     */
+    stopLostModeParams?: Schema$StopLostModeParams;
+    /**
+     * Output only. Status of the STOP_LOST_MODE command to take the device out of lost mode. See StopLostModeStatus.
+     */
+    stopLostModeStatus?: Schema$StopLostModeStatus;
+    /**
      * The type of the command.
      */
     type?: string | null;
@@ -985,6 +1001,10 @@ export namespace androidmanagement_v1 {
    * Controls for device radio settings.
    */
   export interface Schema$DeviceRadioState {
+    /**
+     * Controls whether airplane mode can be toggled by the user or not
+     */
+    airplaneModeState?: string | null;
     /**
      * Controls current state of Wi-Fi and if user can change its state.
      */
@@ -1557,6 +1577,19 @@ export namespace androidmanagement_v1 {
     webApps?: Schema$WebApp[];
   }
   /**
+   * The device location containing the latitude and longitude.
+   */
+  export interface Schema$Location {
+    /**
+     * The latitude position of the location
+     */
+    latitude?: number | null;
+    /**
+     * The longitude position of the location
+     */
+    longitude?: number | null;
+  }
+  /**
    * The usageLog buffer on the device has reached 90% of its capacity, therefore older events may be dropped. Intentionally empty.
    */
   export interface Schema$LogBufferSizeCriticalEvent {}
@@ -1568,6 +1601,23 @@ export namespace androidmanagement_v1 {
    * usageLog policy has been disabled. Intentionally empty.
    */
   export interface Schema$LoggingStoppedEvent {}
+  /**
+   * A lost mode event containing the device location and battery level as a percentage.
+   */
+  export interface Schema$LostModeLocationEvent {
+    /**
+     * The battery level as a number between 0 and 100 inclusive
+     */
+    batteryLevel?: number | null;
+    /**
+     * The device location
+     */
+    location?: Schema$Location;
+  }
+  /**
+   * An event indicating an outgoing phone call has been made when a device is in lost mode. Intentionally empty.
+   */
+  export interface Schema$LostModeOutgoingPhoneCallEvent {}
   /**
    * The managed configurations template for the app, saved from the managed configurations iframe.
    */
@@ -2407,10 +2457,6 @@ export namespace androidmanagement_v1 {
      */
     apiLevel?: number | null;
     /**
-     * The email address of the authenticated user (only present for Google Account provisioning method).
-     */
-    authenticatedUserEmail?: string | null;
-    /**
      * Brand of the device. For example, Google.
      */
     brand?: string | null;
@@ -2600,6 +2646,40 @@ export namespace androidmanagement_v1 {
     passwordPoliciesContext?: Schema$PasswordPoliciesContext;
   }
   /**
+   * Parameters associated with the START_LOST_MODE command to put the device into lost mode. At least one of the parameters, not including the organization name, must be provided in order for the device to be put into lost mode.
+   */
+  export interface Schema$StartLostModeParams {
+    /**
+     * The email address displayed to the user when the device is in lost mode.
+     */
+    lostEmailAddress?: string | null;
+    /**
+     * The message displayed to the user when the device is in lost mode.
+     */
+    lostMessage?: Schema$UserFacingMessage;
+    /**
+     * The organization name displayed to the user when the device is in lost mode.
+     */
+    lostOrganization?: Schema$UserFacingMessage;
+    /**
+     * The phone number displayed to the user when the device is in lost mode.
+     */
+    lostPhoneNumber?: Schema$UserFacingMessage;
+    /**
+     * The street address displayed to the user when the device is in lost mode.
+     */
+    lostStreetAddress?: Schema$UserFacingMessage;
+  }
+  /**
+   * Status of the START_LOST_MODE command to put the device into lost mode.
+   */
+  export interface Schema$StartLostModeStatus {
+    /**
+     * The status. See StartLostModeStatus.
+     */
+    status?: string | null;
+  }
+  /**
    * The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -2664,6 +2744,28 @@ export namespace androidmanagement_v1 {
      * Whether system properties reporting is enabled.
      */
     systemPropertiesEnabled?: boolean | null;
+  }
+  /**
+   * Parameters associated with the STOP_LOST_MODE command to take the device out of lost mode.
+   */
+  export interface Schema$StopLostModeParams {}
+  /**
+   * Status of the STOP_LOST_MODE command to take the device out of lost mode.
+   */
+  export interface Schema$StopLostModeStatus {
+    /**
+     * The status. See StopLostModeStatus.
+     */
+    status?: string | null;
+  }
+  /**
+   * A lost mode event indicating the user has attempted to stop lost mode.
+   */
+  export interface Schema$StopLostModeUserAttemptEvent {
+    /**
+     * The status of the attempt to stop lost mode.
+     */
+    status?: string | null;
   }
   /**
    * Configuration for managing system updates
@@ -2839,6 +2941,14 @@ export namespace androidmanagement_v1 {
      */
     loggingStoppedEvent?: Schema$LoggingStoppedEvent;
     /**
+     * A lost mode location update when a device in lost mode.
+     */
+    lostModeLocationEvent?: Schema$LostModeLocationEvent;
+    /**
+     * An outgoing phone call has been made when a device in lost mode.
+     */
+    lostModeOutgoingPhoneCallEvent?: Schema$LostModeOutgoingPhoneCallEvent;
+    /**
      * Removable media was mounted. Part of SECURITY_LOGS.
      */
     mediaMountEvent?: Schema$MediaMountEvent;
@@ -2858,6 +2968,10 @@ export namespace androidmanagement_v1 {
      * The device or profile has been remotely locked via the LOCK command. Part of SECURITY_LOGS.
      */
     remoteLockEvent?: Schema$RemoteLockEvent;
+    /**
+     * An attempt to take a device out of lost mode.
+     */
+    stopLostModeUserAttemptEvent?: Schema$StopLostModeUserAttemptEvent;
     /**
      * The work profile or company-owned device failed to wipe when requested. This could be user initiated or admin initiated e.g. delete was received. Part of SECURITY_LOGS.
      */
@@ -4281,6 +4395,10 @@ export namespace androidmanagement_v1 {
      *       //   "errorCode": "my_errorCode",
      *       //   "newPassword": "my_newPassword",
      *       //   "resetPasswordFlags": [],
+     *       //   "startLostModeParams": {},
+     *       //   "startLostModeStatus": {},
+     *       //   "stopLostModeParams": {},
+     *       //   "stopLostModeStatus": {},
      *       //   "type": "my_type",
      *       //   "userName": "my_userName"
      *       // }
@@ -7789,7 +7907,6 @@ export namespace androidmanagement_v1 {
      *   // Example response
      *   // {
      *   //   "apiLevel": 0,
-     *   //   "authenticatedUserEmail": "my_authenticatedUserEmail",
      *   //   "brand": "my_brand",
      *   //   "enterprise": "my_enterprise",
      *   //   "managementMode": "my_managementMode",

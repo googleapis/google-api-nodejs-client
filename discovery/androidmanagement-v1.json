@@ -1095,7 +1095,7 @@
       }
     }
   },
-  "revision": "20230705",
+  "revision": "20230724",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2041,6 +2041,24 @@
           },
           "type": "array"
         },
+        "startLostModeParams": {
+          "$ref": "StartLostModeParams",
+          "description": "Parameters for the START_LOST_MODE command to put the device into lost mode. See StartLostModeParams. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to START_LOST_MODE. It is also acceptable to explicitly set type to START_LOST_MODE."
+        },
+        "startLostModeStatus": {
+          "$ref": "StartLostModeStatus",
+          "description": "Output only. Status of the START_LOST_MODE command to put the device into lost mode. See StartLostModeStatus.",
+          "readOnly": true
+        },
+        "stopLostModeParams": {
+          "$ref": "StopLostModeParams",
+          "description": "Parameters for the STOP_LOST_MODE command to take the device out of lost mode. See StopLostModeParams. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to STOP_LOST_MODE. It is also acceptable to explicitly set type to STOP_LOST_MODE."
+        },
+        "stopLostModeStatus": {
+          "$ref": "StopLostModeStatus",
+          "description": "Output only. Status of the STOP_LOST_MODE command to take the device out of lost mode. See StopLostModeStatus.",
+          "readOnly": true
+        },
         "type": {
           "description": "The type of the command.",
           "enum": [
@@ -2049,7 +2067,9 @@
             "RESET_PASSWORD",
             "REBOOT",
             "RELINQUISH_OWNERSHIP",
-            "CLEAR_APP_DATA"
+            "CLEAR_APP_DATA",
+            "START_LOST_MODE",
+            "STOP_LOST_MODE"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
@@ -2057,7 +2077,9 @@
             "Reset the user's password.",
             "Reboot the device. Only supported on fully managed devices running Android 7.0 (API level 24) or higher.",
             "Removes the work profile and all policies from a company-owned Android 8.0+ device, relinquishing the device for personal use. Apps and data associated with the personal profile(s) are preserved. The device will be deleted from the server after it acknowledges the command.",
-            "Clears the application data of specified apps. This is supported on Android 9 and above. Note that an application can store data outside of its application data, for example in external storage or in a user dictionary. See also clear_apps_data_params."
+            "Clears the application data of specified apps. This is supported on Android 9 and above. Note that an application can store data outside of its application data, for example in external storage or in a user dictionary. See also clear_apps_data_params.",
+            "Puts the device into lost mode. Only supported on fully managed devices or organization-owned devices with a managed profile. See also start_lost_mode_params.",
+            "Takes the device out of lost mode. Only supported on fully managed devices or organization-owned devices with a managed profile. See also stop_lost_mode_params."
           ],
           "type": "string"
         },
@@ -2330,14 +2352,16 @@
             "ACTIVE",
             "DISABLED",
             "DELETED",
-            "PROVISIONING"
+            "PROVISIONING",
+            "LOST"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
             "The device is active.",
             "The device is disabled.",
             "The device was deleted. This state is never returned by an API call, but is used in the final status report when the device acknowledges the deletion. If the device is deleted via the API call, this state is published to Pub/Sub. If the user deletes the work profile or resets the device, the device state will remain unknown to the server.",
-            "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied."
+            "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied.",
+            "The device is lost. This state is only possible on organization-owned devices."
           ],
           "type": "string"
         },
@@ -2491,14 +2515,16 @@
             "ACTIVE",
             "DISABLED",
             "DELETED",
-            "PROVISIONING"
+            "PROVISIONING",
+            "LOST"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
             "The device is active.",
             "The device is disabled.",
             "The device was deleted. This state is never returned by an API call, but is used in the final status report when the device acknowledges the deletion. If the device is deleted via the API call, this state is published to Pub/Sub. If the user deletes the work profile or resets the device, the device state will remain unknown to the server.",
-            "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied."
+            "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied.",
+            "The device is lost. This state is only possible on organization-owned devices."
           ],
           "type": "string"
         },
@@ -2593,6 +2619,20 @@
       "description": "Controls for device radio settings.",
       "id": "DeviceRadioState",
       "properties": {
+        "airplaneModeState": {
+          "description": "Controls whether airplane mode can be toggled by the user or not",
+          "enum": [
+            "AIRPLANE_MODE_STATE_UNSPECIFIED",
+            "AIRPLANE_MODE_USER_CHOICE",
+            "AIRPLANE_MODE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to AIRPLANE_MODE_USER_CHOICE",
+            "The user is allowed to toggle airplane mode on or off.",
+            "Airplane mode is disabled. The user is not allowed to toggle airplane mode on. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 9."
+          ],
+          "type": "string"
+        },
         "wifiState": {
           "description": "Controls current state of Wi-Fi and if user can change its state.",
           "enum": [
@@ -3475,6 +3515,23 @@
       },
       "type": "object"
     },
+    "Location": {
+      "description": "The device location containing the latitude and longitude.",
+      "id": "Location",
+      "properties": {
+        "latitude": {
+          "description": "The latitude position of the location",
+          "format": "double",
+          "type": "number"
+        },
+        "longitude": {
+          "description": "The longitude position of the location",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "LogBufferSizeCriticalEvent": {
       "description": "The usageLog buffer on the device has reached 90% of its capacity, therefore older events may be dropped. Intentionally empty.",
       "id": "LogBufferSizeCriticalEvent",
@@ -3490,6 +3547,28 @@
     "LoggingStoppedEvent": {
       "description": "usageLog policy has been disabled. Intentionally empty.",
       "id": "LoggingStoppedEvent",
+      "properties": {},
+      "type": "object"
+    },
+    "LostModeLocationEvent": {
+      "description": "A lost mode event containing the device location and battery level as a percentage.",
+      "id": "LostModeLocationEvent",
+      "properties": {
+        "batteryLevel": {
+          "description": "The battery level as a number between 0 and 100 inclusive",
+          "format": "int32",
+          "type": "integer"
+        },
+        "location": {
+          "$ref": "Location",
+          "description": "The device location"
+        }
+      },
+      "type": "object"
+    },
+    "LostModeOutgoingPhoneCallEvent": {
+      "description": "An event indicating an outgoing phone call has been made when a device is in lost mode. Intentionally empty.",
+      "id": "LostModeOutgoingPhoneCallEvent",
       "properties": {},
       "type": "object"
     },
@@ -4993,10 +5072,6 @@
           "format": "int32",
           "type": "integer"
         },
-        "authenticatedUserEmail": {
-          "description": "The email address of the authenticated user (only present for Google Account provisioning method).",
-          "type": "string"
-        },
         "brand": {
           "description": "Brand of the device. For example, Google.",
           "type": "string"
@@ -5257,6 +5332,58 @@
       },
       "type": "object"
     },
+    "StartLostModeParams": {
+      "description": "Parameters associated with the START_LOST_MODE command to put the device into lost mode. At least one of the parameters, not including the organization name, must be provided in order for the device to be put into lost mode.",
+      "id": "StartLostModeParams",
+      "properties": {
+        "lostEmailAddress": {
+          "description": "The email address displayed to the user when the device is in lost mode.",
+          "type": "string"
+        },
+        "lostMessage": {
+          "$ref": "UserFacingMessage",
+          "description": "The message displayed to the user when the device is in lost mode."
+        },
+        "lostOrganization": {
+          "$ref": "UserFacingMessage",
+          "description": "The organization name displayed to the user when the device is in lost mode."
+        },
+        "lostPhoneNumber": {
+          "$ref": "UserFacingMessage",
+          "description": "The phone number displayed to the user when the device is in lost mode."
+        },
+        "lostStreetAddress": {
+          "$ref": "UserFacingMessage",
+          "description": "The street address displayed to the user when the device is in lost mode."
+        }
+      },
+      "type": "object"
+    },
+    "StartLostModeStatus": {
+      "description": "Status of the START_LOST_MODE command to put the device into lost mode.",
+      "id": "StartLostModeStatus",
+      "properties": {
+        "status": {
+          "description": "The status. See StartLostModeStatus.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESS",
+            "RESET_PASSWORD_RECENTLY",
+            "USER_EXIT_LOST_MODE_RECENTLY",
+            "ALREADY_IN_LOST_MODE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value is not used.",
+            "The device was put into lost mode.",
+            "The device could not be put into lost mode because the admin reset the device's password recently.",
+            "The device could not be put into lost mode because the user exited lost mode recently.",
+            "The device is already in lost mode."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -5331,6 +5458,54 @@
         "systemPropertiesEnabled": {
           "description": "Whether system properties reporting is enabled.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "StopLostModeParams": {
+      "description": "Parameters associated with the STOP_LOST_MODE command to take the device out of lost mode.",
+      "id": "StopLostModeParams",
+      "properties": {},
+      "type": "object"
+    },
+    "StopLostModeStatus": {
+      "description": "Status of the STOP_LOST_MODE command to take the device out of lost mode.",
+      "id": "StopLostModeStatus",
+      "properties": {
+        "status": {
+          "description": "The status. See StopLostModeStatus.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESS",
+            "NOT_IN_LOST_MODE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value is not used.",
+            "The device was taken out of lost mode.",
+            "The device is not in lost mode."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StopLostModeUserAttemptEvent": {
+      "description": "A lost mode event indicating the user has attempted to stop lost mode.",
+      "id": "StopLostModeUserAttemptEvent",
+      "properties": {
+        "status": {
+          "description": "The status of the attempt to stop lost mode.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "ATTEMPT_SUCCEEDED",
+            "ATTEMPT_FAILED"
+          ],
+          "enumDescriptions": [
+            "This value is not used.",
+            "Indicates that the user successfully stopped lost mode.",
+            "Indicates that the user's attempt to stop lost mode failed."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -5556,7 +5731,10 @@
             "REMOTE_LOCK",
             "WIPE_FAILURE",
             "CONNECT",
-            "DNS"
+            "DNS",
+            "STOP_LOST_MODE_USER_ATTEMPT",
+            "LOST_MODE_OUTGOING_PHONE_CALL",
+            "LOST_MODE_LOCATION"
           ],
           "enumDescriptions": [
             "This value is not used",
@@ -5586,7 +5764,10 @@
             "Indicates remote_lock_event has been set.",
             "Indicates wipe_failure_event has been set.",
             "Indicates connect_event has been set.",
-            "Indicates dns_event has been set."
+            "Indicates dns_event has been set.",
+            "Indicates stopLostModeUserAttemptEvent has been set.",
+            "Indicates lostModeOutgoingPhoneCallEvent has been set.",
+            "Indicates lostModeLocationEvent has been set."
           ],
           "type": "string"
         },
@@ -5638,6 +5819,14 @@
           "$ref": "LoggingStoppedEvent",
           "description": "usageLog policy has been disabled. Part of SECURITY_LOGS."
         },
+        "lostModeLocationEvent": {
+          "$ref": "LostModeLocationEvent",
+          "description": "A lost mode location update when a device in lost mode."
+        },
+        "lostModeOutgoingPhoneCallEvent": {
+          "$ref": "LostModeOutgoingPhoneCallEvent",
+          "description": "An outgoing phone call has been made when a device in lost mode."
+        },
         "mediaMountEvent": {
           "$ref": "MediaMountEvent",
           "description": "Removable media was mounted. Part of SECURITY_LOGS."
@@ -5657,6 +5846,10 @@
         "remoteLockEvent": {
           "$ref": "RemoteLockEvent",
           "description": "The device or profile has been remotely locked via the LOCK command. Part of SECURITY_LOGS."
+        },
+        "stopLostModeUserAttemptEvent": {
+          "$ref": "StopLostModeUserAttemptEvent",
+          "description": "An attempt to take a device out of lost mode."
         },
         "wipeFailureEvent": {
           "$ref": "WipeFailureEvent",
