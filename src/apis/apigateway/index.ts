@@ -31,7 +31,7 @@ export function apigateway(
   options: apigateway_v1beta.Options
 ): apigateway_v1beta.Apigateway;
 export function apigateway<
-  T = apigateway_v1.Apigateway | apigateway_v1beta.Apigateway
+  T = apigateway_v1.Apigateway | apigateway_v1beta.Apigateway,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
