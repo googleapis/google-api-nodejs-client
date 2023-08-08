@@ -31,7 +31,7 @@ export function datastream(
   options: datastream_v1alpha1.Options
 ): datastream_v1alpha1.Datastream;
 export function datastream<
-  T = datastream_v1.Datastream | datastream_v1alpha1.Datastream
+  T = datastream_v1.Datastream | datastream_v1alpha1.Datastream,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
