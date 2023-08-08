@@ -186,57 +186,6 @@ export namespace realtimebidding_v1alpha {
 
     /**
      * Activates an existing bidding function. An activated function is available for invocation for the server-side TURTLEDOVE simulations.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.biddingFunctions.activate({
-     *     // Required. The name of the bidding function to activate. Format: `bidders/{bidder_account_id\}/biddingFunction/{bidding_function_name\}`
-     *     name: 'bidders/my-bidder/biddingFunctions/my-biddingFunction',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "biddingFunction": "my_biddingFunction",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -325,57 +274,6 @@ export namespace realtimebidding_v1alpha {
 
     /**
      * Archives an existing bidding function. An archived function will not be available for function invocation for the server-side TURTLEDOVE simulations unless it is activated.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.biddingFunctions.archive({
-     *     // Required. The name of the bidding function to archive. Format: `bidders/{bidder_account_id\}/biddingFunction/{bidding_function_name\}`
-     *     name: 'bidders/my-bidder/biddingFunctions/my-biddingFunction',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "biddingFunction": "my_biddingFunction",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -464,62 +362,6 @@ export namespace realtimebidding_v1alpha {
 
     /**
      * Creates a new bidding function.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.biddingFunctions.create({
-     *     // Required. The name of the bidder for which to create the bidding function. Format: `bidders/{bidderAccountId\}`
-     *     parent: 'bidders/my-bidder',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "biddingFunction": "my_biddingFunction",
-     *       //   "name": "my_name",
-     *       //   "state": "my_state",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "biddingFunction": "my_biddingFunction",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -608,53 +450,6 @@ export namespace realtimebidding_v1alpha {
 
     /**
      * Lists the bidding functions that a bidder currently has registered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.biddingFunctions.list({
-     *     // The maximum number of bidding functions to return.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. This value is received from a previous `ListBiddingFunctions` call in ListBiddingFunctionsResponse.nextPageToken.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Name of the bidder whose bidding functions will be listed. Format: `bidders/{bidder_account_id\}`
-     *     parent: 'bidders/my-bidder',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "biddingFunctions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
