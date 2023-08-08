@@ -40,7 +40,7 @@ export function appengine<
   T =
     | appengine_v1.Appengine
     | appengine_v1alpha.Appengine
-    | appengine_v1beta.Appengine
+    | appengine_v1beta.Appengine,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
