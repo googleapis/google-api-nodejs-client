@@ -31,7 +31,7 @@ export function beyondcorp(
   options: beyondcorp_v1alpha.Options
 ): beyondcorp_v1alpha.Beyondcorp;
 export function beyondcorp<
-  T = beyondcorp_v1.Beyondcorp | beyondcorp_v1alpha.Beyondcorp
+  T = beyondcorp_v1.Beyondcorp | beyondcorp_v1alpha.Beyondcorp,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
