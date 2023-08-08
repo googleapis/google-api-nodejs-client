@@ -584,7 +584,7 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20230727",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -1752,7 +1752,7 @@
           "type": "string"
         },
         "denyMaintenancePeriods": {
-          "description": "Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. User can specify zero or more non-overlapping deny periods. Maximum number of deny_maintenance_periods expected is one.",
+          "description": "Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. The protocol supports zero-to-many such periods, but the current SLM Rollout implementation only supports zero-to-one.",
           "items": {
             "$ref": "DenyMaintenancePeriod"
           },
