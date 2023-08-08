@@ -145,7 +145,7 @@
               ],
               "parameters": {
                 "groupId": {
-                  "description": "Required. The group for which events shall be returned.",
+                  "description": "Required. The group for which events shall be returned. The `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice).",
                   "location": "query",
                   "type": "string"
                 },
@@ -275,7 +275,7 @@
                   "type": "string"
                 },
                 "groupId": {
-                  "description": "Optional. List all ErrorGroupStats with these IDs.",
+                  "description": "Optional. List all ErrorGroupStats with these IDs. The `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice] (https://cloud.google.com/terms/cloud-privacy-notice).",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -382,7 +382,7 @@
               ],
               "parameters": {
                 "groupName": {
-                  "description": "Required. The group resource name. Written as `projects/{projectID}/groups/{group_name}`. Call groupStats.list to return a list of groups belonging to this project. Example: `projects/my-project-123/groups/my-group`",
+                  "description": "Required. The group resource name. Written as `projects/{projectID}/groups/{group_id}`. Call groupStats.list to return a list of groups belonging to this project. Example: `projects/my-project-123/groups/my-group` In the group resource name, the `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice).",
                   "location": "path",
                   "pattern": "^projects/[^/]+/groups/[^/]+$",
                   "required": true,
@@ -407,7 +407,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The group resource name. Example: projects/my-project-123/groups/CNSgkpnppqKCUw",
+                  "description": "The group resource name. Written as `projects/{projectID}/groups/{group_id}`. Example: `projects/my-project-123/groups/my-group` In the group resource name, the `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice).",
                   "location": "path",
                   "pattern": "^projects/[^/]+/groups/[^/]+$",
                   "required": true,
@@ -430,7 +430,7 @@
       }
     }
   },
-  "revision": "20230223",
+  "revision": "20230804",
   "rootUrl": "https://clouderrorreporting.googleapis.com/",
   "schemas": {
     "DeleteEventsResponse": {
@@ -498,7 +498,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The group resource name. Example: projects/my-project-123/groups/CNSgkpnppqKCUw",
+          "description": "The group resource name. Written as `projects/{projectID}/groups/{group_id}`. Example: `projects/my-project-123/groups/my-group` In the group resource name, the `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice).",
           "type": "string"
         },
         "resolutionStatus": {
