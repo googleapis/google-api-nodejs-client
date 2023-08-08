@@ -757,6 +757,10 @@ export namespace drive_v2 {
    */
   export interface Schema$ContentRestriction {
     /**
+     * Whether the content restriction can only be modified or removed by a user who owns the file. For files in shared drives, any user with `organizer` capabilities can modify or remove this content restriction.
+     */
+    ownerRestricted?: boolean | null;
+    /**
      * Whether the content of the file is read-only. If a file is read-only, a new revision of the file may not be added, comments may not be added or modified, and the title of the file may not be modified.
      */
     readOnly?: boolean | null;
@@ -919,7 +923,9 @@ export namespace drive_v2 {
       canListChildren?: boolean;
       canModifyContent?: boolean;
       canModifyContentRestriction?: boolean;
+      canModifyEditorContentRestriction?: boolean;
       canModifyLabels?: boolean;
+      canModifyOwnerContentRestriction?: boolean;
       canMoveChildrenOutOfDrive?: boolean;
       canMoveChildrenOutOfTeamDrive?: boolean;
       canMoveChildrenWithinDrive?: boolean;
@@ -935,6 +941,7 @@ export namespace drive_v2 {
       canReadRevisions?: boolean;
       canReadTeamDrive?: boolean;
       canRemoveChildren?: boolean;
+      canRemoveContentRestriction?: boolean;
       canRemoveMyDriveParent?: boolean;
       canRename?: boolean;
       canShare?: boolean;
