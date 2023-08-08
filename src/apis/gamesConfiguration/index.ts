@@ -27,7 +27,7 @@ export function gamesConfiguration(
   options: gamesConfiguration_v1configuration.Options
 ): gamesConfiguration_v1configuration.Gamesconfiguration;
 export function gamesConfiguration<
-  T = gamesConfiguration_v1configuration.Gamesconfiguration
+  T = gamesConfiguration_v1configuration.Gamesconfiguration,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
