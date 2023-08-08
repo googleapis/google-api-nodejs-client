@@ -27,7 +27,7 @@ export function paymentsresellersubscription(
   options: paymentsresellersubscription_v1.Options
 ): paymentsresellersubscription_v1.Paymentsresellersubscription;
 export function paymentsresellersubscription<
-  T = paymentsresellersubscription_v1.Paymentsresellersubscription
+  T = paymentsresellersubscription_v1.Paymentsresellersubscription,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | paymentsresellersubscription_v1.Options
