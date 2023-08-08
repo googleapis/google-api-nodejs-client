@@ -40,7 +40,7 @@ export function documentai<
   T =
     | documentai_v1.Documentai
     | documentai_v1beta2.Documentai
-    | documentai_v1beta3.Documentai
+    | documentai_v1beta3.Documentai,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
