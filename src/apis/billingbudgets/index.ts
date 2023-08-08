@@ -33,7 +33,7 @@ export function billingbudgets(
   options: billingbudgets_v1beta1.Options
 ): billingbudgets_v1beta1.Billingbudgets;
 export function billingbudgets<
-  T = billingbudgets_v1.Billingbudgets | billingbudgets_v1beta1.Billingbudgets
+  T = billingbudgets_v1.Billingbudgets | billingbudgets_v1beta1.Billingbudgets,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
