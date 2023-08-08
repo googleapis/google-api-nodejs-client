@@ -37,7 +37,7 @@ export function networkservices(
 export function networkservices<
   T =
     | networkservices_v1.Networkservices
-    | networkservices_v1beta1.Networkservices
+    | networkservices_v1beta1.Networkservices,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
