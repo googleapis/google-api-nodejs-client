@@ -1117,6 +1117,15 @@ export namespace beyondcorp_v1alpha {
     id?: string | null;
   }
   /**
+   * Message for response to listing BrowserDlpRules.
+   */
+  export interface Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse {
+    /**
+     * The list of BrowserDlpRule objects.
+     */
+    browserDlpRules?: Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaBrowserDlpRule[];
+  }
+  /**
    * Message for response to listing PartnerTenants.
    */
   export interface Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse {
@@ -3935,6 +3944,149 @@ export namespace beyondcorp_v1alpha {
     }
 
     /**
+     * Lists BrowserDlpRules for PartnerTenant in a given organization.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/beyondcorp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const beyondcorp = google.beyondcorp('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await beyondcorp.organizations.locations.global.partnerTenants.browserDlpRules.list(
+     *       {
+     *         // Required. The parent partnerTenant to which the BrowserDlpRules belong. Format: `organizations/{organization_id\}/locations/global/partnerTenants/{partner_tenant_id\}`
+     *         parent:
+     *           'organizations/my-organization/locations/global/partnerTenants/my-partnerTenant',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "browserDlpRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$List
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/browserDlpRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Update an existing BrowserDlpRule in a given organization and PartnerTenant.
      * @example
      * ```js
@@ -4436,6 +4588,13 @@ export namespace beyondcorp_v1alpha {
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$List
+    extends StandardParameters {
+    /**
+     * Required. The parent partnerTenant to which the BrowserDlpRules belong. Format: `organizations/{organization_id\}/locations/global/partnerTenants/{partner_tenant_id\}`
+     */
+    parent?: string;
   }
   export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Patch
     extends StandardParameters {

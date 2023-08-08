@@ -475,6 +475,31 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
+                        "list": {
+                          "description": "Lists BrowserDlpRules for PartnerTenant in a given organization.",
+                          "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/browserDlpRules",
+                          "httpMethod": "GET",
+                          "id": "beyondcorp.organizations.locations.global.partnerTenants.browserDlpRules.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent partnerTenant to which the BrowserDlpRules belong. Format: `organizations/{organization_id}/locations/global/partnerTenants/{partner_tenant_id}`",
+                              "location": "path",
+                              "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/browserDlpRules",
+                          "response": {
+                            "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "patch": {
                           "description": "Update an existing BrowserDlpRule in a given organization and PartnerTenant.",
                           "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}/browserDlpRules/{browserDlpRulesId}",
@@ -3744,7 +3769,7 @@
       }
     }
   },
-  "revision": "20230616",
+  "revision": "20230726",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -5165,6 +5190,20 @@
         "id": {
           "description": "Google group id",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse": {
+      "description": "Message for response to listing BrowserDlpRules.",
+      "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse",
+      "properties": {
+        "browserDlpRules": {
+          "description": "The list of BrowserDlpRule objects.",
+          "items": {
+            "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaBrowserDlpRule"
+          },
+          "type": "array"
         }
       },
       "type": "object"
