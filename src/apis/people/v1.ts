@@ -1626,55 +1626,6 @@ export namespace people_v1 {
 
     /**
      * Get a list of contact groups owned by the authenticated user by specifying a list of contact group resource names.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/contacts',
-     *       'https://www.googleapis.com/auth/contacts.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.contactGroups.batchGet({
-     *     // Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
-     *     groupFields: 'placeholder-value',
-     *     // Optional. Specifies the maximum number of members to return for each group. Defaults to 0 if not set, which will return zero members.
-     *     maxMembers: 'placeholder-value',
-     *     // Required. The resource names of the contact groups to get. There is a maximum of 200 resource names.
-     *     resourceNames: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "responses": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1771,62 +1722,6 @@ export namespace people_v1 {
 
     /**
      * Create a new contact group owned by the authenticated user. Created contact group names must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.contactGroups.create({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contactGroup": {},
-     *       //   "readGroupFields": "my_readGroupFields"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientData": [],
-     *   //   "etag": "my_etag",
-     *   //   "formattedName": "my_formattedName",
-     *   //   "groupType": "my_groupType",
-     *   //   "memberCount": 0,
-     *   //   "memberResourceNames": [],
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "resourceName": "my_resourceName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1911,48 +1806,6 @@ export namespace people_v1 {
 
     /**
      * Delete an existing contact group owned by the authenticated user by specifying a contact group resource name. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.contactGroups.delete({
-     *     // Optional. Set to true to also delete the contacts in the specified group.
-     *     deleteContacts: 'placeholder-value',
-     *     // Required. The resource name of the contact group to delete.
-     *     resourceName: 'contactGroups/my-contactGroup',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2040,63 +1893,6 @@ export namespace people_v1 {
 
     /**
      * Get a specific contact group owned by the authenticated user by specifying a contact group resource name.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/contacts',
-     *       'https://www.googleapis.com/auth/contacts.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.contactGroups.get({
-     *     // Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
-     *     groupFields: 'placeholder-value',
-     *     // Optional. Specifies the maximum number of members to return. Defaults to 0 if not set, which will return zero members.
-     *     maxMembers: 'placeholder-value',
-     *     // Required. The resource name of the contact group to get.
-     *     resourceName: 'contactGroups/my-contactGroup',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientData": [],
-     *   //   "etag": "my_etag",
-     *   //   "formattedName": "my_formattedName",
-     *   //   "groupType": "my_groupType",
-     *   //   "memberCount": 0,
-     *   //   "memberResourceNames": [],
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "resourceName": "my_resourceName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2184,60 +1980,6 @@ export namespace people_v1 {
 
     /**
      * List all contact groups owned by the authenticated user. Members of the contact groups are not populated.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/contacts',
-     *       'https://www.googleapis.com/auth/contacts.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.contactGroups.list({
-     *     // Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
-     *     groupFields: 'placeholder-value',
-     *     // Optional. The maximum number of resources to return. Valid values are between 1 and 1000, inclusive. Defaults to 30 if not set or set to 0.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. The next_page_token value returned from a previous call to [ListContactGroups](/people/api/rest/v1/contactgroups/list). Requests the next page of resources.
-     *     pageToken: 'placeholder-value',
-     *     // Optional. A sync token, returned by a previous call to `contactgroups.list`. Only resources changed since the sync token was created will be returned.
-     *     syncToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contactGroups": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "nextSyncToken": "my_nextSyncToken",
-     *   //   "totalItems": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2329,66 +2071,6 @@ export namespace people_v1 {
 
     /**
      * Update the name of an existing contact group owned by the authenticated user. Updated contact group names must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.contactGroups.update({
-     *     // The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/{contact_group_id\}`.
-     *     resourceName: 'contactGroups/my-contactGroup',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contactGroup": {},
-     *       //   "readGroupFields": "my_readGroupFields",
-     *       //   "updateGroupFields": "my_updateGroupFields"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientData": [],
-     *   //   "etag": "my_etag",
-     *   //   "formattedName": "my_formattedName",
-     *   //   "groupType": "my_groupType",
-     *   //   "memberCount": 0,
-     *   //   "memberResourceNames": [],
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "resourceName": "my_resourceName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2563,58 +2245,6 @@ export namespace people_v1 {
 
     /**
      * Modify the members of a contact group owned by the authenticated user. The only system contact groups that can have members added are `contactGroups/myContacts` and `contactGroups/starred`. Other system contact groups are deprecated and can only have contacts removed.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.contactGroups.members.modify({
-     *     // Required. The resource name of the contact group to modify.
-     *     resourceName: 'contactGroups/my-contactGroup',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "resourceNamesToAdd": [],
-     *       //   "resourceNamesToRemove": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "canNotRemoveLastContactGroupResourceNames": [],
-     *   //   "notFoundResourceNames": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2731,98 +2361,6 @@ export namespace people_v1 {
 
     /**
      * Copies an "Other contact" to a new contact in the user's "myContacts" group Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/contacts',
-     *       'https://www.googleapis.com/auth/contacts.other.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.otherContacts.copyOtherContactToMyContactsGroup({
-     *     // Required. The resource name of the "Other contact" to copy.
-     *     resourceName: 'otherContacts/my-otherContact',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "copyMask": "my_copyMask",
-     *       //   "readMask": "my_readMask",
-     *       //   "sources": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "addresses": [],
-     *   //   "ageRange": "my_ageRange",
-     *   //   "ageRanges": [],
-     *   //   "biographies": [],
-     *   //   "birthdays": [],
-     *   //   "braggingRights": [],
-     *   //   "calendarUrls": [],
-     *   //   "clientData": [],
-     *   //   "coverPhotos": [],
-     *   //   "emailAddresses": [],
-     *   //   "etag": "my_etag",
-     *   //   "events": [],
-     *   //   "externalIds": [],
-     *   //   "fileAses": [],
-     *   //   "genders": [],
-     *   //   "imClients": [],
-     *   //   "interests": [],
-     *   //   "locales": [],
-     *   //   "locations": [],
-     *   //   "memberships": [],
-     *   //   "metadata": {},
-     *   //   "miscKeywords": [],
-     *   //   "names": [],
-     *   //   "nicknames": [],
-     *   //   "occupations": [],
-     *   //   "organizations": [],
-     *   //   "phoneNumbers": [],
-     *   //   "photos": [],
-     *   //   "relations": [],
-     *   //   "relationshipInterests": [],
-     *   //   "relationshipStatuses": [],
-     *   //   "residences": [],
-     *   //   "resourceName": "my_resourceName",
-     *   //   "sipAddresses": [],
-     *   //   "skills": [],
-     *   //   "taglines": [],
-     *   //   "urls": [],
-     *   //   "userDefined": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2912,61 +2450,6 @@ export namespace people_v1 {
 
     /**
      * List all "Other contacts", that is contacts that are not in a contact group. "Other contacts" are typically auto created contacts from interactions. Sync tokens expire 7 days after the full sync. A request with an expired sync token will get an error with an [google.rpc.ErrorInfo](https://cloud.google.com/apis/design/errors#error_info) with reason "EXPIRED_SYNC_TOKEN". In the case of such an error clients should make a full sync request without a `sync_token`. The first page of a full sync request has an additional quota. If the quota is exceeded, a 429 error will be returned. This quota is fixed and can not be increased. When the `sync_token` is specified, resources deleted since the last sync will be returned as a person with `PersonMetadata.deleted` set to true. When the `page_token` or `sync_token` is specified, all other request parameters must match the first call. Writes may have a propagation delay of several minutes for sync requests. Incremental syncs are not intended for read-after-write use cases. See example usage at [List the user's other contacts that have changed](/people/v1/other-contacts#list_the_users_other_contacts_that_have_changed).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts.other.readonly'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.otherContacts.list({
-     *     // Optional. The number of "Other contacts" to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous response `next_page_token`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `otherContacts.list` must match the first call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. What values are valid depend on what ReadSourceType is used. If READ_SOURCE_TYPE_CONTACT is used, valid values are: * emailAddresses * metadata * names * phoneNumbers * photos If READ_SOURCE_TYPE_PROFILE is used, valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
-     *     readMask: 'placeholder-value',
-     *     // Optional. Whether the response should return `next_sync_token` on the last page of results. It can be used to get incremental changes since the last request by setting it on the request `sync_token`. More details about sync behavior at `otherContacts.list`.
-     *     requestSyncToken: 'placeholder-value',
-     *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT if not set. Possible values for this field are: * READ_SOURCE_TYPE_CONTACT * READ_SOURCE_TYPE_CONTACT,READ_SOURCE_TYPE_PROFILE Specifying READ_SOURCE_TYPE_PROFILE without specifying READ_SOURCE_TYPE_CONTACT is not permitted.
-     *     sources: 'placeholder-value',
-     *     // Optional. A sync token, received from a previous response `next_sync_token` Provide this to retrieve only the resources changed since the last request. When syncing, all other parameters provided to `otherContacts.list` must match the first call that provided the sync token. More details about sync behavior at `otherContacts.list`.
-     *     syncToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "nextSyncToken": "my_nextSyncToken",
-     *   //   "otherContacts": [],
-     *   //   "totalSize": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3058,52 +2541,6 @@ export namespace people_v1 {
 
     /**
      * Provides a list of contacts in the authenticated user's other contacts that matches the search query. The query matches on a contact's `names`, `emailAddresses`, and `phoneNumbers` fields that are from the OTHER_CONTACT source. **IMPORTANT**: Before searching, clients should send a warmup request with an empty query to update the cache. See https://developers.google.com/people/v1/other-contacts#search_the_users_other_contacts
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts.other.readonly'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.otherContacts.search({
-     *     // Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 30 will be capped to 30.
-     *     pageSize: 'placeholder-value',
-     *     // Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name "foo name" matches queries such as "f", "fo", "foo", "foo n", "nam", etc., but not "oo n".
-     *     query: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * emailAddresses * metadata * names * phoneNumbers
-     *     readMask: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "results": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3255,55 +2692,6 @@ export namespace people_v1 {
 
     /**
      * Create a batch of new contacts and return the PersonResponses for the newly Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.batchCreateContacts({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contacts": [],
-     *       //   "readMask": "my_readMask",
-     *       //   "sources": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createdPeople": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3398,51 +2786,6 @@ export namespace people_v1 {
 
     /**
      * Delete a batch of contacts. Any non-contact data will not be deleted. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.batchDeleteContacts({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "resourceNames": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3530,56 +2873,6 @@ export namespace people_v1 {
 
     /**
      * Update a batch of contacts and return a map of resource names to PersonResponses for the updated contacts. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.batchUpdateContacts({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contacts": {},
-     *       //   "readMask": "my_readMask",
-     *       //   "sources": [],
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "updateResult": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3674,132 +2967,6 @@ export namespace people_v1 {
 
     /**
      * Create a new contact and return the person resource for that contact. The request returns a 400 error if more than one field is specified on a field that is a singleton for contact sources: * biographies * birthdays * genders * names Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.createContact({
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
-     *     personFields: 'placeholder-value',
-     *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.
-     *     sources: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "addresses": [],
-     *       //   "ageRange": "my_ageRange",
-     *       //   "ageRanges": [],
-     *       //   "biographies": [],
-     *       //   "birthdays": [],
-     *       //   "braggingRights": [],
-     *       //   "calendarUrls": [],
-     *       //   "clientData": [],
-     *       //   "coverPhotos": [],
-     *       //   "emailAddresses": [],
-     *       //   "etag": "my_etag",
-     *       //   "events": [],
-     *       //   "externalIds": [],
-     *       //   "fileAses": [],
-     *       //   "genders": [],
-     *       //   "imClients": [],
-     *       //   "interests": [],
-     *       //   "locales": [],
-     *       //   "locations": [],
-     *       //   "memberships": [],
-     *       //   "metadata": {},
-     *       //   "miscKeywords": [],
-     *       //   "names": [],
-     *       //   "nicknames": [],
-     *       //   "occupations": [],
-     *       //   "organizations": [],
-     *       //   "phoneNumbers": [],
-     *       //   "photos": [],
-     *       //   "relations": [],
-     *       //   "relationshipInterests": [],
-     *       //   "relationshipStatuses": [],
-     *       //   "residences": [],
-     *       //   "resourceName": "my_resourceName",
-     *       //   "sipAddresses": [],
-     *       //   "skills": [],
-     *       //   "taglines": [],
-     *       //   "urls": [],
-     *       //   "userDefined": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "addresses": [],
-     *   //   "ageRange": "my_ageRange",
-     *   //   "ageRanges": [],
-     *   //   "biographies": [],
-     *   //   "birthdays": [],
-     *   //   "braggingRights": [],
-     *   //   "calendarUrls": [],
-     *   //   "clientData": [],
-     *   //   "coverPhotos": [],
-     *   //   "emailAddresses": [],
-     *   //   "etag": "my_etag",
-     *   //   "events": [],
-     *   //   "externalIds": [],
-     *   //   "fileAses": [],
-     *   //   "genders": [],
-     *   //   "imClients": [],
-     *   //   "interests": [],
-     *   //   "locales": [],
-     *   //   "locations": [],
-     *   //   "memberships": [],
-     *   //   "metadata": {},
-     *   //   "miscKeywords": [],
-     *   //   "names": [],
-     *   //   "nicknames": [],
-     *   //   "occupations": [],
-     *   //   "organizations": [],
-     *   //   "phoneNumbers": [],
-     *   //   "photos": [],
-     *   //   "relations": [],
-     *   //   "relationshipInterests": [],
-     *   //   "relationshipStatuses": [],
-     *   //   "residences": [],
-     *   //   "resourceName": "my_resourceName",
-     *   //   "sipAddresses": [],
-     *   //   "skills": [],
-     *   //   "taglines": [],
-     *   //   "urls": [],
-     *   //   "userDefined": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3887,46 +3054,6 @@ export namespace people_v1 {
 
     /**
      * Delete a contact person. Any non-contact data will not be deleted. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.deleteContact({
-     *     // Required. The resource name of the contact to delete.
-     *     resourceName: 'people/[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4014,52 +3141,6 @@ export namespace people_v1 {
 
     /**
      * Delete a contact's photo. Mutate requests for the same user should be done sequentially to avoid // lock contention.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.deleteContactPhoto({
-     *     // Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
-     *     personFields: 'placeholder-value',
-     *     // Required. The resource name of the contact whose photo will be deleted.
-     *     resourceName: 'people/[^/]+',
-     *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.
-     *     sources: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "person": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4154,103 +3235,6 @@ export namespace people_v1 {
 
     /**
      * Provides information about a person by specifying a resource name. Use `people/me` to indicate the authenticated user. The request returns a 400 error if 'personFields' is not specified.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/contacts',
-     *       'https://www.googleapis.com/auth/contacts.readonly',
-     *       'https://www.googleapis.com/auth/directory.readonly',
-     *       'https://www.googleapis.com/auth/user.addresses.read',
-     *       'https://www.googleapis.com/auth/user.birthday.read',
-     *       'https://www.googleapis.com/auth/user.emails.read',
-     *       'https://www.googleapis.com/auth/user.gender.read',
-     *       'https://www.googleapis.com/auth/user.organization.read',
-     *       'https://www.googleapis.com/auth/user.phonenumbers.read',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *       'https://www.googleapis.com/auth/userinfo.profile',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.get({
-     *     // Required. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
-     *     personFields: 'placeholder-value',
-     *     // Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
-     *     'requestMask.includeField': 'placeholder-value',
-     *     // Required. The resource name of the person to provide information about. - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id\}`. - To get information about a contact, specify the resource name that identifies the contact as returned by `people.connections.list`.
-     *     resourceName: 'people/[^/]+',
-     *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_PROFILE and READ_SOURCE_TYPE_CONTACT if not set.
-     *     sources: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "addresses": [],
-     *   //   "ageRange": "my_ageRange",
-     *   //   "ageRanges": [],
-     *   //   "biographies": [],
-     *   //   "birthdays": [],
-     *   //   "braggingRights": [],
-     *   //   "calendarUrls": [],
-     *   //   "clientData": [],
-     *   //   "coverPhotos": [],
-     *   //   "emailAddresses": [],
-     *   //   "etag": "my_etag",
-     *   //   "events": [],
-     *   //   "externalIds": [],
-     *   //   "fileAses": [],
-     *   //   "genders": [],
-     *   //   "imClients": [],
-     *   //   "interests": [],
-     *   //   "locales": [],
-     *   //   "locations": [],
-     *   //   "memberships": [],
-     *   //   "metadata": {},
-     *   //   "miscKeywords": [],
-     *   //   "names": [],
-     *   //   "nicknames": [],
-     *   //   "occupations": [],
-     *   //   "organizations": [],
-     *   //   "phoneNumbers": [],
-     *   //   "photos": [],
-     *   //   "relations": [],
-     *   //   "relationshipInterests": [],
-     *   //   "relationshipStatuses": [],
-     *   //   "residences": [],
-     *   //   "resourceName": "my_resourceName",
-     *   //   "sipAddresses": [],
-     *   //   "skills": [],
-     *   //   "taglines": [],
-     *   //   "urls": [],
-     *   //   "userDefined": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4337,66 +3321,6 @@ export namespace people_v1 {
 
     /**
      * Provides information about a list of specific people by specifying a list of requested resource names. Use `people/me` to indicate the authenticated user. The request returns a 400 error if 'personFields' is not specified.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/contacts',
-     *       'https://www.googleapis.com/auth/contacts.readonly',
-     *       'https://www.googleapis.com/auth/directory.readonly',
-     *       'https://www.googleapis.com/auth/user.addresses.read',
-     *       'https://www.googleapis.com/auth/user.birthday.read',
-     *       'https://www.googleapis.com/auth/user.emails.read',
-     *       'https://www.googleapis.com/auth/user.gender.read',
-     *       'https://www.googleapis.com/auth/user.organization.read',
-     *       'https://www.googleapis.com/auth/user.phonenumbers.read',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *       'https://www.googleapis.com/auth/userinfo.profile',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.getBatchGet({
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
-     *     personFields: 'placeholder-value',
-     *     // Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
-     *     'requestMask.includeField': 'placeholder-value',
-     *     // Required. The resource names of the people to provide information about. It's repeatable. The URL query parameter should be resourceNames=<name1\>&resourceNames=<name2\>&... - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id\}`. - To get information about a contact, specify the resource name that identifies the contact as returned by `people.connections.list`. There is a maximum of 200 resource names.
-     *     resourceNames: 'placeholder-value',
-     *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.
-     *     sources: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "responses": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4487,62 +3411,6 @@ export namespace people_v1 {
 
     /**
      * Provides a list of domain profiles and domain contacts in the authenticated user's domain directory. When the `sync_token` is specified, resources deleted since the last sync will be returned as a person with `PersonMetadata.deleted` set to true. When the `page_token` or `sync_token` is specified, all other request parameters must match the first call. Writes may have a propagation delay of several minutes for sync requests. Incremental syncs are not intended for read-after-write use cases. See example usage at [List the directory people that have changed](/people/v1/directory#list_the_directory_people_that_have_changed).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/directory.readonly'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.listDirectoryPeople({
-     *     // Optional. Additional data to merge into the directory sources if they are connected through verified join keys such as email addresses or phone numbers.
-     *     mergeSources: 'placeholder-value',
-     *     // Optional. The number of people to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous response `next_page_token`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `people.listDirectoryPeople` must match the first call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
-     *     readMask: 'placeholder-value',
-     *     // Optional. Whether the response should return `next_sync_token`. It can be used to get incremental changes since the last request by setting it on the request `sync_token`. More details about sync behavior at `people.listDirectoryPeople`.
-     *     requestSyncToken: 'placeholder-value',
-     *     // Required. Directory sources to return.
-     *     sources: 'placeholder-value',
-     *     // Optional. A sync token, received from a previous response `next_sync_token` Provide this to retrieve only the resources changed since the last request. When syncing, all other parameters provided to `people.listDirectoryPeople` must match the first call that provided the sync token. More details about sync behavior at `people.listDirectoryPeople`.
-     *     syncToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "nextSyncToken": "my_nextSyncToken",
-     *   //   "people": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4637,57 +3505,6 @@ export namespace people_v1 {
 
     /**
      * Provides a list of contacts in the authenticated user's grouped contacts that matches the search query. The query matches on a contact's `names`, `nickNames`, `emailAddresses`, `phoneNumbers`, and `organizations` fields that are from the CONTACT source. **IMPORTANT**: Before searching, clients should send a warmup request with an empty query to update the cache. See https://developers.google.com/people/v1/contacts#search_the_users_contacts
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/contacts',
-     *       'https://www.googleapis.com/auth/contacts.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.searchContacts({
-     *     // Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 30 will be capped to 30.
-     *     pageSize: 'placeholder-value',
-     *     // Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name "foo name" matches queries such as "f", "fo", "foo", "foo n", "nam", etc., but not "oo n".
-     *     query: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
-     *     readMask: 'placeholder-value',
-     *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT if not set.
-     *     sources: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "results": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4775,60 +3592,6 @@ export namespace people_v1 {
 
     /**
      * Provides a list of domain profiles and domain contacts in the authenticated user's domain directory that match the search query.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/directory.readonly'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.searchDirectoryPeople({
-     *     // Optional. Additional data to merge into the directory sources if they are connected through verified join keys such as email addresses or phone numbers.
-     *     mergeSources: 'placeholder-value',
-     *     // Optional. The number of people to include in the response. Valid values are between 1 and 500, inclusive. Defaults to 100 if not set or set to 0.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous response `next_page_token`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchDirectoryPeople` must match the first call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Prefix query that matches fields in the person. Does NOT use the read_mask for determining what fields to match.
-     *     query: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
-     *     readMask: 'placeholder-value',
-     *     // Required. Directory sources to return.
-     *     sources: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "people": [],
-     *   //   "totalSize": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4925,136 +3688,6 @@ export namespace people_v1 {
 
     /**
      * Update contact data for an existing contact person. Any non-contact data will not be modified. Any non-contact data in the person to update will be ignored. All fields specified in the `update_mask` will be replaced. The server returns a 400 error if `person.metadata.sources` is not specified for the contact to be updated or if there is no contact source. The server returns a 400 error with reason `"failedPrecondition"` if `person.metadata.sources.etag` is different than the contact's etag, which indicates the contact has changed since its data was read. Clients should get the latest person and merge their updates into the latest person. The server returns a 400 error if `memberships` are being updated and there are no contact group memberships specified on the person. The server returns a 400 error if more than one field is specified on a field that is a singleton for contact sources: * biographies * birthdays * genders * names Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.updateContact({
-     *     // Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
-     *     personFields: 'placeholder-value',
-     *     // The resource name for the person, assigned by the server. An ASCII string in the form of `people/{person_id\}`.
-     *     resourceName: 'people/[^/]+',
-     *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.
-     *     sources: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are: * addresses * biographies * birthdays * calendarUrls * clientData * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * relations * sipAddresses * urls * userDefined
-     *     updatePersonFields: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "addresses": [],
-     *       //   "ageRange": "my_ageRange",
-     *       //   "ageRanges": [],
-     *       //   "biographies": [],
-     *       //   "birthdays": [],
-     *       //   "braggingRights": [],
-     *       //   "calendarUrls": [],
-     *       //   "clientData": [],
-     *       //   "coverPhotos": [],
-     *       //   "emailAddresses": [],
-     *       //   "etag": "my_etag",
-     *       //   "events": [],
-     *       //   "externalIds": [],
-     *       //   "fileAses": [],
-     *       //   "genders": [],
-     *       //   "imClients": [],
-     *       //   "interests": [],
-     *       //   "locales": [],
-     *       //   "locations": [],
-     *       //   "memberships": [],
-     *       //   "metadata": {},
-     *       //   "miscKeywords": [],
-     *       //   "names": [],
-     *       //   "nicknames": [],
-     *       //   "occupations": [],
-     *       //   "organizations": [],
-     *       //   "phoneNumbers": [],
-     *       //   "photos": [],
-     *       //   "relations": [],
-     *       //   "relationshipInterests": [],
-     *       //   "relationshipStatuses": [],
-     *       //   "residences": [],
-     *       //   "resourceName": "my_resourceName",
-     *       //   "sipAddresses": [],
-     *       //   "skills": [],
-     *       //   "taglines": [],
-     *       //   "urls": [],
-     *       //   "userDefined": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "addresses": [],
-     *   //   "ageRange": "my_ageRange",
-     *   //   "ageRanges": [],
-     *   //   "biographies": [],
-     *   //   "birthdays": [],
-     *   //   "braggingRights": [],
-     *   //   "calendarUrls": [],
-     *   //   "clientData": [],
-     *   //   "coverPhotos": [],
-     *   //   "emailAddresses": [],
-     *   //   "etag": "my_etag",
-     *   //   "events": [],
-     *   //   "externalIds": [],
-     *   //   "fileAses": [],
-     *   //   "genders": [],
-     *   //   "imClients": [],
-     *   //   "interests": [],
-     *   //   "locales": [],
-     *   //   "locations": [],
-     *   //   "memberships": [],
-     *   //   "metadata": {},
-     *   //   "miscKeywords": [],
-     *   //   "names": [],
-     *   //   "nicknames": [],
-     *   //   "occupations": [],
-     *   //   "organizations": [],
-     *   //   "phoneNumbers": [],
-     *   //   "photos": [],
-     *   //   "relations": [],
-     *   //   "relationshipInterests": [],
-     *   //   "relationshipStatuses": [],
-     *   //   "residences": [],
-     *   //   "resourceName": "my_resourceName",
-     *   //   "sipAddresses": [],
-     *   //   "skills": [],
-     *   //   "taglines": [],
-     *   //   "urls": [],
-     *   //   "userDefined": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5142,58 +3775,6 @@ export namespace people_v1 {
 
     /**
      * Update a contact's photo. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/contacts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.updateContactPhoto({
-     *     // Required. Person resource name
-     *     resourceName: 'people/[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "personFields": "my_personFields",
-     *       //   "photoBytes": "my_photoBytes",
-     *       //   "sources": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "person": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5505,71 +4086,6 @@ export namespace people_v1 {
 
     /**
      * Provides a list of the authenticated user's contacts. Sync tokens expire 7 days after the full sync. A request with an expired sync token will get an error with an [google.rpc.ErrorInfo](https://cloud.google.com/apis/design/errors#error_info) with reason "EXPIRED_SYNC_TOKEN". In the case of such an error clients should make a full sync request without a `sync_token`. The first page of a full sync request has an additional quota. If the quota is exceeded, a 429 error will be returned. This quota is fixed and can not be increased. When the `sync_token` is specified, resources deleted since the last sync will be returned as a person with `PersonMetadata.deleted` set to true. When the `page_token` or `sync_token` is specified, all other request parameters must match the first call. Writes may have a propagation delay of several minutes for sync requests. Incremental syncs are not intended for read-after-write use cases. See example usage at [List the user's contacts that have changed](/people/v1/contacts#list_the_users_contacts_that_have_changed).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/contacts',
-     *       'https://www.googleapis.com/auth/contacts.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.people.connections.list({
-     *     // Optional. The number of connections to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous response `next_page_token`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `people.connections.list` must match the first call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
-     *     personFields: 'placeholder-value',
-     *     // Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
-     *     'requestMask.includeField': 'placeholder-value',
-     *     // Optional. Whether the response should return `next_sync_token` on the last page of results. It can be used to get incremental changes since the last request by setting it on the request `sync_token`. More details about sync behavior at `people.connections.list`.
-     *     requestSyncToken: 'placeholder-value',
-     *     // Required. The resource name to return connections for. Only `people/me` is valid.
-     *     resourceName: 'people/[^/]+',
-     *     // Optional. The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
-     *     sortOrder: 'placeholder-value',
-     *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.
-     *     sources: 'placeholder-value',
-     *     // Optional. A sync token, received from a previous response `next_sync_token` Provide this to retrieve only the resources changed since the last request. When syncing, all other parameters provided to `people.connections.list` must match the first call that provided the sync token. More details about sync behavior at `people.connections.list`.
-     *     syncToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "connections": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "nextSyncToken": "my_nextSyncToken",
-     *   //   "totalItems": 0,
-     *   //   "totalPeople": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
