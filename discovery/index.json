@@ -244,6 +244,36 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "aiplatform:v1beta1",
+      "name": "aiplatform",
+      "version": "v1beta1",
+      "title": "Vertex AI API",
+      "description": "Train high-quality custom machine learning models with minimal machine learning expertise and effort.",
+      "discoveryRestUrl": "https://aiplatform.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/vertex-ai/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "aiplatform:v1",
+      "name": "aiplatform",
+      "version": "v1",
+      "title": "Vertex AI API",
+      "description": "Train high-quality custom machine learning models with minimal machine learning expertise and effort.",
+      "discoveryRestUrl": "https://aiplatform.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/vertex-ai/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "alertcenter:v1beta1",
       "name": "alertcenter",
       "version": "v1beta1",
@@ -1138,7 +1168,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/billing/",
+      "documentationLink": "https://cloud.google.com/billing/docs/apis",
       "preferred": false
     },
     {
@@ -1153,7 +1183,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/billing/",
+      "documentationLink": "https://cloud.google.com/billing/docs/apis",
       "preferred": true
     },
     {
@@ -1188,25 +1218,10 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "clouddebugger:v2",
-      "name": "clouddebugger",
-      "version": "v2",
-      "title": "Cloud Debugger API (Deprecated)",
-      "description": "Examines the call stack and variables of a running application without stopping or slowing it down. (Deprecated)",
-      "discoveryRestUrl": "https://clouddebugger.googleapis.com/$discovery/rest?version=v2",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/debugger",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "clouddeploy:v1",
       "name": "clouddeploy",
       "version": "v1",
-      "title": "Google Cloud Deploy API",
+      "title": "Cloud Deploy API",
       "description": "",
       "discoveryRestUrl": "https://clouddeploy.googleapis.com/$discovery/rest?version=v1",
       "icons": {
@@ -3844,6 +3859,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/migration-center",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "migrationcenter:v1",
+      "name": "migrationcenter",
+      "version": "v1",
+      "title": "Migration Center API",
+      "description": "A unified platform that helps you accelerate your end-to-end cloud journey from your current on-premises or cloud environments to Google Cloud.",
+      "discoveryRestUrl": "https://migrationcenter.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/migration-center",
       "preferred": true
     },
     {
@@ -4340,6 +4370,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/people/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "places:v1",
+      "name": "places",
+      "version": "v1",
+      "title": "Places API (New)",
+      "description": "",
+      "discoveryRestUrl": "https://places.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://mapsplatform.google.com/maps-products/#places-section",
       "preferred": true
     },
     {
