@@ -462,7 +462,7 @@ export namespace advisorynotifications_v1 {
      *       pageSize: 'placeholder-value',
      *       // A page token returned from a previous request. When paginating, all other parameters provided in the request must match the call that returned the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent, which owns this collection of notifications. Must be of the form "organizations/{organization\}/locations/{location\}".
+     *       // Required. The parent, which owns this collection of notifications. Must be of the form "organizations/{organization\}/locations/{location\}"
      *       parent: 'organizations/my-organization/locations/my-location',
      *       // Specifies which parts of the notification resource should be returned in the response.
      *       view: 'placeholder-value',
@@ -606,7 +606,7 @@ export namespace advisorynotifications_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of notifications. Must be of the form "organizations/{organization\}/locations/{location\}".
+     * Required. The parent, which owns this collection of notifications. Must be of the form "organizations/{organization\}/locations/{location\}"
      */
     parent?: string;
     /**
