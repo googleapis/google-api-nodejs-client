@@ -2565,7 +2565,7 @@
       }
     }
   },
-  "revision": "20230710",
+  "revision": "20230729",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -3150,7 +3150,7 @@
           "type": "string"
         },
         "enableDropProtection": {
-          "description": "Whether drop protection is enabled for this database. Defaults to false, if not set.",
+          "description": "Whether drop protection is enabled for this database. Defaults to false, if not set. For more details, please see how to [prevent accidental database deletion](https://cloud.google.com/spanner/docs/prevent-database-deletion).",
           "type": "boolean"
         },
         "encryptionConfig": {
