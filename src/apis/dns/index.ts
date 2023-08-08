@@ -35,7 +35,7 @@ export function dns(options: dns_v2.Options): dns_v2.Dns;
 export function dns(version: 'v2beta1'): dns_v2beta1.Dns;
 export function dns(options: dns_v2beta1.Options): dns_v2beta1.Dns;
 export function dns<
-  T = dns_v1.Dns | dns_v1beta2.Dns | dns_v2.Dns | dns_v2beta1.Dns
+  T = dns_v1.Dns | dns_v1beta2.Dns | dns_v2.Dns | dns_v2beta1.Dns,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
