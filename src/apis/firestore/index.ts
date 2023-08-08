@@ -40,7 +40,7 @@ export function firestore<
   T =
     | firestore_v1.Firestore
     | firestore_v1beta1.Firestore
-    | firestore_v1beta2.Firestore
+    | firestore_v1beta2.Firestore,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
