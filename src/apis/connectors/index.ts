@@ -31,7 +31,7 @@ export function connectors(
   options: connectors_v2.Options
 ): connectors_v2.Connectors;
 export function connectors<
-  T = connectors_v1.Connectors | connectors_v2.Connectors
+  T = connectors_v1.Connectors | connectors_v2.Connectors,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | connectors_v1.Options | 'v2' | connectors_v2.Options
