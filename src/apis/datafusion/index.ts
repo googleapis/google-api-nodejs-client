@@ -31,7 +31,7 @@ export function datafusion(
   options: datafusion_v1beta1.Options
 ): datafusion_v1beta1.Datafusion;
 export function datafusion<
-  T = datafusion_v1.Datafusion | datafusion_v1beta1.Datafusion
+  T = datafusion_v1.Datafusion | datafusion_v1beta1.Datafusion,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
