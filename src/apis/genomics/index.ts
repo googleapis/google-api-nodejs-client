@@ -38,7 +38,7 @@ export function genomics<
   T =
     | genomics_v1.Genomics
     | genomics_v1alpha2.Genomics
-    | genomics_v2alpha1.Genomics
+    | genomics_v2alpha1.Genomics,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
