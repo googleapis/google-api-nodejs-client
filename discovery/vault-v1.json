@@ -1193,7 +1193,7 @@
       }
     }
   },
-  "revision": "20230628",
+  "revision": "20230724",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -1520,6 +1520,7 @@
           "type": "boolean"
         },
         "includeTeamDrives": {
+          "deprecated": true,
           "description": "Set to true to include Team Drive.",
           "type": "boolean"
         },
@@ -1804,6 +1805,7 @@
           "type": "boolean"
         },
         "includeTeamDriveFiles": {
+          "deprecated": true,
           "description": "To include files in Team Drives in the hold, set to **true**.",
           "type": "boolean"
         }
@@ -2348,6 +2350,16 @@
             "SITES_URL",
             "SHARED_DRIVE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "A search method must be specified or else it is rejected.",
             "Search the data of the accounts specified in [AccountInfo](https://developers.google.com/vault/reference/rest/v1/Query#accountinfo).",
@@ -2365,6 +2377,7 @@
           "description": "Required when **SearchMethod** is **ORG_UNIT**."
         },
         "searchMethod": {
+          "deprecated": true,
           "description": "The search method to use.",
           "enum": [
             "SEARCH_METHOD_UNSPECIFIED",
@@ -2375,6 +2388,16 @@
             "ROOM",
             "SITES_URL",
             "SHARED_DRIVE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "A search method must be specified or else it is rejected.",
@@ -2403,6 +2426,7 @@
         },
         "teamDriveInfo": {
           "$ref": "TeamDriveInfo",
+          "deprecated": true,
           "description": "Required when **SearchMethod** is **TEAM_DRIVE**."
         },
         "terms": {
@@ -2560,10 +2584,12 @@
       "type": "object"
     },
     "TeamDriveInfo": {
+      "deprecated": true,
       "description": "Team Drives to search",
       "id": "TeamDriveInfo",
       "properties": {
         "teamDriveIds": {
+          "deprecated": true,
           "description": "List of Team Drive IDs, as provided by the [Drive API](https://developers.google.com/drive).",
           "items": {
             "type": "string"
