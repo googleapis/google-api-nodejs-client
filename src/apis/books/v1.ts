@@ -1229,61 +1229,6 @@ export namespace books_v1 {
 
     /**
      * Retrieves metadata for a specific bookshelf for the specified user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.bookshelves.get({
-     *     // ID of bookshelf to retrieve.
-     *     shelf: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // ID of user for whom to retrieve bookshelves.
-     *     userId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "access": "my_access",
-     *   //   "created": "my_created",
-     *   //   "description": "my_description",
-     *   //   "id": 0,
-     *   //   "kind": "my_kind",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "title": "my_title",
-     *   //   "updated": "my_updated",
-     *   //   "volumeCount": 0,
-     *   //   "volumesLastUpdated": "my_volumesLastUpdated"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1369,51 +1314,6 @@ export namespace books_v1 {
 
     /**
      * Retrieves a list of public bookshelves for the specified user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.bookshelves.list({
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // ID of user for whom to retrieve bookshelves.
-     *     userId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1532,60 +1432,6 @@ export namespace books_v1 {
 
     /**
      * Retrieves volumes in a specific bookshelf for the specified user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.bookshelves.volumes.list({
-     *     // Maximum number of results to return
-     *     maxResults: 'placeholder-value',
-     *     // ID of bookshelf to retrieve volumes.
-     *     shelf: 'placeholder-value',
-     *     // Set to true to show pre-ordered books. Defaults to false.
-     *     showPreorders: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // Index of the first element to return (starts at 0)
-     *     startIndex: 'placeholder-value',
-     *     // ID of user for whom to retrieve bookshelf volumes.
-     *     userId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "totalItems": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1707,57 +1553,6 @@ export namespace books_v1 {
 
     /**
      * Add a user-upload volume and triggers processing.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.cloudloading.addBook({
-     *     // A drive document id. The upload_client_token must not be set.
-     *     drive_document_id: 'placeholder-value',
-     *     // The document MIME type. It can be set only if the drive_document_id is set.
-     *     mime_type: 'placeholder-value',
-     *     // The document name. It can be set only if the drive_document_id is set.
-     *     name: 'placeholder-value',
-     *     // Scotty upload token.
-     *     upload_client_token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "author": "my_author",
-     *   //   "processingState": "my_processingState",
-     *   //   "title": "my_title",
-     *   //   "volumeId": "my_volumeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1852,46 +1647,6 @@ export namespace books_v1 {
 
     /**
      * Remove the book and its contents
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.cloudloading.deleteBook({
-     *     // The id of the book to be removed.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1979,59 +1734,6 @@ export namespace books_v1 {
 
     /**
      * Updates a user-upload volume.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.cloudloading.updateBook({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "author": "my_author",
-     *       //   "processingState": "my_processingState",
-     *       //   "title": "my_title",
-     *       //   "volumeId": "my_volumeId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "author": "my_author",
-     *   //   "processingState": "my_processingState",
-     *   //   "title": "my_title",
-     *   //   "volumeId": "my_volumeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2167,49 +1869,6 @@ export namespace books_v1 {
 
     /**
      * Returns a list of offline dictionary metadata available
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.dictionary.listOfflineMetadata({
-     *     // The device/version ID from which to request the data.
-     *     cpksver: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2312,49 +1971,6 @@ export namespace books_v1 {
 
     /**
      * Gets information regarding the family that the user is part of.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.familysharing.getFamilyInfo({
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "membership": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2442,50 +2058,6 @@ export namespace books_v1 {
 
     /**
      * Initiates sharing of the content with the user's family. Empty response indicates success.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.familysharing.share({
-     *     // The docid to share.
-     *     docId: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // The volume to share.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2573,50 +2145,6 @@ export namespace books_v1 {
 
     /**
      * Initiates revoking content that has already been shared with the user's family. Empty response indicates success.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.familysharing.unshare({
-     *     // The docid to unshare.
-     *     docId: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // The volume to unshare.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2755,66 +2283,6 @@ export namespace books_v1 {
 
     /**
      * Gets the layer summary for a volume.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.layers.get({
-     *     // The content version for the requested volume.
-     *     contentVersion: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // The ID for the layer to get the summary for.
-     *     summaryId: 'placeholder-value',
-     *     // The volume to retrieve layers for.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "annotationCount": 0,
-     *   //   "annotationTypes": [],
-     *   //   "annotationsDataLink": "my_annotationsDataLink",
-     *   //   "annotationsLink": "my_annotationsLink",
-     *   //   "contentVersion": "my_contentVersion",
-     *   //   "dataCount": 0,
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "layerId": "my_layerId",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "updated": "my_updated",
-     *   //   "volumeAnnotationsVersion": "my_volumeAnnotationsVersion",
-     *   //   "volumeId": "my_volumeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2900,58 +2368,6 @@ export namespace books_v1 {
 
     /**
      * List the layer summaries for a volume.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.layers.list({
-     *     // The content version for the requested volume.
-     *     contentVersion: 'placeholder-value',
-     *     // Maximum number of results to return
-     *     maxResults: 'placeholder-value',
-     *     // The value of the nextToken from the previous page.
-     *     pageToken: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // The volume to retrieve layers for.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "totalItems": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3085,74 +2501,6 @@ export namespace books_v1 {
 
     /**
      * Gets the annotation data.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.layers.annotationData.get({
-     *     // For the dictionary layer. Whether or not to allow web definitions.
-     *     allowWebDefinitions: 'placeholder-value',
-     *     // The ID of the annotation data to retrieve.
-     *     annotationDataId: 'placeholder-value',
-     *     // The content version for the volume you are trying to retrieve.
-     *     contentVersion: 'placeholder-value',
-     *     // The requested pixel height for any images. If height is provided width must also be provided.
-     *     h: 'placeholder-value',
-     *     // The ID for the layer to get the annotations.
-     *     layerId: 'placeholder-value',
-     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-     *     locale: 'placeholder-value',
-     *     // The requested scale for the image.
-     *     scale: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // The volume to retrieve annotations for.
-     *     volumeId: 'placeholder-value',
-     *     // The requested pixel width for any images. If width is provided height must also be provided.
-     *     w: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "annotationType": "my_annotationType",
-     *   //   "data": {},
-     *   //   "encodedData": "my_encodedData",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "layerId": "my_layerId",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "updated": "my_updated",
-     *   //   "volumeId": "my_volumeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3250,75 +2598,6 @@ export namespace books_v1 {
 
     /**
      * Gets the annotation data for a volume and layer.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.layers.annotationData.list({
-     *     // The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
-     *     annotationDataId: 'placeholder-value',
-     *     // The content version for the requested volume.
-     *     contentVersion: 'placeholder-value',
-     *     // The requested pixel height for any images. If height is provided width must also be provided.
-     *     h: 'placeholder-value',
-     *     // The ID for the layer to get the annotation data.
-     *     layerId: 'placeholder-value',
-     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-     *     locale: 'placeholder-value',
-     *     // Maximum number of results to return
-     *     maxResults: 'placeholder-value',
-     *     // The value of the nextToken from the previous page.
-     *     pageToken: 'placeholder-value',
-     *     // The requested scale for the image.
-     *     scale: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
-     *     updatedMax: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
-     *     updatedMin: 'placeholder-value',
-     *     // The volume to retrieve annotation data for.
-     *     volumeId: 'placeholder-value',
-     *     // The requested pixel width for any images. If width is provided height must also be provided.
-     *     w: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "totalItems": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3511,69 +2790,6 @@ export namespace books_v1 {
 
     /**
      * Gets the volume annotation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.layers.volumeAnnotations.get({
-     *     // The ID of the volume annotation to retrieve.
-     *     annotationId: 'placeholder-value',
-     *     // The ID for the layer to get the annotations.
-     *     layerId: 'placeholder-value',
-     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-     *     locale: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // The volume to retrieve annotations for.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "annotationDataId": "my_annotationDataId",
-     *   //   "annotationDataLink": "my_annotationDataLink",
-     *   //   "annotationType": "my_annotationType",
-     *   //   "contentRanges": {},
-     *   //   "data": "my_data",
-     *   //   "deleted": false,
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "layerId": "my_layerId",
-     *   //   "pageIds": [],
-     *   //   "selectedText": "my_selectedText",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "updated": "my_updated",
-     *   //   "volumeId": "my_volumeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3661,80 +2877,6 @@ export namespace books_v1 {
 
     /**
      * Gets the volume annotations for a volume and layer.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.layers.volumeAnnotations.list({
-     *     // The content version for the requested volume.
-     *     contentVersion: 'placeholder-value',
-     *     // The end offset to end retrieving data from.
-     *     endOffset: 'placeholder-value',
-     *     // The end position to end retrieving data from.
-     *     endPosition: 'placeholder-value',
-     *     // The ID for the layer to get the annotations.
-     *     layerId: 'placeholder-value',
-     *     // The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-     *     locale: 'placeholder-value',
-     *     // Maximum number of results to return
-     *     maxResults: 'placeholder-value',
-     *     // The value of the nextToken from the previous page.
-     *     pageToken: 'placeholder-value',
-     *     // Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
-     *     showDeleted: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // The start offset to start retrieving data from.
-     *     startOffset: 'placeholder-value',
-     *     // The start position to start retrieving data from.
-     *     startPosition: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
-     *     updatedMax: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
-     *     updatedMin: 'placeholder-value',
-     *     // The version of the volume annotations that you are requesting.
-     *     volumeAnnotationsVersion: 'placeholder-value',
-     *     // The volume to retrieve annotations for.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "totalItems": 0,
-     *   //   "version": "my_version"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3918,50 +3060,6 @@ export namespace books_v1 {
 
     /**
      * Gets the current settings for the user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.myconfig.getUserSettings({
-     *     // Unused. Added only to workaround TEX mandatory request template requirement
-     *     country: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "notesExport": {},
-     *   //   "notification": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4049,55 +3147,6 @@ export namespace books_v1 {
 
     /**
      * Release downloaded content access restriction.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.myconfig.releaseDownloadAccess({
-     *     // The device/version ID from which to release the restriction.
-     *     cpksver: 'placeholder-value',
-     *     // ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     *     locale: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // The volume(s) to release restrictions for.
-     *     volumeIds: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "downloadAccessList": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4187,60 +3236,6 @@ export namespace books_v1 {
 
     /**
      * Request concurrent and download access restrictions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.myconfig.requestAccess({
-     *     // The device/version ID from which to request the restrictions.
-     *     cpksver: 'placeholder-value',
-     *     // The type of access license to request. If not specified, the default is BOTH.
-     *     licenseTypes: 'placeholder-value',
-     *     // ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     *     locale: 'placeholder-value',
-     *     // The client nonce value.
-     *     nonce: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // The volume to request concurrent/download restrictions for.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "concurrentAccess": {},
-     *   //   "downloadAccess": {},
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4333,64 +3328,6 @@ export namespace books_v1 {
 
     /**
      * Request downloaded content access for specified volumes on the My eBooks shelf.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.myconfig.syncVolumeLicenses({
-     *     // The device/version ID from which to release the restriction.
-     *     cpksver: 'placeholder-value',
-     *     // List of features supported by the client, i.e., 'RENTALS'
-     *     features: 'placeholder-value',
-     *     // Set to true to include non-comics series. Defaults to false.
-     *     includeNonComicsSeries: 'placeholder-value',
-     *     // ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     *     locale: 'placeholder-value',
-     *     // The client nonce value.
-     *     nonce: 'placeholder-value',
-     *     // Set to true to show pre-ordered books. Defaults to false.
-     *     showPreorders: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // The volume(s) to request download restrictions for.
-     *     volumeIds: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "totalItems": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4478,57 +3415,6 @@ export namespace books_v1 {
 
     /**
      * Sets the settings for the user. If a sub-object is specified, it will overwrite the existing sub-object stored in the server. Unspecified sub-objects will retain the existing value.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.myconfig.updateUserSettings({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "kind": "my_kind",
-     *       //   "notesExport": {},
-     *       //   "notification": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "notesExport": {},
-     *   //   "notification": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4736,48 +3622,6 @@ export namespace books_v1 {
 
     /**
      * Deletes an annotation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.annotations.delete({
-     *     // The ID for the annotation to delete.
-     *     annotationId: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4864,94 +3708,6 @@ export namespace books_v1 {
 
     /**
      * Inserts a new annotation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.annotations.insert({
-     *     // The ID for the annotation to insert.
-     *     annotationId: 'placeholder-value',
-     *     // ISO-3166-1 code to override the IP-based location.
-     *     country: 'placeholder-value',
-     *     // Requests that only the summary of the specified layer be provided in the response.
-     *     showOnlySummaryInResponse: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "afterSelectedText": "my_afterSelectedText",
-     *       //   "beforeSelectedText": "my_beforeSelectedText",
-     *       //   "clientVersionRanges": {},
-     *       //   "created": "my_created",
-     *       //   "currentVersionRanges": {},
-     *       //   "data": "my_data",
-     *       //   "deleted": false,
-     *       //   "highlightStyle": "my_highlightStyle",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "layerId": "my_layerId",
-     *       //   "layerSummary": {},
-     *       //   "pageIds": [],
-     *       //   "selectedText": "my_selectedText",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "updated": "my_updated",
-     *       //   "volumeId": "my_volumeId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "afterSelectedText": "my_afterSelectedText",
-     *   //   "beforeSelectedText": "my_beforeSelectedText",
-     *   //   "clientVersionRanges": {},
-     *   //   "created": "my_created",
-     *   //   "currentVersionRanges": {},
-     *   //   "data": "my_data",
-     *   //   "deleted": false,
-     *   //   "highlightStyle": "my_highlightStyle",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "layerId": "my_layerId",
-     *   //   "layerSummary": {},
-     *   //   "pageIds": [],
-     *   //   "selectedText": "my_selectedText",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "updated": "my_updated",
-     *   //   "volumeId": "my_volumeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5039,69 +3795,6 @@ export namespace books_v1 {
 
     /**
      * Retrieves a list of annotations, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.annotations.list({
-     *     // The content version for the requested volume.
-     *     contentVersion: 'placeholder-value',
-     *     // The layer ID to limit annotation by.
-     *     layerId: 'placeholder-value',
-     *     // The layer ID(s) to limit annotation by.
-     *     layerIds: 'placeholder-value',
-     *     // Maximum number of results to return
-     *     maxResults: 'placeholder-value',
-     *     // The value of the nextToken from the previous page.
-     *     pageToken: 'placeholder-value',
-     *     // Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
-     *     showDeleted: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
-     *     updatedMax: 'placeholder-value',
-     *     // RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
-     *     updatedMin: 'placeholder-value',
-     *     // The volume to restrict annotations to.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "totalItems": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5189,51 +3882,6 @@ export namespace books_v1 {
 
     /**
      * Gets the summary of specified layers.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.annotations.summary({
-     *     // Array of layer IDs to get the summary for.
-     *     layerIds: 'placeholder-value',
-     *     // Volume id to get the summary for.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "layers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5324,90 +3972,6 @@ export namespace books_v1 {
 
     /**
      * Updates an existing annotation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.annotations.update({
-     *     // The ID for the annotation to update.
-     *     annotationId: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "afterSelectedText": "my_afterSelectedText",
-     *       //   "beforeSelectedText": "my_beforeSelectedText",
-     *       //   "clientVersionRanges": {},
-     *       //   "created": "my_created",
-     *       //   "currentVersionRanges": {},
-     *       //   "data": "my_data",
-     *       //   "deleted": false,
-     *       //   "highlightStyle": "my_highlightStyle",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "layerId": "my_layerId",
-     *       //   "layerSummary": {},
-     *       //   "pageIds": [],
-     *       //   "selectedText": "my_selectedText",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "updated": "my_updated",
-     *       //   "volumeId": "my_volumeId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "afterSelectedText": "my_afterSelectedText",
-     *   //   "beforeSelectedText": "my_beforeSelectedText",
-     *   //   "clientVersionRanges": {},
-     *   //   "created": "my_created",
-     *   //   "currentVersionRanges": {},
-     *   //   "data": "my_data",
-     *   //   "deleted": false,
-     *   //   "highlightStyle": "my_highlightStyle",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "layerId": "my_layerId",
-     *   //   "layerSummary": {},
-     *   //   "pageIds": [],
-     *   //   "selectedText": "my_selectedText",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "updated": "my_updated",
-     *   //   "volumeId": "my_volumeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5609,52 +4173,6 @@ export namespace books_v1 {
 
     /**
      * Adds a volume to a bookshelf.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.bookshelves.addVolume({
-     *     // The reason for which the book is added to the library.
-     *     reason: 'placeholder-value',
-     *     // ID of bookshelf to which to add a volume.
-     *     shelf: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // ID of volume to add.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5741,48 +4259,6 @@ export namespace books_v1 {
 
     /**
      * Clears all volumes from a bookshelf.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.bookshelves.clearVolumes({
-     *     // ID of bookshelf from which to remove a volume.
-     *     shelf: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5869,59 +4345,6 @@ export namespace books_v1 {
 
     /**
      * Retrieves metadata for a specific bookshelf belonging to the authenticated user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.bookshelves.get({
-     *     // ID of bookshelf to retrieve.
-     *     shelf: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "access": "my_access",
-     *   //   "created": "my_created",
-     *   //   "description": "my_description",
-     *   //   "id": 0,
-     *   //   "kind": "my_kind",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "title": "my_title",
-     *   //   "updated": "my_updated",
-     *   //   "volumeCount": 0,
-     *   //   "volumesLastUpdated": "my_volumesLastUpdated"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6009,49 +4432,6 @@ export namespace books_v1 {
 
     /**
      * Retrieves a list of bookshelves belonging to the authenticated user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.bookshelves.list({
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6139,52 +4519,6 @@ export namespace books_v1 {
 
     /**
      * Moves a volume within a bookshelf.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.bookshelves.moveVolume({
-     *     // ID of bookshelf with the volume.
-     *     shelf: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // ID of volume to move.
-     *     volumeId: 'placeholder-value',
-     *     // Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
-     *     volumePosition: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6271,52 +4605,6 @@ export namespace books_v1 {
 
     /**
      * Removes a volume from a bookshelf.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.bookshelves.removeVolume({
-     *     // The reason for which the book is removed from the library.
-     *     reason: 'placeholder-value',
-     *     // ID of bookshelf from which to remove a volume.
-     *     shelf: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // ID of volume to remove.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6497,64 +4785,6 @@ export namespace books_v1 {
 
     /**
      * Gets volume information for volumes on a bookshelf.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.bookshelves.volumes.list({
-     *     // ISO-3166-1 code to override the IP-based location.
-     *     country: 'placeholder-value',
-     *     // Maximum number of results to return
-     *     maxResults: 'placeholder-value',
-     *     // Restrict information returned to a set of selected fields.
-     *     projection: 'placeholder-value',
-     *     // Full-text search query string in this bookshelf.
-     *     q: 'placeholder-value',
-     *     // The bookshelf ID or name retrieve volumes for.
-     *     shelf: 'placeholder-value',
-     *     // Set to true to show pre-ordered books. Defaults to false.
-     *     showPreorders: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // Index of the first element to return (starts at 0)
-     *     startIndex: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "totalItems": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6684,58 +4914,6 @@ export namespace books_v1 {
 
     /**
      * Retrieves my reading position information for a volume.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.readingpositions.get({
-     *     // Volume content version for which this reading position is requested.
-     *     contentVersion: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // ID of volume for which to retrieve a reading position.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "epubCfiPosition": "my_epubCfiPosition",
-     *   //   "gbImagePosition": "my_gbImagePosition",
-     *   //   "gbTextPosition": "my_gbTextPosition",
-     *   //   "kind": "my_kind",
-     *   //   "pdfPosition": "my_pdfPosition",
-     *   //   "updated": "my_updated",
-     *   //   "volumeId": "my_volumeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6822,58 +5000,6 @@ export namespace books_v1 {
 
     /**
      * Sets my reading position information for a volume.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.mylibrary.readingpositions.setPosition({
-     *     // Action that caused this reading position to be set.
-     *     action: 'placeholder-value',
-     *     // Volume content version for which this reading position applies.
-     *     contentVersion: 'placeholder-value',
-     *     // Random persistent device cookie optional on set position.
-     *     deviceCookie: 'placeholder-value',
-     *     // Position string for the new volume reading position.
-     *     position: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // RFC 3339 UTC format timestamp associated with this reading position.
-     *     timestamp: 'placeholder-value',
-     *     // ID of volume for which to update the reading position.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7015,67 +5141,6 @@ export namespace books_v1 {
 
     /**
      * Returns notification details for a given notification id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.notification.get({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
-     *     locale: 'placeholder-value',
-     *     // String to identify the notification.
-     *     notification_id: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "body": "my_body",
-     *   //   "crmExperimentIds": [],
-     *   //   "doc_id": "my_doc_id",
-     *   //   "doc_type": "my_doc_type",
-     *   //   "dont_show_notification": false,
-     *   //   "iconUrl": "my_iconUrl",
-     *   //   "is_document_mature": false,
-     *   //   "kind": "my_kind",
-     *   //   "notificationGroup": "my_notificationGroup",
-     *   //   "notification_type": "my_notification_type",
-     *   //   "pcampaign_id": "my_pcampaign_id",
-     *   //   "reason": "my_reason",
-     *   //   "show_notification_settings_action": false,
-     *   //   "targetUrl": "my_targetUrl",
-     *   //   "timeToExpireMs": "my_timeToExpireMs",
-     *   //   "title": "my_title"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7184,49 +5249,6 @@ export namespace books_v1 {
 
     /**
      * List categories for onboarding experience.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.onboarding.listCategories({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
-     *     locale: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7314,58 +5336,6 @@ export namespace books_v1 {
 
     /**
      * List available volumes under categories for onboarding experience.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.onboarding.listCategoryVolumes({
-     *     // List of category ids requested.
-     *     categoryId: 'placeholder-value',
-     *     // ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
-     *     locale: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
-     *     maxAllowedMaturityRating: 'placeholder-value',
-     *     // Number of maximum results per page to be included in the response.
-     *     pageSize: 'placeholder-value',
-     *     // The value of the nextToken from the previous page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7491,54 +5461,6 @@ export namespace books_v1 {
 
     /**
      * Returns a stream of personalized book clusters
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.personalizedstream.get({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     *     locale: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
-     *     maxAllowedMaturityRating: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clusters": [],
-     *   //   "kind": "my_kind",
-     *   //   "totalClusters": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7652,60 +5574,6 @@ export namespace books_v1 {
 
     /**
      * Accepts the promo offer.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.promooffer.accept({
-     *     // device android_id
-     *     androidId: 'placeholder-value',
-     *     // device device
-     *     device: 'placeholder-value',
-     *     // device manufacturer
-     *     manufacturer: 'placeholder-value',
-     *     // device model
-     *     model: 'placeholder-value',
-     *
-     *     offerId: 'placeholder-value',
-     *     // device product
-     *     product: 'placeholder-value',
-     *     // device serial
-     *     serial: 'placeholder-value',
-     *     // Volume id to exercise the offer
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7793,58 +5661,6 @@ export namespace books_v1 {
 
     /**
      * Marks the promo offer as dismissed.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.promooffer.dismiss({
-     *     // device android_id
-     *     androidId: 'placeholder-value',
-     *     // device device
-     *     device: 'placeholder-value',
-     *     // device manufacturer
-     *     manufacturer: 'placeholder-value',
-     *     // device model
-     *     model: 'placeholder-value',
-     *     // Offer to dimiss
-     *     offerId: 'placeholder-value',
-     *     // device product
-     *     product: 'placeholder-value',
-     *     // device serial
-     *     serial: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7932,59 +5748,6 @@ export namespace books_v1 {
 
     /**
      * Returns a list of promo offers available to the user
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.promooffer.get({
-     *     // device android_id
-     *     androidId: 'placeholder-value',
-     *     // device device
-     *     device: 'placeholder-value',
-     *     // device manufacturer
-     *     manufacturer: 'placeholder-value',
-     *     // device model
-     *     model: 'placeholder-value',
-     *     // device product
-     *     product: 'placeholder-value',
-     *     // device serial
-     *     serial: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8173,49 +5936,6 @@ export namespace books_v1 {
 
     /**
      * Returns Series metadata for the given series ids.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.series.get({
-     *     // String that identifies the series
-     *     series_id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "series": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8316,54 +6036,6 @@ export namespace books_v1 {
 
     /**
      * Returns Series membership data given the series id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.series.membership.get({
-     *     // Number of maximum results per page to be included in the response.
-     *     page_size: 'placeholder-value',
-     *     // The value of the nextToken from the previous page.
-     *     page_token: 'placeholder-value',
-     *     // String that identifies the series
-     *     series_id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "member": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8482,70 +6154,6 @@ export namespace books_v1 {
 
     /**
      * Gets volume information for a single volume.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.volumes.get({
-     *     // ISO-3166-1 code to override the IP-based location.
-     *     country: 'placeholder-value',
-     *     // Set to true to include non-comics series. Defaults to false.
-     *     includeNonComicsSeries: 'placeholder-value',
-     *     // Brand results for partner ID.
-     *     partner: 'placeholder-value',
-     *     // Restrict information returned to a set of selected fields.
-     *     projection: 'placeholder-value',
-     *     // string to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *
-     *     user_library_consistent_read: 'placeholder-value',
-     *     // ID of volume to retrieve.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accessInfo": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "layerInfo": {},
-     *   //   "recommendedInfo": {},
-     *   //   "saleInfo": {},
-     *   //   "searchInfo": {},
-     *   //   "selfLink": "my_selfLink",
-     *   //   "userInfo": {},
-     *   //   "volumeInfo": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8632,76 +6240,6 @@ export namespace books_v1 {
 
     /**
      * Performs a book search.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.volumes.list({
-     *     // Restrict to volumes by download availability.
-     *     download: 'placeholder-value',
-     *     // Filter search results.
-     *     filter: 'placeholder-value',
-     *     // Restrict results to books with this language code.
-     *     langRestrict: 'placeholder-value',
-     *     // Restrict search to this user's library.
-     *     libraryRestrict: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
-     *     maxAllowedMaturityRating: 'placeholder-value',
-     *     // Maximum number of results to return.
-     *     maxResults: 'placeholder-value',
-     *     // Sort search results.
-     *     orderBy: 'placeholder-value',
-     *     // Restrict and brand results for partner ID.
-     *     partner: 'placeholder-value',
-     *     // Restrict to books or magazines.
-     *     printType: 'placeholder-value',
-     *     // Restrict information returned to a set of selected fields.
-     *     projection: 'placeholder-value',
-     *     // Full-text search query string.
-     *     q: 'placeholder-value',
-     *     // Set to true to show books available for preorder. Defaults to false.
-     *     showPreorders: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // Index of the first result to return (starts at 0)
-     *     startIndex: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "totalItems": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8881,58 +6419,6 @@ export namespace books_v1 {
 
     /**
      * Return a list of associated books.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.volumes.associated.list({
-     *     // Association type.
-     *     association: 'placeholder-value',
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     *     locale: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
-     *     maxAllowedMaturityRating: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // ID of the source volume.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "totalItems": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9051,62 +6537,6 @@ export namespace books_v1 {
 
     /**
      * Return a list of books in My Library.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.volumes.mybooks.list({
-     *     // How the book was acquired
-     *     acquireMethod: 'placeholder-value',
-     *     // ISO-3166-1 code to override the IP-based location.
-     *     country: 'placeholder-value',
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
-     *     locale: 'placeholder-value',
-     *     // Maximum number of results to return.
-     *     maxResults: 'placeholder-value',
-     *     // The processing state of the user uploaded volumes to be returned. Applicable only if the UPLOADED is specified in the acquireMethod.
-     *     processingState: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // Index of the first result to return (starts at 0)
-     *     startIndex: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "totalItems": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9233,54 +6663,6 @@ export namespace books_v1 {
 
     /**
      * Return a list of recommended books for the current user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.volumes.recommended.list({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     *     locale: 'placeholder-value',
-     *     // The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
-     *     maxAllowedMaturityRating: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "totalItems": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9368,54 +6750,6 @@ export namespace books_v1 {
 
     /**
      * Rate a recommended book for the current user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.volumes.recommended.rate({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     *     locale: 'placeholder-value',
-     *     // Rating to be given to the volume.
-     *     rating: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // ID of the source volume.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "consistency_token": "my_consistency_token"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9554,60 +6888,6 @@ export namespace books_v1 {
 
     /**
      * Return a list of books uploaded by the current user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/books.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const books = google.books('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/books'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await books.volumes.useruploaded.list({
-     *     // ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     *     locale: 'placeholder-value',
-     *     // Maximum number of results to return.
-     *     maxResults: 'placeholder-value',
-     *     // The processing state of the user uploaded volumes to be returned.
-     *     processingState: 'placeholder-value',
-     *     // String to identify the originator of this request.
-     *     source: 'placeholder-value',
-     *     // Index of the first result to return (starts at 0)
-     *     startIndex: 'placeholder-value',
-     *     // The ids of the volumes to be returned. If not specified all that match the processingState are returned.
-     *     volumeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "totalItems": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
