@@ -3833,7 +3833,7 @@
       }
     }
   },
-  "revision": "20230711",
+  "revision": "20230807",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -7434,6 +7434,41 @@
       },
       "type": "object"
     },
+    "CuepointSchedule": {
+      "description": "Schedule to insert cuepoints into a broadcast by ads automator.",
+      "id": "CuepointSchedule",
+      "properties": {
+        "enabled": {
+          "description": "This field is semantically required. If it is set false or not set, other fields in this message will be ignored.",
+          "type": "boolean"
+        },
+        "pauseAdsUntil": {
+          "description": "If set, automatic cuepoint insertion is paused until this timestamp (\"No Ad Zone\").",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "repeatInterval": {
+          "description": "Interval frequency that api uses to insert cuepoints automatically.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "scheduleStrategy": {
+          "description": "The strategy to use when scheduling cuepoints.",
+          "enum": [
+            "scheduleStrategyUnspecified",
+            "concurrent",
+            "nonConcurrent"
+          ],
+          "enumDescriptions": [
+            "",
+            "Strategy to schedule cuepoints at one time for all viewers.",
+            "Strategy to schedule cuepoints at an increased rate to allow viewers to receive cuepoints when eligible. See go/lcr-non-concurrent-ads for more details."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Entity": {
       "id": "Entity",
       "properties": {
@@ -7894,6 +7929,10 @@
           "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#liveBroadcast\".",
           "type": "string"
         },
+        "monetizationDetails": {
+          "$ref": "LiveBroadcastMonetizationDetails",
+          "description": "The monetizationDetails object contains information about the event's monetization details."
+        },
         "snippet": {
           "$ref": "LiveBroadcastSnippet",
           "description": "The snippet object contains basic details about the event, including its title, description, start time, and end time."
@@ -8079,6 +8118,16 @@
           "deprecated": true,
           "description": "The visitorId identifies the visitor.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LiveBroadcastMonetizationDetails": {
+      "description": "Monetization settings of a broadcast.",
+      "id": "LiveBroadcastMonetizationDetails",
+      "properties": {
+        "cuepointSchedule": {
+          "$ref": "CuepointSchedule"
         }
       },
       "type": "object"
@@ -9802,17 +9851,6 @@
     "PlaylistStatus": {
       "id": "PlaylistStatus",
       "properties": {
-        "podcastStatus": {
-          "enum": [
-            "enabled",
-            "disabled"
-          ],
-          "enumDescriptions": [
-            "",
-            ""
-          ],
-          "type": "string"
-        },
         "privacyStatus": {
           "description": "The playlist's privacy status.",
           "enum": [
