@@ -462,7 +462,7 @@ export namespace batch_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Compute resource requirements
+   * Compute resource requirements. ComputeResource defines the amount of resources required for each task. Make sure your tasks have enough resources to successfully run. If you also define the types of resources for a job to use with the [InstancePolicyOrTemplate](https://cloud.google.com/batch/docs/reference/rest/v1/projects.locations.jobs#instancepolicyortemplate) field, make sure both fields are compatible with each other.
    */
   export interface Schema$ComputeResource {
     /**
@@ -470,11 +470,11 @@ export namespace batch_v1 {
      */
     bootDiskMib?: string | null;
     /**
-     * The milliCPU count.
+     * The milliCPU count. `cpuMilli` defines the amount of CPU resources per task in milliCPU units. For example, `1000` corresponds to 1 vCPU per task. If undefined, the default value is `2000`. If you also define the VM's machine type using the `machineType` in [InstancePolicy](https://cloud.google.com/batch/docs/reference/rest/v1/projects.locations.jobs#instancepolicy) field or inside the `instanceTemplate` in the [InstancePolicyOrTemplate](https://cloud.google.com/batch/docs/reference/rest/v1/projects.locations.jobs#instancepolicyortemplate) field, make sure the CPU resources for both fields are compatible with each other and with how many tasks you want to allow to run on the same VM at the same time. For example, if you specify the `n2-standard-2` machine type, which has 2 vCPUs each, you are recommended to set `cpuMilli` no more than `2000`, or you are recommended to run two tasks on the same VM if you set `cpuMilli` to `1000` or less.
      */
     cpuMilli?: string | null;
     /**
-     * Memory in MiB.
+     * Memory in MiB. `memoryMib` defines the amount of memory per task in MiB units. If undefined, the default value is `2000`. If you also define the VM's machine type using the `machineType` in [InstancePolicy](https://cloud.google.com/batch/docs/reference/rest/v1/projects.locations.jobs#instancepolicy) field or inside the `instanceTemplate` in the [InstancePolicyOrTemplate](https://cloud.google.com/batch/docs/reference/rest/v1/projects.locations.jobs#instancepolicyortemplate) field, make sure the memory resources for both fields are compatible with each other and with how many tasks you want to allow to run on the same VM at the same time. For example, if you specify the `n2-standard-2` machine type, which has 8 GiB each, you are recommended to set `memoryMib` to no more than `8192`, or you are recommended to run two tasks on the same VM if you set `memoryMib` to `4096` or less.
      */
     memoryMib?: string | null;
   }
@@ -583,7 +583,7 @@ export namespace batch_v1 {
      */
     bootDisk?: Schema$Disk;
     /**
-     * Non-boot disks to be attached for each VM created by this InstancePolicy. New disks will be deleted when the VM is deleted.
+     * Non-boot disks to be attached for each VM created by this InstancePolicy. New disks will be deleted when the VM is deleted. A non bootable disk is a disk that can be of a device with a file system or a raw storage drive that is not ready for data storage and accessing.
      */
     disks?: Schema$AttachedDisk[];
     /**
@@ -600,7 +600,7 @@ export namespace batch_v1 {
     provisioningModel?: string | null;
   }
   /**
-   * Either an InstancePolicy or an instance template.
+   * InstancePolicyOrTemplate lets you define the type of resources to use for this job either with an InstancePolicy or an instance template. If undefined, Batch picks the type of VM to use and doesn't include optional VM resources such as GPUs and extra disks.
    */
   export interface Schema$InstancePolicyOrTemplate {
     /**
@@ -695,7 +695,7 @@ export namespace batch_v1 {
      */
     message?: Schema$Message;
     /**
-     * The Pub/Sub topic where notifications like the job state changes will be published. This topic exist in the same project as the job and billings will be charged to this project. If not specified, no Pub/Sub messages will be sent. Topic format: `projects/{project\}/topics/{topic\}`.
+     * The Pub/Sub topic where notifications like the job state changes will be published. The topic must exist in the same project as the job and billings will be charged to this project. If not specified, no Pub/Sub messages will be sent. Topic format: `projects/{project\}/topics/{topic\}`.
      */
     pubsubTopic?: string | null;
   }
@@ -848,7 +848,7 @@ export namespace batch_v1 {
     logsPath?: string | null;
   }
   /**
-   * Message details. Describe the attribute that a message should have. Without specified message attributes, no message will be sent by default.
+   * Message details. Describe the conditions under which messages will be sent. If no attribute is defined, no message will be sent by default. One message should specify either the job or the task level attributes, but not both. For example, job level: JOB_STATE_CHANGED and/or a specified new_job_state; task level: TASK_STATE_CHANGED and/or a specified new_task_state.
    */
   export interface Schema$Message {
     /**
