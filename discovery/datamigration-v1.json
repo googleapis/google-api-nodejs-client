@@ -2097,7 +2097,7 @@
       }
     }
   },
-  "revision": "20230710",
+  "revision": "20230726",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -4350,6 +4350,10 @@
           "description": "The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/migrationJobs/{migrationJob}.",
           "type": "string"
         },
+        "performanceConfig": {
+          "$ref": "PerformanceConfig",
+          "description": "Optional. Data dump parallelism settings used by the migration. Currently applicable only for MySQL to Cloud SQL for MySQL migrations only."
+        },
         "phase": {
           "description": "Output only. The current migration job phase.",
           "enum": [
@@ -4487,7 +4491,8 @@
             "UNSUPPORTED_DATABASE_FDW_CONFIG",
             "ERROR_RDBMS",
             "SOURCE_SIZE_EXCEEDS_THRESHOLD",
-            "EXISTING_CONFLICTING_DATABASES"
+            "EXISTING_CONFLICTING_DATABASES",
+            "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE"
           ],
           "enumDescriptions": [
             "An unknown error occurred",
@@ -4516,7 +4521,8 @@
             "The source uses an unsupported Foreign Data Wrapper configuration.",
             "There was an underlying RDBMS error.",
             "The source DB size in Bytes exceeds a certain threshold. The migration might require an increase of quota, or might not be supported.",
-            "The destination DB contains existing databases that are conflicting with those in the source DB."
+            "The destination DB contains existing databases that are conflicting with those in the source DB.",
+            "Insufficient privilege to enable the parallelism configuration."
           ],
           "readOnly": true,
           "type": "string"
@@ -4758,6 +4764,29 @@
       },
       "type": "object"
     },
+    "PerformanceConfig": {
+      "description": "Performance configuration definition.",
+      "id": "PerformanceConfig",
+      "properties": {
+        "dumpParallelLevel": {
+          "description": "Initial dump parallelism level.",
+          "enum": [
+            "DUMP_PARALLEL_LEVEL_UNSPECIFIED",
+            "MIN",
+            "OPTIMAL",
+            "MAX"
+          ],
+          "enumDescriptions": [
+            "Unknown dump parallel level. Will be defaulted to OPTIMAL.",
+            "Minimal parallel level.",
+            "Optimal parallel level.",
+            "Maximum parallel level."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Policy": {
       "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
@@ -4988,7 +5017,7 @@
       "type": "object"
     },
     "PrivateServiceConnectConnectivity": {
-      "description": "Private Service Connect connectivity (https://cloud.google.com/vpc/docs/private-service-connect#service-attachments)",
+      "description": "[Private Service Connect connectivity](https://cloud.google.com/vpc/docs/private-service-connect#service-attachments)",
       "id": "PrivateServiceConnectConnectivity",
       "properties": {
         "serviceAttachment": {
@@ -5007,7 +5036,12 @@
     "RestartMigrationJobRequest": {
       "description": "Request message for 'RestartMigrationJob' request.",
       "id": "RestartMigrationJobRequest",
-      "properties": {},
+      "properties": {
+        "skipValidation": {
+          "description": "Optional. Restart the migration job without running prior configuration verification. Defaults to `false`.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "ResumeMigrationJobRequest": {
