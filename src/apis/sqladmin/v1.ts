@@ -438,6 +438,10 @@ export namespace sqladmin_v1 {
      */
     kind?: string | null;
     /**
+     * Whether PSC connectivity is enabled for this instance.
+     */
+    pscEnabled?: boolean | null;
+    /**
      * The cloud region for the instance. For example, `us-central1`, `europe-west1`. The region cannot be changed after instance creation.
      */
     region?: string | null;
@@ -538,6 +542,10 @@ export namespace sqladmin_v1 {
      */
     diskEncryptionStatus?: Schema$DiskEncryptionStatus;
     /**
+     * Output only. The dns name of the instance.
+     */
+    dnsName?: string | null;
+    /**
      * This field is deprecated and will be removed from a future version of the API. Use the `settings.settingsVersion` field instead.
      */
     etag?: string | null;
@@ -593,6 +601,10 @@ export namespace sqladmin_v1 {
      * The project ID of the project containing the Cloud SQL instance. The Google apps domain is prefixed if applicable.
      */
     project?: string | null;
+    /**
+     * Output only. The link to service attachment of PSC instance.
+     */
+    pscServiceAttachmentLink?: string | null;
     /**
      * The geographical region. Can be: * `us-central` (`FIRST_GEN` instances only) * `us-central1` (`SECOND_GEN` instances only) * `asia-east1` or `europe-west1`. Defaults to `us-central` or `us-central1` depending on the instance type. The region cannot be changed after instance creation.
      */
@@ -952,6 +964,8 @@ export namespace sqladmin_v1 {
       };
       noRecovery?: boolean;
       recoveryOnly?: boolean;
+      stopAt?: string;
+      stopAtMark?: string;
       striped?: boolean;
     } | null;
     /**
@@ -1168,6 +1182,10 @@ export namespace sqladmin_v1 {
      * The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, `/projects/myProject/global/networks/default`. This setting can be updated, but it cannot be removed after it is set.
      */
     privateNetwork?: string | null;
+    /**
+     * PSC settings for this instance.
+     */
+    pscConfig?: Schema$PscConfig;
     /**
      * Whether SSL connections over IP are enforced or not.
      */
@@ -1527,6 +1545,19 @@ export namespace sqladmin_v1 {
      * The target disk shrink size in GigaBytes.
      */
     targetSizeGb?: string | null;
+  }
+  /**
+   * PSC settings for a Cloud SQL instance.
+   */
+  export interface Schema$PscConfig {
+    /**
+     * List of consumer projects that are allow-listed for PSC connections to this instance. This instance can be connected to with PSC from any network in these projects. Each consumer project in this list may be represented by a project number (numeric) or by a project id (alphanumeric).
+     */
+    allowedConsumerProjects?: string[] | null;
+    /**
+     * Whether PSC connectivity is enabled for this instance.
+     */
+    pscEnabled?: boolean | null;
   }
   /**
    * Read-replica configuration for connecting to the primary instance.
@@ -3089,6 +3120,7 @@ export namespace sqladmin_v1 {
      *   //   "dnsName": "my_dnsName",
      *   //   "ipAddresses": [],
      *   //   "kind": "my_kind",
+     *   //   "pscEnabled": false,
      *   //   "region": "my_region",
      *   //   "serverCaCert": {}
      *   // }
@@ -5357,6 +5389,7 @@ export namespace sqladmin_v1 {
      *   //   "databaseVersion": "my_databaseVersion",
      *   //   "diskEncryptionConfiguration": {},
      *   //   "diskEncryptionStatus": {},
+     *   //   "dnsName": "my_dnsName",
      *   //   "etag": "my_etag",
      *   //   "failoverReplica": {},
      *   //   "gceZone": "my_gceZone",
@@ -5371,6 +5404,7 @@ export namespace sqladmin_v1 {
      *   //   "onPremisesConfiguration": {},
      *   //   "outOfDiskReport": {},
      *   //   "project": "my_project",
+     *   //   "pscServiceAttachmentLink": "my_pscServiceAttachmentLink",
      *   //   "region": "my_region",
      *   //   "replicaConfiguration": {},
      *   //   "replicaNames": [],
@@ -5674,6 +5708,7 @@ export namespace sqladmin_v1 {
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
      *       //   "diskEncryptionStatus": {},
+     *       //   "dnsName": "my_dnsName",
      *       //   "etag": "my_etag",
      *       //   "failoverReplica": {},
      *       //   "gceZone": "my_gceZone",
@@ -5688,6 +5723,7 @@ export namespace sqladmin_v1 {
      *       //   "onPremisesConfiguration": {},
      *       //   "outOfDiskReport": {},
      *       //   "project": "my_project",
+     *       //   "pscServiceAttachmentLink": "my_pscServiceAttachmentLink",
      *       //   "region": "my_region",
      *       //   "replicaConfiguration": {},
      *       //   "replicaNames": [],
@@ -6155,6 +6191,7 @@ export namespace sqladmin_v1 {
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
      *       //   "diskEncryptionStatus": {},
+     *       //   "dnsName": "my_dnsName",
      *       //   "etag": "my_etag",
      *       //   "failoverReplica": {},
      *       //   "gceZone": "my_gceZone",
@@ -6169,6 +6206,7 @@ export namespace sqladmin_v1 {
      *       //   "onPremisesConfiguration": {},
      *       //   "outOfDiskReport": {},
      *       //   "project": "my_project",
+     *       //   "pscServiceAttachmentLink": "my_pscServiceAttachmentLink",
      *       //   "region": "my_region",
      *       //   "replicaConfiguration": {},
      *       //   "replicaNames": [],
@@ -7716,6 +7754,7 @@ export namespace sqladmin_v1 {
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
      *       //   "diskEncryptionStatus": {},
+     *       //   "dnsName": "my_dnsName",
      *       //   "etag": "my_etag",
      *       //   "failoverReplica": {},
      *       //   "gceZone": "my_gceZone",
@@ -7730,6 +7769,7 @@ export namespace sqladmin_v1 {
      *       //   "onPremisesConfiguration": {},
      *       //   "outOfDiskReport": {},
      *       //   "project": "my_project",
+     *       //   "pscServiceAttachmentLink": "my_pscServiceAttachmentLink",
      *       //   "region": "my_region",
      *       //   "replicaConfiguration": {},
      *       //   "replicaNames": [],
