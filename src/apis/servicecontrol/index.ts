@@ -31,7 +31,7 @@ export function servicecontrol(
   options: servicecontrol_v2.Options
 ): servicecontrol_v2.Servicecontrol;
 export function servicecontrol<
-  T = servicecontrol_v1.Servicecontrol | servicecontrol_v2.Servicecontrol
+  T = servicecontrol_v1.Servicecontrol | servicecontrol_v2.Servicecontrol,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
