@@ -188,10 +188,6 @@
     "package": "@google-cloud/functions"
   },
   {
-    "api": "gameservices",
-    "package": "@google-cloud/game-servers"
-  },
-  {
     "api": "gkehub",
     "package": "@google-cloud/gke-hub"
   },
@@ -570,10 +566,6 @@
   {
     "api": "connectgateway",
     "package": "@google-cloud/gke-connect-gateway"
-  },
-  {
-    "api": "analyticsadmin",
-    "package": "@google-analytics/admin"
   },
   {
     "api": "analyticsadmin",

@@ -782,6 +782,11 @@
                 "VISIBLE",
                 "FRIENDS_ALL"
               ],
+              "enumDeprecated": [
+                true,
+                true,
+                false
+              ],
               "enumDescriptions": [
                 "Retrieve a list of players that are also playing this game in reverse chronological order.",
                 "Retrieve a list of players in the user's social graph that are visible to this game.",
@@ -867,6 +872,13 @@
                 "PUBLIC",
                 "SOCIAL",
                 "FRIENDS"
+              ],
+              "enumDeprecated": [
+                false,
+                false,
+                false,
+                true,
+                false
               ],
               "enumDescriptions": [
                 "Default value. Should be unused.",
@@ -954,6 +966,12 @@
                 "SOCIAL",
                 "FRIENDS"
               ],
+              "enumDeprecated": [
+                false,
+                false,
+                true,
+                false
+              ],
               "enumDescriptions": [
                 "Default value. This value is unused.",
                 "List all scores in the public leaderboard.",
@@ -1031,6 +1049,12 @@
                 "PUBLIC",
                 "SOCIAL",
                 "FRIENDS"
+              ],
+              "enumDeprecated": [
+                false,
+                false,
+                true,
+                false
               ],
               "enumDescriptions": [
                 "Default value. This value is unused.",
@@ -1266,7 +1290,7 @@
       }
     }
   },
-  "revision": "20230310",
+  "revision": "20230724",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {

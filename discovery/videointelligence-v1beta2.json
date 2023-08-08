@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20210902",
+  "revision": "20230706",
   "rootUrl": "https://videointelligence.googleapis.com/",
   "schemas": {
     "GoogleCloudVideointelligenceV1_AnnotateVideoProgress": {
@@ -269,6 +269,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1_FaceAnnotation": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1_FaceAnnotation",
       "properties": {
@@ -318,6 +319,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1_FaceFrame": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1_FaceFrame",
       "properties": {
@@ -805,6 +807,7 @@
           "description": "Explicit content annotation."
         },
         "faceAnnotations": {
+          "deprecated": true,
           "description": "Deprecated. Please use `face_detection_annotations` instead.",
           "items": {
             "$ref": "GoogleCloudVideointelligenceV1_FaceAnnotation"
@@ -1164,6 +1167,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1beta2_FaceAnnotation": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1beta2_FaceAnnotation",
       "properties": {
@@ -1232,6 +1236,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1beta2_FaceFrame": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1beta2_FaceFrame",
       "properties": {
@@ -1885,6 +1890,7 @@
           "description": "Explicit content annotation."
         },
         "faceAnnotations": {
+          "deprecated": true,
           "description": "Deprecated. Please use `face_detection_annotations` instead.",
           "items": {
             "$ref": "GoogleCloudVideointelligenceV1beta2_FaceAnnotation"
@@ -2220,6 +2226,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation",
       "properties": {
@@ -2269,6 +2276,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p1beta1_FaceFrame": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1p1beta1_FaceFrame",
       "properties": {
@@ -2756,6 +2764,7 @@
           "description": "Explicit content annotation."
         },
         "faceAnnotations": {
+          "deprecated": true,
           "description": "Deprecated. Please use `face_detection_annotations` instead.",
           "items": {
             "$ref": "GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation"
@@ -3045,6 +3054,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation",
       "properties": {
@@ -3094,6 +3104,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p2beta1_FaceFrame": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1p2beta1_FaceFrame",
       "properties": {
@@ -3581,6 +3592,7 @@
           "description": "Explicit content annotation."
         },
         "faceAnnotations": {
+          "deprecated": true,
           "description": "Deprecated. Please use `face_detection_annotations` instead.",
           "items": {
             "$ref": "GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation"
@@ -3925,6 +3937,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation",
       "properties": {
@@ -3974,6 +3987,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p3beta1_FaceFrame": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1p3beta1_FaceFrame",
       "properties": {
@@ -4539,6 +4553,7 @@
           "description": "Explicit content annotation."
         },
         "faceAnnotations": {
+          "deprecated": true,
           "description": "Deprecated. Please use `face_detection_annotations` instead.",
           "items": {
             "$ref": "GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation"

@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20220805",
+  "revision": "20230801",
   "rootUrl": "https://trafficdirector.googleapis.com/",
   "schemas": {
     "Address": {
@@ -431,6 +431,7 @@
       "id": "GoogleRE2",
       "properties": {
         "maxProgramSize": {
+          "deprecated": true,
           "description": "This field controls the RE2 \"program size\" which is a rough estimate of how complex a compiled regex is to evaluate. A regex that has a program size greater than the configured value will fail to compile. In this case, the configured max program size can be increased or the regex can be simplified. If not specified, the default is 100. This field is deprecated; regexp validation should be performed on the management server instead of being done by each individual client.",
           "format": "uint32",
           "type": "integer"
@@ -524,6 +525,7 @@
       "id": "Node",
       "properties": {
         "buildVersion": {
+          "deprecated": true,
           "description": "This is motivated by informing a management server during canary which version of Envoy is being tested in a heterogeneous fleet. This will be set by Envoy in management server RPCs. This field is deprecated in favor of the user_agent_name and user_agent_version values.",
           "type": "string"
         },
@@ -859,6 +861,7 @@
           "type": "string"
         },
         "regex": {
+          "deprecated": true,
           "description": "The input string must match the regular expression specified here. The regex grammar is defined `here `_. Examples: * The regex ``\\d{3}`` matches the value *123* * The regex ``\\d{3}`` does not match the value *1234* * The regex ``\\d{3}`` does not match the value *123.456* .. attention:: This field has been deprecated in favor of `safe_regex` as it is not safe for use with untrusted input in all cases.",
           "type": "string"
         },

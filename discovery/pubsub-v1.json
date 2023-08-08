@@ -1566,7 +1566,7 @@
       }
     }
   },
-  "revision": "20230627",
+  "revision": "20230725",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -2100,6 +2100,7 @@
           "type": "integer"
         },
         "returnImmediately": {
+          "deprecated": true,
           "description": "Optional. If this field set to true, the system will respond immediately even if it there are no messages available to return in the `Pull` response. Otherwise, the system may wait (for a bounded amount of time) until at least one message is available, rather than returning no messages. Warning: setting this field to `true` is discouraged because it adversely impacts the performance of `Pull` operations. We recommend that users do not set this field.",
           "type": "boolean"
         }
