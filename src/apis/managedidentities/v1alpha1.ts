@@ -1276,52 +1276,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Gets information about a location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.get({
-     *     // Resource name for the location.
-     *     name: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "labels": {},
-     *   //   "locationId": "my_locationId",
-     *   //   "metadata": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1407,55 +1361,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Lists information about the supported locations for this service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
-     *     filter: 'placeholder-value',
-     *     // The resource that owns the locations collection, if applicable.
-     *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service selects a default.
-     *     pageSize: 'placeholder-value',
-     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "locations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1611,61 +1516,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Adds AD trust in a given domain. Operation
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.attachTrust({
-     *       // The resource domain name, project name and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *       name: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "trust": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1755,58 +1605,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * AuditMigration API gets the current state of DomainMigration
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.checkMigrationPermission(
-     *       {
-     *         // Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *         domain: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "onpremDomains": [],
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1904,74 +1702,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Creates a Microsoft AD Domain in a given project. Operation
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.create({
-     *     // The fully qualified domain name. e.g. mydomain.myorganization.com, with the following restrictions: * Must contain only lowercase letters, numbers, periods and hyphens. * Must start with a letter. * Must contain between 2-64 characters. * Must end with a number or a letter. * Must not start with period. * Must be unique within the project. * First segment length (mydomain form example above) shouldn't exceed 15 chars. * The last segment cannot be fully numeric.
-     *     domainName: 'placeholder-value',
-     *     // Resource project name and location using the form: `projects/{project_id\}/locations/global`
-     *     parent: 'projects/my-project/locations/global',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "auditLogsEnabled": false,
-     *       //   "authorizedNetworks": [],
-     *       //   "createTime": "my_createTime",
-     *       //   "fqdn": "my_fqdn",
-     *       //   "labels": {},
-     *       //   "locations": [],
-     *       //   "managedIdentitiesAdminName": "my_managedIdentitiesAdminName",
-     *       //   "name": "my_name",
-     *       //   "reservedIpRange": "my_reservedIpRange",
-     *       //   "state": "my_state",
-     *       //   "statusMessage": "my_statusMessage",
-     *       //   "trusts": [],
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2060,52 +1790,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Deletes identified domain. Operation
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.delete({
-     *     // Domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *     name: 'projects/my-project/locations/global/domains/my-domain',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2191,61 +1875,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Removes identified trust. Operation
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.detachTrust({
-     *       // The resource domain name, project name, and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *       name: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "trust": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2335,59 +1964,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Disable Domain Migration
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.disableMigration({
-     *       // Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *       domain: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2477,61 +2053,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * DomainJoinMachine API joins a Compute Engine VM to the domain
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.domainJoinMachine(
-     *       {
-     *         // Required. The domain resource name using the form: projects/{project_id\}/locations/global/domains/{domain_name\}
-     *         domain: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "force": false,
-     *           //   "ouName": "my_ouName",
-     *           //   "vmIdToken": "my_vmIdToken"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "domainJoinBlob": "my_domainJoinBlob"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2628,62 +2149,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Enable Domain Migration
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.enableMigration({
-     *       // Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *       domain: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "enableDuration": "my_enableDuration",
-     *         //   "migratingDomains": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2773,63 +2238,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Extend Schema for Domain
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.extendSchema({
-     *       // Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *       domain: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "description": "my_description",
-     *         //   "fileContents": "my_fileContents",
-     *         //   "gcsPath": "my_gcsPath"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2919,60 +2327,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Gets details of a single Domain.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.get({
-     *     // Domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *     name: 'projects/my-project/locations/global/domains/my-domain',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditLogsEnabled": false,
-     *   //   "authorizedNetworks": [],
-     *   //   "createTime": "my_createTime",
-     *   //   "fqdn": "my_fqdn",
-     *   //   "labels": {},
-     *   //   "locations": [],
-     *   //   "managedIdentitiesAdminName": "my_managedIdentitiesAdminName",
-     *   //   "name": "my_name",
-     *   //   "reservedIpRange": "my_reservedIpRange",
-     *   //   "state": "my_state",
-     *   //   "statusMessage": "my_statusMessage",
-     *   //   "trusts": [],
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3058,53 +2412,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.getIamPolicy({
-     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource: 'projects/my-project/locations/global/domains/my-domain',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3194,54 +2501,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Gets the domain ldaps settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.getLdapssettings({
-     *       // Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *       name: 'projects/my-project/locations/global/domains/my-domain',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificate": {},
-     *   //   "certificatePassword": "my_certificatePassword",
-     *   //   "certificatePfx": "my_certificatePfx",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3333,58 +2592,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Lists Domains in a given project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.list({
-     *     // Optional. Filter specifying constraints of a list operation. For example, `Domain.fqdn="mydomain.myorginization"`.
-     *     filter: 'placeholder-value',
-     *     // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     *     orderBy: 'placeholder-value',
-     *     // If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the domain location using the form: `projects/{project_id\}/locations/global`
-     *     parent: 'projects/my-project/locations/global',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "domains": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3476,74 +2683,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Updates the metadata and configuration of a specified domain. Operation
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.patch({
-     *     // Output only. Unique name of the domain in this scope including projects and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`.
-     *     name: 'projects/my-project/locations/global/domains/my-domain',
-     *     // Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Domain: * `labels` * `locations` * `authorized_networks` * `audit_logs_enabled`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "auditLogsEnabled": false,
-     *       //   "authorizedNetworks": [],
-     *       //   "createTime": "my_createTime",
-     *       //   "fqdn": "my_fqdn",
-     *       //   "labels": {},
-     *       //   "locations": [],
-     *       //   "managedIdentitiesAdminName": "my_managedIdentitiesAdminName",
-     *       //   "name": "my_name",
-     *       //   "reservedIpRange": "my_reservedIpRange",
-     *       //   "state": "my_state",
-     *       //   "statusMessage": "my_statusMessage",
-     *       //   "trusts": [],
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3629,61 +2768,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Updates the dns conditional forwarder. Operation
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.reconfigureTrust({
-     *       // The resource domain name, project name and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *       name: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "trust": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3773,57 +2857,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Resets managed identities admin password identified by managed_identities_admin_name
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.resetAdminPassword(
-     *       {
-     *         // The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *         name: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "password": "my_password"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3920,62 +2953,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * RestoreDomain restores domain backup mentioned in the RestoreDomainRequest
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.restore(
-     *     {
-     *       // Required. resource name for the domain to which the backup belongs
-     *       name: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "backupId": "my_backupId"
-     *         // }
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4065,59 +3042,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4207,59 +3131,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.testIamPermissions(
-     *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *         resource: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "permissions": []
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4356,70 +3227,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Patches a single ldaps settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.updateLdapssettings(
-     *       {
-     *         // The resource name of the LDAPS settings. Uses the form: `projects/{project\}/locations/{location\}/domains/{domain\}`.
-     *         name: 'projects/my-project/locations/global/domains/my-domain',
-     *         // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *         updateMask: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "certificate": {},
-     *           //   "certificatePassword": "my_certificatePassword",
-     *           //   "certificatePfx": "my_certificatePfx",
-     *           //   "name": "my_name",
-     *           //   "state": "my_state",
-     *           //   "updateTime": "my_updateTime"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4509,61 +3316,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Validate the trust state Operation
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.validateTrust({
-     *       // The resource domain name, project name, and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *       name: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "trust": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4920,70 +3672,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Creates a Backup for a domain.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.backups.create({
-     *       // Required. Backup Id, unique name to identify the backups with the following restrictions: * Must be lowercase letters, numbers, and hyphens * Must start with a letter. * Must contain between 1-63 characters. * Must end with a number or a letter. * Must be unique within the domain.
-     *       backupId: 'placeholder-value',
-     *       // Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *       parent: 'projects/my-project/locations/global/domains/my-domain',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createTime": "my_createTime",
-     *         //   "description": "my_description",
-     *         //   "labels": {},
-     *         //   "name": "my_name",
-     *         //   "state": "my_state",
-     *         //   "statusMessage": "my_statusMessage",
-     *         //   "type": "my_type",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5073,53 +3761,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Deletes identified Backup.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.backups.delete({
-     *       // Required. The backup resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}/backups/{backup_id\}`
-     *       name: 'projects/my-project/locations/global/domains/my-domain/backups/my-backup',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5206,56 +3847,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Gets details of a single Backup.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.backups.get({
-     *       // Required. The backup resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}/backups/{backup_id\}`
-     *       name: 'projects/my-project/locations/global/domains/my-domain/backups/my-backup',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "statusMessage": "my_statusMessage",
-     *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5342,56 +3933,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.backups.getIamPolicy(
-     *       {
-     *         // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *         'options.requestedPolicyVersion': 'placeholder-value',
-     *         // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *         resource:
-     *           'projects/my-project/locations/global/domains/my-domain/backups/my-backup',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5481,59 +4022,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Lists Backup in a given project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.backups.list({
-     *       // Optional. Filter specifying constraints of a list operation.
-     *       filter: 'placeholder-value',
-     *       // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     *       orderBy: 'placeholder-value',
-     *       // Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. The next_page_token value returned from a previous List request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *       parent: 'projects/my-project/locations/global/domains/my-domain',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "backups": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5626,70 +4114,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Updates the labels for specified Backup.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.backups.patch({
-     *       // Output only. The unique name of the Backup in the form of projects/{project_id\}/locations/global/domains/{domain_name\}/backups/{name\}
-     *       name: 'projects/my-project/locations/global/domains/my-domain/backups/my-backup',
-     *       // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Backup: * `labels`
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createTime": "my_createTime",
-     *         //   "description": "my_description",
-     *         //   "labels": {},
-     *         //   "name": "my_name",
-     *         //   "state": "my_state",
-     *         //   "statusMessage": "my_statusMessage",
-     *         //   "type": "my_type",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5776,62 +4200,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.backups.setIamPolicy(
-     *       {
-     *         // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *         resource:
-     *           'projects/my-project/locations/global/domains/my-domain/backups/my-backup',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "policy": {}
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5921,60 +4289,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.backups.testIamPermissions(
-     *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *         resource:
-     *           'projects/my-project/locations/global/domains/my-domain/backups/my-backup',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "permissions": []
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6183,55 +4497,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Gets details of a single sqlIntegration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.sqlIntegrations.get(
-     *       {
-     *         // Required. MangedOU resource name using the form: `projects/{project_id\}/locations/global/domains/x/sqlIntegrations/{name\}`
-     *         name: 'projects/my-project/locations/global/domains/my-domain/sqlIntegrations/my-sqlIntegration',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "name": "my_name",
-     *   //   "sqlInstance": "my_sqlInstance",
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6318,61 +4583,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Lists SQLIntegrations in a given domain.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.domains.sqlIntegrations.list(
-     *       {
-     *         // Optional. Filter specifying constraints of a list operation. For example, `SqlIntegration.name="sql"`.
-     *         filter: 'placeholder-value',
-     *         // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     *         orderBy: 'placeholder-value',
-     *         // Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response'ANIZATIONs next_page_token to determine if there are more instances left to be queried.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. The next_page_token value returned from a previous List request, if any.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The resource name of the SqlIntegrations using the form: `projects/{project_id\}/locations/global/domains/x`
-     *         parent: 'projects/my-project/locations/global/domains/my-domain',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "sqlIntegrations": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6507,53 +4717,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.operations.cancel({
-     *       // The name of the operation resource to be cancelled.
-     *       name: 'projects/my-project/locations/global/operations/my-operation',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6643,47 +4806,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.operations.delete({
-     *       // The name of the operation resource to be deleted.
-     *       name: 'projects/my-project/locations/global/operations/my-operation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6770,52 +4892,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/global/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6901,57 +4977,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.operations.list(
-     *     {
-     *       // The standard list filter.
-     *       filter: 'placeholder-value',
-     *       // The name of the operation's parent resource.
-     *       name: 'projects/my-project/locations/global',
-     *       // The standard list page size.
-     *       pageSize: 'placeholder-value',
-     *       // The standard list page token.
-     *       pageToken: 'placeholder-value',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7099,71 +5124,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Creates a Peering for Managed AD instance.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.peerings.create(
-     *     {
-     *       // Required. Resource project name and location using the form: `projects/{project_id\}/locations/global`
-     *       parent: 'projects/my-project/locations/global',
-     *       // Required. Peering Id, unique name to identify peering.
-     *       peeringId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "authorizedNetwork": "my_authorizedNetwork",
-     *         //   "createTime": "my_createTime",
-     *         //   "domainResource": "my_domainResource",
-     *         //   "labels": {},
-     *         //   "name": "my_name",
-     *         //   "state": "my_state",
-     *         //   "statusMessage": "my_statusMessage",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7253,54 +5213,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Deletes identified Peering.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.peerings.delete(
-     *     {
-     *       // Required. Peering resource name using the form: `projects/{project_id\}/locations/global/peerings/{peering_id\}`
-     *       name: 'projects/my-project/locations/global/peerings/my-peering',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7387,55 +5299,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Gets details of a single Peering.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.peerings.get({
-     *     // Required. Peering resource name using the form: `projects/{project_id\}/locations/global/peerings/{peering_id\}`
-     *     name: 'projects/my-project/locations/global/peerings/my-peering',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authorizedNetwork": "my_authorizedNetwork",
-     *   //   "createTime": "my_createTime",
-     *   //   "domainResource": "my_domainResource",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "statusMessage": "my_statusMessage",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7521,53 +5384,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.peerings.getIamPolicy({
-     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource: 'projects/my-project/locations/global/peerings/my-peering',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7657,58 +5473,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Lists Peerings in a given project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.peerings.list({
-     *     // Optional. Filter specifying constraints of a list operation. For example, `peering.authoized_network ="/projects/myprojectid"`.
-     *     filter: 'placeholder-value',
-     *     // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. The next_page_token value returned from a previous List request, if any.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the domain location using the form: `projects/{project_id\}/locations/global`
-     *     parent: 'projects/my-project/locations/global',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "peerings": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7802,69 +5566,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Updates the labels for specified Peering.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.peerings.patch({
-     *     // Output only. Unique name of the peering in this scope including projects and location using the form: `projects/{project_id\}/locations/global/peerings/{peering_id\}`.
-     *     name: 'projects/my-project/locations/global/peerings/my-peering',
-     *     // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Peering: * `labels`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authorizedNetwork": "my_authorizedNetwork",
-     *       //   "createTime": "my_createTime",
-     *       //   "domainResource": "my_domainResource",
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "state": "my_state",
-     *       //   "statusMessage": "my_statusMessage",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7950,59 +5651,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.peerings.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource: 'projects/my-project/locations/global/peerings/my-peering',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8092,59 +5740,6 @@ export namespace managedidentities_v1alpha1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const managedidentities = google.managedidentities('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await managedidentities.projects.locations.global.peerings.testIamPermissions(
-     *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *         resource: 'projects/my-project/locations/global/peerings/my-peering',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "permissions": []
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

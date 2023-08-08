@@ -46,7 +46,7 @@ export function managedidentities<
   T =
     | managedidentities_v1.Managedidentities
     | managedidentities_v1alpha1.Managedidentities
-    | managedidentities_v1beta1.Managedidentities
+    | managedidentities_v1beta1.Managedidentities,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
