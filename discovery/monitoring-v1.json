@@ -472,7 +472,7 @@
                           },
                           "path": "v1/{+name}/location/{location}/prometheus/api/v1/labels",
                           "request": {
-                            "$ref": "ListLabelsRequest"
+                            "$ref": "QueryLabelsRequest"
                           },
                           "response": {
                             "$ref": "HttpBody"
@@ -693,59 +693,6 @@
                             }
                           }
                         },
-                        "labels": {
-                          "methods": {
-                            "list": {
-                              "description": "Lists labels for metrics.",
-                              "flatPath": "v1/projects/{projectsId}/location/{location}/prometheus/api/v1/labels",
-                              "httpMethod": "GET",
-                              "id": "monitoring.projects.location.prometheus.api.v1.labels.list",
-                              "parameterOrder": [
-                                "name",
-                                "location"
-                              ],
-                              "parameters": {
-                                "end": {
-                                  "description": "The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
-                                  "location": "query",
-                                  "type": "string"
-                                },
-                                "location": {
-                                  "description": "Location of the resource information. Has to be \"global\" now.",
-                                  "location": "path",
-                                  "required": true,
-                                  "type": "string"
-                                },
-                                "match": {
-                                  "description": "A list of matchers encoded in the Prometheus label matcher format to constrain the values to series that satisfy them.",
-                                  "location": "query",
-                                  "type": "string"
-                                },
-                                "name": {
-                                  "description": "The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.",
-                                  "location": "path",
-                                  "pattern": "^projects/[^/]+$",
-                                  "required": true,
-                                  "type": "string"
-                                },
-                                "start": {
-                                  "description": "The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
-                                  "location": "query",
-                                  "type": "string"
-                                }
-                              },
-                              "path": "v1/{+name}/location/{location}/prometheus/api/v1/labels",
-                              "response": {
-                                "$ref": "HttpBody"
-                              },
-                              "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform",
-                                "https://www.googleapis.com/auth/monitoring",
-                                "https://www.googleapis.com/auth/monitoring.read"
-                              ]
-                            }
-                          }
-                        },
                         "metadata": {
                           "methods": {
                             "list": {
@@ -806,7 +753,7 @@
       }
     }
   },
-  "revision": "20230703",
+  "revision": "20230731",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1396,25 +1343,6 @@
       },
       "type": "object"
     },
-    "ListLabelsRequest": {
-      "description": "ListLabelsRequest holds all parameters of the Prometheus upstream API for returning a list of label names.",
-      "id": "ListLabelsRequest",
-      "properties": {
-        "end": {
-          "description": "The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
-          "type": "string"
-        },
-        "match": {
-          "description": "A list of matchers encoded in the Prometheus label matcher format to constrain the values to series that satisfy them.",
-          "type": "string"
-        },
-        "start": {
-          "description": "The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListMetricsScopesByMonitoredProjectResponse": {
       "description": "Response for the ListMetricsScopesByMonitoredProject method.",
       "id": "ListMetricsScopesByMonitoredProjectResponse",
@@ -1705,6 +1633,25 @@
       },
       "type": "object"
     },
+    "QueryLabelsRequest": {
+      "description": "QueryLabelsRequest holds all parameters of the Prometheus upstream API for returning a list of label names.",
+      "id": "QueryLabelsRequest",
+      "properties": {
+        "end": {
+          "description": "The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
+          "type": "string"
+        },
+        "match": {
+          "description": "A list of matchers encoded in the Prometheus label matcher format to constrain the values to series that satisfy them.",
+          "type": "string"
+        },
+        "start": {
+          "description": "The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "QueryRangeRequest": {
       "description": "QueryRangeRequest holds all parameters of the Prometheus upstream range query API plus GCM specific parameters.",
       "id": "QueryRangeRequest",
@@ -1978,6 +1925,97 @@
             "Format is unspecified. Defaults to MARKDOWN.",
             "The text contains Markdown formatting.",
             "The text contains no special formatting."
+          ],
+          "type": "string"
+        },
+        "style": {
+          "$ref": "TextStyle",
+          "description": "How the text is styled"
+        }
+      },
+      "type": "object"
+    },
+    "TextStyle": {
+      "description": "Properties that determine how the title and content are styled",
+      "id": "TextStyle",
+      "properties": {
+        "backgroundColor": {
+          "description": "The background color as a hex string. \"#RRGGBB\" or \"#RGB\"",
+          "type": "string"
+        },
+        "fontSize": {
+          "description": "Font sizes for both the title and content. The title will still be larger relative to the content.",
+          "enum": [
+            "FONT_SIZE_UNSPECIFIED",
+            "FS_EXTRA_SMALL",
+            "FS_SMALL",
+            "FS_MEDIUM",
+            "FS_LARGE",
+            "FS_EXTRA_LARGE"
+          ],
+          "enumDescriptions": [
+            "No font size specified, will default to FS_LARGE",
+            "Extra small font size",
+            "Small font size",
+            "Medium font size",
+            "Large font size",
+            "Extra large font size"
+          ],
+          "type": "string"
+        },
+        "horizontalAlignment": {
+          "description": "The horizontal alignment of both the title and content",
+          "enum": [
+            "HORIZONTAL_ALIGNMENT_UNSPECIFIED",
+            "H_LEFT",
+            "H_CENTER",
+            "H_RIGHT"
+          ],
+          "enumDescriptions": [
+            "No horizontal alignment specified, will default to H_LEFT",
+            "Left-align",
+            "Center-align",
+            "Right-align"
+          ],
+          "type": "string"
+        },
+        "padding": {
+          "description": "The amount of padding around the widget",
+          "enum": [
+            "PADDING_SIZE_UNSPECIFIED",
+            "P_EXTRA_SMALL",
+            "P_SMALL",
+            "P_MEDIUM",
+            "P_LARGE",
+            "P_EXTRA_LARGE"
+          ],
+          "enumDescriptions": [
+            "No padding size specified, will default to P_EXTRA_SMALL",
+            "Extra small padding",
+            "Small padding",
+            "Medium padding",
+            "Large padding",
+            "Extra large padding"
+          ],
+          "type": "string"
+        },
+        "textColor": {
+          "description": "The text color as a hex string. \"#RRGGBB\" or \"#RGB\"",
+          "type": "string"
+        },
+        "verticalAlignment": {
+          "description": "The vertical alignment of both the title and content",
+          "enum": [
+            "VERTICAL_ALIGNMENT_UNSPECIFIED",
+            "V_TOP",
+            "V_CENTER",
+            "V_BOTTOM"
+          ],
+          "enumDescriptions": [
+            "No vertical alignment specified, will default to V_TOP",
+            "Top-align",
+            "Center-align",
+            "Bottom-align"
           ],
           "type": "string"
         }
