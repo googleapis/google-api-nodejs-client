@@ -7805,7 +7805,7 @@ export namespace analyticsadmin_v1beta {
      *       {
      *         // Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
      *         name: 'properties/my-propertie/dataStreams/my-dataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *         // The list of fields to be updated. Omitted fields will not be updated.
+     *         // Required. The list of fields to be updated. Omitted fields will not be updated.
      *         updateMask: 'placeholder-value',
      *
      *         // Request body metadata
@@ -7977,7 +7977,7 @@ export namespace analyticsadmin_v1beta {
      */
     name?: string;
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated.
      */
     updateMask?: string;
 

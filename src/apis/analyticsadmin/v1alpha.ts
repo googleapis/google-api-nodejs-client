@@ -978,6 +978,10 @@ export namespace analyticsadmin_v1alpha {
      */
     dailyExportEnabled?: boolean | null;
     /**
+     * If set true, enables enterprise export to the linked Google Cloud project.
+     */
+    enterpriseExportEnabled?: boolean | null;
+    /**
      * The list of event names that will be excluded from exports.
      */
     excludedEvents?: string[] | null;
@@ -989,10 +993,6 @@ export namespace analyticsadmin_v1alpha {
      * If set true, exported data will include advertising identifiers for mobile app streams.
      */
     includeAdvertisingId?: boolean | null;
-    /**
-     * If set true, enables intraday export to the linked Google Cloud project.
-     */
-    intradayExportEnabled?: boolean | null;
     /**
      * Output only. Resource name of this BigQuery link. Format: 'properties/{property_id\}/bigQueryLinks/{bigquery_link_id\}' Format: 'properties/1234/bigQueryLinks/abc567'
      */
@@ -12943,10 +12943,10 @@ export namespace analyticsadmin_v1alpha {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dailyExportEnabled": false,
+     *   //   "enterpriseExportEnabled": false,
      *   //   "excludedEvents": [],
      *   //   "exportStreams": [],
      *   //   "includeAdvertisingId": false,
-     *   //   "intradayExportEnabled": false,
      *   //   "name": "my_name",
      *   //   "project": "my_project",
      *   //   "streamingExportEnabled": false
@@ -18987,7 +18987,7 @@ export namespace analyticsadmin_v1alpha {
      *       {
      *         // Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
      *         name: 'properties/my-propertie/dataStreams/my-dataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *         // The list of fields to be updated. Omitted fields will not be updated.
+     *         // Required. The list of fields to be updated. Omitted fields will not be updated.
      *         updateMask: 'placeholder-value',
      *
      *         // Request body metadata
@@ -19159,7 +19159,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated.
      */
     updateMask?: string;
 
