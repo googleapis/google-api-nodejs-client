@@ -37,7 +37,7 @@ export function discoveryengine(
 export function discoveryengine<
   T =
     | discoveryengine_v1alpha.Discoveryengine
-    | discoveryengine_v1beta.Discoveryengine
+    | discoveryengine_v1beta.Discoveryengine,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
