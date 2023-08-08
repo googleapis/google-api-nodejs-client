@@ -155,7 +155,7 @@ export namespace transcoder_v1 {
     animationStatic?: Schema$AnimationStatic;
   }
   /**
-   * End previous overlay animation from the video. Without AnimationEnd, the overlay object will keep the state of previous animation until the end of the video.
+   * End previous overlay animation from the video. Without `AnimationEnd`, the overlay object will keep the state of previous animation until the end of the video.
    */
   export interface Schema$AnimationEnd {
     /**
@@ -215,11 +215,11 @@ export namespace transcoder_v1 {
     lufs?: number | null;
   }
   /**
-   * The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.
+   * The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs.
    */
   export interface Schema$AudioMapping {
     /**
-     * Required. The `EditAtom.key` that references the atom with audio inputs in the `Job.edit_list`.
+     * Required. The EditAtom.key that references the atom with audio inputs in the JobConfig.edit_list.
      */
     atomKey?: string | null;
     /**
@@ -231,7 +231,7 @@ export namespace transcoder_v1 {
      */
     inputChannel?: number | null;
     /**
-     * Required. The `Input.key` that identifies the input file.
+     * Required. The Input.key that identifies the input file.
      */
     inputKey?: string | null;
     /**
@@ -272,7 +272,7 @@ export namespace transcoder_v1 {
      */
     languageCode?: string | null;
     /**
-     * The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.
+     * The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs.
      */
     mapping?: Schema$AudioMapping[];
     /**
@@ -344,7 +344,7 @@ export namespace transcoder_v1 {
    */
   export interface Schema$DashConfig {
     /**
-     * The segment reference scheme for a `DASH` manifest. The default is `SEGMENT_LIST`
+     * The segment reference scheme for a `DASH` manifest. The default is `SEGMENT_LIST`.
      */
     segmentReferenceScheme?: string | null;
   }
@@ -417,7 +417,7 @@ export namespace transcoder_v1 {
      */
     endTimeOffset?: string | null;
     /**
-     * List of `Input.key`s identifying files that should be used in this atom. The listed `inputs` must have the same timeline.
+     * List of Input.key values identifying files that should be used in this atom. The listed `inputs` must have the same timeline.
      */
     inputs?: string[] | null;
     /**
@@ -500,7 +500,7 @@ export namespace transcoder_v1 {
      */
     aqStrength?: number | null;
     /**
-     * The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than `VideoStream.gop_frame_count` if set. The default is 0.
+     * The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H264CodecSettings.gop_frame_count if set. The default is 0.
      */
     bFrameCount?: number | null;
     /**
@@ -516,7 +516,7 @@ export namespace transcoder_v1 {
      */
     crfLevel?: number | null;
     /**
-     * Use two-pass encoding strategy to achieve better video quality. `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
+     * Use two-pass encoding strategy to achieve better video quality. H264CodecSettings.rate_control_mode must be `vbr`. The default is `false`.
      */
     enableTwoPass?: boolean | null;
     /**
@@ -552,7 +552,7 @@ export namespace transcoder_v1 {
      */
     profile?: string | null;
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
+     * Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
      */
     rateControlMode?: string | null;
     /**
@@ -560,11 +560,11 @@ export namespace transcoder_v1 {
      */
     tune?: string | null;
     /**
-     * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of `VideoStream.vbv_size_bits`.
+     * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H264CodecSettings.vbv_size_bits.
      */
     vbvFullnessBits?: number | null;
     /**
-     * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to `VideoStream.bitrate_bps`.
+     * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to H264CodecSettings.bitrate_bps.
      */
     vbvSizeBits?: number | null;
     /**
@@ -585,7 +585,7 @@ export namespace transcoder_v1 {
      */
     aqStrength?: number | null;
     /**
-     * The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than `VideoStream.gop_frame_count` if set. The default is 0.
+     * The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H265CodecSettings.gop_frame_count if set. The default is 0.
      */
     bFrameCount?: number | null;
     /**
@@ -601,7 +601,7 @@ export namespace transcoder_v1 {
      */
     crfLevel?: number | null;
     /**
-     * Use two-pass encoding strategy to achieve better video quality. `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
+     * Use two-pass encoding strategy to achieve better video quality. H265CodecSettings.rate_control_mode must be `vbr`. The default is `false`.
      */
     enableTwoPass?: boolean | null;
     /**
@@ -633,7 +633,7 @@ export namespace transcoder_v1 {
      */
     profile?: string | null;
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
+     * Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
      */
     rateControlMode?: string | null;
     /**
@@ -641,7 +641,7 @@ export namespace transcoder_v1 {
      */
     tune?: string | null;
     /**
-     * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of `VideoStream.vbv_size_bits`.
+     * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H265CodecSettings.vbv_size_bits.
      */
     vbvFullnessBits?: number | null;
     /**
@@ -683,7 +683,7 @@ export namespace transcoder_v1 {
      */
     preprocessingConfig?: Schema$PreprocessingConfig;
     /**
-     * URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from `Job.input_uri`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
+     * URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from Job.input_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
     uri?: string | null;
   }
@@ -692,7 +692,7 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Job {
     /**
-     * The processing priority of a batch job. This field can only be set for batch mode jobs, and the default value is 0. This value cannot be negative. Higher values correspond to higher priorities for the job.
+     * The processing priority of a batch job. This field can only be set for batch mode jobs. The default value is 0. This value cannot be negative. Higher values correspond to higher priorities for the job.
      */
     batchModePriority?: number | null;
     /**
@@ -708,7 +708,7 @@ export namespace transcoder_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. An error object that describes the reason for the failure. This property is always present when `state` is `FAILED`.
+     * Output only. An error object that describes the reason for the failure. This property is always present when ProcessingState is `FAILED`.
      */
     error?: Schema$Status;
     /**
@@ -761,7 +761,7 @@ export namespace transcoder_v1 {
      */
     adBreaks?: Schema$AdBreak[];
     /**
-     * List of `Edit atom`s. Defines the ultimate timeline of the resulting file or manifest.
+     * List of edit atoms. Defines the ultimate timeline of the resulting file or manifest.
      */
     editList?: Schema$EditAtom[];
     /**
@@ -861,11 +861,11 @@ export namespace transcoder_v1 {
      */
     dash?: Schema$DashConfig;
     /**
-     * The name of the generated file. The default is `manifest` with the extension suffix corresponding to the `Manifest.type`.
+     * The name of the generated file. The default is `manifest` with the extension suffix corresponding to the Manifest.type.
      */
     fileName?: string | null;
     /**
-     * Required. List of user given `MuxStream.key`s that should appear in this manifest. When `Manifest.type` is `HLS`, a media manifest with name `MuxStream.key` and `.m3u8` extension is generated for each element of the `Manifest.mux_streams`.
+     * Required. List of user supplied MuxStream.key values that should appear in this manifest. When Manifest.type is `HLS`, a media manifest with name MuxStream.key and `.m3u8` extension is generated for each element in this list.
      */
     muxStreams?: string[] | null;
     /**
@@ -891,7 +891,7 @@ export namespace transcoder_v1 {
      */
     container?: string | null;
     /**
-     * List of `ElementaryStream.key`s multiplexed in this stream.
+     * List of ElementaryStream.key values multiplexed in this stream.
      */
     elementaryStreams?: string[] | null;
     /**
@@ -899,11 +899,11 @@ export namespace transcoder_v1 {
      */
     encryptionId?: string | null;
     /**
-     * The name of the generated file. The default is `MuxStream.key` with the extension suffix corresponding to the `MuxStream.container`. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.
+     * The name of the generated file. The default is MuxStream.key with the extension suffix corresponding to the MuxStream.container. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.
      */
     fileName?: string | null;
     /**
-     * A unique key for this multiplexed stream. HLS media manifests will be named `MuxStream.key` with the `.m3u8` extension suffix.
+     * A unique key for this multiplexed stream.
      */
     key?: string | null;
     /**
@@ -929,7 +929,7 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Output {
     /**
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. If empty, the value is populated from `Job.output_uri`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
+     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. If empty, the value is populated from Job.output_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
     uri?: string | null;
   }
@@ -938,7 +938,7 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Overlay {
     /**
-     * List of Animations. The list should be chronological, without any time overlap.
+     * List of animations. The list should be chronological, without any time overlap.
      */
     animations?: Schema$Animation[];
     /**
@@ -1106,15 +1106,15 @@ export namespace transcoder_v1 {
     message?: string | null;
   }
   /**
-   * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
+   * The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs.
    */
   export interface Schema$TextMapping {
     /**
-     * Required. The `EditAtom.key` that references atom with text inputs in the `Job.edit_list`.
+     * Required. The EditAtom.key that references atom with text inputs in the JobConfig.edit_list.
      */
     atomKey?: string | null;
     /**
-     * Required. The `Input.key` that identifies the input file.
+     * Required. The Input.key that identifies the input file.
      */
     inputKey?: string | null;
     /**
@@ -1139,7 +1139,7 @@ export namespace transcoder_v1 {
      */
     languageCode?: string | null;
     /**
-     * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
+     * The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs.
      */
     mapping?: Schema$TextMapping[];
   }
@@ -1197,7 +1197,7 @@ export namespace transcoder_v1 {
      */
     profile?: string | null;
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate
+     * Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate
      */
     rateControlMode?: string | null;
     /**
@@ -1261,84 +1261,6 @@ export namespace transcoder_v1 {
 
     /**
      * Creates a job in the specified region.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobs.create({
-     *     // Required. The parent location to create and process this job. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "batchModePriority": 0,
-     *       //   "config": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "endTime": "my_endTime",
-     *       //   "error": {},
-     *       //   "inputUri": "my_inputUri",
-     *       //   "labels": {},
-     *       //   "mode": "my_mode",
-     *       //   "name": "my_name",
-     *       //   "optimization": "my_optimization",
-     *       //   "outputUri": "my_outputUri",
-     *       //   "startTime": "my_startTime",
-     *       //   "state": "my_state",
-     *       //   "templateId": "my_templateId",
-     *       //   "ttlAfterCompletionDays": 0
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "batchModePriority": 0,
-     *   //   "config": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "endTime": "my_endTime",
-     *   //   "error": {},
-     *   //   "inputUri": "my_inputUri",
-     *   //   "labels": {},
-     *   //   "mode": "my_mode",
-     *   //   "name": "my_name",
-     *   //   "optimization": "my_optimization",
-     *   //   "outputUri": "my_outputUri",
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "templateId": "my_templateId",
-     *   //   "ttlAfterCompletionDays": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1423,48 +1345,6 @@ export namespace transcoder_v1 {
 
     /**
      * Deletes a job.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobs.delete({
-     *     // If set to true, and the job is not found, the request will succeed but no action will be taken on the server.
-     *     allowMissing: 'placeholder-value',
-     *     // Required. The name of the job to delete. Format: `projects/{project\}/locations/{location\}/jobs/{job\}`
-     *     name: 'projects/my-project/locations/my-location/jobs/my-job',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1549,62 +1429,6 @@ export namespace transcoder_v1 {
 
     /**
      * Returns the job data.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobs.get({
-     *     // Required. The name of the job to retrieve. Format: `projects/{project\}/locations/{location\}/jobs/{job\}`
-     *     name: 'projects/my-project/locations/my-location/jobs/my-job',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "batchModePriority": 0,
-     *   //   "config": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "endTime": "my_endTime",
-     *   //   "error": {},
-     *   //   "inputUri": "my_inputUri",
-     *   //   "labels": {},
-     *   //   "mode": "my_mode",
-     *   //   "name": "my_name",
-     *   //   "optimization": "my_optimization",
-     *   //   "outputUri": "my_outputUri",
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "templateId": "my_templateId",
-     *   //   "ttlAfterCompletionDays": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1689,58 +1513,6 @@ export namespace transcoder_v1 {
 
     /**
      * Lists jobs in the specified region.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobs.list({
-     *     // The filter expression, following the syntax outlined in https://google.aip.dev/160.
-     *     filter: 'placeholder-value',
-     *     // One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
-     *     orderBy: 'placeholder-value',
-     *     // The maximum number of items to return.
-     *     pageSize: 'placeholder-value',
-     *     // The `next_page_token` value returned from a previous List request, if any.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "jobs": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1886,62 +1658,6 @@ export namespace transcoder_v1 {
 
     /**
      * Creates a job template in the specified region.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobTemplates.create({
-     *     // Required. The ID to use for the job template, which will become the final component of the job template's resource name. This value should be 4-63 characters, and valid characters must match the regular expression `a-zA-Z*`.
-     *     jobTemplateId: 'placeholder-value',
-     *     // Required. The parent location to create this job template. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "config": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2029,48 +1745,6 @@ export namespace transcoder_v1 {
 
     /**
      * Deletes a job template.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobTemplates.delete({
-     *     // If set to true, and the job template is not found, the request will succeed but no action will be taken on the server.
-     *     allowMissing: 'placeholder-value',
-     *     // Required. The name of the job template to delete. `projects/{project\}/locations/{location\}/jobTemplates/{job_template\}`
-     *     name: 'projects/my-project/locations/my-location/jobTemplates/my-jobTemplate',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2155,50 +1829,6 @@ export namespace transcoder_v1 {
 
     /**
      * Returns the job template data.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobTemplates.get({
-     *     // Required. The name of the job template to retrieve. Format: `projects/{project\}/locations/{location\}/jobTemplates/{job_template\}`
-     *     name: 'projects/my-project/locations/my-location/jobTemplates/my-jobTemplate',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2283,58 +1913,6 @@ export namespace transcoder_v1 {
 
     /**
      * Lists job templates in the specified region.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobTemplates.list({
-     *     // The filter expression, following the syntax outlined in https://google.aip.dev/160.
-     *     filter: 'placeholder-value',
-     *     // One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
-     *     orderBy: 'placeholder-value',
-     *     // The maximum number of items to return.
-     *     pageSize: 'placeholder-value',
-     *     // The `next_page_token` value returned from a previous List request, if any.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent location from which to retrieve the collection of job templates. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "jobTemplates": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
