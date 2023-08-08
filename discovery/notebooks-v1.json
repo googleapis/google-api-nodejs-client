@@ -1932,7 +1932,7 @@
       }
     }
   },
-  "revision": "20230710",
+  "revision": "20230720",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2046,6 +2046,11 @@
         "diagnosticConfig": {
           "$ref": "DiagnosticConfig",
           "description": "Required. Defines flags that are used to run the diagnostic tool"
+        },
+        "timeoutMinutes": {
+          "description": "Optional. Maxmium amount of time in minutes before the operation times out.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2057,6 +2062,11 @@
         "diagnosticConfig": {
           "$ref": "DiagnosticConfig",
           "description": "Required. Defines flags that are used to run the diagnostic tool"
+        },
+        "timeoutMinutes": {
+          "description": "Optional. Maxmium amount of time in minutes before the operation times out.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
