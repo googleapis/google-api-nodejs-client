@@ -33,7 +33,7 @@ export function serviceusage(
   options: serviceusage_v1beta1.Options
 ): serviceusage_v1beta1.Serviceusage;
 export function serviceusage<
-  T = serviceusage_v1.Serviceusage | serviceusage_v1beta1.Serviceusage
+  T = serviceusage_v1.Serviceusage | serviceusage_v1beta1.Serviceusage,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
