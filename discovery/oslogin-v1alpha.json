@@ -278,6 +278,41 @@
                 "https://www.googleapis.com/auth/compute"
               ]
             }
+          },
+          "resources": {
+            "zones": {
+              "methods": {
+                "signSshPublicKey": {
+                  "description": "Signs an SSH public key for a user to authenticate to a virtual machine on Google Compute Engine.",
+                  "flatPath": "v1alpha/users/{usersId}/projects/{projectsId}/zones/{zonesId}:signSshPublicKey",
+                  "httpMethod": "POST",
+                  "id": "oslogin.users.projects.zones.signSshPublicKey",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "The parent project and zone for the signing request. This is needed to properly ensure per-organization ISS processing and potentially to provide for the possibility of zone-specific certificates used in the signing process.",
+                      "location": "path",
+                      "pattern": "^users/[^/]+/projects/[^/]+/zones/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}:signSshPublicKey",
+                  "request": {
+                    "$ref": "SignSshPublicKeyRequest"
+                  },
+                  "response": {
+                    "$ref": "SignSshPublicKeyResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                }
+              }
+            }
           }
         },
         "sshPublicKeys": {
@@ -403,7 +438,7 @@
       }
     }
   },
-  "revision": "20220319",
+  "revision": "20230729",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -543,6 +578,26 @@
         "webAuthn": {
           "$ref": "WebAuthn",
           "description": "The Web Authentication protocol type."
+        }
+      },
+      "type": "object"
+    },
+    "SignSshPublicKeyRequest": {
+      "id": "SignSshPublicKeyRequest",
+      "properties": {
+        "sshPublicKey": {
+          "description": "The SSH public key to sign.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SignSshPublicKeyResponse": {
+      "id": "SignSshPublicKeyResponse",
+      "properties": {
+        "signedSshPublicKey": {
+          "description": "The signed SSH public key to use in the SSH handshake.",
+          "type": "string"
         }
       },
       "type": "object"

@@ -35,7 +35,7 @@ export function oslogin(
   options: oslogin_v1beta.Options
 ): oslogin_v1beta.Oslogin;
 export function oslogin<
-  T = oslogin_v1.Oslogin | oslogin_v1alpha.Oslogin | oslogin_v1beta.Oslogin
+  T = oslogin_v1.Oslogin | oslogin_v1alpha.Oslogin | oslogin_v1beta.Oslogin,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
