@@ -46,7 +46,7 @@ export function remotebuildexecution<
   T =
     | remotebuildexecution_v1.Remotebuildexecution
     | remotebuildexecution_v1alpha.Remotebuildexecution
-    | remotebuildexecution_v2.Remotebuildexecution
+    | remotebuildexecution_v2.Remotebuildexecution,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
