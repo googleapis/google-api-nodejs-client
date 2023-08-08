@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20230707",
+  "revision": "20230728",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -396,6 +396,10 @@
         "serviceAccountKeyName": {
           "description": "The name of the service account key used to create or exchange credentials for authenticating the service account making the request. This is a scheme-less URI full resource name. For example: \"//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}\"",
           "type": "string"
+        },
+        "serviceDelegationHistory": {
+          "$ref": "ServiceDelegationHistory",
+          "description": "Records the history of delegated resource access across Google services."
         },
         "thirdPartyPrincipal": {
           "additionalProperties": {
@@ -841,6 +845,47 @@
         "thirdPartyPrincipal": {
           "$ref": "ThirdPartyPrincipal",
           "description": "Third party identity as the real authority."
+        }
+      },
+      "type": "object"
+    },
+    "ServiceDelegationHistory": {
+      "description": "The history of delegation across multiple services as the result of the original user's action. Such as \"service A uses its own account to do something for user B\". This differs from ServiceAccountDelegationInfo, which only tracks the history of direct token exchanges (impersonation).",
+      "id": "ServiceDelegationHistory",
+      "properties": {
+        "originalPrincipal": {
+          "description": "The original end user who initiated the request to GCP.",
+          "type": "string"
+        },
+        "serviceMetadata": {
+          "description": "Data identifying the service specific jobs or units of work that were involved in a chain of service calls.",
+          "items": {
+            "$ref": "ServiceMetadata"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceMetadata": {
+      "description": "Metadata describing the service and additional service specific information used to identify the job or unit of work at hand.",
+      "id": "ServiceMetadata",
+      "properties": {
+        "jobMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Additional metadata provided by service teams to describe service specific job information that was triggered by the original principal.",
+          "type": "object"
+        },
+        "principalSubject": {
+          "description": "A string representing the principal_subject associated with the identity. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name}[{subject}]` If the identity is a Google account (e.g. workspace user account or service account), this will be the email of the prefixed by `serviceAccount:`. For example: `serviceAccount:my-service-account@project-1.iam.gserviceaccount.com`. If the identity is an individual user, the identity will be formatted as: `user:user_ABC@email.com`.",
+          "type": "string"
+        },
+        "serviceDomain": {
+          "description": "The service's fully qualified domain name, e.g. \"dataproc.googleapis.com\".",
+          "type": "string"
         }
       },
       "type": "object"

@@ -297,6 +297,10 @@ export namespace servicecontrol_v2 {
      */
     serviceAccountKeyName?: string | null;
     /**
+     * Records the history of delegated resource access across Google services.
+     */
+    serviceDelegationHistory?: Schema$ServiceDelegationHistory;
+    /**
      * The third party identification (if any) of the authenticated user making the request. When the JSON object represented here has a proto equivalent, the proto name will be indicated in the `@type` property.
      */
     thirdPartyPrincipal?: {[key: string]: any} | null;
@@ -651,6 +655,36 @@ export namespace servicecontrol_v2 {
      * Third party identity as the real authority.
      */
     thirdPartyPrincipal?: Schema$ThirdPartyPrincipal;
+  }
+  /**
+   * The history of delegation across multiple services as the result of the original user's action. Such as "service A uses its own account to do something for user B". This differs from ServiceAccountDelegationInfo, which only tracks the history of direct token exchanges (impersonation).
+   */
+  export interface Schema$ServiceDelegationHistory {
+    /**
+     * The original end user who initiated the request to GCP.
+     */
+    originalPrincipal?: string | null;
+    /**
+     * Data identifying the service specific jobs or units of work that were involved in a chain of service calls.
+     */
+    serviceMetadata?: Schema$ServiceMetadata[];
+  }
+  /**
+   * Metadata describing the service and additional service specific information used to identify the job or unit of work at hand.
+   */
+  export interface Schema$ServiceMetadata {
+    /**
+     * Additional metadata provided by service teams to describe service specific job information that was triggered by the original principal.
+     */
+    jobMetadata?: {[key: string]: any} | null;
+    /**
+     * A string representing the principal_subject associated with the identity. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]` If the identity is a Google account (e.g. workspace user account or service account), this will be the email of the prefixed by `serviceAccount:`. For example: `serviceAccount:my-service-account@project-1.iam.gserviceaccount.com`. If the identity is an individual user, the identity will be formatted as: `user:user_ABC@email.com`.
+     */
+    principalSubject?: string | null;
+    /**
+     * The service's fully qualified domain name, e.g. "dataproc.googleapis.com".
+     */
+    serviceDomain?: string | null;
   }
   /**
    * The context of a span. This is attached to an Exemplar in Distribution values during aggregation. It contains the name of a span with format: projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]
