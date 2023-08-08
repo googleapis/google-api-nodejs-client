@@ -100,7 +100,7 @@ export namespace clouddeploy_v1 {
   }
 
   /**
-   * Google Cloud Deploy API
+   * Cloud Deploy API
    *
    *
    *
@@ -266,6 +266,14 @@ export namespace clouddeploy_v1 {
      */
     percentages?: number[] | null;
     /**
+     * Optional. Configuration for the postdeploy job of the last phase. If this is not configured, postdeploy job will not be present.
+     */
+    postdeploy?: Schema$Postdeploy;
+    /**
+     * Optional. Configuration for the predeploy job of the first phase. If this is not configured, predeploy job will not be present.
+     */
+    predeploy?: Schema$Predeploy;
+    /**
      * Whether to run verify tests after each percentage deployment.
      */
     verify?: boolean | null;
@@ -413,11 +421,11 @@ export namespace clouddeploy_v1 {
     serviceAccount?: string | null;
   }
   /**
-   * A `DeliveryPipeline` resource in the Google Cloud Deploy API. A `DeliveryPipeline` defines a pipeline through which a Skaffold configuration can progress.
+   * A `DeliveryPipeline` resource in the Cloud Deploy API. A `DeliveryPipeline` defines a pipeline through which a Skaffold configuration can progress.
    */
   export interface Schema$DeliveryPipeline {
     /**
-     * User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy.
+     * User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -437,7 +445,7 @@ export namespace clouddeploy_v1 {
      */
     etag?: string | null;
     /**
-     * Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     * Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -538,6 +546,14 @@ export namespace clouddeploy_v1 {
      */
     deployJob?: Schema$Job;
     /**
+     * Output only. The postdeploy Job. This is the postdeploy job in the phase. This is the last job of the phase.
+     */
+    postdeployJob?: Schema$Job;
+    /**
+     * Output only. The predeploy Job. This is the predeploy job in the phase. This is the first job of the phase.
+     */
+    predeployJob?: Schema$Job;
+    /**
      * Output only. The verify Job. Runs after a deploy if the deploy succeeds.
      */
     verifyJob?: Schema$Job;
@@ -626,6 +642,10 @@ export namespace clouddeploy_v1 {
      */
     httpRoute?: string | null;
     /**
+     * Optional. The time to wait for route updates to propagate. The maximum configurable time is 3 hours, in seconds format. If unspecified, there is no wait time.
+     */
+    routeUpdateWaitTime?: string | null;
+    /**
      * Required. Name of the Kubernetes Service.
      */
     service?: string | null;
@@ -685,6 +705,14 @@ export namespace clouddeploy_v1 {
      */
     jobRun?: string | null;
     /**
+     * Output only. A postdeploy Job.
+     */
+    postdeployJob?: Schema$PostdeployJob;
+    /**
+     * Output only. A predeploy Job.
+     */
+    predeployJob?: Schema$PredeployJob;
+    /**
      * Output only. Additional information on why the Job was skipped, if available.
      */
     skipMessage?: string | null;
@@ -698,7 +726,7 @@ export namespace clouddeploy_v1 {
     verifyJob?: Schema$VerifyJob;
   }
   /**
-   * A `JobRun` resource in the Google Cloud Deploy API. A `JobRun` contains information of a single `Rollout` job evaluation.
+   * A `JobRun` resource in the Cloud Deploy API. A `JobRun` contains information of a single `Rollout` job evaluation.
    */
   export interface Schema$JobRun {
     /**
@@ -737,6 +765,14 @@ export namespace clouddeploy_v1 {
      * Output only. ID of the `Rollout` phase this `JobRun` belongs in.
      */
     phaseId?: string | null;
+    /**
+     * Output only. Information specific to a postdeploy `JobRun`.
+     */
+    postdeployJobRun?: Schema$PostdeployJobRun;
+    /**
+     * Output only. Information specific to a predeploy `JobRun`.
+     */
+    predeployJobRun?: Schema$PredeployJobRun;
     /**
      * Output only. Time at which the `JobRun` was started.
      */
@@ -1067,6 +1103,14 @@ export namespace clouddeploy_v1 {
      */
     phaseId?: string | null;
     /**
+     * Optional. Configuration for the postdeploy job of this phase. If this is not configured, postdeploy job will not be present for this phase.
+     */
+    postdeploy?: Schema$Postdeploy;
+    /**
+     * Optional. Configuration for the predeploy job of this phase. If this is not configured, predeploy job will not be present for this phase.
+     */
+    predeploy?: Schema$Predeploy;
+    /**
      * Skaffold profiles to use when rendering the manifest for this phase. These are in addition to the profiles list specified in the `DeliveryPipeline` stage.
      */
     profiles?: string[] | null;
@@ -1127,6 +1171,76 @@ export namespace clouddeploy_v1 {
     version?: number | null;
   }
   /**
+   * Postdeploy contains the postdeploy job configuration information.
+   */
+  export interface Schema$Postdeploy {
+    /**
+     * Optional. A sequence of skaffold custom actions to invoke during execution of the postdeploy job.
+     */
+    actions?: string[] | null;
+  }
+  /**
+   * A postdeploy Job.
+   */
+  export interface Schema$PostdeployJob {
+    /**
+     * Output only. The custom actions that the postdeploy Job executes.
+     */
+    actions?: string[] | null;
+  }
+  /**
+   * PostdeployJobRun contains information specific to a postdeploy `JobRun`.
+   */
+  export interface Schema$PostdeployJobRun {
+    /**
+     * Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the postdeploy Job. Format is projects/{project\}/locations/{location\}/builds/{build\}.
+     */
+    build?: string | null;
+    /**
+     * Output only. The reason the postdeploy failed. This will always be unspecified while the postdeploy is in progress or if it succeeded.
+     */
+    failureCause?: string | null;
+    /**
+     * Output only. Additional information about the postdeploy failure, if available.
+     */
+    failureMessage?: string | null;
+  }
+  /**
+   * Predeploy contains the predeploy job configuration information.
+   */
+  export interface Schema$Predeploy {
+    /**
+     * Optional. A sequence of skaffold custom actions to invoke during execution of the predeploy job.
+     */
+    actions?: string[] | null;
+  }
+  /**
+   * A predeploy Job.
+   */
+  export interface Schema$PredeployJob {
+    /**
+     * Output only. The custom actions that the predeploy Job executes.
+     */
+    actions?: string[] | null;
+  }
+  /**
+   * PredeployJobRun contains information specific to a predeploy `JobRun`.
+   */
+  export interface Schema$PredeployJobRun {
+    /**
+     * Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the predeploy Job. Format is projects/{project\}/locations/{location\}/builds/{build\}.
+     */
+    build?: string | null;
+    /**
+     * Output only. The reason the predeploy failed. This will always be unspecified while the predeploy is in progress or if it succeeded.
+     */
+    failureCause?: string | null;
+    /**
+     * Output only. Additional information about the predeploy failure, if available.
+     */
+    failureMessage?: string | null;
+  }
+  /**
    * Execution using a private Cloud Build pool.
    */
   export interface Schema$PrivatePool {
@@ -1144,7 +1258,7 @@ export namespace clouddeploy_v1 {
     workerPool?: string | null;
   }
   /**
-   * A `Release` resource in the Google Cloud Deploy API. A `Release` defines a specific Skaffold configuration instance that can be deployed.
+   * A `Release` resource in the Cloud Deploy API. A `Release` defines a specific Skaffold configuration instance that can be deployed.
    */
   export interface Schema$Release {
     /**
@@ -1152,7 +1266,7 @@ export namespace clouddeploy_v1 {
      */
     abandoned?: boolean | null;
     /**
-     * User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     * User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -1184,7 +1298,7 @@ export namespace clouddeploy_v1 {
      */
     etag?: string | null;
     /**
-     * Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     * Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1212,7 +1326,7 @@ export namespace clouddeploy_v1 {
      */
     skaffoldConfigUri?: string | null;
     /**
-     * The Skaffold version to use when operating on this release, such as "1.20.0". Not all versions are valid; Google Cloud Deploy supports a specific set of versions. If unset, the most recent supported Skaffold version will be used.
+     * The Skaffold version to use when operating on this release, such as "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set of versions. If unset, the most recent supported Skaffold version will be used.
      */
     skaffoldVersion?: string | null;
     /**
@@ -1311,11 +1425,11 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$RetryJobResponse {}
   /**
-   * A `Rollout` resource in the Google Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`.
+   * A `Rollout` resource in the Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`.
    */
   export interface Schema$Rollout {
     /**
-     * User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     * User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -1367,7 +1481,7 @@ export namespace clouddeploy_v1 {
      */
     failureReason?: string | null;
     /**
-     * Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     * Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1544,6 +1658,14 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Standard {
     /**
+     * Optional. Configuration for the postdeploy job. If this is not configured, postdeploy job will not be present.
+     */
+    postdeploy?: Schema$Postdeploy;
+    /**
+     * Optional. Configuration for the predeploy job. If this is not configured, predeploy job will not be present.
+     */
+    predeploy?: Schema$Predeploy;
+    /**
      * Whether to verify a deployment.
      */
     verify?: boolean | null;
@@ -1579,11 +1701,11 @@ export namespace clouddeploy_v1 {
     standard?: Schema$Standard;
   }
   /**
-   * A `Target` resource in the Google Cloud Deploy API. A `Target` defines a location to which a Skaffold configuration can be deployed.
+   * A `Target` resource in the Cloud Deploy API. A `Target` defines a location to which a Skaffold configuration can be deployed.
    */
   export interface Schema$Target {
     /**
-     * Optional. User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     * Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -1615,7 +1737,7 @@ export namespace clouddeploy_v1 {
      */
     gke?: Schema$GkeCluster;
     /**
-     * Optional. Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     * Optional. Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -5636,6 +5758,8 @@ export namespace clouddeploy_v1 {
      *   //   "jobId": "my_jobId",
      *   //   "name": "my_name",
      *   //   "phaseId": "my_phaseId",
+     *   //   "postdeployJobRun": {},
+     *   //   "predeployJobRun": {},
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "uid": "my_uid",
