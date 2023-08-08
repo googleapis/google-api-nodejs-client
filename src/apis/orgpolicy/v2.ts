@@ -200,7 +200,7 @@ export namespace orgpolicy_v2 {
      */
     actionType?: string | null;
     /**
-     * Org policy condition/expression. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")'` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.
+     * Org policy condition/expression. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.
      */
     condition?: string | null;
     /**
@@ -280,7 +280,7 @@ export namespace orgpolicy_v2 {
      */
     dryRunSpec?: Schema$GoogleCloudOrgpolicyV2PolicySpec;
     /**
-     * Immutable. The resource name of the policy. Must be one of the following forms, where constraint_name is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string | null;
     /**
@@ -339,7 +339,7 @@ export namespace orgpolicy_v2 {
     values?: Schema$GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues;
   }
   /**
-   * A message that holds specific allowed and denied values. This message can define specific values and subtrees of the Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a ":". Values prefixed with "is:" are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats: - "projects/", e.g. "projects/tokyo-rain-123" - "folders/", e.g. "folders/1234" - "organizations/", e.g. "organizations/1234" The `supports_under` field of the associated `Constraint` defines whether ancestry prefixes can be used.
+   * A message that holds specific allowed and denied values. This message can define specific values and subtrees of the Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a ":". Values prefixed with "is:" are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats: - `projects/` (for example, `projects/tokyo-rain-123`) - `folders/` (for example, `folders/1234`) - `organizations/` (for example, `organizations/1234`) The `supports_under` field of the associated `Constraint` defines whether ancestry prefixes can be used.
    */
   export interface Schema$GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues {
     /**
@@ -866,7 +866,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.folders.policies.get({
-     *     // Required. Resource name of the policy. See `Policy` for naming requirements.
+     *     // Required. Resource name of the policy. See Policy for naming requirements.
      *     name: 'folders/my-folder/policies/my-policie',
      *   });
      *   console.log(res.data);
@@ -1004,7 +1004,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.folders.policies.getEffectivePolicy({
-     *     // Required. The effective policy to compute. See `Policy` for naming rules.
+     *     // Required. The effective policy to compute. See Policy for naming requirements.
      *     name: 'folders/my-folder/policies/my-policie',
      *   });
      *   console.log(res.data);
@@ -1288,7 +1288,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.folders.policies.patch({
-     *     // Immutable. The resource name of the policy. Must be one of the following forms, where constraint_name is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     *     // Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      *     name: 'folders/my-folder/policies/my-policie',
      *     // Field mask used to specify the fields to be overwritten in the policy by the set. The fields specified in the update_mask are relative to the policy, not the full request.
      *     updateMask: 'placeholder-value',
@@ -1435,14 +1435,14 @@ export namespace orgpolicy_v2 {
   export interface Params$Resource$Folders$Policies$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the policy. See `Policy` for naming requirements.
+     * Required. Resource name of the policy. See Policy for naming requirements.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Policies$Geteffectivepolicy
     extends StandardParameters {
     /**
-     * Required. The effective policy to compute. See `Policy` for naming rules.
+     * Required. The effective policy to compute. See Policy for naming requirements.
      */
     name?: string;
   }
@@ -1464,7 +1464,7 @@ export namespace orgpolicy_v2 {
   export interface Params$Resource$Folders$Policies$Patch
     extends StandardParameters {
     /**
-     * Immutable. The resource name of the policy. Must be one of the following forms, where constraint_name is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string;
     /**
@@ -2761,7 +2761,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.organizations.policies.get({
-     *     // Required. Resource name of the policy. See `Policy` for naming requirements.
+     *     // Required. Resource name of the policy. See Policy for naming requirements.
      *     name: 'organizations/my-organization/policies/my-policie',
      *   });
      *   console.log(res.data);
@@ -2899,7 +2899,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.organizations.policies.getEffectivePolicy({
-     *     // Required. The effective policy to compute. See `Policy` for naming rules.
+     *     // Required. The effective policy to compute. See Policy for naming requirements.
      *     name: 'organizations/my-organization/policies/my-policie',
      *   });
      *   console.log(res.data);
@@ -3184,7 +3184,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.organizations.policies.patch({
-     *     // Immutable. The resource name of the policy. Must be one of the following forms, where constraint_name is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     *     // Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      *     name: 'organizations/my-organization/policies/my-policie',
      *     // Field mask used to specify the fields to be overwritten in the policy by the set. The fields specified in the update_mask are relative to the policy, not the full request.
      *     updateMask: 'placeholder-value',
@@ -3331,14 +3331,14 @@ export namespace orgpolicy_v2 {
   export interface Params$Resource$Organizations$Policies$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the policy. See `Policy` for naming requirements.
+     * Required. Resource name of the policy. See Policy for naming requirements.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Policies$Geteffectivepolicy
     extends StandardParameters {
     /**
-     * Required. The effective policy to compute. See `Policy` for naming rules.
+     * Required. The effective policy to compute. See Policy for naming requirements.
      */
     name?: string;
   }
@@ -3360,7 +3360,7 @@ export namespace orgpolicy_v2 {
   export interface Params$Resource$Organizations$Policies$Patch
     extends StandardParameters {
     /**
-     * Immutable. The resource name of the policy. Must be one of the following forms, where constraint_name is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string;
     /**
@@ -3863,7 +3863,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.projects.policies.get({
-     *     // Required. Resource name of the policy. See `Policy` for naming requirements.
+     *     // Required. Resource name of the policy. See Policy for naming requirements.
      *     name: 'projects/my-project/policies/my-policie',
      *   });
      *   console.log(res.data);
@@ -4001,7 +4001,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.projects.policies.getEffectivePolicy({
-     *     // Required. The effective policy to compute. See `Policy` for naming rules.
+     *     // Required. The effective policy to compute. See Policy for naming requirements.
      *     name: 'projects/my-project/policies/my-policie',
      *   });
      *   console.log(res.data);
@@ -4285,7 +4285,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.projects.policies.patch({
-     *     // Immutable. The resource name of the policy. Must be one of the following forms, where constraint_name is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     *     // Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      *     name: 'projects/my-project/policies/my-policie',
      *     // Field mask used to specify the fields to be overwritten in the policy by the set. The fields specified in the update_mask are relative to the policy, not the full request.
      *     updateMask: 'placeholder-value',
@@ -4432,14 +4432,14 @@ export namespace orgpolicy_v2 {
   export interface Params$Resource$Projects$Policies$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the policy. See `Policy` for naming requirements.
+     * Required. Resource name of the policy. See Policy for naming requirements.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Policies$Geteffectivepolicy
     extends StandardParameters {
     /**
-     * Required. The effective policy to compute. See `Policy` for naming rules.
+     * Required. The effective policy to compute. See Policy for naming requirements.
      */
     name?: string;
   }
@@ -4461,7 +4461,7 @@ export namespace orgpolicy_v2 {
   export interface Params$Resource$Projects$Policies$Patch
     extends StandardParameters {
     /**
-     * Immutable. The resource name of the policy. Must be one of the following forms, where constraint_name is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string;
     /**
