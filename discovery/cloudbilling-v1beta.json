@@ -20,7 +20,7 @@
   "canonicalName": "Cloudbilling",
   "description": "Allows developers to manage billing for their Google Cloud Platform projects programmatically.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/billing/",
+  "documentationLink": "https://cloud.google.com/billing/docs/apis",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -664,7 +664,7 @@
       }
     }
   },
-  "revision": "20230710",
+  "revision": "20230803",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "CacheFillRegions": {
@@ -1233,8 +1233,8 @@
           "description": "Interval at which usage is aggregated to compute cost. Example: \"MONTHLY\" interval indicates that usage is aggregated every month.",
           "enum": [
             "INTERVAL_UNSPECIFIED",
-            "MONTHLY",
-            "DAILY"
+            "INTERVAL_MONTHLY",
+            "INTERVAL_DAILY"
           ],
           "enumDescriptions": [
             "Default unspecified value.",
@@ -1247,8 +1247,8 @@
           "description": "Level at which usage is aggregated to compute cost. Example: \"ACCOUNT\" level indicates that usage is aggregated across all projects in a single account.",
           "enum": [
             "LEVEL_UNSPECIFIED",
-            "ACCOUNT",
-            "PROJECT"
+            "LEVEL_ACCOUNT",
+            "LEVEL_PROJECT"
           ],
           "enumDescriptions": [
             "Default unspecified value.",
@@ -1608,9 +1608,9 @@
           "description": "Type of geographic taxonomy associated with the billing account SKU group SKU.",
           "enum": [
             "TYPE_UNSPECIFIED",
-            "GLOBAL",
-            "REGIONAL",
-            "MULTI_REGIONAL"
+            "TYPE_GLOBAL",
+            "TYPE_REGIONAL",
+            "TYPE_MULTI_REGIONAL"
           ],
           "enumDescriptions": [
             "Default value. Unspecified type.",
@@ -1759,9 +1759,9 @@
           "description": "Type of geographic taxonomy associated with the billing account SKU.",
           "enum": [
             "TYPE_UNSPECIFIED",
-            "GLOBAL",
-            "REGIONAL",
-            "MULTI_REGIONAL"
+            "TYPE_GLOBAL",
+            "TYPE_REGIONAL",
+            "TYPE_MULTI_REGIONAL"
           ],
           "enumDescriptions": [
             "Default value. Unspecified type.",
@@ -1867,8 +1867,8 @@
           "description": "Interval at which usage is aggregated to compute cost. Example: \"MONTHLY\" interval indicates that usage is aggregated every month.",
           "enum": [
             "INTERVAL_UNSPECIFIED",
-            "MONTHLY",
-            "DAILY"
+            "INTERVAL_MONTHLY",
+            "INTERVAL_DAILY"
           ],
           "enumDescriptions": [
             "Default unspecified value.",
@@ -1881,8 +1881,8 @@
           "description": "Level at which usage is aggregated to compute cost. Example: \"ACCOUNT\" level indicates that usage is aggregated across all projects in a single account.",
           "enum": [
             "LEVEL_UNSPECIFIED",
-            "ACCOUNT",
-            "PROJECT"
+            "LEVEL_ACCOUNT",
+            "LEVEL_PROJECT"
           ],
           "enumDescriptions": [
             "Default unspecified value.",
@@ -2026,9 +2026,9 @@
           "description": "Type of geographic taxonomy associated with the SKU group SKU.",
           "enum": [
             "TYPE_UNSPECIFIED",
-            "GLOBAL",
-            "REGIONAL",
-            "MULTI_REGIONAL"
+            "TYPE_GLOBAL",
+            "TYPE_REGIONAL",
+            "TYPE_MULTI_REGIONAL"
           ],
           "enumDescriptions": [
             "Default value. Unspecified type.",
