@@ -37,7 +37,7 @@ export function firebasehosting(
 export function firebasehosting<
   T =
     | firebasehosting_v1.Firebasehosting
-    | firebasehosting_v1beta1.Firebasehosting
+    | firebasehosting_v1beta1.Firebasehosting,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
