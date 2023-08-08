@@ -27,7 +27,7 @@ export function advisorynotifications(
   options: advisorynotifications_v1.Options
 ): advisorynotifications_v1.Advisorynotifications;
 export function advisorynotifications<
-  T = advisorynotifications_v1.Advisorynotifications
+  T = advisorynotifications_v1.Advisorynotifications,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | advisorynotifications_v1.Options

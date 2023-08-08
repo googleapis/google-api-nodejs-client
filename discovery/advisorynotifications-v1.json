@@ -204,7 +204,7 @@
       }
     }
   },
-  "revision": "20230402",
+  "revision": "20230729",
   "rootUrl": "https://advisorynotifications.googleapis.com/",
   "schemas": {
     "GoogleCloudAdvisorynotificationsV1Attachment": {
@@ -345,12 +345,16 @@
           "enum": [
             "NOTIFICATION_TYPE_UNSPECIFIED",
             "NOTIFICATION_TYPE_SECURITY_PRIVACY_ADVISORY",
-            "NOTIFICATION_TYPE_SENSITIVE_ACTIONS"
+            "NOTIFICATION_TYPE_SENSITIVE_ACTIONS",
+            "NOTIFICATION_TYPE_SECURITY_MSA",
+            "NOTIFICATION_TYPE_THREAT_HORIZONS"
           ],
           "enumDescriptions": [
             "Default type",
             "Security and privacy advisory notifications",
-            "Sensitive action notifications"
+            "Sensitive action notifications",
+            "General security MSA",
+            "Threat horizons MSA"
           ],
           "type": "string"
         },
