@@ -33,7 +33,7 @@ export function runtimeconfig(
   options: runtimeconfig_v1beta1.Options
 ): runtimeconfig_v1beta1.Runtimeconfig;
 export function runtimeconfig<
-  T = runtimeconfig_v1.Runtimeconfig | runtimeconfig_v1beta1.Runtimeconfig
+  T = runtimeconfig_v1.Runtimeconfig | runtimeconfig_v1beta1.Runtimeconfig,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
