@@ -27,7 +27,7 @@ export function smartdevicemanagement(
   options: smartdevicemanagement_v1.Options
 ): smartdevicemanagement_v1.Smartdevicemanagement;
 export function smartdevicemanagement<
-  T = smartdevicemanagement_v1.Smartdevicemanagement
+  T = smartdevicemanagement_v1.Smartdevicemanagement,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | smartdevicemanagement_v1.Options
