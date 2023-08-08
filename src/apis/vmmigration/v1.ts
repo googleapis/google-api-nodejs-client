@@ -388,6 +388,10 @@ export namespace vmmigration_v1 {
    */
   export interface Schema$CloneJob {
     /**
+     * Output only. Details of the target Persistent Disks in Compute Engine.
+     */
+    computeEngineDisksTargetDetails?: Schema$ComputeEngineDisksTargetDetails;
+    /**
      * Output only. Details of the target VM in Compute Engine.
      */
     computeEngineTargetDetails?: Schema$ComputeEngineTargetDetails;
@@ -446,6 +450,32 @@ export namespace vmmigration_v1 {
     startTime?: string | null;
   }
   /**
+   * ComputeEngineDisksTargetDefaults is a collection of details for creating Persistent Disks in a target Compute Engine project.
+   */
+  export interface Schema$ComputeEngineDisksTargetDefaults {
+    /**
+     * The details of each Persistent Disk to create.
+     */
+    disks?: Schema$PersistentDiskDefaults[];
+    /**
+     * The full path of the resource of type TargetProject which represents the Compute Engine project in which to create the Persistent Disks.
+     */
+    targetProject?: string | null;
+    /**
+     * The zone in which to create the Persistent Disks.
+     */
+    zone?: string | null;
+  }
+  /**
+   * ComputeEngineDisksTargetDetails is a collection of created Persistent Disks details.
+   */
+  export interface Schema$ComputeEngineDisksTargetDetails {
+    /**
+     * The details of each created Persistent Disk.
+     */
+    disks?: Schema$PersistentDisk[];
+  }
+  /**
    * ComputeEngineTargetDefaults is a collection of details for creating a VM in a target Compute Engine project.
    */
   export interface Schema$ComputeEngineTargetDefaults {
@@ -458,7 +488,7 @@ export namespace vmmigration_v1 {
      */
     appliedLicense?: Schema$AppliedLicense;
     /**
-     * Output only. The VM Boot Option, as set in the source vm.
+     * Output only. The VM Boot Option, as set in the source VM.
      */
     bootOption?: string | null;
     /**
@@ -498,11 +528,11 @@ export namespace vmmigration_v1 {
      */
     networkInterfaces?: Schema$NetworkInterface[];
     /**
-     * A map of network tags to associate with the VM.
+     * A list of network tags to associate with the VM.
      */
     networkTags?: string[] | null;
     /**
-     * Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.
+     * Defines whether the instance has Secure Boot enabled. This can be set to true only if the VM boot option is EFI.
      */
     secureBoot?: boolean | null;
     /**
@@ -535,7 +565,7 @@ export namespace vmmigration_v1 {
      */
     appliedLicense?: Schema$AppliedLicense;
     /**
-     * The VM Boot Option, as set in the source vm.
+     * The VM Boot Option, as set in the source VM.
      */
     bootOption?: string | null;
     /**
@@ -575,7 +605,7 @@ export namespace vmmigration_v1 {
      */
     networkInterfaces?: Schema$NetworkInterface[];
     /**
-     * A map of network tags to associate with the VM.
+     * A list of network tags to associate with the VM.
      */
     networkTags?: string[] | null;
     /**
@@ -583,7 +613,7 @@ export namespace vmmigration_v1 {
      */
     project?: string | null;
     /**
-     * Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.
+     * Defines whether the instance has Secure Boot enabled. This can be set to true only if the VM boot option is EFI.
      */
     secureBoot?: boolean | null;
     /**
@@ -633,6 +663,10 @@ export namespace vmmigration_v1 {
    * CutoverJob message describes a cutover of a migrating VM. The CutoverJob is the operation of shutting down the VM, creating a snapshot and clonning the VM using the replicated snapshot.
    */
   export interface Schema$CutoverJob {
+    /**
+     * Output only. Details of the target Persistent Disks in Compute Engine.
+     */
+    computeEngineDisksTargetDetails?: Schema$ComputeEngineDisksTargetDetails;
     /**
      * Output only. Details of the target VM in Compute Engine.
      */
@@ -838,6 +872,10 @@ export namespace vmmigration_v1 {
      * Display name is a user defined name for this group which can be updated.
      */
     displayName?: string | null;
+    /**
+     * Immutable. The target type of this group.
+     */
+    migrationTargetType?: string | null;
     /**
      * Output only. The Group name.
      */
@@ -1094,6 +1132,10 @@ export namespace vmmigration_v1 {
      */
     awsSourceVmDetails?: Schema$AwsSourceVmDetails;
     /**
+     * Details of the target Persistent Disks in Compute Engine.
+     */
+    computeEngineDisksTargetDefaults?: Schema$ComputeEngineDisksTargetDefaults;
+    /**
      * Details of the target VM in Compute Engine.
      */
     computeEngineTargetDefaults?: Schema$ComputeEngineTargetDefaults;
@@ -1303,6 +1345,40 @@ export namespace vmmigration_v1 {
    * Request message for 'PauseMigration' request.
    */
   export interface Schema$PauseMigrationRequest {}
+  /**
+   * Details of a created Persistent Disk.
+   */
+  export interface Schema$PersistentDisk {
+    /**
+     * The URI of the Persistent Disk.
+     */
+    diskUri?: string | null;
+    /**
+     * The ordinal number of the source VM disk.
+     */
+    sourceDiskNumber?: number | null;
+  }
+  /**
+   * Details for creation of a Persistent Disk.
+   */
+  export interface Schema$PersistentDiskDefaults {
+    /**
+     * A map of labels to associate with the Persistent Disk.
+     */
+    additionalLabels?: {[key: string]: string} | null;
+    /**
+     * Optional. The name of the Persistent Disk to create.
+     */
+    diskName?: string | null;
+    /**
+     * The disk type to use.
+     */
+    diskType?: string | null;
+    /**
+     * Required. The ordinal number of the source VM disk.
+     */
+    sourceDiskNumber?: number | null;
+  }
   /**
    * PostProcessingStep contains specific step details.
    */
@@ -2261,6 +2337,7 @@ export namespace vmmigration_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "migrationTargetType": "my_migrationTargetType",
      *       //   "name": "my_name",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -2538,6 +2615,7 @@ export namespace vmmigration_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "migrationTargetType": "my_migrationTargetType",
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -2814,6 +2892,7 @@ export namespace vmmigration_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "migrationTargetType": "my_migrationTargetType",
      *       //   "name": "my_name",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -5595,6 +5674,7 @@ export namespace vmmigration_v1 {
      *       // request body parameters
      *       // {
      *       //   "awsSourceVmDetails": {},
+     *       //   "computeEngineDisksTargetDefaults": {},
      *       //   "computeEngineTargetDefaults": {},
      *       //   "createTime": "my_createTime",
      *       //   "currentSyncInfo": {},
@@ -6033,6 +6113,7 @@ export namespace vmmigration_v1 {
      *   // Example response
      *   // {
      *   //   "awsSourceVmDetails": {},
+     *   //   "computeEngineDisksTargetDefaults": {},
      *   //   "computeEngineTargetDefaults": {},
      *   //   "createTime": "my_createTime",
      *   //   "currentSyncInfo": {},
@@ -6330,6 +6411,7 @@ export namespace vmmigration_v1 {
      *       // request body parameters
      *       // {
      *       //   "awsSourceVmDetails": {},
+     *       //   "computeEngineDisksTargetDefaults": {},
      *       //   "computeEngineTargetDefaults": {},
      *       //   "createTime": "my_createTime",
      *       //   "currentSyncInfo": {},
@@ -7198,6 +7280,7 @@ export namespace vmmigration_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "computeEngineDisksTargetDetails": {},
      *         //   "computeEngineTargetDetails": {},
      *         //   "createTime": "my_createTime",
      *         //   "endTime": "my_endTime",
@@ -7348,6 +7431,7 @@ export namespace vmmigration_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "computeEngineDisksTargetDetails": {},
      *   //   "computeEngineTargetDetails": {},
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
@@ -7846,6 +7930,7 @@ export namespace vmmigration_v1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "computeEngineDisksTargetDetails": {},
      *           //   "computeEngineTargetDetails": {},
      *           //   "createTime": "my_createTime",
      *           //   "endTime": "my_endTime",
@@ -7999,6 +8084,7 @@ export namespace vmmigration_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "computeEngineDisksTargetDetails": {},
      *   //   "computeEngineTargetDetails": {},
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",

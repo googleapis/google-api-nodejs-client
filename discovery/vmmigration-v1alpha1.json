@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20230629",
+  "revision": "20230727",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2382,6 +2382,11 @@
       "description": "CloneJob describes the process of creating a clone of a MigratingVM to the requested target based on the latest successful uploaded snapshots. While the migration cycles of a MigratingVm take place, it is possible to verify the uploaded VM can be started in the cloud, by creating a clone. The clone can be created without any downtime, and it is created using the latest snapshots which are already in the cloud. The cloneJob is only responsible for its work, not its products, which means once it is finished, it will never touch the instance it created. It will only delete it in case of the CloneJob being cancelled or upon failure to clone.",
       "id": "CloneJob",
       "properties": {
+        "computeEngineDisksTargetDetails": {
+          "$ref": "ComputeEngineDisksTargetDetails",
+          "description": "Output only. Details of the target Persistent Disks in Compute Engine.",
+          "readOnly": true
+        },
         "computeEngineTargetDetails": {
           "$ref": "ComputeEngineTargetDetails",
           "description": "Output only. Details of the target VM in Compute Engine.",
@@ -2492,6 +2497,42 @@
       },
       "type": "object"
     },
+    "ComputeEngineDisksTargetDefaults": {
+      "description": "ComputeEngineDisksTargetDefaults is a collection of details for creating Persistent Disks in a target Compute Engine project.",
+      "id": "ComputeEngineDisksTargetDefaults",
+      "properties": {
+        "disks": {
+          "description": "The details of each Persistent Disk to create.",
+          "items": {
+            "$ref": "PersistentDiskDefaults"
+          },
+          "type": "array"
+        },
+        "targetProject": {
+          "description": "The full path of the resource of type TargetProject which represents the Compute Engine project in which to create the Persistent Disks.",
+          "type": "string"
+        },
+        "zone": {
+          "description": "The zone in which to create the Persistent Disks.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ComputeEngineDisksTargetDetails": {
+      "description": "ComputeEngineDisksTargetDetails is a collection of created Persistent Disks details.",
+      "id": "ComputeEngineDisksTargetDetails",
+      "properties": {
+        "disks": {
+          "description": "The details of each created Persistent Disk.",
+          "items": {
+            "$ref": "PersistentDisk"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ComputeEngineTargetDefaults": {
       "description": "ComputeEngineTargetDefaults is a collection of details for creating a VM in a target Compute Engine project.",
       "id": "ComputeEngineTargetDefaults",
@@ -2509,7 +2550,7 @@
           "readOnly": true
         },
         "bootOption": {
-          "description": "Output only. The VM Boot Option, as set in the source vm.",
+          "description": "Output only. The VM Boot Option, as set in the source VM.",
           "enum": [
             "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
             "COMPUTE_ENGINE_BOOT_OPTION_EFI",
@@ -2591,14 +2632,14 @@
           "type": "array"
         },
         "networkTags": {
-          "description": "A map of network tags to associate with the VM.",
+          "description": "A list of network tags to associate with the VM.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "secureBoot": {
-          "description": "Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.",
+          "description": "Defines whether the instance has Secure Boot enabled. This can be set to true only if the VM boot option is EFI.",
           "type": "boolean"
         },
         "serviceAccount": {
@@ -2636,7 +2677,7 @@
           "description": "The OS license returned from the adaptation module report."
         },
         "bootOption": {
-          "description": "The VM Boot Option, as set in the source vm.",
+          "description": "The VM Boot Option, as set in the source VM.",
           "enum": [
             "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
             "COMPUTE_ENGINE_BOOT_OPTION_EFI",
@@ -2717,7 +2758,7 @@
           "type": "array"
         },
         "networkTags": {
-          "description": "A map of network tags to associate with the VM.",
+          "description": "A list of network tags to associate with the VM.",
           "items": {
             "type": "string"
           },
@@ -2728,7 +2769,7 @@
           "type": "string"
         },
         "secureBoot": {
-          "description": "Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.",
+          "description": "Defines whether the instance has Secure Boot enabled. This can be set to true only if the VM boot option is EFI.",
           "type": "boolean"
         },
         "serviceAccount": {
@@ -2814,6 +2855,11 @@
       "description": "CutoverJob message describes a cutover of a migrating VM. The CutoverJob is the operation of shutting down the VM, creating a snapshot and clonning the VM using the replicated snapshot.",
       "id": "CutoverJob",
       "properties": {
+        "computeEngineDisksTargetDetails": {
+          "$ref": "ComputeEngineDisksTargetDetails",
+          "description": "Output only. Details of the target Persistent Disks in Compute Engine.",
+          "readOnly": true
+        },
         "computeEngineTargetDetails": {
           "$ref": "ComputeEngineTargetDetails",
           "description": "Output only. Details of the target VM in Compute Engine.",
@@ -3124,6 +3170,20 @@
         },
         "displayName": {
           "description": "Display name is a user defined name for this group which can be updated.",
+          "type": "string"
+        },
+        "migrationTargetType": {
+          "description": "Immutable. The target type of this group.",
+          "enum": [
+            "MIGRATION_TARGET_TYPE_UNSPECIFIED",
+            "MIGRATION_TARGET_TYPE_GCE",
+            "MIGRATION_TARGET_TYPE_DISKS"
+          ],
+          "enumDescriptions": [
+            "Group type is not specified. This defaults to Compute Engine targets.",
+            "All MigratingVMs in the group must have Compute Engine targets.",
+            "All MigratingVMs in the group must have Compute Engine Disks targets."
+          ],
           "type": "string"
         },
         "name": {
@@ -3513,6 +3573,10 @@
           "description": "Output only. Details of the VM from an AWS source.",
           "readOnly": true
         },
+        "computeEngineDisksTargetDefaults": {
+          "$ref": "ComputeEngineDisksTargetDefaults",
+          "description": "Details of the target Persistent Disks in Compute Engine."
+        },
         "computeEngineTargetDefaults": {
           "$ref": "ComputeEngineTargetDefaults",
           "description": "Details of the target VM in Compute Engine."
@@ -3862,6 +3926,61 @@
       "properties": {},
       "type": "object"
     },
+    "PersistentDisk": {
+      "description": "Details of a created Persistent Disk.",
+      "id": "PersistentDisk",
+      "properties": {
+        "diskUri": {
+          "description": "The URI of the Persistent Disk.",
+          "type": "string"
+        },
+        "sourceDiskNumber": {
+          "description": "The ordinal number of the source VM disk.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PersistentDiskDefaults": {
+      "description": "Details for creation of a Persistent Disk.",
+      "id": "PersistentDiskDefaults",
+      "properties": {
+        "additionalLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map of labels to associate with the Persistent Disk.",
+          "type": "object"
+        },
+        "diskName": {
+          "description": "Optional. The name of the Persistent Disk to create.",
+          "type": "string"
+        },
+        "diskType": {
+          "description": "The disk type to use.",
+          "enum": [
+            "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
+            "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
+            "COMPUTE_ENGINE_DISK_TYPE_SSD",
+            "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
+          ],
+          "enumDescriptions": [
+            "An unspecified disk type. Will be used as STANDARD.",
+            "A Standard disk type.",
+            "SSD hard disk type.",
+            "An alternative to SSD persistent disks that balance performance and cost."
+          ],
+          "type": "string"
+        },
+        "sourceDiskNumber": {
+          "description": "Required. The ordinal number of the source VM disk.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "PostProcessingStep": {
       "description": "PostProcessingStep contains specific step details.",
       "id": "PostProcessingStep",
@@ -4204,7 +4323,7 @@
           "readOnly": true
         },
         "bootOption": {
-          "description": "Output only. The VM Boot Option, as set in the source vm.",
+          "description": "Output only. The VM Boot Option, as set in the source VM.",
           "enum": [
             "BOOT_OPTION_UNSPECIFIED",
             "EFI",
@@ -4298,7 +4417,7 @@
           "type": "array"
         },
         "networkTags": {
-          "description": "A map of network tags to associate with the VM.",
+          "description": "A list of network tags to associate with the VM.",
           "items": {
             "type": "string"
           },
