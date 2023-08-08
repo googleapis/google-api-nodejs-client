@@ -60,7 +60,7 @@ export function cloudfunctions<
     | cloudfunctions_v1beta2.Cloudfunctions
     | cloudfunctions_v2.Cloudfunctions
     | cloudfunctions_v2alpha.Cloudfunctions
-    | cloudfunctions_v2beta.Cloudfunctions
+    | cloudfunctions_v2beta.Cloudfunctions,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
