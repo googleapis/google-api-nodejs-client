@@ -37,7 +37,7 @@ export function networkmanagement(
 export function networkmanagement<
   T =
     | networkmanagement_v1.Networkmanagement
-    | networkmanagement_v1beta1.Networkmanagement
+    | networkmanagement_v1beta1.Networkmanagement,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
