@@ -2059,7 +2059,7 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20230727",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3645,7 +3645,7 @@
           "type": "string"
         },
         "brands": {
-          "description": "The brands of the product. A maximum of 30 brands are allowed unless overridden via pantheon UI. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).",
+          "description": "The brands of the product. A maximum of 30 brands are allowed unless overridden through the Google Cloud console. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).",
           "items": {
             "type": "string"
           },
@@ -5364,20 +5364,6 @@
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Retail Search."
-          ],
-          "type": "string"
-        },
-        "searchSolutionUseCase": {
-          "description": "Search solution use case that the project has enrolled.",
-          "enum": [
-            "SEARCH_SOLUTION_USE_CASE_UNSPECIFIED",
-            "SEARCH_SOLUTION_USE_CASE_SEARCH",
-            "SEARCH_SOLUTION_USE_CASE_BROWSE"
-          ],
-          "enumDescriptions": [
-            "The value when it's unspecified. In this case, server behavior defaults to SEARCH_SOLUTION_USE_CASE_SEARCH.",
-            "Search use case. Expects the traffic has a non-empty query.",
-            "Browse use case. Expects the traffic has an empty query."
           ],
           "type": "string"
         }

@@ -775,10 +775,6 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaEnrollSolutionRequest {
     /**
-     * Solution use case to enroll. Currently settable for Browse to enroll. It should be only set when [solution] is set as SolutionType.SOLUTION_TYPE_SEARCH or an INVALID_ARGUMENT error is thrown.
-     */
-    searchSolutionUseCase?: string | null;
-    /**
      * Required. Solution to enroll.
      */
     solution?: string | null;
@@ -791,10 +787,6 @@ export namespace retail_v2alpha {
      * Retail API solution that the project has enrolled.
      */
     enrolledSolution?: string | null;
-    /**
-     * Search solution use case that the project has enrolled.
-     */
-    searchSolutionUseCase?: string | null;
   }
   /**
    * Metadata for active A/B testing Experiment.
@@ -1623,7 +1615,7 @@ export namespace retail_v2alpha {
      */
     availableTime?: string | null;
     /**
-     * The brands of the product. A maximum of 30 brands are allowed unless overridden via pantheon UI. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).
+     * The brands of the product. A maximum of 30 brands are allowed unless overridden through the Google Cloud console. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).
      */
     brands?: string[] | null;
     /**
@@ -3686,7 +3678,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * Enrolls retail API solution for the project. Recommendation solution is enrolled by default when your project enables Retail API. You don't need to call this API for the recommendation solution.
+     * The method enrolls a solution of type Retail Search into a project. The Recommendations AI solution type is enrolled by default when your project enables Retail API, so you don't need to call the enrollSolution method for recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -3719,7 +3711,6 @@ export namespace retail_v2alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "searchSolutionUseCase": "my_searchSolutionUseCase",
      *       //   "solution": "my_solution"
      *       // }
      *     },
@@ -3835,7 +3826,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * Gets the project. Throws NOT_FOUND if the project wasn't initialized for Retail API Service.
+     * Gets the project. Throws `NOT_FOUND` if the project wasn't initialized for the Retail API service.
      * @example
      * ```js
      * // Before running the sample:

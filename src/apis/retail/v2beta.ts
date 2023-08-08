@@ -322,10 +322,6 @@ export namespace retail_v2beta {
      * Retail API solution that the project has enrolled.
      */
     enrolledSolution?: string | null;
-    /**
-     * Search solution use case that the project has enrolled.
-     */
-    searchSolutionUseCase?: string | null;
   }
   /**
    * Configuration of destination for Export related errors.
@@ -2034,7 +2030,7 @@ export namespace retail_v2beta {
      */
     availableTime?: string | null;
     /**
-     * The brands of the product. A maximum of 30 brands are allowed unless overridden via pantheon UI. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).
+     * The brands of the product. A maximum of 30 brands are allowed unless overridden through the Google Cloud console. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).
      */
     brands?: string[] | null;
     /**
