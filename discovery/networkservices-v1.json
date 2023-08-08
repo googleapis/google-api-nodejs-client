@@ -2148,7 +2148,7 @@
       }
     }
   },
-  "revision": "20230630",
+  "revision": "20230724",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3154,7 +3154,7 @@
         },
         "requestHeaderModifier": {
           "$ref": "HttpRouteHeaderModifier",
-          "description": "The specification for modifying the headers of a matching request prior to delivery of the request to the destination."
+          "description": "The specification for modifying the headers of a matching request prior to delivery of the request to the destination. If HeaderModifiers are set on both the Destination and the RouteAction, they will be merged. Conflicts between the two will not be resolved on the configuration."
         },
         "requestMirrorPolicy": {
           "$ref": "HttpRouteRequestMirrorPolicy",
@@ -3162,7 +3162,7 @@
         },
         "responseHeaderModifier": {
           "$ref": "HttpRouteHeaderModifier",
-          "description": "The specification for modifying the headers of a response prior to sending the response back to the client."
+          "description": "The specification for modifying the headers of a response prior to sending the response back to the client. If HeaderModifiers are set on both the Destination and the RouteAction, they will be merged. Conflicts between the two will not be resolved on the configuration."
         },
         "retryPolicy": {
           "$ref": "HttpRouteRetryPolicy",
