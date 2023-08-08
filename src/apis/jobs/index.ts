@@ -35,7 +35,7 @@ export function jobs(options: jobs_v3p1beta1.Options): jobs_v3p1beta1.Jobs;
 export function jobs(version: 'v4'): jobs_v4.Jobs;
 export function jobs(options: jobs_v4.Options): jobs_v4.Jobs;
 export function jobs<
-  T = jobs_v2.Jobs | jobs_v3.Jobs | jobs_v3p1beta1.Jobs | jobs_v4.Jobs
+  T = jobs_v2.Jobs | jobs_v3.Jobs | jobs_v3p1beta1.Jobs | jobs_v4.Jobs,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
