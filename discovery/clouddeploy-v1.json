@@ -1451,7 +1451,7 @@
       }
     }
   },
-  "revision": "20230621",
+  "revision": "20230727",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -1649,6 +1649,14 @@
             "type": "integer"
           },
           "type": "array"
+        },
+        "postdeploy": {
+          "$ref": "Postdeploy",
+          "description": "Optional. Configuration for the postdeploy job of the last phase. If this is not configured, postdeploy job will not be present."
+        },
+        "predeploy": {
+          "$ref": "Predeploy",
+          "description": "Optional. Configuration for the predeploy job of the first phase. If this is not configured, predeploy job will not be present."
         },
         "verify": {
           "description": "Whether to run verify tests after each percentage deployment.",
@@ -1854,14 +1862,14 @@
       "type": "object"
     },
     "DeliveryPipeline": {
-      "description": "A `DeliveryPipeline` resource in the Google Cloud Deploy API. A `DeliveryPipeline` defines a pipeline through which a Skaffold configuration can progress.",
+      "description": "A `DeliveryPipeline` resource in the Cloud Deploy API. A `DeliveryPipeline` defines a pipeline through which a Skaffold configuration can progress.",
       "id": "DeliveryPipeline",
       "properties": {
         "annotations": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy.",
+          "description": "User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy.",
           "type": "object"
         },
         "condition": {
@@ -1887,7 +1895,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.",
+          "description": "Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.",
           "type": "object"
         },
         "name": {
@@ -1935,9 +1943,13 @@
             "TYPE_PUBSUB_NOTIFICATION_FAILURE",
             "TYPE_RESOURCE_STATE_CHANGE",
             "TYPE_PROCESS_ABORTED",
+            "TYPE_RESTRICTION_VIOLATED",
+            "TYPE_RESOURCE_DELETED",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
+            false,
             false,
             false,
             false,
@@ -1949,6 +1961,8 @@
             "A Pub/Sub notification failed to be sent.",
             "Resource state changed.",
             "A process aborted.",
+            "Restriction check failed.",
+            "Resource deleted.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -2008,11 +2022,11 @@
           ],
           "enumDescriptions": [
             "No reason for failure is specified.",
-            "Cloud Build is not available, either because it is not enabled or because Google Cloud Deploy has insufficient permissions. See [Required permission](/deploy/docs/cloud-deploy-service-account#required_permissions).",
+            "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [Required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The deploy operation did not complete successfully; check Cloud Build logs.",
             "The deploy build did not complete within the alloted time.",
             "There were missing resources in the runtime environment required for a canary deployment. Check the Cloud Build logs for more information.",
-            "Cloud Build failed to fulfill Google Cloud Deploy's request. See failure_message for additional details."
+            "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
           ],
           "readOnly": true,
           "type": "string"
@@ -2072,6 +2086,16 @@
           "description": "Output only. The deploy Job. This is the deploy job in the phase.",
           "readOnly": true
         },
+        "postdeployJob": {
+          "$ref": "Job",
+          "description": "Output only. The postdeploy Job. This is the postdeploy job in the phase. This is the last job of the phase.",
+          "readOnly": true
+        },
+        "predeployJob": {
+          "$ref": "Job",
+          "description": "Output only. The predeploy Job. This is the predeploy job in the phase. This is the first job of the phase.",
+          "readOnly": true
+        },
         "verifyJob": {
           "$ref": "Job",
           "description": "Output only. The verify Job. Runs after a deploy if the deploy succeeds.",
@@ -2118,13 +2142,17 @@
               "EXECUTION_ENVIRONMENT_USAGE_UNSPECIFIED",
               "RENDER",
               "DEPLOY",
-              "VERIFY"
+              "VERIFY",
+              "PREDEPLOY",
+              "POSTDEPLOY"
             ],
             "enumDescriptions": [
               "Default value. This value is unused.",
               "Use for rendering.",
               "Use for deploying and deployment hooks.",
-              "Use for deployment verification."
+              "Use for deployment verification.",
+              "Use for predeploy job execution.",
+              "Use for postdeploy job execution."
             ],
             "type": "string"
           },
@@ -2170,6 +2198,11 @@
         },
         "httpRoute": {
           "description": "Required. Name of the Gateway API HTTPRoute.",
+          "type": "string"
+        },
+        "routeUpdateWaitTime": {
+          "description": "Optional. The time to wait for route updates to propagate. The maximum configurable time is 3 hours, in seconds format. If unspecified, there is no wait time.",
+          "format": "google-duration",
           "type": "string"
         },
         "service": {
@@ -2244,6 +2277,16 @@
           "readOnly": true,
           "type": "string"
         },
+        "postdeployJob": {
+          "$ref": "PostdeployJob",
+          "description": "Output only. A postdeploy Job.",
+          "readOnly": true
+        },
+        "predeployJob": {
+          "$ref": "PredeployJob",
+          "description": "Output only. A predeploy Job.",
+          "readOnly": true
+        },
         "skipMessage": {
           "description": "Output only. Additional information on why the Job was skipped, if available.",
           "readOnly": true,
@@ -2285,7 +2328,7 @@
       "type": "object"
     },
     "JobRun": {
-      "description": "A `JobRun` resource in the Google Cloud Deploy API. A `JobRun` contains information of a single `Rollout` job evaluation.",
+      "description": "A `JobRun` resource in the Cloud Deploy API. A `JobRun` contains information of a single `Rollout` job evaluation.",
       "id": "JobRun",
       "properties": {
         "advanceChildRolloutJobRun": {
@@ -2333,6 +2376,16 @@
           "description": "Output only. ID of the `Rollout` phase this `JobRun` belongs in.",
           "readOnly": true,
           "type": "string"
+        },
+        "postdeployJobRun": {
+          "$ref": "PostdeployJobRun",
+          "description": "Output only. Information specific to a postdeploy `JobRun`.",
+          "readOnly": true
+        },
+        "predeployJobRun": {
+          "$ref": "PredeployJobRun",
+          "description": "Output only. Information specific to a predeploy `JobRun`.",
+          "readOnly": true
         },
         "startTime": {
           "description": "Output only. Time at which the `JobRun` was started.",
@@ -2409,9 +2462,13 @@
             "TYPE_PUBSUB_NOTIFICATION_FAILURE",
             "TYPE_RESOURCE_STATE_CHANGE",
             "TYPE_PROCESS_ABORTED",
+            "TYPE_RESTRICTION_VIOLATED",
+            "TYPE_RESOURCE_DELETED",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
+            false,
             false,
             false,
             false,
@@ -2423,6 +2480,8 @@
             "A Pub/Sub notification failed to be sent.",
             "Resource state changed.",
             "A process aborted.",
+            "Restriction check failed.",
+            "Resource deleted.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -2830,6 +2889,14 @@
           "description": "Required. The ID to assign to the `Rollout` phase. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
           "type": "string"
         },
+        "postdeploy": {
+          "$ref": "Postdeploy",
+          "description": "Optional. Configuration for the postdeploy job of this phase. If this is not configured, postdeploy job will not be present for this phase."
+        },
+        "predeploy": {
+          "$ref": "Predeploy",
+          "description": "Optional. Configuration for the predeploy job of this phase. If this is not configured, predeploy job will not be present for this phase."
+        },
         "profiles": {
           "description": "Skaffold profiles to use when rendering the manifest for this phase. These are in addition to the profiles list specified in the `DeliveryPipeline` stage.",
           "items": {
@@ -2910,6 +2977,136 @@
       },
       "type": "object"
     },
+    "Postdeploy": {
+      "description": "Postdeploy contains the postdeploy job configuration information.",
+      "id": "Postdeploy",
+      "properties": {
+        "actions": {
+          "description": "Optional. A sequence of skaffold custom actions to invoke during execution of the postdeploy job.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PostdeployJob": {
+      "description": "A postdeploy Job.",
+      "id": "PostdeployJob",
+      "properties": {
+        "actions": {
+          "description": "Output only. The custom actions that the postdeploy Job executes.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PostdeployJobRun": {
+      "description": "PostdeployJobRun contains information specific to a postdeploy `JobRun`.",
+      "id": "PostdeployJobRun",
+      "properties": {
+        "build": {
+          "description": "Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the postdeploy Job. Format is projects/{project}/locations/{location}/builds/{build}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "failureCause": {
+          "description": "Output only. The reason the postdeploy failed. This will always be unspecified while the postdeploy is in progress or if it succeeded.",
+          "enum": [
+            "FAILURE_CAUSE_UNSPECIFIED",
+            "CLOUD_BUILD_UNAVAILABLE",
+            "EXECUTION_FAILED",
+            "DEADLINE_EXCEEDED",
+            "CLOUD_BUILD_REQUEST_FAILED"
+          ],
+          "enumDescriptions": [
+            "No reason for failure is specified.",
+            "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
+            "The postdeploy operation did not complete successfully; check Cloud Build logs.",
+            "The postdeploy build did not complete within the alloted time.",
+            "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "failureMessage": {
+          "description": "Output only. Additional information about the postdeploy failure, if available.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Predeploy": {
+      "description": "Predeploy contains the predeploy job configuration information.",
+      "id": "Predeploy",
+      "properties": {
+        "actions": {
+          "description": "Optional. A sequence of skaffold custom actions to invoke during execution of the predeploy job.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PredeployJob": {
+      "description": "A predeploy Job.",
+      "id": "PredeployJob",
+      "properties": {
+        "actions": {
+          "description": "Output only. The custom actions that the predeploy Job executes.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PredeployJobRun": {
+      "description": "PredeployJobRun contains information specific to a predeploy `JobRun`.",
+      "id": "PredeployJobRun",
+      "properties": {
+        "build": {
+          "description": "Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the predeploy Job. Format is projects/{project}/locations/{location}/builds/{build}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "failureCause": {
+          "description": "Output only. The reason the predeploy failed. This will always be unspecified while the predeploy is in progress or if it succeeded.",
+          "enum": [
+            "FAILURE_CAUSE_UNSPECIFIED",
+            "CLOUD_BUILD_UNAVAILABLE",
+            "EXECUTION_FAILED",
+            "DEADLINE_EXCEEDED",
+            "CLOUD_BUILD_REQUEST_FAILED"
+          ],
+          "enumDescriptions": [
+            "No reason for failure is specified.",
+            "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
+            "The predeploy operation did not complete successfully; check Cloud Build logs.",
+            "The predeploy build did not complete within the alloted time.",
+            "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "failureMessage": {
+          "description": "Output only. Additional information about the predeploy failure, if available.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PrivatePool": {
       "description": "Execution using a private Cloud Build pool.",
       "id": "PrivatePool",
@@ -2930,7 +3127,7 @@
       "type": "object"
     },
     "Release": {
-      "description": "A `Release` resource in the Google Cloud Deploy API. A `Release` defines a specific Skaffold configuration instance that can be deployed.",
+      "description": "A `Release` resource in the Cloud Deploy API. A `Release` defines a specific Skaffold configuration instance that can be deployed.",
       "id": "Release",
       "properties": {
         "abandoned": {
@@ -2942,7 +3139,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
+          "description": "User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
           "type": "object"
         },
         "buildArtifacts": {
@@ -2987,7 +3184,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.",
+          "description": "Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.",
           "type": "object"
         },
         "name": {
@@ -3032,7 +3229,7 @@
           "type": "string"
         },
         "skaffoldVersion": {
-          "description": "The Skaffold version to use when operating on this release, such as \"1.20.0\". Not all versions are valid; Google Cloud Deploy supports a specific set of versions. If unset, the most recent supported Skaffold version will be used.",
+          "description": "The Skaffold version to use when operating on this release, such as \"1.20.0\". Not all versions are valid; Cloud Deploy supports a specific set of versions. If unset, the most recent supported Skaffold version will be used.",
           "type": "string"
         },
         "targetArtifacts": {
@@ -3101,9 +3298,13 @@
             "TYPE_PUBSUB_NOTIFICATION_FAILURE",
             "TYPE_RESOURCE_STATE_CHANGE",
             "TYPE_PROCESS_ABORTED",
+            "TYPE_RESTRICTION_VIOLATED",
+            "TYPE_RESOURCE_DELETED",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
+            false,
             false,
             false,
             false,
@@ -3115,6 +3316,8 @@
             "A Pub/Sub notification failed to be sent.",
             "Resource state changed.",
             "A process aborted.",
+            "Restriction check failed.",
+            "Resource deleted.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -3182,14 +3385,14 @@
       "type": "object"
     },
     "Rollout": {
-      "description": "A `Rollout` resource in the Google Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`.",
+      "description": "A `Rollout` resource in the Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`.",
       "id": "Rollout",
       "properties": {
         "annotations": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
+          "description": "User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
           "type": "object"
         },
         "approvalState": {
@@ -3248,13 +3451,13 @@
           ],
           "enumDescriptions": [
             "No reason for failure is specified.",
-            "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](/deploy/docs/cloud-deploy-service-account#required_permissions).",
+            "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The deploy operation did not complete successfully; check Cloud Build logs.",
             "Deployment did not complete within the alloted time.",
             "Release is in a failed state.",
             "Release is abandoned.",
             "No skaffold verify configuration was found.",
-            "Cloud Build failed to fulfill Google Cloud Deploy's request. See failure_message for additional details."
+            "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
           ],
           "readOnly": true,
           "type": "string"
@@ -3293,7 +3496,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.",
+          "description": "Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.",
           "type": "object"
         },
         "metadata": {
@@ -3387,9 +3590,13 @@
             "TYPE_PUBSUB_NOTIFICATION_FAILURE",
             "TYPE_RESOURCE_STATE_CHANGE",
             "TYPE_PROCESS_ABORTED",
+            "TYPE_RESTRICTION_VIOLATED",
+            "TYPE_RESOURCE_DELETED",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
+            false,
             false,
             false,
             false,
@@ -3401,6 +3608,8 @@
             "A Pub/Sub notification failed to be sent.",
             "Resource state changed.",
             "A process aborted.",
+            "Restriction check failed.",
+            "Resource deleted.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -3567,6 +3776,14 @@
       "description": "Standard represents the standard deployment strategy.",
       "id": "Standard",
       "properties": {
+        "postdeploy": {
+          "$ref": "Postdeploy",
+          "description": "Optional. Configuration for the postdeploy job. If this is not configured, postdeploy job will not be present."
+        },
+        "predeploy": {
+          "$ref": "Predeploy",
+          "description": "Optional. Configuration for the predeploy job. If this is not configured, predeploy job will not be present."
+        },
         "verify": {
           "description": "Whether to verify a deployment.",
           "type": "boolean"
@@ -3617,14 +3834,14 @@
       "type": "object"
     },
     "Target": {
-      "description": "A `Target` resource in the Google Cloud Deploy API. A `Target` defines a location to which a Skaffold configuration can be deployed.",
+      "description": "A `Target` resource in the Cloud Deploy API. A `Target` defines a location to which a Skaffold configuration can be deployed.",
       "id": "Target",
       "properties": {
         "annotations": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
+          "description": "Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
           "type": "object"
         },
         "anthosCluster": {
@@ -3667,7 +3884,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.",
+          "description": "Optional. Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.",
           "type": "object"
         },
         "multiTarget": {
@@ -3754,9 +3971,13 @@
             "TYPE_PUBSUB_NOTIFICATION_FAILURE",
             "TYPE_RESOURCE_STATE_CHANGE",
             "TYPE_PROCESS_ABORTED",
+            "TYPE_RESTRICTION_VIOLATED",
+            "TYPE_RESOURCE_DELETED",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
+            false,
+            false,
             false,
             false,
             false,
@@ -3768,6 +3989,8 @@
             "A Pub/Sub notification failed to be sent.",
             "Resource state changed.",
             "A process aborted.",
+            "Restriction check failed.",
+            "Resource deleted.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -3785,13 +4008,15 @@
             "FAILURE_CAUSE_UNSPECIFIED",
             "CLOUD_BUILD_UNAVAILABLE",
             "EXECUTION_FAILED",
-            "CLOUD_BUILD_REQUEST_FAILED"
+            "CLOUD_BUILD_REQUEST_FAILED",
+            "CUSTOM_ACTION_NOT_FOUND"
           ],
           "enumDescriptions": [
             "No reason for failure is specified.",
-            "Cloud Build is not available, either because it is not enabled or because Google Cloud Deploy has insufficient permissions. See [required permission](/deploy/docs/cloud-deploy-service-account#required_permissions).",
+            "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The render operation did not complete successfully; check Cloud Build logs.",
-            "Cloud Build failed to fulfill Google Cloud Deploy's request. See failure_message for additional details."
+            "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details.",
+            "The render operation did not complete successfully because the custom action required for predeploy or postdeploy was not found in the skaffold configuration. See failure_message for additional details."
           ],
           "readOnly": true,
           "type": "string"
@@ -3946,11 +4171,11 @@
           ],
           "enumDescriptions": [
             "No reason for failure is specified.",
-            "Cloud Build is not available, either because it is not enabled or because Google Cloud Deploy has insufficient permissions. See [required permission](/deploy/docs/cloud-deploy-service-account#required_permissions).",
+            "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The verify operation did not complete successfully; check Cloud Build logs.",
             "The verify build did not complete within the alloted time.",
             "No Skaffold verify configuration was found.",
-            "Cloud Build failed to fulfill Google Cloud Deploy's request. See failure_message for additional details."
+            "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
           ],
           "readOnly": true,
           "type": "string"
@@ -3965,7 +4190,7 @@
     }
   },
   "servicePath": "",
-  "title": "Google Cloud Deploy API",
+  "title": "Cloud Deploy API",
   "version": "v1",
   "version_module": true
 }
