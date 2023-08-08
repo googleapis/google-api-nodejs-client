@@ -33,7 +33,7 @@ export function accessapproval(
   options: accessapproval_v1beta1.Options
 ): accessapproval_v1beta1.Accessapproval;
 export function accessapproval<
-  T = accessapproval_v1.Accessapproval | accessapproval_v1beta1.Accessapproval
+  T = accessapproval_v1.Accessapproval | accessapproval_v1beta1.Accessapproval,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
