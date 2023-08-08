@@ -155,7 +155,7 @@ export namespace transcoder_v1 {
     animationStatic?: Schema$AnimationStatic;
   }
   /**
-   * End previous overlay animation from the video. Without AnimationEnd, the overlay object will keep the state of previous animation until the end of the video.
+   * End previous overlay animation from the video. Without `AnimationEnd`, the overlay object will keep the state of previous animation until the end of the video.
    */
   export interface Schema$AnimationEnd {
     /**
@@ -215,11 +215,11 @@ export namespace transcoder_v1 {
     lufs?: number | null;
   }
   /**
-   * The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.
+   * The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs.
    */
   export interface Schema$AudioMapping {
     /**
-     * Required. The `EditAtom.key` that references the atom with audio inputs in the `Job.edit_list`.
+     * Required. The EditAtom.key that references the atom with audio inputs in the JobConfig.edit_list.
      */
     atomKey?: string | null;
     /**
@@ -231,7 +231,7 @@ export namespace transcoder_v1 {
      */
     inputChannel?: number | null;
     /**
-     * Required. The `Input.key` that identifies the input file.
+     * Required. The Input.key that identifies the input file.
      */
     inputKey?: string | null;
     /**
@@ -272,7 +272,7 @@ export namespace transcoder_v1 {
      */
     languageCode?: string | null;
     /**
-     * The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.
+     * The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs.
      */
     mapping?: Schema$AudioMapping[];
     /**
@@ -344,7 +344,7 @@ export namespace transcoder_v1 {
    */
   export interface Schema$DashConfig {
     /**
-     * The segment reference scheme for a `DASH` manifest. The default is `SEGMENT_LIST`
+     * The segment reference scheme for a `DASH` manifest. The default is `SEGMENT_LIST`.
      */
     segmentReferenceScheme?: string | null;
   }
@@ -417,7 +417,7 @@ export namespace transcoder_v1 {
      */
     endTimeOffset?: string | null;
     /**
-     * List of `Input.key`s identifying files that should be used in this atom. The listed `inputs` must have the same timeline.
+     * List of Input.key values identifying files that should be used in this atom. The listed `inputs` must have the same timeline.
      */
     inputs?: string[] | null;
     /**
@@ -500,7 +500,7 @@ export namespace transcoder_v1 {
      */
     aqStrength?: number | null;
     /**
-     * The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than `VideoStream.gop_frame_count` if set. The default is 0.
+     * The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H264CodecSettings.gop_frame_count if set. The default is 0.
      */
     bFrameCount?: number | null;
     /**
@@ -516,7 +516,7 @@ export namespace transcoder_v1 {
      */
     crfLevel?: number | null;
     /**
-     * Use two-pass encoding strategy to achieve better video quality. `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
+     * Use two-pass encoding strategy to achieve better video quality. H264CodecSettings.rate_control_mode must be `vbr`. The default is `false`.
      */
     enableTwoPass?: boolean | null;
     /**
@@ -552,7 +552,7 @@ export namespace transcoder_v1 {
      */
     profile?: string | null;
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
+     * Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
      */
     rateControlMode?: string | null;
     /**
@@ -560,11 +560,11 @@ export namespace transcoder_v1 {
      */
     tune?: string | null;
     /**
-     * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of `VideoStream.vbv_size_bits`.
+     * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H264CodecSettings.vbv_size_bits.
      */
     vbvFullnessBits?: number | null;
     /**
-     * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to `VideoStream.bitrate_bps`.
+     * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to H264CodecSettings.bitrate_bps.
      */
     vbvSizeBits?: number | null;
     /**
@@ -585,7 +585,7 @@ export namespace transcoder_v1 {
      */
     aqStrength?: number | null;
     /**
-     * The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than `VideoStream.gop_frame_count` if set. The default is 0.
+     * The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H265CodecSettings.gop_frame_count if set. The default is 0.
      */
     bFrameCount?: number | null;
     /**
@@ -601,7 +601,7 @@ export namespace transcoder_v1 {
      */
     crfLevel?: number | null;
     /**
-     * Use two-pass encoding strategy to achieve better video quality. `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
+     * Use two-pass encoding strategy to achieve better video quality. H265CodecSettings.rate_control_mode must be `vbr`. The default is `false`.
      */
     enableTwoPass?: boolean | null;
     /**
@@ -633,7 +633,7 @@ export namespace transcoder_v1 {
      */
     profile?: string | null;
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
+     * Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
      */
     rateControlMode?: string | null;
     /**
@@ -641,7 +641,7 @@ export namespace transcoder_v1 {
      */
     tune?: string | null;
     /**
-     * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of `VideoStream.vbv_size_bits`.
+     * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H265CodecSettings.vbv_size_bits.
      */
     vbvFullnessBits?: number | null;
     /**
@@ -683,7 +683,7 @@ export namespace transcoder_v1 {
      */
     preprocessingConfig?: Schema$PreprocessingConfig;
     /**
-     * URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from `Job.input_uri`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
+     * URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from Job.input_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
     uri?: string | null;
   }
@@ -692,7 +692,7 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Job {
     /**
-     * The processing priority of a batch job. This field can only be set for batch mode jobs, and the default value is 0. This value cannot be negative. Higher values correspond to higher priorities for the job.
+     * The processing priority of a batch job. This field can only be set for batch mode jobs. The default value is 0. This value cannot be negative. Higher values correspond to higher priorities for the job.
      */
     batchModePriority?: number | null;
     /**
@@ -708,7 +708,7 @@ export namespace transcoder_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. An error object that describes the reason for the failure. This property is always present when `state` is `FAILED`.
+     * Output only. An error object that describes the reason for the failure. This property is always present when ProcessingState is `FAILED`.
      */
     error?: Schema$Status;
     /**
@@ -761,7 +761,7 @@ export namespace transcoder_v1 {
      */
     adBreaks?: Schema$AdBreak[];
     /**
-     * List of `Edit atom`s. Defines the ultimate timeline of the resulting file or manifest.
+     * List of edit atoms. Defines the ultimate timeline of the resulting file or manifest.
      */
     editList?: Schema$EditAtom[];
     /**
@@ -861,11 +861,11 @@ export namespace transcoder_v1 {
      */
     dash?: Schema$DashConfig;
     /**
-     * The name of the generated file. The default is `manifest` with the extension suffix corresponding to the `Manifest.type`.
+     * The name of the generated file. The default is `manifest` with the extension suffix corresponding to the Manifest.type.
      */
     fileName?: string | null;
     /**
-     * Required. List of user given `MuxStream.key`s that should appear in this manifest. When `Manifest.type` is `HLS`, a media manifest with name `MuxStream.key` and `.m3u8` extension is generated for each element of the `Manifest.mux_streams`.
+     * Required. List of user supplied MuxStream.key values that should appear in this manifest. When Manifest.type is `HLS`, a media manifest with name MuxStream.key and `.m3u8` extension is generated for each element in this list.
      */
     muxStreams?: string[] | null;
     /**
@@ -891,7 +891,7 @@ export namespace transcoder_v1 {
      */
     container?: string | null;
     /**
-     * List of `ElementaryStream.key`s multiplexed in this stream.
+     * List of ElementaryStream.key values multiplexed in this stream.
      */
     elementaryStreams?: string[] | null;
     /**
@@ -899,11 +899,11 @@ export namespace transcoder_v1 {
      */
     encryptionId?: string | null;
     /**
-     * The name of the generated file. The default is `MuxStream.key` with the extension suffix corresponding to the `MuxStream.container`. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.
+     * The name of the generated file. The default is MuxStream.key with the extension suffix corresponding to the MuxStream.container. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.
      */
     fileName?: string | null;
     /**
-     * A unique key for this multiplexed stream. HLS media manifests will be named `MuxStream.key` with the `.m3u8` extension suffix.
+     * A unique key for this multiplexed stream.
      */
     key?: string | null;
     /**
@@ -929,7 +929,7 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Output {
     /**
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. If empty, the value is populated from `Job.output_uri`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
+     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. If empty, the value is populated from Job.output_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
     uri?: string | null;
   }
@@ -938,7 +938,7 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Overlay {
     /**
-     * List of Animations. The list should be chronological, without any time overlap.
+     * List of animations. The list should be chronological, without any time overlap.
      */
     animations?: Schema$Animation[];
     /**
@@ -1106,15 +1106,15 @@ export namespace transcoder_v1 {
     message?: string | null;
   }
   /**
-   * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
+   * The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs.
    */
   export interface Schema$TextMapping {
     /**
-     * Required. The `EditAtom.key` that references atom with text inputs in the `Job.edit_list`.
+     * Required. The EditAtom.key that references atom with text inputs in the JobConfig.edit_list.
      */
     atomKey?: string | null;
     /**
-     * Required. The `Input.key` that identifies the input file.
+     * Required. The Input.key that identifies the input file.
      */
     inputKey?: string | null;
     /**
@@ -1139,7 +1139,7 @@ export namespace transcoder_v1 {
      */
     languageCode?: string | null;
     /**
-     * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
+     * The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs.
      */
     mapping?: Schema$TextMapping[];
   }
@@ -1197,7 +1197,7 @@ export namespace transcoder_v1 {
      */
     profile?: string | null;
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate
+     * Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate
      */
     rateControlMode?: string | null;
     /**
