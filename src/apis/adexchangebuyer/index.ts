@@ -46,7 +46,7 @@ export function adexchangebuyer<
   T =
     | adexchangebuyer_v1_2.Adexchangebuyer
     | adexchangebuyer_v1_3.Adexchangebuyer
-    | adexchangebuyer_v1_4.Adexchangebuyer
+    | adexchangebuyer_v1_4.Adexchangebuyer,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
