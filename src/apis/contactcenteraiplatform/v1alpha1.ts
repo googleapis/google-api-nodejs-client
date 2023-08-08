@@ -137,17 +137,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     givenName?: string | null;
   }
-  export interface Schema$AuthenticationConfig {
-    basicAuthSetting?: Schema$BasicAuthConfig;
-    /**
-     * Name of authentication config. Format: projects/{project\}/locations/{location\}/contactCenters/{contact_center\}/authentication-config
-     */
-    name?: string | null;
-    samlSetting?: Schema$SamlConfig;
-  }
-  export interface Schema$BasicAuthConfig {
-    enabled?: boolean | null;
-  }
   /**
    * The request message for Operations.CancelOperation.
    */
@@ -422,24 +411,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * Contact center instance type.
      */
     contactCenterInstanceSize?: string | null;
-  }
-  export interface Schema$SamlConfig {
-    /**
-     * X.509 public certificate for IdP
-     */
-    cert?: string | null;
-    /**
-     * IdP field that maps to the user’s email address
-     */
-    emailMapping?: string | null;
-    /**
-     * The entity ID for the identity provider. Example: https://[IDP Domain]/saml/metadata
-     */
-    entityId?: string | null;
-    /**
-     * The sso login url. Example: https://[IDP Domain]/saml/sso/login
-     */
-    loginUri?: string | null;
   }
   /**
    * Message storing SAML params to enable Google as IDP.
@@ -1412,145 +1383,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
     }
 
     /**
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     (await contactcenteraiplatform.projects.locations.contactCenters
-     *       .getAuthentication) -
-     *     config({
-     *       // Required. The name of the AuthenticationConfig resource. Format: projects/{project\}/locations/{location\}/contactCenters/{contact_center\}/authentication-config
-     *       name: 'projects/my-project/locations/my-location/contactCenters/my-contactCenter/authentication-config',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "basicAuthSetting": {},
-     *   //   "name": "my_name",
-     *   //   "samlSetting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getAuthenticationConfig(
-      params?: Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AuthenticationConfig>;
-    getAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AuthenticationConfig>,
-      callback: BodyResponseCallback<Schema$AuthenticationConfig>
-    ): void;
-    getAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig,
-      callback: BodyResponseCallback<Schema$AuthenticationConfig>
-    ): void;
-    getAuthenticationConfig(
-      callback: BodyResponseCallback<Schema$AuthenticationConfig>
-    ): void;
-    getAuthenticationConfig(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig
-        | BodyResponseCallback<Schema$AuthenticationConfig>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AuthenticationConfig>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$AuthenticationConfig>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$AuthenticationConfig>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://contactcenteraiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AuthenticationConfig>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AuthenticationConfig>(parameters);
-      }
-    }
-
-    /**
      * Lists ContactCenters in a given project and location.
      * @example
      * ```js
@@ -1854,157 +1686,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
-    /**
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     (await contactcenteraiplatform.projects.locations.contactCenters
-     *       .updateAuthentication) -
-     *     config({
-     *       // Name of authentication config. Format: projects/{project\}/locations/{location\}/contactCenters/{contact_center\}/authentication-config
-     *       name: 'projects/my-project/locations/my-location/contactCenters/my-contactCenter/authentication-config',
-     *       // Required. Indicates which fields in the provided authentication config to update. Must be specified and non-empty.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "basicAuthSetting": {},
-     *         //   "name": "my_name",
-     *         //   "samlSetting": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "basicAuthSetting": {},
-     *   //   "name": "my_name",
-     *   //   "samlSetting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updateAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    updateAuthenticationConfig(
-      params?: Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AuthenticationConfig>;
-    updateAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updateAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AuthenticationConfig>,
-      callback: BodyResponseCallback<Schema$AuthenticationConfig>
-    ): void;
-    updateAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig,
-      callback: BodyResponseCallback<Schema$AuthenticationConfig>
-    ): void;
-    updateAuthenticationConfig(
-      callback: BodyResponseCallback<Schema$AuthenticationConfig>
-    ): void;
-    updateAuthenticationConfig(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig
-        | BodyResponseCallback<Schema$AuthenticationConfig>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AuthenticationConfig>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$AuthenticationConfig>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$AuthenticationConfig>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://contactcenteraiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AuthenticationConfig>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AuthenticationConfig>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Contactcenters$Create
@@ -2042,13 +1723,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
     extends StandardParameters {
     /**
      * Required. Name of the resource
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig
-    extends StandardParameters {
-    /**
-     * Required. The name of the AuthenticationConfig resource. Format: projects/{project\}/locations/{location\}/contactCenters/{contact_center\}/authentication-config
      */
     name?: string;
   }
@@ -2094,22 +1768,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$ContactCenter;
-  }
-  export interface Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig
-    extends StandardParameters {
-    /**
-     * Name of authentication config. Format: projects/{project\}/locations/{location\}/contactCenters/{contact_center\}/authentication-config
-     */
-    name?: string;
-    /**
-     * Required. Indicates which fields in the provided authentication config to update. Must be specified and non-empty.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AuthenticationConfig;
   }
 
   export class Resource$Projects$Locations$Operations {
