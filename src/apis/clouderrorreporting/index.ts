@@ -27,7 +27,7 @@ export function clouderrorreporting(
   options: clouderrorreporting_v1beta1.Options
 ): clouderrorreporting_v1beta1.Clouderrorreporting;
 export function clouderrorreporting<
-  T = clouderrorreporting_v1beta1.Clouderrorreporting
+  T = clouderrorreporting_v1beta1.Clouderrorreporting,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1beta1' | clouderrorreporting_v1beta1.Options
