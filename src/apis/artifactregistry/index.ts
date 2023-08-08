@@ -46,7 +46,7 @@ export function artifactregistry<
   T =
     | artifactregistry_v1.Artifactregistry
     | artifactregistry_v1beta1.Artifactregistry
-    | artifactregistry_v1beta2.Artifactregistry
+    | artifactregistry_v1beta2.Artifactregistry,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
