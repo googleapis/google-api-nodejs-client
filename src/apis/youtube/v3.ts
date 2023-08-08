@@ -1679,6 +1679,27 @@ export namespace youtube_v3 {
      */
     walltimeMs?: string | null;
   }
+  /**
+   * Schedule to insert cuepoints into a broadcast by ads automator.
+   */
+  export interface Schema$CuepointSchedule {
+    /**
+     * This field is semantically required. If it is set false or not set, other fields in this message will be ignored.
+     */
+    enabled?: boolean | null;
+    /**
+     * If set, automatic cuepoint insertion is paused until this timestamp ("No Ad Zone").
+     */
+    pauseAdsUntil?: string | null;
+    /**
+     * Interval frequency that api uses to insert cuepoints automatically.
+     */
+    repeatInterval?: string | null;
+    /**
+     * The strategy to use when scheduling cuepoints.
+     */
+    scheduleStrategy?: string | null;
+  }
   export interface Schema$Entity {
     id?: string | null;
     typeId?: string | null;
@@ -2013,6 +2034,10 @@ export namespace youtube_v3 {
      */
     kind?: string | null;
     /**
+     * The monetizationDetails object contains information about the event's monetization details.
+     */
+    monetizationDetails?: Schema$LiveBroadcastMonetizationDetails;
+    /**
      * The snippet object contains basic details about the event, including its title, description, start time, and end time.
      */
     snippet?: Schema$LiveBroadcastSnippet;
@@ -2129,6 +2154,12 @@ export namespace youtube_v3 {
      * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
+  }
+  /**
+   * Monetization settings of a broadcast.
+   */
+  export interface Schema$LiveBroadcastMonetizationDetails {
+    cuepointSchedule?: Schema$CuepointSchedule;
   }
   /**
    * Basic broadcast information.
@@ -3231,7 +3262,6 @@ export namespace youtube_v3 {
     title?: string | null;
   }
   export interface Schema$PlaylistStatus {
-    podcastStatus?: string | null;
     /**
      * The playlist's privacy status.
      */
@@ -4542,65 +4572,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.abuseReports.insert({
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "abuseTypes": [],
-     *       //   "description": "my_description",
-     *       //   "relatedEntities": [],
-     *       //   "subject": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "abuseTypes": [],
-     *   //   "description": "my_description",
-     *   //   "relatedEntities": [],
-     *   //   "subject": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4708,75 +4679,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.activities.list({
-     *     channelId: 'placeholder-value',
-     *
-     *     home: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *
-     *     mine: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more activity resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in an activity resource, the snippet property contains other properties that identify the type of activity, a display title for the activity, and so forth. If you set *part=snippet*, the API response will also contain all of those nested properties.
-     *     part: 'placeholder-value',
-     *
-     *     publishedAfter: 'placeholder-value',
-     *
-     *     publishedBefore: 'placeholder-value',
-     *
-     *     regionCode: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "prevPageToken": "my_prevPageToken",
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4914,49 +4816,6 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.captions.delete({
-     *     id: 'placeholder-value',
-     *     // ID of the Google+ Page for the channel that the request is be on behalf of
-     *     onBehalfOf: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5041,54 +4900,6 @@ export namespace youtube_v3 {
 
     /**
      * Downloads a caption track.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.captions.download({
-     *     // The ID of the caption track to download, required for One Platform.
-     *     id: 'placeholder-value',
-     *     // ID of the Google+ Page for the channel that the request is be on behalf of
-     *     onBehalfOf: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // Convert the captions into this format. Supported options are sbv, srt, and vtt.
-     *     tfmt: 'placeholder-value',
-     *     // tlang is the language code; machine translate the captions into this language.
-     *     tlang: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5174,75 +4985,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.captions.insert({
-     *     // ID of the Google+ Page for the channel that the request is be on behalf of
-     *     onBehalfOf: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *part* parameter specifies the caption resource parts that the API response will include. Set the parameter value to snippet.
-     *     part: 'placeholder-value',
-     *     // Extra parameter to allow automatically syncing the uploaded caption/transcript with the audio.
-     *     sync: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5333,63 +5075,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.captions.list({
-     *     // Returns the captions with the given IDs for Stubby or Apiary.
-     *     id: 'placeholder-value',
-     *     // ID of the Google+ Page for the channel that the request is on behalf of.
-     *     onBehalfOf: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more caption resource parts that the API response will include. The part names that you can include in the parameter value are id and snippet.
-     *     part: 'placeholder-value',
-     *     // Returns the captions for the specified video.
-     *     videoId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5479,75 +5164,6 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.captions.update({
-     *     // ID of the Google+ Page for the channel that the request is on behalf of.
-     *     onBehalfOf: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more caption resource parts that the API response will include. The part names that you can include in the parameter value are id and snippet.
-     *     part: 'placeholder-value',
-     *     // Extra parameter to allow automatically syncing the uploaded caption/transcript with the audio.
-     *     sync: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5781,72 +5397,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.upload',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.channelBanners.insert({
-     *     // Unused, channel_id is currently derived from the security context of the requestor.
-     *     channelId: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "kind": "my_kind",
-     *       //   "url": "my_url"
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "kind": "my_kind",
-     *   //   "url": "my_url"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5985,82 +5535,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *       'https://www.googleapis.com/auth/youtubepartner-channel-audit',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.channels.list({
-     *     // Return the channels within the specified guide category ID.
-     *     categoryId: 'placeholder-value',
-     *     // Return the channel associated with a YouTube username.
-     *     forUsername: 'placeholder-value',
-     *     // Stands for "host language". Specifies the localization language of the metadata to be filled into snippet.localized. The field is filled with the default metadata if there is no localization in the specified language. The parameter value must be a language code included in the list returned by the i18nLanguages.list method (e.g. en_US, es_MX).
-     *     hl: 'placeholder-value',
-     *     // Return the channels with the specified IDs.
-     *     id: 'placeholder-value',
-     *     // Return the channels managed by the authenticated user.
-     *     managedByMe: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *     // Return the ids of channels owned by the authenticated user.
-     *     mine: 'placeholder-value',
-     *     // Return the channels subscribed to the authenticated user
-     *     mySubscribers: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more channel resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channel resource, the contentDetails property contains other properties, such as the uploads properties. As such, if you set *part=contentDetails*, the API response will also contain all of those nested properties.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "prevPageToken": "my_prevPageToken",
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6150,86 +5624,6 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.channels.update({
-     *     // The *onBehalfOfContentOwner* parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The API currently only allows the parameter value to be set to either brandingSettings or invideoPromotion. (You cannot update both of those parts with a single request.) Note that this method overrides the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "auditDetails": {},
-     *       //   "brandingSettings": {},
-     *       //   "contentDetails": {},
-     *       //   "contentOwnerDetails": {},
-     *       //   "conversionPings": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "localizations": {},
-     *       //   "snippet": {},
-     *       //   "statistics": {},
-     *       //   "status": {},
-     *       //   "topicDetails": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditDetails": {},
-     *   //   "brandingSettings": {},
-     *   //   "contentDetails": {},
-     *   //   "contentOwnerDetails": {},
-     *   //   "conversionPings": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "localizations": {},
-     *   //   "snippet": {},
-     *   //   "statistics": {},
-     *   //   "status": {},
-     *   //   "topicDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6385,48 +5779,6 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.channelSections.delete({
-     *     id: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6512,76 +5864,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.channelSections.insert({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The part names that you can include in the parameter value are snippet and contentDetails.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "localizations": {},
-     *       //   "snippet": {},
-     *       //   "targeting": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "localizations": {},
-     *   //   "snippet": {},
-     *   //   "targeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6669,67 +5951,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.channelSections.list({
-     *     // Return the ChannelSections owned by the specified channel ID.
-     *     channelId: 'placeholder-value',
-     *     // Return content in specified language
-     *     hl: 'placeholder-value',
-     *     // Return the ChannelSections with the given IDs for Stubby or Apiary.
-     *     id: 'placeholder-value',
-     *     // Return the ChannelSections owned by the authenticated user.
-     *     mine: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more channelSection resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, and contentDetails. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a channelSection resource, the snippet property contains other properties, such as a display title for the channelSection. If you set *part=snippet*, the API response will also contain all of those nested properties.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6824,74 +6045,6 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.channelSections.update({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The part names that you can include in the parameter value are snippet and contentDetails.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "localizations": {},
-     *       //   "snippet": {},
-     *       //   "targeting": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "localizations": {},
-     *   //   "snippet": {},
-     *   //   "targeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7061,42 +6214,6 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.comments.delete({
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7181,62 +6298,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.comments.insert({
-     *     // The *part* parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7323,65 +6384,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.comments.list({
-     *     // Returns the comments with the given IDs for One Platform.
-     *     id: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // Returns replies to the specified comment. Note, currently YouTube features only one level of replies (ie replies to top level comments). However replies to replies may be supported in the future.
-     *     parentId: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more comment resource properties that the API response will include.
-     *     part: 'placeholder-value',
-     *     // The requested text format for the returned comments.
-     *     textFormat: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7471,43 +6473,6 @@ export namespace youtube_v3 {
 
     /**
      * Expresses the caller's opinion that one or more comments should be flagged as spam.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.comments.markAsSpam({
-     *     // Flags the comments with the given IDs as spam in the caller's opinion.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7593,47 +6558,6 @@ export namespace youtube_v3 {
 
     /**
      * Sets the moderation status of one or more comments.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.comments.setModerationStatus({
-     *     // If set to true the author of the comment gets added to the ban list. This means all future comments of the author will autmomatically be rejected. Only valid in combination with STATUS_REJECTED.
-     *     banAuthor: 'placeholder-value',
-     *     // Modifies the moderation status of the comments with the given IDs
-     *     id: 'placeholder-value',
-     *     // Specifies the requested moderation status. Note, comments can be in statuses, which are not available through this call. For example, this call does not allow to mark a comment as 'likely spam'. Valid values: 'heldForReview', 'published' or 'rejected'.
-     *     moderationStatus: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7719,62 +6643,6 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.comments.update({
-     *     // The *part* parameter identifies the properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7945,64 +6813,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.commentThreads.insert({
-     *     // The *part* parameter identifies the properties that the API response will include. Set the parameter value to snippet. The snippet part has a quota cost of 2 units.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "replies": {},
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "replies": {},
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8090,75 +6900,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.commentThreads.list({
-     *     // Returns the comment threads of all videos of the channel and the channel comments as well.
-     *     allThreadsRelatedToChannelId: 'placeholder-value',
-     *     // Returns the comment threads for all the channel comments (ie does not include comments left on videos).
-     *     channelId: 'placeholder-value',
-     *     // Returns the comment threads with the given IDs for Stubby or Apiary.
-     *     id: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *     // Limits the returned comment threads to those with the specified moderation status. Not compatible with the 'id' filter. Valid values: published, heldForReview, likelySpam.
-     *     moderationStatus: 'placeholder-value',
-     *
-     *     order: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more commentThread resource properties that the API response will include.
-     *     part: 'placeholder-value',
-     *     // Limits the returned comment threads to those matching the specified key words. Not compatible with the 'id' filter.
-     *     searchTerms: 'placeholder-value',
-     *     // The requested text format for the returned comments.
-     *     textFormat: 'placeholder-value',
-     *     // Returns the comment threads of the specified video.
-     *     videoId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8320,58 +7061,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.i18nLanguages.list({
-     *     hl: 'placeholder-value',
-     *     // The *part* parameter specifies the i18nLanguage resource properties that the API response will include. Set the parameter value to snippet.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8483,58 +7172,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.i18nRegions.list({
-     *     hl: 'placeholder-value',
-     *     // The *part* parameter specifies the i18nRegion resource properties that the API response will include. Set the parameter value to snippet.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8644,65 +7281,6 @@ export namespace youtube_v3 {
 
     /**
      * Bind a broadcast to a stream.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveBroadcasts.bind({
-     *     // Broadcast to bind to the stream
-     *     id: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
-     *     part: 'placeholder-value',
-     *     // Stream to bind, if not set unbind the current one.
-     *     streamId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {},
-     *   //   "statistics": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8790,50 +7368,6 @@ export namespace youtube_v3 {
 
     /**
      * Delete a given broadcast.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveBroadcasts.delete({
-     *     // Broadcast to delete.
-     *     id: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8919,75 +7453,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new stream for the authenticated user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveBroadcasts.insert({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {},
-     *       //   "statistics": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {},
-     *   //   "statistics": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9075,76 +7540,6 @@ export namespace youtube_v3 {
 
     /**
      * Insert cuepoints in a broadcast
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveBroadcasts.insertCuepoint({
-     *     // Broadcast to insert ads to, or equivalently `external_video_id` for internal use.
-     *     id: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "cueType": "my_cueType",
-     *       //   "durationSecs": 0,
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "insertionOffsetTimeMs": "my_insertionOffsetTimeMs",
-     *       //   "walltimeMs": "my_walltimeMs"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cueType": "my_cueType",
-     *   //   "durationSecs": 0,
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "insertionOffsetTimeMs": "my_insertionOffsetTimeMs",
-     *   //   "walltimeMs": "my_walltimeMs"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9232,76 +7627,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieve the list of broadcasts associated with the given channel.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveBroadcasts.list({
-     *     // Return broadcasts with a certain status, e.g. active broadcasts.
-     *     broadcastStatus: 'placeholder-value',
-     *     // Return only broadcasts with the selected type.
-     *     broadcastType: 'placeholder-value',
-     *     // Return broadcasts with the given ids from Stubby or Apiary.
-     *     id: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *
-     *     mine: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, status and statistics.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "prevPageToken": "my_prevPageToken",
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9396,65 +7721,6 @@ export namespace youtube_v3 {
 
     /**
      * Transition a broadcast to a given status.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveBroadcasts.transition({
-     *     // The status to which the broadcast is going to transition.
-     *     broadcastStatus: 'placeholder-value',
-     *     // Broadcast to transition.
-     *     id: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {},
-     *   //   "statistics": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9542,75 +7808,6 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing broadcast for the authenticated user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveBroadcasts.update({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The part properties that you can include in the parameter value are id, snippet, contentDetails, and status. Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a broadcast's privacy status is defined in the status part. As such, if your request is updating a private or unlisted broadcast, and the request's part parameter value includes the status part, the broadcast's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the broadcast will revert to the default privacy setting.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {},
-     *       //   "statistics": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {},
-     *   //   "statistics": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9870,45 +8067,6 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a chat ban.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveChatBans.delete({
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9994,65 +8152,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveChatBans.insert({
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10167,45 +8266,6 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a chat message.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveChatMessages.delete({
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10291,67 +8351,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveChatMessages.insert({
-     *     // The *part* parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to snippet.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authorDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authorDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10439,71 +8438,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveChatMessages.list({
-     *     // Specifies the localization language in which the system messages should be returned.
-     *     hl: 'placeholder-value',
-     *     // The id of the live chat for which comments should be returned.
-     *     liveChatId: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id and snippet.
-     *     part: 'placeholder-value',
-     *     // Specifies the size of the profile image that should be returned for each user.
-     *     profileImageSize: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "offlineAt": "my_offlineAt",
-     *   //   "pageInfo": {},
-     *   //   "pollingIntervalMillis": 0,
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10652,45 +8586,6 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a chat moderator.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveChatModerators.delete({
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10776,65 +8671,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveChatModerators.insert({
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to snippet.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10925,66 +8761,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveChatModerators.list({
-     *     // The id of the live chat for which moderators should be returned.
-     *     liveChatId: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies the liveChatModerator resource parts that the API response will include. Supported values are id and snippet.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "prevPageToken": "my_prevPageToken",
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11127,49 +8903,6 @@ export namespace youtube_v3 {
 
     /**
      * Deletes an existing stream for the authenticated user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveStreams.delete({
-     *     id: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11255,75 +8988,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new stream for the authenticated user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveStreams.insert({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The part properties that you can include in the parameter value are id, snippet, cdn, content_details, and status.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "cdn": {},
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cdn": {},
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11411,72 +9075,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieve the list of streams associated with the given channel. --
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveStreams.list({
-     *     // Return LiveStreams with the given ids from Stubby or Apiary.
-     *     id: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *
-     *     mine: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more liveStream resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, cdn, and status.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "prevPageToken": "my_prevPageToken",
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11568,75 +9166,6 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing stream for the authenticated user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.liveStreams.update({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. The part properties that you can include in the parameter value are id, snippet, cdn, and status. Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. If the request body does not specify a value for a mutable property, the existing value for that property will be removed.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "cdn": {},
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cdn": {},
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11817,67 +9346,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of members that match the request criteria for a channel.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube.channel-memberships.creator',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.members.list({
-     *     // Comma separated list of channel IDs. Only data about members that are part of this list will be included in the response.
-     *     filterByMemberChannelId: 'placeholder-value',
-     *     // Filter members in the results set to the ones that have access to a level.
-     *     hasAccessToLevel: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *     // Parameter that specifies which channel members to return.
-     *     mode: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies the member resource parts that the API response will include. Set the parameter value to snippet.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12001,54 +9469,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of all pricing levels offered by a creator to the fans.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube.channel-memberships.creator',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.membershipsLevels.list({
-     *     // The *part* parameter specifies the membershipsLevel resource parts that the API response will include. Supported values are id and snippet.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12160,48 +9580,6 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.playlistItems.delete({
-     *     id: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12287,72 +9665,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.playlistItems.insert({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12440,72 +9752,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.playlistItems.list({
-     *     id: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more playlistItem resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlistItem resource, the snippet property contains numerous fields, including the title, description, position, and resourceId properties. As such, if you set *part=snippet*, the API response will contain all of those properties.
-     *     part: 'placeholder-value',
-     *     // Return the playlist items within the given playlist.
-     *     playlistId: 'placeholder-value',
-     *     // Return the playlist items associated with the given video ID.
-     *     videoId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "prevPageToken": "my_prevPageToken",
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12598,72 +9844,6 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.playlistItems.update({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist item can specify a start time and end time, which identify the times portion of the video that should play when users watch the video in the playlist. If your request is updating a playlist item that sets these values, and the request's part parameter value includes the contentDetails part, the playlist item's start and end times will be updated to whatever value the request body specifies. If the request body does not specify values, the existing start and end times will be removed and replaced with the default settings.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12833,48 +10013,6 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.playlists.delete({
-     *     id: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12959,78 +10097,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.playlists.insert({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "localizations": {},
-     *       //   "player": {},
-     *       //   "snippet": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "localizations": {},
-     *   //   "player": {},
-     *   //   "snippet": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13117,77 +10183,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.playlists.list({
-     *     // Return the playlists owned by the specified channel ID.
-     *     channelId: 'placeholder-value',
-     *     // Return content in specified language
-     *     hl: 'placeholder-value',
-     *     // Return the playlists with the given IDs for Stubby or Apiary.
-     *     id: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *     // Return the playlists owned by the authenticated user.
-     *     mine: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more playlist resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a playlist resource, the snippet property contains properties like author, title, description, tags, and timeCreated. As such, if you set *part=snippet*, the API response will contain all of those properties.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "prevPageToken": "my_prevPageToken",
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13279,76 +10274,6 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.playlists.update({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Note that this method will override the existing values for mutable properties that are contained in any parts that the request body specifies. For example, a playlist's description is contained in the snippet part, which must be included in the request body. If the request does not specify a value for the snippet.description property, the playlist's existing description will be deleted.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "localizations": {},
-     *       //   "player": {},
-     *       //   "snippet": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "localizations": {},
-     *   //   "player": {},
-     *   //   "snippet": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13525,122 +10450,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of search resources
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.search.list({
-     *     // Filter on resources belonging to this channelId.
-     *     channelId: 'placeholder-value',
-     *     // Add a filter on the channel search.
-     *     channelType: 'placeholder-value',
-     *     // Filter on the livestream status of the videos.
-     *     eventType: 'placeholder-value',
-     *     // Search owned by a content owner.
-     *     forContentOwner: 'placeholder-value',
-     *     // Restrict the search to only retrieve videos uploaded using the project id of the authenticated user.
-     *     forDeveloper: 'placeholder-value',
-     *     // Search for the private videos of the authenticated user.
-     *     forMine: 'placeholder-value',
-     *     // Filter on location of the video
-     *     location: 'placeholder-value',
-     *     // Filter on distance from the location (specified above).
-     *     locationRadius: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // Sort order of the results.
-     *     order: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more search resource properties that the API response will include. Set the parameter value to snippet.
-     *     part: 'placeholder-value',
-     *     // Filter on resources published after this date.
-     *     publishedAfter: 'placeholder-value',
-     *     // Filter on resources published before this date.
-     *     publishedBefore: 'placeholder-value',
-     *     // Textual search terms to match.
-     *     q: 'placeholder-value',
-     *     // Display the content as seen by viewers in this country.
-     *     regionCode: 'placeholder-value',
-     *     // Search related to a resource.
-     *     relatedToVideoId: 'placeholder-value',
-     *     // Return results relevant to this language.
-     *     relevanceLanguage: 'placeholder-value',
-     *     // Indicates whether the search results should include restricted content as well as standard content.
-     *     safeSearch: 'placeholder-value',
-     *     // Restrict results to a particular topic.
-     *     topicId: 'placeholder-value',
-     *     // Restrict results to a particular set of resource types from One Platform.
-     *     type: 'placeholder-value',
-     *     // Filter on the presence of captions on the videos.
-     *     videoCaption: 'placeholder-value',
-     *     // Filter on videos in a specific category.
-     *     videoCategoryId: 'placeholder-value',
-     *     // Filter on the definition of the videos.
-     *     videoDefinition: 'placeholder-value',
-     *     // Filter on 3d videos.
-     *     videoDimension: 'placeholder-value',
-     *     // Filter on the duration of the videos.
-     *     videoDuration: 'placeholder-value',
-     *     // Filter on embeddable videos.
-     *     videoEmbeddable: 'placeholder-value',
-     *     // Filter on the license of the videos.
-     *     videoLicense: 'placeholder-value',
-     *     // Filter on syndicated videos.
-     *     videoSyndicated: 'placeholder-value',
-     *     // Filter on videos of a specific type.
-     *     videoType: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "prevPageToken": "my_prevPageToken",
-     *   //   "regionCode": "my_regionCode",
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13861,46 +10670,6 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.subscriptions.delete({
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13986,70 +10755,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.subscriptions.insert({
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {},
-     *       //   "subscriberSnippet": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {},
-     *   //   "subscriberSnippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14137,83 +10842,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.subscriptions.list({
-     *     // Return the subscriptions of the given channel owner.
-     *     channelId: 'placeholder-value',
-     *     // Return the subscriptions to the subset of these channels that the authenticated user is subscribed to.
-     *     forChannelId: 'placeholder-value',
-     *     // Return the subscriptions with the given IDs for Stubby or Apiary.
-     *     id: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *     // Flag for returning the subscriptions of the authenticated user.
-     *     mine: 'placeholder-value',
-     *
-     *     myRecentSubscribers: 'placeholder-value',
-     *     // Return the subscribers of the given channel owner.
-     *     mySubscribers: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The order of the returned subscriptions
-     *     order: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more subscription resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a subscription resource, the snippet property contains other properties, such as a display title for the subscription. If you set *part=snippet*, the API response will also contain all of those nested properties.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "prevPageToken": "my_prevPageToken",
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14384,65 +11012,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.superChatEvents.list({
-     *     // Return rendered funding amounts in specified language.
-     *     hl: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
-     *     maxResults: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies the superChatEvent resource parts that the API response will include. This parameter is currently not supported.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14564,63 +11133,6 @@ export namespace youtube_v3 {
 
     /**
      * POST method.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/youtube.readonly'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.tests.insert({
-     *     externalChannelId: 'placeholder-value',
-     *
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "featuredPart": false,
-     *       //   "gaia": "my_gaia",
-     *       //   "id": "my_id",
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "featuredPart": false,
-     *   //   "gaia": "my_gaia",
-     *   //   "id": "my_id",
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14727,49 +11239,6 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.thirdPartyLinks.delete({
-     *     // Channel ID to which changes should be applied, for delegation.
-     *     externalChannelId: 'placeholder-value',
-     *     // Delete the partner links with the given linking token.
-     *     linkingToken: 'placeholder-value',
-     *     // Do not use. Required for compatibility.
-     *     part: 'placeholder-value',
-     *     // Type of the link to be deleted.
-     *     type: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14855,66 +11324,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.thirdPartyLinks.insert({
-     *     // Channel ID to which changes should be applied, for delegation.
-     *     externalChannelId: 'placeholder-value',
-     *     // The *part* parameter specifies the thirdPartyLink resource parts that the API request and response will include. Supported values are linkingToken, status, and snippet.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "kind": "my_kind",
-     *       //   "linkingToken": "my_linkingToken",
-     *       //   "snippet": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "kind": "my_kind",
-     *   //   "linkingToken": "my_linkingToken",
-     *   //   "snippet": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15002,56 +11411,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.thirdPartyLinks.list({
-     *     // Channel ID to which changes should be applied, for delegation.
-     *     externalChannelId: 'placeholder-value',
-     *     // Get a third party link with the given linking token.
-     *     linkingToken: 'placeholder-value',
-     *     // The *part* parameter specifies the thirdPartyLink resource parts that the API response will include. Supported values are linkingToken, status, and snippet.
-     *     part: 'placeholder-value',
-     *     // Get a third party link of the given type.
-     *     type: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15146,66 +11505,6 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.thirdPartyLinks.update({
-     *     // Channel ID to which changes should be applied, for delegation.
-     *     externalChannelId: 'placeholder-value',
-     *     // The *part* parameter specifies the thirdPartyLink resource parts that the API request and response will include. Supported values are linkingToken, status, and snippet.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "kind": "my_kind",
-     *       //   "linkingToken": "my_linkingToken",
-     *       //   "snippet": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "kind": "my_kind",
-     *   //   "linkingToken": "my_linkingToken",
-     *   //   "snippet": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15371,67 +11670,6 @@ export namespace youtube_v3 {
 
     /**
      * As this is not an insert in a strict sense (it supports uploading/setting of a thumbnail for multiple videos, which doesn't result in creation of a single resource), I use a custom verb here.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.upload',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.thumbnails.set({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // Returns the Thumbnail with the given video IDs for Stubby or Apiary.
-     *     videoId: 'placeholder-value',
-     *
-     *     requestBody: {
-     *       // request body parameters
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15565,57 +11803,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.videoAbuseReportReasons.list({
-     *     hl: 'placeholder-value',
-     *     // The *part* parameter specifies the videoCategory resource parts that the API response will include. Supported values are id and snippet.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15731,66 +11918,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.videoCategories.list({
-     *     hl: 'placeholder-value',
-     *     // Returns the video categories with the given IDs for Stubby or Apiary.
-     *     id: 'placeholder-value',
-     *     // The *part* parameter specifies the videoCategory resource properties that the API response will include. Set the parameter value to snippet.
-     *     part: 'placeholder-value',
-     *
-     *     regionCode: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "prevPageToken": "my_prevPageToken",
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15912,48 +12039,6 @@ export namespace youtube_v3 {
 
     /**
      * Deletes a resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.videos.delete({
-     *     id: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16035,57 +12120,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves the ratings that the authorized user gave to a list of specified videos.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.videos.getRating({
-     *     id: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16179,109 +12213,6 @@ export namespace youtube_v3 {
 
     /**
      * Inserts a new resource into this collection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.upload',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.videos.insert({
-     *     // Should auto-levels be applied to the upload.
-     *     autoLevels: 'placeholder-value',
-     *     // Notify the channel subscribers about the new video. As default, the notification is enabled.
-     *     notifySubscribers: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // This parameter can only be used in a properly authorized request. *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwnerChannel* parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
-     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Note that not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
-     *     part: 'placeholder-value',
-     *     // Should stabilize be applied to the upload.
-     *     stabilize: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "ageGating": {},
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "fileDetails": {},
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "liveStreamingDetails": {},
-     *       //   "localizations": {},
-     *       //   "monetizationDetails": {},
-     *       //   "player": {},
-     *       //   "processingDetails": {},
-     *       //   "projectDetails": {},
-     *       //   "recordingDetails": {},
-     *       //   "snippet": {},
-     *       //   "statistics": {},
-     *       //   "status": {},
-     *       //   "suggestions": {},
-     *       //   "topicDetails": {}
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ageGating": {},
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "fileDetails": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "liveStreamingDetails": {},
-     *   //   "localizations": {},
-     *   //   "monetizationDetails": {},
-     *   //   "player": {},
-     *   //   "processingDetails": {},
-     *   //   "projectDetails": {},
-     *   //   "recordingDetails": {},
-     *   //   "snippet": {},
-     *   //   "statistics": {},
-     *   //   "status": {},
-     *   //   "suggestions": {},
-     *   //   "topicDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16369,85 +12300,6 @@ export namespace youtube_v3 {
 
     /**
      * Retrieves a list of resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.readonly',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.videos.list({
-     *     // Return the videos that are in the specified chart.
-     *     chart: 'placeholder-value',
-     *     // Stands for "host language". Specifies the localization language of the metadata to be filled into snippet.localized. The field is filled with the default metadata if there is no localization in the specified language. The parameter value must be a language code included in the list returned by the i18nLanguages.list method (e.g. en_US, es_MX).
-     *     hl: 'placeholder-value',
-     *     // Return videos with the given ids.
-     *     id: 'placeholder-value',
-     *
-     *     locale: 'placeholder-value',
-     *
-     *     maxHeight: 'placeholder-value',
-     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. *Note:* This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.
-     *     maxResults: 'placeholder-value',
-     *     // Return the player with maximum height specified in
-     *     maxWidth: 'placeholder-value',
-     *     // Return videos liked/disliked by the authenticated user. Does not support RateType.RATED_TYPE_NONE.
-     *     myRating: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved. *Note:* This parameter is supported for use in conjunction with the myRating and chart parameters, but it is not supported for use in conjunction with the id parameter.
-     *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies a comma-separated list of one or more video resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a video resource, the snippet property contains the channelId, title, description, tags, and categoryId properties. As such, if you set *part=snippet*, the API response will contain all of those properties.
-     *     part: 'placeholder-value',
-     *     // Use a chart that is specific to the specified region
-     *     regionCode: 'placeholder-value',
-     *     // Use chart that is specific to the specified video category
-     *     videoCategoryId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "eventId": "my_eventId",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pageInfo": {},
-     *   //   "prevPageToken": "my_prevPageToken",
-     *   //   "tokenPagination": {},
-     *   //   "visitorId": "my_visitorId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16534,48 +12386,6 @@ export namespace youtube_v3 {
 
     /**
      * Adds a like or dislike rating to a video or removes a rating from a video.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.videos.rate({
-     *     id: 'placeholder-value',
-     *
-     *     rating: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16660,59 +12470,6 @@ export namespace youtube_v3 {
 
     /**
      * Report abuse for a video.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.videos.reportAbuse({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "comments": "my_comments",
-     *       //   "language": "my_language",
-     *       //   "reasonId": "my_reasonId",
-     *       //   "secondaryReasonId": "my_secondaryReasonId",
-     *       //   "videoId": "my_videoId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16798,96 +12555,6 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.videos.update({
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // The *part* parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include. Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a video's privacy setting is contained in the status part. As such, if your request is updating a private video, and the request's part parameter value includes the status part, the video's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the video will revert to the default privacy setting. In addition, not all parts contain properties that can be set when inserting or updating a video. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "ageGating": {},
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "fileDetails": {},
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "liveStreamingDetails": {},
-     *       //   "localizations": {},
-     *       //   "monetizationDetails": {},
-     *       //   "player": {},
-     *       //   "processingDetails": {},
-     *       //   "projectDetails": {},
-     *       //   "recordingDetails": {},
-     *       //   "snippet": {},
-     *       //   "statistics": {},
-     *       //   "status": {},
-     *       //   "suggestions": {},
-     *       //   "topicDetails": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ageGating": {},
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "fileDetails": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "liveStreamingDetails": {},
-     *   //   "localizations": {},
-     *   //   "monetizationDetails": {},
-     *   //   "player": {},
-     *   //   "processingDetails": {},
-     *   //   "projectDetails": {},
-     *   //   "recordingDetails": {},
-     *   //   "snippet": {},
-     *   //   "statistics": {},
-     *   //   "status": {},
-     *   //   "suggestions": {},
-     *   //   "topicDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17136,65 +12803,6 @@ export namespace youtube_v3 {
 
     /**
      * Allows upload of watermark image and setting it for a channel.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtube.upload',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.watermarks.set({
-     *     channelId: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "imageBytes": "my_imageBytes",
-     *       //   "imageUrl": "my_imageUrl",
-     *       //   "position": {},
-     *       //   "targetChannelId": "my_targetChannelId",
-     *       //   "timing": {}
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17283,48 +12891,6 @@ export namespace youtube_v3 {
 
     /**
      * Allows removal of channel watermark.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *       'https://www.googleapis.com/auth/youtubepartner',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.watermarks.unset({
-     *     channelId: 'placeholder-value',
-     *     // *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17466,64 +13032,6 @@ export namespace youtube_v3 {
 
     /**
      * Updates an existing resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.youtube.v3.updateCommentThreads({
-     *     // The *part* parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "replies": {},
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "replies": {},
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
