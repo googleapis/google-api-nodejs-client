@@ -46,7 +46,7 @@ export function bigqueryreservation<
   T =
     | bigqueryreservation_v1.Bigqueryreservation
     | bigqueryreservation_v1alpha2.Bigqueryreservation
-    | bigqueryreservation_v1beta1.Bigqueryreservation
+    | bigqueryreservation_v1beta1.Bigqueryreservation,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
