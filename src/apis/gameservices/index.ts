@@ -33,7 +33,7 @@ export function gameservices(
   options: gameservices_v1beta.Options
 ): gameservices_v1beta.Gameservices;
 export function gameservices<
-  T = gameservices_v1.Gameservices | gameservices_v1beta.Gameservices
+  T = gameservices_v1.Gameservices | gameservices_v1beta.Gameservices,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
