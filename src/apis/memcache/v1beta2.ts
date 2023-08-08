@@ -912,7 +912,7 @@ export namespace memcache_v1beta2 {
      */
     channel?: string | null;
     /**
-     * Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. User can specify zero or more non-overlapping deny periods. Maximum number of deny_maintenance_periods expected is one.
+     * Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. The protocol supports zero-to-many such periods, but the current SLM Rollout implementation only supports zero-to-one.
      */
     denyMaintenancePeriods?: Schema$DenyMaintenancePeriod[];
     /**
