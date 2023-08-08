@@ -253,6 +253,10 @@ export namespace toolresults_v1beta3 {
     initialDisplayTime?: Schema$Duration;
   }
   /**
+   * There was an issue with the assets in this test.
+   */
+  export interface Schema$AssetIssue {}
+  /**
    * A suggestion to use deep links for a Robo run.
    */
   export interface Schema$AvailableDeepLinks {}
@@ -446,7 +450,7 @@ export namespace toolresults_v1beta3 {
     testExecutionMatrixId?: string | null;
   }
   /**
-   * Failed to install the APK.
+   * Failed to install the App.
    */
   export interface Schema$FailedToInstall {}
   /**
