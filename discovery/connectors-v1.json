@@ -436,7 +436,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config`",
+                      "description": "Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -666,7 +666,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.",
+                          "description": "Filter.",
                           "location": "query",
                           "type": "string"
                         },
@@ -953,7 +953,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.",
+                      "description": "Filter.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1183,7 +1183,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.",
+                          "description": "Filter.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1773,7 +1773,7 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20230801",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1933,7 +1933,7 @@
       "id": "AuthorizationCodeLink",
       "properties": {
         "clientId": {
-          "description": "The client ID assigned to the GCP Connectors OAuth app for the connector data source.",
+          "description": "The client ID assigned to the Google Cloud Connectors OAuth app for the connector data source.",
           "type": "string"
         },
         "enablePkce": {
@@ -1941,7 +1941,7 @@
           "type": "boolean"
         },
         "scopes": {
-          "description": "The scopes for which the user will authorize GCP Connectors on the connector data source.",
+          "description": "The scopes for which the user will authorize Google Cloud Connectors on the connector data source.",
           "items": {
             "type": "string"
           },
@@ -2226,7 +2226,7 @@
           "description": "Optional. Node configuration for the connection."
         },
         "serviceAccount": {
-          "description": "Optional. Service account needed for runtime plane to access GCP resources.",
+          "description": "Optional. Service account needed for runtime plane to access Google Cloud resources.",
           "type": "string"
         },
         "serviceDirectory": {
@@ -2450,6 +2450,11 @@
       "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
       "id": "ConnectorInfraConfig",
       "properties": {
+        "internalclientRatelimitThreshold": {
+          "description": "Max QPS supported for internal requests originating from Connd.",
+          "format": "int64",
+          "type": "string"
+        },
         "ratelimitThreshold": {
           "description": "Max QPS supported by the connector version before throttling of requests.",
           "format": "int64",
@@ -2585,6 +2590,12 @@
       "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
       "id": "ConnectorVersionInfraConfig",
       "properties": {
+        "internalclientRatelimitThreshold": {
+          "description": "Output only. Max QPS supported for internal requests originating from Connd.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "ratelimitThreshold": {
           "description": "Output only. Max QPS supported by the connector version before throttling of requests.",
           "format": "int64",
@@ -4187,7 +4198,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -4310,7 +4321,7 @@
       "id": "Resource",
       "properties": {
         "pathTemplate": {
-          "description": "Template to uniquely represent a GCP resource in a format IAM expects This is a template that can have references to other values provided in the config variable template.",
+          "description": "Template to uniquely represent a Google Cloud resource in a format IAM expects This is a template that can have references to other values provided in the config variable template.",
           "type": "string"
         },
         "type": {
@@ -4324,10 +4335,10 @@
           ],
           "enumDescriptions": [
             "Value type is not specified.",
-            "GCP Project Resource.",
-            "Any GCP Resource which is identified uniquely by IAM.",
-            "GCP Secret Resource.",
-            "GCP Secret Version Resource."
+            "Google Cloud Project Resource.",
+            "Any Google Cloud Resource which is identified uniquely by IAM.",
+            "Google Cloud Secret Resource.",
+            "Google Cloud Secret Version Resource."
           ],
           "type": "string"
         }
@@ -4501,7 +4512,7 @@
       "type": "object"
     },
     "RoleGrant": {
-      "description": "This configuration defines all the Cloud IAM roles that needs to be granted to a particular GCP resource for the selected principal like service account. These configurations will let UI display to customers what IAM roles need to be granted by them. Or these configurations can be used by the UI to render a 'grant' button to do the same on behalf of the user.",
+      "description": "This configuration defines all the Cloud IAM roles that needs to be granted to a particular Google Cloud resource for the selected principal like service account. These configurations will let UI display to customers what IAM roles need to be granted by them. Or these configurations can be used by the UI to render a 'grant' button to do the same on behalf of the user.",
       "id": "RoleGrant",
       "properties": {
         "helperTextTemplate": {
@@ -4941,7 +4952,7 @@
       "type": "object"
     },
     "SupportedRuntimeFeatures": {
-      "description": "Supported runtime features of a connector version. This is passed to the management layer to add a new connector version by the connector developer. Details about how this proto is passed to the management layer is covered in this doc - go/runtime-manifest.",
+      "description": "Supported runtime features of a connector version.",
       "id": "SupportedRuntimeFeatures",
       "properties": {
         "actionApis": {

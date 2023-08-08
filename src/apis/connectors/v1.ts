@@ -217,7 +217,7 @@ export namespace connectors_v1 {
    */
   export interface Schema$AuthorizationCodeLink {
     /**
-     * The client ID assigned to the GCP Connectors OAuth app for the connector data source.
+     * The client ID assigned to the Google Cloud Connectors OAuth app for the connector data source.
      */
     clientId?: string | null;
     /**
@@ -225,7 +225,7 @@ export namespace connectors_v1 {
      */
     enablePkce?: boolean | null;
     /**
-     * The scopes for which the user will authorize GCP Connectors on the connector data source.
+     * The scopes for which the user will authorize Google Cloud Connectors on the connector data source.
      */
     scopes?: string[] | null;
     /**
@@ -417,7 +417,7 @@ export namespace connectors_v1 {
      */
     nodeConfig?: Schema$NodeConfig;
     /**
-     * Optional. Service account needed for runtime plane to access GCP resources.
+     * Optional. Service account needed for runtime plane to access Google Cloud resources.
      */
     serviceAccount?: string | null;
     /**
@@ -545,6 +545,10 @@ export namespace connectors_v1 {
    */
   export interface Schema$ConnectorInfraConfig {
     /**
+     * Max QPS supported for internal requests originating from Connd.
+     */
+    internalclientRatelimitThreshold?: string | null;
+    /**
      * Max QPS supported by the connector version before throttling of requests.
      */
     ratelimitThreshold?: string | null;
@@ -635,6 +639,10 @@ export namespace connectors_v1 {
    * This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version
    */
   export interface Schema$ConnectorVersionInfraConfig {
+    /**
+     * Output only. Max QPS supported for internal requests originating from Connd.
+     */
+    internalclientRatelimitThreshold?: string | null;
     /**
      * Output only. Max QPS supported by the connector version before throttling of requests.
      */
@@ -1589,7 +1597,7 @@ export namespace connectors_v1 {
     verb?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -1667,7 +1675,7 @@ export namespace connectors_v1 {
    */
   export interface Schema$Resource {
     /**
-     * Template to uniquely represent a GCP resource in a format IAM expects This is a template that can have references to other values provided in the config variable template.
+     * Template to uniquely represent a Google Cloud resource in a format IAM expects This is a template that can have references to other values provided in the config variable template.
      */
     pathTemplate?: string | null;
     /**
@@ -1697,7 +1705,7 @@ export namespace connectors_v1 {
    */
   export interface Schema$RetryEventSubscriptionRequest {}
   /**
-   * This configuration defines all the Cloud IAM roles that needs to be granted to a particular GCP resource for the selected principal like service account. These configurations will let UI display to customers what IAM roles need to be granted by them. Or these configurations can be used by the UI to render a 'grant' button to do the same on behalf of the user.
+   * This configuration defines all the Cloud IAM roles that needs to be granted to a particular Google Cloud resource for the selected principal like service account. These configurations will let UI display to customers what IAM roles need to be granted by them. Or these configurations can be used by the UI to render a 'grant' button to do the same on behalf of the user.
    */
   export interface Schema$RoleGrant {
     /**
@@ -1957,7 +1965,7 @@ export namespace connectors_v1 {
     message?: string | null;
   }
   /**
-   * Supported runtime features of a connector version. This is passed to the management layer to add a new connector version by the connector developer. Details about how this proto is passed to the management layer is covered in this doc - go/runtime-manifest.
+   * Supported runtime features of a connector version.
    */
   export interface Schema$SupportedRuntimeFeatures {
     /**
@@ -3408,7 +3416,7 @@ export namespace connectors_v1 {
      *   const res = await connectors.projects.locations.connections.patch({
      *     // Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      *     name: 'projects/my-project/locations/my-location/connections/my-connection',
-     *     // Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config`
+     *     // Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4061,7 +4069,7 @@ export namespace connectors_v1 {
      */
     name?: string;
     /**
-     * Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config`
+     * Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config`
      */
     updateMask?: string;
 
@@ -4727,7 +4735,7 @@ export namespace connectors_v1 {
      *   // Do the magic
      *   const res =
      *     await connectors.projects.locations.connections.eventSubscriptions.list({
-     *       // Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.
+     *       // Filter.
      *       filter: 'placeholder-value',
      *       // Order by parameters.
      *       orderBy: 'placeholder-value',
@@ -5171,7 +5179,7 @@ export namespace connectors_v1 {
   export interface Params$Resource$Projects$Locations$Connections$Eventsubscriptions$List
     extends StandardParameters {
     /**
-     * Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.
+     * Filter.
      */
     filter?: string;
     /**
@@ -6020,7 +6028,7 @@ export namespace connectors_v1 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.endpointAttachments.list({
-     *     // Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.
+     *     // Filter.
      *     filter: 'placeholder-value',
      *     // Order by parameters.
      *     orderBy: 'placeholder-value',
@@ -6323,7 +6331,7 @@ export namespace connectors_v1 {
   export interface Params$Resource$Projects$Locations$Endpointattachments$List
     extends StandardParameters {
     /**
-     * Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.
+     * Filter.
      */
     filter?: string;
     /**
@@ -7116,7 +7124,7 @@ export namespace connectors_v1 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.global.managedZones.list({
-     *     // Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.
+     *     // Filter.
      *     filter: 'placeholder-value',
      *     // Order by parameters.
      *     orderBy: 'placeholder-value',
@@ -7415,7 +7423,7 @@ export namespace connectors_v1 {
   export interface Params$Resource$Projects$Locations$Global$Managedzones$List
     extends StandardParameters {
     /**
-     * Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.
+     * Filter.
      */
     filter?: string;
     /**
