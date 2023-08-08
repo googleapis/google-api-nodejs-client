@@ -2289,7 +2289,7 @@
       }
     }
   },
-  "revision": "20230709",
+  "revision": "20230730",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -2628,18 +2628,18 @@
       "id": "ContainerOverride",
       "properties": {
         "args": {
-          "description": "Arguments to the entrypoint. Will replace existing args for override if present. Must be empty if `clear_args` is set to true.",
+          "description": "Arguments to the entrypoint. The specified arguments replace and override any existing entrypoint arguments. Must be empty if `clear_args` is set to true.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "clearArgs": {
-          "description": "Optional. True if the intention is to clear out existing args list.",
+          "description": "Optional. Set to True to clear all existing arguments.",
           "type": "boolean"
         },
         "env": {
-          "description": "List of environment variables to set in the container. Will be merged with existing env for override.",
+          "description": "List of environment variables to set in the container. All specified environment variables are merged with existing environment variables. When the specified environment variables exist, these values override any existing values.",
           "items": {
             "$ref": "EnvVar"
           },
@@ -2763,7 +2763,7 @@
       "type": "object"
     },
     "EmptyDirVolumeSource": {
-      "description": "Ephemeral storage which can be backed by real disks (HD, SSD), network storage or memory (i.e. tmpfs). For now only in memory (tmpfs) is supported. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).",
+      "description": "In memory (tmpfs) ephemeral storage. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).",
       "id": "EmptyDirVolumeSource",
       "properties": {
         "medium": {
@@ -2771,7 +2771,7 @@
           "type": "string"
         },
         "sizeLimit": {
-          "description": "Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. This field's values are of the 'Quantity' k8s type: https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir",
+          "description": "Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers. The default is nil which means that the limit is undefined. More info: https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume. Info in Kubernetes: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir",
           "type": "string"
         }
       },
@@ -4050,7 +4050,7 @@
       "properties": {
         "overrides": {
           "$ref": "Overrides",
-          "description": "Optional. Private preview feature. Currently only available by invitation. Overrides specification for a given execution of a job. If provided, overrides will be applied to update the execution or task spec."
+          "description": "Optional. Private preview feature. Currently only available by invitation. Overrides specification for a given execution of a job. The specified values update the specification of the created execution."
         }
       },
       "type": "object"

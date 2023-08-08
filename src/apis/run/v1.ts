@@ -384,15 +384,15 @@ export namespace run_v1 {
    */
   export interface Schema$ContainerOverride {
     /**
-     * Arguments to the entrypoint. Will replace existing args for override if present. Must be empty if `clear_args` is set to true.
+     * Arguments to the entrypoint. The specified arguments replace and override any existing entrypoint arguments. Must be empty if `clear_args` is set to true.
      */
     args?: string[] | null;
     /**
-     * Optional. True if the intention is to clear out existing args list.
+     * Optional. Set to True to clear all existing arguments.
      */
     clearArgs?: boolean | null;
     /**
-     * List of environment variables to set in the container. Will be merged with existing env for override.
+     * List of environment variables to set in the container. All specified environment variables are merged with existing environment variables. When the specified environment variables exist, these values override any existing values.
      */
     env?: Schema$EnvVar[];
     /**
@@ -485,7 +485,7 @@ export namespace run_v1 {
     url?: string | null;
   }
   /**
-   * Ephemeral storage which can be backed by real disks (HD, SSD), network storage or memory (i.e. tmpfs). For now only in memory (tmpfs) is supported. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).
+   * In memory (tmpfs) ephemeral storage. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).
    */
   export interface Schema$EmptyDirVolumeSource {
     /**
@@ -493,7 +493,7 @@ export namespace run_v1 {
      */
     medium?: string | null;
     /**
-     * Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. This field's values are of the 'Quantity' k8s type: https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
+     * Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers. The default is nil which means that the limit is undefined. More info: https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume. Info in Kubernetes: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
      */
     sizeLimit?: string | null;
   }
@@ -1497,7 +1497,7 @@ export namespace run_v1 {
    */
   export interface Schema$RunJobRequest {
     /**
-     * Optional. Private preview feature. Currently only available by invitation. Overrides specification for a given execution of a job. If provided, overrides will be applied to update the execution or task spec.
+     * Optional. Private preview feature. Currently only available by invitation. Overrides specification for a given execution of a job. The specified values update the specification of the created execution.
      */
     overrides?: Schema$Overrides;
   }
@@ -1979,53 +1979,6 @@ export namespace run_v1 {
 
     /**
      * List authorized domains.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.authorizeddomains.list({
-     *     // Maximum results to return per page.
-     *     pageSize: 'placeholder-value',
-     *     // Continuation token for fetching the next page of results.
-     *     pageToken: 'placeholder-value',
-     *     // Name of the parent Project resource. Example: `projects/myproject`.
-     *     parent: 'namespaces/my-namespace',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "domains": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2145,52 +2098,6 @@ export namespace run_v1 {
 
     /**
      * Get information about a configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.configurations.get({
-     *     // The name of the configuration to retrieve. For Cloud Run, replace {namespace_id\} with the project ID or number.
-     *     name: 'namespaces/my-namespace/configurations/my-configuration',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2278,66 +2185,6 @@ export namespace run_v1 {
 
     /**
      * List configurations.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.configurations.list({
-     *     // Optional. Encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Not supported by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Not supported by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     *     labelSelector: 'placeholder-value',
-     *     // Optional. The maximum number of the records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // The namespace from which the configurations should be listed. For Cloud Run, replace {namespace_id\} with the project ID or number.
-     *     parent: 'namespaces/my-namespace',
-     *     // Not supported by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Not supported by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2481,66 +2328,6 @@ export namespace run_v1 {
 
     /**
      * Create a new domain mapping.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.domainmappings.create({
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
-     *     dryRun: 'placeholder-value',
-     *     // Required. The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     parent: 'namespaces/my-namespace',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "apiVersion": "my_apiVersion",
-     *       //   "kind": "my_kind",
-     *       //   "metadata": {},
-     *       //   "spec": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2627,61 +2414,6 @@ export namespace run_v1 {
 
     /**
      * Delete a domain mapping.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.domainmappings.delete({
-     *     // Cloud Run currently ignores this parameter.
-     *     apiVersion: 'placeholder-value',
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
-     *     dryRun: 'placeholder-value',
-     *     // Cloud Run currently ignores this parameter.
-     *     kind: 'placeholder-value',
-     *     // Required. The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
-     *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/architecture/garbage-collection/ for more information.
-     *     propagationPolicy: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "code": 0,
-     *   //   "details": {},
-     *   //   "message": "my_message",
-     *   //   "metadata": {},
-     *   //   "reason": "my_reason",
-     *   //   "status": "my_status"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2769,52 +2501,6 @@ export namespace run_v1 {
 
     /**
      * Get information about a domain mapping.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.domainmappings.get({
-     *     // Required. The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2902,66 +2588,6 @@ export namespace run_v1 {
 
     /**
      * List all domain mappings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.domainmappings.list({
-     *     // Optional. Encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Not currently used by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     *     labelSelector: 'placeholder-value',
-     *     // Optional. The maximum number of records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // Required. The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     parent: 'namespaces/my-namespace',
-     *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3144,58 +2770,6 @@ export namespace run_v1 {
 
     /**
      * Cancel an execution.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.executions.cancel({
-     *     // Required. The name of the execution to cancel. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/executions/my-execution',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3282,59 +2856,6 @@ export namespace run_v1 {
 
     /**
      * Delete an execution.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.executions.delete({
-     *     // Optional. Cloud Run currently ignores this parameter.
-     *     apiVersion: 'placeholder-value',
-     *     // Optional. Cloud Run currently ignores this parameter.
-     *     kind: 'placeholder-value',
-     *     // Required. The name of the execution to delete. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/executions/my-execution',
-     *     // Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting.
-     *     propagationPolicy: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "code": 0,
-     *   //   "details": {},
-     *   //   "message": "my_message",
-     *   //   "metadata": {},
-     *   //   "reason": "my_reason",
-     *   //   "status": "my_status"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3422,52 +2943,6 @@ export namespace run_v1 {
 
     /**
      * Get information about an execution.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.executions.get({
-     *     // Required. The name of the execution to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/executions/my-execution',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3555,66 +3030,6 @@ export namespace run_v1 {
 
     /**
      * List executions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.executions.list({
-     *     // Optional. Optional encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Optional. Not supported by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Optional. Not supported by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Optional. Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     *     labelSelector: 'placeholder-value',
-     *     // Optional. The maximum number of the records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // Required. The namespace from which the executions should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     parent: 'namespaces/my-namespace',
-     *     // Optional. Not supported by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Optional. Not supported by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3787,64 +3202,6 @@ export namespace run_v1 {
 
     /**
      * Create a job.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.jobs.create({
-     *     // Required. The namespace in which the job should be created. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     parent: 'namespaces/my-namespace',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "apiVersion": "my_apiVersion",
-     *       //   "kind": "my_kind",
-     *       //   "metadata": {},
-     *       //   "spec": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3931,59 +3288,6 @@ export namespace run_v1 {
 
     /**
      * Delete a job.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.jobs.delete({
-     *     // Optional. Cloud Run currently ignores this parameter.
-     *     apiVersion: 'placeholder-value',
-     *     // Optional. Cloud Run currently ignores this parameter.
-     *     kind: 'placeholder-value',
-     *     // Required. The name of the job to delete. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/jobs/my-job',
-     *     // Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     *     propagationPolicy: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "code": 0,
-     *   //   "details": {},
-     *   //   "message": "my_message",
-     *   //   "metadata": {},
-     *   //   "reason": "my_reason",
-     *   //   "status": "my_status"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4071,52 +3375,6 @@ export namespace run_v1 {
 
     /**
      * Get information about a job.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.jobs.get({
-     *     // Required. The name of the job to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/jobs/my-job',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4204,66 +3462,6 @@ export namespace run_v1 {
 
     /**
      * List jobs.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.jobs.list({
-     *     // Optional. Optional encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Optional. Not supported by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Optional. Not supported by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Optional. Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     *     labelSelector: 'placeholder-value',
-     *     // Optional. The maximum number of records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // Required. The namespace from which the jobs should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     parent: 'namespaces/my-namespace',
-     *     // Optional. Not supported by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Optional. Not supported by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4350,64 +3548,6 @@ export namespace run_v1 {
 
     /**
      * Replace a job. Only the spec and metadata labels and annotations are modifiable. After the Replace request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.jobs.replaceJob({
-     *     // Required. The name of the job being replaced. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/jobs/my-job',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "apiVersion": "my_apiVersion",
-     *       //   "kind": "my_kind",
-     *       //   "metadata": {},
-     *       //   "spec": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4495,60 +3635,6 @@ export namespace run_v1 {
 
     /**
      * Trigger creation of a new execution of this job.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.jobs.run({
-     *     // Required. The name of the job to run. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/jobs/my-job',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "overrides": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4741,61 +3827,6 @@ export namespace run_v1 {
 
     /**
      * Delete a revision.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.revisions.delete({
-     *     // Cloud Run currently ignores this parameter.
-     *     apiVersion: 'placeholder-value',
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
-     *     dryRun: 'placeholder-value',
-     *     // Cloud Run currently ignores this parameter.
-     *     kind: 'placeholder-value',
-     *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/revisions/my-revision',
-     *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background.
-     *     propagationPolicy: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "code": 0,
-     *   //   "details": {},
-     *   //   "message": "my_message",
-     *   //   "metadata": {},
-     *   //   "reason": "my_reason",
-     *   //   "status": "my_status"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4883,52 +3914,6 @@ export namespace run_v1 {
 
     /**
      * Get information about a revision.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.revisions.get({
-     *     // The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/revisions/my-revision',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5016,66 +4001,6 @@ export namespace run_v1 {
 
     /**
      * List revisions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.revisions.list({
-     *     // Optional. Encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Not currently used by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     *     labelSelector: 'placeholder-value',
-     *     // Optional. The maximum number of records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     parent: 'namespaces/my-namespace',
-     *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5240,52 +4165,6 @@ export namespace run_v1 {
 
     /**
      * Get information about a route.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.routes.get({
-     *     // The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/routes/my-route',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5373,66 +4252,6 @@ export namespace run_v1 {
 
     /**
      * List routes.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.routes.list({
-     *     // Optional. Encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Not currently used by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     *     labelSelector: 'placeholder-value',
-     *     // Optional. The maximum number of records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     parent: 'namespaces/my-namespace',
-     *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5572,66 +4391,6 @@ export namespace run_v1 {
 
     /**
      * Creates a new Service. Service creation will trigger a new deployment. Use GetService, and check service.status to determine if the Service is ready.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.services.create({
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
-     *     dryRun: 'placeholder-value',
-     *     // Required. The resource's parent. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/services` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}`
-     *     parent: 'namespaces/my-namespace',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "apiVersion": "my_apiVersion",
-     *       //   "kind": "my_kind",
-     *       //   "metadata": {},
-     *       //   "spec": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5718,61 +4477,6 @@ export namespace run_v1 {
 
     /**
      * Deletes the provided service. This will cause the Service to stop serving traffic and will delete all associated Revisions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.services.delete({
-     *     // Not supported, and ignored by Cloud Run.
-     *     apiVersion: 'placeholder-value',
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
-     *     dryRun: 'placeholder-value',
-     *     // Not supported, and ignored by Cloud Run.
-     *     kind: 'placeholder-value',
-     *     // Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
-     *     name: 'namespaces/my-namespace/services/my-service',
-     *     // Not supported, and ignored by Cloud Run.
-     *     propagationPolicy: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "code": 0,
-     *   //   "details": {},
-     *   //   "message": "my_message",
-     *   //   "metadata": {},
-     *   //   "reason": "my_reason",
-     *   //   "status": "my_status"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5860,52 +4564,6 @@ export namespace run_v1 {
 
     /**
      * Gets information about a service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.services.get({
-     *     // Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
-     *     name: 'namespaces/my-namespace/services/my-service',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5993,66 +4651,6 @@ export namespace run_v1 {
 
     /**
      * Lists services for the given project and region.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.services.list({
-     *     // Encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Not supported, and ignored by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Not supported, and ignored by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     *     labelSelector: 'placeholder-value',
-     *     // The maximum number of records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // Required. The parent from where the resources should be listed. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/services` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}`
-     *     parent: 'namespaces/my-namespace',
-     *     // Not supported, and ignored by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Not supported, and ignored by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6144,66 +4742,6 @@ export namespace run_v1 {
 
     /**
      * Replaces a service. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.services.replaceService({
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
-     *     dryRun: 'placeholder-value',
-     *     // Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
-     *     name: 'namespaces/my-namespace/services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "apiVersion": "my_apiVersion",
-     *       //   "kind": "my_kind",
-     *       //   "metadata": {},
-     *       //   "spec": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6396,52 +4934,6 @@ export namespace run_v1 {
 
     /**
      * Get information about a task.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.tasks.get({
-     *     // Required. The name of the task to retrieve. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'namespaces/my-namespace/tasks/my-task',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6529,66 +5021,6 @@ export namespace run_v1 {
 
     /**
      * List tasks.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.namespaces.tasks.list({
-     *     // Optional. Optional encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Optional. Not supported by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Optional. Not supported by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Optional. Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn. For example, to list all tasks of execution "foo" in succeeded state: `run.googleapis.com/execution=foo,run.googleapis.com/runningState=Succeeded`. Supported states are: * `Pending`: Initial state of all tasks. The task has not yet started but eventually will. * `Running`: Container instances for this task are running or will be running shortly. * `Succeeded`: No more container instances to run for the task, and the last attempt succeeded. * `Failed`: No more container instances to run for the task, and the last attempt failed. This task has run out of retry attempts. * `Cancelled`: Task was running but got stopped because its parent execution has been aborted. * `Abandoned`: The task has not yet started and never will because its parent execution has been aborted.
-     *     labelSelector: 'placeholder-value',
-     *     // Optional. The maximum number of records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // Required. The namespace from which the tasks should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     parent: 'namespaces/my-namespace',
-     *     // Optional. Not supported by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Optional. Not supported by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6741,53 +5173,6 @@ export namespace run_v1 {
 
     /**
      * List authorized domains.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.authorizeddomains.list({
-     *     // Maximum results to return per page.
-     *     pageSize: 'placeholder-value',
-     *     // Continuation token for fetching the next page of results.
-     *     pageToken: 'placeholder-value',
-     *     // Name of the parent Project resource. Example: `projects/myproject`.
-     *     parent: 'projects/my-project',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "domains": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6926,55 +5311,6 @@ export namespace run_v1 {
 
     /**
      * Lists information about the supported locations for this service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
-     *     filter: 'placeholder-value',
-     *     // The resource that owns the locations collection, if applicable.
-     *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service selects a default.
-     *     pageSize: 'placeholder-value',
-     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "locations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7094,53 +5430,6 @@ export namespace run_v1 {
 
     /**
      * List authorized domains.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.authorizeddomains.list({
-     *     // Maximum results to return per page.
-     *     pageSize: 'placeholder-value',
-     *     // Continuation token for fetching the next page of results.
-     *     pageToken: 'placeholder-value',
-     *     // Name of the parent Project resource. Example: `projects/myproject`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "domains": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7261,52 +5550,6 @@ export namespace run_v1 {
 
     /**
      * Get information about a configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.configurations.get({
-     *     // The name of the configuration to retrieve. For Cloud Run, replace {namespace_id\} with the project ID or number.
-     *     name: 'projects/my-project/locations/my-location/configurations/my-configuration',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7391,66 +5634,6 @@ export namespace run_v1 {
 
     /**
      * List configurations.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.configurations.list({
-     *     // Optional. Encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Not supported by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Not supported by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     *     labelSelector: 'placeholder-value',
-     *     // Optional. The maximum number of the records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // The namespace from which the configurations should be listed. For Cloud Run, replace {namespace_id\} with the project ID or number.
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Not supported by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Not supported by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7595,66 +5778,6 @@ export namespace run_v1 {
 
     /**
      * Create a new domain mapping.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.domainmappings.create({
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
-     *     dryRun: 'placeholder-value',
-     *     // Required. The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "apiVersion": "my_apiVersion",
-     *       //   "kind": "my_kind",
-     *       //   "metadata": {},
-     *       //   "spec": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7742,61 +5865,6 @@ export namespace run_v1 {
 
     /**
      * Delete a domain mapping.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.domainmappings.delete({
-     *     // Cloud Run currently ignores this parameter.
-     *     apiVersion: 'placeholder-value',
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
-     *     dryRun: 'placeholder-value',
-     *     // Cloud Run currently ignores this parameter.
-     *     kind: 'placeholder-value',
-     *     // Required. The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
-     *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/architecture/garbage-collection/ for more information.
-     *     propagationPolicy: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "code": 0,
-     *   //   "details": {},
-     *   //   "message": "my_message",
-     *   //   "metadata": {},
-     *   //   "reason": "my_reason",
-     *   //   "status": "my_status"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7881,52 +5949,6 @@ export namespace run_v1 {
 
     /**
      * Get information about a domain mapping.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.domainmappings.get({
-     *     // Required. The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8011,66 +6033,6 @@ export namespace run_v1 {
 
     /**
      * List all domain mappings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.domainmappings.list({
-     *     // Optional. Encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Not currently used by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     *     labelSelector: 'placeholder-value',
-     *     // Optional. The maximum number of records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // Required. The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8254,53 +6216,6 @@ export namespace run_v1 {
 
     /**
      * Get the IAM Access Control policy currently in effect for the given job. This result does not include any inherited policies.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.jobs.getIamPolicy({
-     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/jobs/my-job',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8388,60 +6303,6 @@ export namespace run_v1 {
 
     /**
      * Sets the IAM Access control policy for the specified job. Overwrites any existing policy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.jobs.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/jobs/my-job',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8529,56 +6390,6 @@ export namespace run_v1 {
 
     /**
      * Returns permissions that a caller has on the specified job. There are no permissions required for making this API call.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.jobs.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/jobs/my-job',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "permissions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8717,61 +6528,6 @@ export namespace run_v1 {
 
     /**
      * Delete a revision.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.revisions.delete({
-     *     // Cloud Run currently ignores this parameter.
-     *     apiVersion: 'placeholder-value',
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
-     *     dryRun: 'placeholder-value',
-     *     // Cloud Run currently ignores this parameter.
-     *     kind: 'placeholder-value',
-     *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
-     *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background.
-     *     propagationPolicy: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "code": 0,
-     *   //   "details": {},
-     *   //   "message": "my_message",
-     *   //   "metadata": {},
-     *   //   "reason": "my_reason",
-     *   //   "status": "my_status"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8856,52 +6612,6 @@ export namespace run_v1 {
 
     /**
      * Get information about a revision.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.revisions.get({
-     *     // The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8986,66 +6696,6 @@ export namespace run_v1 {
 
     /**
      * List revisions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.revisions.list({
-     *     // Optional. Encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Not currently used by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     *     labelSelector: 'placeholder-value',
-     *     // Optional. The maximum number of records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9211,52 +6861,6 @@ export namespace run_v1 {
 
     /**
      * Get information about a route.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.routes.get({
-     *     // The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     name: 'projects/my-project/locations/my-location/routes/my-route',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9341,66 +6945,6 @@ export namespace run_v1 {
 
     /**
      * List routes.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.routes.list({
-     *     // Optional. Encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Not currently used by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     *     labelSelector: 'placeholder-value',
-     *     // Optional. The maximum number of records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9541,66 +7085,6 @@ export namespace run_v1 {
 
     /**
      * Creates a new Service. Service creation will trigger a new deployment. Use GetService, and check service.status to determine if the Service is ready.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.services.create({
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
-     *     dryRun: 'placeholder-value',
-     *     // Required. The resource's parent. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/services` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "apiVersion": "my_apiVersion",
-     *       //   "kind": "my_kind",
-     *       //   "metadata": {},
-     *       //   "spec": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9688,61 +7172,6 @@ export namespace run_v1 {
 
     /**
      * Deletes the provided service. This will cause the Service to stop serving traffic and will delete all associated Revisions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.services.delete({
-     *     // Not supported, and ignored by Cloud Run.
-     *     apiVersion: 'placeholder-value',
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
-     *     dryRun: 'placeholder-value',
-     *     // Not supported, and ignored by Cloud Run.
-     *     kind: 'placeholder-value',
-     *     // Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
-     *     name: 'projects/my-project/locations/my-location/services/my-service',
-     *     // Not supported, and ignored by Cloud Run.
-     *     propagationPolicy: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "code": 0,
-     *   //   "details": {},
-     *   //   "message": "my_message",
-     *   //   "metadata": {},
-     *   //   "reason": "my_reason",
-     *   //   "status": "my_status"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9827,52 +7256,6 @@ export namespace run_v1 {
 
     /**
      * Gets information about a service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.services.get({
-     *     // Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
-     *     name: 'projects/my-project/locations/my-location/services/my-service',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9957,53 +7340,6 @@ export namespace run_v1 {
 
     /**
      * Gets the IAM Access Control policy currently in effect for the given Cloud Run service. This result does not include any inherited policies.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.services.getIamPolicy({
-     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/services/my-service',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10091,66 +7427,6 @@ export namespace run_v1 {
 
     /**
      * Lists services for the given project and region.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.services.list({
-     *     // Encoded string to continue paging.
-     *     continue: 'placeholder-value',
-     *     // Not supported, and ignored by Cloud Run.
-     *     fieldSelector: 'placeholder-value',
-     *     // Not supported, and ignored by Cloud Run.
-     *     includeUninitialized: 'placeholder-value',
-     *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     *     labelSelector: 'placeholder-value',
-     *     // The maximum number of records that should be returned.
-     *     limit: 'placeholder-value',
-     *     // Required. The parent from where the resources should be listed. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/services` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Not supported, and ignored by Cloud Run.
-     *     resourceVersion: 'placeholder-value',
-     *     // Not supported, and ignored by Cloud Run.
-     *     watch: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10243,66 +7519,6 @@ export namespace run_v1 {
 
     /**
      * Replaces a service. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.services.replaceService({
-     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
-     *     dryRun: 'placeholder-value',
-     *     // Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
-     *     name: 'projects/my-project/locations/my-location/services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "apiVersion": "my_apiVersion",
-     *       //   "kind": "my_kind",
-     *       //   "metadata": {},
-     *       //   "spec": {},
-     *       //   "status": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiVersion": "my_apiVersion",
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "spec": {},
-     *   //   "status": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10388,60 +7604,6 @@ export namespace run_v1 {
 
     /**
      * Sets the IAM Access control policy for the specified Service. Overwrites any existing policy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.services.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10529,56 +7691,6 @@ export namespace run_v1 {
 
     /**
      * Returns permissions that a caller has on the specified Project. There are no permissions required for making this API call.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.projects.locations.services.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "permissions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
