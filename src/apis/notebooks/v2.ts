@@ -242,6 +242,10 @@ export namespace notebooks_v2 {
      * Required. Defines flags that are used to run the diagnostic tool
      */
     diagnosticConfig?: Schema$DiagnosticConfig;
+    /**
+     * Optional. Maxmium amount of time in minutes before the operation times out.
+     */
+    timeoutMinutes?: number | null;
   }
   /**
    * Defines flags that are used to run the diagnostic tool
@@ -1585,7 +1589,8 @@ export namespace notebooks_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "diagnosticConfig": {}
+     *       //   "diagnosticConfig": {},
+     *       //   "timeoutMinutes": 0
      *       // }
      *     },
      *   });
