@@ -602,6 +602,10 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$BuildOptions {
     /**
+     * Option to include built-in and custom substitutions as env variables for all build steps.
+     */
+    automapSubstitutions?: boolean | null;
+    /**
      * Optional. Option to specify how default logs buckets are setup.
      */
     defaultLogsBucketBehavior?: string | null;
@@ -674,6 +678,10 @@ export namespace cloudbuild_v1 {
      * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
      */
     args?: string[] | null;
+    /**
+     * Option to include built-in and custom substitutions as env variables for this build step. This option will override the global option in BuildOption.
+     */
+    automapSubstitutions?: boolean | null;
     /**
      * Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.
      */
@@ -1626,7 +1634,7 @@ export namespace cloudbuild_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
