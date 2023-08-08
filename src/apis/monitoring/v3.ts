@@ -174,7 +174,7 @@ export namespace monitoring_v3 {
      */
     creationRecord?: Schema$MutationRecord;
     /**
-     * A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid confusion, don't use the same display name for multiple policies in the same project. The name is limited to 512 Unicode characters.The convention for the display_name of a PrometheusQueryLanguageCondition is "/", where the and should be taken from the corresponding Prometheus configuration file. This convention is not enforced. In any case the display_name is not a unique key of the AlertPolicy.
+     * A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid confusion, don't use the same display name for multiple policies in the same project. The name is limited to 512 Unicode characters.The convention for the display_name of a PrometheusQueryLanguageCondition is "{rule group name\}/{alert name\}", where the {rule group name\} and {alert name\} should be taken from the corresponding Prometheus configuration file. This convention is not enforced. In any case the display_name is not a unique key of the AlertPolicy.
      */
     displayName?: string | null;
     /**
@@ -198,7 +198,7 @@ export namespace monitoring_v3 {
      */
     notificationChannels?: string[] | null;
     /**
-     * User-supplied key/value data to be used for organizing and identifying the AlertPolicy objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter.Note that Prometheus and are valid Prometheus label names (https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels). This means that they cannot be stored as is in user labels, because Prometheus labels may contain upper-case letters.
+     * User-supplied key/value data to be used for organizing and identifying the AlertPolicy objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter.Note that Prometheus {rule group name\} and {alert name\} are valid Prometheus label names (https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels). This means that they cannot be stored as-is in user labels, because Prometheus labels may contain upper-case letters.
      */
     userLabels?: {[key: string]: string} | null;
     /**
@@ -312,6 +312,19 @@ export namespace monitoring_v3 {
      * The name of the Cloud Endpoints service underlying this service. Corresponds to the service resource label in the api monitored resource (https://cloud.google.com/monitoring/api/resources#tag_api).
      */
     service?: string | null;
+  }
+  /**
+   * A Synthetic Monitor deployed to a Cloud Functions V2 instance.
+   */
+  export interface Schema$CloudFunctionV2Target {
+    /**
+     * Output only. The cloud_run_revision Monitored Resource associated with the GCFv2. The Synthetic Monitor execution results (metrics, logs, and spans) are reported against this Monitored Resource. This field is output only.
+     */
+    cloudRunRevision?: Schema$MonitoredResource;
+    /**
+     * Required. Fully qualified GCFv2 resource name i.e. projects/{project\}/locations/{location\}/functions/{function\} Required.
+     */
+    name?: string | null;
   }
   /**
    * Cloud Run service. Learn more at https://cloud.google.com/run.
@@ -1994,6 +2007,15 @@ export namespace monitoring_v3 {
     message?: string | null;
   }
   /**
+   * Describes a Synthetic Monitor to be invoked by Uptime.
+   */
+  export interface Schema$SyntheticMonitorTarget {
+    /**
+     * Target a Synthetic Monitor GCFv2 instance.
+     */
+    cloudFunctionV2?: Schema$CloudFunctionV2Target;
+  }
+  /**
    * Information required for a TCP Uptime check request.
    */
   export interface Schema$TcpCheck {
@@ -2223,6 +2245,10 @@ export namespace monitoring_v3 {
      * The list of regions from which the check will be run. Some regions contain one location, and others contain more than one. If this field is specified, enough regions must be provided to include a minimum of 3 locations. Not specifying this field will result in Uptime checks running from all available regions.
      */
     selectedRegions?: string[] | null;
+    /**
+     * Specifies a Synthetic Monitor to invoke.
+     */
+    syntheticMonitor?: Schema$SyntheticMonitorTarget;
     /**
      * Contains information needed to make a TCP check.
      */
@@ -8790,6 +8816,7 @@ export namespace monitoring_v3 {
      *       //   "period": "my_period",
      *       //   "resourceGroup": {},
      *       //   "selectedRegions": [],
+     *       //   "syntheticMonitor": {},
      *       //   "tcpCheck": {},
      *       //   "timeout": "my_timeout",
      *       //   "userLabels": {}
@@ -8811,6 +8838,7 @@ export namespace monitoring_v3 {
      *   //   "period": "my_period",
      *   //   "resourceGroup": {},
      *   //   "selectedRegions": [],
+     *   //   "syntheticMonitor": {},
      *   //   "tcpCheck": {},
      *   //   "timeout": "my_timeout",
      *   //   "userLabels": {}
@@ -9087,6 +9115,7 @@ export namespace monitoring_v3 {
      *   //   "period": "my_period",
      *   //   "resourceGroup": {},
      *   //   "selectedRegions": [],
+     *   //   "syntheticMonitor": {},
      *   //   "tcpCheck": {},
      *   //   "timeout": "my_timeout",
      *   //   "userLabels": {}
@@ -9384,6 +9413,7 @@ export namespace monitoring_v3 {
      *       //   "period": "my_period",
      *       //   "resourceGroup": {},
      *       //   "selectedRegions": [],
+     *       //   "syntheticMonitor": {},
      *       //   "tcpCheck": {},
      *       //   "timeout": "my_timeout",
      *       //   "userLabels": {}
@@ -9405,6 +9435,7 @@ export namespace monitoring_v3 {
      *   //   "period": "my_period",
      *   //   "resourceGroup": {},
      *   //   "selectedRegions": [],
+     *   //   "syntheticMonitor": {},
      *   //   "tcpCheck": {},
      *   //   "timeout": "my_timeout",
      *   //   "userLabels": {}
