@@ -131,6 +131,140 @@ export namespace policysimulator_v1 {
   }
 
   /**
+   * Similar to PolicySpec but with an extra 'launch' field for launch reference. The PolicySpec here is specific for dry-run/darklaunch.
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2AlternatePolicySpec {
+    /**
+     * Reference to the launch that will be used while audit logging and to control the launch. Should be set only in the alternate policy.
+     */
+    launch?: string | null;
+    /**
+     * Specify constraint for configurations of Google Cloud resources.
+     */
+    spec?: Schema$GoogleCloudOrgpolicyV2PolicySpec;
+  }
+  /**
+   * A custom constraint defined by customers which can *only* be applied to the given resource types and organization. By creating a custom constraint, customers can apply policies of this custom constraint. *Creating a custom constraint itself does NOT apply any policy enforcement*.
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2CustomConstraint {
+    /**
+     * Allow or deny type.
+     */
+    actionType?: string | null;
+    /**
+     * Org policy condition/expression. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")'` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.
+     */
+    condition?: string | null;
+    /**
+     * Detailed information about this custom policy constraint. The max length of the description is 2000 characters.
+     */
+    description?: string | null;
+    /**
+     * One line display name for the UI. The max length of the display_name is 200 characters.
+     */
+    displayName?: string | null;
+    /**
+     * All the operations being applied for this constraint.
+     */
+    methodTypes?: string[] | null;
+    /**
+     * Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 70 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id\}/customConstraints/` is not counted.
+     */
+    name?: string | null;
+    /**
+     * Immutable. The resource instance type on which this policy applies. Format will be of the form : `/` Example: * `compute.googleapis.com/Instance`.
+     */
+    resourceTypes?: string[] | null;
+    /**
+     * Output only. The last time this custom constraint was updated. This represents the last time that the `CreateCustomConstraint` or `UpdateCustomConstraint` RPC was called
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Defines an organization policy which is used to specify constraints for configurations of Google Cloud resources.
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2Policy {
+    /**
+     * Deprecated.
+     */
+    alternate?: Schema$GoogleCloudOrgpolicyV2AlternatePolicySpec;
+    /**
+     * Dry-run policy. Audit-only policy, can be used to monitor how the policy would have impacted the existing and future resources if it's enforced.
+     */
+    dryRunSpec?: Schema$GoogleCloudOrgpolicyV2PolicySpec;
+    /**
+     * Immutable. The resource name of the policy. Must be one of the following forms, where constraint_name is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     */
+    name?: string | null;
+    /**
+     * Basic information about the Organization Policy.
+     */
+    spec?: Schema$GoogleCloudOrgpolicyV2PolicySpec;
+  }
+  /**
+   * Defines a Google Cloud policy specification which is used to specify constraints for configurations of Google Cloud resources.
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2PolicySpec {
+    /**
+     * An opaque tag indicating the current version of the policy, used for concurrency control. This field is ignored if used in a `CreatePolicy` request. When the policy` is returned from either a `GetPolicy` or a `ListPolicies` request, this `etag` indicates the version of the current policy to use when executing a read-modify-write loop. When the policy is returned from a `GetEffectivePolicy` request, the `etag` will be unset.
+     */
+    etag?: string | null;
+    /**
+     * Determines the inheritance behavior for this policy. If `inherit_from_parent` is true, policy rules set higher up in the hierarchy (up to the closest root) are inherited and present in the effective policy. If it is false, then no rules are inherited, and this policy becomes the new root for evaluation. This field can be set only for policies which configure list constraints.
+     */
+    inheritFromParent?: boolean | null;
+    /**
+     * Ignores policies set above this resource and restores the `constraint_default` enforcement behavior of the specific constraint at this resource. This field can be set in policies for either list or boolean constraints. If set, `rules` must be empty and `inherit_from_parent` must be set to false.
+     */
+    reset?: boolean | null;
+    /**
+     * In policies for boolean constraints, the following requirements apply: - There must be one and only one policy rule where condition is unset. - Boolean policy rules with conditions must set `enforced` to the opposite of the policy rule without a condition. - During policy evaluation, policy rules with conditions that are true for a target resource take precedence.
+     */
+    rules?: Schema$GoogleCloudOrgpolicyV2PolicySpecPolicyRule[];
+    /**
+     * Output only. The time stamp this was previously updated. This represents the last time a call to `CreatePolicy` or `UpdatePolicy` was made for that policy.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A rule used to express this policy.
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2PolicySpecPolicyRule {
+    /**
+     * Setting this to true means that all values are allowed. This field can be set only in policies for list constraints.
+     */
+    allowAll?: boolean | null;
+    /**
+     * A condition which determines whether this rule is used in the evaluation of the policy. When set, the `expression` field in the `Expr' must include from 1 to 10 subexpressions, joined by the "||" or "&&" operators. Each subexpression must be of the form "resource.matchTag('/tag_key_short_name, 'tag_value_short_name')". or "resource.matchTagId('tagKeys/key_id', 'tagValues/value_id')". where key_name and value_name are the resource names for Label Keys and Values. These names are available from the Tag Manager Service. An example expression is: "resource.matchTag('123456789/environment, 'prod')". or "resource.matchTagId('tagKeys/123', 'tagValues/456')".
+     */
+    condition?: Schema$GoogleTypeExpr;
+    /**
+     * Setting this to true means that all values are denied. This field can be set only in policies for list constraints.
+     */
+    denyAll?: boolean | null;
+    /**
+     * If `true`, then the policy is enforced. If `false`, then any configuration is acceptable. This field can be set only in policies for boolean constraints.
+     */
+    enforce?: boolean | null;
+    /**
+     * List of values to be used for this policy rule. This field can be set only in policies for list constraints.
+     */
+    values?: Schema$GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues;
+  }
+  /**
+   * A message that holds specific allowed and denied values. This message can define specific values and subtrees of the Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a ":". Values prefixed with "is:" are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats: - "projects/", e.g. "projects/tokyo-rain-123" - "folders/", e.g. "folders/1234" - "organizations/", e.g. "organizations/1234" The `supports_under` field of the associated `Constraint` defines whether ancestry prefixes can be used.
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues {
+    /**
+     * List of values allowed at this resource.
+     */
+    allowedValues?: string[] | null;
+    /**
+     * List of values denied at this resource.
+     */
+    deniedValues?: string[] | null;
+  }
+  /**
    * A summary and comparison of the principal's access under the current (baseline) policies and the proposed (simulated) policies for a single access tuple.
    */
   export interface Schema$GoogleCloudPolicysimulatorV1AccessStateDiff {
@@ -163,6 +297,242 @@ export namespace policysimulator_v1 {
      * Required. The principal whose access you want to check, in the form of the email address that represents that principal. For example, `alice@example.com` or `my-service-account@my-project.iam.gserviceaccount.com`. The principal must be a Google Account or a service account. Other types of principals are not supported.
      */
     principal?: string | null;
+  }
+  /**
+   * GenerateOrgPolicyViolationsPreviewOperationMetadata is metadata about an OrgPolicyViolationsPreview generations operation.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1alphaGenerateOrgPolicyViolationsPreviewOperationMetadata {
+    /**
+     * Time when the request was received.
+     */
+    requestTime?: string | null;
+    /**
+     * Total number of resources that need scanning. Should equal resource_scanned + resources_pending
+     */
+    resourcesFound?: number | null;
+    /**
+     * Number of resources still to scan.
+     */
+    resourcesPending?: number | null;
+    /**
+     * Number of resources already scanned.
+     */
+    resourcesScanned?: number | null;
+    /**
+     * Time when the request started processing, i.e. when the state was set to RUNNING.
+     */
+    startTime?: string | null;
+    /**
+     * The current state of the operation.
+     */
+    state?: string | null;
+  }
+  /**
+   * The proposed changes to OrgPolicy.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlay {
+    /**
+     * The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated.
+     */
+    customConstraints?: Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayCustomConstraintOverlay[];
+    /**
+     * The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.
+     */
+    policies?: Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayPolicyOverlay[];
+  }
+  /**
+   * A change to an OrgPolicy custom constraint.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayCustomConstraintOverlay {
+    /**
+     * The new or updated custom constraint.
+     */
+    customConstraint?: Schema$GoogleCloudOrgpolicyV2CustomConstraint;
+    /**
+     * Resource the constraint is attached to. Example: "organization/987654"
+     */
+    customConstraintParent?: string | null;
+  }
+  /**
+   * A change to an OrgPolicy.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayPolicyOverlay {
+    /**
+     * The new or updated OrgPolicy.
+     */
+    policy?: Schema$GoogleCloudOrgpolicyV2Policy;
+    /**
+     * The parent of the policy we are attaching to. Example: "projects/123456"
+     */
+    policyParent?: string | null;
+  }
+  /**
+   * OrgPolicyViolationsPreview is a resource providing a preview of the violations that will exist if an OrgPolicy change is made. The list of violations are modeled as child resources and retrieved via a ListOrgPolicyViolations API call. There are potentially more OrgPolicyViolations than could fit in an embedded field. Thus, the use of a child resource instead of a field.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreview {
+    /**
+     * Output only. The resource name of the `OrgPolicyViolationsPreview`. It has the following format: `organizations/{organization\}/locations/{location\}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreview\}` Example: `organizations/my-example-org/locations/global/orgPolicyViolationsPreviews/506a5f7f`
+     */
+    name?: string | null;
+    /**
+     * Required. The proposed changes we are previewing violations for.
+     */
+    overlay?: Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlay;
+    /**
+     * Output only. A summary of the state of all resources scanned for compliance with the changed OrgPolicy.
+     */
+    resourceCounts?: Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreviewResourceCounts;
+    /**
+     * Output only. The state of the `OrgPolicyViolationsPreview`.
+     */
+    state?: string | null;
+    /**
+     * Output only. The number of OrgPolicyViolations in this `OrgPolicyViolationsPreview`. This count may differ from `resource_summary.noncompliant_count` because each OrgPolicyViolation is specific to a resource **and** constraint. If there are multiple constraints being evaluated (i.e. multiple policies in the overlay), a single resource may violate multiple constraints.
+     */
+    violationsCount?: number | null;
+  }
+  /**
+   * A summary of the state of all resources scanned for compliance with the changed OrgPolicy.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreviewResourceCounts {
+    /**
+     * Number of scanned resources with zero violations.
+     */
+    compliant?: number | null;
+    /**
+     * Number of resources that returned an error when scanned.
+     */
+    errors?: number | null;
+    /**
+     * Number of scanned resources with at least one violation.
+     */
+    noncompliant?: number | null;
+    /**
+     * Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error
+     */
+    scanned?: number | null;
+    /**
+     * Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.
+     */
+    unenforced?: number | null;
+  }
+  /**
+   * GenerateOrgPolicyViolationsPreviewOperationMetadata is metadata about an OrgPolicyViolationsPreview generations operation.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1betaGenerateOrgPolicyViolationsPreviewOperationMetadata {
+    /**
+     * Time when the request was received.
+     */
+    requestTime?: string | null;
+    /**
+     * Total number of resources that need scanning. Should equal resource_scanned + resources_pending
+     */
+    resourcesFound?: number | null;
+    /**
+     * Number of resources still to scan.
+     */
+    resourcesPending?: number | null;
+    /**
+     * Number of resources already scanned.
+     */
+    resourcesScanned?: number | null;
+    /**
+     * Time when the request started processing, i.e. when the state was set to RUNNING.
+     */
+    startTime?: string | null;
+    /**
+     * The current state of the operation.
+     */
+    state?: string | null;
+  }
+  /**
+   * The proposed changes to OrgPolicy.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlay {
+    /**
+     * The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated.
+     */
+    customConstraints?: Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayCustomConstraintOverlay[];
+    /**
+     * The OrgPolicy changes to preview violations for. Any existing OrgPolicies with the same name will be overridden in the simulation. That is, violations will be determined as if all policies in the overlay were created or updated.
+     */
+    policies?: Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayPolicyOverlay[];
+  }
+  /**
+   * A change to an OrgPolicy custom constraint.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayCustomConstraintOverlay {
+    /**
+     * The new or updated custom constraint.
+     */
+    customConstraint?: Schema$GoogleCloudOrgpolicyV2CustomConstraint;
+    /**
+     * Resource the constraint is attached to. Example: "organization/987654"
+     */
+    customConstraintParent?: string | null;
+  }
+  /**
+   * A change to an OrgPolicy.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayPolicyOverlay {
+    /**
+     * The new or updated OrgPolicy.
+     */
+    policy?: Schema$GoogleCloudOrgpolicyV2Policy;
+    /**
+     * The parent of the policy we are attaching to. Example: "projects/123456"
+     */
+    policyParent?: string | null;
+  }
+  /**
+   * OrgPolicyViolationsPreview is a resource providing a preview of the violations that will exist if an OrgPolicy change is made. The list of violations are modeled as child resources and retrieved via a ListOrgPolicyViolations API call. There are potentially more OrgPolicyViolations than could fit in an embedded field. Thus, the use of a child resource instead of a field.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview {
+    /**
+     * Output only. The resource name of the `OrgPolicyViolationsPreview`. It has the following format: `organizations/{organization\}/locations/{location\}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreview\}` Example: `organizations/my-example-org/locations/global/orgPolicyViolationsPreviews/506a5f7f`
+     */
+    name?: string | null;
+    /**
+     * Required. The proposed changes we are previewing violations for.
+     */
+    overlay?: Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlay;
+    /**
+     * Output only. A summary of the state of all resources scanned for compliance with the changed OrgPolicy.
+     */
+    resourceCounts?: Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewResourceCounts;
+    /**
+     * Output only. The state of the `OrgPolicyViolationsPreview`.
+     */
+    state?: string | null;
+    /**
+     * Output only. The number of OrgPolicyViolations in this `OrgPolicyViolationsPreview`. This count may differ from `resource_summary.noncompliant_count` because each OrgPolicyViolation is specific to a resource **and** constraint. If there are multiple constraints being evaluated (i.e. multiple policies in the overlay), a single resource may violate multiple constraints.
+     */
+    violationsCount?: number | null;
+  }
+  /**
+   * A summary of the state of all resources scanned for compliance with the changed OrgPolicy.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewResourceCounts {
+    /**
+     * Number of scanned resources with zero violations.
+     */
+    compliant?: number | null;
+    /**
+     * Number of resources that returned an error when scanned.
+     */
+    errors?: number | null;
+    /**
+     * Number of scanned resources with at least one violation.
+     */
+    noncompliant?: number | null;
+    /**
+     * Number of resources checked for compliance. Must equal: unenforced + noncompliant + compliant + error
+     */
+    scanned?: number | null;
+    /**
+     * Number of resources where the constraint was not enforced, i.e. the Policy set `enforced: false` for that resource.
+     */
+    unenforced?: number | null;
   }
   /**
    * Details about how a binding in a policy affects a principal's ability to use a permission.
@@ -571,63 +941,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Creates and starts a Replay using the given ReplayConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.folders.locations.replays.create({
-     *     // Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`
-     *     parent: 'folders/my-folder/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "config": {},
-     *       //   "name": "my_name",
-     *       //   "resultsSummary": {},
-     *       //   "state": "my_state"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -723,51 +1036,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Gets the specified Replay. Each `Replay` is available for at least 7 days.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.folders.locations.replays.get({
-     *     // Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *     name: 'folders/my-folder/locations/my-location/replays/my-replay',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "name": "my_name",
-     *   //   "resultsSummary": {},
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -889,52 +1157,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.folders.locations.replays.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'folders/my-folder/locations/my-location/replays/my-replay/operations/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1027,55 +1249,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.folders.locations.replays.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'folders/my-folder/locations/my-location/replays/my-replay/operations',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1205,53 +1378,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Lists the results of running a Replay.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.folders.locations.replays.results.list({
-     *     // The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous Simulator.ListReplayResults call. Provide this token to retrieve the next page of results. When paginating, all other parameters provided to [Simulator.ListReplayResults[] must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The Replay whose results are listed, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}` Example: `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *     parent: 'folders/my-folder/locations/my-location/replays/my-replay',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "replayResults": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1372,52 +1498,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'operations/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1509,55 +1589,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'operations',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1709,63 +1740,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Creates and starts a Replay using the given ReplayConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.organizations.locations.replays.create({
-     *     // Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`
-     *     parent: 'organizations/my-organization/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "config": {},
-     *       //   "name": "my_name",
-     *       //   "resultsSummary": {},
-     *       //   "state": "my_state"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1861,51 +1835,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Gets the specified Replay. Each `Replay` is available for at least 7 days.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.organizations.locations.replays.get({
-     *     // Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *     name: 'organizations/my-organization/locations/my-location/replays/my-replay',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "name": "my_name",
-     *   //   "resultsSummary": {},
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2027,53 +1956,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await policysimulator.organizations.locations.replays.operations.get({
-     *       // The name of the operation resource.
-     *       name: 'organizations/my-organization/locations/my-location/replays/my-replay/operations/.*',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2167,56 +2049,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await policysimulator.organizations.locations.replays.operations.list({
-     *       // The standard list filter.
-     *       filter: 'placeholder-value',
-     *       // The name of the operation's parent resource.
-     *       name: 'organizations/my-organization/locations/my-location/replays/my-replay/operations',
-     *       // The standard list page size.
-     *       pageSize: 'placeholder-value',
-     *       // The standard list page token.
-     *       pageToken: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2346,55 +2178,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Lists the results of running a Replay.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await policysimulator.organizations.locations.replays.results.list({
-     *       // The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.
-     *       pageSize: 'placeholder-value',
-     *       // A page token, received from a previous Simulator.ListReplayResults call. Provide this token to retrieve the next page of results. When paginating, all other parameters provided to [Simulator.ListReplayResults[] must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The Replay whose results are listed, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}` Example: `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *       parent:
-     *         'organizations/my-organization/locations/my-location/replays/my-replay',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "replayResults": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2542,63 +2325,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Creates and starts a Replay using the given ReplayConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.projects.locations.replays.create({
-     *     // Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "config": {},
-     *       //   "name": "my_name",
-     *       //   "resultsSummary": {},
-     *       //   "state": "my_state"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2694,51 +2420,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Gets the specified Replay. Each `Replay` is available for at least 7 days.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.projects.locations.replays.get({
-     *     // Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *     name: 'projects/my-project/locations/my-location/replays/my-replay',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "name": "my_name",
-     *   //   "resultsSummary": {},
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2860,52 +2541,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.projects.locations.replays.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/my-location/replays/my-replay/operations/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2999,55 +2634,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.projects.locations.replays.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'projects/my-project/locations/my-location/replays/my-replay/operations',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3177,53 +2763,6 @@ export namespace policysimulator_v1 {
 
     /**
      * Lists the results of running a Replay.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.projects.locations.replays.results.list({
-     *     // The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous Simulator.ListReplayResults call. Provide this token to retrieve the next page of results. When paginating, all other parameters provided to [Simulator.ListReplayResults[] must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The Replay whose results are listed, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}` Example: `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *     parent: 'projects/my-project/locations/my-location/replays/my-replay',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "replayResults": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

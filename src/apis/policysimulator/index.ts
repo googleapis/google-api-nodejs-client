@@ -55,7 +55,7 @@ export function policysimulator<
     | policysimulator_v1.Policysimulator
     | policysimulator_v1alpha.Policysimulator
     | policysimulator_v1beta.Policysimulator
-    | policysimulator_v1beta1.Policysimulator
+    | policysimulator_v1beta1.Policysimulator,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
