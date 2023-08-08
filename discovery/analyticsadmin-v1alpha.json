@@ -3140,7 +3140,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to be updated. Omitted fields will not be updated.",
+                      "description": "Required. The list of fields to be updated. Omitted fields will not be updated.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -4322,7 +4322,7 @@
       }
     }
   },
-  "revision": "20230716",
+  "revision": "20230808",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -4870,8 +4870,8 @@
           "enum": [
             "ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED",
             "NOT_SELECTED_YET",
-            "CROSS_CHANNEL",
-            "ADS_PREFERRED"
+            "PAID_AND_ORGANIC_CHANNELS",
+            "GOOGLE_PAID_CHANNELS"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -4906,23 +4906,23 @@
           "description": "Required. The reporting attribution model used to calculate conversion credit in this property's reports. Changing the attribution model will apply to both historical and future data. These changes will be reflected in reports with conversion and revenue data. User and session data will be unaffected.",
           "enum": [
             "REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED",
-            "CROSS_CHANNEL_DATA_DRIVEN",
-            "CROSS_CHANNEL_LAST_CLICK",
-            "CROSS_CHANNEL_FIRST_CLICK",
-            "CROSS_CHANNEL_LINEAR",
-            "CROSS_CHANNEL_POSITION_BASED",
-            "CROSS_CHANNEL_TIME_DECAY",
-            "ADS_PREFERRED_LAST_CLICK"
+            "PAID_AND_ORGANIC_CHANNELS_DATA_DRIVEN",
+            "PAID_AND_ORGANIC_CHANNELS_LAST_CLICK",
+            "PAID_AND_ORGANIC_CHANNELS_FIRST_CLICK",
+            "PAID_AND_ORGANIC_CHANNELS_LINEAR",
+            "PAID_AND_ORGANIC_CHANNELS_POSITION_BASED",
+            "PAID_AND_ORGANIC_CHANNELS_TIME_DECAY",
+            "GOOGLE_PAID_CHANNELS_LAST_CLICK"
           ],
           "enumDescriptions": [
             "Reporting attribution model unspecified.",
-            "Data-driven attribution distributes credit for the conversion based on data for each conversion event. Each Data-driven model is specific to each advertiser and each conversion event.",
-            "Ignores direct traffic and attributes 100% of the conversion value to the last channel that the customer clicked through (or engaged view through for YouTube) before converting.",
-            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives all credit for the conversion to the first channel that a customer clicked (or engaged view through for YouTube) before converting.",
-            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Distributes the credit for the conversion equally across all the channels a customer clicked (or engaged view through for YouTube) before converting.",
-            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Attributes 40% credit to the first and last interaction, and the remaining 20% credit is distributed evenly to the middle interactions.",
-            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives more credit to the touchpoints that happened closer in time to the conversion.",
-            "Attributes 100% of the conversion value to the last Google Ads channel that the customer clicked through before converting."
+            "Data-driven attribution distributes credit for the conversion based on data for each conversion event. Each Data-driven model is specific to each advertiser and each conversion event. Previously CROSS_CHANNEL_DATA_DRIVEN",
+            "Ignores direct traffic and attributes 100% of the conversion value to the last channel that the customer clicked through (or engaged view through for YouTube) before converting. Previously CROSS_CHANNEL_LAST_CLICK",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives all credit for the conversion to the first channel that a customer clicked (or engaged view through for YouTube) before converting. Previously CROSS_CHANNEL_FIRST_CLICK",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Distributes the credit for the conversion equally across all the channels a customer clicked (or engaged view through for YouTube) before converting. Previously CROSS_CHANNEL_LINEAR",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Attributes 40% credit to the first and last interaction, and the remaining 20% credit is distributed evenly to the middle interactions. Previously CROSS_CHANNEL_POSITION_BASED",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives more credit to the touchpoints that happened closer in time to the conversion. Previously CROSS_CHANNEL_TIME_DECAY",
+            "Attributes 100% of the conversion value to the last Google Paid channel that the customer clicked through before converting. Previously ADS_PREFERRED_LAST_CLICK"
           ],
           "type": "string"
         }
@@ -5589,6 +5589,10 @@
           "description": "If set true, enables daily data export to the linked Google Cloud project.",
           "type": "boolean"
         },
+        "enterpriseExportEnabled": {
+          "description": "If set true, enables enterprise export to the linked Google Cloud project.",
+          "type": "boolean"
+        },
         "excludedEvents": {
           "description": "The list of event names that will be excluded from exports.",
           "items": {
@@ -5605,10 +5609,6 @@
         },
         "includeAdvertisingId": {
           "description": "If set true, exported data will include advertising identifiers for mobile app streams.",
-          "type": "boolean"
-        },
-        "intradayExportEnabled": {
-          "description": "If set true, enables intraday export to the linked Google Cloud project.",
           "type": "boolean"
         },
         "name": {
