@@ -1292,6 +1292,39 @@ export namespace content_v2_1 {
     services?: string[] | null;
   }
   /**
+   * `CheckoutSettings` for a specific merchant ID.
+   */
+  export interface Schema$CheckoutSettings {
+    /**
+     * Output only. The effective value of enrollment state for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account.
+     */
+    effectiveEnrollmentState?: string | null;
+    /**
+     * Output only. The effective value of review state for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account.
+     */
+    effectiveReviewState?: string | null;
+    /**
+     * The effective value of `url_settings` for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account.
+     */
+    effectiveUriSettings?: Schema$UrlSettings;
+    /**
+     * Output only. Reflects the merchant enrollment state in `Checkout` feature.
+     */
+    enrollmentState?: string | null;
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string | null;
+    /**
+     * Output only. Reflects the merchant review state in `Checkout` feature. This is set based on the data quality reviews of the URL provided by the merchant. A merchant with enrollment state as `ENROLLED` can be in the following review states: `IN_REVIEW`, `APPROVED` or `DISAPPROVED`. A merchant must be in an enrollment_state of `ENROLLED` before a review can begin for the merchant.
+     */
+    reviewState?: string | null;
+    /**
+     * URL settings for cart or checkout URL.
+     */
+    uriSettings?: Schema$UrlSettings;
+  }
+  /**
    * Product property for the Cloud Retail API. For example, properties for a TV product could be "Screen-Resolution" or "Screen-Size".
    */
   export interface Schema$CloudExportAdditionalProperties {
@@ -2394,6 +2427,15 @@ export namespace content_v2_1 {
      * Reason code this rule was not applicable.
      */
     inapplicableReason?: string | null;
+  }
+  /**
+   * Request message for the `InsertCheckoutSettings` method.
+   */
+  export interface Schema$InsertCheckoutSettingsRequest {
+    /**
+     * Required. The `UrlSettings` for the request. The presence of URL settings indicates `Checkout` enrollment.
+     */
+    uriSettings?: Schema$UrlSettings;
   }
   export interface Schema$Installment {
     /**
@@ -5116,6 +5158,14 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
+     * Optional. Supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).
+     */
+    pickupMethod?: string | null;
+    /**
+     * Optional. Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).
+     */
+    pickupSla?: string | null;
+    /**
      * Required. The current price of the item.
      */
     price?: Schema$Price;
@@ -5149,6 +5199,14 @@ export namespace content_v2_1 {
      * Required. A unique identifier for the item.
      */
     itemId?: string | null;
+    /**
+     * Optional. Supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).
+     */
+    pickupMethod?: string | null;
+    /**
+     * Optional. Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).
+     */
+    pickupSla?: string | null;
     /**
      * Required. The current price of the item.
      */
@@ -5187,6 +5245,14 @@ export namespace content_v2_1 {
      * Identifies what kind of resource this is. Value: the fixed string "`content#posInventoryResponse`".
      */
     kind?: string | null;
+    /**
+     * Optional. Supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).
+     */
+    pickupMethod?: string | null;
+    /**
+     * Optional. Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).
+     */
+    pickupSla?: string | null;
     /**
      * Required. The current price of the item.
      */
@@ -8838,6 +8904,19 @@ export namespace content_v2_1 {
      * [required] Type of the tax. Acceptable values are: - "`otherFee`" - "`otherFeeTax`" - "`sales`"
      */
     taxType?: string | null;
+  }
+  /**
+   * Specifications related to the `Checkout` URL. The `UriTemplate` is of the form `https://www.mystore.com/checkout?item_id={id\}` where `{id\}` will be automatically replaced with data from the merchant account with this attribute [offer_id](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.offer_id)
+   */
+  export interface Schema$UrlSettings {
+    /**
+     * URL template when the placeholders are expanded will redirect the buyer to the cart page on the merchant website with the selected item in cart.
+     */
+    cartUriTemplate?: string | null;
+    /**
+     * URL template when the placeholders are expanded will redirect the buyer to the merchant checkout page with the item in the cart.
+     */
+    checkoutUriTemplate?: string | null;
   }
   /**
    * The single value of a rate group or the value of a rate group table's cell. Exactly one of `noShipping`, `flatRate`, `pricePercentage`, `carrierRateName`, `subtableName` must be set.
@@ -18426,8 +18505,12 @@ export namespace content_v2_1 {
 
   export class Resource$Freelistingsprogram {
     context: APIRequestContext;
+    checkoutsettings: Resource$Freelistingsprogram$Checkoutsettings;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.checkoutsettings = new Resource$Freelistingsprogram$Checkoutsettings(
+        this.context
+      );
     }
 
     /**
@@ -18715,6 +18798,445 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$RequestReviewFreeListingsRequest;
+  }
+
+  export class Resource$Freelistingsprogram$Checkoutsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes `Checkout` settings and unenrolls merchant from `Checkout` program.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.freelistingsprogram.checkoutsettings.delete({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Freelistingsprogram$Checkoutsettings$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Freelistingsprogram$Checkoutsettings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Freelistingsprogram$Checkoutsettings$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/freelistingsprogram/checkoutsettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Gets Checkout settings for the given merchant. This includes information about review state, enrollment state and URL settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.freelistingsprogram.checkoutsettings.get({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "effectiveEnrollmentState": "my_effectiveEnrollmentState",
+     *   //   "effectiveReviewState": "my_effectiveReviewState",
+     *   //   "effectiveUriSettings": {},
+     *   //   "enrollmentState": "my_enrollmentState",
+     *   //   "merchantId": "my_merchantId",
+     *   //   "reviewState": "my_reviewState",
+     *   //   "uriSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckoutSettings>;
+    get(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CheckoutSettings>,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    get(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Get,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CheckoutSettings>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Freelistingsprogram$Checkoutsettings$Get
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CheckoutSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Freelistingsprogram$Checkoutsettings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Freelistingsprogram$Checkoutsettings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/freelistingsprogram/checkoutsettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckoutSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckoutSettings>(parameters);
+      }
+    }
+
+    /**
+     * Enrolls merchant in `Checkout` program.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.freelistingsprogram.checkoutsettings.insert({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "uriSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "effectiveEnrollmentState": "my_effectiveEnrollmentState",
+     *   //   "effectiveReviewState": "my_effectiveReviewState",
+     *   //   "effectiveUriSettings": {},
+     *   //   "enrollmentState": "my_enrollmentState",
+     *   //   "merchantId": "my_merchantId",
+     *   //   "reviewState": "my_reviewState",
+     *   //   "uriSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
+      params?: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckoutSettings>;
+    insert(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$CheckoutSettings>,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    insert(
+      params: Params$Resource$Freelistingsprogram$Checkoutsettings$Insert,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$CheckoutSettings>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Freelistingsprogram$Checkoutsettings$Insert
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CheckoutSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Freelistingsprogram$Checkoutsettings$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Freelistingsprogram$Checkoutsettings$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/freelistingsprogram/checkoutsettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckoutSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckoutSettings>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Freelistingsprogram$Checkoutsettings$Delete
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+  }
+  export interface Params$Resource$Freelistingsprogram$Checkoutsettings$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+  }
+  export interface Params$Resource$Freelistingsprogram$Checkoutsettings$Insert
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InsertCheckoutSettingsRequest;
   }
 
   export class Resource$Liasettings {
@@ -26820,6 +27342,8 @@ export namespace content_v2_1 {
      *       //   "contentLanguage": "my_contentLanguage",
      *       //   "gtin": "my_gtin",
      *       //   "itemId": "my_itemId",
+     *       //   "pickupMethod": "my_pickupMethod",
+     *       //   "pickupSla": "my_pickupSla",
      *       //   "price": {},
      *       //   "quantity": "my_quantity",
      *       //   "storeCode": "my_storeCode",
@@ -26836,6 +27360,8 @@ export namespace content_v2_1 {
      *   //   "gtin": "my_gtin",
      *   //   "itemId": "my_itemId",
      *   //   "kind": "my_kind",
+     *   //   "pickupMethod": "my_pickupMethod",
+     *   //   "pickupSla": "my_pickupSla",
      *   //   "price": {},
      *   //   "quantity": "my_quantity",
      *   //   "storeCode": "my_storeCode",
