@@ -47,7 +47,7 @@ export function cloudbuild<
     | cloudbuild_v1.Cloudbuild
     | cloudbuild_v1alpha1.Cloudbuild
     | cloudbuild_v1alpha2.Cloudbuild
-    | cloudbuild_v1beta1.Cloudbuild
+    | cloudbuild_v1beta1.Cloudbuild,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
