@@ -750,7 +750,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the link:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID",
+                          "description": "Required. The resource name of the link:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\"",
                           "location": "path",
                           "pattern": "^billingAccounts/[^/]+/locations/[^/]+/buckets/[^/]+/links/[^/]+$",
                           "required": true,
@@ -789,7 +789,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource whose links are to be listed:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/",
+                          "description": "Required. The parent resource whose links are to be listed:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID\"",
                           "location": "path",
                           "pattern": "^billingAccounts/[^/]+/locations/[^/]+/buckets/[^/]+$",
                           "required": true,
@@ -872,7 +872,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets a view on a log bucket..",
+                      "description": "Gets a view on a log bucket.",
                       "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                       "httpMethod": "GET",
                       "id": "logging.billingAccounts.locations.buckets.views.get",
@@ -1213,7 +1213,7 @@
         "sinks": {
           "methods": {
             "create": {
-              "description": "Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
+              "description": "Creates a sink that exports specified log entries to a destination. The export begins upon ingress, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
               "flatPath": "v2/billingAccounts/{billingAccountsId}/sinks",
               "httpMethod": "POST",
               "id": "logging.billingAccounts.sinks.create",
@@ -1234,7 +1234,7 @@
                   "type": "string"
                 },
                 "uniqueWriterIdentity": {
-                  "description": "Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.",
+                  "description": "Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) used by the sinks with the same parent. For more information, see writer_identity in LogSink.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -1366,7 +1366,7 @@
                   "type": "string"
                 },
                 "uniqueWriterIdentity": {
-                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.",
+                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents)) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -1411,7 +1411,7 @@
                   "type": "string"
                 },
                 "uniqueWriterIdentity": {
-                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.",
+                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents)) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -1481,7 +1481,7 @@
           ]
         },
         "tail": {
-          "description": "Streaming read of log entries as they are ingested. Until the stream is terminated, it will continue reading logs.",
+          "description": "Streaming read of log entries as they are received. Until the stream is terminated, it will continue reading logs.",
           "flatPath": "v2/entries:tail",
           "httpMethod": "POST",
           "id": "logging.entries.tail",
@@ -2352,7 +2352,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the link:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID",
+                          "description": "Required. The resource name of the link:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\"",
                           "location": "path",
                           "pattern": "^folders/[^/]+/locations/[^/]+/buckets/[^/]+/links/[^/]+$",
                           "required": true,
@@ -2391,7 +2391,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource whose links are to be listed:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/",
+                          "description": "Required. The parent resource whose links are to be listed:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID\"",
                           "location": "path",
                           "pattern": "^folders/[^/]+/locations/[^/]+/buckets/[^/]+$",
                           "required": true,
@@ -2474,7 +2474,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets a view on a log bucket..",
+                      "description": "Gets a view on a log bucket.",
                       "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                       "httpMethod": "GET",
                       "id": "logging.folders.locations.buckets.views.get",
@@ -2815,7 +2815,7 @@
         "sinks": {
           "methods": {
             "create": {
-              "description": "Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
+              "description": "Creates a sink that exports specified log entries to a destination. The export begins upon ingress, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
               "flatPath": "v2/folders/{foldersId}/sinks",
               "httpMethod": "POST",
               "id": "logging.folders.sinks.create",
@@ -2836,7 +2836,7 @@
                   "type": "string"
                 },
                 "uniqueWriterIdentity": {
-                  "description": "Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.",
+                  "description": "Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) used by the sinks with the same parent. For more information, see writer_identity in LogSink.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -2968,7 +2968,7 @@
                   "type": "string"
                 },
                 "uniqueWriterIdentity": {
-                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.",
+                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents)) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -3013,7 +3013,7 @@
                   "type": "string"
                 },
                 "uniqueWriterIdentity": {
-                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.",
+                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents)) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -3452,7 +3452,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the link:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID",
+                      "description": "Required. The resource name of the link:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\"",
                       "location": "path",
                       "pattern": "^[^/]+/[^/]+/locations/[^/]+/buckets/[^/]+/links/[^/]+$",
                       "required": true,
@@ -3491,7 +3491,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource whose links are to be listed:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/",
+                      "description": "Required. The parent resource whose links are to be listed:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID\"",
                       "location": "path",
                       "pattern": "^[^/]+/[^/]+/locations/[^/]+/buckets/[^/]+$",
                       "required": true,
@@ -3574,7 +3574,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets a view on a log bucket..",
+                  "description": "Gets a view on a log bucket.",
                   "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                   "httpMethod": "GET",
                   "id": "logging.locations.buckets.views.get",
@@ -4598,7 +4598,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the link:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID",
+                          "description": "Required. The resource name of the link:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\"",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/locations/[^/]+/buckets/[^/]+/links/[^/]+$",
                           "required": true,
@@ -4637,7 +4637,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource whose links are to be listed:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/",
+                          "description": "Required. The parent resource whose links are to be listed:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID\"",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/locations/[^/]+/buckets/[^/]+$",
                           "required": true,
@@ -4720,7 +4720,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets a view on a log bucket..",
+                      "description": "Gets a view on a log bucket.",
                       "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                       "httpMethod": "GET",
                       "id": "logging.organizations.locations.buckets.views.get",
@@ -5061,7 +5061,7 @@
         "sinks": {
           "methods": {
             "create": {
-              "description": "Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
+              "description": "Creates a sink that exports specified log entries to a destination. The export begins upon ingress, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
               "flatPath": "v2/organizations/{organizationsId}/sinks",
               "httpMethod": "POST",
               "id": "logging.organizations.sinks.create",
@@ -5082,7 +5082,7 @@
                   "type": "string"
                 },
                 "uniqueWriterIdentity": {
-                  "description": "Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.",
+                  "description": "Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) used by the sinks with the same parent. For more information, see writer_identity in LogSink.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -5214,7 +5214,7 @@
                   "type": "string"
                 },
                 "uniqueWriterIdentity": {
-                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.",
+                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents)) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -5259,7 +5259,7 @@
                   "type": "string"
                 },
                 "uniqueWriterIdentity": {
-                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.",
+                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents)) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -5919,7 +5919,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the link:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID",
+                          "description": "Required. The resource name of the link:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID\"",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/buckets/[^/]+/links/[^/]+$",
                           "required": true,
@@ -5958,7 +5958,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource whose links are to be listed:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/",
+                          "description": "Required. The parent resource whose links are to be listed:\"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID\"",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/buckets/[^/]+$",
                           "required": true,
@@ -6041,7 +6041,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets a view on a log bucket..",
+                      "description": "Gets a view on a log bucket.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                       "httpMethod": "GET",
                       "id": "logging.projects.locations.buckets.views.get",
@@ -6540,7 +6540,7 @@
         "sinks": {
           "methods": {
             "create": {
-              "description": "Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
+              "description": "Creates a sink that exports specified log entries to a destination. The export begins upon ingress, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
               "flatPath": "v2/projects/{projectsId}/sinks",
               "httpMethod": "POST",
               "id": "logging.projects.sinks.create",
@@ -6561,7 +6561,7 @@
                   "type": "string"
                 },
                 "uniqueWriterIdentity": {
-                  "description": "Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.",
+                  "description": "Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) used by the sinks with the same parent. For more information, see writer_identity in LogSink.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -6693,7 +6693,7 @@
                   "type": "string"
                 },
                 "uniqueWriterIdentity": {
-                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.",
+                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents)) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -6738,7 +6738,7 @@
                   "type": "string"
                 },
                 "uniqueWriterIdentity": {
-                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.",
+                  "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents)) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -6768,7 +6768,7 @@
     "sinks": {
       "methods": {
         "create": {
-          "description": "Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
+          "description": "Creates a sink that exports specified log entries to a destination. The export begins upon ingress, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
           "flatPath": "v2/{v2Id}/{v2Id1}/sinks",
           "httpMethod": "POST",
           "id": "logging.sinks.create",
@@ -6789,7 +6789,7 @@
               "type": "string"
             },
             "uniqueWriterIdentity": {
-              "description": "Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.",
+              "description": "Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) used by the sinks with the same parent. For more information, see writer_identity in LogSink.",
               "location": "query",
               "type": "boolean"
             }
@@ -6921,7 +6921,7 @@
               "type": "string"
             },
             "uniqueWriterIdentity": {
-              "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.",
+              "description": "Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents)) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.",
               "location": "query",
               "type": "boolean"
             },
@@ -7077,7 +7077,7 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20230727",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryDataset": {
@@ -7101,7 +7101,7 @@
           "type": "boolean"
         },
         "usesTimestampColumnPartitioning": {
-          "description": "Output only. True if new timestamp column based partitioning is in use, false if legacy ingestion-time partitioning is in use.All new sinks will have this field set true and will use timestamp column based partitioning. If use_partitioned_tables is false, this value has no meaning and will be false. Legacy sinks using partitioned tables will have this field set to false.",
+          "description": "Output only. True if new timestamp column based partitioning is in use, false if legacy ingress-time partitioning is in use.All new sinks will have this field set true and will use timestamp column based partitioning. If use_partitioned_tables is false, this value has no meaning and will be false. Legacy sinks using partitioned tables will have this field set to false.",
           "readOnly": true,
           "type": "boolean"
         }
@@ -8021,7 +8021,7 @@
           "type": "object"
         },
         "logName": {
-          "description": "Required. The resource name of the log to which this log entry belongs: \"projects/[PROJECT_ID]/logs/[LOG_ID]\" \"organizations/[ORGANIZATION_ID]/logs/[LOG_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]\" \"folders/[FOLDER_ID]/logs/[LOG_ID]\" A project number may be used in place of PROJECT_ID. The project number is translated to its corresponding PROJECT_ID internally and the log_name field will contain PROJECT_ID in queries and exports.[LOG_ID] must be URL-encoded within log_name. Example: \"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity\".[LOG_ID] must be less than 512 characters long and can only include the following characters: upper and lower case alphanumeric characters, forward-slash, underscore, hyphen, and period.For backward compatibility, if log_name begins with a forward-slash, such as /projects/..., then the log entry is ingested as usual, but the forward-slash is removed. Listing the log entry will not show the leading slash and filtering for a log name with a leading slash will never return any results.",
+          "description": "Required. The resource name of the log to which this log entry belongs: \"projects/[PROJECT_ID]/logs/[LOG_ID]\" \"organizations/[ORGANIZATION_ID]/logs/[LOG_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]\" \"folders/[FOLDER_ID]/logs/[LOG_ID]\" A project number may be used in place of PROJECT_ID. The project number is translated to its corresponding PROJECT_ID internally and the log_name field will contain PROJECT_ID in queries and exports.[LOG_ID] must be URL-encoded within log_name. Example: \"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity\".[LOG_ID] must be less than 512 characters long and can only include the following characters: upper and lower case alphanumeric characters, forward-slash, underscore, hyphen, and period.For backward compatibility, if log_name begins with a forward-slash, such as /projects/..., then the log entry is processed as usual, but the forward-slash is removed. Listing the log entry will not show the leading slash and filtering for a log name with a leading slash will never return any results.",
           "type": "string"
         },
         "metadata": {
@@ -8095,7 +8095,7 @@
           "type": "string"
         },
         "timestamp": {
-          "description": "Optional. The time the event described by the log entry occurred. This time is used to compute the log entry's age and to enforce the logs retention period. If this field is omitted in a new log entry, then Logging assigns it the current time. Timestamps have nanosecond accuracy, but trailing zeros in the fractional seconds might be omitted when the timestamp is displayed.Incoming log entries must have timestamps that don't exceed the logs retention period (https://cloud.google.com/logging/quotas#logs_retention_periods) in the past, and that don't exceed 24 hours in the future. Log entries outside those time boundaries aren't ingested by Logging.",
+          "description": "Optional. The time the event described by the log entry occurred. This time is used to compute the log entry's age and to enforce the logs retention period. If this field is omitted in a new log entry, then Logging assigns it the current time. Timestamps have nanosecond accuracy, but trailing zeros in the fractional seconds might be omitted when the timestamp is displayed.Incoming log entries must have timestamps that don't exceed the logs retention period (https://cloud.google.com/logging/quotas#logs_retention_periods) in the past, and that don't exceed 24 hours in the future. Log entries outside those time boundaries are rejected by Logging.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -8324,7 +8324,7 @@
           "type": "string"
         },
         "destination": {
-          "description": "Required. The export destination: \"storage.googleapis.com/[GCS_BUCKET]\" \"bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]\" \"pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]\" \"logging.googleapis.com/projects/[PROJECT_ID]\" The sink's writer_identity, set when the sink is created, must have permission to write to the destination or else the log entries are not exported. For more information, see Exporting Logs with Sinks (https://cloud.google.com/logging/docs/api/tasks/exporting-logs).",
+          "description": "Required. The export destination: \"storage.googleapis.com/[GCS_BUCKET]\" \"bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]\" \"pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]\" \"logging.googleapis.com/projects/[PROJECT_ID]\" \"logging.googleapis.com/projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" The sink's writer_identity, set when the sink is created, must have permission to write to the destination or else the log entries are not exported. For more information, see Exporting Logs with Sinks (https://cloud.google.com/logging/docs/api/tasks/exporting-logs).",
           "type": "string"
         },
         "disabled": {
@@ -8872,7 +8872,7 @@
       "id": "Settings",
       "properties": {
         "disableDefaultSink": {
-          "description": "Optional. If set to true, the _Default sink in newly created projects and folders will created in a disabled state. This can be used to automatically disable log ingestion if there is already an aggregated sink configured in the hierarchy. The _Default sink can be re-enabled manually if needed.",
+          "description": "Optional. If set to true, the _Default sink in newly created projects and folders will created in a disabled state. This can be used to automatically disable log storage if there is already an aggregated sink configured in the hierarchy. The _Default sink can be re-enabled manually if needed.",
           "type": "boolean"
         },
         "kmsKeyName": {
