@@ -46,7 +46,7 @@ export function baremetalsolution<
   T =
     | baremetalsolution_v1.Baremetalsolution
     | baremetalsolution_v1alpha1.Baremetalsolution
-    | baremetalsolution_v2.Baremetalsolution
+    | baremetalsolution_v2.Baremetalsolution,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
