@@ -212,11 +212,11 @@ export namespace chat_v1 {
      */
     attachmentDataRef?: Schema$AttachmentDataRef;
     /**
-     * The original file name for the content, not the full path.
+     * Output only. The original file name for the content, not the full path.
      */
     contentName?: string | null;
     /**
-     * The content type (MIME type) of the file.
+     * Output only. The content type (MIME type) of the file.
      */
     contentType?: string | null;
     /**
@@ -224,7 +224,7 @@ export namespace chat_v1 {
      */
     downloadUri?: string | null;
     /**
-     * A reference to the drive attachment. This field is used with the Drive API.
+     * Output only. A reference to the Google Drive attachment. This field is used with the Google Drive API.
      */
     driveDataRef?: Schema$DriveDataRef;
     /**
@@ -232,7 +232,7 @@ export namespace chat_v1 {
      */
     name?: string | null;
     /**
-     * The source of the attachment.
+     * Output only. The source of the attachment.
      */
     source?: string | null;
     /**
@@ -635,7 +635,7 @@ export namespace chat_v1 {
     type?: string | null;
   }
   /**
-   * A text, icon, or text and icon button that users can click. To make an image a clickable button, specify an `Image` (not an `ImageComponent`) and set an `onClick` action.
+   * A text, icon, or text and icon button that users can click. For an example in Google Chat apps, see [Button list](https://developers.google.com/chat/ui/widgets/button-list). To make an image a clickable button, specify an `Image` (not an `ImageComponent`) and set an `onClick` action.
    */
   export interface Schema$GoogleAppsCardV1Button {
     /**
@@ -664,7 +664,7 @@ export namespace chat_v1 {
     text?: string | null;
   }
   /**
-   * A list of buttons layed out horizontally.
+   * A list of buttons layed out horizontally. For an example in Google Chat apps, see [Button list](https://developers.google.com/chat/ui/widgets/button-list).
    */
   export interface Schema$GoogleAppsCardV1ButtonList {
     /**
@@ -673,7 +673,7 @@ export namespace chat_v1 {
     buttons?: Schema$GoogleAppsCardV1Button[];
   }
   /**
-   * Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. In Google Chat, cards appear in several places: - As stand-alone messages. - Accompanying a text message, just beneath the text message. - As a [dialog](https://developers.google.com/chat/how-tos/dialogs). The following example JSON creates a "contact card" that features: - A header with the contact's name, job title, and avatar picture. - A section with the contact information, including formatted text. - Buttons that users can click to share the contact, or see more or less information. ![Example contact card](https://developers.google.com/chat/images/card_api_reference.png) ``` { "cardsV2": [ { "cardId": "unique-card-id", "card": { "header": { "title": "Sasha", "subtitle": "Software Engineer", "imageUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "Avatar for Sasha", \}, "sections": [ { "header": "Contact Info", "collapsible": true, "uncollapsibleWidgetsCount": 1, "widgets": [ { "decoratedText": { "startIcon": { "knownIcon": "EMAIL", \}, "text": "sasha@example.com", \} \}, { "decoratedText": { "startIcon": { "knownIcon": "PERSON", \}, "text": "Online", \}, \}, { "decoratedText": { "startIcon": { "knownIcon": "PHONE", \}, "text": "+1 (555) 555-1234", \} \}, { "buttonList": { "buttons": [ { "text": "Share", "onClick": { "openLink": { "url": "https://example.com/share", \} \} \}, { "text": "Edit", "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT", \} ], \} \} \}, ], \} \}, ], \}, ], \}, \} ], \} ```
+   * Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. In Google Chat, cards appear in several places: - As stand-alone messages. - Accompanying a text message, just beneath the text message. - As a [dialog](https://developers.google.com/chat/how-tos/dialogs). The following example JSON creates a "contact card" that features: - A header with the contact's name, job title, and avatar picture. - A section with the contact information, including formatted text. - Buttons that users can click to share the contact, or see more or less information. For more examples, see [Design dynamic, interactive, and consistent UIs with cards](https://developers.google.com/chat/ui). ![Example contact card](https://developers.google.com/chat/images/card_api_reference.png) ``` { "cardsV2": [ { "cardId": "unique-card-id", "card": { "header": { "title": "Sasha", "subtitle": "Software Engineer", "imageUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "Avatar for Sasha", \}, "sections": [ { "header": "Contact Info", "collapsible": true, "uncollapsibleWidgetsCount": 1, "widgets": [ { "decoratedText": { "startIcon": { "knownIcon": "EMAIL", \}, "text": "sasha@example.com", \} \}, { "decoratedText": { "startIcon": { "knownIcon": "PERSON", \}, "text": "Online", \}, \}, { "decoratedText": { "startIcon": { "knownIcon": "PHONE", \}, "text": "+1 (555) 555-1234", \} \}, { "buttonList": { "buttons": [ { "text": "Share", "onClick": { "openLink": { "url": "https://example.com/share", \} \} \}, { "text": "Edit", "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT", \} ], \} \} \}, ], \} \}, ], \}, ], \}, \} ], \} ```
    */
   export interface Schema$GoogleAppsCardV1Card {
     /**
@@ -705,7 +705,7 @@ export namespace chat_v1 {
      */
     sectionDividerStyle?: string | null;
     /**
-     * Contains a collection of widgets. Each section has its own, optional header. Sections are visually separated by a line divider.
+     * Contains a collection of widgets. Each section has its own, optional header. Sections are visually separated by a line divider. For an example in Google Chat apps, see [Card section](https://developers.google.com/chat/ui/widgets/card-section).
      */
     sections?: Schema$GoogleAppsCardV1Section[];
   }
@@ -723,7 +723,7 @@ export namespace chat_v1 {
     onClick?: Schema$GoogleAppsCardV1OnClick;
   }
   /**
-   * A persistent (sticky) footer that that appears at the bottom of the card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Supported by Google Workspace Add-ons and Chat apps. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/message-formats/cards).
+   * A persistent (sticky) footer that that appears at the bottom of the card. For an example in Google Chat apps, see [Card footer](https://developers.google.com/chat/ui/widgets/card-fixed-footer). Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Supported by Google Workspace Add-ons and Chat apps. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/message-formats/cards).
    */
   export interface Schema$GoogleAppsCardV1CardFixedFooter {
     /**
@@ -736,7 +736,7 @@ export namespace chat_v1 {
     secondaryButton?: Schema$GoogleAppsCardV1Button;
   }
   /**
-   * Represents a card header.
+   * Represents a card header. For an example in Google Chat apps, see [Card header](https://developers.google.com/chat/ui/widgets/card-header).
    */
   export interface Schema$GoogleAppsCardV1CardHeader {
     /**
@@ -782,7 +782,7 @@ export namespace chat_v1 {
     widgets?: Schema$GoogleAppsCardV1Widgets[];
   }
   /**
-   * The `Columns` widget displays up to 2 columns in a card message or dialog. You can add widgets to each column; the widgets appear in the order that they are specified. The height of each column is determined by the taller column. For example, if the first column is taller than the second column, both columns have the height of the first column. Because each column can contain a different number of widgets, you can't define rows or align widgets between the columns. Columns are displayed side-by-side. You can customize the width of each column using the `HorizontalSizeStyle` field. If the user's screen width is too narrow, the second column wraps below the first: * On web, the second column wraps if the screen width is less than or equal to 480 pixels. * On iOS devices, the second column wraps if the screen width is less than or equal to 300 pt. * On Android devices, the second column wraps if the screen width is less than or equal to 320 dp. To include more than 2 columns, or to use rows, use the `Grid` widget. Supported by Chat apps, but not Google Workspace Add-ons.
+   * The `Columns` widget displays up to 2 columns in a card message or dialog. You can add widgets to each column; the widgets appear in the order that they are specified. For an example in Google Chat apps, see [Columns](https://developers.google.com/chat/ui/widgets/columns). The height of each column is determined by the taller column. For example, if the first column is taller than the second column, both columns have the height of the first column. Because each column can contain a different number of widgets, you can't define rows or align widgets between the columns. Columns are displayed side-by-side. You can customize the width of each column using the `HorizontalSizeStyle` field. If the user's screen width is too narrow, the second column wraps below the first: * On web, the second column wraps if the screen width is less than or equal to 480 pixels. * On iOS devices, the second column wraps if the screen width is less than or equal to 300 pt. * On Android devices, the second column wraps if the screen width is less than or equal to 320 dp. To include more than 2 columns, or to use rows, use the `Grid` widget. Supported by Chat apps, but not Google Workspace Add-ons.
    */
   export interface Schema$GoogleAppsCardV1Columns {
     /**
@@ -791,7 +791,7 @@ export namespace chat_v1 {
     columnItems?: Schema$GoogleAppsCardV1Column[];
   }
   /**
-   * Lets users input a date, a time, or both a date and a time. Users can input text or use the picker to select dates and times. If users input an invalid date or time, the picker shows an error that prompts users to input the information correctly.
+   * Lets users input a date, a time, or both a date and a time. For an example in Google Chat apps, see [Date time picker](https://developers.google.com/chat/ui/widgets/date-time-picker). Users can input text or use the picker to select dates and times. If users input an invalid date or time, the picker shows an error that prompts users to input the information correctly.
    */
   export interface Schema$GoogleAppsCardV1DateTimePicker {
     /**
@@ -799,7 +799,7 @@ export namespace chat_v1 {
      */
     label?: string | null;
     /**
-     * The name by which the `DateTimePicker` is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
+     * The name by which the `DateTimePicker` is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     name?: string | null;
     /**
@@ -820,7 +820,7 @@ export namespace chat_v1 {
     valueMsEpoch?: string | null;
   }
   /**
-   * A widget that displays text with optional decorations such as a label above or below the text, an icon in front of the text, a selection widget, or a button after the text.
+   * A widget that displays text with optional decorations such as a label above or below the text, an icon in front of the text, a selection widget, or a button after the text. For an example in Google Chat apps, see [Decorated text](https://developers.google.com/chat/ui/widgets/decorated-text).
    */
   export interface Schema$GoogleAppsCardV1DecoratedText {
     /**
@@ -852,7 +852,7 @@ export namespace chat_v1 {
      */
     switchControl?: Schema$GoogleAppsCardV1SwitchControl;
     /**
-     * Required. The primary text. Supports simple formatting. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     * Required. The primary text. Supports simple formatting. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      */
     text?: string | null;
     /**
@@ -865,11 +865,11 @@ export namespace chat_v1 {
     wrapText?: boolean | null;
   }
   /**
-   * Displays a divider between widgets as a horizontal line. For example, the following JSON creates a divider: ``` "divider": {\} ```
+   * Displays a divider between widgets as a horizontal line. For an example in Google Chat apps, see [Divider](https://developers.google.com/chat/ui/widgets/divider). For example, the following JSON creates a divider: ``` "divider": {\} ```
    */
   export interface Schema$GoogleAppsCardV1Divider {}
   /**
-   * Displays a grid with a collection of items. Items can only include text or images. A grid supports any number of columns and items. The number of rows is determined by items divided by columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. For responsive columns, or to include more than text or images, use `Columns`. For example, the following JSON creates a 2 column grid with a single item: ``` "grid": { "title": "A fine collection of items", "columnCount": 2, "borderStyle": { "type": "STROKE", "cornerRadius": 4 \}, "items": [ { "image": { "imageUri": "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" \}, "borderStyle": { "type": "STROKE" \} \}, "title": "An item", "textAlignment": "CENTER" \} ], "onClick": { "openLink": { "url": "https://www.example.com" \} \} \} ```
+   * Displays a grid with a collection of items. Items can only include text or images. For responsive columns, or to include more than text or images, use `Columns`. For an example in Google Chat apps, see [Grid](https://developers.google.com/chat/ui/widgets/grid). A grid supports any number of columns and items. The number of rows is determined by items divided by columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. For example, the following JSON creates a 2 column grid with a single item: ``` "grid": { "title": "A fine collection of items", "columnCount": 2, "borderStyle": { "type": "STROKE", "cornerRadius": 4 \}, "items": [ { "image": { "imageUri": "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" \}, "borderStyle": { "type": "STROKE" \} \}, "title": "An item", "textAlignment": "CENTER" \} ], "onClick": { "openLink": { "url": "https://www.example.com" \} \} \} ```
    */
   export interface Schema$GoogleAppsCardV1Grid {
     /**
@@ -919,7 +919,7 @@ export namespace chat_v1 {
     title?: string | null;
   }
   /**
-   * An icon displayed in a widget on a card. Supports [built-in](https://developers.google.com/chat/api/guides/message-formats/cards#builtinicons) and [custom](https://developers.google.com/chat/api/guides/message-formats/cards#customicons) icons.
+   * An icon displayed in a widget on a card. For an example in Google Chat apps, see [Icon](https://developers.google.com/chat/ui/widgets/icon). Supports [built-in](https://developers.google.com/chat/api/guides/message-formats/cards#builtinicons) and [custom](https://developers.google.com/chat/api/guides/message-formats/cards#customicons) icons.
    */
   export interface Schema$GoogleAppsCardV1Icon {
     /**
@@ -940,7 +940,7 @@ export namespace chat_v1 {
     knownIcon?: string | null;
   }
   /**
-   * An image that is specified by a URL and can have an `onClick` action.
+   * An image that is specified by a URL and can have an `onClick` action. For an example, see [Image](https://developers.google.com/chat/ui/widgets/image).
    */
   export interface Schema$GoogleAppsCardV1Image {
     /**
@@ -1003,7 +1003,7 @@ export namespace chat_v1 {
      */
     card?: Schema$GoogleAppsCardV1Card;
     /**
-     * An add-on triggers this action when the action needs to open a link. This differs from the `open_link` above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back.
+     * An add-on triggers this action when the action needs to open a link. This differs from the `open_link` above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back. Supported by Google Workspace Add-ons, but not Google Chat apps.
      */
     openDynamicLinkAction?: Schema$GoogleAppsCardV1Action;
     /**
@@ -1050,7 +1050,7 @@ export namespace chat_v1 {
      */
     collapsible?: boolean | null;
     /**
-     * Text that appears at the top of a section. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     * Text that appears at the top of a section. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      */
     header?: string | null;
     /**
@@ -1063,7 +1063,7 @@ export namespace chat_v1 {
     widgets?: Schema$GoogleAppsCardV1Widget[];
   }
   /**
-   * A widget that creates one or more UI items that users can select. For example, a dropdown menu or checkboxes. You can use this widget to collect data that can be predicted or enumerated. Chat apps can process the value of items that users select or input. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs). To collect undefined or abstract data from users, use the TextInput widget.
+   * A widget that creates one or more UI items that users can select. For example, a dropdown menu or checkboxes. You can use this widget to collect data that can be predicted or enumerated. For an example in Google Chat apps, see [Selection input](https://developers.google.com/chat/ui/widgets/selection-input). Chat apps can process the value of items that users select or input. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data). To collect undefined or abstract data from users, use the TextInput widget.
    */
   export interface Schema$GoogleAppsCardV1SelectionInput {
     /**
@@ -1087,11 +1087,11 @@ export namespace chat_v1 {
      */
     multiSelectMinQueryLength?: number | null;
     /**
-     * The name that identifies the selection input in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
+     * The name that identifies the selection input in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     name?: string | null;
     /**
-     * If specified, the form is submitted when the selection changes. If not specified, you must specify a separate button that submits the form. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
+     * If specified, the form is submitted when the selection changes. If not specified, you must specify a separate button that submits the form. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
     /**
@@ -1124,7 +1124,7 @@ export namespace chat_v1 {
      */
     text?: string | null;
     /**
-     * The value associated with this item. The client should use this as a form input value. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
+     * The value associated with this item. The client should use this as a form input value. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     value?: string | null;
   }
@@ -1155,7 +1155,7 @@ export namespace chat_v1 {
      */
     controlType?: string | null;
     /**
-     * The name by which the switch widget is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
+     * The name by which the switch widget is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     name?: string | null;
     /**
@@ -1167,12 +1167,12 @@ export namespace chat_v1 {
      */
     selected?: boolean | null;
     /**
-     * The value entered by a user, returned as part of a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
+     * The value entered by a user, returned as part of a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     value?: string | null;
   }
   /**
-   * A field in which users can enter text. Supports suggestions and on-change actions. Chat apps receive and can process the value of entered text during form input events. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs). When you need to collect undefined or abstract data from users, use a text input. To collect defined or enumerated data from users, use the SelectionInput widget.
+   * A field in which users can enter text. Supports suggestions and on-change actions. For an example in Google Chat apps, see [Text input](https://developers.google.com/chat/ui/widgets/text-input). Chat apps receive and can process the value of entered text during form input events. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data). When you need to collect undefined or abstract data from users, use a text input. To collect defined or enumerated data from users, use the SelectionInput widget.
    */
   export interface Schema$GoogleAppsCardV1TextInput {
     /**
@@ -1192,7 +1192,7 @@ export namespace chat_v1 {
      */
     label?: string | null;
     /**
-     * The name by which the text input is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
+     * The name by which the text input is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     name?: string | null;
     /**
@@ -1204,12 +1204,12 @@ export namespace chat_v1 {
      */
     type?: string | null;
     /**
-     * The value entered by a user, returned as part of a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
+     * The value entered by a user, returned as part of a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     value?: string | null;
   }
   /**
-   * A paragraph of text that supports formatting. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+   * A paragraph of text that supports formatting. For an example in Google Chat apps, see [Text paragraph](https://developers.google.com/chat/ui/widgets/text-paragraph). For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards##card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
    */
   export interface Schema$GoogleAppsCardV1TextParagraph {
     /**
@@ -1262,7 +1262,7 @@ export namespace chat_v1 {
      */
     textInput?: Schema$GoogleAppsCardV1TextInput;
     /**
-     * Displays a text paragraph. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). For example, the following JSON creates a bolded text: ``` "textParagraph": { "text": " *bold text*" \} ```
+     * Displays a text paragraph. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). For example, the following JSON creates a bolded text: ``` "textParagraph": { "text": " *bold text*" \} ```
      */
     textParagraph?: Schema$GoogleAppsCardV1TextParagraph;
   }
@@ -1651,7 +1651,7 @@ export namespace chat_v1 {
   }
   export interface Schema$SetUpSpaceRequest {
     /**
-     * Optional. The initial set of in-domain users invited to join the space. The calling user is automatically added to the space, and shouldn't be specified as a membership. The set currently allows up to 20 memberships (in addition to the caller). The `Membership.member` field must contain a user with `name` populated and `User.Type.HUMAN`. All other fields are ignored. Optional when setting `Space.spaceType` to `SPACE`. Required when setting `Space.spaceType` to `GROUP_CHAT`, along with at least two memberships. Required when setting `Space.spaceType` to `DIRECT_MESSAGE` with a human user, along with exactly one membership. Must be empty when creating a 1:1 conversation between a human and the calling Chat app (when setting `Space.spaceType` to `DIRECT_MESSAGE` and `Space.singleUserBotDm` to `true`). Not supported: Inviting guest users, or adding other Chat apps.
+     * Optional. The Google Chat users to invite to join the space. Omit the calling user, as they are added automatically. The set currently allows up to 20 memberships (in addition to the caller). The `Membership.member` field must contain a `user` with `name` populated (format: `users/{user\}`) and `type` set to `User.Type.HUMAN`. You can only add human users when setting up a space (adding Chat apps is only supported for direct message setup with the calling app). You can also add members using the user's email as an alias for {user\}. For example, the `user.name` can be `users/example@gmail.com`." To invite Gmail users or users from external Google Workspace domains, user's email must be used for `{user\}`. Optional when setting `Space.spaceType` to `SPACE`. Required when setting `Space.spaceType` to `GROUP_CHAT`, along with at least two memberships. Required when setting `Space.spaceType` to `DIRECT_MESSAGE` with a human user, along with exactly one membership. Must be empty when creating a 1:1 conversation between a human and the calling Chat app (when setting `Space.spaceType` to `DIRECT_MESSAGE` and `Space.singleUserBotDm` to `true`).
      */
     memberships?: Schema$Membership[];
     /**
@@ -1709,6 +1709,10 @@ export namespace chat_v1 {
      * The space's display name. Required when [creating a space](https://developers.google.com/chat/api/reference/rest/v1/spaces/create). For direct messages, this field might be empty. Supports up to 128 characters.
      */
     displayName?: string | null;
+    /**
+     * Immutable. Whether this space permits any Google Chat user as a member. Input when creating a space in a Google Workspace organization. For Google Chat users that use a Google Account, omit this field when creating a space (By default, the space permits any Google Chat user). For existing spaces, this field is output only.
+     */
+    externalUserAllowed?: boolean | null;
     /**
      * Resource name of the space. Format: `spaces/{space\}`
      */
@@ -1810,7 +1814,7 @@ export namespace chat_v1 {
     text?: string | null;
   }
   /**
-   * A thread in Google Chat.
+   * A thread in a Google Chat space. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
    */
   export interface Schema$Thread {
     /**
@@ -1818,7 +1822,7 @@ export namespace chat_v1 {
      */
     name?: string | null;
     /**
-     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread). For other requests, this is an output only field.
+     * Optional. ID for the thread. Supports up to 4000 characters. Input for creating or updating a thread. Otherwise, output only.
      */
     threadKey?: string | null;
   }
@@ -1861,7 +1865,7 @@ export namespace chat_v1 {
     attachmentDataRef?: Schema$AttachmentDataRef;
   }
   /**
-   * A user in Google Chat.
+   * A user in Google Chat. When returned as an output from a request, if your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users), the output for a `User` resource only populates the user's `name` and `type`.
    */
   export interface Schema$User {
     /**
@@ -2258,7 +2262,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Creates a named space. Spaces grouped by topics or that have guest access aren't supported. For an example, see [Create a space](https://developers.google.com/chat/api/guides/v1/spaces/create). Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.spaces.create` or `chat.spaces` scope.
+     * Creates a named space. Spaces grouped by topics aren't supported. For an example, see [Create a space](https://developers.google.com/chat/api/guides/v1/spaces/create). Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.spaces.create` or `chat.spaces` scope.
      * @example
      * ```js
      * // Before running the sample:
@@ -2297,6 +2301,7 @@ export namespace chat_v1 {
      *       // {
      *       //   "adminInstalled": false,
      *       //   "displayName": "my_displayName",
+     *       //   "externalUserAllowed": false,
      *       //   "name": "my_name",
      *       //   "singleUserBotDm": false,
      *       //   "spaceDetails": {},
@@ -2314,6 +2319,7 @@ export namespace chat_v1 {
      *   // {
      *   //   "adminInstalled": false,
      *   //   "displayName": "my_displayName",
+     *   //   "externalUserAllowed": false,
      *   //   "name": "my_name",
      *   //   "singleUserBotDm": false,
      *   //   "spaceDetails": {},
@@ -2569,7 +2575,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.findDirectMessage({
-     *     // Required. Resource name of the user to find direct message with. Format: `users/{user\}`, where `{user\}` is either the `{person_id\}` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Directory API. For example, if the People API `Person.resourceName` is `people/123456789`, you can find a direct message with that person by using `users/123456789` as the `name`.
+     *     // Required. Resource name of the user to find direct message with. Format: `users/{user\}`, where `{user\}` is either the `{person_id\}` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Directory API. For example, if the People API `Person.resourceName` is `people/123456789`, you can find a direct message with that person by using `users/123456789` as the `name`. When [authenticated as a user](https://developers.google.com/chat/api/guides/auth/users), you can use the email as an alias for `{user\}`. For example, `users/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.
      *     name: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2578,6 +2584,7 @@ export namespace chat_v1 {
      *   // {
      *   //   "adminInstalled": false,
      *   //   "displayName": "my_displayName",
+     *   //   "externalUserAllowed": false,
      *   //   "name": "my_name",
      *   //   "singleUserBotDm": false,
      *   //   "spaceDetails": {},
@@ -2720,6 +2727,7 @@ export namespace chat_v1 {
      *   // {
      *   //   "adminInstalled": false,
      *   //   "displayName": "my_displayName",
+     *   //   "externalUserAllowed": false,
      *   //   "name": "my_name",
      *   //   "singleUserBotDm": false,
      *   //   "spaceDetails": {},
@@ -2996,6 +3004,7 @@ export namespace chat_v1 {
      *       // {
      *       //   "adminInstalled": false,
      *       //   "displayName": "my_displayName",
+     *       //   "externalUserAllowed": false,
      *       //   "name": "my_name",
      *       //   "singleUserBotDm": false,
      *       //   "spaceDetails": {},
@@ -3013,6 +3022,7 @@ export namespace chat_v1 {
      *   // {
      *   //   "adminInstalled": false,
      *   //   "displayName": "my_displayName",
+     *   //   "externalUserAllowed": false,
      *   //   "name": "my_name",
      *   //   "singleUserBotDm": false,
      *   //   "spaceDetails": {},
@@ -3112,7 +3122,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Creates a space and adds specified users to it. The calling user is automatically added to the space, and shouldn't be specified as a membership in the request. For an example, see [Set up a space](https://developers.google.com/chat/api/guides/v1/spaces/set-up). To specify the human members to add, add memberships with the appropriate `member.name` in the `SetUpSpaceRequest`. To add a human user, use `users/{user\}`, where `{user\}` is either the `{person_id\}` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. For example, if the People API `Person` `resourceName` is `people/123456789`, you can add the user to the space by including a membership with `users/123456789` as the `member.name`. For a space or group chat, if the caller blocks or is blocked by some members, then those members aren't added to the created space. To create a direct message (DM) between the calling user and another human user, specify exactly one membership to represent the human user. If one user blocks the other, the request fails and the DM isn't created. To create a DM between the calling user and the calling app, set `Space.singleUserBotDm` to `true` and don't specify any memberships. You can only use this method to set up a DM with the calling app. To add the calling app as a member of a space or an existing DM between two human users, see [create a membership](https://developers.google.com/chat/api/guides/v1/members/create). If a DM already exists between two users, even when one user blocks the other at the time a request is made, then the existing DM is returned. Spaces with threaded replies or guest access aren't supported. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.spaces.create` or `chat.spaces` scope.
+     * Creates a space and adds specified users to it. The calling user is automatically added to the space, and shouldn't be specified as a membership in the request. For an example, see [Set up a space](https://developers.google.com/chat/api/guides/v1/spaces/set-up). To specify the human members to add, add memberships with the appropriate `member.name` in the `SetUpSpaceRequest`. To add a human user, use `users/{user\}`, where `{user\}` can be the email address for the user. For users in the same Workspace organization `{user\}` can also be the `{person_id\}` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person `resourceName` for `user@example.com` is `people/123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`. For a space or group chat, if the caller blocks or is blocked by some members, then those members aren't added to the created space. To create a direct message (DM) between the calling user and another human user, specify exactly one membership to represent the human user. If one user blocks the other, the request fails and the DM isn't created. To create a DM between the calling user and the calling app, set `Space.singleUserBotDm` to `true` and don't specify any memberships. You can only use this method to set up a DM with the calling app. To add the calling app as a member of a space or an existing DM between two human users, see [create a membership](https://developers.google.com/chat/api/guides/v1/members/create). If a DM already exists between two users, even when one user blocks the other at the time a request is made, then the existing DM is returned. Spaces with threaded replies aren't supported. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.spaces.create` or `chat.spaces` scope.
      * @example
      * ```js
      * // Before running the sample:
@@ -3157,6 +3167,7 @@ export namespace chat_v1 {
      *   // {
      *   //   "adminInstalled": false,
      *   //   "displayName": "my_displayName",
+     *   //   "externalUserAllowed": false,
      *   //   "name": "my_name",
      *   //   "singleUserBotDm": false,
      *   //   "spaceDetails": {},
@@ -3276,7 +3287,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Finddirectmessage
     extends StandardParameters {
     /**
-     * Required. Resource name of the user to find direct message with. Format: `users/{user\}`, where `{user\}` is either the `{person_id\}` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Directory API. For example, if the People API `Person.resourceName` is `people/123456789`, you can find a direct message with that person by using `users/123456789` as the `name`.
+     * Required. Resource name of the user to find direct message with. Format: `users/{user\}`, where `{user\}` is either the `{person_id\}` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Directory API. For example, if the People API `Person.resourceName` is `people/123456789`, you can find a direct message with that person by using `users/123456789` as the `name`. When [authenticated as a user](https://developers.google.com/chat/api/guides/auth/users), you can use the email as an alias for `{user\}`. For example, `users/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.
      */
     name?: string;
   }
@@ -3329,7 +3340,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Creates a human membership or app membership for the calling app. Creating memberships for other apps isn't supported. For an example, see [ Create a membership](https://developers.google.com/chat/api/guides/v1/members/create). When creating a membership, if the specified member has their auto-accept policy turned off, then they're invited, and must accept the space invitation before joining. Otherwise, creating a membership adds the member directly to the specified space. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.memberships` (for human membership) or `chat.memberships.app` (for app membership) scope. To specify the member to add, set the `membership.member.name` in the `CreateMembershipRequest`: - To add the calling app to a space or a direct message between two human users, use `users/app`. Unable to add other apps to the space. - To add a human user, use `users/{user\}`, where `{user\}` is either the `{person_id\}` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Directory API. For example, if the People API `Person` `resourceName` is `people/123456789`, you can add the user to the space by setting the `membership.member.name` to `users/123456789`.
+     * Creates a human membership or app membership for the calling app. Creating memberships for other apps isn't supported. For an example, see [ Create a membership](https://developers.google.com/chat/api/guides/v1/members/create). When creating a membership, if the specified member has their auto-accept policy turned off, then they're invited, and must accept the space invitation before joining. Otherwise, creating a membership adds the member directly to the specified space. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.memberships` (for human membership) or `chat.memberships.app` (for app membership) scope. To specify the member to add, set the `membership.member.name` in the `CreateMembershipRequest`: - To add the calling app to a space or a direct message between two human users, use `users/app`. Unable to add other apps to the space. - To add a human user, use `users/{user\}`, where `{user\}` can be the email address for the user. For users in the same Workspace organization `{user\}` can also be the `{person_id\}` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person `resourceName` for `user@example.com` is `people/123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`.
      * @example
      * ```js
      * // Before running the sample:
@@ -3347,6 +3358,7 @@ export namespace chat_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.import',
      *       'https://www.googleapis.com/auth/chat.memberships',
      *       'https://www.googleapis.com/auth/chat.memberships.app',
      *     ],
@@ -3506,7 +3518,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.members.delete({
-     *     // Required. Resource name of the membership to delete. Chat apps can delete human users' or their own memberships. Chat apps can't delete other apps' memberships. When deleting a human membership, requires the `chat.memberships` scope and `spaces/{space\}/members/{member\}` format. When deleting an app membership, requires the `chat.memberships.app` scope and `spaces/{space\}/members/app` format. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app`
+     *     // Required. Resource name of the membership to delete. Chat apps can delete human users' or their own memberships. Chat apps can't delete other apps' memberships. When deleting a human membership, requires the `chat.memberships` scope and `spaces/{space\}/members/{member\}` format. You can use the email as an alias for `{member\}`. For example, `spaces/{space\}/members/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user. When deleting an app membership, requires the `chat.memberships.app` scope and `spaces/{space\}/members/app` format. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app`.
      *     name: 'spaces/my-space/members/my-member',
      *   });
      *   console.log(res.data);
@@ -3640,7 +3652,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.members.get({
-     *     // Required. Resource name of the membership to retrieve. To get the app's own membership, you can optionally use `spaces/{space\}/members/app`. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app`
+     *     // Required. Resource name of the membership to retrieve. To get the app's own membership, you can optionally use `spaces/{space\}/members/app`. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app` When [authenticated as a user](https://developers.google.com/chat/api/guides/auth/users), you can use the user's email as an alias for `{member\}`. For example, `spaces/{space\}/members/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.
      *     name: 'spaces/my-space/members/my-member',
      *   });
      *   console.log(res.data);
@@ -3776,9 +3788,9 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.members.list({
      *     // Optional. A query filter. You can filter memberships by a member's role ([`role`](https://developers.google.com/chat/api/reference/rest/v1/spaces.members#membershiprole)) and type ([`member.type`](https://developers.google.com/chat/api/reference/rest/v1/User#type)). To filter by role, set `role` to `ROLE_MEMBER` or `ROLE_MANAGER`. To filter by type, set `member.type` to `HUMAN` or `BOT`. To filter by both role and type, use the `AND` operator. To filter by either role or type, use the `OR` operator. For example, the following queries are valid: ``` role = "ROLE_MANAGER" OR role = "ROLE_MEMBER" member.type = "HUMAN" AND role = "ROLE_MANAGER" ``` The following queries are invalid: ``` member.type = "HUMAN" AND member.type = "BOT" role = "ROLE_MANAGER" AND role = "ROLE_MEMBER" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.
      *     filter: 'placeholder-value',
-     *     // The maximum number of memberships to return. The service might return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1,000. If you use a value more than 1,000, it's automatically changed to 1,000. Negative values return an `INVALID_ARGUMENT` error.
+     *     // Optional. The maximum number of memberships to return. The service might return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1,000. If you use a value more than 1,000, it's automatically changed to 1,000. Negative values return an `INVALID_ARGUMENT` error.
      *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous call to list memberships. Provide this parameter to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
+     *     // Optional. A page token, received from a previous call to list memberships. Provide this parameter to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
      *     pageToken: 'placeholder-value',
      *     // Required. The resource name of the space for which to fetch a membership list. Format: spaces/{space\}
      *     parent: 'spaces/my-space',
@@ -3906,14 +3918,14 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Members$Delete
     extends StandardParameters {
     /**
-     * Required. Resource name of the membership to delete. Chat apps can delete human users' or their own memberships. Chat apps can't delete other apps' memberships. When deleting a human membership, requires the `chat.memberships` scope and `spaces/{space\}/members/{member\}` format. When deleting an app membership, requires the `chat.memberships.app` scope and `spaces/{space\}/members/app` format. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app`
+     * Required. Resource name of the membership to delete. Chat apps can delete human users' or their own memberships. Chat apps can't delete other apps' memberships. When deleting a human membership, requires the `chat.memberships` scope and `spaces/{space\}/members/{member\}` format. You can use the email as an alias for `{member\}`. For example, `spaces/{space\}/members/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user. When deleting an app membership, requires the `chat.memberships.app` scope and `spaces/{space\}/members/app` format. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app`.
      */
     name?: string;
   }
   export interface Params$Resource$Spaces$Members$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the membership to retrieve. To get the app's own membership, you can optionally use `spaces/{space\}/members/app`. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app`
+     * Required. Resource name of the membership to retrieve. To get the app's own membership, you can optionally use `spaces/{space\}/members/app`. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app` When [authenticated as a user](https://developers.google.com/chat/api/guides/auth/users), you can use the user's email as an alias for `{member\}`. For example, `spaces/{space\}/members/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.
      */
     name?: string;
   }
@@ -3924,11 +3936,11 @@ export namespace chat_v1 {
      */
     filter?: string;
     /**
-     * The maximum number of memberships to return. The service might return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1,000. If you use a value more than 1,000, it's automatically changed to 1,000. Negative values return an `INVALID_ARGUMENT` error.
+     * Optional. The maximum number of memberships to return. The service might return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1,000. If you use a value more than 1,000, it's automatically changed to 1,000. Negative values return an `INVALID_ARGUMENT` error.
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous call to list memberships. Provide this parameter to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
+     * Optional. A page token, received from a previous call to list memberships. Provide this parameter to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
      */
     pageToken?: string;
     /**
@@ -3991,7 +4003,7 @@ export namespace chat_v1 {
      *     parent: 'spaces/my-space',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
+     *     // Optional. Deprecated: Use thread.thread_key instead. ID for the thread. Supports up to 4000 characters. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4146,7 +4158,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Deletes a message. For an example, see [Delete a message](https://developers.google.com/chat/api/guides/v1/messages/delete). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope.
+     * Deletes a message. For an example, see [Delete a message](https://developers.google.com/chat/api/guides/v1/messages/delete). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope. Requests authenticated with service accounts can only delete messages created by the calling Chat app.
      * @example
      * ```js
      * // Before running the sample:
@@ -4428,7 +4440,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists messages in a space that the caller is a member of, including messages from blocked members and spaces. For an example, see [List messages](/chat/api/guides/v1/messages/list). Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.messages` or `chat.messages.readonly` authorization scope. This method is only supported in spaces that don't allow users from outside the Workspace organization to join.
+     * Lists messages in a space that the caller is a member of, including messages from blocked members and spaces. For an example, see [List messages](/chat/api/guides/v1/messages/list). Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.messages` or `chat.messages.readonly` authorization scope.
      * @example
      * ```js
      * // Before running the sample:
@@ -4577,7 +4589,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope.
+     * Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope. Requests authenticated with service accounts can only update messages created by the calling Chat app.
      * @example
      * ```js
      * // Before running the sample:
@@ -4763,7 +4775,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope.
+     * Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope. Requests authenticated with service accounts can only update messages created by the calling Chat app.
      * @example
      * ```js
      * // Before running the sample:
@@ -4968,7 +4980,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
+     * Optional. Deprecated: Use thread.thread_key instead. ID for the thread. Supports up to 4000 characters. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     threadKey?: string;
 
