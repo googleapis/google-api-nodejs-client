@@ -487,69 +487,6 @@ export namespace fcm_v1 {
 
     /**
      * Send a message to specified target (a registration token, topic or condition).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/fcm.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const fcm = google.fcm('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase.messaging',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await fcm.projects.messages.send({
-     *     // Required. It contains the Firebase project id (i.e. the unique identifier for your Firebase project), in the format of `projects/{project_id\}`. For legacy support, the numeric project number with no padding is also supported in the format of `projects/{project_number\}`.
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "message": {},
-     *       //   "validateOnly": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "android": {},
-     *   //   "apns": {},
-     *   //   "condition": "my_condition",
-     *   //   "data": {},
-     *   //   "fcmOptions": {},
-     *   //   "name": "my_name",
-     *   //   "notification": {},
-     *   //   "token": "my_token",
-     *   //   "topic": "my_topic",
-     *   //   "webpush": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
