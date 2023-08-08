@@ -183,7 +183,7 @@ export namespace gkebackup_v1 {
      */
     createTime?: string | null;
     /**
-     * Minimum age for this Backup (in days). If this field is set to a non-zero value, the Backup will be "locked" against deletion (either manual or automatic deletion) for the number of days provided (measured from the creation time of the Backup). MUST be an integer value between 0-90 (inclusive). Defaults to parent BackupPlan's backup_delete_lock_days setting and may only be increased (either at creation time or in a subsequent update).
+     * Optional. Minimum age for this Backup (in days). If this field is set to a non-zero value, the Backup will be "locked" against deletion (either manual or automatic deletion) for the number of days provided (measured from the creation time of the Backup). MUST be an integer value between 0-90 (inclusive). Defaults to parent BackupPlan's backup_delete_lock_days setting and may only be increased (either at creation time or in a subsequent update).
      */
     deleteLockDays?: number | null;
     /**
@@ -191,7 +191,7 @@ export namespace gkebackup_v1 {
      */
     deleteLockExpireTime?: string | null;
     /**
-     * User specified descriptive string for this Backup.
+     * Optional. User specified descriptive string for this Backup.
      */
     description?: string | null;
     /**
@@ -203,7 +203,7 @@ export namespace gkebackup_v1 {
      */
     etag?: string | null;
     /**
-     * A set of custom labels supplied by user.
+     * Optional. A set of custom labels supplied by user.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -223,7 +223,7 @@ export namespace gkebackup_v1 {
      */
     resourceCount?: number | null;
     /**
-     * The age (in days) after which this Backup will be automatically deleted. Must be an integer value \>= 0: - If 0, no automatic deletion will occur for this Backup. - If not 0, this must be \>= delete_lock_days and <= 365. Once a Backup is created, this value may only be increased. Defaults to the parent BackupPlan's backup_retain_days value.
+     * Optional. The age (in days) after which this Backup will be automatically deleted. Must be an integer value \>= 0: - If 0, no automatic deletion will occur for this Backup. - If not 0, this must be \>= delete_lock_days and <= 365. Once a Backup is created, this value may only be increased. Defaults to the parent BackupPlan's backup_retain_days value.
      */
     retainDays?: number | null;
     /**
@@ -272,15 +272,15 @@ export namespace gkebackup_v1 {
      */
     allNamespaces?: boolean | null;
     /**
-     * This defines a customer managed encryption key that will be used to encrypt the "config" portion (the Kubernetes resources) of Backups created via this plan. Default (empty): Config backup artifacts will not be encrypted.
+     * Optional. This defines a customer managed encryption key that will be used to encrypt the "config" portion (the Kubernetes resources) of Backups created via this plan. Default (empty): Config backup artifacts will not be encrypted.
      */
     encryptionKey?: Schema$EncryptionKey;
     /**
-     * This flag specifies whether Kubernetes Secret resources should be included when they fall into the scope of Backups. Default: False
+     * Optional. This flag specifies whether Kubernetes Secret resources should be included when they fall into the scope of Backups. Default: False
      */
     includeSecrets?: boolean | null;
     /**
-     * This flag specifies whether volume data should be backed up when PVCs are included in the scope of a Backup. Default: False
+     * Optional. This flag specifies whether volume data should be backed up when PVCs are included in the scope of a Backup. Default: False
      */
     includeVolumeData?: boolean | null;
     /**
@@ -297,11 +297,11 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$BackupPlan {
     /**
-     * Defines the configuration of Backups created via this BackupPlan.
+     * Optional. Defines the configuration of Backups created via this BackupPlan.
      */
     backupConfig?: Schema$BackupConfig;
     /**
-     * Defines a schedule for automatic Backup creation via this BackupPlan.
+     * Optional. Defines a schedule for automatic Backup creation via this BackupPlan.
      */
     backupSchedule?: Schema$Schedule;
     /**
@@ -313,11 +313,11 @@ export namespace gkebackup_v1 {
      */
     createTime?: string | null;
     /**
-     * This flag indicates whether this BackupPlan has been deactivated. Setting this field to True locks the BackupPlan such that no further updates will be allowed (except deletes), including the deactivated field itself. It also prevents any new Backups from being created via this BackupPlan (including scheduled Backups). Default: False
+     * Optional. This flag indicates whether this BackupPlan has been deactivated. Setting this field to True locks the BackupPlan such that no further updates will be allowed (except deletes), including the deactivated field itself. It also prevents any new Backups from being created via this BackupPlan (including scheduled Backups). Default: False
      */
     deactivated?: boolean | null;
     /**
-     * User specified descriptive string for this BackupPlan.
+     * Optional. User specified descriptive string for this BackupPlan.
      */
     description?: string | null;
     /**
@@ -325,7 +325,7 @@ export namespace gkebackup_v1 {
      */
     etag?: string | null;
     /**
-     * A set of custom labels supplied by user.
+     * Optional. A set of custom labels supplied by user.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -337,7 +337,7 @@ export namespace gkebackup_v1 {
      */
     protectedPodCount?: number | null;
     /**
-     * RetentionPolicy governs lifecycle of Backups created under this plan.
+     * Optional. RetentionPolicy governs lifecycle of Backups created under this plan.
      */
     retentionPolicy?: Schema$RetentionPolicy;
     /**
@@ -379,23 +379,23 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$ClusterMetadata {
     /**
-     * Anthos version
+     * Output only. Anthos version
      */
     anthosVersion?: string | null;
     /**
-     * A list of the Backup for GKE CRD versions found in the cluster.
+     * Output only. A list of the Backup for GKE CRD versions found in the cluster.
      */
     backupCrdVersions?: {[key: string]: string} | null;
     /**
-     * The source cluster from which this Backup was created. Valid formats: - `projects/x/locations/x/clusters/x` - `projects/x/zones/x/clusters/x` This is inherited from the parent BackupPlan's cluster field.
+     * Output only. The source cluster from which this Backup was created. Valid formats: - `projects/x/locations/x/clusters/x` - `projects/x/zones/x/clusters/x` This is inherited from the parent BackupPlan's cluster field.
      */
     cluster?: string | null;
     /**
-     * GKE version
+     * Output only. GKE version
      */
     gkeVersion?: string | null;
     /**
-     * The Kubernetes server version of the source cluster.
+     * Output only. The Kubernetes server version of the source cluster.
      */
     k8sVersion?: string | null;
   }
@@ -404,19 +404,19 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$ClusterResourceRestoreScope {
     /**
-     * If True, all valid cluster-scoped resources will be restored. Mutually exclusive to any other field in the message.
+     * Optional. If True, all valid cluster-scoped resources will be restored. Mutually exclusive to any other field in the message.
      */
     allGroupKinds?: boolean | null;
     /**
-     * A list of cluster-scoped resource group kinds to NOT restore from the backup. If specified, all valid cluster-scoped resources will be restored except for those specified in the list. Mutually exclusive to any other field in the message.
+     * Optional. A list of cluster-scoped resource group kinds to NOT restore from the backup. If specified, all valid cluster-scoped resources will be restored except for those specified in the list. Mutually exclusive to any other field in the message.
      */
     excludedGroupKinds?: Schema$GroupKind[];
     /**
-     * If True, no cluster-scoped resources will be restored. This has the same restore scope as if the message is not defined. Mutually exclusive to any other field in the message.
+     * Optional. If True, no cluster-scoped resources will be restored. This has the same restore scope as if the message is not defined. Mutually exclusive to any other field in the message.
      */
     noGroupKinds?: boolean | null;
     /**
-     * A list of cluster-scoped resource group kinds to restore from the backup. If specified, only the selected resources will be restored. Mutually exclusive to any other field in the message.
+     * Optional. A list of cluster-scoped resource group kinds to restore from the backup. If specified, only the selected resources will be restored. Mutually exclusive to any other field in the message.
      */
     selectedGroupKinds?: Schema$GroupKind[];
   }
@@ -429,7 +429,7 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$EncryptionKey {
     /**
-     * Google Cloud KMS encryption key. Format: `projects/x/locations/x/keyRings/x/cryptoKeys/x`
+     * Optional. Google Cloud KMS encryption key. Format: `projects/x/locations/x/keyRings/x/cryptoKeys/x`
      */
     gcpKmsEncryptionKey?: string | null;
   }
@@ -518,11 +518,11 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$GroupKind {
     /**
-     * API group string of a Kubernetes resource, e.g. "apiextensions.k8s.io", "storage.k8s.io", etc. Note: use empty string for core API group
+     * Optional. API group string of a Kubernetes resource, e.g. "apiextensions.k8s.io", "storage.k8s.io", etc. Note: use empty string for core API group
      */
     resourceGroup?: string | null;
     /**
-     * Kind of a Kubernetes resource, e.g. "CustomResourceDefinition", "StorageClass", etc.
+     * Optional. Kind of a Kubernetes resource, e.g. "CustomResourceDefinition", "StorageClass", etc.
      */
     resourceKind?: string | null;
   }
@@ -659,11 +659,11 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$NamespacedName {
     /**
-     * The name of the Kubernetes resource.
+     * Optional. The name of the Kubernetes resource.
      */
     name?: string | null;
     /**
-     * The Namespace of the Kubernetes resource.
+     * Optional. The Namespace of the Kubernetes resource.
      */
     namespace?: string | null;
   }
@@ -672,7 +672,7 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$NamespacedNames {
     /**
-     * A list of namespaced Kubernetes resources.
+     * Optional. A list of namespaced Kubernetes resources.
      */
     namespacedNames?: Schema$NamespacedName[];
   }
@@ -681,7 +681,7 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$Namespaces {
     /**
-     * A list of Kubernetes Namespaces
+     * Optional. A list of Kubernetes Namespaces
      */
     namespaces?: string[] | null;
   }
@@ -744,15 +744,15 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$ResourceFilter {
     /**
-     * (Filtering parameter) Any resource subject to transformation must belong to one of the listed "types". If this field is not provided, no type filtering will be performed (all resources of all types matching previous filtering parameters will be candidates for transformation).
+     * Optional. (Filtering parameter) Any resource subject to transformation must belong to one of the listed "types". If this field is not provided, no type filtering will be performed (all resources of all types matching previous filtering parameters will be candidates for transformation).
      */
     groupKinds?: Schema$GroupKind[];
     /**
-     * This is a [JSONPath] (https://github.com/json-path/JsonPath/blob/master/README.md) expression that matches specific fields of candidate resources and it operates as a filtering parameter (resources that are not matched with this expression will not be candidates for transformation).
+     * Optional. This is a [JSONPath] (https://github.com/json-path/JsonPath/blob/master/README.md) expression that matches specific fields of candidate resources and it operates as a filtering parameter (resources that are not matched with this expression will not be candidates for transformation).
      */
     jsonPath?: string | null;
     /**
-     * (Filtering parameter) Any resource subject to transformation must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for transformation). To mix cluster-scoped and namespaced resources in the same rule, use an empty string ("") as one of the target namespaces.
+     * Optional. (Filtering parameter) Any resource subject to transformation must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for transformation). To mix cluster-scoped and namespaced resources in the same rule, use an empty string ("") as one of the target namespaces.
      */
     namespaces?: string[] | null;
   }
@@ -838,11 +838,11 @@ export namespace gkebackup_v1 {
      */
     allNamespaces?: boolean | null;
     /**
-     * Defines the behavior for handling the situation where cluster-scoped resources being restored already exist in the target cluster. This MUST be set to a value other than CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if cluster_resource_restore_scope is not empty.
+     * Optional. Defines the behavior for handling the situation where cluster-scoped resources being restored already exist in the target cluster. This MUST be set to a value other than CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if cluster_resource_restore_scope is not empty.
      */
     clusterResourceConflictPolicy?: string | null;
     /**
-     * Identifies the cluster-scoped resources to restore from the Backup. Not specifying it means NO cluster resource will be restored.
+     * Optional. Identifies the cluster-scoped resources to restore from the Backup. Not specifying it means NO cluster resource will be restored.
      */
     clusterResourceRestoreScope?: Schema$ClusterResourceRestoreScope;
     /**
@@ -850,7 +850,7 @@ export namespace gkebackup_v1 {
      */
     excludedNamespaces?: Schema$Namespaces;
     /**
-     * Defines the behavior for handling the situation where sets of namespaced resources being restored already exist in the target cluster. This MUST be set to a value other than NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.
+     * Optional. Defines the behavior for handling the situation where sets of namespaced resources being restored already exist in the target cluster. This MUST be set to a value other than NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.
      */
     namespacedResourceRestoreMode?: string | null;
     /**
@@ -866,15 +866,15 @@ export namespace gkebackup_v1 {
      */
     selectedNamespaces?: Schema$Namespaces;
     /**
-     * A list of transformation rules to be applied against Kubernetes resources as they are selected for restoration from a Backup. Rules are executed in order defined - this order matters, as changes made by a rule may impact the filtering logic of subsequent rules. An empty list means no substitution will occur.
+     * Optional. A list of transformation rules to be applied against Kubernetes resources as they are selected for restoration from a Backup. Rules are executed in order defined - this order matters, as changes made by a rule may impact the filtering logic of subsequent rules. An empty list means no substitution will occur.
      */
     substitutionRules?: Schema$SubstitutionRule[];
     /**
-     * A list of transformation rules to be applied against Kubernetes resources as they are selected for restoration from a Backup. Rules are executed in order defined - this order matters, as changes made by a rule may impact the filtering logic of subsequent rules. An empty list means no transformation will occur.
+     * Optional. A list of transformation rules to be applied against Kubernetes resources as they are selected for restoration from a Backup. Rules are executed in order defined - this order matters, as changes made by a rule may impact the filtering logic of subsequent rules. An empty list means no transformation will occur.
      */
     transformationRules?: Schema$TransformationRule[];
     /**
-     * Specifies the mechanism to be used to restore volume data. Default: VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED (will be treated as NO_VOLUME_DATA_RESTORATION).
+     * Optional. Specifies the mechanism to be used to restore volume data. Default: VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED (will be treated as NO_VOLUME_DATA_RESTORATION).
      */
     volumeDataRestorePolicy?: string | null;
   }
@@ -895,7 +895,7 @@ export namespace gkebackup_v1 {
      */
     createTime?: string | null;
     /**
-     * User specified descriptive string for this RestorePlan.
+     * Optional. User specified descriptive string for this RestorePlan.
      */
     description?: string | null;
     /**
@@ -903,7 +903,7 @@ export namespace gkebackup_v1 {
      */
     etag?: string | null;
     /**
-     * A set of custom labels supplied by user.
+     * Optional. A set of custom labels supplied by user.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -936,15 +936,15 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$RetentionPolicy {
     /**
-     * Minimum age for Backups created via this BackupPlan (in days). This field MUST be an integer value between 0-90 (inclusive). A Backup created under this BackupPlan will NOT be deletable until it reaches Backup's (create_time + backup_delete_lock_days). Updating this field of a BackupPlan does NOT affect existing Backups under it. Backups created AFTER a successful update will inherit the new value. Default: 0 (no delete blocking)
+     * Optional. Minimum age for Backups created via this BackupPlan (in days). This field MUST be an integer value between 0-90 (inclusive). A Backup created under this BackupPlan will NOT be deletable until it reaches Backup's (create_time + backup_delete_lock_days). Updating this field of a BackupPlan does NOT affect existing Backups under it. Backups created AFTER a successful update will inherit the new value. Default: 0 (no delete blocking)
      */
     backupDeleteLockDays?: number | null;
     /**
-     * The default maximum age of a Backup created via this BackupPlan. This field MUST be an integer value \>= 0 and <= 365. If specified, a Backup created under this BackupPlan will be automatically deleted after its age reaches (create_time + backup_retain_days). If not specified, Backups created under this BackupPlan will NOT be subject to automatic deletion. Updating this field does NOT affect existing Backups under it. Backups created AFTER a successful update will automatically pick up the new value. NOTE: backup_retain_days must be \>= backup_delete_lock_days. If cron_schedule is defined, then this must be <= 360 * the creation interval. Default: 0 (no automatic deletion)
+     * Optional. The default maximum age of a Backup created via this BackupPlan. This field MUST be an integer value \>= 0 and <= 365. If specified, a Backup created under this BackupPlan will be automatically deleted after its age reaches (create_time + backup_retain_days). If not specified, Backups created under this BackupPlan will NOT be subject to automatic deletion. Updating this field does NOT affect existing Backups under it. Backups created AFTER a successful update will automatically pick up the new value. NOTE: backup_retain_days must be \>= backup_delete_lock_days. If cron_schedule is defined, then this must be <= 360 * the creation interval. Default: 0 (no automatic deletion)
      */
     backupRetainDays?: number | null;
     /**
-     * This flag denotes whether the retention policy of this BackupPlan is locked. If set to True, no further update is allowed on this policy, including the `locked` field itself. Default: False
+     * Optional. This flag denotes whether the retention policy of this BackupPlan is locked. If set to True, no further update is allowed on this policy, including the `locked` field itself. Default: False
      */
     locked?: boolean | null;
   }
@@ -953,11 +953,11 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$Schedule {
     /**
-     * A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. This is mutually exclusive with the rpo_config field since at most one schedule can be defined for a BackupPlan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur.
+     * Optional. A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. This is mutually exclusive with the rpo_config field since at most one schedule can be defined for a BackupPlan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur.
      */
     cronSchedule?: string | null;
     /**
-     * This flag denotes whether automatic Backup creation is paused for this BackupPlan. Default: False
+     * Optional. This flag denotes whether automatic Backup creation is paused for this BackupPlan. Default: False
      */
     paused?: boolean | null;
   }
@@ -979,15 +979,15 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$SubstitutionRule {
     /**
-     * This is the new value to set for any fields that pass the filtering and selection criteria. To remove a value from a Kubernetes resource, either leave this field unspecified, or set it to the empty string ("").
+     * Optional. This is the new value to set for any fields that pass the filtering and selection criteria. To remove a value from a Kubernetes resource, either leave this field unspecified, or set it to the empty string ("").
      */
     newValue?: string | null;
     /**
-     * (Filtering parameter) This is a [regular expression] (https://en.wikipedia.org/wiki/Regular_expression) that is compared against the fields matched by the target_json_path expression (and must also have passed the previous filters). Substitution will not be performed against fields whose value does not match this expression. If this field is NOT specified, then ALL fields matched by the target_json_path expression will undergo substitution. Note that an empty (e.g., "", rather than unspecified) value for this field will only match empty fields.
+     * Optional. (Filtering parameter) This is a [regular expression] (https://en.wikipedia.org/wiki/Regular_expression) that is compared against the fields matched by the target_json_path expression (and must also have passed the previous filters). Substitution will not be performed against fields whose value does not match this expression. If this field is NOT specified, then ALL fields matched by the target_json_path expression will undergo substitution. Note that an empty (e.g., "", rather than unspecified) value for this field will only match empty fields.
      */
     originalValuePattern?: string | null;
     /**
-     * (Filtering parameter) Any resource subject to substitution must belong to one of the listed "types". If this field is not provided, no type filtering will be performed (all resources of all types matching previous filtering parameters will be candidates for substitution).
+     * Optional. (Filtering parameter) Any resource subject to substitution must belong to one of the listed "types". If this field is not provided, no type filtering will be performed (all resources of all types matching previous filtering parameters will be candidates for substitution).
      */
     targetGroupKinds?: Schema$GroupKind[];
     /**
@@ -995,7 +995,7 @@ export namespace gkebackup_v1 {
      */
     targetJsonPath?: string | null;
     /**
-     * (Filtering parameter) Any resource subject to substitution must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for substitution). To mix cluster-scoped and namespaced resources in the same rule, use an empty string ("") as one of the target namespaces.
+     * Optional. (Filtering parameter) Any resource subject to substitution must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for substitution). To mix cluster-scoped and namespaced resources in the same rule, use an empty string ("") as one of the target namespaces.
      */
     targetNamespaces?: string[] | null;
   }
@@ -1022,7 +1022,7 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$TransformationRule {
     /**
-     * The description is a user specified string description of the transformation rule.
+     * Optional. The description is a user specified string description of the transformation rule.
      */
     description?: string | null;
     /**
@@ -1030,7 +1030,7 @@ export namespace gkebackup_v1 {
      */
     fieldActions?: Schema$TransformationRuleAction[];
     /**
-     * This field is used to specify a set of fields that should be used to determine which resources in backup should be acted upon by the supplied transformation rule actions, and this will ensure that only specific resources are affected by transformation rule actions.
+     * Optional. This field is used to specify a set of fields that should be used to determine which resources in backup should be acted upon by the supplied transformation rule actions, and this will ensure that only specific resources are affected by transformation rule actions.
      */
     resourceFilter?: Schema$ResourceFilter;
   }
@@ -1039,7 +1039,7 @@ export namespace gkebackup_v1 {
    */
   export interface Schema$TransformationRuleAction {
     /**
-     * A string containing a JSON Pointer value that references the location in the target document to move the value from.
+     * Optional. A string containing a JSON Pointer value that references the location in the target document to move the value from.
      */
     fromPath?: string | null;
     /**
@@ -1047,11 +1047,11 @@ export namespace gkebackup_v1 {
      */
     op?: string | null;
     /**
-     * A string containing a JSON-Pointer value that references a location within the target document where the operation is performed.
+     * Optional. A string containing a JSON-Pointer value that references a location within the target document where the operation is performed.
      */
     path?: string | null;
     /**
-     * A string that specifies the desired value in string format to use for transformation.
+     * Optional. A string that specifies the desired value in string format to use for transformation.
      */
     value?: string | null;
   }
@@ -1827,7 +1827,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.backupPlans.delete({
-     *     // If provided, this value must match the current value of the target BackupPlan's etag field or the request is rejected.
+     *     // Optional. If provided, this value must match the current value of the target BackupPlan's etag field or the request is rejected.
      *     etag: 'placeholder-value',
      *     // Required. Fully qualified BackupPlan name. Format: `projects/x/locations/x/backupPlans/x`
      *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
@@ -2242,13 +2242,13 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.backupPlans.list({
-     *     // Field match expression used to filter the results.
+     *     // Optional. Field match expression used to filter the results.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the results.
+     *     // Optional. Field by which to sort the results.
      *     orderBy: 'placeholder-value',
-     *     // The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     *     // Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      *     pageSize: 'placeholder-value',
-     *     // The value of next_page_token received from a previous `ListBackupPlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackupPlans` must match the call that provided the page token.
+     *     // Optional. The value of next_page_token received from a previous `ListBackupPlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackupPlans` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The location that contains the BackupPlans to list. Format: `projects/x/locations/x`
      *     parent: 'projects/my-project/locations/my-location',
@@ -2388,7 +2388,7 @@ export namespace gkebackup_v1 {
      *   const res = await gkebackup.projects.locations.backupPlans.patch({
      *     // Output only. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
      *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
-     *     // This is used to specify the fields to be overwritten in the BackupPlan targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource (e.g., `description`, `backup_config.include_volume_data`, etc.) If no `update_mask` is provided, all fields in `backup_plan` will be written to the target BackupPlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup_plan` are ignored and are not used to update the target BackupPlan.
+     *     // Optional. This is used to specify the fields to be overwritten in the BackupPlan targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource (e.g., `description`, `backup_config.include_volume_data`, etc.) If no `update_mask` is provided, all fields in `backup_plan` will be written to the target BackupPlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup_plan` are ignored and are not used to update the target BackupPlan.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2831,7 +2831,7 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Backupplans$Delete
     extends StandardParameters {
     /**
-     * If provided, this value must match the current value of the target BackupPlan's etag field or the request is rejected.
+     * Optional. If provided, this value must match the current value of the target BackupPlan's etag field or the request is rejected.
      */
     etag?: string;
     /**
@@ -2860,19 +2860,19 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Backupplans$List
     extends StandardParameters {
     /**
-     * Field match expression used to filter the results.
+     * Optional. Field match expression used to filter the results.
      */
     filter?: string;
     /**
-     * Field by which to sort the results.
+     * Optional. Field by which to sort the results.
      */
     orderBy?: string;
     /**
-     * The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     * Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      */
     pageSize?: number;
     /**
-     * The value of next_page_token received from a previous `ListBackupPlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackupPlans` must match the call that provided the page token.
+     * Optional. The value of next_page_token received from a previous `ListBackupPlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackupPlans` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -2887,7 +2887,7 @@ export namespace gkebackup_v1 {
      */
     name?: string;
     /**
-     * This is used to specify the fields to be overwritten in the BackupPlan targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource (e.g., `description`, `backup_config.include_volume_data`, etc.) If no `update_mask` is provided, all fields in `backup_plan` will be written to the target BackupPlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup_plan` are ignored and are not used to update the target BackupPlan.
+     * Optional. This is used to specify the fields to be overwritten in the BackupPlan targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource (e.g., `description`, `backup_config.include_volume_data`, etc.) If no `update_mask` is provided, all fields in `backup_plan` will be written to the target BackupPlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup_plan` are ignored and are not used to update the target BackupPlan.
      */
     updateMask?: string;
 
@@ -2959,7 +2959,7 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.backupPlans.backups.create({
-     *     // The client-provided short name for the Backup resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of Backups in this BackupPlan
+     *     // Optional. The client-provided short name for the Backup resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of Backups in this BackupPlan
      *     backupId: 'placeholder-value',
      *     // Required. The BackupPlan within which to create the Backup. Format: `projects/x/locations/x/backupPlans/x`
      *     parent:
@@ -3137,9 +3137,9 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.backupPlans.backups.delete({
-     *     // If provided, this value must match the current value of the target Backup's etag field or the request is rejected.
+     *     // Optional. If provided, this value must match the current value of the target Backup's etag field or the request is rejected.
      *     etag: 'placeholder-value',
-     *     // If set to true, any VolumeBackups below this Backup will also be deleted. Otherwise, the request will only succeed if the Backup has no VolumeBackups.
+     *     // Optional. If set to true, any VolumeBackups below this Backup will also be deleted. Otherwise, the request will only succeed if the Backup has no VolumeBackups.
      *     force: 'placeholder-value',
      *     // Required. Name of the Backup resource. Format: `projects/x/locations/x/backupPlans/x/backups/x`
      *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan/backups/my-backup',
@@ -3569,13 +3569,13 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.backupPlans.backups.list({
-     *     // Field match expression used to filter the results.
+     *     // Optional. Field match expression used to filter the results.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the results.
+     *     // Optional. Field by which to sort the results.
      *     orderBy: 'placeholder-value',
-     *     // The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     *     // Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      *     pageSize: 'placeholder-value',
-     *     // The value of next_page_token received from a previous `ListBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token.
+     *     // Optional. The value of next_page_token received from a previous `ListBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The BackupPlan that contains the Backups to list. Format: `projects/x/locations/x/backupPlans/x`
      *     parent:
@@ -3714,7 +3714,7 @@ export namespace gkebackup_v1 {
      *   const res = await gkebackup.projects.locations.backupPlans.backups.patch({
      *     // Output only. The fully qualified name of the Backup. `projects/x/locations/x/backupPlans/x/backups/x`
      *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan/backups/my-backup',
-     *     // This is used to specify the fields to be overwritten in the Backup targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `backup` will be written to the target Backup resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup` are ignored and are not used to update the target Backup.
+     *     // Optional. This is used to specify the fields to be overwritten in the Backup targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `backup` will be written to the target Backup resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup` are ignored and are not used to update the target Backup.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4154,7 +4154,7 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Backupplans$Backups$Create
     extends StandardParameters {
     /**
-     * The client-provided short name for the Backup resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of Backups in this BackupPlan
+     * Optional. The client-provided short name for the Backup resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of Backups in this BackupPlan
      */
     backupId?: string;
     /**
@@ -4170,11 +4170,11 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Backupplans$Backups$Delete
     extends StandardParameters {
     /**
-     * If provided, this value must match the current value of the target Backup's etag field or the request is rejected.
+     * Optional. If provided, this value must match the current value of the target Backup's etag field or the request is rejected.
      */
     etag?: string;
     /**
-     * If set to true, any VolumeBackups below this Backup will also be deleted. Otherwise, the request will only succeed if the Backup has no VolumeBackups.
+     * Optional. If set to true, any VolumeBackups below this Backup will also be deleted. Otherwise, the request will only succeed if the Backup has no VolumeBackups.
      */
     force?: boolean;
     /**
@@ -4203,19 +4203,19 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Backupplans$Backups$List
     extends StandardParameters {
     /**
-     * Field match expression used to filter the results.
+     * Optional. Field match expression used to filter the results.
      */
     filter?: string;
     /**
-     * Field by which to sort the results.
+     * Optional. Field by which to sort the results.
      */
     orderBy?: string;
     /**
-     * The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     * Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      */
     pageSize?: number;
     /**
-     * The value of next_page_token received from a previous `ListBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token.
+     * Optional. The value of next_page_token received from a previous `ListBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -4230,7 +4230,7 @@ export namespace gkebackup_v1 {
      */
     name?: string;
     /**
-     * This is used to specify the fields to be overwritten in the Backup targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `backup` will be written to the target Backup resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup` are ignored and are not used to update the target Backup.
+     * Optional. This is used to specify the fields to be overwritten in the Backup targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `backup` will be written to the target Backup resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup` are ignored and are not used to update the target Backup.
      */
     updateMask?: string;
 
@@ -4577,13 +4577,13 @@ export namespace gkebackup_v1 {
      *   // Do the magic
      *   const res =
      *     await gkebackup.projects.locations.backupPlans.backups.volumeBackups.list({
-     *       // Field match expression used to filter the results.
+     *       // Optional. Field match expression used to filter the results.
      *       filter: 'placeholder-value',
-     *       // Field by which to sort the results.
+     *       // Optional. Field by which to sort the results.
      *       orderBy: 'placeholder-value',
-     *       // The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     *       // Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      *       pageSize: 'placeholder-value',
-     *       // The value of next_page_token received from a previous `ListVolumeBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeBackups` must match the call that provided the page token.
+     *       // Optional. The value of next_page_token received from a previous `ListVolumeBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeBackups` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
      *       // Required. The Backup that contains the VolumeBackups to list. Format: `projects/x/locations/x/backupPlans/x/backups/x`
      *       parent:
@@ -5014,19 +5014,19 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Backupplans$Backups$Volumebackups$List
     extends StandardParameters {
     /**
-     * Field match expression used to filter the results.
+     * Optional. Field match expression used to filter the results.
      */
     filter?: string;
     /**
-     * Field by which to sort the results.
+     * Optional. Field by which to sort the results.
      */
     orderBy?: string;
     /**
-     * The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     * Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      */
     pageSize?: number;
     /**
-     * The value of next_page_token received from a previous `ListVolumeBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeBackups` must match the call that provided the page token.
+     * Optional. The value of next_page_token received from a previous `ListVolumeBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeBackups` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -5715,9 +5715,9 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.restorePlans.delete({
-     *     // If provided, this value must match the current value of the target RestorePlan's etag field or the request is rejected.
+     *     // Optional. If provided, this value must match the current value of the target RestorePlan's etag field or the request is rejected.
      *     etag: 'placeholder-value',
-     *     // If set to true, any Restores below this RestorePlan will also be deleted. Otherwise, the request will only succeed if the RestorePlan has no Restores.
+     *     // Optional. If set to true, any Restores below this RestorePlan will also be deleted. Otherwise, the request will only succeed if the RestorePlan has no Restores.
      *     force: 'placeholder-value',
      *     // Required. Fully qualified RestorePlan name. Format: `projects/x/locations/x/restorePlans/x`
      *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan',
@@ -6129,13 +6129,13 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.restorePlans.list({
-     *     // Field match expression used to filter the results.
+     *     // Optional. Field match expression used to filter the results.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the results.
+     *     // Optional. Field by which to sort the results.
      *     orderBy: 'placeholder-value',
-     *     // The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     *     // Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      *     pageSize: 'placeholder-value',
-     *     // The value of next_page_token received from a previous `ListRestorePlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestorePlans` must match the call that provided the page token.
+     *     // Optional. The value of next_page_token received from a previous `ListRestorePlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestorePlans` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The location that contains the RestorePlans to list. Format: `projects/x/locations/x`
      *     parent: 'projects/my-project/locations/my-location',
@@ -6275,7 +6275,7 @@ export namespace gkebackup_v1 {
      *   const res = await gkebackup.projects.locations.restorePlans.patch({
      *     // Output only. The full name of the RestorePlan resource. Format: `projects/x/locations/x/restorePlans/x`.
      *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan',
-     *     // This is used to specify the fields to be overwritten in the RestorePlan targeted for update. The values for each of these updated fields will be taken from the `restore_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore_plan` will be written to the target RestorePlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore_plan` are ignored and are not used to update the target RestorePlan.
+     *     // Optional. This is used to specify the fields to be overwritten in the RestorePlan targeted for update. The values for each of these updated fields will be taken from the `restore_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore_plan` will be written to the target RestorePlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore_plan` are ignored and are not used to update the target RestorePlan.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6714,11 +6714,11 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Restoreplans$Delete
     extends StandardParameters {
     /**
-     * If provided, this value must match the current value of the target RestorePlan's etag field or the request is rejected.
+     * Optional. If provided, this value must match the current value of the target RestorePlan's etag field or the request is rejected.
      */
     etag?: string;
     /**
-     * If set to true, any Restores below this RestorePlan will also be deleted. Otherwise, the request will only succeed if the RestorePlan has no Restores.
+     * Optional. If set to true, any Restores below this RestorePlan will also be deleted. Otherwise, the request will only succeed if the RestorePlan has no Restores.
      */
     force?: boolean;
     /**
@@ -6747,19 +6747,19 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Restoreplans$List
     extends StandardParameters {
     /**
-     * Field match expression used to filter the results.
+     * Optional. Field match expression used to filter the results.
      */
     filter?: string;
     /**
-     * Field by which to sort the results.
+     * Optional. Field by which to sort the results.
      */
     orderBy?: string;
     /**
-     * The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     * Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      */
     pageSize?: number;
     /**
-     * The value of next_page_token received from a previous `ListRestorePlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestorePlans` must match the call that provided the page token.
+     * Optional. The value of next_page_token received from a previous `ListRestorePlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestorePlans` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -6774,7 +6774,7 @@ export namespace gkebackup_v1 {
      */
     name?: string;
     /**
-     * This is used to specify the fields to be overwritten in the RestorePlan targeted for update. The values for each of these updated fields will be taken from the `restore_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore_plan` will be written to the target RestorePlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore_plan` are ignored and are not used to update the target RestorePlan.
+     * Optional. This is used to specify the fields to be overwritten in the RestorePlan targeted for update. The values for each of these updated fields will be taken from the `restore_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore_plan` will be written to the target RestorePlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore_plan` are ignored and are not used to update the target RestorePlan.
      */
     updateMask?: string;
 
@@ -7014,9 +7014,9 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.restorePlans.restores.delete({
-     *     // If provided, this value must match the current value of the target Restore's etag field or the request is rejected.
+     *     // Optional. If provided, this value must match the current value of the target Restore's etag field or the request is rejected.
      *     etag: 'placeholder-value',
-     *     // If set to true, any VolumeRestores below this restore will also be deleted. Otherwise, the request will only succeed if the restore has no VolumeRestores.
+     *     // Optional. If set to true, any VolumeRestores below this restore will also be deleted. Otherwise, the request will only succeed if the restore has no VolumeRestores.
      *     force: 'placeholder-value',
      *     // Required. Full name of the Restore Format: `projects/x/locations/x/restorePlans/x/restores/x`
      *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan/restores/my-restore',
@@ -7436,13 +7436,13 @@ export namespace gkebackup_v1 {
      *
      *   // Do the magic
      *   const res = await gkebackup.projects.locations.restorePlans.restores.list({
-     *     // Field match expression used to filter the results.
+     *     // Optional. Field match expression used to filter the results.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the results.
+     *     // Optional. Field by which to sort the results.
      *     orderBy: 'placeholder-value',
-     *     // The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     *     // Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      *     pageSize: 'placeholder-value',
-     *     // The value of next_page_token received from a previous `ListRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestores` must match the call that provided the page token.
+     *     // Optional. The value of next_page_token received from a previous `ListRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestores` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The RestorePlan that contains the Restores to list. Format: `projects/x/locations/x/restorePlans/x`
      *     parent:
@@ -7584,7 +7584,7 @@ export namespace gkebackup_v1 {
      *   const res = await gkebackup.projects.locations.restorePlans.restores.patch({
      *     // Output only. The full name of the Restore resource. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan/restores/my-restore',
-     *     // This is used to specify the fields to be overwritten in the Restore targeted for update. The values for each of these updated fields will be taken from the `restore` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore` will be written to the target Restore resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore` are ignored and are not used to update the target Restore.
+     *     // Optional. This is used to specify the fields to be overwritten in the Restore targeted for update. The values for each of these updated fields will be taken from the `restore` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore` will be written to the target Restore resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore` are ignored and are not used to update the target Restore.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8032,11 +8032,11 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Delete
     extends StandardParameters {
     /**
-     * If provided, this value must match the current value of the target Restore's etag field or the request is rejected.
+     * Optional. If provided, this value must match the current value of the target Restore's etag field or the request is rejected.
      */
     etag?: string;
     /**
-     * If set to true, any VolumeRestores below this restore will also be deleted. Otherwise, the request will only succeed if the restore has no VolumeRestores.
+     * Optional. If set to true, any VolumeRestores below this restore will also be deleted. Otherwise, the request will only succeed if the restore has no VolumeRestores.
      */
     force?: boolean;
     /**
@@ -8065,19 +8065,19 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Restoreplans$Restores$List
     extends StandardParameters {
     /**
-     * Field match expression used to filter the results.
+     * Optional. Field match expression used to filter the results.
      */
     filter?: string;
     /**
-     * Field by which to sort the results.
+     * Optional. Field by which to sort the results.
      */
     orderBy?: string;
     /**
-     * The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     * Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      */
     pageSize?: number;
     /**
-     * The value of next_page_token received from a previous `ListRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestores` must match the call that provided the page token.
+     * Optional. The value of next_page_token received from a previous `ListRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestores` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -8092,7 +8092,7 @@ export namespace gkebackup_v1 {
      */
     name?: string;
     /**
-     * This is used to specify the fields to be overwritten in the Restore targeted for update. The values for each of these updated fields will be taken from the `restore` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore` will be written to the target Restore resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore` are ignored and are not used to update the target Restore.
+     * Optional. This is used to specify the fields to be overwritten in the Restore targeted for update. The values for each of these updated fields will be taken from the `restore` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore` will be written to the target Restore resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore` are ignored and are not used to update the target Restore.
      */
     updateMask?: string;
 
@@ -8441,13 +8441,13 @@ export namespace gkebackup_v1 {
      *   const res =
      *     await gkebackup.projects.locations.restorePlans.restores.volumeRestores.list(
      *       {
-     *         // Field match expression used to filter the results.
+     *         // Optional. Field match expression used to filter the results.
      *         filter: 'placeholder-value',
-     *         // Field by which to sort the results.
+     *         // Optional. Field by which to sort the results.
      *         orderBy: 'placeholder-value',
-     *         // The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     *         // Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      *         pageSize: 'placeholder-value',
-     *         // The value of next_page_token received from a previous `ListVolumeRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeRestores` must match the call that provided the page token.
+     *         // Optional. The value of next_page_token received from a previous `ListVolumeRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeRestores` must match the call that provided the page token.
      *         pageToken: 'placeholder-value',
      *         // Required. The Restore that contains the VolumeRestores to list. Format: `projects/x/locations/x/restorePlans/x/restores/x`
      *         parent:
@@ -8879,19 +8879,19 @@ export namespace gkebackup_v1 {
   export interface Params$Resource$Projects$Locations$Restoreplans$Restores$Volumerestores$List
     extends StandardParameters {
     /**
-     * Field match expression used to filter the results.
+     * Optional. Field match expression used to filter the results.
      */
     filter?: string;
     /**
-     * Field by which to sort the results.
+     * Optional. Field by which to sort the results.
      */
     orderBy?: string;
     /**
-     * The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
+     * Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.
      */
     pageSize?: number;
     /**
-     * The value of next_page_token received from a previous `ListVolumeRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeRestores` must match the call that provided the page token.
+     * Optional. The value of next_page_token received from a previous `ListVolumeRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeRestores` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
