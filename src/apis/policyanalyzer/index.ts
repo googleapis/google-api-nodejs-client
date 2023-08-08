@@ -33,7 +33,7 @@ export function policyanalyzer(
   options: policyanalyzer_v1beta1.Options
 ): policyanalyzer_v1beta1.Policyanalyzer;
 export function policyanalyzer<
-  T = policyanalyzer_v1.Policyanalyzer | policyanalyzer_v1beta1.Policyanalyzer
+  T = policyanalyzer_v1.Policyanalyzer | policyanalyzer_v1beta1.Policyanalyzer,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
