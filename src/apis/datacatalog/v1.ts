@@ -1191,6 +1191,10 @@ export namespace datacatalog_v1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1SearchCatalogRequest {
     /**
+     * Optional. If set, use searchAll permission granted on organizations from `include_org_ids` and projects from `include_project_ids` instead of the fine grained per resource permissions when filtering the search results. The only allowed `order_by` criteria for admin_search mode is `default`. Using this flags guarantees a full recall of the search results.
+     */
+    adminSearch?: boolean | null;
+    /**
      * Specifies the order of results. Currently supported case-sensitive values are: * `relevance` that can only be descending * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default * `default` that can only be descending Search queries don't guarantee full recall. Results that match your query might not be returned, even in subsequent result pages. Additionally, returned (and not returned) results can vary if you repeat search queries. If you are experiencing recall issues and you don't have to fetch the results in any specific order, consider setting this parameter to `default`. If this parameter is omitted, it defaults to the descending `relevance`.
      */
     orderBy?: string | null;
@@ -1807,6 +1811,7 @@ export namespace datacatalog_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "adminSearch": false,
      *       //   "orderBy": "my_orderBy",
      *       //   "pageSize": 0,
      *       //   "pageToken": "my_pageToken",
