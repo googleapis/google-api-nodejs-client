@@ -27,7 +27,7 @@ export function androiddeviceprovisioning(
   options: androiddeviceprovisioning_v1.Options
 ): androiddeviceprovisioning_v1.Androiddeviceprovisioning;
 export function androiddeviceprovisioning<
-  T = androiddeviceprovisioning_v1.Androiddeviceprovisioning
+  T = androiddeviceprovisioning_v1.Androiddeviceprovisioning,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | androiddeviceprovisioning_v1.Options
