@@ -629,6 +629,10 @@ export namespace admin_directory_v1 {
      */
     deviceId?: string | null;
     /**
+     * Output only. Device license type.
+     */
+    deviceLicenseType?: string | null;
+    /**
      * Reports of disk space and other info about mounted/connected volumes.
      */
     diskVolumeReports?: Array<{
@@ -3530,6 +3534,7 @@ export namespace admin_directory_v1 {
      *   //   "deprovisionReason": "my_deprovisionReason",
      *   //   "deviceFiles": [],
      *   //   "deviceId": "my_deviceId",
+     *   //   "deviceLicenseType": "my_deviceLicenseType",
      *   //   "diskVolumeReports": [],
      *   //   "dockMacAddress": "my_dockMacAddress",
      *   //   "etag": "my_etag",
@@ -3988,6 +3993,7 @@ export namespace admin_directory_v1 {
      *       //   "deprovisionReason": "my_deprovisionReason",
      *       //   "deviceFiles": [],
      *       //   "deviceId": "my_deviceId",
+     *       //   "deviceLicenseType": "my_deviceLicenseType",
      *       //   "diskVolumeReports": [],
      *       //   "dockMacAddress": "my_dockMacAddress",
      *       //   "etag": "my_etag",
@@ -4038,6 +4044,7 @@ export namespace admin_directory_v1 {
      *   //   "deprovisionReason": "my_deprovisionReason",
      *   //   "deviceFiles": [],
      *   //   "deviceId": "my_deviceId",
+     *   //   "deviceLicenseType": "my_deviceLicenseType",
      *   //   "diskVolumeReports": [],
      *   //   "dockMacAddress": "my_dockMacAddress",
      *   //   "etag": "my_etag",
@@ -4213,6 +4220,7 @@ export namespace admin_directory_v1 {
      *       //   "deprovisionReason": "my_deprovisionReason",
      *       //   "deviceFiles": [],
      *       //   "deviceId": "my_deviceId",
+     *       //   "deviceLicenseType": "my_deviceLicenseType",
      *       //   "diskVolumeReports": [],
      *       //   "dockMacAddress": "my_dockMacAddress",
      *       //   "etag": "my_etag",
@@ -4263,6 +4271,7 @@ export namespace admin_directory_v1 {
      *   //   "deprovisionReason": "my_deprovisionReason",
      *   //   "deviceFiles": [],
      *   //   "deviceId": "my_deviceId",
+     *   //   "deviceLicenseType": "my_deviceLicenseType",
      *   //   "diskVolumeReports": [],
      *   //   "dockMacAddress": "my_dockMacAddress",
      *   //   "etag": "my_etag",
