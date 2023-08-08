@@ -31,7 +31,7 @@ export function workflows(
   options: workflows_v1beta.Options
 ): workflows_v1beta.Workflows;
 export function workflows<
-  T = workflows_v1.Workflows | workflows_v1beta.Workflows
+  T = workflows_v1.Workflows | workflows_v1beta.Workflows,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
