@@ -37,7 +37,7 @@ export function binaryauthorization(
 export function binaryauthorization<
   T =
     | binaryauthorization_v1.Binaryauthorization
-    | binaryauthorization_v1beta1.Binaryauthorization
+    | binaryauthorization_v1beta1.Binaryauthorization,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
