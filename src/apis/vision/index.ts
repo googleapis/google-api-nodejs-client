@@ -35,7 +35,7 @@ export function vision(
   options: vision_v1p2beta1.Options
 ): vision_v1p2beta1.Vision;
 export function vision<
-  T = vision_v1.Vision | vision_v1p1beta1.Vision | vision_v1p2beta1.Vision
+  T = vision_v1.Vision | vision_v1p1beta1.Vision | vision_v1p2beta1.Vision,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
