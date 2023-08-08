@@ -27,7 +27,7 @@ export function contactcenterinsights(
   options: contactcenterinsights_v1.Options
 ): contactcenterinsights_v1.Contactcenterinsights;
 export function contactcenterinsights<
-  T = contactcenterinsights_v1.Contactcenterinsights
+  T = contactcenterinsights_v1.Contactcenterinsights,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | contactcenterinsights_v1.Options
