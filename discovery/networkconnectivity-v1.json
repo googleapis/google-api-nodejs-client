@@ -203,7 +203,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -236,7 +236,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -395,7 +395,7 @@
                           "type": "string"
                         },
                         "view": {
-                          "description": "The view of the spoke to return. The view you use determines which spoke fields are included in the response.",
+                          "description": "The view of the spoke to return. The view that you use determines which spoke fields are included in the response.",
                           "enum": [
                             "SPOKE_VIEW_UNSPECIFIED",
                             "BASIC",
@@ -435,7 +435,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         },
@@ -517,6 +517,31 @@
                   "resources": {
                     "groups": {
                       "methods": {
+                        "get": {
+                          "description": "Gets details about a Network Connectivity Center group.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/groups/{groupsId}",
+                          "httpMethod": "GET",
+                          "id": "networkconnectivity.projects.locations.global.hubs.groups.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the route table resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+/groups/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "Group"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "getIamPolicy": {
                           "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                           "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/groups/{groupsId}:getIamPolicy",
@@ -543,6 +568,52 @@
                           "path": "v1/{+resource}:getIamPolicy",
                           "response": {
                             "$ref": "Policy"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists groups in a given hub.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/groups",
+                          "httpMethod": "GET",
+                          "id": "networkconnectivity.projects.locations.global.hubs.groups.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "An expression that filters the list of results.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "Sort the results by a certain order.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The maximum number of results to return per page.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "The page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent resource's name.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/groups",
+                          "response": {
+                            "$ref": "ListGroupsResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -1282,7 +1353,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource's name.",
+                      "description": "Required. The parent resource's name. ex. projects/123/locations/us-east1",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1406,7 +1477,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent resource's name of the ServiceConnectionMap.",
+                      "description": "Required. The parent resource's name of the ServiceConnectionMap. ex. projects/123/locations/us-east1",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1556,7 +1627,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource's name.",
+                      "description": "Required. The parent resource's name. ex. projects/123/locations/us-east1",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1680,7 +1751,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent resource's name of the ServiceConnectionPolicy.",
+                      "description": "Required. The parent resource's name of the ServiceConnectionPolicy. ex. projects/123/locations/us-east1",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1830,7 +1901,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource's name.",
+                      "description": "Required. The parent resource's name. ex. projects/123/locations/us-east1",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1954,7 +2025,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent resource's name of the ServiceConnectionToken.",
+                      "description": "Required. The parent resource's name of the ServiceConnectionToken. ex. projects/123/locations/us-east1",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2073,7 +2144,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource's name.",
+                      "description": "Required. The parent resource's name. ex. projects/123/locations/us-east1",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2137,7 +2208,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -2175,7 +2246,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -2307,7 +2378,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -2330,7 +2401,7 @@
                   ]
                 },
                 "reject": {
-                  "description": "Does one of the following: * Rejects a proposal to attach a Network Connectivity Center spoke to the hub. * Rejects and removes a previously attached spoke from the hub.",
+                  "description": "Rejects a Network Connectivity Center spoke from being attached to the hub. If the spoke was previously in the `ACTIVE` state, it transitions to the `INACTIVE` state and is no longer able to connect to other spokes that are attached to the hub.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}:reject",
                   "httpMethod": "POST",
                   "id": "networkconnectivity.projects.locations.spokes.reject",
@@ -2420,7 +2491,7 @@
       }
     }
   },
-  "revision": "20230627",
+  "revision": "20230727",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptSpokeRequest": {
@@ -2428,7 +2499,7 @@
       "id": "AcceptSpokeRequest",
       "properties": {
         "requestId": {
-          "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         }
       },
@@ -2525,12 +2596,14 @@
           "enum": [
             "STATE_UNSPECIFIED",
             "VALID",
-            "CONNECTION_POLICY_MISSING"
+            "CONNECTION_POLICY_MISSING",
+            "POLICY_LIMIT_REACHED"
           ],
           "enumDescriptions": [
             "Default state, when Connection Map is created initially.",
             "Set when policy and map configuration is valid, and their matching can lead to allowing creation of PSC Connections subject to other constraints like connections limit.",
-            "No Service Connection Policy found for this network and Service Class"
+            "No Service Connection Policy found for this network and Service Class",
+            "Service Connection Policy limit reached for this network and Service Class"
           ],
           "readOnly": true,
           "type": "string"
@@ -2545,6 +2618,11 @@
         "error": {
           "$ref": "GoogleRpcStatus",
           "description": "The most recent error during operating this connection."
+        },
+        "errorInfo": {
+          "$ref": "GoogleRpcErrorInfo",
+          "description": "Output only. The error info for the latest error during operating this connection.",
+          "readOnly": true
         },
         "errorType": {
           "description": "The error type indicates whether the error is consumer facing, producer facing or system internal.",
@@ -2699,6 +2777,28 @@
       },
       "type": "object"
     },
+    "GoogleRpcErrorInfo": {
+      "description": "Describes the cause of the error with structured details. Example of an error when contacting the \"pubsub.googleapis.com\" API when it is not enabled: { \"reason\": \"API_DISABLED\" \"domain\": \"googleapis.com\" \"metadata\": { \"resource\": \"projects/123\", \"service\": \"pubsub.googleapis.com\" } } This response indicates that the pubsub.googleapis.com API is not enabled. Example of an error that is returned when attempting to create a Spanner instance in a region that is out of stock: { \"reason\": \"STOCKOUT\" \"domain\": \"spanner.googleapis.com\", \"metadata\": { \"availableRegions\": \"us-central1,us-east2\" } }",
+      "id": "GoogleRpcErrorInfo",
+      "properties": {
+        "domain": {
+          "description": "The logical grouping to which the \"reason\" belongs. The error domain is typically the registered service name of the tool or product that generates the error. Example: \"pubsub.googleapis.com\". If the error is generated by some common infrastructure, the error domain must be a globally unique value that identifies the infrastructure. For Google API infrastructure, the error domain is \"googleapis.com\".",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional structured details about this error. Keys should match /[a-zA-Z0-9-_]/ and be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than {\"instanceLimit\": \"100/request\"}, should be returned as, {\"instanceLimitPerRequest\": \"100\"}, if the client exceeds the number of instances that can be created in a single (batch) request.",
+          "type": "object"
+        },
+        "reason": {
+          "description": "The reason of the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleRpcStatus": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "GoogleRpcStatus",
@@ -2721,6 +2821,72 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Group": {
+      "description": "A group is a set of spokes to which you can apply policies. Each group of spokes has its own route table. For each group, you can also set different rules for whether spokes can be automatically attached to the hub.",
+      "id": "Group",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the group was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The description of the group.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. The name of the group. Group names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub}/groups/{group_id}`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current lifecycle state of this group.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE"
+          ],
+          "enumDescriptions": [
+            "No state information available",
+            "The resource's create operation is in progress.",
+            "The resource is active",
+            "The resource's delete operation is in progress.",
+            "The resource's accept operation is in progress.",
+            "The resource's reject operation is in progress.",
+            "The resource's update operation is in progress.",
+            "The resource is inactive.",
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. The Google-generated UUID for the group. This value is unique across all group resources. If a group is deleted and another with the same name is created, the new route table is assigned a different unique_id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the group was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2849,11 +3015,13 @@
           "items": {
             "enum": [
               "OVERLAP_UNSPECIFIED",
-              "OVERLAP_ROUTE_RANGE"
+              "OVERLAP_ROUTE_RANGE",
+              "OVERLAP_EXISTING_SUBNET_RANGE"
             ],
             "enumDescriptions": [
               "No overlap overrides.",
-              "Allow creation of static routes more specific that the current internal range."
+              "Allow creation of static routes more specific that the current internal range.",
+              "Allow creation of internal ranges that overlap with existing subnets."
             ],
             "type": "string"
           },
@@ -2968,14 +3136,14 @@
       "id": "LinkedVpcNetwork",
       "properties": {
         "excludeExportRanges": {
-          "description": "Optional. IP Ranges encompassing the subnets to be excluded from peering.",
+          "description": "Optional. IP ranges encompassing the subnets to be excluded from peering.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "uri": {
-          "description": "Required. The URI of the VPC network resource",
+          "description": "Required. The URI of the VPC network resource.",
           "type": "string"
         }
       },
@@ -3000,6 +3168,31 @@
           "description": "Output only. The VPC network where these VPN tunnels are located.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListGroupsResponse": {
+      "description": "Response for HubService.ListGroups method.",
+      "id": "ListGroupsResponse",
+      "properties": {
+        "groups": {
+          "description": "The requested groups.",
+          "items": {
+            "$ref": "Group"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Hubs that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3465,6 +3658,11 @@
           "$ref": "GoogleRpcStatus",
           "description": "The most recent error during operating this connection."
         },
+        "errorInfo": {
+          "$ref": "GoogleRpcErrorInfo",
+          "description": "Output only. The error info for the latest error during operating this connection.",
+          "readOnly": true
+        },
         "errorType": {
           "description": "The error type indicates whether the error is consumer facing, producer facing or system internal.",
           "enum": [
@@ -3515,11 +3713,11 @@
       "id": "RejectSpokeRequest",
       "properties": {
         "details": {
-          "description": "Optional. Additional Details behind the rejection",
+          "description": "Optional. Additional information provided by the hub administrator in the `RejectSpoke` call.",
           "type": "string"
         },
         "requestId": {
-          "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         }
       },
@@ -3556,7 +3754,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. The name of the route. Route names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub}/routeTables/{route_table_id}/routes/{route_id}`",
+          "description": "Immutable. The name of the route. Route names must be unique. Route names use the following form: `projects/{project_number}/locations/global/hubs/{hub}/routeTables/{route_table_id}/routes/{route_id}`",
           "type": "string"
         },
         "nextHopVpcNetwork": {
@@ -3610,7 +3808,7 @@
           "type": "string"
         },
         "uid": {
-          "description": "Output only. The Google-generated UUID for the route. This value is unique across all Network Connectivity Center route resources. If a route is deleted and another with the same name is created, the new route is assigned a different unique_id.",
+          "description": "Output only. The Google-generated UUID for the route. This value is unique across all Network Connectivity Center route resources. If a route is deleted and another with the same name is created, the new route is assigned a different `uid`.",
           "readOnly": true,
           "type": "string"
         },
@@ -3644,7 +3842,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Immutable. The name of the route table. Route Table names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub}/routeTables/{route_table_id}`",
+          "description": "Immutable. The name of the route table. Route table names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub}/routeTables/{route_table_id}`",
           "type": "string"
         },
         "state": {
@@ -3675,7 +3873,7 @@
           "type": "string"
         },
         "uid": {
-          "description": "Output only. The Google-generated UUID for the route table. This value is unique across all route table resources. If a route table is deleted and another with the same name is created, the new route table is assigned a different unique_id.",
+          "description": "Output only. The Google-generated UUID for the route table. This value is unique across all route table resources. If a route table is deleted and another with the same name is created, the new route table is assigned a different `uid`.",
           "readOnly": true,
           "type": "string"
         },
@@ -3752,14 +3950,6 @@
           "description": "Output only. The generated service class name. Use this name to refer to the Service class in Service Connection Maps and Service Connection Policies.",
           "readOnly": true,
           "type": "string"
-        },
-        "serviceConnectionMaps": {
-          "description": "Output only. URIs of all Service Connection Maps using this service class.",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
         },
         "updateTime": {
           "description": "Output only. Time when the ServiceClass was updated.",
@@ -4010,6 +4200,10 @@
           "description": "An optional description of the spoke.",
           "type": "string"
         },
+        "group": {
+          "description": "The name of the group that this spoke is associated with.",
+          "type": "string"
+        },
         "hub": {
           "description": "Immutable. The name of the hub that this spoke is attached to.",
           "type": "string"
@@ -4042,7 +4236,7 @@
           "type": "string"
         },
         "reasons": {
-          "description": "Output only. The reasons for current state of the spoke.",
+          "description": "Output only. The reasons for current state of the spoke. Only present when the spoke is in the `INACTIVE` state.",
           "items": {
             "$ref": "StateReason"
           },
@@ -4096,7 +4290,7 @@
           "type": "string"
         },
         "uniqueId": {
-          "description": "Output only. The Google-generated UUID for the spoke. This value is unique across all spoke resources. If a spoke is deleted and another with the same name is created, the new spoke is assigned a different unique_id.",
+          "description": "Output only. The Google-generated UUID for the spoke. This value is unique across all spoke resources. If a spoke is deleted and another with the same name is created, the new spoke is assigned a different `unique_id`.",
           "readOnly": true,
           "type": "string"
         },
