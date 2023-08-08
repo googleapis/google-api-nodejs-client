@@ -38,7 +38,7 @@ export function osconfig<
   T =
     | osconfig_v1.Osconfig
     | osconfig_v1alpha.Osconfig
-    | osconfig_v1beta.Osconfig
+    | osconfig_v1beta.Osconfig,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
