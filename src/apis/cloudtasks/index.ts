@@ -40,7 +40,7 @@ export function cloudtasks<
   T =
     | cloudtasks_v2.Cloudtasks
     | cloudtasks_v2beta2.Cloudtasks
-    | cloudtasks_v2beta3.Cloudtasks
+    | cloudtasks_v2beta3.Cloudtasks,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
