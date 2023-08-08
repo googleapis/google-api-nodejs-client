@@ -315,6 +315,48 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "listSubscriptions": {
+                  "description": "Lists all subscriptions on a given Data Exchange or Listing.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}:listSubscriptions",
+                  "httpMethod": "GET",
+                  "id": "analyticshub.projects.locations.dataExchanges.listSubscriptions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "includeDeletedSubscriptions": {
+                      "description": "If selected, includes deleted subscriptions in the response (up to 63 days after deletion).",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response page.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Page token, returned by a previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "resource": {
+                      "description": "Required. Resource name of the requested target. This resource may be either a Listing or a DataExchange. e.g. projects/123/locations/US/dataExchanges/456 OR e.g. projects/123/locations/US/dataExchanges/456/listings/789",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataExchanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:listSubscriptions",
+                  "response": {
+                    "$ref": "ListSharedResourceSubscriptionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "patch": {
                   "description": "Updates an existing data exchange.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}",
@@ -373,6 +415,35 @@
                   },
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "subscribe": {
+                  "description": "Creates a Subscription to a Data Exchange. This is a long-running operation as it will create one or more linked datasets.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}:subscribe",
+                  "httpMethod": "POST",
+                  "id": "analyticshub.projects.locations.dataExchanges.subscribe",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the Data Exchange. e.g. `projects/publisherproject/locations/US/dataExchanges/123`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataExchanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:subscribe",
+                  "request": {
+                    "$ref": "SubscribeDataExchangeRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/bigquery",
@@ -564,6 +635,48 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "listSubscriptions": {
+                      "description": "Lists all subscriptions on a given Data Exchange or Listing.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}:listSubscriptions",
+                      "httpMethod": "GET",
+                      "id": "analyticshub.projects.locations.dataExchanges.listings.listSubscriptions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "includeDeletedSubscriptions": {
+                          "description": "If selected, includes deleted subscriptions in the response (up to 63 days after deletion).",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of results to return in a single response page.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Page token, returned by a previous call.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "resource": {
+                          "description": "Required. Resource name of the requested target. This resource may be either a Listing or a DataExchange. e.g. projects/123/locations/US/dataExchanges/456 OR e.g. projects/123/locations/US/dataExchanges/456/listings/789",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataExchanges/[^/]+/listings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:listSubscriptions",
+                      "response": {
+                        "$ref": "ListSharedResourceSubscriptionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "patch": {
                       "description": "Updates an existing listing.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}/listings/{listingsId}",
@@ -689,13 +802,169 @@
                   }
                 }
               }
+            },
+            "subscriptions": {
+              "methods": {
+                "delete": {
+                  "description": "Deletes a subscription.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/subscriptions/{subscriptionsId}",
+                  "httpMethod": "DELETE",
+                  "id": "analyticshub.projects.locations.subscriptions.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the subscription to delete. e.g. projects/123/locations/US/subscriptions/456",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a Subscription.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/subscriptions/{subscriptionsId}",
+                  "httpMethod": "GET",
+                  "id": "analyticshub.projects.locations.subscriptions.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the subscription. e.g. projects/123/locations/US/subscriptions/456",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Subscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all subscriptions in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/subscriptions",
+                  "httpMethod": "GET",
+                  "id": "analyticshub.projects.locations.subscriptions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter expression may be used to filter by Data Exchange or Listing.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response page.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Page token, returned by a previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource path of the subscription. e.g. projects/myproject/locations/US",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/subscriptions",
+                  "response": {
+                    "$ref": "ListSubscriptionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "refresh": {
+                  "description": "Refreshes a Subscription to a Data Exchange. A Data Exchange can become stale when a publisher adds or removes data. This is a long-running operation as it may create many linked datasets.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/subscriptions/{subscriptionsId}:refresh",
+                  "httpMethod": "POST",
+                  "id": "analyticshub.projects.locations.subscriptions.refresh",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the Subscription to refresh. e.g. `projects/subscriberproject/locations/US/subscriptions/123`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:refresh",
+                  "request": {
+                    "$ref": "RefreshSubscriptionRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "revoke": {
+                  "description": "Revokes a given subscription.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/subscriptions/{subscriptionsId}:revoke",
+                  "httpMethod": "POST",
+                  "id": "analyticshub.projects.locations.subscriptions.revoke",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the subscription to revoke. e.g. projects/123/locations/US/subscriptions/456",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:revoke",
+                  "request": {
+                    "$ref": "RevokeSubscriptionRequest"
+                  },
+                  "response": {
+                    "$ref": "RevokeSubscriptionResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20230703",
+  "revision": "20230803",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -814,6 +1083,10 @@
         "primaryContact": {
           "description": "Optional. Email or URL of the primary point of contact of the data exchange. Max Length: 1000 bytes.",
           "type": "string"
+        },
+        "sharingEnvironmentConfig": {
+          "$ref": "SharingEnvironmentConfig",
+          "description": "Required. Configurable data sharing environment option for a data exchange."
         }
       },
       "type": "object"
@@ -831,6 +1104,18 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "DcrExchangeConfig": {
+      "description": "Data Clean Room (DCR), used for privacy-safe and secured data sharing.",
+      "id": "DcrExchangeConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "DefaultExchangeConfig": {
+      "description": "Default Analytics Hub data exchange, used for secured data sharing.",
+      "id": "DefaultExchangeConfig",
+      "properties": {},
       "type": "object"
     },
     "DestinationDataset": {
@@ -930,6 +1215,18 @@
       },
       "type": "object"
     },
+    "LinkedResource": {
+      "description": "Reference to a linked resource tracked by this Subscription.",
+      "id": "LinkedResource",
+      "properties": {
+        "linkedDataset": {
+          "description": "Output only. Name of the linked dataset, e.g. projects/subscriberproject/datasets/linked_dataset",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListDataExchangesResponse": {
       "description": "Message for response to the list of data exchanges.",
       "id": "ListDataExchangesResponse",
@@ -980,6 +1277,42 @@
         "nextPageToken": {
           "description": "A token to request the next page of results.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListSharedResourceSubscriptionsResponse": {
+      "description": "Message for response to the listing of shared resource subscriptions.",
+      "id": "ListSharedResourceSubscriptionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Next page token.",
+          "type": "string"
+        },
+        "sharedResourceSubscriptions": {
+          "description": "The list of subscriptions.",
+          "items": {
+            "$ref": "Subscription"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListSubscriptionsResponse": {
+      "description": "Message for response to the listing of subscriptions.",
+      "id": "ListSubscriptionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Next page token.",
+          "type": "string"
+        },
+        "subscriptions": {
+          "description": "The list of subscriptions.",
+          "items": {
+            "$ref": "Subscription"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1101,6 +1434,41 @@
       },
       "type": "object"
     },
+    "Operation": {
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
+      "id": "Operation",
+      "properties": {
+        "done": {
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "The error result of the operation in case of failure or cancellation."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "OperationMetadata": {
       "description": "Represents the metadata of the long-running operation.",
       "id": "OperationMetadata",
@@ -1191,6 +1559,23 @@
       },
       "type": "object"
     },
+    "RefreshSubscriptionRequest": {
+      "description": "Message for refreshing a subscription.",
+      "id": "RefreshSubscriptionRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "RefreshSubscriptionResponse": {
+      "description": "Message for response when you refresh a subscription.",
+      "id": "RefreshSubscriptionResponse",
+      "properties": {
+        "subscription": {
+          "$ref": "Subscription",
+          "description": "The refreshed subscription resource."
+        }
+      },
+      "type": "object"
+    },
     "RestrictedExportConfig": {
       "description": "Restricted export config, used to configure restricted export on linked dataset.",
       "id": "RestrictedExportConfig",
@@ -1211,6 +1596,18 @@
       },
       "type": "object"
     },
+    "RevokeSubscriptionRequest": {
+      "description": "Message for revoking a subscription.",
+      "id": "RevokeSubscriptionRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "RevokeSubscriptionResponse": {
+      "description": "Message for response when you revoke a subscription.",
+      "id": "RevokeSubscriptionResponse",
+      "properties": {},
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -1223,6 +1620,78 @@
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SharingEnvironmentConfig": {
+      "description": "Sharing environment is a behavior model for sharing data within a data exchange. This option is configurable for a data exchange.",
+      "id": "SharingEnvironmentConfig",
+      "properties": {
+        "dcrExchangeConfig": {
+          "$ref": "DcrExchangeConfig",
+          "description": "Data Clean Room (DCR), used for privacy-safe and secured data sharing."
+        },
+        "defaultExchangeConfig": {
+          "$ref": "DefaultExchangeConfig",
+          "description": "Default Analytics Hub data exchange, used for secured data sharing."
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SubscribeDataExchangeRequest": {
+      "description": "Message for subscribing to a Data Exchange.",
+      "id": "SubscribeDataExchangeRequest",
+      "properties": {
+        "destination": {
+          "description": "Required. The parent resource path of the Subscription. e.g. `projects/subscriberproject/locations/US`",
+          "type": "string"
+        },
+        "subscriberContact": {
+          "description": "Email of the subscriber.",
+          "type": "string"
+        },
+        "subscription": {
+          "description": "Required. Name of the subscription to create. e.g. `subscription1`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SubscribeDataExchangeResponse": {
+      "description": "Message for response when you subscribe to a Data Exchange.",
+      "id": "SubscribeDataExchangeResponse",
+      "properties": {
+        "subscription": {
+          "$ref": "Subscription",
+          "description": "Subscription object created from this subscribe action."
         }
       },
       "type": "object"
@@ -1241,7 +1710,86 @@
     "SubscribeListingResponse": {
       "description": "Message for response when you subscribe to a listing.",
       "id": "SubscribeListingResponse",
-      "properties": {},
+      "properties": {
+        "subscription": {
+          "$ref": "Subscription",
+          "description": "Subscription object created from this subscribe action."
+        }
+      },
+      "type": "object"
+    },
+    "Subscription": {
+      "description": "A subscription represents a subscribers' access to a particular set of published data. It contains references to associated listings, data exchanges, and linked datasets. TODO(b/267528977) Consider port the new resource to v1beta1 and dataexchange APIs.",
+      "id": "Subscription",
+      "properties": {
+        "creationTime": {
+          "description": "Output only. Timestamp when the subscription was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataExchange": {
+          "description": "Output only. Resource name of the source Data Exchange. e.g. projects/123/locations/US/dataExchanges/456",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastModifyTime": {
+          "description": "Output only. Timestamp when the subscription was last modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "linkedDatasetMap": {
+          "additionalProperties": {
+            "$ref": "LinkedResource"
+          },
+          "description": "Output only. Map of listing resource names to associated linked resource, e.g. projects/123/locations/US/dataExchanges/456/listings/789 -> projects/123/datasets/my_dataset For listing-level subscriptions, this is a map of size 1. Only contains values if state == STATE_ACTIVE.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "listing": {
+          "description": "Output only. Resource name of the source Listing. e.g. projects/123/locations/US/dataExchanges/456/listings/789",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the subscription. e.g. `projects/myproject/locations/US/subscriptions/123`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "organizationDisplayName": {
+          "description": "Output only. Display name of the project of this subscription.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "organizationId": {
+          "description": "Output only. Organization of the project this subscription belongs to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Current state of the subscription.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STATE_ACTIVE",
+            "STATE_STALE",
+            "STATE_INACTIVE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "This subscription is active and the data is accessible.",
+            "The data referenced by this subscription is out of date and should be refreshed. This can happen when a data provider adds or removes datasets.",
+            "This subscription has been cancelled or revoked and the data is no longer accessible."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "subscriberContact": {
+          "description": "Output only. Email of the subscriber.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "TestIamPermissionsRequest": {
