@@ -33,7 +33,7 @@ export function speech(
 export function speech(version: 'v2beta1'): speech_v2beta1.Speech;
 export function speech(options: speech_v2beta1.Options): speech_v2beta1.Speech;
 export function speech<
-  T = speech_v1.Speech | speech_v1p1beta1.Speech | speech_v2beta1.Speech
+  T = speech_v1.Speech | speech_v1p1beta1.Speech | speech_v2beta1.Speech,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
