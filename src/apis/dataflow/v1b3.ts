@@ -577,6 +577,48 @@ export namespace dataflow_v1b3 {
     vmInstance?: string | null;
   }
   /**
+   * Configuration options for sampling elements.
+   */
+  export interface Schema$DataSamplingConfig {
+    /**
+     * List of given sampling behaviors to enable. For example, specifying behaviors = [ALWAYS_ON] samples in-flight elements but does not sample exceptions. Can be used to specify multiple behaviors like, behaviors = [ALWAYS_ON, EXCEPTIONS] for specifying periodic sampling and exception sampling. If DISABLED is in the list, then sampling will be disabled and ignore the other given behaviors. Ordering does not matter.
+     */
+    behaviors?: string[] | null;
+  }
+  /**
+   * Contains per-worker telemetry about the data sampling feature.
+   */
+  export interface Schema$DataSamplingReport {
+    /**
+     * Optional. Delta of bytes written to file from previous report.
+     */
+    bytesWrittenDelta?: string | null;
+    /**
+     * Optional. Delta of bytes sampled from previous report.
+     */
+    elementsSampledBytes?: string | null;
+    /**
+     * Optional. Delta of number of elements sampled from previous report.
+     */
+    elementsSampledCount?: string | null;
+    /**
+     * Optional. Delta of number of samples taken from user code exceptions from previous report.
+     */
+    exceptionsSampledCount?: string | null;
+    /**
+     * Optional. Delta of number of PCollections sampled from previous report.
+     */
+    pcollectionsSampledCount?: string | null;
+    /**
+     * Optional. Delta of errors counts from persisting the samples from previous report.
+     */
+    persistenceErrorsCount?: string | null;
+    /**
+     * Optional. Delta of errors counts from retrieving, or translating the samples from previous report.
+     */
+    translationErrorsCount?: string | null;
+  }
+  /**
    * Metadata for a Datastore connector used by the job.
    */
   export interface Schema$DatastoreIODetails {
@@ -593,6 +635,10 @@ export namespace dataflow_v1b3 {
    * Describes any options that have an effect on the debugging of pipelines.
    */
   export interface Schema$DebugOptions {
+    /**
+     * Configuration options for sampling elements from a running pipeline.
+     */
+    dataSampling?: Schema$DataSamplingConfig;
     /**
      * When true, enables the logging of the literal hot key to the user's Cloud Logging.
      */
@@ -783,6 +829,10 @@ export namespace dataflow_v1b3 {
      * A description of the process that generated the request.
      */
     userAgent?: {[key: string]: any} | null;
+    /**
+     * Output only. Whether the job uses the new streaming engine billing model based on resource usage.
+     */
+    useStreamingEngineResourceBasedBilling?: boolean | null;
     /**
      * A structure describing which components and their versions of the service are required in order to run the job.
      */
@@ -2286,6 +2336,23 @@ export namespace dataflow_v1b3 {
     minNumWorkers?: number | null;
   }
   /**
+   * A bug found in the Dataflow SDK.
+   */
+  export interface Schema$SdkBug {
+    /**
+     * Output only. How severe the SDK bug is.
+     */
+    severity?: string | null;
+    /**
+     * Output only. Describes the impact of this SDK bug.
+     */
+    type?: string | null;
+    /**
+     * Output only. Link to more information on the bug.
+     */
+    uri?: string | null;
+  }
+  /**
    * Defines an SDK harness container for executing Dataflow pipelines.
    */
   export interface Schema$SdkHarnessContainerImage {
@@ -2323,6 +2390,10 @@ export namespace dataflow_v1b3 {
    * The version of the SDK used to run the job.
    */
   export interface Schema$SdkVersion {
+    /**
+     * Output only. Known bugs found in this SDK version.
+     */
+    bugs?: Schema$SdkBug[];
     /**
      * The support status for this SDK version.
      */
@@ -3362,6 +3433,10 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerMessage {
     /**
+     * Optional. Contains metrics related to go/dataflow-data-sampling-telemetry.
+     */
+    dataSamplingReport?: Schema$DataSamplingReport;
+    /**
      * Labels are used to group WorkerMessages. For example, a worker_message about a particular container might have the labels: { "JOB_ID": "2015-04-22", "WORKER_ID": "wordcount-vm-2015…" "CONTAINER_TYPE": "worker", "CONTAINER_ID": "ac1234def"\} Label tags typically correspond to Label enum values. However, for ease of development other strings can be used as tags. LABEL_UNSPECIFIED should not be used here.
      */
     labels?: {[key: string]: string} | null;
@@ -3819,55 +3894,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Deletes a snapshot.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.deleteSnapshots({
-     *     // The location that contains this snapshot.
-     *     location: 'placeholder-value',
-     *     // The ID of the Cloud Platform project that the snapshot belongs to.
-     *     projectId: 'placeholder-value',
-     *     // The ID of the snapshot.
-     *     snapshotId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3962,62 +3988,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Send a worker_message to the service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.workerMessages({
-     *     // The project to send the WorkerMessages to.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "location": "my_location",
-     *       //   "workerMessages": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "workerMessageResponses": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4152,67 +4122,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * List the jobs of a project across all regions. **Note:** This method doesn't support filtering the list of jobs by name.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.aggregated({
-     *     // The kind of filter to use.
-     *     filter: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     *     location: 'placeholder-value',
-     *     // Optional. The job name.
-     *     name: 'placeholder-value',
-     *     // If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
-     *     pageSize: 'placeholder-value',
-     *     // Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
-     *     pageToken: 'placeholder-value',
-     *     // The project which owns the jobs.
-     *     projectId: 'placeholder-value',
-     *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "failedLocation": [],
-     *   //   "jobs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4299,117 +4208,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.create({
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     *     location: 'placeholder-value',
-     *     // The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *     // Deprecated. This field is now in the Job message.
-     *     replaceJobId: 'placeholder-value',
-     *     // The level of information requested in response.
-     *     view: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "clientRequestId": "my_clientRequestId",
-     *       //   "createTime": "my_createTime",
-     *       //   "createdFromSnapshotId": "my_createdFromSnapshotId",
-     *       //   "currentState": "my_currentState",
-     *       //   "currentStateTime": "my_currentStateTime",
-     *       //   "environment": {},
-     *       //   "executionInfo": {},
-     *       //   "id": "my_id",
-     *       //   "jobMetadata": {},
-     *       //   "labels": {},
-     *       //   "location": "my_location",
-     *       //   "name": "my_name",
-     *       //   "pipelineDescription": {},
-     *       //   "projectId": "my_projectId",
-     *       //   "replaceJobId": "my_replaceJobId",
-     *       //   "replacedByJobId": "my_replacedByJobId",
-     *       //   "requestedState": "my_requestedState",
-     *       //   "runtimeUpdatableParams": {},
-     *       //   "satisfiesPzs": false,
-     *       //   "stageStates": [],
-     *       //   "startTime": "my_startTime",
-     *       //   "steps": [],
-     *       //   "stepsLocation": "my_stepsLocation",
-     *       //   "tempFiles": [],
-     *       //   "transformNameMapping": {},
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientRequestId": "my_clientRequestId",
-     *   //   "createTime": "my_createTime",
-     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
-     *   //   "currentState": "my_currentState",
-     *   //   "currentStateTime": "my_currentStateTime",
-     *   //   "environment": {},
-     *   //   "executionInfo": {},
-     *   //   "id": "my_id",
-     *   //   "jobMetadata": {},
-     *   //   "labels": {},
-     *   //   "location": "my_location",
-     *   //   "name": "my_name",
-     *   //   "pipelineDescription": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "replaceJobId": "my_replaceJobId",
-     *   //   "replacedByJobId": "my_replacedByJobId",
-     *   //   "requestedState": "my_requestedState",
-     *   //   "runtimeUpdatableParams": {},
-     *   //   "satisfiesPzs": false,
-     *   //   "stageStates": [],
-     *   //   "startTime": "my_startTime",
-     *   //   "steps": [],
-     *   //   "stepsLocation": "my_stepsLocation",
-     *   //   "tempFiles": [],
-     *   //   "transformNameMapping": {},
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4497,84 +4295,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.get({
-     *     // The job ID.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     *     location: 'placeholder-value',
-     *     // The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *     // The level of information requested in response.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientRequestId": "my_clientRequestId",
-     *   //   "createTime": "my_createTime",
-     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
-     *   //   "currentState": "my_currentState",
-     *   //   "currentStateTime": "my_currentStateTime",
-     *   //   "environment": {},
-     *   //   "executionInfo": {},
-     *   //   "id": "my_id",
-     *   //   "jobMetadata": {},
-     *   //   "labels": {},
-     *   //   "location": "my_location",
-     *   //   "name": "my_name",
-     *   //   "pipelineDescription": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "replaceJobId": "my_replaceJobId",
-     *   //   "replacedByJobId": "my_replacedByJobId",
-     *   //   "requestedState": "my_requestedState",
-     *   //   "runtimeUpdatableParams": {},
-     *   //   "satisfiesPzs": false,
-     *   //   "stageStates": [],
-     *   //   "startTime": "my_startTime",
-     *   //   "steps": [],
-     *   //   "stepsLocation": "my_stepsLocation",
-     *   //   "tempFiles": [],
-     *   //   "transformNameMapping": {},
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4662,60 +4382,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.getMetrics({
-     *     // The job to get metrics for.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     *     location: 'placeholder-value',
-     *     // A project id.
-     *     projectId: 'placeholder-value',
-     *     // Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
-     *     startTime: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "metricTime": "my_metricTime",
-     *   //   "metrics": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4802,67 +4468,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.list({
-     *     // The kind of filter to use.
-     *     filter: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     *     location: 'placeholder-value',
-     *     // Optional. The job name.
-     *     name: 'placeholder-value',
-     *     // If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
-     *     pageSize: 'placeholder-value',
-     *     // Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
-     *     pageToken: 'placeholder-value',
-     *     // The project which owns the jobs.
-     *     projectId: 'placeholder-value',
-     *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "failedLocation": [],
-     *   //   "jobs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4950,75 +4555,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Snapshot the state of a streaming job.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.snapshot({
-     *     // The job to be snapshotted.
-     *     jobId: 'placeholder-value',
-     *     // The project which owns the job to be snapshotted.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "description": "my_description",
-     *       //   "location": "my_location",
-     *       //   "snapshotSources": false,
-     *       //   "ttl": "my_ttl"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creationTime": "my_creationTime",
-     *   //   "description": "my_description",
-     *   //   "diskSizeBytes": "my_diskSizeBytes",
-     *   //   "id": "my_id",
-     *   //   "projectId": "my_projectId",
-     *   //   "pubsubMetadata": [],
-     *   //   "region": "my_region",
-     *   //   "sourceJobId": "my_sourceJobId",
-     *   //   "state": "my_state",
-     *   //   "ttl": "my_ttl"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5105,117 +4641,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.update({
-     *     // The job ID.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     *     location: 'placeholder-value',
-     *     // The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *     // The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, an error will be returned as we cannot update both state and mask.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "clientRequestId": "my_clientRequestId",
-     *       //   "createTime": "my_createTime",
-     *       //   "createdFromSnapshotId": "my_createdFromSnapshotId",
-     *       //   "currentState": "my_currentState",
-     *       //   "currentStateTime": "my_currentStateTime",
-     *       //   "environment": {},
-     *       //   "executionInfo": {},
-     *       //   "id": "my_id",
-     *       //   "jobMetadata": {},
-     *       //   "labels": {},
-     *       //   "location": "my_location",
-     *       //   "name": "my_name",
-     *       //   "pipelineDescription": {},
-     *       //   "projectId": "my_projectId",
-     *       //   "replaceJobId": "my_replaceJobId",
-     *       //   "replacedByJobId": "my_replacedByJobId",
-     *       //   "requestedState": "my_requestedState",
-     *       //   "runtimeUpdatableParams": {},
-     *       //   "satisfiesPzs": false,
-     *       //   "stageStates": [],
-     *       //   "startTime": "my_startTime",
-     *       //   "steps": [],
-     *       //   "stepsLocation": "my_stepsLocation",
-     *       //   "tempFiles": [],
-     *       //   "transformNameMapping": {},
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientRequestId": "my_clientRequestId",
-     *   //   "createTime": "my_createTime",
-     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
-     *   //   "currentState": "my_currentState",
-     *   //   "currentStateTime": "my_currentStateTime",
-     *   //   "environment": {},
-     *   //   "executionInfo": {},
-     *   //   "id": "my_id",
-     *   //   "jobMetadata": {},
-     *   //   "labels": {},
-     *   //   "location": "my_location",
-     *   //   "name": "my_name",
-     *   //   "pipelineDescription": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "replaceJobId": "my_replaceJobId",
-     *   //   "replacedByJobId": "my_replacedByJobId",
-     *   //   "requestedState": "my_requestedState",
-     *   //   "runtimeUpdatableParams": {},
-     *   //   "satisfiesPzs": false,
-     *   //   "stageStates": [],
-     *   //   "startTime": "my_startTime",
-     *   //   "steps": [],
-     *   //   "stepsLocation": "my_stepsLocation",
-     *   //   "tempFiles": [],
-     *   //   "transformNameMapping": {},
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5475,65 +4900,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Get encoded debug configuration for component. Not cacheable.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.debug.getConfig({
-     *     // The job id.
-     *     jobId: 'placeholder-value',
-     *     // The project id.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "componentId": "my_componentId",
-     *       //   "location": "my_location",
-     *       //   "workerId": "my_workerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": "my_config"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5628,65 +4994,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Send encoded debug capture data for component.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.debug.sendCapture({
-     *     // The job id.
-     *     jobId: 'placeholder-value',
-     *     // The project id.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "componentId": "my_componentId",
-     *       //   "data": "my_data",
-     *       //   "dataFormat": "my_dataFormat",
-     *       //   "location": "my_location",
-     *       //   "workerId": "my_workerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5821,69 +5128,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.messages.list({
-     *     // Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
-     *     endTime: 'placeholder-value',
-     *     // The job to get messages about.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     *     location: 'placeholder-value',
-     *     // Filter to only get messages with importance \>= level
-     *     minimumImportance: 'placeholder-value',
-     *     // If specified, determines the maximum number of messages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
-     *     pageSize: 'placeholder-value',
-     *     // If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
-     *     pageToken: 'placeholder-value',
-     *     // A project id.
-     *     projectId: 'placeholder-value',
-     *     // If specified, return only messages with timestamps \>= start_time. The default is the job creation time (i.e. beginning of messages).
-     *     startTime: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "autoscalingEvents": [],
-     *   //   "jobMessages": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6018,70 +5262,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Leases a dataflow WorkItem to run.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.workItems.lease({
-     *     // Identifies the workflow job this worker belongs to.
-     *     jobId: 'placeholder-value',
-     *     // Identifies the project this worker belongs to.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "currentWorkerTime": "my_currentWorkerTime",
-     *       //   "location": "my_location",
-     *       //   "requestedLeaseDuration": "my_requestedLeaseDuration",
-     *       //   "unifiedWorkerRequest": {},
-     *       //   "workItemTypes": [],
-     *       //   "workerCapabilities": [],
-     *       //   "workerId": "my_workerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "unifiedWorkerResponse": {},
-     *   //   "workItems": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6174,68 +5354,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Reports the status of dataflow WorkItems leased by a worker.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.workItems.reportStatus({
-     *     // The job which the WorkItem is part of.
-     *     jobId: 'placeholder-value',
-     *     // The project which owns the WorkItem's job.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "currentWorkerTime": "my_currentWorkerTime",
-     *       //   "location": "my_location",
-     *       //   "unifiedWorkerRequest": {},
-     *       //   "workItemStatuses": [],
-     *       //   "workerId": "my_workerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "unifiedWorkerResponse": {},
-     *   //   "workItemServiceStates": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6382,64 +5500,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Send a worker_message to the service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.workerMessages({
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job.
-     *     location: 'placeholder-value',
-     *     // The project to send the WorkerMessages to.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "location": "my_location",
-     *       //   "workerMessages": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "workerMessageResponses": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6558,64 +5618,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Launch a job with a FlexTemplate.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.flexTemplates.launch({
-     *     // Required. The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request. E.g., us-central1, us-west1.
-     *     location: 'placeholder-value',
-     *     // Required. The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "launchParameter": {},
-     *       //   "validateOnly": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "job": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6750,117 +5752,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Creates a Cloud Dataflow job. To create a job, we recommend using `projects.locations.jobs.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.create` is not recommended, as your job will always start in `us-central1`. Do not enter confidential information when you supply string values using the API.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.create({
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     *     location: 'placeholder-value',
-     *     // The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *     // Deprecated. This field is now in the Job message.
-     *     replaceJobId: 'placeholder-value',
-     *     // The level of information requested in response.
-     *     view: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "clientRequestId": "my_clientRequestId",
-     *       //   "createTime": "my_createTime",
-     *       //   "createdFromSnapshotId": "my_createdFromSnapshotId",
-     *       //   "currentState": "my_currentState",
-     *       //   "currentStateTime": "my_currentStateTime",
-     *       //   "environment": {},
-     *       //   "executionInfo": {},
-     *       //   "id": "my_id",
-     *       //   "jobMetadata": {},
-     *       //   "labels": {},
-     *       //   "location": "my_location",
-     *       //   "name": "my_name",
-     *       //   "pipelineDescription": {},
-     *       //   "projectId": "my_projectId",
-     *       //   "replaceJobId": "my_replaceJobId",
-     *       //   "replacedByJobId": "my_replacedByJobId",
-     *       //   "requestedState": "my_requestedState",
-     *       //   "runtimeUpdatableParams": {},
-     *       //   "satisfiesPzs": false,
-     *       //   "stageStates": [],
-     *       //   "startTime": "my_startTime",
-     *       //   "steps": [],
-     *       //   "stepsLocation": "my_stepsLocation",
-     *       //   "tempFiles": [],
-     *       //   "transformNameMapping": {},
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientRequestId": "my_clientRequestId",
-     *   //   "createTime": "my_createTime",
-     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
-     *   //   "currentState": "my_currentState",
-     *   //   "currentStateTime": "my_currentStateTime",
-     *   //   "environment": {},
-     *   //   "executionInfo": {},
-     *   //   "id": "my_id",
-     *   //   "jobMetadata": {},
-     *   //   "labels": {},
-     *   //   "location": "my_location",
-     *   //   "name": "my_name",
-     *   //   "pipelineDescription": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "replaceJobId": "my_replaceJobId",
-     *   //   "replacedByJobId": "my_replacedByJobId",
-     *   //   "requestedState": "my_requestedState",
-     *   //   "runtimeUpdatableParams": {},
-     *   //   "satisfiesPzs": false,
-     *   //   "stageStates": [],
-     *   //   "startTime": "my_startTime",
-     *   //   "steps": [],
-     *   //   "stepsLocation": "my_stepsLocation",
-     *   //   "tempFiles": [],
-     *   //   "transformNameMapping": {},
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6947,84 +5838,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Gets the state of the specified Cloud Dataflow job. To get the state of a job, we recommend using `projects.locations.jobs.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.get` is not recommended, as you can only get the state of jobs that are running in `us-central1`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.get({
-     *     // The job ID.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     *     location: 'placeholder-value',
-     *     // The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *     // The level of information requested in response.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientRequestId": "my_clientRequestId",
-     *   //   "createTime": "my_createTime",
-     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
-     *   //   "currentState": "my_currentState",
-     *   //   "currentStateTime": "my_currentStateTime",
-     *   //   "environment": {},
-     *   //   "executionInfo": {},
-     *   //   "id": "my_id",
-     *   //   "jobMetadata": {},
-     *   //   "labels": {},
-     *   //   "location": "my_location",
-     *   //   "name": "my_name",
-     *   //   "pipelineDescription": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "replaceJobId": "my_replaceJobId",
-     *   //   "replacedByJobId": "my_replacedByJobId",
-     *   //   "requestedState": "my_requestedState",
-     *   //   "runtimeUpdatableParams": {},
-     *   //   "satisfiesPzs": false,
-     *   //   "stageStates": [],
-     *   //   "startTime": "my_startTime",
-     *   //   "steps": [],
-     *   //   "stepsLocation": "my_stepsLocation",
-     *   //   "tempFiles": [],
-     *   //   "transformNameMapping": {},
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7112,62 +5925,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Request detailed information about the execution status of the job. EXPERIMENTAL. This API is subject to change or removal without notice.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.getExecutionDetails({
-     *     // The job to get execution details for.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     *     location: 'placeholder-value',
-     *     // If specified, determines the maximum number of stages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
-     *     pageSize: 'placeholder-value',
-     *     // If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
-     *     pageToken: 'placeholder-value',
-     *     // A project id.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "stages": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7261,60 +6018,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.getMetrics` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.getMetrics` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.getMetrics({
-     *     // The job to get metrics for.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     *     location: 'placeholder-value',
-     *     // A project id.
-     *     projectId: 'placeholder-value',
-     *     // Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
-     *     startTime: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "metricTime": "my_metricTime",
-     *   //   "metrics": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7402,67 +6105,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.list({
-     *     // The kind of filter to use.
-     *     filter: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     *     location: 'placeholder-value',
-     *     // Optional. The job name.
-     *     name: 'placeholder-value',
-     *     // If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
-     *     pageSize: 'placeholder-value',
-     *     // Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
-     *     pageToken: 'placeholder-value',
-     *     // The project which owns the jobs.
-     *     projectId: 'placeholder-value',
-     *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "failedLocation": [],
-     *   //   "jobs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7549,77 +6191,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Snapshot the state of a streaming job.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.snapshot({
-     *     // The job to be snapshotted.
-     *     jobId: 'placeholder-value',
-     *     // The location that contains this job.
-     *     location: 'placeholder-value',
-     *     // The project which owns the job to be snapshotted.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "description": "my_description",
-     *       //   "location": "my_location",
-     *       //   "snapshotSources": false,
-     *       //   "ttl": "my_ttl"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creationTime": "my_creationTime",
-     *   //   "description": "my_description",
-     *   //   "diskSizeBytes": "my_diskSizeBytes",
-     *   //   "id": "my_id",
-     *   //   "projectId": "my_projectId",
-     *   //   "pubsubMetadata": [],
-     *   //   "region": "my_region",
-     *   //   "sourceJobId": "my_sourceJobId",
-     *   //   "state": "my_state",
-     *   //   "ttl": "my_ttl"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7707,117 +6278,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Updates the state of an existing Cloud Dataflow job. To update the state of an existing job, we recommend using `projects.locations.jobs.update` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.update` is not recommended, as you can only update the state of jobs that are running in `us-central1`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.update({
-     *     // The job ID.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
-     *     location: 'placeholder-value',
-     *     // The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *     // The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, an error will be returned as we cannot update both state and mask.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "clientRequestId": "my_clientRequestId",
-     *       //   "createTime": "my_createTime",
-     *       //   "createdFromSnapshotId": "my_createdFromSnapshotId",
-     *       //   "currentState": "my_currentState",
-     *       //   "currentStateTime": "my_currentStateTime",
-     *       //   "environment": {},
-     *       //   "executionInfo": {},
-     *       //   "id": "my_id",
-     *       //   "jobMetadata": {},
-     *       //   "labels": {},
-     *       //   "location": "my_location",
-     *       //   "name": "my_name",
-     *       //   "pipelineDescription": {},
-     *       //   "projectId": "my_projectId",
-     *       //   "replaceJobId": "my_replaceJobId",
-     *       //   "replacedByJobId": "my_replacedByJobId",
-     *       //   "requestedState": "my_requestedState",
-     *       //   "runtimeUpdatableParams": {},
-     *       //   "satisfiesPzs": false,
-     *       //   "stageStates": [],
-     *       //   "startTime": "my_startTime",
-     *       //   "steps": [],
-     *       //   "stepsLocation": "my_stepsLocation",
-     *       //   "tempFiles": [],
-     *       //   "transformNameMapping": {},
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientRequestId": "my_clientRequestId",
-     *   //   "createTime": "my_createTime",
-     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
-     *   //   "currentState": "my_currentState",
-     *   //   "currentStateTime": "my_currentStateTime",
-     *   //   "environment": {},
-     *   //   "executionInfo": {},
-     *   //   "id": "my_id",
-     *   //   "jobMetadata": {},
-     *   //   "labels": {},
-     *   //   "location": "my_location",
-     *   //   "name": "my_name",
-     *   //   "pipelineDescription": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "replaceJobId": "my_replaceJobId",
-     *   //   "replacedByJobId": "my_replacedByJobId",
-     *   //   "requestedState": "my_requestedState",
-     *   //   "runtimeUpdatableParams": {},
-     *   //   "satisfiesPzs": false,
-     *   //   "stageStates": [],
-     *   //   "startTime": "my_startTime",
-     *   //   "steps": [],
-     *   //   "stepsLocation": "my_stepsLocation",
-     *   //   "tempFiles": [],
-     *   //   "transformNameMapping": {},
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8073,67 +6533,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Get encoded debug configuration for component. Not cacheable.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.debug.getConfig({
-     *     // The job id.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     *     location: 'placeholder-value',
-     *     // The project id.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "componentId": "my_componentId",
-     *       //   "location": "my_location",
-     *       //   "workerId": "my_workerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": "my_config"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8228,67 +6627,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Send encoded debug capture data for component.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.debug.sendCapture({
-     *     // The job id.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     *     location: 'placeholder-value',
-     *     // The project id.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "componentId": "my_componentId",
-     *       //   "data": "my_data",
-     *       //   "dataFormat": "my_dataFormat",
-     *       //   "location": "my_location",
-     *       //   "workerId": "my_workerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8432,69 +6770,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Request the job status. To request the status of a job, we recommend using `projects.locations.jobs.messages.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.jobs.messages.list` is not recommended, as you can only request the status of jobs that are running in `us-central1`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.messages.list({
-     *     // Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
-     *     endTime: 'placeholder-value',
-     *     // The job to get messages about.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     *     location: 'placeholder-value',
-     *     // Filter to only get messages with importance \>= level
-     *     minimumImportance: 'placeholder-value',
-     *     // If specified, determines the maximum number of messages to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
-     *     pageSize: 'placeholder-value',
-     *     // If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
-     *     pageToken: 'placeholder-value',
-     *     // A project id.
-     *     projectId: 'placeholder-value',
-     *     // If specified, return only messages with timestamps \>= start_time. The default is the job creation time (i.e. beginning of messages).
-     *     startTime: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "autoscalingEvents": [],
-     *   //   "jobMessages": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8630,57 +6905,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Lists snapshots.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.snapshots.list({
-     *     // If specified, list snapshots created from this job.
-     *     jobId: 'placeholder-value',
-     *     // The location to list snapshots in.
-     *     location: 'placeholder-value',
-     *     // The project ID to list snapshots for.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "snapshots": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8796,70 +7020,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Request detailed information about the execution status of a stage of the job. EXPERIMENTAL. This API is subject to change or removal without notice.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.stages.getExecutionDetails(
-     *     {
-     *       // Upper time bound of work items to include, by start time.
-     *       endTime: 'placeholder-value',
-     *       // The job to get execution details for.
-     *       jobId: 'placeholder-value',
-     *       // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
-     *       location: 'placeholder-value',
-     *       // If specified, determines the maximum number of work items to return. If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
-     *       pageSize: 'placeholder-value',
-     *       // If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
-     *       pageToken: 'placeholder-value',
-     *       // A project id.
-     *       projectId: 'placeholder-value',
-     *       // The stage for which to fetch information.
-     *       stageId: 'placeholder-value',
-     *       // Lower time bound of work items to include, by start time.
-     *       startTime: 'placeholder-value',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "workers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8998,72 +7158,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Leases a dataflow WorkItem to run.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.workItems.lease({
-     *     // Identifies the workflow job this worker belongs to.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
-     *     location: 'placeholder-value',
-     *     // Identifies the project this worker belongs to.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "currentWorkerTime": "my_currentWorkerTime",
-     *       //   "location": "my_location",
-     *       //   "requestedLeaseDuration": "my_requestedLeaseDuration",
-     *       //   "unifiedWorkerRequest": {},
-     *       //   "workItemTypes": [],
-     *       //   "workerCapabilities": [],
-     *       //   "workerId": "my_workerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "unifiedWorkerResponse": {},
-     *   //   "workItems": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9156,70 +7250,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Reports the status of dataflow WorkItems leased by a worker.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.jobs.workItems.reportStatus({
-     *     // The job which the WorkItem is part of.
-     *     jobId: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
-     *     location: 'placeholder-value',
-     *     // The project which owns the WorkItem's job.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "currentWorkerTime": "my_currentWorkerTime",
-     *       //   "location": "my_location",
-     *       //   "unifiedWorkerRequest": {},
-     *       //   "workItemStatuses": [],
-     *       //   "workerId": "my_workerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "unifiedWorkerResponse": {},
-     *   //   "workItemServiceStates": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9365,55 +7395,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Deletes a snapshot.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.snapshots.delete({
-     *     // The location that contains this snapshot.
-     *     location: 'placeholder-value',
-     *     // The ID of the Cloud Platform project that the snapshot belongs to.
-     *     projectId: 'placeholder-value',
-     *     // The ID of the snapshot.
-     *     snapshotId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9506,66 +7487,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Gets information about a snapshot.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.snapshots.get({
-     *     // The location that contains this snapshot.
-     *     location: 'placeholder-value',
-     *     // The ID of the Cloud Platform project that the snapshot belongs to.
-     *     projectId: 'placeholder-value',
-     *     // The ID of the snapshot.
-     *     snapshotId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creationTime": "my_creationTime",
-     *   //   "description": "my_description",
-     *   //   "diskSizeBytes": "my_diskSizeBytes",
-     *   //   "id": "my_id",
-     *   //   "projectId": "my_projectId",
-     *   //   "pubsubMetadata": [],
-     *   //   "region": "my_region",
-     *   //   "sourceJobId": "my_sourceJobId",
-     *   //   "state": "my_state",
-     *   //   "ttl": "my_ttl"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9653,57 +7574,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Lists snapshots.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.snapshots.list({
-     *     // If specified, list snapshots created from this job.
-     *     jobId: 'placeholder-value',
-     *     // The location to list snapshots in.
-     *     location: 'placeholder-value',
-     *     // The project ID to list snapshots for.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "snapshots": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9849,92 +7719,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.templates.create({
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     *     location: 'placeholder-value',
-     *     // Required. The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "environment": {},
-     *       //   "gcsPath": "my_gcsPath",
-     *       //   "jobName": "my_jobName",
-     *       //   "location": "my_location",
-     *       //   "parameters": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientRequestId": "my_clientRequestId",
-     *   //   "createTime": "my_createTime",
-     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
-     *   //   "currentState": "my_currentState",
-     *   //   "currentStateTime": "my_currentStateTime",
-     *   //   "environment": {},
-     *   //   "executionInfo": {},
-     *   //   "id": "my_id",
-     *   //   "jobMetadata": {},
-     *   //   "labels": {},
-     *   //   "location": "my_location",
-     *   //   "name": "my_name",
-     *   //   "pipelineDescription": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "replaceJobId": "my_replaceJobId",
-     *   //   "replacedByJobId": "my_replacedByJobId",
-     *   //   "requestedState": "my_requestedState",
-     *   //   "runtimeUpdatableParams": {},
-     *   //   "satisfiesPzs": false,
-     *   //   "stageStates": [],
-     *   //   "startTime": "my_startTime",
-     *   //   "steps": [],
-     *   //   "stepsLocation": "my_stepsLocation",
-     *   //   "tempFiles": [],
-     *   //   "transformNameMapping": {},
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10022,62 +7806,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Get the template associated with a template.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.templates.get({
-     *     // Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-     *     gcsPath: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     *     location: 'placeholder-value',
-     *     // Required. The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *     // The view to retrieve. Defaults to METADATA_ONLY.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "metadata": {},
-     *   //   "runtimeMetadata": {},
-     *   //   "status": {},
-     *   //   "templateType": "my_templateType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10168,75 +7896,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Launch a template.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.templates.launch({
-     *     // Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.
-     *     'dynamicTemplate.gcsPath': 'placeholder-value',
-     *     // Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
-     *     'dynamicTemplate.stagingLocation': 'placeholder-value',
-     *     // A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-     *     gcsPath: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     *     location: 'placeholder-value',
-     *     // Required. The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *     // If true, the request is validated but not actually executed. Defaults to false.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "environment": {},
-     *       //   "jobName": "my_jobName",
-     *       //   "parameters": {},
-     *       //   "transformNameMapping": {},
-     *       //   "update": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "job": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10404,66 +8063,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Gets information about a snapshot.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.snapshots.get({
-     *     // The location that contains this snapshot.
-     *     location: 'placeholder-value',
-     *     // The ID of the Cloud Platform project that the snapshot belongs to.
-     *     projectId: 'placeholder-value',
-     *     // The ID of the snapshot.
-     *     snapshotId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creationTime": "my_creationTime",
-     *   //   "description": "my_description",
-     *   //   "diskSizeBytes": "my_diskSizeBytes",
-     *   //   "id": "my_id",
-     *   //   "projectId": "my_projectId",
-     *   //   "pubsubMetadata": [],
-     *   //   "region": "my_region",
-     *   //   "sourceJobId": "my_sourceJobId",
-     *   //   "state": "my_state",
-     *   //   "ttl": "my_ttl"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10550,57 +8149,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Lists snapshots.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.snapshots.list({
-     *     // If specified, list snapshots created from this job.
-     *     jobId: 'placeholder-value',
-     *     // The location to list snapshots in.
-     *     location: 'placeholder-value',
-     *     // The project ID to list snapshots for.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "snapshots": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10731,90 +8279,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.templates.create({
-     *     // Required. The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "environment": {},
-     *       //   "gcsPath": "my_gcsPath",
-     *       //   "jobName": "my_jobName",
-     *       //   "location": "my_location",
-     *       //   "parameters": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientRequestId": "my_clientRequestId",
-     *   //   "createTime": "my_createTime",
-     *   //   "createdFromSnapshotId": "my_createdFromSnapshotId",
-     *   //   "currentState": "my_currentState",
-     *   //   "currentStateTime": "my_currentStateTime",
-     *   //   "environment": {},
-     *   //   "executionInfo": {},
-     *   //   "id": "my_id",
-     *   //   "jobMetadata": {},
-     *   //   "labels": {},
-     *   //   "location": "my_location",
-     *   //   "name": "my_name",
-     *   //   "pipelineDescription": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "replaceJobId": "my_replaceJobId",
-     *   //   "replacedByJobId": "my_replacedByJobId",
-     *   //   "requestedState": "my_requestedState",
-     *   //   "runtimeUpdatableParams": {},
-     *   //   "satisfiesPzs": false,
-     *   //   "stageStates": [],
-     *   //   "startTime": "my_startTime",
-     *   //   "steps": [],
-     *   //   "stepsLocation": "my_stepsLocation",
-     *   //   "tempFiles": [],
-     *   //   "transformNameMapping": {},
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10902,62 +8366,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Get the template associated with a template.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.templates.get({
-     *     // Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-     *     gcsPath: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     *     location: 'placeholder-value',
-     *     // Required. The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *     // The view to retrieve. Defaults to METADATA_ONLY.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "metadata": {},
-     *   //   "runtimeMetadata": {},
-     *   //   "status": {},
-     *   //   "templateType": "my_templateType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11048,75 +8456,6 @@ export namespace dataflow_v1b3 {
 
     /**
      * Launch a template.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *       'https://www.googleapis.com/auth/compute.readonly',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.templates.launch({
-     *     // Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.
-     *     'dynamicTemplate.gcsPath': 'placeholder-value',
-     *     // Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
-     *     'dynamicTemplate.stagingLocation': 'placeholder-value',
-     *     // A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-     *     gcsPath: 'placeholder-value',
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     *     location: 'placeholder-value',
-     *     // Required. The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *     // If true, the request is validated but not actually executed. Defaults to false.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "environment": {},
-     *       //   "jobName": "my_jobName",
-     *       //   "parameters": {},
-     *       //   "transformNameMapping": {},
-     *       //   "update": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "job": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
