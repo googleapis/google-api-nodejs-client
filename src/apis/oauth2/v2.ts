@@ -108,55 +108,6 @@ export namespace oauth2_v2 {
     }
 
     /**
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oauth2.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const oauth2 = google.oauth2('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await oauth2.tokeninfo({
-     *     access_token: 'placeholder-value',
-     *
-     *     id_token: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "audience": "my_audience",
-     *   //   "email": "my_email",
-     *   //   "expires_in": 0,
-     *   //   "issued_to": "my_issued_to",
-     *   //   "scope": "my_scope",
-     *   //   "user_id": "my_user_id",
-     *   //   "verified_email": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -339,59 +290,6 @@ export namespace oauth2_v2 {
     }
 
     /**
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oauth2.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const oauth2 = google.oauth2('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'openid',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *       'https://www.googleapis.com/auth/userinfo.profile',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await oauth2.userinfo.get({});
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "email": "my_email",
-     *   //   "family_name": "my_family_name",
-     *   //   "gender": "my_gender",
-     *   //   "given_name": "my_given_name",
-     *   //   "hd": "my_hd",
-     *   //   "id": "my_id",
-     *   //   "link": "my_link",
-     *   //   "locale": "my_locale",
-     *   //   "name": "my_name",
-     *   //   "picture": "my_picture",
-     *   //   "verified_email": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -495,59 +393,6 @@ export namespace oauth2_v2 {
     }
 
     /**
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/oauth2.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const oauth2 = google.oauth2('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'openid',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *       'https://www.googleapis.com/auth/userinfo.profile',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await oauth2.userinfo.v2.me.get({});
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "email": "my_email",
-     *   //   "family_name": "my_family_name",
-     *   //   "gender": "my_gender",
-     *   //   "given_name": "my_given_name",
-     *   //   "hd": "my_hd",
-     *   //   "id": "my_id",
-     *   //   "link": "my_link",
-     *   //   "locale": "my_locale",
-     *   //   "name": "my_name",
-     *   //   "picture": "my_picture",
-     *   //   "verified_email": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
