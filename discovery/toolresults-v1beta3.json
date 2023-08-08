@@ -1463,7 +1463,7 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20230808",
   "rootUrl": "https://toolresults.googleapis.com/",
   "schemas": {
     "ANR": {
@@ -1616,6 +1616,12 @@
           "description": "The time from app start to the first displayed activity being drawn, as reported in Logcat. See https://developer.android.com/topic/performance/launch-time.html#time-initial"
         }
       },
+      "type": "object"
+    },
+    "AssetIssue": {
+      "description": "There was an issue with the assets in this test.",
+      "id": "AssetIssue",
+      "properties": {},
       "type": "object"
     },
     "AvailableDeepLinks": {
@@ -1959,7 +1965,7 @@
       "type": "object"
     },
     "FailedToInstall": {
-      "description": "Failed to install the APK.",
+      "description": "Failed to install the App.",
       "id": "FailedToInstall",
       "properties": {},
       "type": "object"
@@ -3624,7 +3630,8 @@
             "unityException",
             "deviceOutOfMemory",
             "logcatCollectionError",
-            "detectedAppSplashScreen"
+            "detectedAppSplashScreen",
+            "assetIssue"
           ],
           "enumDescriptions": [
             "Default unspecified type. Do not use. For versioning only.",
@@ -3658,7 +3665,8 @@
             "An uncaught Unity exception was detected (these don't crash apps).",
             "Device running out of memory was detected",
             "Problems detected while collecting logcat",
-            "Robo detected a splash screen provided by app (vs. Android OS splash screen)."
+            "Robo detected a splash screen provided by app (vs. Android OS splash screen).",
+            "There was an issue with the assets in this test."
           ],
           "type": "string"
         },
