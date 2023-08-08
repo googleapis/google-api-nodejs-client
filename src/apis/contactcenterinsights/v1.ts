@@ -3181,7 +3181,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -3246,55 +3246,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Gets project-level settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.getSettings({
-     *     // Required. The name of the settings resource to get.
-     *     name: 'projects/my-project/locations/my-location/settings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "analysisConfig": {},
-     *   //   "conversationTtl": "my_conversationTtl",
-     *   //   "createTime": "my_createTime",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "pubsubNotificationSettings": {},
-     *   //   "redactionConfig": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3389,72 +3340,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Updates project-level settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.updateSettings({
-     *     // Immutable. The resource name of the settings resource. Format: projects/{project\}/locations/{location\}/settings
-     *     name: 'projects/my-project/locations/my-location/settings',
-     *     // Required. The list of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "analysisConfig": {},
-     *       //   "conversationTtl": "my_conversationTtl",
-     *       //   "createTime": "my_createTime",
-     *       //   "languageCode": "my_languageCode",
-     *       //   "name": "my_name",
-     *       //   "pubsubNotificationSettings": {},
-     *       //   "redactionConfig": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "analysisConfig": {},
-     *   //   "conversationTtl": "my_conversationTtl",
-     *   //   "createTime": "my_createTime",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "pubsubNotificationSettings": {},
-     *   //   "redactionConfig": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3584,64 +3469,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Analyzes multiple conversations in a single request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.conversations.bulkAnalyze({
-     *       // Required. The parent resource to create analyses in.
-     *       parent: 'projects/my-project/locations/my-location',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "analysisPercentage": {},
-     *         //   "annotatorSelector": {},
-     *         //   "filter": "my_filter",
-     *         //   "parent": "my_parent"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3738,60 +3565,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Gets conversation statistics.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.conversations.calculateStats(
-     *       {
-     *         // A filter to reduce results to a specific subset. This field is useful for getting statistics about conversations with specific properties.
-     *         filter: 'placeholder-value',
-     *         // Required. The location of the conversations.
-     *         location: 'projects/my-project/locations/my-location',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "averageDuration": "my_averageDuration",
-     *   //   "averageTurnCount": 0,
-     *   //   "conversationCount": 0,
-     *   //   "conversationCountTimeSeries": {},
-     *   //   "customHighlighterMatches": {},
-     *   //   "issueMatches": {},
-     *   //   "issueMatchesStats": {},
-     *   //   "smartHighlighterMatches": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3889,97 +3662,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Creates a conversation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.conversations.create({
-     *       // A unique ID for the new conversation. This ID will become the final component of the conversation's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z0-9-]{4,64\}$`. Valid characters are `a-z-`
-     *       conversationId: 'placeholder-value',
-     *       // Required. The parent resource of the conversation.
-     *       parent: 'projects/my-project/locations/my-location',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "agentId": "my_agentId",
-     *         //   "callMetadata": {},
-     *         //   "createTime": "my_createTime",
-     *         //   "dataSource": {},
-     *         //   "dialogflowIntents": {},
-     *         //   "duration": "my_duration",
-     *         //   "expireTime": "my_expireTime",
-     *         //   "labels": {},
-     *         //   "languageCode": "my_languageCode",
-     *         //   "latestAnalysis": {},
-     *         //   "latestSummary": {},
-     *         //   "medium": "my_medium",
-     *         //   "name": "my_name",
-     *         //   "obfuscatedUserId": "my_obfuscatedUserId",
-     *         //   "runtimeAnnotations": [],
-     *         //   "startTime": "my_startTime",
-     *         //   "transcript": {},
-     *         //   "ttl": "my_ttl",
-     *         //   "turnCount": 0,
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "agentId": "my_agentId",
-     *   //   "callMetadata": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "dataSource": {},
-     *   //   "dialogflowIntents": {},
-     *   //   "duration": "my_duration",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "labels": {},
-     *   //   "languageCode": "my_languageCode",
-     *   //   "latestAnalysis": {},
-     *   //   "latestSummary": {},
-     *   //   "medium": "my_medium",
-     *   //   "name": "my_name",
-     *   //   "obfuscatedUserId": "my_obfuscatedUserId",
-     *   //   "runtimeAnnotations": [],
-     *   //   "startTime": "my_startTime",
-     *   //   "transcript": {},
-     *   //   "ttl": "my_ttl",
-     *   //   "turnCount": 0,
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4077,49 +3759,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Deletes a conversation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.conversations.delete({
-     *       // If set to true, all of this conversation's analyses will also be deleted. Otherwise, the request will only succeed if the conversation has no analyses.
-     *       force: 'placeholder-value',
-     *       // Required. The name of the conversation to delete.
-     *       name: 'projects/my-project/locations/my-location/conversations/my-conversation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4208,69 +3847,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Gets a conversation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.conversations.get({
-     *     // Required. The name of the conversation to get.
-     *     name: 'projects/my-project/locations/my-location/conversations/my-conversation',
-     *     // The level of details of the conversation. Default is `FULL`.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "agentId": "my_agentId",
-     *   //   "callMetadata": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "dataSource": {},
-     *   //   "dialogflowIntents": {},
-     *   //   "duration": "my_duration",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "labels": {},
-     *   //   "languageCode": "my_languageCode",
-     *   //   "latestAnalysis": {},
-     *   //   "latestSummary": {},
-     *   //   "medium": "my_medium",
-     *   //   "name": "my_name",
-     *   //   "obfuscatedUserId": "my_obfuscatedUserId",
-     *   //   "runtimeAnnotations": [],
-     *   //   "startTime": "my_startTime",
-     *   //   "transcript": {},
-     *   //   "ttl": "my_ttl",
-     *   //   "turnCount": 0,
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4365,64 +3941,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Imports conversations and processes them according to the user's configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.conversations.ingest({
-     *       // Required. The parent resource for new conversations.
-     *       parent: 'projects/my-project/locations/my-location',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "conversationConfig": {},
-     *         //   "gcsSource": {},
-     *         //   "parent": "my_parent",
-     *         //   "transcriptObjectConfig": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4518,59 +4036,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Lists conversations.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.conversations.list(
-     *     {
-     *       // A filter to reduce results to a specific subset. Useful for querying conversations with specific properties.
-     *       filter: 'placeholder-value',
-     *       // The maximum number of conversations to return in the response. A valid page size ranges from 0 to 1,000 inclusive. If the page size is zero or unspecified, a default page size of 100 will be chosen. Note that a call might return fewer results than the requested page size.
-     *       pageSize: 'placeholder-value',
-     *       // The value returned by the last `ListConversationsResponse`. This value indicates that this is a continuation of a prior `ListConversations` call and that the system should return the next page of data.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource of the conversation.
-     *       parent: 'projects/my-project/locations/my-location',
-     *       // The level of details of the conversation. Default is `BASIC`.
-     *       view: 'placeholder-value',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "conversations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4668,97 +4133,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Updates a conversation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.conversations.patch({
-     *       // Immutable. The resource name of the conversation. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}
-     *       name: 'projects/my-project/locations/my-location/conversations/my-conversation',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "agentId": "my_agentId",
-     *         //   "callMetadata": {},
-     *         //   "createTime": "my_createTime",
-     *         //   "dataSource": {},
-     *         //   "dialogflowIntents": {},
-     *         //   "duration": "my_duration",
-     *         //   "expireTime": "my_expireTime",
-     *         //   "labels": {},
-     *         //   "languageCode": "my_languageCode",
-     *         //   "latestAnalysis": {},
-     *         //   "latestSummary": {},
-     *         //   "medium": "my_medium",
-     *         //   "name": "my_name",
-     *         //   "obfuscatedUserId": "my_obfuscatedUserId",
-     *         //   "runtimeAnnotations": [],
-     *         //   "startTime": "my_startTime",
-     *         //   "transcript": {},
-     *         //   "ttl": "my_ttl",
-     *         //   "turnCount": 0,
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "agentId": "my_agentId",
-     *   //   "callMetadata": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "dataSource": {},
-     *   //   "dialogflowIntents": {},
-     *   //   "duration": "my_duration",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "labels": {},
-     *   //   "languageCode": "my_languageCode",
-     *   //   "latestAnalysis": {},
-     *   //   "latestSummary": {},
-     *   //   "medium": "my_medium",
-     *   //   "name": "my_name",
-     *   //   "obfuscatedUserId": "my_obfuscatedUserId",
-     *   //   "runtimeAnnotations": [],
-     *   //   "startTime": "my_startTime",
-     *   //   "transcript": {},
-     *   //   "ttl": "my_ttl",
-     *   //   "turnCount": 0,
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4853,64 +4227,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Create a longrunning conversation upload operation. This method differs from CreateConversation by allowing audio transcription and optional DLP redaction.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.conversations.upload({
-     *       // Required. The parent resource of the conversation.
-     *       parent: 'projects/my-project/locations/my-location',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "conversation": {},
-     *         //   "conversationId": "my_conversationId",
-     *         //   "parent": "my_parent",
-     *         //   "redactionConfig": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5138,68 +4454,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Creates an analysis. The long running operation is done when the analysis has completed.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.conversations.analyses.create(
-     *       {
-     *         // Required. The parent resource of the analysis.
-     *         parent:
-     *           'projects/my-project/locations/my-location/conversations/my-conversation',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "analysisResult": {},
-     *           //   "annotatorSelector": {},
-     *           //   "createTime": "my_createTime",
-     *           //   "name": "my_name",
-     *           //   "requestTime": "my_requestTime"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5296,49 +4550,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Deletes an analysis.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.conversations.analyses.delete(
-     *       {
-     *         // Required. The name of the analysis to delete.
-     *         name: 'projects/my-project/locations/my-location/conversations/my-conversation/analyses/my-analyse',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5428,53 +4639,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Gets an analysis.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.conversations.analyses.get({
-     *       // Required. The name of the analysis to get.
-     *       name: 'projects/my-project/locations/my-location/conversations/my-conversation/analyses/my-analyse',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "analysisResult": {},
-     *   //   "annotatorSelector": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "name": "my_name",
-     *   //   "requestTime": "my_requestTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5570,57 +4734,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Lists analyses.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.conversations.analyses.list({
-     *       // A filter to reduce results to a specific subset. Useful for querying conversations with specific properties.
-     *       filter: 'placeholder-value',
-     *       // The maximum number of analyses to return in the response. If this value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
-     *       pageSize: 'placeholder-value',
-     *       // The value returned by the last `ListAnalysesResponse`; indicates that this is a continuation of a prior `ListAnalyses` call and the system should return the next page of data.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource of the analyses.
-     *       parent:
-     *         'projects/my-project/locations/my-location/conversations/my-conversation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "analyses": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5772,65 +4885,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Export insights data to a destination defined in the request body.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.insightsdata.export({
-     *       // Required. The parent resource to export data from.
-     *       parent: 'projects/my-project/locations/my-location',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "bigQueryDestination": {},
-     *         //   "filter": "my_filter",
-     *         //   "kmsKey": "my_kmsKey",
-     *         //   "parent": "my_parent",
-     *         //   "writeDisposition": "my_writeDisposition"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5950,52 +5004,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Gets an issue model's statistics.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.issueModels.calculateIssueModelStats(
-     *       {
-     *         // Required. The resource name of the issue model to query against.
-     *         issueModel:
-     *           'projects/my-project/locations/my-location/issueModels/my-issueModel',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "currentStats": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6093,71 +5101,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Creates an issue model.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.issueModels.create(
-     *     {
-     *       // Required. The parent resource of the issue model.
-     *       parent: 'projects/my-project/locations/my-location',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createTime": "my_createTime",
-     *         //   "displayName": "my_displayName",
-     *         //   "inputDataConfig": {},
-     *         //   "issueCount": "my_issueCount",
-     *         //   "languageCode": "my_languageCode",
-     *         //   "modelType": "my_modelType",
-     *         //   "name": "my_name",
-     *         //   "state": "my_state",
-     *         //   "trainingStats": {},
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6253,54 +5196,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Deletes an issue model.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.issueModels.delete(
-     *     {
-     *       // Required. The name of the issue model to delete.
-     *       name: 'projects/my-project/locations/my-location/issueModels/my-issueModel',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6393,62 +5288,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Deploys an issue model. Returns an error if a model is already deployed. An issue model can only be used in analysis after it has been deployed.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.issueModels.deploy(
-     *     {
-     *       // Required. The issue model to deploy.
-     *       name: 'projects/my-project/locations/my-location/issueModels/my-issueModel',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "name": "my_name"
-     *         // }
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6541,57 +5380,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Gets an issue model.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.issueModels.get({
-     *     // Required. The name of the issue model to get.
-     *     name: 'projects/my-project/locations/my-location/issueModels/my-issueModel',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "inputDataConfig": {},
-     *   //   "issueCount": "my_issueCount",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "modelType": "my_modelType",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "trainingStats": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6686,48 +5474,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Lists issue models.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.issueModels.list({
-     *     // Required. The parent resource of the issue model.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "issueModels": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6825,76 +5571,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Updates an issue model.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.issueModels.patch({
-     *     // Immutable. The resource name of the issue model. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}
-     *     name: 'projects/my-project/locations/my-location/issueModels/my-issueModel',
-     *     // The list of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "inputDataConfig": {},
-     *       //   "issueCount": "my_issueCount",
-     *       //   "languageCode": "my_languageCode",
-     *       //   "modelType": "my_modelType",
-     *       //   "name": "my_name",
-     *       //   "state": "my_state",
-     *       //   "trainingStats": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "inputDataConfig": {},
-     *   //   "issueCount": "my_issueCount",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "modelType": "my_modelType",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "trainingStats": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6989,61 +5665,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Undeploys an issue model. An issue model can not be used in analysis after it has been undeployed.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.issueModels.undeploy({
-     *       // Required. The issue model to undeploy.
-     *       name: 'projects/my-project/locations/my-location/issueModels/my-issueModel',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "name": "my_name"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7227,47 +5848,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Deletes an issue.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.issueModels.issues.delete({
-     *       // Required. The name of the issue to delete.
-     *       name: 'projects/my-project/locations/my-location/issueModels/my-issueModel/issues/my-issue',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7357,53 +5937,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Gets an issue.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.issueModels.issues.get({
-     *       // Required. The name of the issue to get.
-     *       name: 'projects/my-project/locations/my-location/issueModels/my-issueModel/issues/my-issue',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "sampleUtterances": [],
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7499,50 +6032,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Lists issues.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.issueModels.issues.list({
-     *       // Required. The parent resource of the issue.
-     *       parent:
-     *         'projects/my-project/locations/my-location/issueModels/my-issueModel',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "issues": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7641,67 +6130,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Updates an issue.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.issueModels.issues.patch({
-     *       // Immutable. The resource name of the issue. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}/issues/{issue\}
-     *       name: 'projects/my-project/locations/my-location/issueModels/my-issueModel/issues/my-issue',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createTime": "my_createTime",
-     *         //   "displayName": "my_displayName",
-     *         //   "name": "my_name",
-     *         //   "sampleUtterances": [],
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "sampleUtterances": [],
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7842,46 +6270,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7970,52 +6358,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8108,55 +6450,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'projects/my-project/locations/my-location',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8295,77 +6588,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Creates a phrase matcher.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.phraseMatchers.create({
-     *       // Required. The parent resource of the phrase matcher. Required. The location to create a phrase matcher for. Format: `projects//locations/` or `projects//locations/`
-     *       parent: 'projects/my-project/locations/my-location',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "activationUpdateTime": "my_activationUpdateTime",
-     *         //   "active": false,
-     *         //   "displayName": "my_displayName",
-     *         //   "name": "my_name",
-     *         //   "phraseMatchRuleGroups": [],
-     *         //   "revisionCreateTime": "my_revisionCreateTime",
-     *         //   "revisionId": "my_revisionId",
-     *         //   "roleMatch": "my_roleMatch",
-     *         //   "type": "my_type",
-     *         //   "updateTime": "my_updateTime",
-     *         //   "versionTag": "my_versionTag"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activationUpdateTime": "my_activationUpdateTime",
-     *   //   "active": false,
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "phraseMatchRuleGroups": [],
-     *   //   "revisionCreateTime": "my_revisionCreateTime",
-     *   //   "revisionId": "my_revisionId",
-     *   //   "roleMatch": "my_roleMatch",
-     *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "versionTag": "my_versionTag"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8463,47 +6685,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Deletes a phrase matcher.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.phraseMatchers.delete({
-     *       // Required. The name of the phrase matcher to delete.
-     *       name: 'projects/my-project/locations/my-location/phraseMatchers/my-phraseMatcher',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8592,60 +6773,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Gets a phrase matcher.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.phraseMatchers.get(
-     *     {
-     *       // Required. The name of the phrase matcher to get.
-     *       name: 'projects/my-project/locations/my-location/phraseMatchers/my-phraseMatcher',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activationUpdateTime": "my_activationUpdateTime",
-     *   //   "active": false,
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "phraseMatchRuleGroups": [],
-     *   //   "revisionCreateTime": "my_revisionCreateTime",
-     *   //   "revisionId": "my_revisionId",
-     *   //   "roleMatch": "my_roleMatch",
-     *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "versionTag": "my_versionTag"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8740,56 +6867,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Lists phrase matchers.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.phraseMatchers.list({
-     *       // A filter to reduce results to a specific subset. Useful for querying phrase matchers with specific properties.
-     *       filter: 'placeholder-value',
-     *       // The maximum number of phrase matchers to return in the response. If this value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
-     *       pageSize: 'placeholder-value',
-     *       // The value returned by the last `ListPhraseMatchersResponse`. This value indicates that this is a continuation of a prior `ListPhraseMatchers` call and that the system should return the next page of data.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource of the phrase matcher.
-     *       parent: 'projects/my-project/locations/my-location',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "phraseMatchers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8887,79 +6964,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Updates a phrase matcher.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenterinsights.projects.locations.phraseMatchers.patch({
-     *       // The resource name of the phrase matcher. Format: projects/{project\}/locations/{location\}/phraseMatchers/{phrase_matcher\}
-     *       name: 'projects/my-project/locations/my-location/phraseMatchers/my-phraseMatcher',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "activationUpdateTime": "my_activationUpdateTime",
-     *         //   "active": false,
-     *         //   "displayName": "my_displayName",
-     *         //   "name": "my_name",
-     *         //   "phraseMatchRuleGroups": [],
-     *         //   "revisionCreateTime": "my_revisionCreateTime",
-     *         //   "revisionId": "my_revisionId",
-     *         //   "roleMatch": "my_roleMatch",
-     *         //   "type": "my_type",
-     *         //   "updateTime": "my_updateTime",
-     *         //   "versionTag": "my_versionTag"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activationUpdateTime": "my_activationUpdateTime",
-     *   //   "active": false,
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "phraseMatchRuleGroups": [],
-     *   //   "revisionCreateTime": "my_revisionCreateTime",
-     *   //   "revisionId": "my_revisionId",
-     *   //   "roleMatch": "my_roleMatch",
-     *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "versionTag": "my_versionTag"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9123,64 +7127,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Creates a view.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.views.create({
-     *     // Required. The parent resource of the view. Required. The location to create a view for. Format: `projects//locations/` or `projects//locations/`
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "updateTime": "my_updateTime",
-     *       //   "value": "my_value"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "value": "my_value"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9278,46 +7224,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Deletes a view.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.views.delete({
-     *     // Required. The name of the view to delete.
-     *     name: 'projects/my-project/locations/my-location/views/my-view',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9406,52 +7312,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Gets a view.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.views.get({
-     *     // Required. The name of the view to get.
-     *     name: 'projects/my-project/locations/my-location/views/my-view',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "value": "my_value"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9546,53 +7406,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Lists views.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.views.list({
-     *     // The maximum number of views to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
-     *     pageSize: 'placeholder-value',
-     *     // The value returned by the last `ListViewsResponse`; indicates that this is a continuation of a prior `ListViews` call and the system should return the next page of data.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource of the views.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "views": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9690,66 +7503,6 @@ export namespace contactcenterinsights_v1 {
 
     /**
      * Updates a view.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenterinsights = google.contactcenterinsights('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenterinsights.projects.locations.views.patch({
-     *     // Immutable. The resource name of the view. Format: projects/{project\}/locations/{location\}/views/{view\}
-     *     name: 'projects/my-project/locations/my-location/views/my-view',
-     *     // The list of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "updateTime": "my_updateTime",
-     *       //   "value": "my_value"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "value": "my_value"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
