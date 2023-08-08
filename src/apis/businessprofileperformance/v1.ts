@@ -291,65 +291,6 @@ export namespace businessprofileperformance_v1 {
 
     /**
      *  Returns the values for each date from a given time range and optionally the sub entity type, where applicable, that are associated with the specific daily metrics. Example request: `GET https://businessprofileperformance.googleapis.com/v1/locations/12345:fetchMultiDailyMetricsTimeSeries?dailyMetrics=WEBSITE_CLICKS&dailyMetrics=CALL_CLICKS&daily_range.start_date.year=2022&daily_range.start_date.month=1&daily_range.start_date.day=1&daily_range.end_date.year=2022&daily_range.end_date.month=3&daily_range.end_date.day=31`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/businessprofileperformance.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const businessprofileperformance = google.businessprofileperformance('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await businessprofileperformance.locations.fetchMultiDailyMetricsTimeSeries(
-     *       {
-     *         // Required. The metrics to retrieve time series for.
-     *         dailyMetrics: 'placeholder-value',
-     *         // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     *         'dailyRange.endDate.day': 'placeholder-value',
-     *         // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     *         'dailyRange.endDate.month': 'placeholder-value',
-     *         // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     *         'dailyRange.endDate.year': 'placeholder-value',
-     *         // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     *         'dailyRange.startDate.day': 'placeholder-value',
-     *         // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     *         'dailyRange.startDate.month': 'placeholder-value',
-     *         // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     *         'dailyRange.startDate.year': 'placeholder-value',
-     *         // Required. The location for which the time series should be fetched. Format: locations/{location_id\} where location_id is an unobfuscated listing id.
-     *         location: 'locations/my-location',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "multiDailyMetricTimeSeries": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -447,73 +388,6 @@ export namespace businessprofileperformance_v1 {
 
     /**
      *  Returns the values for each date from a given time range that are associated with the specific daily metric. Example request: `GET https://businessprofileperformance.googleapis.com/v1/locations/12345:getDailyMetricsTimeSeries?dailyMetric=WEBSITE_CLICKS&daily_range.start_date.year=2022&daily_range.start_date.month=1&daily_range.start_date.day=1&daily_range.end_date.year=2022&daily_range.end_date.month=3&daily_range.end_date.day=31`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/businessprofileperformance.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const businessprofileperformance = google.businessprofileperformance('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await businessprofileperformance.locations.getDailyMetricsTimeSeries({
-     *       // Required. The metric to retrieve time series.
-     *       dailyMetric: 'placeholder-value',
-     *       // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     *       'dailyRange.endDate.day': 'placeholder-value',
-     *       // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     *       'dailyRange.endDate.month': 'placeholder-value',
-     *       // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     *       'dailyRange.endDate.year': 'placeholder-value',
-     *       // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     *       'dailyRange.startDate.day': 'placeholder-value',
-     *       // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     *       'dailyRange.startDate.month': 'placeholder-value',
-     *       // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     *       'dailyRange.startDate.year': 'placeholder-value',
-     *       // Represents the day of the week. Eg: MONDAY. Currently supported DailyMetrics = NONE.
-     *       'dailySubEntityType.dayOfWeek': 'placeholder-value',
-     *       // Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
-     *       'dailySubEntityType.timeOfDay.hours': 'placeholder-value',
-     *       // Minutes of hour of day. Must be from 0 to 59.
-     *       'dailySubEntityType.timeOfDay.minutes': 'placeholder-value',
-     *       // Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
-     *       'dailySubEntityType.timeOfDay.nanos': 'placeholder-value',
-     *       // Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
-     *       'dailySubEntityType.timeOfDay.seconds': 'placeholder-value',
-     *       // Required. The location for which the time series should be fetched. Format: locations/{location_id\} where location_id is an unobfuscated listing id.
-     *       name: 'locations/my-location',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "timeSeries": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -731,68 +605,6 @@ export namespace businessprofileperformance_v1 {
 
     /**
      * Returns the search keywords used to find a business in search or maps. Each search keyword is accompanied by impressions which are aggregated on a monthly basis. Example request: `GET https://businessprofileperformance.googleapis.com/v1/locations/12345/searchkeywords/impressions/monthly?monthly_range.start_month.year=2022&monthly_range.start_month.month=1&monthly_range.end_month.year=2022&monthly_range.end_month.month=3`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/businessprofileperformance.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const businessprofileperformance = google.businessprofileperformance('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await businessprofileperformance.locations.searchkeywords.impressions.monthly.list(
-     *       {
-     *         // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     *         'monthlyRange.endMonth.day': 'placeholder-value',
-     *         // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     *         'monthlyRange.endMonth.month': 'placeholder-value',
-     *         // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     *         'monthlyRange.endMonth.year': 'placeholder-value',
-     *         // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     *         'monthlyRange.startMonth.day': 'placeholder-value',
-     *         // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     *         'monthlyRange.startMonth.month': 'placeholder-value',
-     *         // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     *         'monthlyRange.startMonth.year': 'placeholder-value',
-     *         // Optional. The number of results requested. The default page size is 100. Page size can be set to a maximum of 100.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. A token indicating the next paginated result to be returned.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The location for which the time series should be fetched. Format: locations/{location_id\} where location_id is an unobfuscated listing id.
-     *         parent: 'locations/my-location',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "searchKeywordsCounts": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
