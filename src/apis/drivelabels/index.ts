@@ -31,7 +31,7 @@ export function drivelabels(
   options: drivelabels_v2beta.Options
 ): drivelabels_v2beta.Drivelabels;
 export function drivelabels<
-  T = drivelabels_v2.Drivelabels | drivelabels_v2beta.Drivelabels
+  T = drivelabels_v2.Drivelabels | drivelabels_v2beta.Drivelabels,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
