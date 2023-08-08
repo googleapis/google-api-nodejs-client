@@ -585,6 +585,10 @@ export namespace serviceusage_v1beta1 {
      * The service controller environment to use. If empty, no control plane feature (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com
      */
     environment?: string | null;
+    /**
+     * Defines policies applying to the API methods of the service.
+     */
+    methodPolicies?: Schema$MethodPolicy[];
   }
   /**
    * Settings for C++ client libraries.
@@ -900,6 +904,23 @@ export namespace serviceusage_v1beta1 {
      * The field type URL, without the scheme, for message or enumeration types. Example: `"type.googleapis.com/google.protobuf.Timestamp"`.
      */
     typeUrl?: string | null;
+  }
+  /**
+   * Google API Policy Annotation This message defines a simple API policy annotation that can be used to annotate API request and response message fields with applicable policies. One field may have multiple applicable policies that must all be satisfied before a request can be processed. This policy annotation is used to generate the overall policy that will be used for automatic runtime policy enforcement and documentation generation.
+   */
+  export interface Schema$FieldPolicy {
+    /**
+     * Specifies the required permission(s) for the resource referred to by the field. It requires the field contains a valid resource reference, and the request must pass the permission checks to proceed. For example, "resourcemanager.projects.get".
+     */
+    resourcePermission?: string | null;
+    /**
+     * Specifies the resource type for the resource referred to by the field.
+     */
+    resourceType?: string | null;
+    /**
+     * Selects one or more request or response message fields to apply this `FieldPolicy`. When a `FieldPolicy` is used in proto annotation, the selector must be left as empty. The service config generator will automatically fill the correct value. When a `FieldPolicy` is used in service config, the selector must be a comma-separated string with valid request or response field paths, such as "foo.bar" or "foo.bar,foo.baz".
+     */
+    selector?: string | null;
   }
   /**
    * Metadata for the `GetServiceIdentity` method.
@@ -1498,6 +1519,19 @@ export namespace serviceusage_v1beta1 {
     syntax?: string | null;
   }
   /**
+   * Defines policies applying to an RPC method.
+   */
+  export interface Schema$MethodPolicy {
+    /**
+     * Policies that are applicable to the request message.
+     */
+    requestPolicies?: Schema$FieldPolicy[];
+    /**
+     * Selects a method to which these policies should be enforced, for example, "google.pubsub.v1.Subscriber.CreateSubscription". Refer to selector for syntax details. NOTE: This field must not be set in the proto annotation. It will be automatically filled by the service config compiler .
+     */
+    selector?: string | null;
+  }
+  /**
    * Describes the generator configuration for a method.
    */
   export interface Schema$MethodSettings {
@@ -1696,7 +1730,7 @@ export namespace serviceusage_v1beta1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -2143,10 +2177,6 @@ export namespace serviceusage_v1beta1 {
    * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by UpdateAdminQuotaPolicy.
    */
   export interface Schema$UpdateAdminQuotaPolicyMetadata {}
-  /**
-   * Metadata for the `UpdateConsumerPolicyLRO` method.
-   */
-  export interface Schema$UpdateConsumerPolicyLROMetadata {}
   /**
    * Metadata for the `UpdateConsumerPolicy` method.
    */
