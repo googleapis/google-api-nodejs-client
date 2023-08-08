@@ -27,7 +27,7 @@ export function certificatemanager(
   options: certificatemanager_v1.Options
 ): certificatemanager_v1.Certificatemanager;
 export function certificatemanager<
-  T = certificatemanager_v1.Certificatemanager
+  T = certificatemanager_v1.Certificatemanager,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | certificatemanager_v1.Options
