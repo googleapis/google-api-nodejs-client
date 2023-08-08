@@ -31,7 +31,7 @@ export function retail(options: retail_v2alpha.Options): retail_v2alpha.Retail;
 export function retail(version: 'v2beta'): retail_v2beta.Retail;
 export function retail(options: retail_v2beta.Options): retail_v2beta.Retail;
 export function retail<
-  T = retail_v2.Retail | retail_v2alpha.Retail | retail_v2beta.Retail
+  T = retail_v2.Retail | retail_v2alpha.Retail | retail_v2beta.Retail,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

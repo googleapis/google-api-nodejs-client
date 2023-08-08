@@ -108,7 +108,7 @@
     "projects": {
       "methods": {
         "enrollSolution": {
-          "description": "Enrolls retail API solution for the project. Recommendation solution is enrolled by default when your project enables Retail API. You don't need to call this API for the recommendation solution.",
+          "description": "The method enrolls a solution of type Retail Search into a project. The Recommendations AI solution type is enrolled by default when your project enables Retail API, so you don't need to call the enrollSolution method for recommendations.",
           "flatPath": "v2alpha/projects/{projectsId}:enrollSolution",
           "httpMethod": "POST",
           "id": "retail.projects.enrollSolution",
@@ -136,7 +136,7 @@
           ]
         },
         "getRetailProject": {
-          "description": "Gets the project. Throws NOT_FOUND if the project wasn't initialized for Retail API Service.",
+          "description": "Gets the project. Throws `NOT_FOUND` if the project wasn't initialized for the Retail API service.",
           "flatPath": "v2alpha/projects/{projectsId}/retailProject",
           "httpMethod": "GET",
           "id": "retail.projects.getRetailProject",
@@ -2329,7 +2329,7 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20230805",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3719,20 +3719,6 @@
       "description": "Request for EnrollSolution method.",
       "id": "GoogleCloudRetailV2alphaEnrollSolutionRequest",
       "properties": {
-        "searchSolutionUseCase": {
-          "description": "Solution use case to enroll. Currently settable for Browse to enroll. It should be only set when [solution] is set as SolutionType.SOLUTION_TYPE_SEARCH or an INVALID_ARGUMENT error is thrown.",
-          "enum": [
-            "SEARCH_SOLUTION_USE_CASE_UNSPECIFIED",
-            "SEARCH_SOLUTION_USE_CASE_SEARCH",
-            "SEARCH_SOLUTION_USE_CASE_BROWSE"
-          ],
-          "enumDescriptions": [
-            "The value when it's unspecified. In this case, server behavior defaults to SEARCH_SOLUTION_USE_CASE_SEARCH.",
-            "Search use case. Expects the traffic has a non-empty query.",
-            "Browse use case. Expects the traffic has an empty query."
-          ],
-          "type": "string"
-        },
         "solution": {
           "description": "Required. Solution to enroll.",
           "enum": [
@@ -3765,20 +3751,6 @@
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Retail Search."
-          ],
-          "type": "string"
-        },
-        "searchSolutionUseCase": {
-          "description": "Search solution use case that the project has enrolled.",
-          "enum": [
-            "SEARCH_SOLUTION_USE_CASE_UNSPECIFIED",
-            "SEARCH_SOLUTION_USE_CASE_SEARCH",
-            "SEARCH_SOLUTION_USE_CASE_BROWSE"
-          ],
-          "enumDescriptions": [
-            "The value when it's unspecified. In this case, server behavior defaults to SEARCH_SOLUTION_USE_CASE_SEARCH.",
-            "Search use case. Expects the traffic has a non-empty query.",
-            "Browse use case. Expects the traffic has an empty query."
           ],
           "type": "string"
         }
@@ -4967,7 +4939,7 @@
           "type": "string"
         },
         "brands": {
-          "description": "The brands of the product. A maximum of 30 brands are allowed unless overridden via pantheon UI. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).",
+          "description": "The brands of the product. A maximum of 30 brands are allowed unless overridden through the Google Cloud console. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).",
           "items": {
             "type": "string"
           },
@@ -7397,7 +7369,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
