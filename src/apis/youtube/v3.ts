@@ -1679,6 +1679,27 @@ export namespace youtube_v3 {
      */
     walltimeMs?: string | null;
   }
+  /**
+   * Schedule to insert cuepoints into a broadcast by ads automator.
+   */
+  export interface Schema$CuepointSchedule {
+    /**
+     * This field is semantically required. If it is set false or not set, other fields in this message will be ignored.
+     */
+    enabled?: boolean | null;
+    /**
+     * If set, automatic cuepoint insertion is paused until this timestamp ("No Ad Zone").
+     */
+    pauseAdsUntil?: string | null;
+    /**
+     * Interval frequency that api uses to insert cuepoints automatically.
+     */
+    repeatInterval?: string | null;
+    /**
+     * The strategy to use when scheduling cuepoints.
+     */
+    scheduleStrategy?: string | null;
+  }
   export interface Schema$Entity {
     id?: string | null;
     typeId?: string | null;
@@ -2013,6 +2034,10 @@ export namespace youtube_v3 {
      */
     kind?: string | null;
     /**
+     * The monetizationDetails object contains information about the event's monetization details.
+     */
+    monetizationDetails?: Schema$LiveBroadcastMonetizationDetails;
+    /**
      * The snippet object contains basic details about the event, including its title, description, start time, and end time.
      */
     snippet?: Schema$LiveBroadcastSnippet;
@@ -2129,6 +2154,12 @@ export namespace youtube_v3 {
      * The visitorId identifies the visitor.
      */
     visitorId?: string | null;
+  }
+  /**
+   * Monetization settings of a broadcast.
+   */
+  export interface Schema$LiveBroadcastMonetizationDetails {
+    cuepointSchedule?: Schema$CuepointSchedule;
   }
   /**
    * Basic broadcast information.
@@ -3231,7 +3262,6 @@ export namespace youtube_v3 {
     title?: string | null;
   }
   export interface Schema$PlaylistStatus {
-    podcastStatus?: string | null;
     /**
      * The playlist's privacy status.
      */
@@ -8691,6 +8721,7 @@ export namespace youtube_v3 {
      *   //   "etag": "my_etag",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "monetizationDetails": {},
      *   //   "snippet": {},
      *   //   "statistics": {},
      *   //   "status": {}
@@ -8962,6 +8993,7 @@ export namespace youtube_v3 {
      *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "monetizationDetails": {},
      *       //   "snippet": {},
      *       //   "statistics": {},
      *       //   "status": {}
@@ -8976,6 +9008,7 @@ export namespace youtube_v3 {
      *   //   "etag": "my_etag",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "monetizationDetails": {},
      *   //   "snippet": {},
      *   //   "statistics": {},
      *   //   "status": {}
@@ -9443,6 +9476,7 @@ export namespace youtube_v3 {
      *   //   "etag": "my_etag",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "monetizationDetails": {},
      *   //   "snippet": {},
      *   //   "statistics": {},
      *   //   "status": {}
@@ -9585,6 +9619,7 @@ export namespace youtube_v3 {
      *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "monetizationDetails": {},
      *       //   "snippet": {},
      *       //   "statistics": {},
      *       //   "status": {}
@@ -9599,6 +9634,7 @@ export namespace youtube_v3 {
      *   //   "etag": "my_etag",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "monetizationDetails": {},
      *   //   "snippet": {},
      *   //   "statistics": {},
      *   //   "status": {}
