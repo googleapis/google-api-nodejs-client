@@ -269,7 +269,7 @@
       }
     }
   },
-  "revision": "20221206",
+  "revision": "20230725",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -353,14 +353,18 @@
             "ACTIVE",
             "SUCCEEDED",
             "FAILED",
-            "CANCELLED"
+            "CANCELLED",
+            "UNAVAILABLE",
+            "QUEUED"
           ],
           "enumDescriptions": [
             "Invalid state.",
             "The execution is in progress.",
             "The execution finished successfully.",
             "The execution failed with an error.",
-            "The execution was stopped intentionally."
+            "The execution was stopped intentionally.",
+            "Reserved for future use.",
+            "Request has been placed in the backlog for processing at a later time."
           ],
           "readOnly": true,
           "type": "string"

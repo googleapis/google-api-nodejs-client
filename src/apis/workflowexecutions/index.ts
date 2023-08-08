@@ -37,7 +37,7 @@ export function workflowexecutions(
 export function workflowexecutions<
   T =
     | workflowexecutions_v1.Workflowexecutions
-    | workflowexecutions_v1beta.Workflowexecutions
+    | workflowexecutions_v1beta.Workflowexecutions,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
