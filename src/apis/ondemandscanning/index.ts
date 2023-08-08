@@ -37,7 +37,7 @@ export function ondemandscanning(
 export function ondemandscanning<
   T =
     | ondemandscanning_v1.Ondemandscanning
-    | ondemandscanning_v1beta1.Ondemandscanning
+    | ondemandscanning_v1beta1.Ondemandscanning,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
