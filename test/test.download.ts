@@ -81,8 +81,10 @@ describe(__filename, () => {
     const scopes = [
       nock('https://www.googleapis.com')
         .get('/discovery/v1/apis/')
-        .replyWithFile(200, fakeIndexPath),
-      nock('http://localhost:3030').get('/path').reply(200, {}),
+        .replyWithFile(200, fakeIndexPath, {
+          'Content-Type': 'application/json',
+        }),
+      nock('http://localhost:3030').get('/path').reply(200),
     ];
     const mkdirpStub = sandbox.stub(dn.gfs, 'mkdir').resolves();
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
@@ -99,7 +101,9 @@ describe(__filename, () => {
     const scopes = [
       nock('https://www.googleapis.com')
         .get('/discovery/v1/apis/')
-        .replyWithFile(200, fakeIndexPath),
+        .replyWithFile(200, fakeIndexPath, {
+          'Content-Type': 'application/json',
+        }),
       nock('http://localhost:3030').get('/path').reply(200, {
         revision: '1234',
       }),
@@ -125,18 +129,24 @@ describe(__filename, () => {
     const port = 3030;
     const server = http
       .createServer((req, res) => {
-        res.writeHead(200);
+        res.writeHead(200, {
+          'Content-Type': 'application/json',
+        });
         const indexPath = path.join(
           __dirname,
           '../../test/fixtures/index.json'
         );
         fs.readFile(indexPath, (err, data) => {
           if (err) {
-            res.writeHead(404);
+            res.writeHead(404, {
+              'Content-Type': 'application/json',
+            });
             res.end(JSON.stringify(err));
             return;
           }
-          res.writeHead(200);
+          res.writeHead(200, {
+            'Content-Type': 'application/json',
+          });
           res.end(data);
         });
       })
