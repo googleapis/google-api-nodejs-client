@@ -37,7 +37,7 @@ export function policytroubleshooter(
 export function policytroubleshooter<
   T =
     | policytroubleshooter_v1.Policytroubleshooter
-    | policytroubleshooter_v1beta.Policytroubleshooter
+    | policytroubleshooter_v1beta.Policytroubleshooter,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
