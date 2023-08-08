@@ -251,6 +251,57 @@ export namespace dataform_v1beta1 {
     name?: string | null;
   }
   /**
+   * Represents a single commit log.
+   */
+  export interface Schema$CommitLogEntry {
+    /**
+     * The commit author for this commit log entry.
+     */
+    author?: Schema$CommitAuthor;
+    /**
+     * The commit message for this commit log entry.
+     */
+    commitMessage?: string | null;
+    /**
+     * The commit SHA for this commit log entry.
+     */
+    commitSha?: string | null;
+    /**
+     * Commit timestamp.
+     */
+    commitTime?: string | null;
+  }
+  /**
+   * Represents a Dataform Git commit.
+   */
+  export interface Schema$CommitMetadata {
+    /**
+     * Required. The commit's author.
+     */
+    author?: Schema$CommitAuthor;
+    /**
+     * Optional. The commit's message.
+     */
+    commitMessage?: string | null;
+  }
+  /**
+   * `CommitRepositoryChanges` request message.
+   */
+  export interface Schema$CommitRepositoryChangesRequest {
+    /**
+     * Required. The changes to commit to the repository.
+     */
+    commitMetadata?: Schema$CommitMetadata;
+    /**
+     * A map to the path of the file to the operation. The path is the ull file path including filename, from repository root.
+     */
+    fileOperations?: {[key: string]: Schema$FileOperation} | null;
+    /**
+     * Optional. The commit SHA which must be the repository's current HEAD before applying this commit; otherwise this request will fail. If unset, no validation on the current HEAD commit SHA is performed.
+     */
+    requiredHeadCommitSha?: string | null;
+  }
+  /**
    * `CommitWorkspaceChanges` request message.
    */
   export interface Schema$CommitWorkspaceChangesRequest {
@@ -377,6 +428,10 @@ export namespace dataform_v1beta1 {
     relationDescriptor?: Schema$RelationDescriptor;
   }
   /**
+   * Represents the delete file operation.
+   */
+  export interface Schema$DeleteFile {}
+  /**
    * Represents a single entry in a directory.
    */
   export interface Schema$DirectoryEntry {
@@ -455,11 +510,37 @@ export namespace dataform_v1beta1 {
     branches?: string[] | null;
   }
   /**
+   * `FetchRepositoryHistory` response message.
+   */
+  export interface Schema$FetchRepositoryHistoryResponse {
+    /**
+     * A list of commit logs, ordered by 'git log' default order.
+     */
+    commits?: Schema$CommitLogEntry[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Represents a single file operation to the repository.
+   */
+  export interface Schema$FileOperation {
+    /**
+     * Represents the delete operation.
+     */
+    deleteFile?: Schema$DeleteFile;
+    /**
+     * Represents the write operation.
+     */
+    writeFile?: Schema$WriteFile;
+  }
+  /**
    * Controls Git remote configuration for a repository.
    */
   export interface Schema$GitRemoteSettings {
     /**
-     * Required. The name of the Secret Manager secret version to use as an authentication token for Git operations. Must be in the format `projects/x/secrets/x/versions/x`.
+     * Optional. The name of the Secret Manager secret version to use as an authentication token for Git operations. Must be in the format `projects/x/secrets/x/versions/x`.
      */
     authenticationTokenSecretVersion?: string | null;
     /**
@@ -804,7 +885,7 @@ export namespace dataform_v1beta1 {
     tags?: string[] | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -869,6 +950,19 @@ export namespace dataform_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * `QueryRepositoryDirectoryContents` response message.
+   */
+  export interface Schema$QueryRepositoryDirectoryContentsResponse {
+    /**
+     * List of entries in the directory.
+     */
+    directoryEntries?: Schema$DirectoryEntry[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * `QueryWorkflowInvocationActions` response message.
    */
   export interface Schema$QueryWorkflowInvocationActionsResponse {
@@ -889,6 +983,15 @@ export namespace dataform_v1beta1 {
      * The file's contents.
      */
     fileContents?: string | null;
+  }
+  /**
+   * `ReadRepositoryFile` response message.
+   */
+  export interface Schema$ReadRepositoryFileResponse {
+    /**
+     * The file's contents.
+     */
+    contents?: string | null;
   }
   /**
    * Represents a database relation.
@@ -1024,9 +1127,17 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$Repository {
     /**
+     * Optional. The repository's user-friendly name.
+     */
+    displayName?: string | null;
+    /**
      * Optional. If set, configures this repository to be linked to a Git remote.
      */
     gitRemoteSettings?: Schema$GitRemoteSettings;
+    /**
+     * Optional. Repository user labels.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Output only. The repository's name.
      */
@@ -1039,6 +1150,10 @@ export namespace dataform_v1beta1 {
      * Optional. The service account to run workflow invocations under.
      */
     serviceAccount?: string | null;
+    /**
+     * Optional. Input only. If set to true, the authenticated user will be granted the roles/dataform.admin role on the created repository. To modify access to the created repository later apply setIamPolicy from https://cloud.google.com/dataform/reference/rest#rest-resource:-v1beta1.projects.locations.repositories
+     */
+    setAuthenticatedUserAdmin?: boolean | null;
     /**
      * Optional. If set, fields of `workspace_compilation_overrides` override the default compilation settings that are specified in dataform.json when creating workspace-scoped compilation results. See documentation for `WorkspaceCompilationOverrides` for more information.
      */
@@ -1279,6 +1394,15 @@ export namespace dataform_v1beta1 {
     tablePrefix?: string | null;
   }
   /**
+   * Represents the write file operation (for files added or modified).
+   */
+  export interface Schema$WriteFile {
+    /**
+     * The file's contents.
+     */
+    contents?: string | null;
+  }
+  /**
    * `WriteFile` request message.
    */
   export interface Schema$WriteFileRequest {
@@ -1317,52 +1441,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Gets information about a location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.get({
-     *     // Resource name for the location.
-     *     name: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "labels": {},
-     *   //   "locationId": "my_locationId",
-     *   //   "metadata": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1447,55 +1525,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Lists information about the supported locations for this service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
-     *     filter: 'placeholder-value',
-     *     // The resource that owns the locations collection, if applicable.
-     *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service selects a default.
-     *     pageSize: 'placeholder-value',
-     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "locations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1645,50 +1674,94 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Applies a Git commit to a Repository. The Repository must not have a value for `git_remote_settings.url`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    commit(
+      params: Params$Resource$Projects$Locations$Repositories$Commit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    commit(
+      params?: Params$Resource$Projects$Locations$Repositories$Commit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    commit(
+      params: Params$Resource$Projects$Locations$Repositories$Commit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    commit(
+      params: Params$Resource$Projects$Locations$Repositories$Commit,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    commit(
+      params: Params$Resource$Projects$Locations$Repositories$Commit,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    commit(callback: BodyResponseCallback<Schema$Empty>): void;
+    commit(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Commit
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Commit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Repositories$Commit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:commit').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Computes a Repository's Git access token status.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.computeAccessTokenStatus({
-     *       // Required. The repository's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "tokenStatus": "my_tokenStatus"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1785,66 +1858,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Creates a new Repository in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.create({
-     *     // Required. The location in which to create the repository. Must be in the format `projects/x/locations/x`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. The ID to use for the repository, which will become the final component of the repository's resource name.
-     *     repositoryId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "gitRemoteSettings": {},
-     *       //   "name": "my_name",
-     *       //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "workspaceCompilationOverrides": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "gitRemoteSettings": {},
-     *   //   "name": "my_name",
-     *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "workspaceCompilationOverrides": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1932,48 +1945,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Deletes a single Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.delete({
-     *     // If set to true, any child resources of this repository will also be deleted. (Otherwise, the request will only succeed if the repository has no child resources.)
-     *     force: 'placeholder-value',
-     *     // Required. The repository's name.
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2057,50 +2028,104 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Fetches a Repository's history of commits. The Repository must not have a value for `git_remote_settings.url`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchHistory(
+      params: Params$Resource$Projects$Locations$Repositories$Fetchhistory,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchHistory(
+      params?: Params$Resource$Projects$Locations$Repositories$Fetchhistory,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FetchRepositoryHistoryResponse>;
+    fetchHistory(
+      params: Params$Resource$Projects$Locations$Repositories$Fetchhistory,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchHistory(
+      params: Params$Resource$Projects$Locations$Repositories$Fetchhistory,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>,
+      callback: BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>
+    ): void;
+    fetchHistory(
+      params: Params$Resource$Projects$Locations$Repositories$Fetchhistory,
+      callback: BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>
+    ): void;
+    fetchHistory(
+      callback: BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>
+    ): void;
+    fetchHistory(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Fetchhistory
+        | BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchRepositoryHistoryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Fetchhistory;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Fetchhistory;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:fetchHistory').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchRepositoryHistoryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchRepositoryHistoryResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Fetches a Repository's remote branches.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.fetchRemoteBranches({
-     *       // Required. The repository's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "branches": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2196,52 +2221,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Fetches a single Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.get({
-     *     // Required. The repository's name.
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "gitRemoteSettings": {},
-     *   //   "name": "my_name",
-     *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "workspaceCompilationOverrides": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2326,53 +2305,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.getIamPolicy({
-     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2461,58 +2393,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Lists Repositories in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.list({
-     *     // Optional. Filter for the returned list.
-     *     filter: 'placeholder-value',
-     *     // Optional. This field only supports ordering by `name`. If unspecified, the server will choose the ordering. If specified, the default order is ascending for the `name` field.
-     *     orderBy: 'placeholder-value',
-     *     // Optional. Maximum number of repositories to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. Page token received from a previous `ListRepositories` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepositories` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The location in which to list repositories. Must be in the format `projects/x/locations/x`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "repositories": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2605,66 +2485,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Updates a single Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.patch({
-     *     // Output only. The repository's name.
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     // Optional. Specifies the fields to be updated in the repository. If left unset, all fields will be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "gitRemoteSettings": {},
-     *       //   "name": "my_name",
-     *       //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "workspaceCompilationOverrides": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "gitRemoteSettings": {},
-     *   //   "name": "my_name",
-     *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "workspaceCompilationOverrides": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2748,60 +2568,198 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Returns the contents of a given Repository directory. The Repository must not have a value for `git_remote_settings.url`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryDirectoryContents(
+      params: Params$Resource$Projects$Locations$Repositories$Querydirectorycontents,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    queryDirectoryContents(
+      params?: Params$Resource$Projects$Locations$Repositories$Querydirectorycontents,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueryRepositoryDirectoryContentsResponse>;
+    queryDirectoryContents(
+      params: Params$Resource$Projects$Locations$Repositories$Querydirectorycontents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryDirectoryContents(
+      params: Params$Resource$Projects$Locations$Repositories$Querydirectorycontents,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>,
+      callback: BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>
+    ): void;
+    queryDirectoryContents(
+      params: Params$Resource$Projects$Locations$Repositories$Querydirectorycontents,
+      callback: BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>
+    ): void;
+    queryDirectoryContents(
+      callback: BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>
+    ): void;
+    queryDirectoryContents(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Querydirectorycontents
+        | BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$QueryRepositoryDirectoryContentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Querydirectorycontents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Querydirectorycontents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:queryDirectoryContents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryRepositoryDirectoryContentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryRepositoryDirectoryContentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the contents of a file (inside a Repository). The Repository must not have a value for `git_remote_settings.url`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    readFile(
+      params: Params$Resource$Projects$Locations$Repositories$Readfile,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    readFile(
+      params?: Params$Resource$Projects$Locations$Repositories$Readfile,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReadRepositoryFileResponse>;
+    readFile(
+      params: Params$Resource$Projects$Locations$Repositories$Readfile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    readFile(
+      params: Params$Resource$Projects$Locations$Repositories$Readfile,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReadRepositoryFileResponse>,
+      callback: BodyResponseCallback<Schema$ReadRepositoryFileResponse>
+    ): void;
+    readFile(
+      params: Params$Resource$Projects$Locations$Repositories$Readfile,
+      callback: BodyResponseCallback<Schema$ReadRepositoryFileResponse>
+    ): void;
+    readFile(
+      callback: BodyResponseCallback<Schema$ReadRepositoryFileResponse>
+    ): void;
+    readFile(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Readfile
+        | BodyResponseCallback<Schema$ReadRepositoryFileResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReadRepositoryFileResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReadRepositoryFileResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReadRepositoryFileResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Readfile;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Repositories$Readfile;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:readFile').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReadRepositoryFileResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReadRepositoryFileResponse>(parameters);
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2890,59 +2848,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3037,6 +2942,18 @@ export namespace dataform_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Repositories$Commit
+    extends StandardParameters {
+    /**
+     * Required. The repository's name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CommitRepositoryChangesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus
     extends StandardParameters {
     /**
@@ -3070,6 +2987,21 @@ export namespace dataform_v1beta1 {
      * Required. The repository's name.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Fetchhistory
+    extends StandardParameters {
+    /**
+     * Required. The repository's name.
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of commits to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory` must match the call that provided the page token.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Fetchremotebranches
     extends StandardParameters {
@@ -3135,6 +3067,44 @@ export namespace dataform_v1beta1 {
      */
     requestBody?: Schema$Repository;
   }
+  export interface Params$Resource$Projects$Locations$Repositories$Querydirectorycontents
+    extends StandardParameters {
+    /**
+     * Optional. The Commit SHA for the commit to query from. If unset, the directory will be queried from HEAD.
+     */
+    commitSha?: string;
+    /**
+     * Required. The repository's name.
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Optional. The directory's full path including directory name, relative to root. If left unset, the root is used.
+     */
+    path?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Readfile
+    extends StandardParameters {
+    /**
+     * Optional. The commit SHA for the commit to read from. If unset, the file will be read from HEAD.
+     */
+    commitSha?: string;
+    /**
+     * Required. The repository's name.
+     */
+    name?: string;
+    /**
+     * Required. Full file path to read including filename, from repository root.
+     */
+    path?: string;
+  }
   export interface Params$Resource$Projects$Locations$Repositories$Setiampolicy
     extends StandardParameters {
     /**
@@ -3168,72 +3138,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Creates a new CompilationResult in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.compilationResults.create({
-     *       // Required. The repository in which to create the compilation result. Must be in the format `projects/x/locations/x/repositories/x`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "codeCompilationConfig": {},
-     *         //   "compilationErrors": [],
-     *         //   "dataformCoreVersion": "my_dataformCoreVersion",
-     *         //   "gitCommitish": "my_gitCommitish",
-     *         //   "name": "my_name",
-     *         //   "releaseConfig": "my_releaseConfig",
-     *         //   "resolvedGitCommitSha": "my_resolvedGitCommitSha",
-     *         //   "workspace": "my_workspace"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "codeCompilationConfig": {},
-     *   //   "compilationErrors": [],
-     *   //   "dataformCoreVersion": "my_dataformCoreVersion",
-     *   //   "gitCommitish": "my_gitCommitish",
-     *   //   "name": "my_name",
-     *   //   "releaseConfig": "my_releaseConfig",
-     *   //   "resolvedGitCommitSha": "my_resolvedGitCommitSha",
-     *   //   "workspace": "my_workspace"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3325,56 +3229,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Fetches a single CompilationResult.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.compilationResults.get({
-     *       // Required. The compilation result's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/compilationResults/my-compilationResult',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "codeCompilationConfig": {},
-     *   //   "compilationErrors": [],
-     *   //   "dataformCoreVersion": "my_dataformCoreVersion",
-     *   //   "gitCommitish": "my_gitCommitish",
-     *   //   "name": "my_name",
-     *   //   "releaseConfig": "my_releaseConfig",
-     *   //   "resolvedGitCommitSha": "my_resolvedGitCommitSha",
-     *   //   "workspace": "my_workspace"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3463,56 +3317,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Lists CompilationResults in a given Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.compilationResults.list({
-     *       // Optional. Maximum number of compilation results to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Page token received from a previous `ListCompilationResults` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCompilationResults` must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The repository in which to list compilation results. Must be in the format `projects/x/locations/x/repositories/x`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "compilationResults": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3610,56 +3414,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Returns CompilationResultActions in a given CompilationResult.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.compilationResults.query({
-     *       // Optional. Optional filter for the returned list. Filtering is only currently supported on the `file_path` field.
-     *       filter: 'placeholder-value',
-     *       // Required. The compilation result's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/compilationResults/my-compilationResult',
-     *       // Optional. Maximum number of compilation results to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Page token received from a previous `QueryCompilationResultActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryCompilationResultActions` must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "compilationResultActions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3818,72 +3572,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Creates a new ReleaseConfig in a given Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.releaseConfigs.create({
-     *       // Required. The repository in which to create the release config. Must be in the format `projects/x/locations/x/repositories/x`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *       // Required. The ID to use for the release config, which will become the final component of the release config's resource name.
-     *       releaseConfigId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "codeCompilationConfig": {},
-     *         //   "cronSchedule": "my_cronSchedule",
-     *         //   "gitCommitish": "my_gitCommitish",
-     *         //   "name": "my_name",
-     *         //   "recentScheduledReleaseRecords": [],
-     *         //   "releaseCompilationResult": "my_releaseCompilationResult",
-     *         //   "timeZone": "my_timeZone"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "codeCompilationConfig": {},
-     *   //   "cronSchedule": "my_cronSchedule",
-     *   //   "gitCommitish": "my_gitCommitish",
-     *   //   "name": "my_name",
-     *   //   "recentScheduledReleaseRecords": [],
-     *   //   "releaseCompilationResult": "my_releaseCompilationResult",
-     *   //   "timeZone": "my_timeZone"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3972,47 +3660,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Deletes a single ReleaseConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.releaseConfigs.delete({
-     *       // Required. The release config's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/releaseConfigs/my-releaseConfig',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4098,56 +3745,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Fetches a single ReleaseConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.releaseConfigs.get(
-     *     {
-     *       // Required. The release config's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/releaseConfigs/my-releaseConfig',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "codeCompilationConfig": {},
-     *   //   "cronSchedule": "my_cronSchedule",
-     *   //   "gitCommitish": "my_gitCommitish",
-     *   //   "name": "my_name",
-     *   //   "recentScheduledReleaseRecords": [],
-     *   //   "releaseCompilationResult": "my_releaseCompilationResult",
-     *   //   "timeZone": "my_timeZone"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4233,56 +3830,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Lists ReleaseConfigs in a given Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.releaseConfigs.list({
-     *       // Optional. Maximum number of release configs to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs` must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The repository in which to list release configs. Must be in the format `projects/x/locations/x/repositories/x`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "releaseConfigs": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4378,71 +3925,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Updates a single ReleaseConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.releaseConfigs.patch({
-     *       // Output only. The release config's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/releaseConfigs/my-releaseConfig',
-     *       // Optional. Specifies the fields to be updated in the release config. If left unset, all fields will be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "codeCompilationConfig": {},
-     *         //   "cronSchedule": "my_cronSchedule",
-     *         //   "gitCommitish": "my_gitCommitish",
-     *         //   "name": "my_name",
-     *         //   "recentScheduledReleaseRecords": [],
-     *         //   "releaseCompilationResult": "my_releaseCompilationResult",
-     *         //   "timeZone": "my_timeZone"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "codeCompilationConfig": {},
-     *   //   "cronSchedule": "my_cronSchedule",
-     *   //   "gitCommitish": "my_gitCommitish",
-     *   //   "name": "my_name",
-     *   //   "recentScheduledReleaseRecords": [],
-     *   //   "releaseCompilationResult": "my_releaseCompilationResult",
-     *   //   "timeZone": "my_timeZone"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4597,70 +4079,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Creates a new WorkflowConfig in a given Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workflowConfigs.create({
-     *       // Required. The repository in which to create the workflow config. Must be in the format `projects/x/locations/x/repositories/x`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *       // Required. The ID to use for the workflow config, which will become the final component of the workflow config's resource name.
-     *       workflowConfigId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "cronSchedule": "my_cronSchedule",
-     *         //   "invocationConfig": {},
-     *         //   "name": "my_name",
-     *         //   "recentScheduledExecutionRecords": [],
-     *         //   "releaseConfig": "my_releaseConfig",
-     *         //   "timeZone": "my_timeZone"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cronSchedule": "my_cronSchedule",
-     *   //   "invocationConfig": {},
-     *   //   "name": "my_name",
-     *   //   "recentScheduledExecutionRecords": [],
-     *   //   "releaseConfig": "my_releaseConfig",
-     *   //   "timeZone": "my_timeZone"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4749,47 +4167,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Deletes a single WorkflowConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workflowConfigs.delete({
-     *       // Required. The workflow config's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workflowConfigs/my-workflowConfig',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4875,54 +4252,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Fetches a single WorkflowConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workflowConfigs.get({
-     *       // Required. The workflow config's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workflowConfigs/my-workflowConfig',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cronSchedule": "my_cronSchedule",
-     *   //   "invocationConfig": {},
-     *   //   "name": "my_name",
-     *   //   "recentScheduledExecutionRecords": [],
-     *   //   "releaseConfig": "my_releaseConfig",
-     *   //   "timeZone": "my_timeZone"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5008,56 +4337,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Lists WorkflowConfigs in a given Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workflowConfigs.list({
-     *       // Optional. Maximum number of workflow configs to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Page token received from a previous `ListWorkflowConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowConfigs` must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The repository in which to list workflow configs. Must be in the format `projects/x/locations/x/repositories/x`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": [],
-     *   //   "workflowConfigs": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5153,69 +4432,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Updates a single WorkflowConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workflowConfigs.patch({
-     *       // Output only. The workflow config's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workflowConfigs/my-workflowConfig',
-     *       // Optional. Specifies the fields to be updated in the workflow config. If left unset, all fields will be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "cronSchedule": "my_cronSchedule",
-     *         //   "invocationConfig": {},
-     *         //   "name": "my_name",
-     *         //   "recentScheduledExecutionRecords": [],
-     *         //   "releaseConfig": "my_releaseConfig",
-     *         //   "timeZone": "my_timeZone"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cronSchedule": "my_cronSchedule",
-     *   //   "invocationConfig": {},
-     *   //   "name": "my_name",
-     *   //   "recentScheduledExecutionRecords": [],
-     *   //   "releaseConfig": "my_releaseConfig",
-     *   //   "timeZone": "my_timeZone"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5370,53 +4586,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Requests cancellation of a running WorkflowInvocation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workflowInvocations.cancel({
-     *       // Required. The workflow invocation resource's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workflowInvocations/my-workflowInvocation',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5505,68 +4674,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Creates a new WorkflowInvocation in a given Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workflowInvocations.create({
-     *       // Required. The repository in which to create the workflow invocation. Must be in the format `projects/x/locations/x/repositories/x`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "compilationResult": "my_compilationResult",
-     *         //   "invocationConfig": {},
-     *         //   "invocationTiming": {},
-     *         //   "name": "my_name",
-     *         //   "state": "my_state",
-     *         //   "workflowConfig": "my_workflowConfig"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "compilationResult": "my_compilationResult",
-     *   //   "invocationConfig": {},
-     *   //   "invocationTiming": {},
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "workflowConfig": "my_workflowConfig"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5658,47 +4765,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Deletes a single WorkflowInvocation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workflowInvocations.delete({
-     *       // Required. The workflow invocation resource's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workflowInvocations/my-workflowInvocation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5784,54 +4850,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Fetches a single WorkflowInvocation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workflowInvocations.get({
-     *       // Required. The workflow invocation resource's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workflowInvocations/my-workflowInvocation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "compilationResult": "my_compilationResult",
-     *   //   "invocationConfig": {},
-     *   //   "invocationTiming": {},
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "workflowConfig": "my_workflowConfig"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5920,60 +4938,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Lists WorkflowInvocations in a given Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workflowInvocations.list({
-     *       // Optional. Filter for the returned list.
-     *       filter: 'placeholder-value',
-     *       // Optional. This field only supports ordering by `name`. If unspecified, the server will choose the ordering. If specified, the default order is ascending for the `name` field.
-     *       orderBy: 'placeholder-value',
-     *       // Optional. Maximum number of workflow invocations to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Page token received from a previous `ListWorkflowInvocations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowInvocations` must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource of the WorkflowInvocation type. Must be in the format `projects/x/locations/x/repositories/x`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": [],
-     *   //   "workflowInvocations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6071,54 +5035,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Returns WorkflowInvocationActions in a given WorkflowInvocation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workflowInvocations.query({
-     *       // Required. The workflow invocation's name.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workflowInvocations/my-workflowInvocation',
-     *       // Optional. Maximum number of workflow invocations to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Page token received from a previous `QueryWorkflowInvocationActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryWorkflowInvocationActions` must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "workflowInvocationActions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6300,56 +5216,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Applies a Git commit for uncommitted files in a Workspace.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.workspaces.commit({
-     *     // Required. The workspace's name.
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "author": {},
-     *       //   "commitMessage": "my_commitMessage",
-     *       //   "paths": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6438,59 +5304,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Creates a new Workspace in a given Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.workspaces.create({
-     *     // Required. The repository in which to create the workspace. Must be in the format `projects/x/locations/x/repositories/x`.
-     *     parent:
-     *       'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     // Required. The ID to use for the workspace, which will become the final component of the workspace's resource name.
-     *     workspaceId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6579,46 +5392,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Deletes a single Workspace.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.workspaces.delete({
-     *     // Required. The workspace resource's name.
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6704,52 +5477,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Fetches Git diff for an uncommitted file in a Workspace.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.fetchFileDiff({
-     *       // Required. The file's full path including filename, relative to the workspace root.
-     *       path: 'placeholder-value',
-     *       // Required. The workspace's name.
-     *       workspace:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "formattedDiff": "my_formattedDiff"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6845,51 +5572,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Fetches Git statuses for the files in a Workspace.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.fetchFileGitStatuses(
-     *       {
-     *         // Required. The workspace's name.
-     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "uncommittedFileChanges": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6987,54 +5669,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Fetches Git ahead/behind against a remote branch.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.fetchGitAheadBehind(
-     *       {
-     *         // Required. The workspace's name.
-     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *         // Optional. The name of the branch in the Git remote against which this workspace should be compared. If left unset, the repository's default branch name will be used.
-     *         remoteBranch: 'placeholder-value',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "commitsAhead": 0,
-     *   //   "commitsBehind": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7130,48 +5764,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Fetches a single Workspace.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.workspaces.get({
-     *     // Required. The workspace's name.
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7257,54 +5849,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.getIamPolicy({
-     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7393,56 +5937,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Installs dependency NPM packages (inside a Workspace).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.installNpmPackages(
-     *       {
-     *         // Required. The workspace's name.
-     *         workspace:
-     *           'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7538,59 +6032,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Lists Workspaces in a given Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.workspaces.list({
-     *     // Optional. Filter for the returned list.
-     *     filter: 'placeholder-value',
-     *     // Optional. This field only supports ordering by `name`. If unspecified, the server will choose the ordering. If specified, the default order is ascending for the `name` field.
-     *     orderBy: 'placeholder-value',
-     *     // Optional. Maximum number of workspaces to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. Page token received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The repository in which to list workspaces. Must be in the format `projects/x/locations/x/repositories/x`.
-     *     parent:
-     *       'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": [],
-     *   //   "workspaces": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7684,56 +6125,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Creates a directory inside a Workspace.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.makeDirectory({
-     *       // Required. The workspace's name.
-     *       workspace:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "path": "my_path"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7829,57 +6220,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Moves a directory (inside a Workspace), and all of its contents, to a new location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.moveDirectory({
-     *       // Required. The workspace's name.
-     *       workspace:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "newPath": "my_newPath",
-     *         //   "path": "my_path"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7975,57 +6315,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Moves a file (inside a Workspace) to a new location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.moveFile({
-     *       // Required. The workspace's name.
-     *       workspace:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "newPath": "my_newPath",
-     *         //   "path": "my_path"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8114,55 +6403,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Pulls Git commits from the Repository's remote into a Workspace.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.workspaces.pull({
-     *     // Required. The workspace's name.
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "author": {},
-     *       //   "remoteBranch": "my_remoteBranch"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8251,54 +6491,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Pushes Git commits from a Workspace to the Repository's remote.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.workspaces.push({
-     *     // Required. The workspace's name.
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "remoteBranch": "my_remoteBranch"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8387,59 +6579,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Returns the contents of a given Workspace directory.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.queryDirectoryContents(
-     *       {
-     *         // Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. Page token received from a previous `QueryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryDirectoryContents` must match the call that provided the page token.
-     *         pageToken: 'placeholder-value',
-     *         // Optional. The directory's full path including directory name, relative to the workspace root. If left unset, the workspace root is used.
-     *         path: 'placeholder-value',
-     *         // Required. The workspace's name.
-     *         workspace:
-     *           'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "directoryEntries": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8536,52 +6675,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Returns the contents of a file (inside a Workspace).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.readFile({
-     *       // Required. The file's full path including filename, relative to the workspace root.
-     *       path: 'placeholder-value',
-     *       // Required. The workspace's name.
-     *       workspace:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "fileContents": "my_fileContents"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8670,56 +6763,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Deletes a directory (inside a Workspace) and all of its contents.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.removeDirectory({
-     *       // Required. The workspace's name.
-     *       workspace:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "path": "my_path"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8808,56 +6851,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Deletes a file (inside a Workspace).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.removeFile({
-     *       // Required. The workspace's name.
-     *       workspace:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "path": "my_path"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8946,55 +6939,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Performs a Git reset for uncommitted files in a Workspace.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataform.projects.locations.repositories.workspaces.reset({
-     *     // Required. The workspace's name.
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "clean": false,
-     *       //   "paths": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9083,60 +7027,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9225,60 +7115,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.testIamPermissions(
-     *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *         resource:
-     *           'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "permissions": []
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9374,57 +7210,6 @@ export namespace dataform_v1beta1 {
 
     /**
      * Writes to a file (inside a Workspace).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataform = google.dataform('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataform.projects.locations.repositories.workspaces.writeFile({
-     *       // Required. The workspace's name.
-     *       workspace:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "contents": "my_contents",
-     *         //   "path": "my_path"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
