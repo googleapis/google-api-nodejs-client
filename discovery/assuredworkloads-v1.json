@@ -519,7 +519,7 @@
       }
     }
   },
-  "revision": "20230707",
+  "revision": "20230804",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest": {
@@ -745,6 +745,12 @@
         },
         "nonCompliantOrgPolicy": {
           "description": "Output only. Immutable. Name of the OrgPolicy which was modified with non-compliant change and resulted this violation. Format: projects/{project_number}/policies/{constraint_name} folders/{folder_id}/policies/{constraint_name} organizations/{organization_id}/policies/{constraint_name}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "orgPolicyConstraint": {
+          "deprecated": true,
+          "description": "Output only. Immutable. The org-policy-constraint that was incorrectly changed, which resulted in this violation.",
           "readOnly": true,
           "type": "string"
         },
@@ -1120,7 +1126,7 @@
             "Error but domain is unspecified.",
             "Internal logic breaks within provisioning code.",
             "Error occurred with the customer not granting permission/creating resource.",
-            "Error occurred within the partner’s provisioning cluster.",
+            "Error occurred within the partner's provisioning cluster.",
             "Resource wasn't provisioned in the required 7 day time period"
           ],
           "type": "string"
@@ -1182,13 +1188,16 @@
       "description": "Permissions granted to the AW Partner SA account for the customer workload",
       "id": "GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions",
       "properties": {
+        "assuredWorkloadsMonitoring": {
+          "description": "Optional. Allow partner to view violation alerts.",
+          "type": "boolean"
+        },
         "dataLogsViewer": {
           "description": "Allow the partner to view inspectability logs and monitoring violations.",
           "type": "boolean"
         },
-        "remediateFolderViolations": {
-          "deprecated": true,
-          "description": "Allow partner to monitor folder and remediate violations",
+        "serviceAccessApprover": {
+          "description": "Optional. Allow partner to view access approval logs.",
           "type": "boolean"
         }
       },
@@ -1360,7 +1369,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
