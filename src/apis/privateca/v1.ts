@@ -1421,52 +1421,6 @@ export namespace privateca_v1 {
 
     /**
      * Gets information about a location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.get({
-     *     // Resource name for the location.
-     *     name: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "labels": {},
-     *   //   "locationId": "my_locationId",
-     *   //   "metadata": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1551,55 +1505,6 @@ export namespace privateca_v1 {
 
     /**
      * Lists information about the supported locations for this service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
-     *     filter: 'placeholder-value',
-     *     // The resource that owns the locations collection, if applicable.
-     *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service selects a default.
-     *     pageSize: 'placeholder-value',
-     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "locations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1735,68 +1640,6 @@ export namespace privateca_v1 {
 
     /**
      * Create a CaPool.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.create({
-     *     // Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`
-     *     caPoolId: 'placeholder-value',
-     *     // Required. The resource name of the location associated with the CaPool, in the format `projects/x/locations/x`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "issuancePolicy": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "publishingOptions": {},
-     *       //   "tier": "my_tier"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1884,56 +1727,6 @@ export namespace privateca_v1 {
 
     /**
      * Delete a CaPool.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.delete({
-     *     // Optional. This field allows this pool to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resource(s) since the pool will no longer be able to issue certificates.
-     *     ignoreDependentResources: 'placeholder-value',
-     *     // Required. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
-     *     name: 'projects/my-project/locations/my-location/caPools/my-caPool',
-     *     // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2018,56 +1811,6 @@ export namespace privateca_v1 {
 
     /**
      * FetchCaCerts returns the current trust anchor for the CaPool. This will include CA certificate chains for all ACTIVE CertificateAuthority resources in the CaPool.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.fetchCaCerts({
-     *     // Required. The resource name for the CaPool in the format `projects/x/locations/x/caPools/x`.
-     *     caPool: 'projects/my-project/locations/my-location/caPools/my-caPool',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requestId": "my_requestId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "caCerts": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2162,52 +1905,6 @@ export namespace privateca_v1 {
 
     /**
      * Returns a CaPool.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.get({
-     *     // Required. The name of the CaPool to get.
-     *     name: 'projects/my-project/locations/my-location/caPools/my-caPool',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "issuancePolicy": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "publishingOptions": {},
-     *   //   "tier": "my_tier"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2292,53 +1989,6 @@ export namespace privateca_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.getIamPolicy({
-     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/caPools/my-caPool',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2426,58 +2076,6 @@ export namespace privateca_v1 {
 
     /**
      * Lists CaPools.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.list({
-     *     // Optional. Only include resources that match the filter in the response.
-     *     filter: 'placeholder-value',
-     *     // Optional. Specify how the results should be sorted.
-     *     orderBy: 'placeholder-value',
-     *     // Optional. Limit on the number of CaPools to include in the response. Further CaPools can subsequently be obtained by including the ListCaPoolsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. Pagination token, returned earlier via ListCaPoolsResponse.next_page_token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the location associated with the CaPools, in the format `projects/x/locations/x`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "caPools": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2568,68 +2166,6 @@ export namespace privateca_v1 {
 
     /**
      * Update a CaPool.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.patch({
-     *     // Output only. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
-     *     name: 'projects/my-project/locations/my-location/caPools/my-caPool',
-     *     // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Required. A list of fields to be updated in this request.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "issuancePolicy": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "publishingOptions": {},
-     *       //   "tier": "my_tier"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2714,60 +2250,6 @@ export namespace privateca_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/caPools/my-caPool',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2855,56 +2337,6 @@ export namespace privateca_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/caPools/my-caPool',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "permissions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3145,63 +2577,6 @@ export namespace privateca_v1 {
 
     /**
      * Activate a CertificateAuthority that is in state AWAITING_USER_ACTIVATION and is of type SUBORDINATE. After the parent Certificate Authority signs a certificate signing request from FetchCertificateAuthorityCsr, this method can complete the activation process.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.activate({
-     *       // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
-     *       name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "pemCaCertificate": "my_pemCaCertificate",
-     *         //   "requestId": "my_requestId",
-     *         //   "subordinateConfig": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3290,81 +2665,6 @@ export namespace privateca_v1 {
 
     /**
      * Create a new CertificateAuthority in a given Project and Location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.create({
-     *       // Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`
-     *       certificateAuthorityId: 'placeholder-value',
-     *       // Required. The resource name of the CaPool associated with the CertificateAuthorities, in the format `projects/x/locations/x/caPools/x`.
-     *       parent: 'projects/my-project/locations/my-location/caPools/my-caPool',
-     *       // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *       requestId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "accessUrls": {},
-     *         //   "caCertificateDescriptions": [],
-     *         //   "config": {},
-     *         //   "createTime": "my_createTime",
-     *         //   "deleteTime": "my_deleteTime",
-     *         //   "expireTime": "my_expireTime",
-     *         //   "gcsBucket": "my_gcsBucket",
-     *         //   "keySpec": {},
-     *         //   "labels": {},
-     *         //   "lifetime": "my_lifetime",
-     *         //   "name": "my_name",
-     *         //   "pemCaCertificates": [],
-     *         //   "state": "my_state",
-     *         //   "subordinateConfig": {},
-     *         //   "tier": "my_tier",
-     *         //   "type": "my_type",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3453,61 +2753,6 @@ export namespace privateca_v1 {
 
     /**
      * Delete a CertificateAuthority.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.delete({
-     *       // Optional. This field allows the CA to be deleted even if the CA has active certs. Active certs include both unrevoked and unexpired certs.
-     *       ignoreActiveCertificates: 'placeholder-value',
-     *       // Optional. This field allows this ca to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resource(s) since the CA will no longer be able to issue certificates.
-     *       ignoreDependentResources: 'placeholder-value',
-     *       // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
-     *       name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie',
-     *       // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *       requestId: 'placeholder-value',
-     *       // Optional. If this flag is set, the Certificate Authority will be deleted as soon as possible without a 30-day grace period where undeletion would have been allowed. If you proceed, there will be no way to recover this CA.
-     *       skipGracePeriod: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3593,62 +2838,6 @@ export namespace privateca_v1 {
 
     /**
      * Disable a CertificateAuthority.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.disable({
-     *       // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
-     *       name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "ignoreDependentResources": false,
-     *         //   "requestId": "my_requestId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3737,61 +2926,6 @@ export namespace privateca_v1 {
 
     /**
      * Enable a CertificateAuthority.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.enable({
-     *       // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
-     *       name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "requestId": "my_requestId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3877,49 +3011,6 @@ export namespace privateca_v1 {
 
     /**
      * Fetch a certificate signing request (CSR) from a CertificateAuthority that is in state AWAITING_USER_ACTIVATION and is of type SUBORDINATE. The CSR must then be signed by the desired parent Certificate Authority, which could be another CertificateAuthority resource, or could be an on-prem certificate authority. See also ActivateCertificateAuthority.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.fetch({
-     *       // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
-     *       name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "pemCsr": "my_pemCsr"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4014,65 +3105,6 @@ export namespace privateca_v1 {
 
     /**
      * Returns a CertificateAuthority.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.get({
-     *       // Required. The name of the CertificateAuthority to get.
-     *       name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accessUrls": {},
-     *   //   "caCertificateDescriptions": [],
-     *   //   "config": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "deleteTime": "my_deleteTime",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "gcsBucket": "my_gcsBucket",
-     *   //   "keySpec": {},
-     *   //   "labels": {},
-     *   //   "lifetime": "my_lifetime",
-     *   //   "name": "my_name",
-     *   //   "pemCaCertificates": [],
-     *   //   "state": "my_state",
-     *   //   "subordinateConfig": {},
-     *   //   "tier": "my_tier",
-     *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4163,59 +3195,6 @@ export namespace privateca_v1 {
 
     /**
      * Lists CertificateAuthorities.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.list({
-     *       // Optional. Only include resources that match the filter in the response.
-     *       filter: 'placeholder-value',
-     *       // Optional. Specify how the results should be sorted.
-     *       orderBy: 'placeholder-value',
-     *       // Optional. Limit on the number of CertificateAuthorities to include in the response. Further CertificateAuthorities can subsequently be obtained by including the ListCertificateAuthoritiesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Pagination token, returned earlier via ListCertificateAuthoritiesResponse.next_page_token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the CaPool associated with the CertificateAuthorities, in the format `projects/x/locations/x/caPools/x`.
-     *       parent: 'projects/my-project/locations/my-location/caPools/my-caPool',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificateAuthorities": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4313,81 +3292,6 @@ export namespace privateca_v1 {
 
     /**
      * Update a CertificateAuthority.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.patch({
-     *       // Output only. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
-     *       name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie',
-     *       // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *       requestId: 'placeholder-value',
-     *       // Required. A list of fields to be updated in this request.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "accessUrls": {},
-     *         //   "caCertificateDescriptions": [],
-     *         //   "config": {},
-     *         //   "createTime": "my_createTime",
-     *         //   "deleteTime": "my_deleteTime",
-     *         //   "expireTime": "my_expireTime",
-     *         //   "gcsBucket": "my_gcsBucket",
-     *         //   "keySpec": {},
-     *         //   "labels": {},
-     *         //   "lifetime": "my_lifetime",
-     *         //   "name": "my_name",
-     *         //   "pemCaCertificates": [],
-     *         //   "state": "my_state",
-     *         //   "subordinateConfig": {},
-     *         //   "tier": "my_tier",
-     *         //   "type": "my_type",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4473,61 +3377,6 @@ export namespace privateca_v1 {
 
     /**
      * Undelete a CertificateAuthority that has been deleted.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.undelete({
-     *       // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
-     *       name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "requestId": "my_requestId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4772,60 +3621,6 @@ export namespace privateca_v1 {
 
     /**
      * Returns a CertificateRevocationList.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.certificateRevocationLists.get(
-     *       {
-     *         // Required. The name of the CertificateRevocationList to get.
-     *         name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accessUrl": "my_accessUrl",
-     *   //   "createTime": "my_createTime",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "pemCrl": "my_pemCrl",
-     *   //   "revisionId": "my_revisionId",
-     *   //   "revokedCertificates": [],
-     *   //   "sequenceNumber": "my_sequenceNumber",
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4916,57 +3711,6 @@ export namespace privateca_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.certificateRevocationLists.getIamPolicy(
-     *       {
-     *         // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *         'options.requestedPolicyVersion': 'placeholder-value',
-     *         // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *         resource:
-     *           'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5055,62 +3799,6 @@ export namespace privateca_v1 {
 
     /**
      * Lists CertificateRevocationLists.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.certificateRevocationLists.list(
-     *       {
-     *         // Optional. Only include resources that match the filter in the response.
-     *         filter: 'placeholder-value',
-     *         // Optional. Specify how the results should be sorted.
-     *         orderBy: 'placeholder-value',
-     *         // Optional. Limit on the number of CertificateRevocationLists to include in the response. Further CertificateRevocationLists can subsequently be obtained by including the ListCertificateRevocationListsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. Pagination token, returned earlier via ListCertificateRevocationListsResponse.next_page_token.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The resource name of the location associated with the CertificateRevocationLists, in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
-     *         parent:
-     *           'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificateRevocationLists": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5208,76 +3896,6 @@ export namespace privateca_v1 {
 
     /**
      * Update a CertificateRevocationList.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.certificateRevocationLists.patch(
-     *       {
-     *         // Output only. The resource name for this CertificateRevocationList in the format `projects/x/locations/x/caPools/xcertificateAuthorities/x/ certificateRevocationLists/x`.
-     *         name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
-     *         // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *         requestId: 'placeholder-value',
-     *         // Required. A list of fields to be updated in this request.
-     *         updateMask: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "accessUrl": "my_accessUrl",
-     *           //   "createTime": "my_createTime",
-     *           //   "labels": {},
-     *           //   "name": "my_name",
-     *           //   "pemCrl": "my_pemCrl",
-     *           //   "revisionId": "my_revisionId",
-     *           //   "revokedCertificates": [],
-     *           //   "sequenceNumber": "my_sequenceNumber",
-     *           //   "state": "my_state",
-     *           //   "updateTime": "my_updateTime"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5363,64 +3981,6 @@ export namespace privateca_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.certificateRevocationLists.setIamPolicy(
-     *       {
-     *         // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *         resource:
-     *           'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "policy": {},
-     *           //   "updateMask": "my_updateMask"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5509,60 +4069,6 @@ export namespace privateca_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.caPools.certificateAuthorities.certificateRevocationLists.testIamPermissions(
-     *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *         resource:
-     *           'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "permissions": []
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5751,90 +4257,6 @@ export namespace privateca_v1 {
 
     /**
      * Create a new Certificate in a given Project, Location from a particular CaPool.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.certificates.create({
-     *     // Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`. This field is required when using a CertificateAuthority in the Enterprise CertificateAuthority.Tier, but is optional and its value is ignored otherwise.
-     *     certificateId: 'placeholder-value',
-     *     // Optional. The resource ID of the CertificateAuthority that should issue the certificate. This optional field will ignore the load-balancing scheme of the Pool and directly issue the certificate from the CA with the specified ID, contained in the same CaPool referenced by `parent`. Per-CA quota rules apply. If left empty, a CertificateAuthority will be chosen from the CaPool by the service. For example, to issue a Certificate from a Certificate Authority with resource name "projects/my-project/locations/us-central1/caPools/my-pool/certificateAuthorities/my-ca", you can set the parent to "projects/my-project/locations/us-central1/caPools/my-pool" and the issuing_certificate_authority_id to "my-ca".
-     *     issuingCertificateAuthorityId: 'placeholder-value',
-     *     // Required. The resource name of the CaPool associated with the Certificate, in the format `projects/x/locations/x/caPools/x`.
-     *     parent: 'projects/my-project/locations/my-location/caPools/my-caPool',
-     *     // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Optional. If this is true, no Certificate resource will be persisted regardless of the CaPool's tier, and the returned Certificate will not contain the pem_certificate field.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "certificateDescription": {},
-     *       //   "certificateTemplate": "my_certificateTemplate",
-     *       //   "config": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "issuerCertificateAuthority": "my_issuerCertificateAuthority",
-     *       //   "labels": {},
-     *       //   "lifetime": "my_lifetime",
-     *       //   "name": "my_name",
-     *       //   "pemCertificate": "my_pemCertificate",
-     *       //   "pemCertificateChain": [],
-     *       //   "pemCsr": "my_pemCsr",
-     *       //   "revocationDetails": {},
-     *       //   "subjectMode": "my_subjectMode",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificateDescription": {},
-     *   //   "certificateTemplate": "my_certificateTemplate",
-     *   //   "config": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "issuerCertificateAuthority": "my_issuerCertificateAuthority",
-     *   //   "labels": {},
-     *   //   "lifetime": "my_lifetime",
-     *   //   "name": "my_name",
-     *   //   "pemCertificate": "my_pemCertificate",
-     *   //   "pemCertificateChain": [],
-     *   //   "pemCsr": "my_pemCsr",
-     *   //   "revocationDetails": {},
-     *   //   "subjectMode": "my_subjectMode",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5923,61 +4345,6 @@ export namespace privateca_v1 {
 
     /**
      * Returns a Certificate.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.certificates.get({
-     *     // Required. The name of the Certificate to get.
-     *     name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificates/my-certificate',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificateDescription": {},
-     *   //   "certificateTemplate": "my_certificateTemplate",
-     *   //   "config": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "issuerCertificateAuthority": "my_issuerCertificateAuthority",
-     *   //   "labels": {},
-     *   //   "lifetime": "my_lifetime",
-     *   //   "name": "my_name",
-     *   //   "pemCertificate": "my_pemCertificate",
-     *   //   "pemCertificateChain": [],
-     *   //   "pemCsr": "my_pemCsr",
-     *   //   "revocationDetails": {},
-     *   //   "subjectMode": "my_subjectMode",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6063,58 +4430,6 @@ export namespace privateca_v1 {
 
     /**
      * Lists Certificates.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.certificates.list({
-     *     // Optional. Only include resources that match the filter in the response. For details on supported filters and syntax, see [Certificates Filtering documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#filtering_support).
-     *     filter: 'placeholder-value',
-     *     // Optional. Specify how the results should be sorted. For details on supported fields and syntax, see [Certificates Sorting documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#sorting_support).
-     *     orderBy: 'placeholder-value',
-     *     // Optional. Limit on the number of Certificates to include in the response. Further Certificates can subsequently be obtained by including the ListCertificatesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. Pagination token, returned earlier via ListCertificatesResponse.next_page_token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the location associated with the Certificates, in the format `projects/x/locations/x/caPools/x`.
-     *     parent: 'projects/my-project/locations/my-location/caPools/my-caPool',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificates": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6208,86 +4523,6 @@ export namespace privateca_v1 {
 
     /**
      * Update a Certificate. Currently, the only field you can update is the labels field.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.certificates.patch({
-     *     // Output only. The resource name for this Certificate in the format `projects/x/locations/x/caPools/x/certificates/x`.
-     *     name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificates/my-certificate',
-     *     // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Required. A list of fields to be updated in this request.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "certificateDescription": {},
-     *       //   "certificateTemplate": "my_certificateTemplate",
-     *       //   "config": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "issuerCertificateAuthority": "my_issuerCertificateAuthority",
-     *       //   "labels": {},
-     *       //   "lifetime": "my_lifetime",
-     *       //   "name": "my_name",
-     *       //   "pemCertificate": "my_pemCertificate",
-     *       //   "pemCertificateChain": [],
-     *       //   "pemCsr": "my_pemCsr",
-     *       //   "revocationDetails": {},
-     *       //   "subjectMode": "my_subjectMode",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificateDescription": {},
-     *   //   "certificateTemplate": "my_certificateTemplate",
-     *   //   "config": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "issuerCertificateAuthority": "my_issuerCertificateAuthority",
-     *   //   "labels": {},
-     *   //   "lifetime": "my_lifetime",
-     *   //   "name": "my_name",
-     *   //   "pemCertificate": "my_pemCertificate",
-     *   //   "pemCertificateChain": [],
-     *   //   "pemCsr": "my_pemCsr",
-     *   //   "revocationDetails": {},
-     *   //   "subjectMode": "my_subjectMode",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6373,70 +4608,6 @@ export namespace privateca_v1 {
 
     /**
      * Revoke a Certificate.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.caPools.certificates.revoke({
-     *     // Required. The resource name for this Certificate in the format `projects/x/locations/x/caPools/x/certificates/x`.
-     *     name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificates/my-certificate',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "reason": "my_reason",
-     *       //   "requestId": "my_requestId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificateDescription": {},
-     *   //   "certificateTemplate": "my_certificateTemplate",
-     *   //   "config": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "issuerCertificateAuthority": "my_issuerCertificateAuthority",
-     *   //   "labels": {},
-     *   //   "lifetime": "my_lifetime",
-     *   //   "name": "my_name",
-     *   //   "pemCertificate": "my_pemCertificate",
-     *   //   "pemCertificateChain": [],
-     *   //   "pemCsr": "my_pemCsr",
-     *   //   "revocationDetails": {},
-     *   //   "subjectMode": "my_subjectMode",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6620,71 +4791,6 @@ export namespace privateca_v1 {
 
     /**
      * Create a new CertificateTemplate in a given Project and Location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateTemplates.create({
-     *     // Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`
-     *     certificateTemplateId: 'placeholder-value',
-     *     // Required. The resource name of the location associated with the CertificateTemplate, in the format `projects/x/locations/x`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "identityConstraints": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "passthroughExtensions": {},
-     *       //   "predefinedValues": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6773,54 +4879,6 @@ export namespace privateca_v1 {
 
     /**
      * DeleteCertificateTemplate deletes a CertificateTemplate.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateTemplates.delete({
-     *     // Required. The resource name for this CertificateTemplate in the format `projects/x/locations/x/certificateTemplates/x`.
-     *     name: 'projects/my-project/locations/my-location/certificateTemplates/my-certificateTemplate',
-     *     // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6906,55 +4964,6 @@ export namespace privateca_v1 {
 
     /**
      * Returns a CertificateTemplate.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateTemplates.get({
-     *     // Required. The name of the CertificateTemplate to get.
-     *     name: 'projects/my-project/locations/my-location/certificateTemplates/my-certificateTemplate',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "identityConstraints": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "passthroughExtensions": {},
-     *   //   "predefinedValues": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7043,55 +5052,6 @@ export namespace privateca_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.certificateTemplates.getIamPolicy({
-     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/certificateTemplates/my-certificateTemplate',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7180,58 +5140,6 @@ export namespace privateca_v1 {
 
     /**
      * Lists CertificateTemplates.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateTemplates.list({
-     *     // Optional. Only include resources that match the filter in the response.
-     *     filter: 'placeholder-value',
-     *     // Optional. Specify how the results should be sorted.
-     *     orderBy: 'placeholder-value',
-     *     // Optional. Limit on the number of CertificateTemplates to include in the response. Further CertificateTemplates can subsequently be obtained by including the ListCertificateTemplatesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. Pagination token, returned earlier via ListCertificateTemplatesResponse.next_page_token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the location associated with the CertificateTemplates, in the format `projects/x/locations/x`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificateTemplates": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7329,71 +5237,6 @@ export namespace privateca_v1 {
 
     /**
      * Update a CertificateTemplate.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateTemplates.patch({
-     *     // Output only. The resource name for this CertificateTemplate in the format `projects/x/locations/x/certificateTemplates/x`.
-     *     name: 'projects/my-project/locations/my-location/certificateTemplates/my-certificateTemplate',
-     *     // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Required. A list of fields to be updated in this request.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "identityConstraints": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "passthroughExtensions": {},
-     *       //   "predefinedValues": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7479,62 +5322,6 @@ export namespace privateca_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.certificateTemplates.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/certificateTemplates/my-certificateTemplate',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {},
-     *         //   "updateMask": "my_updateMask"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7623,58 +5410,6 @@ export namespace privateca_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await privateca.projects.locations.certificateTemplates.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/certificateTemplates/my-certificateTemplate',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7894,52 +5629,6 @@ export namespace privateca_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8024,46 +5713,6 @@ export namespace privateca_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.operations.delete({
-     *     // The name of the operation resource to be deleted.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8148,52 +5797,6 @@ export namespace privateca_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8278,55 +5881,6 @@ export namespace privateca_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const privateca = google.privateca('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await privateca.projects.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'projects/my-project/locations/my-location',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

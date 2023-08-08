@@ -31,7 +31,7 @@ export function privateca(
   options: privateca_v1beta1.Options
 ): privateca_v1beta1.Privateca;
 export function privateca<
-  T = privateca_v1.Privateca | privateca_v1beta1.Privateca
+  T = privateca_v1.Privateca | privateca_v1beta1.Privateca,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
