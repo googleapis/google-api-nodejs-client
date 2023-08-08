@@ -306,6 +306,15 @@ export namespace analyticshub_v1beta1 {
     requestedPolicyVersion?: number | null;
   }
   /**
+   * Reference to a linked resource tracked by this Subscription.
+   */
+  export interface Schema$LinkedResource {
+    /**
+     * Output only. Name of the linked dataset, e.g. projects/subscriberproject/datasets/linked_dataset
+     */
+    linkedDataset?: string | null;
+  }
+  /**
    * Message for response to the list of data exchanges.
    */
   export interface Schema$ListDataExchangesResponse {
@@ -469,6 +478,15 @@ export namespace analyticshub_v1beta1 {
     primaryContact?: string | null;
   }
   /**
+   * Message for response when you refresh a subscription.
+   */
+  export interface Schema$RefreshSubscriptionResponse {
+    /**
+     * The refreshed subscription resource.
+     */
+    subscription?: Schema$Subscription;
+  }
+  /**
    * Restricted export config, used to configure restricted export on linked dataset.
    */
   export interface Schema$RestrictedExportConfig {
@@ -499,6 +517,15 @@ export namespace analyticshub_v1beta1 {
     updateMask?: string | null;
   }
   /**
+   * Message for response when you subscribe to a Data Exchange.
+   */
+  export interface Schema$SubscribeDataExchangeResponse {
+    /**
+     * Subscription object created from this subscribe action.
+     */
+    subscription?: Schema$Subscription;
+  }
+  /**
    * Message for subscribing to a listing.
    */
   export interface Schema$SubscribeListingRequest {
@@ -511,6 +538,51 @@ export namespace analyticshub_v1beta1 {
    * Message for response when you subscribe to a listing.
    */
   export interface Schema$SubscribeListingResponse {}
+  /**
+   * A subscription represents a subscribers' access to a particular set of published data. It contains references to associated listings, data exchanges, and linked datasets. TODO(b/267528977) Consider port the new resource to v1beta1 and dataexchange APIs.
+   */
+  export interface Schema$Subscription {
+    /**
+     * Output only. Timestamp when the subscription was created.
+     */
+    creationTime?: string | null;
+    /**
+     * Output only. Resource name of the source Data Exchange. e.g. projects/123/locations/US/dataExchanges/456
+     */
+    dataExchange?: string | null;
+    /**
+     * Output only. Timestamp when the subscription was last modified.
+     */
+    lastModifyTime?: string | null;
+    /**
+     * Output only. Map of listing resource names to associated linked resource, e.g. projects/123/locations/US/dataExchanges/456/listings/789 -\> projects/123/datasets/my_dataset For listing-level subscriptions, this is a map of size 1. Only contains values if state == STATE_ACTIVE.
+     */
+    linkedDatasetMap?: {[key: string]: Schema$LinkedResource} | null;
+    /**
+     * Output only. Resource name of the source Listing. e.g. projects/123/locations/US/dataExchanges/456/listings/789
+     */
+    listing?: string | null;
+    /**
+     * Output only. The resource name of the subscription. e.g. `projects/myproject/locations/US/subscriptions/123`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Display name of the project of this subscription.
+     */
+    organizationDisplayName?: string | null;
+    /**
+     * Output only. Organization of the project this subscription belongs to.
+     */
+    organizationId?: string | null;
+    /**
+     * Output only. Current state of the subscription.
+     */
+    state?: string | null;
+    /**
+     * Output only. Email of the subscriber.
+     */
+    subscriberContact?: string | null;
+  }
   /**
    * Request message for `TestIamPermissions` method.
    */
