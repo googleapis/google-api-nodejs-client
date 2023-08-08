@@ -1745,56 +1745,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Revokes a user's token from an Identity Provider (IdP). This is done by manually providing an IdP credential, and the token types for revocation. An [API key](https://cloud.google.com/docs/authentication/api-keys) is required in the request in order to identify the Google Cloud project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.accounts.revokeToken({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "idToken": "my_idToken",
-     *       //   "providerId": "my_providerId",
-     *       //   "redirectUri": "my_redirectUri",
-     *       //   "tenantId": "my_tenantId",
-     *       //   "token": "my_token",
-     *       //   "tokenType": "my_tokenType"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1907,60 +1857,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Finishes enrolling a second factor for the user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.accounts.mfaEnrollment.finalize({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "idToken": "my_idToken",
-     *       //   "phoneVerificationInfo": {},
-     *       //   "tenantId": "my_tenantId",
-     *       //   "totpVerificationInfo": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "idToken": "my_idToken",
-     *   //   "phoneAuthInfo": {},
-     *   //   "refreshToken": "my_refreshToken",
-     *   //   "totpAuthInfo": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2058,57 +1954,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Step one of the MFA enrollment process. In SMS case, this sends an SMS verification code to the user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.accounts.mfaEnrollment.start({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "idToken": "my_idToken",
-     *       //   "phoneEnrollmentInfo": {},
-     *       //   "tenantId": "my_tenantId",
-     *       //   "totpEnrollmentInfo": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "phoneSessionInfo": {},
-     *   //   "totpSessionInfo": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2206,56 +2051,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Revokes one second factor from the enrolled second factors for an account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.accounts.mfaEnrollment.withdraw({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "idToken": "my_idToken",
-     *       //   "mfaEnrollmentId": "my_mfaEnrollmentId",
-     *       //   "tenantId": "my_tenantId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "idToken": "my_idToken",
-     *   //   "refreshToken": "my_refreshToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2382,59 +2177,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Verifies the MFA challenge and performs sign-in
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.accounts.mfaSignIn.finalize({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "mfaEnrollmentId": "my_mfaEnrollmentId",
-     *       //   "mfaPendingCredential": "my_mfaPendingCredential",
-     *       //   "phoneVerificationInfo": {},
-     *       //   "tenantId": "my_tenantId",
-     *       //   "totpVerificationInfo": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "idToken": "my_idToken",
-     *   //   "phoneAuthInfo": {},
-     *   //   "refreshToken": "my_refreshToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2532,56 +2274,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Sends the MFA challenge
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.accounts.mfaSignIn.start({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "mfaEnrollmentId": "my_mfaEnrollmentId",
-     *       //   "mfaPendingCredential": "my_mfaPendingCredential",
-     *       //   "phoneSignInInfo": {},
-     *       //   "tenantId": "my_tenantId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "phoneResponseInfo": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2701,54 +2393,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * List all default supported Idps.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.defaultSupportedIdps.list({
-     *     // The maximum number of items to return.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "defaultSupportedIdps": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2882,63 +2526,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Retrieve an Identity Toolkit project configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.getConfig({
-     *     // The resource name of the config, for example: "projects/my-awesome-project/config"
-     *     name: 'projects/my-project/config',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authorizedDomains": [],
-     *   //   "autodeleteAnonymousUsers": false,
-     *   //   "blockingFunctions": {},
-     *   //   "client": {},
-     *   //   "emailPrivacyConfig": {},
-     *   //   "mfa": {},
-     *   //   "monitoring": {},
-     *   //   "multiTenant": {},
-     *   //   "name": "my_name",
-     *   //   "notification": {},
-     *   //   "passwordPolicyConfig": {},
-     *   //   "quota": {},
-     *   //   "recaptchaConfig": {},
-     *   //   "signIn": {},
-     *   //   "smsRegionConfig": {},
-     *   //   "subtype": "my_subtype"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3033,91 +2620,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Update an Identity Toolkit project configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.updateConfig({
-     *     // Output only. The name of the Config resource. Example: "projects/my-awesome-project/config"
-     *     name: 'projects/my-project/config',
-     *     // The update mask applies to the resource. Fields set in the config but not included in this update mask will be ignored. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authorizedDomains": [],
-     *       //   "autodeleteAnonymousUsers": false,
-     *       //   "blockingFunctions": {},
-     *       //   "client": {},
-     *       //   "emailPrivacyConfig": {},
-     *       //   "mfa": {},
-     *       //   "monitoring": {},
-     *       //   "multiTenant": {},
-     *       //   "name": "my_name",
-     *       //   "notification": {},
-     *       //   "passwordPolicyConfig": {},
-     *       //   "quota": {},
-     *       //   "recaptchaConfig": {},
-     *       //   "signIn": {},
-     *       //   "smsRegionConfig": {},
-     *       //   "subtype": "my_subtype"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authorizedDomains": [],
-     *   //   "autodeleteAnonymousUsers": false,
-     *   //   "blockingFunctions": {},
-     *   //   "client": {},
-     *   //   "emailPrivacyConfig": {},
-     *   //   "mfa": {},
-     *   //   "monitoring": {},
-     *   //   "multiTenant": {},
-     *   //   "name": "my_name",
-     *   //   "notification": {},
-     *   //   "passwordPolicyConfig": {},
-     *   //   "quota": {},
-     *   //   "recaptchaConfig": {},
-     *   //   "signIn": {},
-     *   //   "smsRegionConfig": {},
-     *   //   "subtype": "my_subtype"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3243,69 +2745,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Create a default supported Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.defaultSupportedIdpConfigs.create({
-     *     // The id of the Idp to create a config for. Call ListDefaultSupportedIdps for list of all default supported Idps.
-     *     idpId: 'placeholder-value',
-     *     // The parent resource name where the config to be created, for example: "projects/my-awesome-project"
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "appleSignInConfig": {},
-     *       //   "clientId": "my_clientId",
-     *       //   "clientSecret": "my_clientSecret",
-     *       //   "enabled": false,
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appleSignInConfig": {},
-     *   //   "clientId": "my_clientId",
-     *   //   "clientSecret": "my_clientSecret",
-     *   //   "enabled": false,
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3404,49 +2843,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Delete a default supported Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.defaultSupportedIdpConfigs.delete({
-     *     // The resource name of the config, for example: "projects/my-awesome-project/defaultSupportedIdpConfigs/google.com"
-     *     name: 'projects/my-project/defaultSupportedIdpConfigs/my-defaultSupportedIdpConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3536,55 +2932,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Retrieve a default supported Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.defaultSupportedIdpConfigs.get({
-     *     // The resource name of the config, for example: "projects/my-awesome-project/defaultSupportedIdpConfigs/google.com"
-     *     name: 'projects/my-project/defaultSupportedIdpConfigs/my-defaultSupportedIdpConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appleSignInConfig": {},
-     *   //   "clientId": "my_clientId",
-     *   //   "clientSecret": "my_clientSecret",
-     *   //   "enabled": false,
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3679,56 +3026,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * List all default supported Idp configurations for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.defaultSupportedIdpConfigs.list({
-     *     // The maximum number of items to return.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any.
-     *     pageToken: 'placeholder-value',
-     *     // The parent resource name, for example, "projects/my-awesome-project".
-     *     parent: 'projects/my-project',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "defaultSupportedIdpConfigs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3826,69 +3123,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Update a default supported Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.defaultSupportedIdpConfigs.patch({
-     *     // The name of the DefaultSupportedIdpConfig resource, for example: "projects/my-awesome-project/defaultSupportedIdpConfigs/google.com"
-     *     name: 'projects/my-project/defaultSupportedIdpConfigs/my-defaultSupportedIdpConfig',
-     *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "appleSignInConfig": {},
-     *       //   "clientId": "my_clientId",
-     *       //   "clientSecret": "my_clientSecret",
-     *       //   "enabled": false,
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appleSignInConfig": {},
-     *   //   "clientId": "my_clientId",
-     *   //   "clientSecret": "my_clientSecret",
-     *   //   "enabled": false,
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4053,52 +3287,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Initialize Identity Platform for a Cloud project. Identity Platform is an end-to-end authentication system for third-party users to access your apps and services. These could include mobile/web apps, games, APIs and beyond. This is the publicly available variant of EnableIdentityPlatform that is only available to billing-enabled projects.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.identityPlatform.initializeAuth({
-     *     // The resource name of the target project the developer wants to enable Identity Platform for.
-     *     project: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4215,69 +3403,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Create an inbound SAML configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.inboundSamlConfigs.create({
-     *     // The id to use for this config.
-     *     inboundSamlConfigId: 'placeholder-value',
-     *     // The parent resource name where the config to be created, for example: "projects/my-awesome-project"
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "enabled": false,
-     *       //   "idpConfig": {},
-     *       //   "name": "my_name",
-     *       //   "spConfig": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "enabled": false,
-     *   //   "idpConfig": {},
-     *   //   "name": "my_name",
-     *   //   "spConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4375,49 +3500,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Delete an inbound SAML configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.inboundSamlConfigs.delete({
-     *     // The resource name of the config to be deleted, for example: 'projects/my-awesome-project/inboundSamlConfigs/my-config-id'.
-     *     name: 'projects/my-project/inboundSamlConfigs/my-inboundSamlConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4506,55 +3588,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Retrieve an inbound SAML configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.inboundSamlConfigs.get({
-     *     // The resource name of the config, for example: 'projects/my-awesome-project/inboundSamlConfigs/my-config-id'.
-     *     name: 'projects/my-project/inboundSamlConfigs/my-inboundSamlConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "enabled": false,
-     *   //   "idpConfig": {},
-     *   //   "name": "my_name",
-     *   //   "spConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4649,56 +3682,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * List all inbound SAML configurations for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.inboundSamlConfigs.list({
-     *     // The maximum number of items to return.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any.
-     *     pageToken: 'placeholder-value',
-     *     // The parent resource name, for example, "projects/my-awesome-project".
-     *     parent: 'projects/my-project',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "inboundSamlConfigs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4796,69 +3779,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Update an inbound SAML configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.inboundSamlConfigs.patch({
-     *     // The name of the InboundSamlConfig resource, for example: 'projects/my-awesome-project/inboundSamlConfigs/my-config-id'. Ignored during create requests.
-     *     name: 'projects/my-project/inboundSamlConfigs/my-inboundSamlConfig',
-     *     // The update mask applies to the resource. Empty update mask will result in updating nothing. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "enabled": false,
-     *       //   "idpConfig": {},
-     *       //   "name": "my_name",
-     *       //   "spConfig": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "enabled": false,
-     *   //   "idpConfig": {},
-     *   //   "name": "my_name",
-     *   //   "spConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5022,73 +3942,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Create an Oidc Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.oauthIdpConfigs.create({
-     *     // The id to use for this config.
-     *     oauthIdpConfigId: 'placeholder-value',
-     *     // The parent resource name where the config to be created, for example: "projects/my-awesome-project"
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "clientId": "my_clientId",
-     *       //   "clientSecret": "my_clientSecret",
-     *       //   "displayName": "my_displayName",
-     *       //   "enabled": false,
-     *       //   "issuer": "my_issuer",
-     *       //   "name": "my_name",
-     *       //   "responseType": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientId": "my_clientId",
-     *   //   "clientSecret": "my_clientSecret",
-     *   //   "displayName": "my_displayName",
-     *   //   "enabled": false,
-     *   //   "issuer": "my_issuer",
-     *   //   "name": "my_name",
-     *   //   "responseType": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5186,49 +4039,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Delete an Oidc Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.oauthIdpConfigs.delete({
-     *     // The resource name of the config to be deleted, for example: 'projects/my-awesome-project/oauthIdpConfigs/oauth-config-id'.
-     *     name: 'projects/my-project/oauthIdpConfigs/my-oauthIdpConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5317,57 +4127,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Retrieve an Oidc Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.oauthIdpConfigs.get({
-     *     // The resource name of the config, for example: 'projects/my-awesome-project/oauthIdpConfigs/oauth-config-id'.
-     *     name: 'projects/my-project/oauthIdpConfigs/my-oauthIdpConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientId": "my_clientId",
-     *   //   "clientSecret": "my_clientSecret",
-     *   //   "displayName": "my_displayName",
-     *   //   "enabled": false,
-     *   //   "issuer": "my_issuer",
-     *   //   "name": "my_name",
-     *   //   "responseType": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5462,56 +4221,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * List all Oidc Idp configurations for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.oauthIdpConfigs.list({
-     *     // The maximum number of items to return.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any.
-     *     pageToken: 'placeholder-value',
-     *     // The parent resource name, for example, "projects/my-awesome-project".
-     *     parent: 'projects/my-project',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "oauthIdpConfigs": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5609,73 +4318,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Update an Oidc Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.oauthIdpConfigs.patch({
-     *     // The name of the OAuthIdpConfig resource, for example: 'projects/my-awesome-project/oauthIdpConfigs/oauth-config-id'. Ignored during create requests.
-     *     name: 'projects/my-project/oauthIdpConfigs/my-oauthIdpConfig',
-     *     // The update mask applies to the resource. Empty update mask will result in updating nothing. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "clientId": "my_clientId",
-     *       //   "clientSecret": "my_clientSecret",
-     *       //   "displayName": "my_displayName",
-     *       //   "enabled": false,
-     *       //   "issuer": "my_issuer",
-     *       //   "name": "my_name",
-     *       //   "responseType": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientId": "my_clientId",
-     *   //   "clientSecret": "my_clientSecret",
-     *   //   "displayName": "my_displayName",
-     *   //   "enabled": false,
-     *   //   "issuer": "my_issuer",
-     *   //   "name": "my_name",
-     *   //   "responseType": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5849,91 +4491,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Create a tenant. Requires write permission on the Agent project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.create({
-     *     // The parent resource name where the tenant will be created. For example, "projects/project1".
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "allowPasswordSignup": false,
-     *       //   "autodeleteAnonymousUsers": false,
-     *       //   "client": {},
-     *       //   "disableAuth": false,
-     *       //   "displayName": "my_displayName",
-     *       //   "emailPrivacyConfig": {},
-     *       //   "enableAnonymousUser": false,
-     *       //   "enableEmailLinkSignin": false,
-     *       //   "hashConfig": {},
-     *       //   "inheritance": {},
-     *       //   "mfaConfig": {},
-     *       //   "monitoring": {},
-     *       //   "name": "my_name",
-     *       //   "passwordPolicyConfig": {},
-     *       //   "recaptchaConfig": {},
-     *       //   "smsRegionConfig": {},
-     *       //   "testPhoneNumbers": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowPasswordSignup": false,
-     *   //   "autodeleteAnonymousUsers": false,
-     *   //   "client": {},
-     *   //   "disableAuth": false,
-     *   //   "displayName": "my_displayName",
-     *   //   "emailPrivacyConfig": {},
-     *   //   "enableAnonymousUser": false,
-     *   //   "enableEmailLinkSignin": false,
-     *   //   "hashConfig": {},
-     *   //   "inheritance": {},
-     *   //   "mfaConfig": {},
-     *   //   "monitoring": {},
-     *   //   "name": "my_name",
-     *   //   "passwordPolicyConfig": {},
-     *   //   "recaptchaConfig": {},
-     *   //   "smsRegionConfig": {},
-     *   //   "testPhoneNumbers": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6031,49 +4588,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Delete a tenant. Requires write permission on the Agent project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.delete({
-     *     // Resource name of the tenant to delete.
-     *     name: 'projects/my-project/tenants/my-tenant',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6162,67 +4676,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Get a tenant. Requires read permission on the Tenant resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.get({
-     *     // Resource name of the tenant to retrieve.
-     *     name: 'projects/my-project/tenants/my-tenant',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowPasswordSignup": false,
-     *   //   "autodeleteAnonymousUsers": false,
-     *   //   "client": {},
-     *   //   "disableAuth": false,
-     *   //   "displayName": "my_displayName",
-     *   //   "emailPrivacyConfig": {},
-     *   //   "enableAnonymousUser": false,
-     *   //   "enableEmailLinkSignin": false,
-     *   //   "hashConfig": {},
-     *   //   "inheritance": {},
-     *   //   "mfaConfig": {},
-     *   //   "monitoring": {},
-     *   //   "name": "my_name",
-     *   //   "passwordPolicyConfig": {},
-     *   //   "recaptchaConfig": {},
-     *   //   "smsRegionConfig": {},
-     *   //   "testPhoneNumbers": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6317,62 +4770,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Gets the access control policy for a resource. An error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it. Caller must have the right Google IAM permission on the resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/tenants/my-tenant',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "options": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6466,56 +4863,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * List tenants under the given agent project. Requires read permission on the Agent project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.list({
-     *     // The maximum number of results to return, capped at 1000. If not specified, the default value is 20.
-     *     pageSize: 'placeholder-value',
-     *     // The pagination token from the response of a previous request.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name to list tenants for.
-     *     parent: 'projects/my-project',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "tenants": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6613,93 +4960,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Update a tenant. Requires write permission on the Tenant resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.patch({
-     *     // Output only. Resource name of a tenant. For example: "projects/{project-id\}/tenants/{tenant-id\}"
-     *     name: 'projects/my-project/tenants/my-tenant',
-     *     // If provided, only update fields set in the update mask. Otherwise, all settable fields will be updated. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "allowPasswordSignup": false,
-     *       //   "autodeleteAnonymousUsers": false,
-     *       //   "client": {},
-     *       //   "disableAuth": false,
-     *       //   "displayName": "my_displayName",
-     *       //   "emailPrivacyConfig": {},
-     *       //   "enableAnonymousUser": false,
-     *       //   "enableEmailLinkSignin": false,
-     *       //   "hashConfig": {},
-     *       //   "inheritance": {},
-     *       //   "mfaConfig": {},
-     *       //   "monitoring": {},
-     *       //   "name": "my_name",
-     *       //   "passwordPolicyConfig": {},
-     *       //   "recaptchaConfig": {},
-     *       //   "smsRegionConfig": {},
-     *       //   "testPhoneNumbers": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowPasswordSignup": false,
-     *   //   "autodeleteAnonymousUsers": false,
-     *   //   "client": {},
-     *   //   "disableAuth": false,
-     *   //   "displayName": "my_displayName",
-     *   //   "emailPrivacyConfig": {},
-     *   //   "enableAnonymousUser": false,
-     *   //   "enableEmailLinkSignin": false,
-     *   //   "hashConfig": {},
-     *   //   "inheritance": {},
-     *   //   "mfaConfig": {},
-     *   //   "monitoring": {},
-     *   //   "name": "my_name",
-     *   //   "passwordPolicyConfig": {},
-     *   //   "recaptchaConfig": {},
-     *   //   "smsRegionConfig": {},
-     *   //   "testPhoneNumbers": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6794,63 +5054,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Sets the access control policy for a resource. If the policy exists, it is replaced. Caller must have the right Google IAM permission on the resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/tenants/my-tenant',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6944,59 +5147,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Returns the caller's permissions on a resource. An error is returned if the resource does not exist. A caller is not required to have Google IAM permission to make this request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/tenants/my-tenant',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "permissions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7195,70 +5345,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Create a default supported Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await identitytoolkit.projects.tenants.defaultSupportedIdpConfigs.create({
-     *       // The id of the Idp to create a config for. Call ListDefaultSupportedIdps for list of all default supported Idps.
-     *       idpId: 'placeholder-value',
-     *       // The parent resource name where the config to be created, for example: "projects/my-awesome-project"
-     *       parent: 'projects/my-project/tenants/my-tenant',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "appleSignInConfig": {},
-     *         //   "clientId": "my_clientId",
-     *         //   "clientSecret": "my_clientSecret",
-     *         //   "enabled": false,
-     *         //   "name": "my_name"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appleSignInConfig": {},
-     *   //   "clientId": "my_clientId",
-     *   //   "clientSecret": "my_clientSecret",
-     *   //   "enabled": false,
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7357,50 +5443,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Delete a default supported Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await identitytoolkit.projects.tenants.defaultSupportedIdpConfigs.delete({
-     *       // The resource name of the config, for example: "projects/my-awesome-project/defaultSupportedIdpConfigs/google.com"
-     *       name: 'projects/my-project/tenants/my-tenant/defaultSupportedIdpConfigs/my-defaultSupportedIdpConfig',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7490,56 +5532,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Retrieve a default supported Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await identitytoolkit.projects.tenants.defaultSupportedIdpConfigs.get({
-     *       // The resource name of the config, for example: "projects/my-awesome-project/defaultSupportedIdpConfigs/google.com"
-     *       name: 'projects/my-project/tenants/my-tenant/defaultSupportedIdpConfigs/my-defaultSupportedIdpConfig',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appleSignInConfig": {},
-     *   //   "clientId": "my_clientId",
-     *   //   "clientSecret": "my_clientSecret",
-     *   //   "enabled": false,
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7635,57 +5627,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * List all default supported Idp configurations for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await identitytoolkit.projects.tenants.defaultSupportedIdpConfigs.list({
-     *       // The maximum number of items to return.
-     *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from a previous List request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // The parent resource name, for example, "projects/my-awesome-project".
-     *       parent: 'projects/my-project/tenants/my-tenant',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "defaultSupportedIdpConfigs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7784,70 +5725,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Update a default supported Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await identitytoolkit.projects.tenants.defaultSupportedIdpConfigs.patch({
-     *       // The name of the DefaultSupportedIdpConfig resource, for example: "projects/my-awesome-project/defaultSupportedIdpConfigs/google.com"
-     *       name: 'projects/my-project/tenants/my-tenant/defaultSupportedIdpConfigs/my-defaultSupportedIdpConfig',
-     *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "appleSignInConfig": {},
-     *         //   "clientId": "my_clientId",
-     *         //   "clientSecret": "my_clientSecret",
-     *         //   "enabled": false,
-     *         //   "name": "my_name"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appleSignInConfig": {},
-     *   //   "clientId": "my_clientId",
-     *   //   "clientSecret": "my_clientSecret",
-     *   //   "enabled": false,
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8012,69 +5889,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Create an inbound SAML configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.inboundSamlConfigs.create({
-     *     // The id to use for this config.
-     *     inboundSamlConfigId: 'placeholder-value',
-     *     // The parent resource name where the config to be created, for example: "projects/my-awesome-project"
-     *     parent: 'projects/my-project/tenants/my-tenant',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "enabled": false,
-     *       //   "idpConfig": {},
-     *       //   "name": "my_name",
-     *       //   "spConfig": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "enabled": false,
-     *   //   "idpConfig": {},
-     *   //   "name": "my_name",
-     *   //   "spConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8173,49 +5987,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Delete an inbound SAML configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.inboundSamlConfigs.delete({
-     *     // The resource name of the config to be deleted, for example: 'projects/my-awesome-project/inboundSamlConfigs/my-config-id'.
-     *     name: 'projects/my-project/tenants/my-tenant/inboundSamlConfigs/my-inboundSamlConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8305,55 +6076,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Retrieve an inbound SAML configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.inboundSamlConfigs.get({
-     *     // The resource name of the config, for example: 'projects/my-awesome-project/inboundSamlConfigs/my-config-id'.
-     *     name: 'projects/my-project/tenants/my-tenant/inboundSamlConfigs/my-inboundSamlConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "enabled": false,
-     *   //   "idpConfig": {},
-     *   //   "name": "my_name",
-     *   //   "spConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8448,56 +6170,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * List all inbound SAML configurations for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.inboundSamlConfigs.list({
-     *     // The maximum number of items to return.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any.
-     *     pageToken: 'placeholder-value',
-     *     // The parent resource name, for example, "projects/my-awesome-project".
-     *     parent: 'projects/my-project/tenants/my-tenant',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "inboundSamlConfigs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8595,69 +6267,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Update an inbound SAML configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.inboundSamlConfigs.patch({
-     *     // The name of the InboundSamlConfig resource, for example: 'projects/my-awesome-project/inboundSamlConfigs/my-config-id'. Ignored during create requests.
-     *     name: 'projects/my-project/tenants/my-tenant/inboundSamlConfigs/my-inboundSamlConfig',
-     *     // The update mask applies to the resource. Empty update mask will result in updating nothing. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "enabled": false,
-     *       //   "idpConfig": {},
-     *       //   "name": "my_name",
-     *       //   "spConfig": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "enabled": false,
-     *   //   "idpConfig": {},
-     *   //   "name": "my_name",
-     *   //   "spConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8822,73 +6431,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Create an Oidc Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.oauthIdpConfigs.create({
-     *     // The id to use for this config.
-     *     oauthIdpConfigId: 'placeholder-value',
-     *     // The parent resource name where the config to be created, for example: "projects/my-awesome-project"
-     *     parent: 'projects/my-project/tenants/my-tenant',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "clientId": "my_clientId",
-     *       //   "clientSecret": "my_clientSecret",
-     *       //   "displayName": "my_displayName",
-     *       //   "enabled": false,
-     *       //   "issuer": "my_issuer",
-     *       //   "name": "my_name",
-     *       //   "responseType": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientId": "my_clientId",
-     *   //   "clientSecret": "my_clientSecret",
-     *   //   "displayName": "my_displayName",
-     *   //   "enabled": false,
-     *   //   "issuer": "my_issuer",
-     *   //   "name": "my_name",
-     *   //   "responseType": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8986,49 +6528,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Delete an Oidc Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.oauthIdpConfigs.delete({
-     *     // The resource name of the config to be deleted, for example: 'projects/my-awesome-project/oauthIdpConfigs/oauth-config-id'.
-     *     name: 'projects/my-project/tenants/my-tenant/oauthIdpConfigs/my-oauthIdpConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9117,57 +6616,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Retrieve an Oidc Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.oauthIdpConfigs.get({
-     *     // The resource name of the config, for example: 'projects/my-awesome-project/oauthIdpConfigs/oauth-config-id'.
-     *     name: 'projects/my-project/tenants/my-tenant/oauthIdpConfigs/my-oauthIdpConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientId": "my_clientId",
-     *   //   "clientSecret": "my_clientSecret",
-     *   //   "displayName": "my_displayName",
-     *   //   "enabled": false,
-     *   //   "issuer": "my_issuer",
-     *   //   "name": "my_name",
-     *   //   "responseType": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9262,56 +6710,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * List all Oidc Idp configurations for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.oauthIdpConfigs.list({
-     *     // The maximum number of items to return.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any.
-     *     pageToken: 'placeholder-value',
-     *     // The parent resource name, for example, "projects/my-awesome-project".
-     *     parent: 'projects/my-project/tenants/my-tenant',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "oauthIdpConfigs": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9409,73 +6807,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Update an Oidc Idp configuration for an Identity Toolkit project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.projects.tenants.oauthIdpConfigs.patch({
-     *     // The name of the OAuthIdpConfig resource, for example: 'projects/my-awesome-project/oauthIdpConfigs/oauth-config-id'. Ignored during create requests.
-     *     name: 'projects/my-project/tenants/my-tenant/oauthIdpConfigs/my-oauthIdpConfig',
-     *     // The update mask applies to the resource. Empty update mask will result in updating nothing. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "clientId": "my_clientId",
-     *       //   "clientSecret": "my_clientSecret",
-     *       //   "displayName": "my_displayName",
-     *       //   "enabled": false,
-     *       //   "issuer": "my_issuer",
-     *       //   "name": "my_name",
-     *       //   "responseType": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientId": "my_clientId",
-     *   //   "clientSecret": "my_clientSecret",
-     *   //   "displayName": "my_displayName",
-     *   //   "enabled": false,
-     *   //   "issuer": "my_issuer",
-     *   //   "name": "my_name",
-     *   //   "responseType": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9639,52 +6970,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Gets password policy config set on the project or tenant.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.getPasswordPolicy({
-     *     // The id of a tenant.
-     *     tenantId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowedNonAlphanumericCharacters": [],
-     *   //   "customStrengthOptions": {},
-     *   //   "enforcementState": "my_enforcementState",
-     *   //   "forceUpgradeOnSignin": false,
-     *   //   "schemaVersion": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9779,53 +7064,6 @@ export namespace identitytoolkit_v2 {
 
     /**
      * Gets parameters needed for reCAPTCHA analysis.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.getRecaptchaConfig({
-     *     // reCAPTCHA Enterprise uses separate site keys for different client types. Specify the client type to get the corresponding key.
-     *     clientType: 'placeholder-value',
-     *     // The id of a tenant.
-     *     tenantId: 'placeholder-value',
-     *     // The reCAPTCHA version.
-     *     version: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "recaptchaEnforcementState": [],
-     *   //   "recaptchaKey": "my_recaptchaKey"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
