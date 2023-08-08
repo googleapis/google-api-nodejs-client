@@ -37,7 +37,7 @@ export function gmailpostmastertools(
 export function gmailpostmastertools<
   T =
     | gmailpostmastertools_v1.Gmailpostmastertools
-    | gmailpostmastertools_v1beta1.Gmailpostmastertools
+    | gmailpostmastertools_v1beta1.Gmailpostmastertools,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
