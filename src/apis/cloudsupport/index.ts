@@ -33,7 +33,7 @@ export function cloudsupport(
   options: cloudsupport_v2beta.Options
 ): cloudsupport_v2beta.Cloudsupport;
 export function cloudsupport<
-  T = cloudsupport_v2.Cloudsupport | cloudsupport_v2beta.Cloudsupport
+  T = cloudsupport_v2.Cloudsupport | cloudsupport_v2beta.Cloudsupport,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
