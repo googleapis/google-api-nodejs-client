@@ -654,7 +654,7 @@
       }
     }
   },
-  "revision": "20230605",
+  "revision": "20230729",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -665,9 +665,17 @@
           "description": "Optional. Optional name of the property to store the result of the aggregation. If not provided, Datastore will pick a default name following the format `property_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS property_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) AS property_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to entity property name limitations.",
           "type": "string"
         },
+        "avg": {
+          "$ref": "Avg",
+          "description": "Average aggregator."
+        },
         "count": {
           "$ref": "Count",
           "description": "Count aggregator."
+        },
+        "sum": {
+          "$ref": "Sum",
+          "description": "Sum aggregator."
         }
       },
       "type": "object"
@@ -783,6 +791,17 @@
             "$ref": "Value"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Avg": {
+      "description": "Average of the values of the requested property. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. * If the aggregated value set is empty, returns `NULL`. * Always returns the result as a double.",
+      "id": "Avg",
+      "properties": {
+        "property": {
+          "$ref": "PropertyReference",
+          "description": "The property to aggregate on."
         }
       },
       "type": "object"
@@ -2178,7 +2197,7 @@
       "id": "ReadOnly",
       "properties": {
         "readTime": {
-          "description": "Reads entities at the given time. This may not be older than 60 seconds.",
+          "description": "Reads entities at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -2208,7 +2227,7 @@
           "type": "string"
         },
         "readTime": {
-          "description": "Reads entities as they were at the given time. This may not be older than 270 seconds. This value is only supported for Cloud Firestore in Datastore mode.",
+          "description": "Reads entities as they were at the given time. This value is only supported for Cloud Firestore in Datastore mode. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2395,6 +2414,17 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Sum": {
+      "description": "Sum of the values of the requested property. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. * If the aggregated value set is empty, returns 0. * Returns a 64-bit integer if the sum result is an integer value and does not overflow. Otherwise, the result is returned as a double. Note that even if all the aggregated values are integers, the result is returned as a double if it cannot fit within a 64-bit signed integer. When this occurs, the returned value will lose precision. * When underflow occurs, floating-point aggregation is non-deterministic. This means that running the same query repeatedly without any changes to the underlying values could produce slightly different results each time. In those cases, values should be stored as integers over floating-point numbers.",
+      "id": "Sum",
+      "properties": {
+        "property": {
+          "$ref": "PropertyReference",
+          "description": "The property to aggregate on."
         }
       },
       "type": "object"
