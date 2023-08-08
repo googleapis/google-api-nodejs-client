@@ -33,7 +33,7 @@ export function vmmigration(
   options: vmmigration_v1alpha1.Options
 ): vmmigration_v1alpha1.Vmmigration;
 export function vmmigration<
-  T = vmmigration_v1.Vmmigration | vmmigration_v1alpha1.Vmmigration
+  T = vmmigration_v1.Vmmigration | vmmigration_v1alpha1.Vmmigration,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
