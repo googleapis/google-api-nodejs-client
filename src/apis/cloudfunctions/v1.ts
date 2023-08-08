@@ -453,6 +453,10 @@ export namespace cloudfunctions_v1 {
      */
     requestResource?: {[key: string]: any} | null;
     /**
+     * An identifier for Firebase function sources. Disclaimer: This field is only supported for Firebase function deployments.
+     */
+    sourceToken?: string | null;
+    /**
      * Mechanism for reporting in-progress stages
      */
     stages?: Schema$GoogleCloudFunctionsV2alphaStage[];
@@ -549,6 +553,10 @@ export namespace cloudfunctions_v1 {
      */
     requestResource?: {[key: string]: any} | null;
     /**
+     * An identifier for Firebase function sources. Disclaimer: This field is only supported for Firebase function deployments.
+     */
+    sourceToken?: string | null;
+    /**
      * Mechanism for reporting in-progress stages
      */
     stages?: Schema$GoogleCloudFunctionsV2betaStage[];
@@ -644,6 +652,10 @@ export namespace cloudfunctions_v1 {
      * The original request that started the operation.
      */
     requestResource?: {[key: string]: any} | null;
+    /**
+     * An identifier for Firebase function sources. Disclaimer: This field is only supported for Firebase function deployments.
+     */
+    sourceToken?: string | null;
     /**
      * Mechanism for reporting in-progress stages
      */

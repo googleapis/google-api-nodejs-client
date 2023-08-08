@@ -546,7 +546,7 @@
       }
     }
   },
-  "revision": "20230608",
+  "revision": "20230727",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1018,6 +1018,10 @@
           "description": "The original request that started the operation.",
           "type": "object"
         },
+        "sourceToken": {
+          "description": "An identifier for Firebase function sources. Disclaimer: This field is only supported for Firebase function deployments.",
+          "type": "string"
+        },
         "stages": {
           "description": "Mechanism for reporting in-progress stages",
           "items": {
@@ -1189,6 +1193,10 @@
           "description": "The original request that started the operation.",
           "type": "object"
         },
+        "sourceToken": {
+          "description": "An identifier for Firebase function sources. Disclaimer: This field is only supported for Firebase function deployments.",
+          "type": "string"
+        },
         "stages": {
           "description": "Mechanism for reporting in-progress stages",
           "items": {
@@ -1359,6 +1367,10 @@
           },
           "description": "The original request that started the operation.",
           "type": "object"
+        },
+        "sourceToken": {
+          "description": "An identifier for Firebase function sources. Disclaimer: This field is only supported for Firebase function deployments.",
+          "type": "string"
         },
         "stages": {
           "description": "Mechanism for reporting in-progress stages",
