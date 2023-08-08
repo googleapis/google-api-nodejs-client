@@ -27,7 +27,7 @@ export function gamesManagement(
   options: gamesManagement_v1management.Options
 ): gamesManagement_v1management.Gamesmanagement;
 export function gamesManagement<
-  T = gamesManagement_v1management.Gamesmanagement
+  T = gamesManagement_v1management.Gamesmanagement,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1management' | gamesManagement_v1management.Options
