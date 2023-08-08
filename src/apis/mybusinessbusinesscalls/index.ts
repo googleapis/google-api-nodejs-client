@@ -27,7 +27,7 @@ export function mybusinessbusinesscalls(
   options: mybusinessbusinesscalls_v1.Options
 ): mybusinessbusinesscalls_v1.Mybusinessbusinesscalls;
 export function mybusinessbusinesscalls<
-  T = mybusinessbusinesscalls_v1.Mybusinessbusinesscalls
+  T = mybusinessbusinesscalls_v1.Mybusinessbusinesscalls,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | mybusinessbusinesscalls_v1.Options
