@@ -647,6 +647,10 @@ export namespace gkeonprem_v1 {
      */
     updateTime?: string | null;
     /**
+     * The cluster upgrade policy.
+     */
+    upgradePolicy?: Schema$BareMetalClusterUpgradePolicy;
+    /**
      * Output only. The result of the preflight check.
      */
     validationCheck?: Schema$ValidationCheck;
@@ -659,6 +663,15 @@ export namespace gkeonprem_v1 {
      * Whether collection of application logs/metrics should be enabled (in addition to system logs/metrics).
      */
     enableApplicationLogs?: boolean | null;
+  }
+  /**
+   * BareMetalClusterUpgradePolicy defines the cluster upgrade policy.
+   */
+  export interface Schema$BareMetalClusterUpgradePolicy {
+    /**
+     * Specifies which upgrade policy to use.
+     */
+    policy?: string | null;
   }
   /**
    * Specifies the control plane configuration.
@@ -1025,7 +1038,7 @@ export namespace gkeonprem_v1 {
    */
   export interface Schema$BareMetalParallelUpgradeConfig {
     /**
-     * Required. The maximum number of nodes that can be upgraded at once. Defaults to 1.
+     * The maximum number of nodes that can be upgraded at once.
      */
     concurrentNodes?: number | null;
     /**
@@ -1924,6 +1937,10 @@ export namespace gkeonprem_v1 {
      * The number of mebibytes of memory for the control-plane node of the admin cluster.
      */
     memory?: string | null;
+    /**
+     * The number of control plane nodes for this VMware admin cluster. (default: 1 replica).
+     */
+    replicas?: string | null;
   }
   /**
    * VmwareAdminF5BigIpConfig represents configuration parameters for an F5 BIG-IP load balancer.
@@ -1943,6 +1960,15 @@ export namespace gkeonprem_v1 {
     snatPool?: string | null;
   }
   /**
+   * Specifies HA admin control plane config.
+   */
+  export interface Schema$VmwareAdminHAControlPlaneConfig {
+    /**
+     * Static IP addresses for the admin control plane nodes.
+     */
+    controlPlaneIpBlock?: Schema$VmwareIpBlock;
+  }
+  /**
    * VmwareAdminLoadBalancerConfig contains load balancer configuration for VMware admin cluster.
    */
   export interface Schema$VmwareAdminLoadBalancerConfig {
@@ -1958,6 +1984,10 @@ export namespace gkeonprem_v1 {
      * MetalLB load balancers.
      */
     metalLbConfig?: Schema$VmwareAdminMetalLbConfig;
+    /**
+     * Output only. Configuration for Seesaw typed load balancers.
+     */
+    seesawConfig?: Schema$VmwareAdminSeesawConfig;
     /**
      * The VIPs used by the load balancer.
      */
@@ -1998,6 +2028,10 @@ export namespace gkeonprem_v1 {
      */
     dhcpIpConfig?: Schema$VmwareDhcpIpConfig;
     /**
+     * Configuration for HA admin cluster control plane.
+     */
+    haControlPlaneConfig?: Schema$VmwareAdminHAControlPlaneConfig;
+    /**
      * Represents common network settings irrespective of the host's IP address.
      */
     hostConfig?: Schema$VmwareHostConfig;
@@ -2017,6 +2051,31 @@ export namespace gkeonprem_v1 {
      * vcenter_network specifies vCenter network name.
      */
     vcenterNetwork?: string | null;
+  }
+  /**
+   * VmwareSeesawConfig represents configuration parameters for an already existing Seesaw load balancer. IMPORTANT: Please note that the Anthos On-Prem API will not generate or update Seesaw configurations it can only bind a pre-existing configuration to a new user cluster. IMPORTANT: When attempting to create a user cluster with a pre-existing Seesaw load balancer you will need to follow some preparation steps before calling the 'CreateVmwareCluster' API method. First you will need to create the user cluster's namespace via kubectl. The namespace will need to use the following naming convention : -gke-onprem-mgmt or -gke-onprem-mgmt depending on whether you used the 'VmwareCluster.local_name' to disambiguate collisions; for more context see the documentation of 'VmwareCluster.local_name'. Once the namespace is created you will need to create a secret resource via kubectl. This secret will contain copies of your Seesaw credentials. The Secret must be called 'user-cluster-creds' and contain Seesaw's SSH and Cert credentials. The credentials must be keyed with the following names: 'seesaw-ssh-private-key', 'seesaw-ssh-public-key', 'seesaw-ssh-ca-key', 'seesaw-ssh-ca-cert'.
+   */
+  export interface Schema$VmwareAdminSeesawConfig {
+    /**
+     * Enable two load balancer VMs to achieve a highly-available Seesaw load balancer.
+     */
+    enableHa?: boolean | null;
+    /**
+     * In general the following format should be used for the Seesaw group name: seesaw-for-[cluster_name].
+     */
+    group?: string | null;
+    /**
+     * The IP Blocks to be used by the Seesaw load balancer
+     */
+    ipBlocks?: Schema$VmwareIpBlock[];
+    /**
+     * MasterIP is the IP announced by the master of Seesaw group.
+     */
+    masterIp?: string | null;
+    /**
+     * Names of the VMs created for this Seesaw group.
+     */
+    vms?: string[] | null;
   }
   /**
    * VmwareAdminVCenterConfig contains VCenter configuration for VMware admin cluster.
@@ -2241,7 +2300,7 @@ export namespace gkeonprem_v1 {
      */
     replicas?: string | null;
     /**
-     * Output only. Vsphere-specific config.
+     * Vsphere-specific config.
      */
     vsphereConfig?: Schema$VmwareControlPlaneVsphereConfig;
   }
@@ -2478,7 +2537,7 @@ export namespace gkeonprem_v1 {
      */
     taints?: Schema$NodeTaint[];
     /**
-     * Output only. Specifies the vSphere config for node pool.
+     * Specifies the vSphere config for node pool.
      */
     vsphereConfig?: Schema$VmwareVsphereConfig;
   }
@@ -2666,6 +2725,10 @@ export namespace gkeonprem_v1 {
      * The name of the vCenter datastore. Inherited from the user cluster.
      */
     datastore?: string | null;
+    /**
+     * Vsphere host groups to apply to all VMs in the node pool
+     */
+    hostGroups?: string[] | null;
     /**
      * Tags to apply to VMs.
      */
@@ -5079,6 +5142,7 @@ export namespace gkeonprem_v1 {
      *       //   "storage": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime",
+     *       //   "upgradePolicy": {},
      *       //   "validationCheck": {}
      *       // }
      *     },
@@ -5537,6 +5601,7 @@ export namespace gkeonprem_v1 {
      *   //   "storage": {},
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime",
+     *   //   "upgradePolicy": {},
      *   //   "validationCheck": {}
      *   // }
      * }
@@ -5984,6 +6049,7 @@ export namespace gkeonprem_v1 {
      *       //   "storage": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime",
+     *       //   "upgradePolicy": {},
      *       //   "validationCheck": {}
      *       // }
      *     },

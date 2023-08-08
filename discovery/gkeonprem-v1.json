@@ -2996,7 +2996,7 @@
       }
     }
   },
-  "revision": "20230705",
+  "revision": "20230726",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -3684,6 +3684,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "upgradePolicy": {
+          "$ref": "BareMetalClusterUpgradePolicy",
+          "description": "The cluster upgrade policy."
+        },
         "validationCheck": {
           "$ref": "ValidationCheck",
           "description": "Output only. The result of the preflight check.",
@@ -3699,6 +3703,27 @@
         "enableApplicationLogs": {
           "description": "Whether collection of application logs/metrics should be enabled (in addition to system logs/metrics).",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "BareMetalClusterUpgradePolicy": {
+      "description": "BareMetalClusterUpgradePolicy defines the cluster upgrade policy.",
+      "id": "BareMetalClusterUpgradePolicy",
+      "properties": {
+        "policy": {
+          "description": "Specifies which upgrade policy to use.",
+          "enum": [
+            "NODE_POOL_POLICY_UNSPECIFIED",
+            "SERIAL",
+            "CONCURRENT"
+          ],
+          "enumDescriptions": [
+            "No upgrade policy selected.",
+            "Upgrade worker node pools sequentially.",
+            "Upgrade all worker node pools in parallel."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -4195,7 +4220,7 @@
       "id": "BareMetalParallelUpgradeConfig",
       "properties": {
         "concurrentNodes": {
-          "description": "Required. The maximum number of nodes that can be upgraded at once. Defaults to 1.",
+          "description": "The maximum number of nodes that can be upgraded at once.",
           "format": "int32",
           "type": "integer"
         },
@@ -5513,6 +5538,11 @@
           "description": "The number of mebibytes of memory for the control-plane node of the admin cluster.",
           "format": "int64",
           "type": "string"
+        },
+        "replicas": {
+          "description": "The number of control plane nodes for this VMware admin cluster. (default: 1 replica).",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5536,6 +5566,17 @@
       },
       "type": "object"
     },
+    "VmwareAdminHAControlPlaneConfig": {
+      "description": "Specifies HA admin control plane config.",
+      "id": "VmwareAdminHAControlPlaneConfig",
+      "properties": {
+        "controlPlaneIpBlock": {
+          "$ref": "VmwareIpBlock",
+          "description": "Static IP addresses for the admin control plane nodes."
+        }
+      },
+      "type": "object"
+    },
     "VmwareAdminLoadBalancerConfig": {
       "description": "VmwareAdminLoadBalancerConfig contains load balancer configuration for VMware admin cluster.",
       "id": "VmwareAdminLoadBalancerConfig",
@@ -5551,6 +5592,11 @@
         "metalLbConfig": {
           "$ref": "VmwareAdminMetalLbConfig",
           "description": "MetalLB load balancers."
+        },
+        "seesawConfig": {
+          "$ref": "VmwareAdminSeesawConfig",
+          "description": "Output only. Configuration for Seesaw typed load balancers.",
+          "readOnly": true
         },
         "vipConfig": {
           "$ref": "VmwareAdminVipConfig",
@@ -5604,6 +5650,10 @@
           "$ref": "VmwareDhcpIpConfig",
           "description": "Configuration settings for a DHCP IP configuration."
         },
+        "haControlPlaneConfig": {
+          "$ref": "VmwareAdminHAControlPlaneConfig",
+          "description": "Configuration for HA admin cluster control plane."
+        },
         "hostConfig": {
           "$ref": "VmwareHostConfig",
           "description": "Represents common network settings irrespective of the host's IP address."
@@ -5629,6 +5679,39 @@
         "vcenterNetwork": {
           "description": "vcenter_network specifies vCenter network name.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VmwareAdminSeesawConfig": {
+      "description": "VmwareSeesawConfig represents configuration parameters for an already existing Seesaw load balancer. IMPORTANT: Please note that the Anthos On-Prem API will not generate or update Seesaw configurations it can only bind a pre-existing configuration to a new user cluster. IMPORTANT: When attempting to create a user cluster with a pre-existing Seesaw load balancer you will need to follow some preparation steps before calling the 'CreateVmwareCluster' API method. First you will need to create the user cluster's namespace via kubectl. The namespace will need to use the following naming convention : -gke-onprem-mgmt or -gke-onprem-mgmt depending on whether you used the 'VmwareCluster.local_name' to disambiguate collisions; for more context see the documentation of 'VmwareCluster.local_name'. Once the namespace is created you will need to create a secret resource via kubectl. This secret will contain copies of your Seesaw credentials. The Secret must be called 'user-cluster-creds' and contain Seesaw's SSH and Cert credentials. The credentials must be keyed with the following names: 'seesaw-ssh-private-key', 'seesaw-ssh-public-key', 'seesaw-ssh-ca-key', 'seesaw-ssh-ca-cert'.",
+      "id": "VmwareAdminSeesawConfig",
+      "properties": {
+        "enableHa": {
+          "description": "Enable two load balancer VMs to achieve a highly-available Seesaw load balancer.",
+          "type": "boolean"
+        },
+        "group": {
+          "description": "In general the following format should be used for the Seesaw group name: seesaw-for-[cluster_name].",
+          "type": "string"
+        },
+        "ipBlocks": {
+          "description": "The IP Blocks to be used by the Seesaw load balancer",
+          "items": {
+            "$ref": "VmwareIpBlock"
+          },
+          "type": "array"
+        },
+        "masterIp": {
+          "description": "MasterIP is the IP announced by the master of Seesaw group.",
+          "type": "string"
+        },
+        "vms": {
+          "description": "Names of the VMs created for this Seesaw group.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5910,8 +5993,7 @@
         },
         "vsphereConfig": {
           "$ref": "VmwareControlPlaneVsphereConfig",
-          "description": "Output only. Vsphere-specific config.",
-          "readOnly": true
+          "description": "Vsphere-specific config."
         }
       },
       "type": "object"
@@ -6210,8 +6292,7 @@
         },
         "vsphereConfig": {
           "$ref": "VmwareVsphereConfig",
-          "description": "Output only. Specifies the vSphere config for node pool.",
-          "readOnly": true
+          "description": "Specifies the vSphere config for node pool."
         }
       },
       "type": "object"
@@ -6457,6 +6538,13 @@
         "datastore": {
           "description": "The name of the vCenter datastore. Inherited from the user cluster.",
           "type": "string"
+        },
+        "hostGroups": {
+          "description": "Vsphere host groups to apply to all VMs in the node pool",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "tags": {
           "description": "Tags to apply to VMs.",
