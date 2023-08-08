@@ -33,7 +33,7 @@ export function datacatalog(
   options: datacatalog_v1beta1.Options
 ): datacatalog_v1beta1.Datacatalog;
 export function datacatalog<
-  T = datacatalog_v1.Datacatalog | datacatalog_v1beta1.Datacatalog
+  T = datacatalog_v1.Datacatalog | datacatalog_v1beta1.Datacatalog,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
