@@ -35,7 +35,7 @@ export function domains(
   options: domains_v1beta1.Options
 ): domains_v1beta1.Domains;
 export function domains<
-  T = domains_v1.Domains | domains_v1alpha2.Domains | domains_v1beta1.Domains
+  T = domains_v1.Domains | domains_v1alpha2.Domains | domains_v1beta1.Domains,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
