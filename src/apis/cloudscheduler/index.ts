@@ -33,7 +33,7 @@ export function cloudscheduler(
   options: cloudscheduler_v1beta1.Options
 ): cloudscheduler_v1beta1.Cloudscheduler;
 export function cloudscheduler<
-  T = cloudscheduler_v1.Cloudscheduler | cloudscheduler_v1beta1.Cloudscheduler
+  T = cloudscheduler_v1.Cloudscheduler | cloudscheduler_v1beta1.Cloudscheduler,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
