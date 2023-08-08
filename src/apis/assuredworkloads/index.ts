@@ -37,7 +37,7 @@ export function assuredworkloads(
 export function assuredworkloads<
   T =
     | assuredworkloads_v1.Assuredworkloads
-    | assuredworkloads_v1beta1.Assuredworkloads
+    | assuredworkloads_v1beta1.Assuredworkloads,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
