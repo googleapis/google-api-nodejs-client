@@ -667,55 +667,6 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * To retrieve the products that can be resold by the partner. It should be autenticated with a service account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await paymentsresellersubscription.partners.products.list({
-     *     // Optional. Specifies the filters for the product results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
-     *     filter: 'placeholder-value',
-     *     // Optional. The maximum number of products to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous `ListProducts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProducts` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent, the partner that can resell. Format: partners/{partner\}
-     *     parent: 'partners/my-partner',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "products": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -841,60 +792,6 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * To find eligible promotions for the current user. The API requires user authorization via OAuth. The user is inferred from the authenticated OAuth credential.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await paymentsresellersubscription.partners.promotions.findEligible({
-     *       // Required. The parent, the partner that can resell. Format: partners/{partner\}
-     *       parent: 'partners/my-partner',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "filter": "my_filter",
-     *         //   "pageSize": 0,
-     *         //   "pageToken": "my_pageToken"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "promotions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -993,55 +890,6 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * To retrieve the promotions, such as free trial, that can be used by the partner. It should be autenticated with a service account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await paymentsresellersubscription.partners.promotions.list({
-     *     // Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
-     *     filter: 'placeholder-value',
-     *     // Optional. The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous `ListPromotions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotions` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent, the partner that can resell. Format: partners/{partner\}
-     *     parent: 'partners/my-partner',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "promotions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1179,57 +1027,6 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Used by partners to cancel a subscription service either immediately or by the end of the current billing cycle for their customers. It should be called directly by the partner using service accounts.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await paymentsresellersubscription.partners.subscriptions.cancel({
-     *     // Required. The name of the subscription resource to be cancelled. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
-     *     name: 'partners/my-partner/subscriptions/my-subscription',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "cancelImmediately": false,
-     *       //   "cancellationReason": "my_cancellationReason"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "subscription": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1325,92 +1122,6 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Used by partners to create a subscription for their customers. The created subscription is associated with the end user inferred from the end user credentials. This API must be authorized by the end user using OAuth.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await paymentsresellersubscription.partners.subscriptions.create({
-     *     // Required. The parent resource name, which is the identifier of the partner. It will have the format of "partners/{partner_id\}".
-     *     parent: 'partners/my-partner',
-     *     // Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
-     *     subscriptionId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "cancellationDetails": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "cycleEndTime": "my_cycleEndTime",
-     *       //   "endUserEntitled": false,
-     *       //   "freeTrialEndTime": "my_freeTrialEndTime",
-     *       //   "lineItems": [],
-     *       //   "name": "my_name",
-     *       //   "partnerUserToken": "my_partnerUserToken",
-     *       //   "processingState": "my_processingState",
-     *       //   "products": [],
-     *       //   "promotionSpecs": [],
-     *       //   "promotions": [],
-     *       //   "redirectUri": "my_redirectUri",
-     *       //   "renewalTime": "my_renewalTime",
-     *       //   "serviceLocation": {},
-     *       //   "state": "my_state",
-     *       //   "updateTime": "my_updateTime",
-     *       //   "upgradeDowngradeDetails": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cancellationDetails": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "cycleEndTime": "my_cycleEndTime",
-     *   //   "endUserEntitled": false,
-     *   //   "freeTrialEndTime": "my_freeTrialEndTime",
-     *   //   "lineItems": [],
-     *   //   "name": "my_name",
-     *   //   "partnerUserToken": "my_partnerUserToken",
-     *   //   "processingState": "my_processingState",
-     *   //   "products": [],
-     *   //   "promotionSpecs": [],
-     *   //   "promotions": [],
-     *   //   "redirectUri": "my_redirectUri",
-     *   //   "renewalTime": "my_renewalTime",
-     *   //   "serviceLocation": {},
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "upgradeDowngradeDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1509,56 +1220,6 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Used by partners to entitle a previously provisioned subscription to the current end user. The end user identity is inferred from the authorized credential of the request. This API must be authorized by the end user using OAuth.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await paymentsresellersubscription.partners.subscriptions.entitle(
-     *     {
-     *       // Required. The name of the subscription resource that is entitled to the current end user. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
-     *       name: 'partners/my-partner/subscriptions/my-subscription',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "subscription": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1657,59 +1318,6 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * [Opt-in only] Most partners should be on auto-extend by default. Used by partners to extend a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await paymentsresellersubscription.partners.subscriptions.extend({
-     *     // Required. The name of the subscription resource to be extended. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}".
-     *     name: 'partners/my-partner/subscriptions/my-subscription',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "extension": {},
-     *       //   "requestId": "my_requestId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cycleEndTime": "my_cycleEndTime",
-     *   //   "freeTrialEndTime": "my_freeTrialEndTime",
-     *   //   "renewalTime": "my_renewalTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1805,65 +1413,6 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Used by partners to get a subscription by id. It should be called directly by the partner using service accounts.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await paymentsresellersubscription.partners.subscriptions.get({
-     *     // Required. The name of the subscription resource to retrieve. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
-     *     name: 'partners/my-partner/subscriptions/my-subscription',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cancellationDetails": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "cycleEndTime": "my_cycleEndTime",
-     *   //   "endUserEntitled": false,
-     *   //   "freeTrialEndTime": "my_freeTrialEndTime",
-     *   //   "lineItems": [],
-     *   //   "name": "my_name",
-     *   //   "partnerUserToken": "my_partnerUserToken",
-     *   //   "processingState": "my_processingState",
-     *   //   "products": [],
-     *   //   "promotionSpecs": [],
-     *   //   "promotions": [],
-     *   //   "redirectUri": "my_redirectUri",
-     *   //   "renewalTime": "my_renewalTime",
-     *   //   "serviceLocation": {},
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "upgradeDowngradeDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1959,93 +1508,6 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Used by partners to provision a subscription for their customers. This creates a subscription without associating it with the end user account. EntitleSubscription must be called separately using OAuth in order for the end user account to be associated with the subscription. It should be called directly by the partner using service accounts.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await paymentsresellersubscription.partners.subscriptions.provision({
-     *       // Required. The parent resource name, which is the identifier of the partner. It will have the format of "partners/{partner_id\}".
-     *       parent: 'partners/my-partner',
-     *       // Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
-     *       subscriptionId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "cancellationDetails": {},
-     *         //   "createTime": "my_createTime",
-     *         //   "cycleEndTime": "my_cycleEndTime",
-     *         //   "endUserEntitled": false,
-     *         //   "freeTrialEndTime": "my_freeTrialEndTime",
-     *         //   "lineItems": [],
-     *         //   "name": "my_name",
-     *         //   "partnerUserToken": "my_partnerUserToken",
-     *         //   "processingState": "my_processingState",
-     *         //   "products": [],
-     *         //   "promotionSpecs": [],
-     *         //   "promotions": [],
-     *         //   "redirectUri": "my_redirectUri",
-     *         //   "renewalTime": "my_renewalTime",
-     *         //   "serviceLocation": {},
-     *         //   "state": "my_state",
-     *         //   "updateTime": "my_updateTime",
-     *         //   "upgradeDowngradeDetails": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cancellationDetails": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "cycleEndTime": "my_cycleEndTime",
-     *   //   "endUserEntitled": false,
-     *   //   "freeTrialEndTime": "my_freeTrialEndTime",
-     *   //   "lineItems": [],
-     *   //   "name": "my_name",
-     *   //   "partnerUserToken": "my_partnerUserToken",
-     *   //   "processingState": "my_processingState",
-     *   //   "products": [],
-     *   //   "promotionSpecs": [],
-     *   //   "promotions": [],
-     *   //   "redirectUri": "my_redirectUri",
-     *   //   "renewalTime": "my_renewalTime",
-     *   //   "serviceLocation": {},
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "upgradeDowngradeDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2144,55 +1606,6 @@ export namespace paymentsresellersubscription_v1 {
 
     /**
      * Used by partners to revoke the pending cancellation of a subscription, which is currently in `STATE_CANCEL_AT_END_OF_CYCLE` state. If the subscription is already cancelled, the request will fail. It should be called directly by the partner using service accounts.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/paymentsresellersubscription.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const paymentsresellersubscription = google.paymentsresellersubscription('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await paymentsresellersubscription.partners.subscriptions.undoCancel({
-     *       // Required. The name of the subscription resource whose pending cancellation needs to be undone. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
-     *       name: 'partners/my-partner/subscriptions/my-subscription',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "subscription": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
