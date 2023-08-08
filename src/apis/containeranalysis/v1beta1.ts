@@ -177,7 +177,7 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Assessment {
     /**
-     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.
+     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability. Deprecated: Use vulnerability_id instead to denote CVEs.
      */
     cve?: string | null;
     /**
@@ -208,6 +208,10 @@ export namespace containeranalysis_v1beta1 {
      * Provides the state of this Vulnerability assessment.
      */
     state?: string | null;
+    /**
+     * The vulnerability identifier for this Assessment. Will hold one of common identifiers e.g. CVE, GHSA etc.
+     */
+    vulnerabilityId?: string | null;
   }
   /**
    * Occurrence that represents a single "attestation". The authenticity of an attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the authority to which this attestation is attached is primarily useful for look-up (how to find this attestation if you already know the authority and artifact to be verified) and intent (which authority was this attestation intended to sign for).
@@ -397,7 +401,7 @@ export namespace containeranalysis_v1beta1 {
     signature?: string | null;
   }
   /**
-   * A step in the build pipeline. Next ID: 20
+   * A step in the build pipeline. Next ID: 21
    */
   export interface Schema$BuildStep {
     /**
@@ -412,6 +416,10 @@ export namespace containeranalysis_v1beta1 {
      * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
      */
     args?: string[] | null;
+    /**
+     * Option to include built-in and custom substitutions as env variables for this build step. This option will override the global option in BuildOption.
+     */
+    automapSubstitutions?: boolean | null;
     /**
      * Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.
      */
@@ -806,6 +814,10 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions {
     /**
+     * Option to include built-in and custom substitutions as env variables for all build steps.
+     */
+    automapSubstitutions?: boolean | null;
+    /**
      * Optional. Option to specify how default logs buckets are setup.
      */
     defaultLogsBucketBehavior?: string | null;
@@ -887,6 +899,10 @@ export namespace containeranalysis_v1beta1 {
      * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
      */
     args?: string[] | null;
+    /**
+     * Option to include built-in and custom substitutions as env variables for this build step. This option will override the global option in BuildOption.
+     */
+    automapSubstitutions?: boolean | null;
     /**
      * Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.
      */
@@ -3093,7 +3109,7 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$VexAssessment {
     /**
-     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.
+     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability. Deprecated: Use vulnerability_id instead to denote CVEs.
      */
     cve?: string | null;
     /**
@@ -3120,6 +3136,10 @@ export namespace containeranalysis_v1beta1 {
      * Provides the state of this Vulnerability assessment.
      */
     state?: string | null;
+    /**
+     * The vulnerability identifier for this Assessment. Will hold one of common identifiers e.g. CVE, GHSA etc.
+     */
+    vulnerabilityId?: string | null;
   }
   /**
    * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution. Next ID: 3
@@ -3276,56 +3296,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Creates new notes in batch.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.notes.batchCreate({
-     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the notes are to be created.
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "notes": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "notes": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3421,102 +3391,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Creates a new note.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.notes.create({
-     *     // Required. The ID to use for this note.
-     *     noteId: 'placeholder-value',
-     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the note is to be created.
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "attestationAuthority": {},
-     *       //   "baseImage": {},
-     *       //   "build": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "deployable": {},
-     *       //   "discovery": {},
-     *       //   "expirationTime": "my_expirationTime",
-     *       //   "intoto": {},
-     *       //   "kind": "my_kind",
-     *       //   "longDescription": "my_longDescription",
-     *       //   "name": "my_name",
-     *       //   "package": {},
-     *       //   "relatedNoteNames": [],
-     *       //   "relatedUrl": [],
-     *       //   "sbom": {},
-     *       //   "sbomReference": {},
-     *       //   "shortDescription": "my_shortDescription",
-     *       //   "spdxFile": {},
-     *       //   "spdxPackage": {},
-     *       //   "spdxRelationship": {},
-     *       //   "updateTime": "my_updateTime",
-     *       //   "vulnerability": {},
-     *       //   "vulnerabilityAssessment": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attestationAuthority": {},
-     *   //   "baseImage": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "deployable": {},
-     *   //   "discovery": {},
-     *   //   "expirationTime": "my_expirationTime",
-     *   //   "intoto": {},
-     *   //   "kind": "my_kind",
-     *   //   "longDescription": "my_longDescription",
-     *   //   "name": "my_name",
-     *   //   "package": {},
-     *   //   "relatedNoteNames": [],
-     *   //   "relatedUrl": [],
-     *   //   "sbom": {},
-     *   //   "sbomReference": {},
-     *   //   "shortDescription": "my_shortDescription",
-     *   //   "spdxFile": {},
-     *   //   "spdxPackage": {},
-     *   //   "spdxRelationship": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "vulnerability": {},
-     *   //   "vulnerabilityAssessment": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3605,46 +3479,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Deletes the specified note.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.notes.delete({
-     *     // Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
-     *     name: 'projects/my-project/notes/my-note',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3730,70 +3564,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Gets the specified note.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.notes.get({
-     *     // Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
-     *     name: 'projects/my-project/notes/my-note',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attestationAuthority": {},
-     *   //   "baseImage": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "deployable": {},
-     *   //   "discovery": {},
-     *   //   "expirationTime": "my_expirationTime",
-     *   //   "intoto": {},
-     *   //   "kind": "my_kind",
-     *   //   "longDescription": "my_longDescription",
-     *   //   "name": "my_name",
-     *   //   "package": {},
-     *   //   "relatedNoteNames": [],
-     *   //   "relatedUrl": [],
-     *   //   "sbom": {},
-     *   //   "sbomReference": {},
-     *   //   "shortDescription": "my_shortDescription",
-     *   //   "spdxFile": {},
-     *   //   "spdxPackage": {},
-     *   //   "spdxRelationship": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "vulnerability": {},
-     *   //   "vulnerabilityAssessment": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3879,58 +3649,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Gets the access control policy for a note or an occurrence resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively. The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.notes.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/notes/my-note',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "options": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4019,55 +3737,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Lists notes for the specified project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.notes.list({
-     *     // The filter expression.
-     *     filter: 'placeholder-value',
-     *     // Number of notes to return in the list. Must be positive. Max allowed page size is 1000. If not specified, page size defaults to 20.
-     *     pageSize: 'placeholder-value',
-     *     // Token to provide to skip to a particular spot in the list.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project to list notes for in the form of `projects/[PROJECT_ID]`.
-     *     parent: 'projects/my-project',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "notes": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4159,102 +3828,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Updates the specified note.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.notes.patch({
-     *     // Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
-     *     name: 'projects/my-project/notes/my-note',
-     *     // The fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "attestationAuthority": {},
-     *       //   "baseImage": {},
-     *       //   "build": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "deployable": {},
-     *       //   "discovery": {},
-     *       //   "expirationTime": "my_expirationTime",
-     *       //   "intoto": {},
-     *       //   "kind": "my_kind",
-     *       //   "longDescription": "my_longDescription",
-     *       //   "name": "my_name",
-     *       //   "package": {},
-     *       //   "relatedNoteNames": [],
-     *       //   "relatedUrl": [],
-     *       //   "sbom": {},
-     *       //   "sbomReference": {},
-     *       //   "shortDescription": "my_shortDescription",
-     *       //   "spdxFile": {},
-     *       //   "spdxPackage": {},
-     *       //   "spdxRelationship": {},
-     *       //   "updateTime": "my_updateTime",
-     *       //   "vulnerability": {},
-     *       //   "vulnerabilityAssessment": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attestationAuthority": {},
-     *   //   "baseImage": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "deployable": {},
-     *   //   "discovery": {},
-     *   //   "expirationTime": "my_expirationTime",
-     *   //   "intoto": {},
-     *   //   "kind": "my_kind",
-     *   //   "longDescription": "my_longDescription",
-     *   //   "name": "my_name",
-     *   //   "package": {},
-     *   //   "relatedNoteNames": [],
-     *   //   "relatedUrl": [],
-     *   //   "sbom": {},
-     *   //   "sbomReference": {},
-     *   //   "shortDescription": "my_shortDescription",
-     *   //   "spdxFile": {},
-     *   //   "spdxPackage": {},
-     *   //   "spdxRelationship": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "vulnerability": {},
-     *   //   "vulnerabilityAssessment": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4340,58 +3913,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Sets the access control policy on the specified note or occurrence. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or an occurrence, respectively. The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.notes.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/notes/my-note',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4480,56 +4001,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Returns the permissions that a caller has on the specified note or occurrence. Requires list permission on the project (for example, `containeranalysis.notes.list`). The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.notes.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/notes/my-note',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "permissions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4746,55 +4217,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Lists occurrences referencing the specified note. Provider projects can use this method to get all occurrences across consumer projects referencing the specified note.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.notes.occurrences.list({
-     *     // The filter expression.
-     *     filter: 'placeholder-value',
-     *     // Required. The name of the note to list occurrences for in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
-     *     name: 'projects/my-project/notes/my-note',
-     *     // Number of occurrences to return in the list.
-     *     pageSize: 'placeholder-value',
-     *     // Token to provide to skip to a particular spot in the list.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "occurrences": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4917,56 +4339,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Creates new occurrences in batch.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.occurrences.batchCreate({
-     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrences are to be created.
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "occurrences": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "occurrences": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5063,96 +4435,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Creates a new occurrence.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.occurrences.create({
-     *     // Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrence is to be created.
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "attestation": {},
-     *       //   "build": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "deployment": {},
-     *       //   "derivedImage": {},
-     *       //   "discovered": {},
-     *       //   "envelope": {},
-     *       //   "installation": {},
-     *       //   "intoto": {},
-     *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "noteName": "my_noteName",
-     *       //   "remediation": "my_remediation",
-     *       //   "resource": {},
-     *       //   "sbom": {},
-     *       //   "sbomReference": {},
-     *       //   "spdxFile": {},
-     *       //   "spdxPackage": {},
-     *       //   "spdxRelationship": {},
-     *       //   "updateTime": "my_updateTime",
-     *       //   "vulnerability": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attestation": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "deployment": {},
-     *   //   "derivedImage": {},
-     *   //   "discovered": {},
-     *   //   "envelope": {},
-     *   //   "installation": {},
-     *   //   "intoto": {},
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "noteName": "my_noteName",
-     *   //   "remediation": "my_remediation",
-     *   //   "resource": {},
-     *   //   "sbom": {},
-     *   //   "sbomReference": {},
-     *   //   "spdxFile": {},
-     *   //   "spdxPackage": {},
-     *   //   "spdxRelationship": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "vulnerability": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5241,46 +4523,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Deletes the specified occurrence. For example, use this method to delete an occurrence when the occurrence is no longer applicable for the given resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.occurrences.delete({
-     *     // Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
-     *     name: 'projects/my-project/occurrences/my-occurrence',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5366,68 +4608,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Gets the specified occurrence.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.occurrences.get({
-     *     // Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
-     *     name: 'projects/my-project/occurrences/my-occurrence',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attestation": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "deployment": {},
-     *   //   "derivedImage": {},
-     *   //   "discovered": {},
-     *   //   "envelope": {},
-     *   //   "installation": {},
-     *   //   "intoto": {},
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "noteName": "my_noteName",
-     *   //   "remediation": "my_remediation",
-     *   //   "resource": {},
-     *   //   "sbom": {},
-     *   //   "sbomReference": {},
-     *   //   "spdxFile": {},
-     *   //   "spdxPackage": {},
-     *   //   "spdxRelationship": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "vulnerability": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5513,58 +4693,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Gets the access control policy for a note or an occurrence resource. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or occurrence, respectively. The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.occurrences.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/occurrences/my-occurrence',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "options": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5653,70 +4781,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Gets the note attached to the specified occurrence. Consumer projects can use this method to get a note that belongs to a provider project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.occurrences.getNotes({
-     *     // Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
-     *     name: 'projects/my-project/occurrences/my-occurrence',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attestationAuthority": {},
-     *   //   "baseImage": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "deployable": {},
-     *   //   "discovery": {},
-     *   //   "expirationTime": "my_expirationTime",
-     *   //   "intoto": {},
-     *   //   "kind": "my_kind",
-     *   //   "longDescription": "my_longDescription",
-     *   //   "name": "my_name",
-     *   //   "package": {},
-     *   //   "relatedNoteNames": [],
-     *   //   "relatedUrl": [],
-     *   //   "sbom": {},
-     *   //   "sbomReference": {},
-     *   //   "shortDescription": "my_shortDescription",
-     *   //   "spdxFile": {},
-     *   //   "spdxPackage": {},
-     *   //   "spdxRelationship": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "vulnerability": {},
-     *   //   "vulnerabilityAssessment": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5805,51 +4869,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Gets a summary of the number and severity of occurrences.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await containeranalysis.projects.occurrences.getVulnerabilitySummary({
-     *       // The filter expression.
-     *       filter: 'placeholder-value',
-     *       // Required. The name of the project to get a vulnerability summary for in the form of `projects/[PROJECT_ID]`.
-     *       parent: 'projects/my-project',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "counts": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5947,55 +4966,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Lists occurrences for the specified project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.occurrences.list({
-     *     // The filter expression.
-     *     filter: 'placeholder-value',
-     *     // Number of occurrences to return in the list. Must be positive. Max allowed page size is 1000. If not specified, page size defaults to 20.
-     *     pageSize: 'placeholder-value',
-     *     // Token to provide to skip to a particular spot in the list.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project to list occurrences for in the form of `projects/[PROJECT_ID]`.
-     *     parent: 'projects/my-project',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "occurrences": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6089,98 +5059,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Updates the specified occurrence.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.occurrences.patch({
-     *     // Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
-     *     name: 'projects/my-project/occurrences/my-occurrence',
-     *     // The fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "attestation": {},
-     *       //   "build": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "deployment": {},
-     *       //   "derivedImage": {},
-     *       //   "discovered": {},
-     *       //   "envelope": {},
-     *       //   "installation": {},
-     *       //   "intoto": {},
-     *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "noteName": "my_noteName",
-     *       //   "remediation": "my_remediation",
-     *       //   "resource": {},
-     *       //   "sbom": {},
-     *       //   "sbomReference": {},
-     *       //   "spdxFile": {},
-     *       //   "spdxPackage": {},
-     *       //   "spdxRelationship": {},
-     *       //   "updateTime": "my_updateTime",
-     *       //   "vulnerability": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attestation": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "deployment": {},
-     *   //   "derivedImage": {},
-     *   //   "discovered": {},
-     *   //   "envelope": {},
-     *   //   "installation": {},
-     *   //   "intoto": {},
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "noteName": "my_noteName",
-     *   //   "remediation": "my_remediation",
-     *   //   "resource": {},
-     *   //   "sbom": {},
-     *   //   "sbomReference": {},
-     *   //   "spdxFile": {},
-     *   //   "spdxPackage": {},
-     *   //   "spdxRelationship": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "vulnerability": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6266,58 +5144,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Sets the access control policy on the specified note or occurrence. Requires `containeranalysis.notes.setIamPolicy` or `containeranalysis.occurrences.setIamPolicy` permission if the resource is a note or an occurrence, respectively. The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.occurrences.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/occurrences/my-occurrence',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6406,56 +5232,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Returns the permissions that a caller has on the specified note or occurrence. Requires list permission on the project (for example, `containeranalysis.notes.list`). The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for occurrences.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.occurrences.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/occurrences/my-occurrence',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "permissions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6686,54 +5462,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Generates an SBOM and other dependency information for the given resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await containeranalysis.projects.resources.exportSBOM({
-     *     // Required. The name of the resource in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
-     *     name: 'projects/my-project/resources/.*',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "discoveryOccurrenceId": "my_discoveryOccurrenceId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6825,56 +5553,6 @@ export namespace containeranalysis_v1beta1 {
 
     /**
      * Gets a summary of the packages within a given resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const containeranalysis = google.containeranalysis('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await containeranalysis.projects.resources.generatePackagesSummary({
-     *       // Required. The name of the resource to get a packages summary for in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
-     *       name: 'projects/my-project/resources/.*',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "licensesSummary": [],
-     *   //   "resourceUrl": "my_resourceUrl"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
