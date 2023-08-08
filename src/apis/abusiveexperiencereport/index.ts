@@ -27,7 +27,7 @@ export function abusiveexperiencereport(
   options: abusiveexperiencereport_v1.Options
 ): abusiveexperiencereport_v1.Abusiveexperiencereport;
 export function abusiveexperiencereport<
-  T = abusiveexperiencereport_v1.Abusiveexperiencereport
+  T = abusiveexperiencereport_v1.Abusiveexperiencereport,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | abusiveexperiencereport_v1.Options
