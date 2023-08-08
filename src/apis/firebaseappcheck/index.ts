@@ -37,7 +37,7 @@ export function firebaseappcheck(
 export function firebaseappcheck<
   T =
     | firebaseappcheck_v1.Firebaseappcheck
-    | firebaseappcheck_v1beta.Firebaseappcheck
+    | firebaseappcheck_v1beta.Firebaseappcheck,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
