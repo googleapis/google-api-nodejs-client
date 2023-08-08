@@ -27,7 +27,7 @@ export function prod_tt_sasportal(
   options: prod_tt_sasportal_v1alpha1.Options
 ): prod_tt_sasportal_v1alpha1.Prod_tt_sasportal;
 export function prod_tt_sasportal<
-  T = prod_tt_sasportal_v1alpha1.Prod_tt_sasportal
+  T = prod_tt_sasportal_v1alpha1.Prod_tt_sasportal,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1alpha1' | prod_tt_sasportal_v1alpha1.Options
