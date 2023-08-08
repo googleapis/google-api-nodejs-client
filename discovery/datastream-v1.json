@@ -1074,6 +1074,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "run": {
+                  "description": "Use this method to start, resume or recover a stream with a non default CDC strategy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}:run",
+                  "httpMethod": "POST",
+                  "id": "datastream.projects.locations.streams.run",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the stream resource to start, in the format: projects/{project_id}/locations/{location}/streams/{stream_name}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/streams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:run",
+                  "request": {
+                    "$ref": "RunStreamRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -1233,7 +1261,7 @@
       }
     }
   },
-  "revision": "20230611",
+  "revision": "20230726",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -1363,6 +1391,25 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CdcStrategy": {
+      "description": "The strategy that the stream uses for CDC replication.",
+      "id": "CdcStrategy",
+      "properties": {
+        "mostRecentStartPosition": {
+          "$ref": "MostRecentStartPosition",
+          "description": "Optional. Start replicating from the most recent position in the source."
+        },
+        "nextAvailableStartPosition": {
+          "$ref": "NextAvailableStartPosition",
+          "description": "Optional. Resume replication from the next available position in the source."
+        },
+        "specificStartPosition": {
+          "$ref": "SpecificStartPosition",
+          "description": "Optional. Start replicating from a specific position in the source."
+        }
+      },
       "type": "object"
     },
     "ConnectionProfile": {
@@ -1892,6 +1939,12 @@
       },
       "type": "object"
     },
+    "MostRecentStartPosition": {
+      "description": "CDC strategy to start replicating from the most recent position in the source.",
+      "id": "MostRecentStartPosition",
+      "properties": {},
+      "type": "object"
+    },
     "MysqlColumn": {
       "description": "MySQL Column.",
       "id": "MysqlColumn",
@@ -1922,9 +1975,19 @@
           "format": "int32",
           "type": "integer"
         },
+        "precision": {
+          "description": "Column precision.",
+          "format": "int32",
+          "type": "integer"
+        },
         "primaryKey": {
           "description": "Whether or not the column represents a primary key.",
           "type": "boolean"
+        },
+        "scale": {
+          "description": "Column scale.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1943,6 +2006,22 @@
             "$ref": "MysqlTable"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MysqlLogPosition": {
+      "description": "MySQL log position",
+      "id": "MysqlLogPosition",
+      "properties": {
+        "logFile": {
+          "description": "The binary log file name.",
+          "type": "string"
+        },
+        "logPosition": {
+          "description": "The position within the binary log file. Default is head of file.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2079,6 +2158,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "NextAvailableStartPosition": {
+      "description": "CDC strategy to resume replication from the next available position in the source.",
+      "id": "NextAvailableStartPosition",
+      "properties": {},
       "type": "object"
     },
     "Operation": {
@@ -2629,6 +2714,17 @@
       },
       "type": "object"
     },
+    "RunStreamRequest": {
+      "description": "Request message for running a stream.",
+      "id": "RunStreamRequest",
+      "properties": {
+        "cdcStrategy": {
+          "$ref": "CdcStrategy",
+          "description": "Optional. The CDC strategy of the stream. If not set, the system's default value will be used."
+        }
+      },
+      "type": "object"
+    },
     "SingleTargetDataset": {
       "description": "A single target dataset to which all data will be streamed.",
       "id": "SingleTargetDataset",
@@ -2689,6 +2785,17 @@
         "postgresqlIdentifier": {
           "$ref": "PostgresqlObjectIdentifier",
           "description": "PostgreSQL data source object identifier."
+        }
+      },
+      "type": "object"
+    },
+    "SpecificStartPosition": {
+      "description": "CDC strategy to start replicating from a specific position in the source.",
+      "id": "SpecificStartPosition",
+      "properties": {
+        "mysqlLogPosition": {
+          "$ref": "MysqlLogPosition",
+          "description": "MySQL specific log position to start replicating from."
         }
       },
       "type": "object"
