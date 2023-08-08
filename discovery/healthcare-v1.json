@@ -4078,7 +4078,7 @@
       }
     }
   },
-  "revision": "20230627",
+  "revision": "20230720",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -4106,6 +4106,18 @@
       "description": "The request to analyze healthcare entities in a document.",
       "id": "AnalyzeEntitiesRequest",
       "properties": {
+        "alternativeOutputFormat": {
+          "description": "Optional. Alternative output format to be generated based on the results of analysis.",
+          "enum": [
+            "ALTERNATIVE_OUTPUT_FORMAT_UNSPECIFIED",
+            "FHIR_BUNDLE"
+          ],
+          "enumDescriptions": [
+            "No alternative output format is specified.",
+            "FHIR bundle output."
+          ],
+          "type": "string"
+        },
         "documentContent": {
           "description": "document_content is a document to be annotated.",
           "type": "string"
@@ -4147,6 +4159,10 @@
             "$ref": "EntityMention"
           },
           "type": "array"
+        },
+        "fhirBundle": {
+          "description": "The FHIR bundle ([`R4`](http://hl7.org/fhir/R4/bundle.html)) that includes all the entities, the entity mentions, and the relationships in JSON format.",
+          "type": "string"
         },
         "relationships": {
           "description": "relationships contains all the binary relationships that were identified between entity mentions within the provided document.",
@@ -5192,6 +5208,7 @@
         },
         "notificationConfig": {
           "$ref": "NotificationConfig",
+          "deprecated": true,
           "description": "Deprecated. Use `notification_configs` instead. If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, \"action\":\"CreateResource\"."
         },
         "notificationConfigs": {

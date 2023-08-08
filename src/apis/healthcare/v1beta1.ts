@@ -187,6 +187,10 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$AnalyzeEntitiesRequest {
     /**
+     * Optional. Alternative output format to be generated based on the results of analysis.
+     */
+    alternativeOutputFormat?: string | null;
+    /**
      * document_content is a document to be annotated.
      */
     documentContent?: string | null;
@@ -207,6 +211,10 @@ export namespace healthcare_v1beta1 {
      * The `entity_mentions` field contains all the annotated medical entities that were mentioned in the provided document.
      */
     entityMentions?: Schema$EntityMention[];
+    /**
+     * The FHIR bundle ([`R4`](http://hl7.org/fhir/R4/bundle.html)) that includes all the entities, the entity mentions, and the relationships in JSON format.
+     */
+    fhirBundle?: string | null;
     /**
      * relationships contains all the binary relationships that were identified between entity mentions within the provided document.
      */
@@ -707,7 +715,7 @@ export namespace healthcare_v1beta1 {
      */
     text?: Schema$TextConfig;
     /**
-     * Ensures in-flight data remains in the region of origin during de-identification. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. If the deprecated [`DicomConfig`](google.cloud.healthcare.v1beta1.deidentify.DeidentifyConfig.dicom_config) or [`FhirConfig`](google.cloud.healthcare.v1beta1.deidentify.DeidentifyConfig.fhir_config) are used, then `LOCATION` must be excluded within `TextConfig`, and must also be excluded within `ImageConfig` if image redaction is required.
+     * Ensures in-flight data remains in the region of origin during de-identification. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. If the deprecated `DicomConfig` or `FhirConfig` are used, then `LOCATION` must be excluded within `TextConfig`, and must also be excluded within `ImageConfig` if image redaction is required.
      */
     useRegionalDataProcessing?: boolean | null;
   }
@@ -25870,6 +25878,7 @@ export namespace healthcare_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "alternativeOutputFormat": "my_alternativeOutputFormat",
      *       //   "documentContent": "my_documentContent",
      *       //   "licensedVocabularies": []
      *       // }
@@ -25881,6 +25890,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "entities": [],
      *   //   "entityMentions": [],
+     *   //   "fhirBundle": "my_fhirBundle",
      *   //   "relationships": []
      *   // }
      * }

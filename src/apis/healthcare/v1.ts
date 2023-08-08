@@ -146,6 +146,10 @@ export namespace healthcare_v1 {
    */
   export interface Schema$AnalyzeEntitiesRequest {
     /**
+     * Optional. Alternative output format to be generated based on the results of analysis.
+     */
+    alternativeOutputFormat?: string | null;
+    /**
      * document_content is a document to be annotated.
      */
     documentContent?: string | null;
@@ -166,6 +170,10 @@ export namespace healthcare_v1 {
      * The `entity_mentions` field contains all the annotated medical entities that were mentioned in the provided document.
      */
     entityMentions?: Schema$EntityMention[];
+    /**
+     * The FHIR bundle ([`R4`](http://hl7.org/fhir/R4/bundle.html)) that includes all the entities, the entity mentions, and the relationships in JSON format.
+     */
+    fhirBundle?: string | null;
     /**
      * relationships contains all the binary relationships that were identified between entity mentions within the provided document.
      */
@@ -21304,6 +21312,7 @@ export namespace healthcare_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "alternativeOutputFormat": "my_alternativeOutputFormat",
      *       //   "documentContent": "my_documentContent",
      *       //   "licensedVocabularies": []
      *       // }
@@ -21315,6 +21324,7 @@ export namespace healthcare_v1 {
      *   // {
      *   //   "entities": [],
      *   //   "entityMentions": [],
+     *   //   "fhirBundle": "my_fhirBundle",
      *   //   "relationships": []
      *   // }
      * }
