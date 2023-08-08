@@ -306,6 +306,11 @@
               "location": "query",
               "type": "string"
             },
+            "internalDebuggingConfig": {
+              "description": "The config used in internal debugging and manual testing. Use comma to separate multiple values. Examples: To allow entity search to go through tangle `searchUsingTangle` To get only the advertiser Ids use `idOnly`",
+              "location": "query",
+              "type": "string"
+            },
             "orderBy": {
               "description": "Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. For example, `displayName desc`.",
               "location": "query",
@@ -8152,7 +8157,7 @@
       }
     }
   },
-  "revision": "20230713",
+  "revision": "20230803",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -14226,12 +14231,18 @@
           "description": "The bidding strategy of the insertion order. By default, fixed_bid is set."
         },
         "billableOutcome": {
-          "description": "Immutable. The billable outcome of the insertion order. Outcome based buying will be deprecated on **August 1, 2023**. Read more on our [Announced Deprecations page](/display-video/api/deprecations#features.obb).",
+          "description": "Immutable. The billable outcome of the insertion order. Outcome based buying is deprecated. `BILLABLE_OUTCOME_PAY_PER_IMPRESSION` is the only valid value.",
           "enum": [
             "BILLABLE_OUTCOME_UNSPECIFIED",
             "BILLABLE_OUTCOME_PAY_PER_IMPRESSION",
             "BILLABLE_OUTCOME_PAY_PER_CLICK",
             "BILLABLE_OUTCOME_PAY_PER_VIEWABLE_IMPRESSION"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true
           ],
           "enumDescriptions": [
             "Unspecified billable outcome.",
@@ -15493,7 +15504,8 @@
               "CREATIVE_SIZE_NOT_IN_USE_FOR_TARGETED_DEALS",
               "NO_CREATIVE_FOR_TARGETED_DEALS",
               "TARGETING_DEPRECATED_GEO_TARGET",
-              "DEPRECATED_FIRST_PARTY_AUDIENCE_EXCLUSION"
+              "DEPRECATED_FIRST_PARTY_AUDIENCE_EXCLUSION",
+              "NO_INPUT_REVENUE_MODEL_TYPE_SPECIFIED"
             ],
             "enumDescriptions": [
               "Not specified or is unknown.",
@@ -15514,7 +15526,8 @@
               "Deals targeted by this line item accept creative sizes which are not in use. This may limit the line item's delivery or performance.",
               "This line item does not contain any creative for the targeted deals.",
               "This line item targets a geo target that is deprecated.",
-              "This line item uses the exclude_first_party_audience setting, which is deprecated and scheduled to sunset after **March 25, 2023**. Update your API integration to directly exclude any first-party audiences using audience targeting before **March 25, 2023** to account for the sunset of the exclude_first_party_audience field."
+              "This line item uses the exclude_first_party_audience setting, which is deprecated and scheduled to sunset after **March 25, 2023**. Update your API integration to directly exclude any first-party audiences using audience targeting before **March 25, 2023** to account for the sunset of the exclude_first_party_audience field.",
+              "The partner revenue model of the line item was updated without specifying the revenue model type, which is required for updating any of the revenue model fields."
             ],
             "type": "string"
           },
@@ -16736,7 +16749,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },

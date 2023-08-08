@@ -58,7 +58,7 @@ export function displayvideo<
     | displayvideo_v1beta.Displayvideo
     | displayvideo_v1beta2.Displayvideo
     | displayvideo_v1dev.Displayvideo
-    | displayvideo_v2.Displayvideo
+    | displayvideo_v2.Displayvideo,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
