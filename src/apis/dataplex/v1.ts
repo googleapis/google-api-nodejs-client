@@ -711,6 +711,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResult {
     /**
+     * Output only. The result of post scan actions.
+     */
+    postScanActionsResult?: Schema$GoogleCloudDataplexV1DataProfileResultPostScanActionsResult;
+    /**
      * The profile information per field.
      */
     profile?: Schema$GoogleCloudDataplexV1DataProfileResultProfile;
@@ -722,6 +726,28 @@ export namespace dataplex_v1 {
      * The data scanned for this result.
      */
     scannedData?: Schema$GoogleCloudDataplexV1ScannedData;
+  }
+  /**
+   * The result of post scan actions of DataProfileScan job.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataProfileResultPostScanActionsResult {
+    /**
+     * Output only. The result of BigQuery export post scan action.
+     */
+    bigqueryExportResult?: Schema$GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult;
+  }
+  /**
+   * The result of BigQuery export post scan action.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult {
+    /**
+     * Output only. Additional information about the BigQuery exporting.
+     */
+    message?: string | null;
+    /**
+     * Output only. Execution state for the BigQuery exporting.
+     */
+    state?: string | null;
   }
   /**
    * Contains name, type, mode and field type specific profile information.
@@ -879,6 +905,10 @@ export namespace dataplex_v1 {
      */
     includeFields?: Schema$GoogleCloudDataplexV1DataProfileSpecSelectedFields;
     /**
+     * Optional. Actions to take upon job completion..
+     */
+    postScanActions?: Schema$GoogleCloudDataplexV1DataProfileSpecPostScanActions;
+    /**
      * Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in BigQuery standard SQL syntax. Example: col1 \>= 0 AND col2 < 10
      */
     rowFilter?: string | null;
@@ -886,6 +916,24 @@ export namespace dataplex_v1 {
      * Optional. The percentage of the records to be selected from the dataset for DataScan. Value can range between 0.0 and 100.0 with up to 3 significant decimal digits. Sampling is not applied if sampling_percent is not specified, 0 or 100.
      */
     samplingPercent?: number | null;
+  }
+  /**
+   * The configuration of post scan actions of DataProfileScan job.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataProfileSpecPostScanActions {
+    /**
+     * Optional. If set, results will be exported to the provided BigQuery table.
+     */
+    bigqueryExport?: Schema$GoogleCloudDataplexV1DataProfileSpecPostScanActionsBigQueryExport;
+  }
+  /**
+   * The configuration of BigQuery export post scan action.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataProfileSpecPostScanActionsBigQueryExport {
+    /**
+     * Optional. The BigQuery table to export DataProfileScan results to. Format: projects/{project\}/datasets/{dataset\}/tables/{table\}
+     */
+    resultsTable?: string | null;
   }
   /**
    * The specification for fields to include or exclude in data profile scan.
@@ -918,6 +966,10 @@ export namespace dataplex_v1 {
      */
     passed?: boolean | null;
     /**
+     * Output only. The result of post scan actions.
+     */
+    postScanActionsResult?: Schema$GoogleCloudDataplexV1DataQualityResultPostScanActionsResult;
+    /**
      * The count of rows processed.
      */
     rowCount?: string | null;
@@ -929,6 +981,28 @@ export namespace dataplex_v1 {
      * The data scanned for this result.
      */
     scannedData?: Schema$GoogleCloudDataplexV1ScannedData;
+  }
+  /**
+   * The result of post scan actions of DataQualityScan job.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualityResultPostScanActionsResult {
+    /**
+     * Output only. The result of BigQuery export post scan action.
+     */
+    bigqueryExportResult?: Schema$GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult;
+  }
+  /**
+   * The result of BigQuery export post scan action.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult {
+    /**
+     * Output only. Additional information about the BigQuery exporting.
+     */
+    message?: string | null;
+    /**
+     * Output only. Execution state for the BigQuery exporting.
+     */
+    state?: string | null;
   }
   /**
    * A rule captures data quality intent about a data source.
@@ -987,7 +1061,7 @@ export namespace dataplex_v1 {
      */
     threshold?: number | null;
     /**
-     * Aggregate rule which evaluates whether the column has duplicates.
+     * Row-level rule which evaluates whether each column value is unique.
      */
     uniquenessExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation;
   }
@@ -1021,7 +1095,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleRegexExpectation {
     /**
-     * A regular expression the column value is expected to match.
+     * Optional. A regular expression the column value is expected to match.
      */
     regex?: string | null;
   }
@@ -1063,7 +1137,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation {
     /**
-     * The SQL expression.
+     * Optional. The SQL expression.
      */
     sqlExpression?: string | null;
   }
@@ -1072,7 +1146,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleSetExpectation {
     /**
-     * Expected values for the column value.
+     * Optional. Expected values for the column value.
      */
     values?: string[] | null;
   }
@@ -1081,23 +1155,23 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation {
     /**
-     * The maximum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.
+     * Optional. The maximum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.
      */
     maxValue?: string | null;
     /**
-     * The minimum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.
+     * Optional. The minimum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.
      */
     minValue?: string | null;
     /**
-     * The aggregate metric to evaluate.
+     * Optional. The aggregate metric to evaluate.
      */
     statistic?: string | null;
     /**
-     * Whether column statistic needs to be strictly lesser than ('<') the maximum, or if equality is allowed.Only relevant if a max_value has been defined. Default = false.
+     * Optional. Whether column statistic needs to be strictly lesser than ('<') the maximum, or if equality is allowed.Only relevant if a max_value has been defined. Default = false.
      */
     strictMaxEnabled?: boolean | null;
     /**
-     * Whether column statistic needs to be strictly greater than ('\>') the minimum, or if equality is allowed.Only relevant if a min_value has been defined. Default = false.
+     * Optional. Whether column statistic needs to be strictly greater than ('\>') the minimum, or if equality is allowed.Only relevant if a min_value has been defined. Default = false.
      */
     strictMinEnabled?: boolean | null;
   }
@@ -1106,7 +1180,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation {
     /**
-     * The SQL expression.
+     * Optional. The SQL expression.
      */
     sqlExpression?: string | null;
   }
@@ -1172,17 +1246,39 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualitySpec {
     /**
+     * Optional. Actions to take upon job completion.
+     */
+    postScanActions?: Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActions;
+    /**
      * Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in BigQuery standard SQL syntax. Example: col1 \>= 0 AND col2 < 10
      */
     rowFilter?: string | null;
     /**
-     * The list of rules to evaluate against a data source. At least one rule is required.
+     * Required. The list of rules to evaluate against a data source. At least one rule is required.
      */
     rules?: Schema$GoogleCloudDataplexV1DataQualityRule[];
     /**
      * Optional. The percentage of the records to be selected from the dataset for DataScan. Value can range between 0.0 and 100.0 with up to 3 significant decimal digits. Sampling is not applied if sampling_percent is not specified, 0 or 100.
      */
     samplingPercent?: number | null;
+  }
+  /**
+   * The configuration of post scan actions of DataQualityScan.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActions {
+    /**
+     * Optional. If set, results will be exported to the provided BigQuery table.
+     */
+    bigqueryExport?: Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport;
+  }
+  /**
+   * The configuration of BigQuery export post scan action.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport {
+    /**
+     * Optional. The BigQuery table to export DataQualityScan results to. Format: projects/{project\}/datasets/{dataset\}/tables/{table\}
+     */
+    resultsTable?: string | null;
   }
   /**
    * Represents a user-visible job which provides the insights for the related data source.For example: Data Quality: generates queries based on the rules and runs against the data to get data quality check results. Data Profile: analyzes the data in table(s) and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc).
@@ -1254,9 +1350,13 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * These messages contain information about the execution of a datascan. The monitored resource is 'DataScan'
+   * These messages contain information about the execution of a datascan. The monitored resource is 'DataScan' Next ID: 13
    */
   export interface Schema$GoogleCloudDataplexV1DataScanEvent {
+    /**
+     * The time when the data scan job was created.
+     */
+    createTime?: string | null;
     /**
      * Data profile result for data profile type data scan.
      */
@@ -1492,6 +1592,10 @@ export namespace dataplex_v1 {
      * Output only. The number of attributes in the DataTaxonomy.
      */
     attributeCount?: number | null;
+    /**
+     * Output only. The number of classes in the DataTaxonomy.
+     */
+    classCount?: number | null;
     /**
      * Output only. The time when the DataTaxonomy was created.
      */
@@ -7247,6 +7351,7 @@ export namespace dataplex_v1 {
      *       // request body parameters
      *       // {
      *       //   "attributeCount": 0,
+     *       //   "classCount": 0,
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
@@ -7542,6 +7647,7 @@ export namespace dataplex_v1 {
      *   // Example response
      *   // {
      *   //   "attributeCount": 0,
+     *   //   "classCount": 0,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -7978,6 +8084,7 @@ export namespace dataplex_v1 {
      *       // request body parameters
      *       // {
      *       //   "attributeCount": 0,
+     *       //   "classCount": 0,
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",

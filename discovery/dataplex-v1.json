@@ -4269,7 +4269,7 @@
       }
     }
   },
-  "revision": "20230709",
+  "revision": "20230801",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -5120,6 +5120,11 @@
       "description": "DataProfileResult defines the output of DataProfileScan. Each field of the table will have field type specific profile result.",
       "id": "GoogleCloudDataplexV1DataProfileResult",
       "properties": {
+        "postScanActionsResult": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResultPostScanActionsResult",
+          "description": "Output only. The result of post scan actions.",
+          "readOnly": true
+        },
         "profile": {
           "$ref": "GoogleCloudDataplexV1DataProfileResultProfile",
           "description": "The profile information per field."
@@ -5132,6 +5137,47 @@
         "scannedData": {
           "$ref": "GoogleCloudDataplexV1ScannedData",
           "description": "The data scanned for this result."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataProfileResultPostScanActionsResult": {
+      "description": "The result of post scan actions of DataProfileScan job.",
+      "id": "GoogleCloudDataplexV1DataProfileResultPostScanActionsResult",
+      "properties": {
+        "bigqueryExportResult": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult",
+          "description": "Output only. The result of BigQuery export post scan action.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult": {
+      "description": "The result of BigQuery export post scan action.",
+      "id": "GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult",
+      "properties": {
+        "message": {
+          "description": "Output only. Additional information about the BigQuery exporting.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Execution state for the BigQuery exporting.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED",
+            "SKIPPED"
+          ],
+          "enumDescriptions": [
+            "The exporting state is unspecified.",
+            "The exporting completed successfully.",
+            "The exporting is no longer running due to an error.",
+            "The exporting is skipped due to no valid scan result to export (usually caused by scan failed)."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -5334,6 +5380,10 @@
           "$ref": "GoogleCloudDataplexV1DataProfileSpecSelectedFields",
           "description": "Optional. The fields to include in data profile.If not specified, all fields at the time of profile scan job execution are included, except for ones listed in exclude_fields."
         },
+        "postScanActions": {
+          "$ref": "GoogleCloudDataplexV1DataProfileSpecPostScanActions",
+          "description": "Optional. Actions to take upon job completion.."
+        },
         "rowFilter": {
           "description": "Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in BigQuery standard SQL syntax. Example: col1 >= 0 AND col2 < 10",
           "type": "string"
@@ -5342,6 +5392,28 @@
           "description": "Optional. The percentage of the records to be selected from the dataset for DataScan. Value can range between 0.0 and 100.0 with up to 3 significant decimal digits. Sampling is not applied if sampling_percent is not specified, 0 or 100.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataProfileSpecPostScanActions": {
+      "description": "The configuration of post scan actions of DataProfileScan job.",
+      "id": "GoogleCloudDataplexV1DataProfileSpecPostScanActions",
+      "properties": {
+        "bigqueryExport": {
+          "$ref": "GoogleCloudDataplexV1DataProfileSpecPostScanActionsBigQueryExport",
+          "description": "Optional. If set, results will be exported to the provided BigQuery table."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataProfileSpecPostScanActionsBigQueryExport": {
+      "description": "The configuration of BigQuery export post scan action.",
+      "id": "GoogleCloudDataplexV1DataProfileSpecPostScanActionsBigQueryExport",
+      "properties": {
+        "resultsTable": {
+          "description": "Optional. The BigQuery table to export DataProfileScan results to. Format: projects/{project}/datasets/{dataset}/tables/{table}",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5386,6 +5458,11 @@
           "description": "Overall data quality result -- true if all rules passed.",
           "type": "boolean"
         },
+        "postScanActionsResult": {
+          "$ref": "GoogleCloudDataplexV1DataQualityResultPostScanActionsResult",
+          "description": "Output only. The result of post scan actions.",
+          "readOnly": true
+        },
         "rowCount": {
           "description": "The count of rows processed.",
           "format": "int64",
@@ -5401,6 +5478,47 @@
         "scannedData": {
           "$ref": "GoogleCloudDataplexV1ScannedData",
           "description": "The data scanned for this result."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityResultPostScanActionsResult": {
+      "description": "The result of post scan actions of DataQualityScan job.",
+      "id": "GoogleCloudDataplexV1DataQualityResultPostScanActionsResult",
+      "properties": {
+        "bigqueryExportResult": {
+          "$ref": "GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult",
+          "description": "Output only. The result of BigQuery export post scan action.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult": {
+      "description": "The result of BigQuery export post scan action.",
+      "id": "GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult",
+      "properties": {
+        "message": {
+          "description": "Output only. Additional information about the BigQuery exporting.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Execution state for the BigQuery exporting.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED",
+            "SKIPPED"
+          ],
+          "enumDescriptions": [
+            "The exporting state is unspecified.",
+            "The exporting completed successfully.",
+            "The exporting is no longer running due to an error.",
+            "The exporting is skipped due to no valid scan result to export (usually caused by scan failed)."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -5464,7 +5582,7 @@
         },
         "uniquenessExpectation": {
           "$ref": "GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation",
-          "description": "Aggregate rule which evaluates whether the column has duplicates."
+          "description": "Row-level rule which evaluates whether each column value is unique."
         }
       },
       "type": "object"
@@ -5503,7 +5621,7 @@
       "id": "GoogleCloudDataplexV1DataQualityRuleRegexExpectation",
       "properties": {
         "regex": {
-          "description": "A regular expression the column value is expected to match.",
+          "description": "Optional. A regular expression the column value is expected to match.",
           "type": "string"
         }
       },
@@ -5553,7 +5671,7 @@
       "id": "GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation",
       "properties": {
         "sqlExpression": {
-          "description": "The SQL expression.",
+          "description": "Optional. The SQL expression.",
           "type": "string"
         }
       },
@@ -5564,7 +5682,7 @@
       "id": "GoogleCloudDataplexV1DataQualityRuleSetExpectation",
       "properties": {
         "values": {
-          "description": "Expected values for the column value.",
+          "description": "Optional. Expected values for the column value.",
           "items": {
             "type": "string"
           },
@@ -5578,15 +5696,15 @@
       "id": "GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation",
       "properties": {
         "maxValue": {
-          "description": "The maximum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.",
+          "description": "Optional. The maximum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.",
           "type": "string"
         },
         "minValue": {
-          "description": "The minimum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.",
+          "description": "Optional. The minimum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.",
           "type": "string"
         },
         "statistic": {
-          "description": "The aggregate metric to evaluate.",
+          "description": "Optional. The aggregate metric to evaluate.",
           "enum": [
             "STATISTIC_UNDEFINED",
             "MEAN",
@@ -5602,11 +5720,11 @@
           "type": "string"
         },
         "strictMaxEnabled": {
-          "description": "Whether column statistic needs to be strictly lesser than ('<') the maximum, or if equality is allowed.Only relevant if a max_value has been defined. Default = false.",
+          "description": "Optional. Whether column statistic needs to be strictly lesser than ('<') the maximum, or if equality is allowed.Only relevant if a max_value has been defined. Default = false.",
           "type": "boolean"
         },
         "strictMinEnabled": {
-          "description": "Whether column statistic needs to be strictly greater than ('>') the minimum, or if equality is allowed.Only relevant if a min_value has been defined. Default = false.",
+          "description": "Optional. Whether column statistic needs to be strictly greater than ('>') the minimum, or if equality is allowed.Only relevant if a min_value has been defined. Default = false.",
           "type": "boolean"
         }
       },
@@ -5617,7 +5735,7 @@
       "id": "GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation",
       "properties": {
         "sqlExpression": {
-          "description": "The SQL expression.",
+          "description": "Optional. The SQL expression.",
           "type": "string"
         }
       },
@@ -5734,12 +5852,16 @@
       "description": "DataQualityScan related setting.",
       "id": "GoogleCloudDataplexV1DataQualitySpec",
       "properties": {
+        "postScanActions": {
+          "$ref": "GoogleCloudDataplexV1DataQualitySpecPostScanActions",
+          "description": "Optional. Actions to take upon job completion."
+        },
         "rowFilter": {
           "description": "Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in BigQuery standard SQL syntax. Example: col1 >= 0 AND col2 < 10",
           "type": "string"
         },
         "rules": {
-          "description": "The list of rules to evaluate against a data source. At least one rule is required.",
+          "description": "Required. The list of rules to evaluate against a data source. At least one rule is required.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataQualityRule"
           },
@@ -5749,6 +5871,28 @@
           "description": "Optional. The percentage of the records to be selected from the dataset for DataScan. Value can range between 0.0 and 100.0 with up to 3 significant decimal digits. Sampling is not applied if sampling_percent is not specified, 0 or 100.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualitySpecPostScanActions": {
+      "description": "The configuration of post scan actions of DataQualityScan.",
+      "id": "GoogleCloudDataplexV1DataQualitySpecPostScanActions",
+      "properties": {
+        "bigqueryExport": {
+          "$ref": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport",
+          "description": "Optional. If set, results will be exported to the provided BigQuery table."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport": {
+      "description": "The configuration of BigQuery export post scan action.",
+      "id": "GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport",
+      "properties": {
+        "resultsTable": {
+          "description": "Optional. The BigQuery table to export DataQualityScan results to. Format: projects/{project}/datasets/{dataset}/tables/{table}",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5863,9 +6007,14 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataScanEvent": {
-      "description": "These messages contain information about the execution of a datascan. The monitored resource is 'DataScan'",
+      "description": "These messages contain information about the execution of a datascan. The monitored resource is 'DataScan' Next ID: 13",
       "id": "GoogleCloudDataplexV1DataScanEvent",
       "properties": {
+        "createTime": {
+          "description": "The time when the data scan job was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "dataProfile": {
           "$ref": "GoogleCloudDataplexV1DataScanEventDataProfileResult",
           "description": "Data profile result for data profile type data scan."
@@ -5933,14 +6082,16 @@
             "STARTED",
             "SUCCEEDED",
             "FAILED",
-            "CANCELLED"
+            "CANCELLED",
+            "CREATED"
           ],
           "enumDescriptions": [
             "Unspecified job state.",
-            "Data scan started.",
-            "Data scan successfully completed.",
-            "Data scan was unsuccessful.",
-            "Data scan was cancelled."
+            "Data scan job started.",
+            "Data scan job successfully completed.",
+            "Data scan job was unsuccessful.",
+            "Data scan job was cancelled.",
+            "Data scan job was createed."
           ],
           "type": "string"
         },
@@ -6229,6 +6380,12 @@
       "properties": {
         "attributeCount": {
           "description": "Output only. The number of attributes in the DataTaxonomy.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "classCount": {
+          "description": "Output only. The number of classes in the DataTaxonomy.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
