@@ -987,7 +987,7 @@
     "installs": {
       "methods": {
         "delete": {
-          "description": "Requests to remove an app from a device. A call to get or list will still show the app as installed on the device until it is actually removed.",
+          "description": "Requests to remove an app from a device. A call to get or list will still show the app as installed on the device until it is actually removed. A successful response indicates that a removal request has been sent to the device. The call will be considered successful even if the app is not present on the device (e.g. it was never installed, or was removed by the user).",
           "flatPath": "androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}",
           "httpMethod": "DELETE",
           "id": "androidenterprise.installs.delete",
@@ -2649,7 +2649,7 @@
       }
     }
   },
-  "revision": "20230713",
+  "revision": "20230802",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
