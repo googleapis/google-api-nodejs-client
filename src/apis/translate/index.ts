@@ -40,7 +40,7 @@ export function translate<
   T =
     | translate_v2.Translate
     | translate_v3.Translate
-    | translate_v3beta1.Translate
+    | translate_v3beta1.Translate,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
