@@ -133,9 +133,17 @@ export namespace firestore_v1 {
      */
     alias?: string | null;
     /**
+     * Average aggregator.
+     */
+    avg?: Schema$Avg;
+    /**
      * Count aggregator.
      */
     count?: Schema$Count;
+    /**
+     * Sum aggregator.
+     */
+    sum?: Schema$Sum;
   }
   /**
    * The result of a single bucket from a Firestore aggregation query. The keys of `aggregate_fields` are the same for all results in an aggregation query, unlike document queries which can have different fields present for each result.
@@ -156,6 +164,15 @@ export namespace firestore_v1 {
     values?: Schema$Value[];
   }
   /**
+   * Average of the values of the requested field. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. * If the aggregated value set is empty, returns `NULL`. * Always returns the result as a double.
+   */
+  export interface Schema$Avg {
+    /**
+     * The field to aggregate on.
+     */
+    field?: Schema$FieldReference;
+  }
+  /**
    * The request for Firestore.BatchGetDocuments.
    */
   export interface Schema$BatchGetDocumentsRequest {
@@ -172,7 +189,7 @@ export namespace firestore_v1 {
      */
     newTransaction?: Schema$TransactionOptions;
     /**
-     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     * Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
     /**
@@ -457,7 +474,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$ExistenceFilter {
     /**
-     * The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target. The client can use the `unchanged_names` bloom filter to assist with this determination.
+     * The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target. The client can use the `unchanged_names` bloom filter to assist with this determination by testing ALL the document names against the filter; if the document name is NOT in the filter, it means the document no longer matches the target.
      */
     count?: number | null;
     /**
@@ -465,7 +482,7 @@ export namespace firestore_v1 {
      */
     targetId?: number | null;
     /**
-     * A bloom filter that contains the UTF-8 byte encodings of the resource names of the documents that match target_id, in the form `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}` that have NOT changed since the query results indicated by the resume token or timestamp given in `Target.resume_type`. This bloom filter may be omitted at the server's discretion, such as if it is deemed that the client will not make use of it or if it is too computationally expensive to calculate or transmit. Clients must gracefully handle this field being absent by falling back to the logic used before this field existed; that is, re-add the target without a resume token to figure out which documents in the client's cache are out of sync.
+     * A bloom filter that, despite its name, contains the UTF-8 byte encodings of the resource names of ALL the documents that match target_id, in the form `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. This bloom filter may be omitted at the server's discretion, such as if it is deemed that the client will not make use of it or if it is too computationally expensive to calculate or transmit. Clients must gracefully handle this field being absent by falling back to the logic used before this field existed; that is, re-add the target without a resume token to figure out which documents in the client's cache are out of sync.
      */
     unchangedNames?: Schema$BloomFilter;
   }
@@ -595,7 +612,7 @@ export namespace firestore_v1 {
      */
     name?: string | null;
     /**
-     * At what relative time in the future, compared to the creation time of the backup should the backup be deleted, i.e. keep backups for 7 days.
+     * At what relative time in the future, compared to its creation time, the backup should be deleted, e.g. keep backups for 7 days.
      */
     retention?: string | null;
     /**
@@ -704,6 +721,10 @@ export namespace firestore_v1 {
      * The progress, in documents, of this operation.
      */
     progressDocuments?: Schema$GoogleFirestoreAdminV1Progress;
+    /**
+     * The timestamp that corresponds to the version of the database that is being exported. If unspecified, there are no guarantees about the consistency of the documents being exported.
+     */
+    snapshotTime?: string | null;
     /**
      * The time this operation started.
      */
@@ -1047,6 +1068,10 @@ export namespace firestore_v1 {
      */
     operationState?: string | null;
     /**
+     * How far along the restore is as an estimated percentage of remaining time.
+     */
+    progressPercentage?: Schema$GoogleFirestoreAdminV1Progress;
+    /**
      * The time the restore was started.
      */
     startTime?: string | null;
@@ -1180,7 +1205,7 @@ export namespace firestore_v1 {
      */
     pageToken?: string | null;
     /**
-     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     * Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
   }
@@ -1329,7 +1354,7 @@ export namespace firestore_v1 {
      */
     partitionCount?: string | null;
     /**
-     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     * Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
     /**
@@ -1390,7 +1415,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$ReadOnly {
     /**
-     * Reads documents at the given time. This may not be older than 60 seconds.
+     * Reads documents at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
   }
@@ -1421,7 +1446,7 @@ export namespace firestore_v1 {
      */
     newTransaction?: Schema$TransactionOptions;
     /**
-     * Executes the query at the given timestamp. Requires: * Cannot be more than 270 seconds in the past.
+     * Executes the query at the given timestamp. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
     /**
@@ -1459,7 +1484,7 @@ export namespace firestore_v1 {
      */
     newTransaction?: Schema$TransactionOptions;
     /**
-     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     * Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string | null;
     /**
@@ -1562,6 +1587,15 @@ export namespace firestore_v1 {
      * The filter to apply.
      */
     where?: Schema$Filter;
+  }
+  /**
+   * Sum of the values of the requested field. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. * If the aggregated value set is empty, returns 0. * Returns a 64-bit integer if the sum result is an integer value and does not overflow. Otherwise, the result is returned as a double. Note that even if all the aggregated values are integers, the result is returned as a double if it cannot fit within a 64-bit signed integer. When this occurs, the returned value will lose precision. * When underflow occurs, floating-point aggregation is non-deterministic. This means that running the same query repeatedly without any changes to the underlying values could produce slightly different results each time. In those cases, values should be stored as integers over floating-point numbers.
+   */
+  export interface Schema$Sum {
+    /**
+     * The field to aggregate on.
+     */
+    field?: Schema$FieldReference;
   }
   /**
    * A specification of a set of documents to listen to.
@@ -5966,7 +6000,7 @@ export namespace firestore_v1 {
      *     'mask.fieldPaths': 'placeholder-value',
      *     // Required. The resource name of the Document to get. In the format: `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
      *     name: 'projects/my-project/databases/my-database/documents/my-document/.*',
-     *     // Reads the version of the document at the given time. This may not be older than 270 seconds.
+     *     // Reads the version of the document at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      *     readTime: 'placeholder-value',
      *     // Reads the document in a transaction.
      *     transaction: 'placeholder-value',
@@ -6113,7 +6147,7 @@ export namespace firestore_v1 {
      *     // Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     parent:
      *       'projects/my-project/databases/my-database/documents/my-document/.*',
-     *     // Perform the read at the provided time. This may not be older than 270 seconds.
+     *     // Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      *     readTime: 'placeholder-value',
      *     // If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
@@ -6419,7 +6453,7 @@ export namespace firestore_v1 {
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     parent: 'projects/my-project/databases/my-database/documents',
-     *     // Perform the read at the provided time. This may not be older than 270 seconds.
+     *     // Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      *     readTime: 'placeholder-value',
      *     // If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
@@ -7670,7 +7704,7 @@ export namespace firestore_v1 {
      */
     name?: string;
     /**
-     * Reads the version of the document at the given time. This may not be older than 270 seconds.
+     * Reads the version of the document at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string;
     /**
@@ -7705,7 +7739,7 @@ export namespace firestore_v1 {
      */
     parent?: string;
     /**
-     * Perform the read at the provided time. This may not be older than 270 seconds.
+     * Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string;
     /**
@@ -7756,7 +7790,7 @@ export namespace firestore_v1 {
      */
     parent?: string;
     /**
-     * Perform the read at the provided time. This may not be older than 270 seconds.
+     * Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
      */
     readTime?: string;
     /**

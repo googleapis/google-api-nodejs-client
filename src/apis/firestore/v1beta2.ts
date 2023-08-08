@@ -416,6 +416,19 @@ export namespace firestore_v1beta2 {
     estimatedWork?: string | null;
   }
   /**
+   * Describes the progress of the operation. Unit of work is generic and must be interpreted based on where Progress is used.
+   */
+  export interface Schema$GoogleFirestoreAdminV1Progress {
+    /**
+     * The amount of work completed.
+     */
+    completedWork?: string | null;
+    /**
+     * The amount of work estimated.
+     */
+    estimatedWork?: string | null;
+  }
+  /**
    * Metadata for the long-running operation from the RestoreDatabase request.
    */
   export interface Schema$GoogleFirestoreAdminV1RestoreDatabaseMetadata {
@@ -435,6 +448,10 @@ export namespace firestore_v1beta2 {
      * The operation state of the restore.
      */
     operationState?: string | null;
+    /**
+     * How far along the restore is as an estimated percentage of remaining time.
+     */
+    progressPercentage?: Schema$GoogleFirestoreAdminV1Progress;
     /**
      * The time the restore was started.
      */
