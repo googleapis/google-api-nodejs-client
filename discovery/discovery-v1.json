@@ -401,6 +401,32 @@
           "description": "A link to human readable documentation for the API.",
           "type": "string"
         },
+        "endpoints": {
+          "description": "A list of location-based endpoint objects for this API. Each object contains the endpoint URL, location, description and deprecation status.",
+          "items": {
+            "description": "A single endpoint object",
+            "properties": {
+              "deprecated": {
+                "description": "Whether this endpoint is deprecated",
+                "type": "boolean"
+              },
+              "description": {
+                "description": "A string describing the host designated by the URL",
+                "type": "string"
+              },
+              "endpointUrl": {
+                "description": "The URL of the endpoint target host",
+                "type": "string"
+              },
+              "location": {
+                "description": "The location of the endpoint",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
         "etag": {
           "description": "The ETag for this response.",
           "readOnly": true,
