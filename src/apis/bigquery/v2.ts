@@ -2560,6 +2560,10 @@ export namespace bigquery_v2 {
      * Information for all training runs in increasing order of start_time.
      */
     trainingRuns?: Schema$TrainingRun[];
+    /**
+     * Output only. This field will be populated if a TRANSFORM clause was used to train a model. TRANSFORM clause (if used) takes feature_columns as input and outputs transform_columns. transform_columns then are used to train the model.
+     */
+    transformColumns?: Schema$TransformColumn[];
   }
   export interface Schema$ModelDefinition {
     /**
@@ -4128,6 +4132,23 @@ export namespace bigquery_v2 {
      * [Output-only] // [Alpha] Id of the transaction.
      */
     transactionId?: string | null;
+  }
+  /**
+   * Information about a single transform column.
+   */
+  export interface Schema$TransformColumn {
+    /**
+     * Output only. Name of the column.
+     */
+    name?: string | null;
+    /**
+     * Output only. The SQL expression used in the column transform.
+     */
+    transformSql?: string | null;
+    /**
+     * Output only. Data type of the column after the transform.
+     */
+    type?: Schema$StandardSqlDataType;
   }
   /**
    * This is used for defining User Defined Function (UDF) resources only when using legacy SQL. Users of Standard SQL should leverage either DDL (e.g. CREATE [TEMPORARY] FUNCTION ... ) or the Routines API to define UDF resources. For additional information on migrating, see: https://cloud.google.com/bigquery/docs/reference/standard-sql/migrating-from-legacy-sql#differences_in_user-defined_javascript_functions
@@ -6629,7 +6650,8 @@ export namespace bigquery_v2 {
      *   //   "modelType": "my_modelType",
      *   //   "optimalTrialIds": [],
      *   //   "remoteModelInfo": {},
-     *   //   "trainingRuns": []
+     *   //   "trainingRuns": [],
+     *   //   "transformColumns": []
      *   // }
      * }
      *
@@ -6925,7 +6947,8 @@ export namespace bigquery_v2 {
      *       //   "modelType": "my_modelType",
      *       //   "optimalTrialIds": [],
      *       //   "remoteModelInfo": {},
-     *       //   "trainingRuns": []
+     *       //   "trainingRuns": [],
+     *       //   "transformColumns": []
      *       // }
      *     },
      *   });
@@ -6952,7 +6975,8 @@ export namespace bigquery_v2 {
      *   //   "modelType": "my_modelType",
      *   //   "optimalTrialIds": [],
      *   //   "remoteModelInfo": {},
-     *   //   "trainingRuns": []
+     *   //   "trainingRuns": [],
+     *   //   "transformColumns": []
      *   // }
      * }
      *
@@ -8592,151 +8616,6 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const bigquery = google.bigquery('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await bigquery.rowAccessPolicies.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/datasets/my-dataset/tables/my-table/rowAccessPolicies/my-rowAccessPolicie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setIamPolicy(
-      params: Params$Resource$Rowaccesspolicies$Setiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setIamPolicy(
-      params?: Params$Resource$Rowaccesspolicies$Setiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-      params: Params$Resource$Rowaccesspolicies$Setiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Rowaccesspolicies$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Rowaccesspolicies$Setiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Rowaccesspolicies$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Rowaccesspolicies$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Rowaccesspolicies$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/bigquery/v2/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * ```js
@@ -8919,18 +8798,6 @@ export namespace bigquery_v2 {
      * Required. Table ID of the table to list row access policies.
      */
     tableId?: string;
-  }
-  export interface Params$Resource$Rowaccesspolicies$Setiampolicy
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Rowaccesspolicies$Testiampermissions
     extends StandardParameters {
