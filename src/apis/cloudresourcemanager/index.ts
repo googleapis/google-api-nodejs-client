@@ -64,7 +64,7 @@ export function cloudresourcemanager<
     | cloudresourcemanager_v1beta1.Cloudresourcemanager
     | cloudresourcemanager_v2.Cloudresourcemanager
     | cloudresourcemanager_v2beta1.Cloudresourcemanager
-    | cloudresourcemanager_v3.Cloudresourcemanager
+    | cloudresourcemanager_v3.Cloudresourcemanager,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
