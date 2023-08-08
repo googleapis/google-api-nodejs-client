@@ -27,7 +27,7 @@ export function firebaseappdistribution(
   options: firebaseappdistribution_v1.Options
 ): firebaseappdistribution_v1.Firebaseappdistribution;
 export function firebaseappdistribution<
-  T = firebaseappdistribution_v1.Firebaseappdistribution
+  T = firebaseappdistribution_v1.Firebaseappdistribution,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | firebaseappdistribution_v1.Options
