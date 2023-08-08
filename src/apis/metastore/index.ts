@@ -40,7 +40,7 @@ export function metastore<
   T =
     | metastore_v1.Metastore
     | metastore_v1alpha.Metastore
-    | metastore_v1beta.Metastore
+    | metastore_v1beta.Metastore,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
