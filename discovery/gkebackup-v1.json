@@ -247,7 +247,7 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "If provided, this value must match the current value of the target BackupPlan's etag field or the request is rejected.",
+                      "description": "Optional. If provided, this value must match the current value of the target BackupPlan's etag field or the request is rejected.",
                       "location": "query",
                       "type": "string"
                     },
@@ -333,23 +333,23 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Field match expression used to filter the results.",
+                      "description": "Optional. Field match expression used to filter the results.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Field by which to sort the results.",
+                      "description": "Optional. Field by which to sort the results.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
+                      "description": "Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The value of next_page_token received from a previous `ListBackupPlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackupPlans` must match the call that provided the page token.",
+                      "description": "Optional. The value of next_page_token received from a previous `ListBackupPlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackupPlans` must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -386,7 +386,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "This is used to specify the fields to be overwritten in the BackupPlan targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource (e.g., `description`, `backup_config.include_volume_data`, etc.) If no `update_mask` is provided, all fields in `backup_plan` will be written to the target BackupPlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup_plan` are ignored and are not used to update the target BackupPlan.",
+                      "description": "Optional. This is used to specify the fields to be overwritten in the BackupPlan targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource (e.g., `description`, `backup_config.include_volume_data`, etc.) If no `update_mask` is provided, all fields in `backup_plan` will be written to the target BackupPlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup_plan` are ignored and are not used to update the target BackupPlan.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -473,7 +473,7 @@
                       ],
                       "parameters": {
                         "backupId": {
-                          "description": "The client-provided short name for the Backup resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of Backups in this BackupPlan",
+                          "description": "Optional. The client-provided short name for the Backup resource. This name must: - be between 1 and 63 characters long (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes - start with a lower-case letter - end with a lower-case letter or number - be unique within the set of Backups in this BackupPlan",
                           "location": "query",
                           "type": "string"
                         },
@@ -506,12 +506,12 @@
                       ],
                       "parameters": {
                         "etag": {
-                          "description": "If provided, this value must match the current value of the target Backup's etag field or the request is rejected.",
+                          "description": "Optional. If provided, this value must match the current value of the target Backup's etag field or the request is rejected.",
                           "location": "query",
                           "type": "string"
                         },
                         "force": {
-                          "description": "If set to true, any VolumeBackups below this Backup will also be deleted. Otherwise, the request will only succeed if the Backup has no VolumeBackups.",
+                          "description": "Optional. If set to true, any VolumeBackups below this Backup will also be deleted. Otherwise, the request will only succeed if the Backup has no VolumeBackups.",
                           "location": "query",
                           "type": "boolean"
                         },
@@ -597,23 +597,23 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Field match expression used to filter the results.",
+                          "description": "Optional. Field match expression used to filter the results.",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Field by which to sort the results.",
+                          "description": "Optional. Field by which to sort the results.",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
+                          "description": "Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "The value of next_page_token received from a previous `ListBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token.",
+                          "description": "Optional. The value of next_page_token received from a previous `ListBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackups` must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -650,7 +650,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "This is used to specify the fields to be overwritten in the Backup targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `backup` will be written to the target Backup resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup` are ignored and are not used to update the target Backup.",
+                          "description": "Optional. This is used to specify the fields to be overwritten in the Backup targeted for update. The values for each of these updated fields will be taken from the `backup_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `backup` will be written to the target Backup resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `backup` are ignored and are not used to update the target Backup.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -793,23 +793,23 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "Field match expression used to filter the results.",
+                              "description": "Optional. Field match expression used to filter the results.",
                               "location": "query",
                               "type": "string"
                             },
                             "orderBy": {
-                              "description": "Field by which to sort the results.",
+                              "description": "Optional. Field by which to sort the results.",
                               "location": "query",
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
+                              "description": "Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "The value of next_page_token received from a previous `ListVolumeBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeBackups` must match the call that provided the page token.",
+                              "description": "Optional. The value of next_page_token received from a previous `ListVolumeBackups` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeBackups` must match the call that provided the page token.",
                               "location": "query",
                               "type": "string"
                             },
@@ -1034,12 +1034,12 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "If provided, this value must match the current value of the target RestorePlan's etag field or the request is rejected.",
+                      "description": "Optional. If provided, this value must match the current value of the target RestorePlan's etag field or the request is rejected.",
                       "location": "query",
                       "type": "string"
                     },
                     "force": {
-                      "description": "If set to true, any Restores below this RestorePlan will also be deleted. Otherwise, the request will only succeed if the RestorePlan has no Restores.",
+                      "description": "Optional. If set to true, any Restores below this RestorePlan will also be deleted. Otherwise, the request will only succeed if the RestorePlan has no Restores.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -1125,23 +1125,23 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Field match expression used to filter the results.",
+                      "description": "Optional. Field match expression used to filter the results.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Field by which to sort the results.",
+                      "description": "Optional. Field by which to sort the results.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
+                      "description": "Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The value of next_page_token received from a previous `ListRestorePlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestorePlans` must match the call that provided the page token.",
+                      "description": "Optional. The value of next_page_token received from a previous `ListRestorePlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestorePlans` must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1178,7 +1178,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "This is used to specify the fields to be overwritten in the RestorePlan targeted for update. The values for each of these updated fields will be taken from the `restore_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore_plan` will be written to the target RestorePlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore_plan` are ignored and are not used to update the target RestorePlan.",
+                      "description": "Optional. This is used to specify the fields to be overwritten in the RestorePlan targeted for update. The values for each of these updated fields will be taken from the `restore_plan` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore_plan` will be written to the target RestorePlan resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore_plan` are ignored and are not used to update the target RestorePlan.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1298,12 +1298,12 @@
                       ],
                       "parameters": {
                         "etag": {
-                          "description": "If provided, this value must match the current value of the target Restore's etag field or the request is rejected.",
+                          "description": "Optional. If provided, this value must match the current value of the target Restore's etag field or the request is rejected.",
                           "location": "query",
                           "type": "string"
                         },
                         "force": {
-                          "description": "If set to true, any VolumeRestores below this restore will also be deleted. Otherwise, the request will only succeed if the restore has no VolumeRestores.",
+                          "description": "Optional. If set to true, any VolumeRestores below this restore will also be deleted. Otherwise, the request will only succeed if the restore has no VolumeRestores.",
                           "location": "query",
                           "type": "boolean"
                         },
@@ -1389,23 +1389,23 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Field match expression used to filter the results.",
+                          "description": "Optional. Field match expression used to filter the results.",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Field by which to sort the results.",
+                          "description": "Optional. Field by which to sort the results.",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
+                          "description": "Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "The value of next_page_token received from a previous `ListRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestores` must match the call that provided the page token.",
+                          "description": "Optional. The value of next_page_token received from a previous `ListRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListRestores` must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1442,7 +1442,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "This is used to specify the fields to be overwritten in the Restore targeted for update. The values for each of these updated fields will be taken from the `restore` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore` will be written to the target Restore resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore` are ignored and are not used to update the target Restore.",
+                          "description": "Optional. This is used to specify the fields to be overwritten in the Restore targeted for update. The values for each of these updated fields will be taken from the `restore` provided with this request. Field names are relative to the root of the resource. If no `update_mask` is provided, all fields in `restore` will be written to the target Restore resource. Note that OUTPUT_ONLY and IMMUTABLE fields in `restore` are ignored and are not used to update the target Restore.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -1585,23 +1585,23 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "Field match expression used to filter the results.",
+                              "description": "Optional. Field match expression used to filter the results.",
                               "location": "query",
                               "type": "string"
                             },
                             "orderBy": {
-                              "description": "Field by which to sort the results.",
+                              "description": "Optional. Field by which to sort the results.",
                               "location": "query",
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may inclue a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
+                              "description": "Optional. The target number of results to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "The value of next_page_token received from a previous `ListVolumeRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeRestores` must match the call that provided the page token.",
+                              "description": "Optional. The value of next_page_token received from a previous `ListVolumeRestores` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListVolumeRestores` must match the call that provided the page token.",
                               "location": "query",
                               "type": "string"
                             },
@@ -1688,7 +1688,7 @@
       }
     }
   },
-  "revision": "20230705",
+  "revision": "20230802",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1782,7 +1782,7 @@
           "type": "string"
         },
         "deleteLockDays": {
-          "description": "Minimum age for this Backup (in days). If this field is set to a non-zero value, the Backup will be \"locked\" against deletion (either manual or automatic deletion) for the number of days provided (measured from the creation time of the Backup). MUST be an integer value between 0-90 (inclusive). Defaults to parent BackupPlan's backup_delete_lock_days setting and may only be increased (either at creation time or in a subsequent update).",
+          "description": "Optional. Minimum age for this Backup (in days). If this field is set to a non-zero value, the Backup will be \"locked\" against deletion (either manual or automatic deletion) for the number of days provided (measured from the creation time of the Backup). MUST be an integer value between 0-90 (inclusive). Defaults to parent BackupPlan's backup_delete_lock_days setting and may only be increased (either at creation time or in a subsequent update).",
           "format": "int32",
           "type": "integer"
         },
@@ -1793,7 +1793,7 @@
           "type": "string"
         },
         "description": {
-          "description": "User specified descriptive string for this Backup.",
+          "description": "Optional. User specified descriptive string for this Backup.",
           "type": "string"
         },
         "encryptionKey": {
@@ -1810,7 +1810,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A set of custom labels supplied by user.",
+          "description": "Optional. A set of custom labels supplied by user.",
           "type": "object"
         },
         "manual": {
@@ -1836,7 +1836,7 @@
           "type": "integer"
         },
         "retainDays": {
-          "description": "The age (in days) after which this Backup will be automatically deleted. Must be an integer value >= 0: - If 0, no automatic deletion will occur for this Backup. - If not 0, this must be >= delete_lock_days and <= 365. Once a Backup is created, this value may only be increased. Defaults to the parent BackupPlan's backup_retain_days value.",
+          "description": "Optional. The age (in days) after which this Backup will be automatically deleted. Must be an integer value >= 0: - If 0, no automatic deletion will occur for this Backup. - If not 0, this must be >= delete_lock_days and <= 365. Once a Backup is created, this value may only be increased. Defaults to the parent BackupPlan's backup_retain_days value.",
           "format": "int32",
           "type": "integer"
         },
@@ -1918,14 +1918,14 @@
         },
         "encryptionKey": {
           "$ref": "EncryptionKey",
-          "description": "This defines a customer managed encryption key that will be used to encrypt the \"config\" portion (the Kubernetes resources) of Backups created via this plan. Default (empty): Config backup artifacts will not be encrypted."
+          "description": "Optional. This defines a customer managed encryption key that will be used to encrypt the \"config\" portion (the Kubernetes resources) of Backups created via this plan. Default (empty): Config backup artifacts will not be encrypted."
         },
         "includeSecrets": {
-          "description": "This flag specifies whether Kubernetes Secret resources should be included when they fall into the scope of Backups. Default: False",
+          "description": "Optional. This flag specifies whether Kubernetes Secret resources should be included when they fall into the scope of Backups. Default: False",
           "type": "boolean"
         },
         "includeVolumeData": {
-          "description": "This flag specifies whether volume data should be backed up when PVCs are included in the scope of a Backup. Default: False",
+          "description": "Optional. This flag specifies whether volume data should be backed up when PVCs are included in the scope of a Backup. Default: False",
           "type": "boolean"
         },
         "selectedApplications": {
@@ -1945,11 +1945,11 @@
       "properties": {
         "backupConfig": {
           "$ref": "BackupConfig",
-          "description": "Defines the configuration of Backups created via this BackupPlan."
+          "description": "Optional. Defines the configuration of Backups created via this BackupPlan."
         },
         "backupSchedule": {
           "$ref": "Schedule",
-          "description": "Defines a schedule for automatic Backup creation via this BackupPlan."
+          "description": "Optional. Defines a schedule for automatic Backup creation via this BackupPlan."
         },
         "cluster": {
           "description": "Required. Immutable. The source cluster from which Backups will be created via this BackupPlan. Valid formats: - `projects/*/locations/*/clusters/*` - `projects/*/zones/*/clusters/*`",
@@ -1962,11 +1962,11 @@
           "type": "string"
         },
         "deactivated": {
-          "description": "This flag indicates whether this BackupPlan has been deactivated. Setting this field to True locks the BackupPlan such that no further updates will be allowed (except deletes), including the deactivated field itself. It also prevents any new Backups from being created via this BackupPlan (including scheduled Backups). Default: False",
+          "description": "Optional. This flag indicates whether this BackupPlan has been deactivated. Setting this field to True locks the BackupPlan such that no further updates will be allowed (except deletes), including the deactivated field itself. It also prevents any new Backups from being created via this BackupPlan (including scheduled Backups). Default: False",
           "type": "boolean"
         },
         "description": {
-          "description": "User specified descriptive string for this BackupPlan.",
+          "description": "Optional. User specified descriptive string for this BackupPlan.",
           "type": "string"
         },
         "etag": {
@@ -1978,7 +1978,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A set of custom labels supplied by user.",
+          "description": "Optional. A set of custom labels supplied by user.",
           "type": "object"
         },
         "name": {
@@ -1994,7 +1994,7 @@
         },
         "retentionPolicy": {
           "$ref": "RetentionPolicy",
-          "description": "RetentionPolicy governs lifecycle of Backups created under this plan."
+          "description": "Optional. RetentionPolicy governs lifecycle of Backups created under this plan."
         },
         "state": {
           "description": "Output only. State of the BackupPlan. This State field reflects the various stages a BackupPlan can be in during the Create operation. It will be set to \"DEACTIVATED\" if the BackupPlan is deactivated on an Update",
@@ -2065,26 +2065,31 @@
       "id": "ClusterMetadata",
       "properties": {
         "anthosVersion": {
-          "description": "Anthos version",
+          "description": "Output only. Anthos version",
+          "readOnly": true,
           "type": "string"
         },
         "backupCrdVersions": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A list of the Backup for GKE CRD versions found in the cluster.",
+          "description": "Output only. A list of the Backup for GKE CRD versions found in the cluster.",
+          "readOnly": true,
           "type": "object"
         },
         "cluster": {
-          "description": "The source cluster from which this Backup was created. Valid formats: - `projects/*/locations/*/clusters/*` - `projects/*/zones/*/clusters/*` This is inherited from the parent BackupPlan's cluster field.",
+          "description": "Output only. The source cluster from which this Backup was created. Valid formats: - `projects/*/locations/*/clusters/*` - `projects/*/zones/*/clusters/*` This is inherited from the parent BackupPlan's cluster field.",
+          "readOnly": true,
           "type": "string"
         },
         "gkeVersion": {
-          "description": "GKE version",
+          "description": "Output only. GKE version",
+          "readOnly": true,
           "type": "string"
         },
         "k8sVersion": {
-          "description": "The Kubernetes server version of the source cluster.",
+          "description": "Output only. The Kubernetes server version of the source cluster.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2095,22 +2100,22 @@
       "id": "ClusterResourceRestoreScope",
       "properties": {
         "allGroupKinds": {
-          "description": "If True, all valid cluster-scoped resources will be restored. Mutually exclusive to any other field in the message.",
+          "description": "Optional. If True, all valid cluster-scoped resources will be restored. Mutually exclusive to any other field in the message.",
           "type": "boolean"
         },
         "excludedGroupKinds": {
-          "description": "A list of cluster-scoped resource group kinds to NOT restore from the backup. If specified, all valid cluster-scoped resources will be restored except for those specified in the list. Mutually exclusive to any other field in the message.",
+          "description": "Optional. A list of cluster-scoped resource group kinds to NOT restore from the backup. If specified, all valid cluster-scoped resources will be restored except for those specified in the list. Mutually exclusive to any other field in the message.",
           "items": {
             "$ref": "GroupKind"
           },
           "type": "array"
         },
         "noGroupKinds": {
-          "description": "If True, no cluster-scoped resources will be restored. This has the same restore scope as if the message is not defined. Mutually exclusive to any other field in the message.",
+          "description": "Optional. If True, no cluster-scoped resources will be restored. This has the same restore scope as if the message is not defined. Mutually exclusive to any other field in the message.",
           "type": "boolean"
         },
         "selectedGroupKinds": {
-          "description": "A list of cluster-scoped resource group kinds to restore from the backup. If specified, only the selected resources will be restored. Mutually exclusive to any other field in the message.",
+          "description": "Optional. A list of cluster-scoped resource group kinds to restore from the backup. If specified, only the selected resources will be restored. Mutually exclusive to any other field in the message.",
           "items": {
             "$ref": "GroupKind"
           },
@@ -2130,7 +2135,7 @@
       "id": "EncryptionKey",
       "properties": {
         "gcpKmsEncryptionKey": {
-          "description": "Google Cloud KMS encryption key. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
+          "description": "Optional. Google Cloud KMS encryption key. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
           "type": "string"
         }
       },
@@ -2212,7 +2217,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -2250,11 +2255,11 @@
       "id": "GroupKind",
       "properties": {
         "resourceGroup": {
-          "description": "API group string of a Kubernetes resource, e.g. \"apiextensions.k8s.io\", \"storage.k8s.io\", etc. Note: use empty string for core API group",
+          "description": "Optional. API group string of a Kubernetes resource, e.g. \"apiextensions.k8s.io\", \"storage.k8s.io\", etc. Note: use empty string for core API group",
           "type": "string"
         },
         "resourceKind": {
-          "description": "Kind of a Kubernetes resource, e.g. \"CustomResourceDefinition\", \"StorageClass\", etc.",
+          "description": "Optional. Kind of a Kubernetes resource, e.g. \"CustomResourceDefinition\", \"StorageClass\", etc.",
           "type": "string"
         }
       },
@@ -2446,11 +2451,11 @@
       "id": "NamespacedName",
       "properties": {
         "name": {
-          "description": "The name of the Kubernetes resource.",
+          "description": "Optional. The name of the Kubernetes resource.",
           "type": "string"
         },
         "namespace": {
-          "description": "The Namespace of the Kubernetes resource.",
+          "description": "Optional. The Namespace of the Kubernetes resource.",
           "type": "string"
         }
       },
@@ -2461,7 +2466,7 @@
       "id": "NamespacedNames",
       "properties": {
         "namespacedNames": {
-          "description": "A list of namespaced Kubernetes resources.",
+          "description": "Optional. A list of namespaced Kubernetes resources.",
           "items": {
             "$ref": "NamespacedName"
           },
@@ -2475,7 +2480,7 @@
       "id": "Namespaces",
       "properties": {
         "namespaces": {
-          "description": "A list of Kubernetes Namespaces",
+          "description": "Optional. A list of Kubernetes Namespaces",
           "items": {
             "type": "string"
           },
@@ -2529,7 +2534,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -2564,18 +2569,18 @@
       "id": "ResourceFilter",
       "properties": {
         "groupKinds": {
-          "description": "(Filtering parameter) Any resource subject to transformation must belong to one of the listed \"types\". If this field is not provided, no type filtering will be performed (all resources of all types matching previous filtering parameters will be candidates for transformation).",
+          "description": "Optional. (Filtering parameter) Any resource subject to transformation must belong to one of the listed \"types\". If this field is not provided, no type filtering will be performed (all resources of all types matching previous filtering parameters will be candidates for transformation).",
           "items": {
             "$ref": "GroupKind"
           },
           "type": "array"
         },
         "jsonPath": {
-          "description": "This is a [JSONPath] (https://github.com/json-path/JsonPath/blob/master/README.md) expression that matches specific fields of candidate resources and it operates as a filtering parameter (resources that are not matched with this expression will not be candidates for transformation).",
+          "description": "Optional. This is a [JSONPath] (https://github.com/json-path/JsonPath/blob/master/README.md) expression that matches specific fields of candidate resources and it operates as a filtering parameter (resources that are not matched with this expression will not be candidates for transformation).",
           "type": "string"
         },
         "namespaces": {
-          "description": "(Filtering parameter) Any resource subject to transformation must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for transformation). To mix cluster-scoped and namespaced resources in the same rule, use an empty string (\"\") as one of the target namespaces.",
+          "description": "Optional. (Filtering parameter) Any resource subject to transformation must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for transformation). To mix cluster-scoped and namespaced resources in the same rule, use an empty string (\"\") as one of the target namespaces.",
           "items": {
             "type": "string"
           },
@@ -2708,7 +2713,7 @@
           "type": "boolean"
         },
         "clusterResourceConflictPolicy": {
-          "description": "Defines the behavior for handling the situation where cluster-scoped resources being restored already exist in the target cluster. This MUST be set to a value other than CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if cluster_resource_restore_scope is not empty.",
+          "description": "Optional. Defines the behavior for handling the situation where cluster-scoped resources being restored already exist in the target cluster. This MUST be set to a value other than CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if cluster_resource_restore_scope is not empty.",
           "enum": [
             "CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED",
             "USE_EXISTING_VERSION",
@@ -2723,14 +2728,14 @@
         },
         "clusterResourceRestoreScope": {
           "$ref": "ClusterResourceRestoreScope",
-          "description": "Identifies the cluster-scoped resources to restore from the Backup. Not specifying it means NO cluster resource will be restored."
+          "description": "Optional. Identifies the cluster-scoped resources to restore from the Backup. Not specifying it means NO cluster resource will be restored."
         },
         "excludedNamespaces": {
           "$ref": "Namespaces",
           "description": "A list of selected namespaces excluded from restoration. All namespaces except those in this list will be restored."
         },
         "namespacedResourceRestoreMode": {
-          "description": "Defines the behavior for handling the situation where sets of namespaced resources being restored already exist in the target cluster. This MUST be set to a value other than NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.",
+          "description": "Optional. Defines the behavior for handling the situation where sets of namespaced resources being restored already exist in the target cluster. This MUST be set to a value other than NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.",
           "enum": [
             "NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED",
             "DELETE_AND_RESTORE",
@@ -2756,21 +2761,21 @@
           "description": "A list of selected Namespaces to restore from the Backup. The listed Namespaces and all resources contained in them will be restored."
         },
         "substitutionRules": {
-          "description": "A list of transformation rules to be applied against Kubernetes resources as they are selected for restoration from a Backup. Rules are executed in order defined - this order matters, as changes made by a rule may impact the filtering logic of subsequent rules. An empty list means no substitution will occur.",
+          "description": "Optional. A list of transformation rules to be applied against Kubernetes resources as they are selected for restoration from a Backup. Rules are executed in order defined - this order matters, as changes made by a rule may impact the filtering logic of subsequent rules. An empty list means no substitution will occur.",
           "items": {
             "$ref": "SubstitutionRule"
           },
           "type": "array"
         },
         "transformationRules": {
-          "description": "A list of transformation rules to be applied against Kubernetes resources as they are selected for restoration from a Backup. Rules are executed in order defined - this order matters, as changes made by a rule may impact the filtering logic of subsequent rules. An empty list means no transformation will occur.",
+          "description": "Optional. A list of transformation rules to be applied against Kubernetes resources as they are selected for restoration from a Backup. Rules are executed in order defined - this order matters, as changes made by a rule may impact the filtering logic of subsequent rules. An empty list means no transformation will occur.",
           "items": {
             "$ref": "TransformationRule"
           },
           "type": "array"
         },
         "volumeDataRestorePolicy": {
-          "description": "Specifies the mechanism to be used to restore volume data. Default: VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED (will be treated as NO_VOLUME_DATA_RESTORATION).",
+          "description": "Optional. Specifies the mechanism to be used to restore volume data. Default: VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED (will be treated as NO_VOLUME_DATA_RESTORATION).",
           "enum": [
             "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
             "RESTORE_VOLUME_DATA_FROM_BACKUP",
@@ -2807,7 +2812,7 @@
           "type": "string"
         },
         "description": {
-          "description": "User specified descriptive string for this RestorePlan.",
+          "description": "Optional. User specified descriptive string for this RestorePlan.",
           "type": "string"
         },
         "etag": {
@@ -2819,7 +2824,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A set of custom labels supplied by user.",
+          "description": "Optional. A set of custom labels supplied by user.",
           "type": "object"
         },
         "name": {
@@ -2874,17 +2879,17 @@
       "id": "RetentionPolicy",
       "properties": {
         "backupDeleteLockDays": {
-          "description": "Minimum age for Backups created via this BackupPlan (in days). This field MUST be an integer value between 0-90 (inclusive). A Backup created under this BackupPlan will NOT be deletable until it reaches Backup's (create_time + backup_delete_lock_days). Updating this field of a BackupPlan does NOT affect existing Backups under it. Backups created AFTER a successful update will inherit the new value. Default: 0 (no delete blocking)",
+          "description": "Optional. Minimum age for Backups created via this BackupPlan (in days). This field MUST be an integer value between 0-90 (inclusive). A Backup created under this BackupPlan will NOT be deletable until it reaches Backup's (create_time + backup_delete_lock_days). Updating this field of a BackupPlan does NOT affect existing Backups under it. Backups created AFTER a successful update will inherit the new value. Default: 0 (no delete blocking)",
           "format": "int32",
           "type": "integer"
         },
         "backupRetainDays": {
-          "description": "The default maximum age of a Backup created via this BackupPlan. This field MUST be an integer value >= 0 and <= 365. If specified, a Backup created under this BackupPlan will be automatically deleted after its age reaches (create_time + backup_retain_days). If not specified, Backups created under this BackupPlan will NOT be subject to automatic deletion. Updating this field does NOT affect existing Backups under it. Backups created AFTER a successful update will automatically pick up the new value. NOTE: backup_retain_days must be >= backup_delete_lock_days. If cron_schedule is defined, then this must be <= 360 * the creation interval. Default: 0 (no automatic deletion)",
+          "description": "Optional. The default maximum age of a Backup created via this BackupPlan. This field MUST be an integer value >= 0 and <= 365. If specified, a Backup created under this BackupPlan will be automatically deleted after its age reaches (create_time + backup_retain_days). If not specified, Backups created under this BackupPlan will NOT be subject to automatic deletion. Updating this field does NOT affect existing Backups under it. Backups created AFTER a successful update will automatically pick up the new value. NOTE: backup_retain_days must be >= backup_delete_lock_days. If cron_schedule is defined, then this must be <= 360 * the creation interval. Default: 0 (no automatic deletion)",
           "format": "int32",
           "type": "integer"
         },
         "locked": {
-          "description": "This flag denotes whether the retention policy of this BackupPlan is locked. If set to True, no further update is allowed on this policy, including the `locked` field itself. Default: False",
+          "description": "Optional. This flag denotes whether the retention policy of this BackupPlan is locked. If set to True, no further update is allowed on this policy, including the `locked` field itself. Default: False",
           "type": "boolean"
         }
       },
@@ -2895,11 +2900,11 @@
       "id": "Schedule",
       "properties": {
         "cronSchedule": {
-          "description": "A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. This is mutually exclusive with the rpo_config field since at most one schedule can be defined for a BackupPlan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur.",
+          "description": "Optional. A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. This is mutually exclusive with the rpo_config field since at most one schedule can be defined for a BackupPlan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur.",
           "type": "string"
         },
         "paused": {
-          "description": "This flag denotes whether automatic Backup creation is paused for this BackupPlan. Default: False",
+          "description": "Optional. This flag denotes whether automatic Backup creation is paused for this BackupPlan. Default: False",
           "type": "boolean"
         }
       },
@@ -2926,15 +2931,15 @@
       "id": "SubstitutionRule",
       "properties": {
         "newValue": {
-          "description": "This is the new value to set for any fields that pass the filtering and selection criteria. To remove a value from a Kubernetes resource, either leave this field unspecified, or set it to the empty string (\"\").",
+          "description": "Optional. This is the new value to set for any fields that pass the filtering and selection criteria. To remove a value from a Kubernetes resource, either leave this field unspecified, or set it to the empty string (\"\").",
           "type": "string"
         },
         "originalValuePattern": {
-          "description": "(Filtering parameter) This is a [regular expression] (https://en.wikipedia.org/wiki/Regular_expression) that is compared against the fields matched by the target_json_path expression (and must also have passed the previous filters). Substitution will not be performed against fields whose value does not match this expression. If this field is NOT specified, then ALL fields matched by the target_json_path expression will undergo substitution. Note that an empty (e.g., \"\", rather than unspecified) value for this field will only match empty fields.",
+          "description": "Optional. (Filtering parameter) This is a [regular expression] (https://en.wikipedia.org/wiki/Regular_expression) that is compared against the fields matched by the target_json_path expression (and must also have passed the previous filters). Substitution will not be performed against fields whose value does not match this expression. If this field is NOT specified, then ALL fields matched by the target_json_path expression will undergo substitution. Note that an empty (e.g., \"\", rather than unspecified) value for this field will only match empty fields.",
           "type": "string"
         },
         "targetGroupKinds": {
-          "description": "(Filtering parameter) Any resource subject to substitution must belong to one of the listed \"types\". If this field is not provided, no type filtering will be performed (all resources of all types matching previous filtering parameters will be candidates for substitution).",
+          "description": "Optional. (Filtering parameter) Any resource subject to substitution must belong to one of the listed \"types\". If this field is not provided, no type filtering will be performed (all resources of all types matching previous filtering parameters will be candidates for substitution).",
           "items": {
             "$ref": "GroupKind"
           },
@@ -2945,7 +2950,7 @@
           "type": "string"
         },
         "targetNamespaces": {
-          "description": "(Filtering parameter) Any resource subject to substitution must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for substitution). To mix cluster-scoped and namespaced resources in the same rule, use an empty string (\"\") as one of the target namespaces.",
+          "description": "Optional. (Filtering parameter) Any resource subject to substitution must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for substitution). To mix cluster-scoped and namespaced resources in the same rule, use an empty string (\"\") as one of the target namespaces.",
           "items": {
             "type": "string"
           },
@@ -2987,7 +2992,7 @@
       "id": "TransformationRule",
       "properties": {
         "description": {
-          "description": "The description is a user specified string description of the transformation rule.",
+          "description": "Optional. The description is a user specified string description of the transformation rule.",
           "type": "string"
         },
         "fieldActions": {
@@ -2999,7 +3004,7 @@
         },
         "resourceFilter": {
           "$ref": "ResourceFilter",
-          "description": "This field is used to specify a set of fields that should be used to determine which resources in backup should be acted upon by the supplied transformation rule actions, and this will ensure that only specific resources are affected by transformation rule actions."
+          "description": "Optional. This field is used to specify a set of fields that should be used to determine which resources in backup should be acted upon by the supplied transformation rule actions, and this will ensure that only specific resources are affected by transformation rule actions."
         }
       },
       "type": "object"
@@ -3009,7 +3014,7 @@
       "id": "TransformationRuleAction",
       "properties": {
         "fromPath": {
-          "description": "A string containing a JSON Pointer value that references the location in the target document to move the value from.",
+          "description": "Optional. A string containing a JSON Pointer value that references the location in the target document to move the value from.",
           "type": "string"
         },
         "op": {
@@ -3035,11 +3040,11 @@
           "type": "string"
         },
         "path": {
-          "description": "A string containing a JSON-Pointer value that references a location within the target document where the operation is performed.",
+          "description": "Optional. A string containing a JSON-Pointer value that references a location within the target document where the operation is performed.",
           "type": "string"
         },
         "value": {
-          "description": "A string that specifies the desired value in string format to use for transformation.",
+          "description": "Optional. A string that specifies the desired value in string format to use for transformation.",
           "type": "string"
         }
       },
