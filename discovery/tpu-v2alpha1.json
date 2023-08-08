@@ -814,6 +814,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "reset": {
+                  "description": "Resets a QueuedResource TPU instance",
+                  "flatPath": "v2alpha1/projects/{projectsId}/locations/{locationsId}/queuedResources/{queuedResourcesId}:reset",
+                  "httpMethod": "POST",
+                  "id": "tpu.projects.locations.queuedResources.reset",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the queued resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/queuedResources/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha1/{+name}:reset",
+                  "request": {
+                    "$ref": "ResetQueuedResourceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -897,7 +925,7 @@
       }
     }
   },
-  "revision": "20230707",
+  "revision": "20230731",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1333,6 +1361,22 @@
       },
       "type": "object"
     },
+    "MultiNodeParams": {
+      "description": "Parameters to specify for multi-node QueuedResource requests. This field must be populated in case of multi-node requests instead of node_id. It's an error to specify both node_id and multi_node_params.",
+      "id": "MultiNodeParams",
+      "properties": {
+        "nodeCount": {
+          "description": "Required. Number of nodes with this spec. The system will attempt to provison \"node_count\" nodes as part of the request. This needs to be > 1.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nodeIdPrefix": {
+          "description": "Prefix of node_ids in case of multi-node request Should follow the `^[A-Za-z0-9_.~+%-]+$` regex format. If node_count = 3 and node_id_prefix = \"np\", node ids of nodes created will be \"np-0\", \"np-1\", \"np-2\". If this field is not provided we use queued_resource_id as the node_id_prefix.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NetworkConfig": {
       "description": "Network related configurations.",
       "id": "NetworkConfig",
@@ -1573,6 +1617,10 @@
       "description": "Details of the TPU node(s) being requested. Users can request either a single node or multiple nodes. NodeSpec provides the specification for node(s) to be created.",
       "id": "NodeSpec",
       "properties": {
+        "multiNodeParams": {
+          "$ref": "MultiNodeParams",
+          "description": "Optional. Fields to specify in case of multi-node request."
+        },
         "node": {
           "$ref": "Node",
           "description": "Required. The node."
@@ -1761,6 +1809,21 @@
           ],
           "type": "string"
         },
+        "stateInitiator": {
+          "description": "Output only. The initiator of the QueuedResources's current state.",
+          "enum": [
+            "STATE_INITIATOR_UNSPECIFIED",
+            "USER",
+            "SERVICE"
+          ],
+          "enumDescriptions": [
+            "The state initiator is unspecified.",
+            "The current QueuedResource state was initiated by the user.",
+            "The current QueuedResource state was initiated by the service."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "suspendedData": {
           "$ref": "SuspendedData",
           "description": "Further data for the suspended state."
@@ -1801,6 +1864,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ResetQueuedResourceRequest": {
+      "description": "Request for ResetQueuedResource.",
+      "id": "ResetQueuedResourceRequest",
+      "properties": {},
       "type": "object"
     },
     "RuntimeVersion": {
