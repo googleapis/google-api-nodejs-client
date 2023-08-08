@@ -38,7 +38,7 @@ export function publicca<
   T =
     | publicca_v1.Publicca
     | publicca_v1alpha1.Publicca
-    | publicca_v1beta1.Publicca
+    | publicca_v1beta1.Publicca,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
