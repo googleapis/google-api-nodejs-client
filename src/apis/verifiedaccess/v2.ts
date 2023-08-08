@@ -297,9 +297,17 @@ export namespace verifiedaccess_v2 {
    */
   export interface Schema$VerifyChallengeResponseResult {
     /**
+     * Attested device ID (ADID).
+     */
+    attestedDeviceId?: string | null;
+    /**
      * Unique customer id that this device belongs to, as defined by the Google Admin SDK at https://developers.google.com/admin-sdk/directory/v1/guides/manage-customers
      */
     customerId?: string | null;
+    /**
+     * Device enrollment id for ChromeOS devices.
+     */
+    deviceEnrollmentId?: string | null;
     /**
      * Device permanent id is returned in this field (for the machine response only).
      */
@@ -517,7 +525,9 @@ export namespace verifiedaccess_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "attestedDeviceId": "my_attestedDeviceId",
      *   //   "customerId": "my_customerId",
+     *   //   "deviceEnrollmentId": "my_deviceEnrollmentId",
      *   //   "devicePermanentId": "my_devicePermanentId",
      *   //   "deviceSignal": "my_deviceSignal",
      *   //   "deviceSignals": {},

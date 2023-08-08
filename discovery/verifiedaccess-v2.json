@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20230606",
+  "revision": "20230807",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Challenge": {
@@ -461,8 +461,16 @@
       "description": "Result message for VerifiedAccess.VerifyChallengeResponse.",
       "id": "VerifyChallengeResponseResult",
       "properties": {
+        "attestedDeviceId": {
+          "description": "Attested device ID (ADID).",
+          "type": "string"
+        },
         "customerId": {
           "description": "Unique customer id that this device belongs to, as defined by the Google Admin SDK at https://developers.google.com/admin-sdk/directory/v1/guides/manage-customers",
+          "type": "string"
+        },
+        "deviceEnrollmentId": {
+          "description": "Device enrollment id for ChromeOS devices.",
           "type": "string"
         },
         "devicePermanentId": {
