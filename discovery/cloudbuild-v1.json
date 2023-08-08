@@ -2319,7 +2319,7 @@
       }
     }
   },
-  "revision": "20230626",
+  "revision": "20230801",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -2974,6 +2974,10 @@
       "description": "Optional arguments to enable specific features of builds.",
       "id": "BuildOptions",
       "properties": {
+        "automapSubstitutions": {
+          "description": "Option to include built-in and custom substitutions as env variables for all build steps.",
+          "type": "boolean"
+        },
         "defaultLogsBucketBehavior": {
           "description": "Optional. Option to specify how default logs buckets are setup.",
           "enum": [
@@ -2982,7 +2986,7 @@
           ],
           "enumDescriptions": [
             "Unspecified.",
-            "Bucket is located in user-owned project in the same region as the build. The builder service account must have access to create and write to GCS buckets in the build project."
+            "Bucket is located in user-owned project in the same region as the build. The builder service account must have access to create and write to Cloud Storage buckets in the build project."
           ],
           "type": "string"
         },
@@ -3025,6 +3029,14 @@
             "STACKDRIVER_ONLY",
             "CLOUD_LOGGING_ONLY",
             "NONE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
           ],
           "enumDescriptions": [
             "The service determines the logging mode. The default is `LEGACY`. Do not rely on the default logging behavior as it may change in the future.",
@@ -3118,6 +3130,7 @@
           "type": "array"
         },
         "workerPool": {
+          "deprecated": true,
           "description": "This field deprecated; please use `pool.name` instead.",
           "type": "string"
         }
@@ -3146,6 +3159,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "automapSubstitutions": {
+          "description": "Option to include built-in and custom substitutions as env variables for this build step. This option will override the global option in BuildOption.",
+          "type": "boolean"
         },
         "dir": {
           "description": "Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.",
@@ -3796,6 +3813,7 @@
       "id": "GitHubEnterpriseSecrets",
       "properties": {
         "oauthClientIdName": {
+          "deprecated": true,
           "description": "The resource name for the OAuth client ID secret in Secret Manager.",
           "type": "string"
         },
@@ -3804,6 +3822,7 @@
           "type": "string"
         },
         "oauthSecretName": {
+          "deprecated": true,
           "description": "The resource name for the OAuth secret in Secret Manager.",
           "type": "string"
         },
@@ -3812,6 +3831,7 @@
           "type": "string"
         },
         "privateKeyName": {
+          "deprecated": true,
           "description": "The resource name for the private key secret.",
           "type": "string"
         },
@@ -3820,6 +3840,7 @@
           "type": "string"
         },
         "webhookSecretName": {
+          "deprecated": true,
           "description": "The resource name for the webhook secret in Secret Manager.",
           "type": "string"
         },
@@ -3839,6 +3860,7 @@
           "type": "string"
         },
         "installationId": {
+          "deprecated": true,
           "description": "The installationID that emits the GitHub event.",
           "format": "int64",
           "type": "string"
@@ -4415,7 +4437,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
