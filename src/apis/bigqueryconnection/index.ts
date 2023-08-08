@@ -27,7 +27,7 @@ export function bigqueryconnection(
   options: bigqueryconnection_v1beta1.Options
 ): bigqueryconnection_v1beta1.Bigqueryconnection;
 export function bigqueryconnection<
-  T = bigqueryconnection_v1beta1.Bigqueryconnection
+  T = bigqueryconnection_v1beta1.Bigqueryconnection,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1beta1' | bigqueryconnection_v1beta1.Options
