@@ -177,7 +177,7 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Assessment {
     /**
-     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.
+     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability. Deprecated: Use vulnerability_id instead to denote CVEs.
      */
     cve?: string | null;
     /**
@@ -208,6 +208,10 @@ export namespace containeranalysis_v1beta1 {
      * Provides the state of this Vulnerability assessment.
      */
     state?: string | null;
+    /**
+     * The vulnerability identifier for this Assessment. Will hold one of common identifiers e.g. CVE, GHSA etc.
+     */
+    vulnerabilityId?: string | null;
   }
   /**
    * Occurrence that represents a single "attestation". The authenticity of an attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the authority to which this attestation is attached is primarily useful for look-up (how to find this attestation if you already know the authority and artifact to be verified) and intent (which authority was this attestation intended to sign for).
@@ -397,7 +401,7 @@ export namespace containeranalysis_v1beta1 {
     signature?: string | null;
   }
   /**
-   * A step in the build pipeline. Next ID: 20
+   * A step in the build pipeline. Next ID: 21
    */
   export interface Schema$BuildStep {
     /**
@@ -412,6 +416,10 @@ export namespace containeranalysis_v1beta1 {
      * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
      */
     args?: string[] | null;
+    /**
+     * Option to include built-in and custom substitutions as env variables for this build step. This option will override the global option in BuildOption.
+     */
+    automapSubstitutions?: boolean | null;
     /**
      * Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.
      */
@@ -806,6 +814,10 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions {
     /**
+     * Option to include built-in and custom substitutions as env variables for all build steps.
+     */
+    automapSubstitutions?: boolean | null;
+    /**
      * Optional. Option to specify how default logs buckets are setup.
      */
     defaultLogsBucketBehavior?: string | null;
@@ -887,6 +899,10 @@ export namespace containeranalysis_v1beta1 {
      * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
      */
     args?: string[] | null;
+    /**
+     * Option to include built-in and custom substitutions as env variables for this build step. This option will override the global option in BuildOption.
+     */
+    automapSubstitutions?: boolean | null;
     /**
      * Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.
      */
@@ -3093,7 +3109,7 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$VexAssessment {
     /**
-     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.
+     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability. Deprecated: Use vulnerability_id instead to denote CVEs.
      */
     cve?: string | null;
     /**
@@ -3120,6 +3136,10 @@ export namespace containeranalysis_v1beta1 {
      * Provides the state of this Vulnerability assessment.
      */
     state?: string | null;
+    /**
+     * The vulnerability identifier for this Assessment. Will hold one of common identifiers e.g. CVE, GHSA etc.
+     */
+    vulnerabilityId?: string | null;
   }
   /**
    * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution. Next ID: 3

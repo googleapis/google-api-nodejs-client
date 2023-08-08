@@ -192,6 +192,10 @@ export namespace containeranalysis_v1alpha1 {
      * Provides the state of this Vulnerability assessment.
      */
     state?: string | null;
+    /**
+     * The vulnerability identifier for this Assessment. Will hold one of common identifiers e.g. CVE, GHSA etc.
+     */
+    vulnerabilityId?: string | null;
   }
   /**
    * Occurrence that represents a single "attestation". The authenticity of an Attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the AttestationAuthority to which this Attestation is attached is primarily useful for look-up (how to find this Attestation if you already know the Authority and artifact to be verified) and intent (which authority was this attestation intended to sign for).
@@ -244,6 +248,12 @@ export namespace containeranalysis_v1alpha1 {
      */
     role?: string | null;
   }
+  export interface Schema$BuildDefinition {
+    buildType?: string | null;
+    externalParameters?: {[key: string]: any} | null;
+    internalParameters?: {[key: string]: any} | null;
+    resolvedDependencies?: Schema$ResourceDescriptor[];
+  }
   /**
    * Message encapsulating build provenance details.
    */
@@ -252,6 +262,10 @@ export namespace containeranalysis_v1alpha1 {
      * Deprecated. See InTotoStatement for the replacement. In-toto Provenance representation as defined in spec.
      */
     intotoProvenance?: Schema$InTotoProvenance;
+    /**
+     * In-Toto Slsa Provenance V1 represents a slsa provenance meeting the slsa spec, wrapped in an in-toto statement. This allows for direct jsonification of a to-spec in-toto slsa statement with a to-spec slsa provenance.
+     */
+    inTotoSlsaProvenanceV1?: Schema$InTotoSlsaProvenanceV1;
     /**
      * In-toto Statement representation as defined in spec. The intoto_statement can contain any type of provenance. The serialized payload of the statement can be stored and signed in the Occurrence's envelope.
      */
@@ -267,6 +281,11 @@ export namespace containeranalysis_v1alpha1 {
   }
   export interface Schema$BuilderConfig {
     id?: string | null;
+  }
+  export interface Schema$BuildMetadata {
+    finishedOn?: string | null;
+    invocationId?: string | null;
+    startedOn?: string | null;
   }
   /**
    * Provenance of a build. Contains all information needed to verify the full details about the build from source to completion.
@@ -347,7 +366,7 @@ export namespace containeranalysis_v1alpha1 {
     signature?: string | null;
   }
   /**
-   * A step in the build pipeline. Next ID: 20
+   * A step in the build pipeline. Next ID: 21
    */
   export interface Schema$BuildStep {
     /**
@@ -362,6 +381,10 @@ export namespace containeranalysis_v1alpha1 {
      * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
      */
     args?: string[] | null;
+    /**
+     * Option to include built-in and custom substitutions as env variables for this build step. This option will override the global option in BuildOption.
+     */
+    automapSubstitutions?: boolean | null;
     /**
      * Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.
      */
@@ -839,6 +862,10 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions {
     /**
+     * Option to include built-in and custom substitutions as env variables for all build steps.
+     */
+    automapSubstitutions?: boolean | null;
+    /**
      * Optional. Option to specify how default logs buckets are setup.
      */
     defaultLogsBucketBehavior?: string | null;
@@ -920,6 +947,10 @@ export namespace containeranalysis_v1alpha1 {
      * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
      */
     args?: string[] | null;
+    /**
+     * Option to include built-in and custom substitutions as env variables for this build step. This option will override the global option in BuildOption.
+     */
+    automapSubstitutions?: boolean | null;
     /**
      * Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.
      */
@@ -2171,6 +2202,15 @@ export namespace containeranalysis_v1alpha1 {
      */
     recipe?: Schema$Recipe;
   }
+  export interface Schema$InTotoSlsaProvenanceV1 {
+    predicate?: Schema$SlsaProvenanceV1;
+    predicateType?: string | null;
+    subject?: Schema$Subject[];
+    /**
+     * InToto spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement
+     */
+    _type?: string | null;
+  }
   /**
    * Spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement The serialized InTotoStatement will be stored as Envelope.payload. Envelope.payloadType is always "application/vnd.in-toto+json".
    */
@@ -2830,6 +2870,11 @@ export namespace containeranalysis_v1alpha1 {
      */
     name?: string | null;
   }
+  export interface Schema$ProvenanceBuilder {
+    builderDependencies?: Schema$ResourceDescriptor[];
+    id?: string | null;
+    version?: {[key: string]: string} | null;
+  }
   /**
    * Publisher contains information about the publisher of this Note.
    */
@@ -2973,6 +3018,20 @@ export namespace containeranalysis_v1alpha1 {
      * The unique URI of the resource. E.g., "https://gcr.io/project/image@sha256:foo" for a Docker image.
      */
     uri?: string | null;
+  }
+  export interface Schema$ResourceDescriptor {
+    annotations?: {[key: string]: any} | null;
+    content?: string | null;
+    digest?: {[key: string]: string} | null;
+    downloadLocation?: string | null;
+    mediaType?: string | null;
+    name?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$RunDetails {
+    builder?: Schema$ProvenanceBuilder;
+    byproducts?: Schema$ResourceDescriptor[];
+    metadata?: Schema$BuildMetadata;
   }
   /**
    * The actual payload that contains the SBOM Reference data. The payload follows the intoto statement specification. See https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md for more details.
@@ -3177,6 +3236,13 @@ export namespace containeranalysis_v1alpha1 {
      * Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible).
      */
     recipe?: Schema$SlsaRecipe;
+  }
+  /**
+   * Keep in sync with schema at https://github.com/slsa-framework/slsa/blob/main/docs/provenance/schema/v1/provenance.proto Builder renamed to ProvenanceBuilder because of Java conflicts.
+   */
+  export interface Schema$SlsaProvenanceV1 {
+    buildDefinition?: Schema$BuildDefinition;
+    runDetails?: Schema$RunDetails;
   }
   /**
    * SlsaProvenanceZeroTwo is the slsa provenance as defined by the slsa spec. See full explanation of fields at slsa.dev/provenance/v0.2.
@@ -3477,6 +3543,10 @@ export namespace containeranalysis_v1alpha1 {
      * Provides the state of this Vulnerability assessment.
      */
     state?: string | null;
+    /**
+     * The vulnerability identifier for this Assessment. Will hold one of common identifiers e.g. CVE, GHSA etc.
+     */
+    vulnerabilityId?: string | null;
   }
   /**
    * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution. Next ID: 3
