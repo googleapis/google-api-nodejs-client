@@ -649,6 +649,154 @@
                         }
                       }
                     },
+                    "siteSearchEngine": {
+                      "resources": {
+                        "operations": {
+                          "methods": {
+                            "get": {
+                              "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/operations/{operationsId}",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.operations.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "The name of the operation resource.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine/operations/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+name}",
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "list": {
+                              "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/operations",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.operations.list",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "filter": {
+                                  "description": "The standard list filter.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "description": "The name of the operation's parent resource.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "pageSize": {
+                                  "description": "The standard list page size.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "The standard list page token.",
+                                  "location": "query",
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+name}/operations",
+                              "response": {
+                                "$ref": "GoogleLongrunningListOperationsResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        },
+                        "targetSites": {
+                          "resources": {
+                            "operations": {
+                              "methods": {
+                                "get": {
+                                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/operations/{operationsId}",
+                                  "httpMethod": "GET",
+                                  "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.operations.get",
+                                  "parameterOrder": [
+                                    "name"
+                                  ],
+                                  "parameters": {
+                                    "name": {
+                                      "description": "The name of the operation resource.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites/operations/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1beta/{+name}",
+                                  "response": {
+                                    "$ref": "GoogleLongrunningOperation"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                },
+                                "list": {
+                                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/targetSites/operations",
+                                  "httpMethod": "GET",
+                                  "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.operations.list",
+                                  "parameterOrder": [
+                                    "name"
+                                  ],
+                                  "parameters": {
+                                    "filter": {
+                                      "description": "The standard list filter.",
+                                      "location": "query",
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "description": "The name of the operation's parent resource.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine/targetSites$",
+                                      "required": true,
+                                      "type": "string"
+                                    },
+                                    "pageSize": {
+                                      "description": "The standard list page size.",
+                                      "format": "int32",
+                                      "location": "query",
+                                      "type": "integer"
+                                    },
+                                    "pageToken": {
+                                      "description": "The standard list page token.",
+                                      "location": "query",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1beta/{+name}/operations",
+                                  "response": {
+                                    "$ref": "GoogleLongrunningListOperationsResponse"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
                     "userEvents": {
                       "methods": {
                         "collect": {
@@ -1610,7 +1758,7 @@
       }
     }
   },
-  "revision": "20230629",
+  "revision": "20230801",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -2172,6 +2320,34 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaSiteVerificationInfo": {
+      "description": "Verification information for target sites in advanced site search.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSiteVerificationInfo",
+      "properties": {
+        "siteVerificationState": {
+          "description": "Site verification state indicating the ownership and validity.",
+          "enum": [
+            "SITE_VERIFICATION_STATE_UNSPECIFIED",
+            "VERIFIED",
+            "UNVERIFIED",
+            "EXEMPTED"
+          ],
+          "enumDescriptions": [
+            "Defaults to VERIFIED.",
+            "Site ownership verified.",
+            "Site ownership pending verification or verification failed.",
+            "Site exempt from verification, e.g. a public website that opens to all."
+          ],
+          "type": "string"
+        },
+        "verifyTime": {
+          "description": "Latest site verification time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaTargetSite": {
       "description": "A target site for the SiteSearchEngine.",
       "id": "GoogleCloudDiscoveryengineV1alphaTargetSite",
@@ -2193,6 +2369,11 @@
         "providedUriPattern": {
           "description": "Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.",
           "type": "string"
+        },
+        "siteVerificationInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSiteVerificationInfo",
+          "description": "Output only. Site ownership and validity verification status.",
+          "readOnly": true
         },
         "type": {
           "description": "The type of the target site, e.g. whether the site is to be included or excluded.",
