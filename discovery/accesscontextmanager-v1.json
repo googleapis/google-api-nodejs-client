@@ -1235,7 +1235,7 @@
       }
     }
   },
-  "revision": "20230331",
+  "revision": "20230729",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
@@ -1527,7 +1527,7 @@
           "type": "array"
         },
         "negate": {
-          "description": "Whether to negate the Condition. If true, the Condition becomes a NAND over its non-empty fields, each field must be false for the Condition overall to be satisfied. Defaults to false.",
+          "description": "Whether to negate the Condition. If true, the Condition becomes a NAND over its non-empty fields. Any non-empty field criteria evaluating to false will result in the Condition to be satisfied. Defaults to false.",
           "type": "boolean"
         },
         "regions": {
