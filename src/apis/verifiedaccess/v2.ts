@@ -297,9 +297,17 @@ export namespace verifiedaccess_v2 {
    */
   export interface Schema$VerifyChallengeResponseResult {
     /**
+     * Attested device ID (ADID).
+     */
+    attestedDeviceId?: string | null;
+    /**
      * Unique customer id that this device belongs to, as defined by the Google Admin SDK at https://developers.google.com/admin-sdk/directory/v1/guides/manage-customers
      */
     customerId?: string | null;
+    /**
+     * Device enrollment id for ChromeOS devices.
+     */
+    deviceEnrollmentId?: string | null;
     /**
      * Device permanent id is returned in this field (for the machine response only).
      */
@@ -346,51 +354,6 @@ export namespace verifiedaccess_v2 {
 
     /**
      * Generates a new challenge.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/verifiedaccess.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const verifiedaccess = google.verifiedaccess('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/verifiedaccess'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await verifiedaccess.challenge.generate({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "challenge": "my_challenge"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -479,63 +442,6 @@ export namespace verifiedaccess_v2 {
 
     /**
      * Verifies the challenge response.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/verifiedaccess.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const verifiedaccess = google.verifiedaccess('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/verifiedaccess'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await verifiedaccess.challenge.verify({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "challengeResponse": "my_challengeResponse",
-     *       //   "expectedIdentity": "my_expectedIdentity"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customerId": "my_customerId",
-     *   //   "devicePermanentId": "my_devicePermanentId",
-     *   //   "deviceSignal": "my_deviceSignal",
-     *   //   "deviceSignals": {},
-     *   //   "keyTrustLevel": "my_keyTrustLevel",
-     *   //   "profileCustomerId": "my_profileCustomerId",
-     *   //   "profileKeyTrustLevel": "my_profileKeyTrustLevel",
-     *   //   "signedPublicKeyAndChallenge": "my_signedPublicKeyAndChallenge",
-     *   //   "virtualDeviceId": "my_virtualDeviceId",
-     *   //   "virtualProfileId": "my_virtualProfileId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
