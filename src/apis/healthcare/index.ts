@@ -31,7 +31,7 @@ export function healthcare(
   options: healthcare_v1beta1.Options
 ): healthcare_v1beta1.Healthcare;
 export function healthcare<
-  T = healthcare_v1.Healthcare | healthcare_v1beta1.Healthcare
+  T = healthcare_v1.Healthcare | healthcare_v1beta1.Healthcare,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

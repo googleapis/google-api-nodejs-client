@@ -4941,7 +4941,7 @@
       }
     }
   },
-  "revision": "20230627",
+  "revision": "20230720",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "Action": {
@@ -5015,6 +5015,18 @@
       "description": "The request to analyze healthcare entities in a document.",
       "id": "AnalyzeEntitiesRequest",
       "properties": {
+        "alternativeOutputFormat": {
+          "description": "Optional. Alternative output format to be generated based on the results of analysis.",
+          "enum": [
+            "ALTERNATIVE_OUTPUT_FORMAT_UNSPECIFIED",
+            "FHIR_BUNDLE"
+          ],
+          "enumDescriptions": [
+            "No alternative output format is specified.",
+            "FHIR bundle output."
+          ],
+          "type": "string"
+        },
         "documentContent": {
           "description": "document_content is a document to be annotated.",
           "type": "string"
@@ -5056,6 +5068,10 @@
             "$ref": "EntityMention"
           },
           "type": "array"
+        },
+        "fhirBundle": {
+          "description": "The FHIR bundle ([`R4`](http://hl7.org/fhir/R4/bundle.html)) that includes all the entities, the entity mentions, and the relationships in JSON format.",
+          "type": "string"
         },
         "relationships": {
           "description": "relationships contains all the binary relationships that were identified between entity mentions within the provided document.",
@@ -5734,6 +5750,7 @@
         },
         "dicom": {
           "$ref": "DicomConfig",
+          "deprecated": true,
           "description": "Configures de-id of application/DICOM content. Deprecated. Use `dicom_tag_config` instead."
         },
         "dicomTagConfig": {
@@ -5742,6 +5759,7 @@
         },
         "fhir": {
           "$ref": "FhirConfig",
+          "deprecated": true,
           "description": "Configures de-id of application/FHIR content. Deprecated. Use `fhir_field_config` instead."
         },
         "fhirFieldConfig": {
@@ -5750,6 +5768,7 @@
         },
         "image": {
           "$ref": "ImageConfig",
+          "deprecated": true,
           "description": "Configures the de-identification of image pixels in the source_dataset. Deprecated. Use `dicom_tag_config.options.clean_image` instead."
         },
         "operationMetadata": {
@@ -5761,7 +5780,7 @@
           "description": "Configures de-identification of text wherever it is found in the source_dataset."
         },
         "useRegionalDataProcessing": {
-          "description": "Ensures in-flight data remains in the region of origin during de-identification. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. If the deprecated [`DicomConfig`](google.cloud.healthcare.v1beta1.deidentify.DeidentifyConfig.dicom_config) or [`FhirConfig`](google.cloud.healthcare.v1beta1.deidentify.DeidentifyConfig.fhir_config) are used, then `LOCATION` must be excluded within `TextConfig`, and must also be excluded within `ImageConfig` if image redaction is required.",
+          "description": "Ensures in-flight data remains in the region of origin during de-identification. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. If the deprecated `DicomConfig` or `FhirConfig` are used, then `LOCATION` must be excluded within `TextConfig`, and must also be excluded within `ImageConfig` if image redaction is required.",
           "type": "boolean"
         }
       },
@@ -6473,6 +6492,7 @@
         },
         "notificationConfig": {
           "$ref": "NotificationConfig",
+          "deprecated": true,
           "description": "Deprecated. Use `notification_configs` instead. If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, \"action\":\"CreateResource\"."
         },
         "notificationConfigs": {
@@ -7101,6 +7121,7 @@
         },
         "notificationConfig": {
           "$ref": "NotificationConfig",
+          "deprecated": true,
           "description": "The notification destination all messages (both Ingest & Create) are published on. Only the message name is sent as part of the notification. If this is unset, no notifications are sent. Supplied by the client."
         },
         "notificationConfigs": {
@@ -8567,6 +8588,7 @@
           "type": "string"
         },
         "transformations": {
+          "deprecated": true,
           "description": "The transformations to apply to the detected data. Deprecated. Use `additional_transformations` instead.",
           "items": {
             "$ref": "InfoTypeTransformation"
