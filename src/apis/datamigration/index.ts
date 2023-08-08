@@ -33,7 +33,7 @@ export function datamigration(
   options: datamigration_v1beta1.Options
 ): datamigration_v1beta1.Datamigration;
 export function datamigration<
-  T = datamigration_v1.Datamigration | datamigration_v1beta1.Datamigration
+  T = datamigration_v1.Datamigration | datamigration_v1beta1.Datamigration,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
