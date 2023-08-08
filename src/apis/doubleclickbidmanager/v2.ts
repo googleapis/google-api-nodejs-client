@@ -475,59 +475,6 @@ export namespace doubleclickbidmanager_v2 {
 
     /**
      * Creates a query.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclickbidmanager = google.doubleclickbidmanager('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclickbidmanager.queries.create({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "metadata": {},
-     *       //   "params": {},
-     *       //   "queryId": "my_queryId",
-     *       //   "schedule": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "metadata": {},
-     *   //   "params": {},
-     *   //   "queryId": "my_queryId",
-     *   //   "schedule": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -612,43 +559,6 @@ export namespace doubleclickbidmanager_v2 {
 
     /**
      * Deletes a query as well as the associated reports.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclickbidmanager = google.doubleclickbidmanager('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclickbidmanager.queries.delete({
-     *     // Required. ID of query to delete.
-     *     queryId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -734,51 +644,6 @@ export namespace doubleclickbidmanager_v2 {
 
     /**
      * Retrieves a query.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclickbidmanager = google.doubleclickbidmanager('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclickbidmanager.queries.get({
-     *     // Required. ID of query to retrieve.
-     *     queryId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "metadata": {},
-     *   //   "params": {},
-     *   //   "queryId": "my_queryId",
-     *   //   "schedule": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -866,53 +731,6 @@ export namespace doubleclickbidmanager_v2 {
 
     /**
      * Lists queries created by the current user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclickbidmanager = google.doubleclickbidmanager('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclickbidmanager.queries.list({
-     *     // Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. For example "metadata.title desc". Sorting is only supported for the following fields: * `queryId` * `metadata.title`
-     *     orderBy: 'placeholder-value',
-     *     // Maximum number of results per page. Must be between `1` and `100`. Defaults to `100` if unspecified.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous list call. Provide this to retrieve the subsequent page of queries.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "queries": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1000,60 +818,6 @@ export namespace doubleclickbidmanager_v2 {
 
     /**
      * Runs a stored query to generate a report.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclickbidmanager = google.doubleclickbidmanager('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclickbidmanager.queries.run({
-     *     // Required. ID of query to run.
-     *     queryId: 'placeholder-value',
-     *     // Whether the query should be run synchronously. When true, this method will not return until the query has finished running. When false or not specified, this method will return immediately.
-     *     synchronous: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "dataRange": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "key": {},
-     *   //   "metadata": {},
-     *   //   "params": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1196,52 +960,6 @@ export namespace doubleclickbidmanager_v2 {
 
     /**
      * Retrieves a report.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclickbidmanager = google.doubleclickbidmanager('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclickbidmanager.queries.reports.get({
-     *     // Required. ID of the query the report is associated with.
-     *     queryId: 'placeholder-value',
-     *     // Required. ID of the report to retrieve.
-     *     reportId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "key": {},
-     *   //   "metadata": {},
-     *   //   "params": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1330,55 +1048,6 @@ export namespace doubleclickbidmanager_v2 {
 
     /**
      * Lists reports associated with a query.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclickbidmanager = google.doubleclickbidmanager('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclickbidmanager'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclickbidmanager.queries.reports.list({
-     *     // Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. For example "key.reportId desc". Sorting is only supported for the following fields: * `key.reportId`
-     *     orderBy: 'placeholder-value',
-     *     // Maximum number of results per page. Must be between `1` and `100`. Defaults to `100` if unspecified.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous list call. Provide this to retrieve the subsequent page of reports.
-     *     pageToken: 'placeholder-value',
-     *     // Required. ID of the query with which the reports are associated.
-     *     queryId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "reports": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
