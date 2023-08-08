@@ -137,17 +137,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     givenName?: string | null;
   }
-  export interface Schema$AuthenticationConfig {
-    basicAuthSetting?: Schema$BasicAuthConfig;
-    /**
-     * Name of authentication config. Format: projects/{project\}/locations/{location\}/contactCenters/{contact_center\}/authentication-config
-     */
-    name?: string | null;
-    samlSetting?: Schema$SamlConfig;
-  }
-  export interface Schema$BasicAuthConfig {
-    enabled?: boolean | null;
-  }
   /**
    * The request message for Operations.CancelOperation.
    */
@@ -423,24 +412,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     contactCenterInstanceSize?: string | null;
   }
-  export interface Schema$SamlConfig {
-    /**
-     * X.509 public certificate for IdP
-     */
-    cert?: string | null;
-    /**
-     * IdP field that maps to the user’s email address
-     */
-    emailMapping?: string | null;
-    /**
-     * The entity ID for the identity provider. Example: https://[IDP Domain]/saml/metadata
-     */
-    entityId?: string | null;
-    /**
-     * The sso login url. Example: https://[IDP Domain]/saml/sso/login
-     */
-    loginUri?: string | null;
-  }
   /**
    * Message storing SAML params to enable Google as IDP.
    */
@@ -526,52 +497,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
 
     /**
      * Gets information about a location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenteraiplatform.projects.locations.get({
-     *     // Resource name for the location.
-     *     name: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "labels": {},
-     *   //   "locationId": "my_locationId",
-     *   //   "metadata": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -657,55 +582,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
 
     /**
      * Lists information about the supported locations for this service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenteraiplatform.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
-     *     filter: 'placeholder-value',
-     *     // The resource that owns the locations collection, if applicable.
-     *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service selects a default.
-     *     pageSize: 'placeholder-value',
-     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "locations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -799,51 +675,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
 
     /**
      * Queries the contact center quota, an aggregation over all the projects, that belongs to the billing account, which the input project belongs to.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenteraiplatform.projects.locations.queryContactCenterQuota({
-     *       // Required. Parent project resource id.
-     *       parent: 'projects/my-project/locations/my-location',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contactCenterCountLimit": 0,
-     *   //   "contactCenterCountSum": 0,
-     *   //   "quotas": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -978,78 +809,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
 
     /**
      * Creates a new ContactCenter in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenteraiplatform.projects.locations.contactCenters.create({
-     *       // Required. Id of the requesting object If auto-generating Id server-side, remove this field and contact_center_id from the method_signature of Create RPC
-     *       contactCenterId: 'placeholder-value',
-     *       // Required. Value for parent.
-     *       parent: 'projects/my-project/locations/my-location',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *       requestId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "adminUser": {},
-     *         //   "ccaipManagedUsers": false,
-     *         //   "createTime": "my_createTime",
-     *         //   "customerDomainPrefix": "my_customerDomainPrefix",
-     *         //   "displayName": "my_displayName",
-     *         //   "instanceConfig": {},
-     *         //   "kmsKey": "my_kmsKey",
-     *         //   "labels": {},
-     *         //   "name": "my_name",
-     *         //   "samlParams": {},
-     *         //   "state": "my_state",
-     *         //   "updateTime": "my_updateTime",
-     *         //   "uris": {},
-     *         //   "userEmail": "my_userEmail"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1138,55 +897,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
 
     /**
      * Deletes a single ContactCenter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenteraiplatform.projects.locations.contactCenters.delete({
-     *       // Required. Name of the resource
-     *       name: 'projects/my-project/locations/my-location/contactCenters/my-contactCenter',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *       requestId: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1272,62 +982,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
 
     /**
      * Gets details of a single ContactCenter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenteraiplatform.projects.locations.contactCenters.get({
-     *       // Required. Name of the resource
-     *       name: 'projects/my-project/locations/my-location/contactCenters/my-contactCenter',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adminUser": {},
-     *   //   "ccaipManagedUsers": false,
-     *   //   "createTime": "my_createTime",
-     *   //   "customerDomainPrefix": "my_customerDomainPrefix",
-     *   //   "displayName": "my_displayName",
-     *   //   "instanceConfig": {},
-     *   //   "kmsKey": "my_kmsKey",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "samlParams": {},
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "uris": {},
-     *   //   "userEmail": "my_userEmail"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1412,199 +1066,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
     }
 
     /**
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     (await contactcenteraiplatform.projects.locations.contactCenters
-     *       .getAuthentication) -
-     *     config({
-     *       // Required. The name of the AuthenticationConfig resource. Format: projects/{project\}/locations/{location\}/contactCenters/{contact_center\}/authentication-config
-     *       name: 'projects/my-project/locations/my-location/contactCenters/my-contactCenter/authentication-config',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "basicAuthSetting": {},
-     *   //   "name": "my_name",
-     *   //   "samlSetting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getAuthenticationConfig(
-      params?: Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AuthenticationConfig>;
-    getAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AuthenticationConfig>,
-      callback: BodyResponseCallback<Schema$AuthenticationConfig>
-    ): void;
-    getAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig,
-      callback: BodyResponseCallback<Schema$AuthenticationConfig>
-    ): void;
-    getAuthenticationConfig(
-      callback: BodyResponseCallback<Schema$AuthenticationConfig>
-    ): void;
-    getAuthenticationConfig(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig
-        | BodyResponseCallback<Schema$AuthenticationConfig>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AuthenticationConfig>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$AuthenticationConfig>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$AuthenticationConfig>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://contactcenteraiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AuthenticationConfig>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AuthenticationConfig>(parameters);
-      }
-    }
-
-    /**
      * Lists ContactCenters in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenteraiplatform.projects.locations.contactCenters.list({
-     *       // Filtering results
-     *       filter: 'placeholder-value',
-     *       // Hint for how to order the results
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Parent value for ListContactCentersRequest
-     *       parent: 'projects/my-project/locations/my-location',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contactCenters": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1700,78 +1162,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
 
     /**
      * Updates the parameters of a single ContactCenter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenteraiplatform.projects.locations.contactCenters.patch({
-     *       // name of resource
-     *       name: 'projects/my-project/locations/my-location/contactCenters/my-contactCenter',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *       requestId: 'placeholder-value',
-     *       // Required. Field mask is used to specify the fields to be overwritten in the ContactCenter resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "adminUser": {},
-     *         //   "ccaipManagedUsers": false,
-     *         //   "createTime": "my_createTime",
-     *         //   "customerDomainPrefix": "my_customerDomainPrefix",
-     *         //   "displayName": "my_displayName",
-     *         //   "instanceConfig": {},
-     *         //   "kmsKey": "my_kmsKey",
-     *         //   "labels": {},
-     *         //   "name": "my_name",
-     *         //   "samlParams": {},
-     *         //   "state": "my_state",
-     *         //   "updateTime": "my_updateTime",
-     *         //   "uris": {},
-     *         //   "userEmail": "my_userEmail"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1854,157 +1244,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
-    /**
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     (await contactcenteraiplatform.projects.locations.contactCenters
-     *       .updateAuthentication) -
-     *     config({
-     *       // Name of authentication config. Format: projects/{project\}/locations/{location\}/contactCenters/{contact_center\}/authentication-config
-     *       name: 'projects/my-project/locations/my-location/contactCenters/my-contactCenter/authentication-config',
-     *       // Required. Indicates which fields in the provided authentication config to update. Must be specified and non-empty.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "basicAuthSetting": {},
-     *         //   "name": "my_name",
-     *         //   "samlSetting": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "basicAuthSetting": {},
-     *   //   "name": "my_name",
-     *   //   "samlSetting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updateAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    updateAuthenticationConfig(
-      params?: Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AuthenticationConfig>;
-    updateAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updateAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AuthenticationConfig>,
-      callback: BodyResponseCallback<Schema$AuthenticationConfig>
-    ): void;
-    updateAuthenticationConfig(
-      params: Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig,
-      callback: BodyResponseCallback<Schema$AuthenticationConfig>
-    ): void;
-    updateAuthenticationConfig(
-      callback: BodyResponseCallback<Schema$AuthenticationConfig>
-    ): void;
-    updateAuthenticationConfig(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig
-        | BodyResponseCallback<Schema$AuthenticationConfig>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AuthenticationConfig>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$AuthenticationConfig>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$AuthenticationConfig>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://contactcenteraiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AuthenticationConfig>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AuthenticationConfig>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Contactcenters$Create
@@ -2042,13 +1281,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
     extends StandardParameters {
     /**
      * Required. Name of the resource
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Contactcenters$Getauthenticationconfig
-    extends StandardParameters {
-    /**
-     * Required. The name of the AuthenticationConfig resource. Format: projects/{project\}/locations/{location\}/contactCenters/{contact_center\}/authentication-config
      */
     name?: string;
   }
@@ -2095,22 +1327,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     requestBody?: Schema$ContactCenter;
   }
-  export interface Params$Resource$Projects$Locations$Contactcenters$Updateauthenticationconfig
-    extends StandardParameters {
-    /**
-     * Name of authentication config. Format: projects/{project\}/locations/{location\}/contactCenters/{contact_center\}/authentication-config
-     */
-    name?: string;
-    /**
-     * Required. Indicates which fields in the provided authentication config to update. Must be specified and non-empty.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AuthenticationConfig;
-  }
 
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
@@ -2120,53 +1336,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenteraiplatform.projects.locations.operations.cancel({
-     *       // The name of the operation resource to be cancelled.
-     *       name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2255,47 +1424,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contactcenteraiplatform.projects.locations.operations.delete({
-     *       // The name of the operation resource to be deleted.
-     *       name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2381,52 +1509,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenteraiplatform.projects.locations.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2512,55 +1594,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contactcenteraiplatform.projects.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'projects/my-project/locations/my-location',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
