@@ -175,19 +175,11 @@ export namespace smartdevicemanagement_v1 {
      * The list of devices.
      */
     devices?: Schema$GoogleHomeEnterpriseSdmV1Device[];
-    /**
-     * The pagination token to retrieve the next page of results.
-     */
-    nextPageToken?: string | null;
   }
   /**
    * Response message for SmartDeviceManagementService.ListRooms
    */
   export interface Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse {
-    /**
-     * The pagination token to retrieve the next page of results. If this field is omitted, there are no subsequent pages.
-     */
-    nextPageToken?: string | null;
     /**
      * The list of rooms.
      */
@@ -197,10 +189,6 @@ export namespace smartdevicemanagement_v1 {
    * Response message for SmartDeviceManagementService.ListStructures
    */
   export interface Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse {
-    /**
-     * The pagination token to retrieve the next page of results. If this field is omitted, there are no subsequent pages.
-     */
-    nextPageToken?: string | null;
     /**
      * The list of structures.
      */
@@ -588,10 +576,6 @@ export namespace smartdevicemanagement_v1 {
      *   const res = await smartdevicemanagement.enterprises.devices.list({
      *     // Optional filter to list devices. Filters can be done on: Device custom name (substring match): 'customName=wing'
      *     filter: 'placeholder-value',
-     *     // Optional requested page size. Server may return fewer devices than requested. If unspecified, server will pick an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // Optional token of the page to retrieve.
-     *     pageToken: 'placeholder-value',
      *     // The parent enterprise to list devices under. E.g. "enterprises/XYZ".
      *     parent: 'enterprises/my-enterprise',
      *   });
@@ -599,8 +583,7 @@ export namespace smartdevicemanagement_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "devices": [],
-     *   //   "nextPageToken": "my_nextPageToken"
+     *   //   "devices": []
      *   // }
      * }
      *
@@ -731,14 +714,6 @@ export namespace smartdevicemanagement_v1 {
      * Optional filter to list devices. Filters can be done on: Device custom name (substring match): 'customName=wing'
      */
     filter?: string;
-    /**
-     * Optional requested page size. Server may return fewer devices than requested. If unspecified, server will pick an appropriate default.
-     */
-    pageSize?: number;
-    /**
-     * Optional token of the page to retrieve.
-     */
-    pageToken?: string;
     /**
      * The parent enterprise to list devices under. E.g. "enterprises/XYZ".
      */
@@ -925,10 +900,6 @@ export namespace smartdevicemanagement_v1 {
      *   const res = await smartdevicemanagement.enterprises.structures.list({
      *     // Optional filter to list structures.
      *     filter: 'placeholder-value',
-     *     // Requested page size. Server may return fewer structures than requested. If unspecified, server will pick an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // The token of the page to retrieve.
-     *     pageToken: 'placeholder-value',
      *     // The parent enterprise to list structures under. E.g. "enterprises/XYZ".
      *     parent: 'enterprises/my-enterprise',
      *   });
@@ -936,7 +907,6 @@ export namespace smartdevicemanagement_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
      *   //   "structures": []
      *   // }
      * }
@@ -1056,14 +1026,6 @@ export namespace smartdevicemanagement_v1 {
      * Optional filter to list structures.
      */
     filter?: string;
-    /**
-     * Requested page size. Server may return fewer structures than requested. If unspecified, server will pick an appropriate default.
-     */
-    pageSize?: number;
-    /**
-     * The token of the page to retrieve.
-     */
-    pageToken?: string;
     /**
      * The parent enterprise to list structures under. E.g. "enterprises/XYZ".
      */
@@ -1246,10 +1208,6 @@ export namespace smartdevicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await smartdevicemanagement.enterprises.structures.rooms.list({
-     *     // Requested page size. Server may return fewer rooms than requested. If unspecified, server will pick an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // The token of the page to retrieve.
-     *     pageToken: 'placeholder-value',
      *     // The parent resource name of the rooms requested. For example: "enterprises/XYZ/structures/ABC".
      *     parent: 'enterprises/my-enterprise/structures/my-structure',
      *   });
@@ -1257,7 +1215,6 @@ export namespace smartdevicemanagement_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
      *   //   "rooms": []
      *   // }
      * }
@@ -1373,14 +1330,6 @@ export namespace smartdevicemanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Structures$Rooms$List
     extends StandardParameters {
-    /**
-     * Requested page size. Server may return fewer rooms than requested. If unspecified, server will pick an appropriate default.
-     */
-    pageSize?: number;
-    /**
-     * The token of the page to retrieve.
-     */
-    pageToken?: string;
     /**
      * The parent resource name of the rooms requested. For example: "enterprises/XYZ/structures/ABC".
      */
