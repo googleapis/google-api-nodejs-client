@@ -31,7 +31,7 @@ export function firebaseml(
   options: firebaseml_v1beta2.Options
 ): firebaseml_v1beta2.Firebaseml;
 export function firebaseml<
-  T = firebaseml_v1.Firebaseml | firebaseml_v1beta2.Firebaseml
+  T = firebaseml_v1.Firebaseml | firebaseml_v1beta2.Firebaseml,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
