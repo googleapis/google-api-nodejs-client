@@ -31,7 +31,7 @@ export function monitoring(
   options: monitoring_v3.Options
 ): monitoring_v3.Monitoring;
 export function monitoring<
-  T = monitoring_v1.Monitoring | monitoring_v3.Monitoring
+  T = monitoring_v1.Monitoring | monitoring_v3.Monitoring,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | monitoring_v1.Options | 'v3' | monitoring_v3.Options
