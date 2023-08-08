@@ -1342,7 +1342,7 @@
       }
     }
   },
-  "revision": "20230701",
+  "revision": "20230728",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {
@@ -1554,7 +1554,8 @@
             "DOUBLE",
             "BOOLEAN",
             "RECORD",
-            "PLUS_PAGE"
+            "PLUS_PAGE",
+            "LIST"
           ],
           "enumDescriptions": [
             "Type unspecified.",
@@ -1563,7 +1564,8 @@
             "Double precision floating point parameter.",
             "Boolean parameter.",
             "Deprecated. This field has no effect.",
-            "Page ID for a Google+ Page."
+            "Page ID for a Google+ Page.",
+            "List of strings parameter."
           ],
           "type": "string"
         },
@@ -1597,6 +1599,17 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EncryptionConfiguration": {
+      "description": "Represents the encryption configuration for a transfer.",
+      "id": "EncryptionConfiguration",
+      "properties": {
+        "kmsKeyName": {
+          "description": "The name of the KMS key used for encrypting BigQuery data.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "EnrollDataSourcesRequest": {
@@ -1801,13 +1814,13 @@
       "id": "StartManualTransferRunsRequest",
       "properties": {
         "requestedRunTime": {
-          "description": "Specific run_time for a transfer run to be started. The requested_run_time must not be in the future.",
+          "description": "A run_time timestamp for historical data files or reports that are scheduled to be transferred by the scheduled transfer run. requested_run_time must be a past time and cannot include future time values.",
           "format": "google-datetime",
           "type": "string"
         },
         "requestedTimeRange": {
           "$ref": "TimeRange",
-          "description": "Time range for the transfer runs that should be started."
+          "description": "A time_range start and end timestamp for historical data files or reports that are scheduled to be transferred by the scheduled transfer run. requested_time_range must be a past time and cannot include future time values."
         }
       },
       "type": "object"
@@ -1903,6 +1916,10 @@
         "emailPreferences": {
           "$ref": "EmailPreferences",
           "description": "Email notifications will be sent according to these preferences to the email address of the user who owns this transfer config."
+        },
+        "encryptionConfiguration": {
+          "$ref": "EncryptionConfiguration",
+          "description": "The encryption configuration part. Currently, it is only used for the optional KMS key name. The BigQuery service account of your project must be granted permissions to use the key. Read methods will return the key name applied in effect. Write methods will apply the key if it is present, or otherwise try to apply project default keys if it is absent."
         },
         "name": {
           "description": "The resource name of the transfer config. Transfer config names have the form `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.",
