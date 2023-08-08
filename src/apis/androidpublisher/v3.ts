@@ -1857,7 +1857,7 @@ export namespace androidpublisher_v3 {
      */
     oldestAllowedPriceVersionTime?: string | null;
     /**
-     * Optional. The behavior the caller wants users to see if there is a price increase during migration. If left unset, the behavior defaults to PRICE_INCREASE_TYPE_OPT_IN.
+     * Optional. The behavior the caller wants users to see when there is a price increase during migration. If left unset, the behavior defaults to PRICE_INCREASE_TYPE_OPT_IN. Note that the first opt-out price increase migration for each app must be initiated in Play Console.
      */
     priceIncreaseType?: string | null;
     /**
@@ -10640,7 +10640,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Deletes an in-app product (i.e. a managed product or a subscription). This method should no longer be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
+     * Deletes an in-app product (a managed product or a subscription). This method should no longer be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -10909,7 +10909,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Creates an in-app product (i.e. a managed product or a subscription). This method should no longer be used to create subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
+     * Creates an in-app product (a managed product or a subscription). This method should no longer be used to create subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -11219,7 +11219,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Patches an in-app product (i.e. a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
+     * Patches an in-app product (a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -11385,7 +11385,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Updates an in-app product (i.e. a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
+     * Updates an in-app product (a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -14619,7 +14619,7 @@ export namespace androidpublisher_v3 {
      *   // Do the magic
      *   const res =
      *     await androidpublisher.monetization.subscriptions.basePlans.offers.list({
-     *       // Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription.
+     *       // Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription or an app. Must be specified as '-' if product_id is specified as '-'.
      *       basePlanId: 'placeholder-value',
      *       // Required. The parent app (package name) for which the subscriptions should be read.
      *       packageName: 'placeholder-value',
@@ -14627,7 +14627,7 @@ export namespace androidpublisher_v3 {
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListSubscriptionsOffers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptionOffers` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent subscription (ID) for which the offers should be read.
+     *       // Required. The parent subscription (ID) for which the offers should be read. May be specified as '-' to read all offers under an app.
      *       productId: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -15030,7 +15030,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List
     extends StandardParameters {
     /**
-     * Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription.
+     * Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription or an app. Must be specified as '-' if product_id is specified as '-'.
      */
     basePlanId?: string;
     /**
@@ -15046,7 +15046,7 @@ export namespace androidpublisher_v3 {
      */
     pageToken?: string;
     /**
-     * Required. The parent subscription (ID) for which the offers should be read.
+     * Required. The parent subscription (ID) for which the offers should be read. May be specified as '-' to read all offers under an app.
      */
     productId?: string;
   }

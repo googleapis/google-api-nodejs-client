@@ -2099,7 +2099,7 @@
     "inappproducts": {
       "methods": {
         "delete": {
-          "description": "Deletes an in-app product (i.e. a managed product or a subscription). This method should no longer be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
+          "description": "Deletes an in-app product (a managed product or a subscription). This method should no longer be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
           "httpMethod": "DELETE",
           "id": "androidpublisher.inappproducts.delete",
@@ -2158,7 +2158,7 @@
           ]
         },
         "insert": {
-          "description": "Creates an in-app product (i.e. a managed product or a subscription). This method should no longer be used to create subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
+          "description": "Creates an in-app product (a managed product or a subscription). This method should no longer be used to create subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts",
           "httpMethod": "POST",
           "id": "androidpublisher.inappproducts.insert",
@@ -2233,7 +2233,7 @@
           ]
         },
         "patch": {
-          "description": "Patches an in-app product (i.e. a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
+          "description": "Patches an in-app product (a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
           "httpMethod": "PATCH",
           "id": "androidpublisher.inappproducts.patch",
@@ -2272,7 +2272,7 @@
           ]
         },
         "update": {
-          "description": "Updates an in-app product (i.e. a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
+          "description": "Updates an in-app product (a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
           "httpMethod": "PUT",
           "id": "androidpublisher.inappproducts.update",
@@ -3064,7 +3064,7 @@
                       ],
                       "parameters": {
                         "basePlanId": {
-                          "description": "Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription.",
+                          "description": "Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription or an app. Must be specified as '-' if product_id is specified as '-'.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -3087,7 +3087,7 @@
                           "type": "string"
                         },
                         "productId": {
-                          "description": "Required. The parent subscription (ID) for which the offers should be read.",
+                          "description": "Required. The parent subscription (ID) for which the offers should be read. May be specified as '-' to read all offers under an app.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -4047,7 +4047,7 @@
       }
     }
   },
-  "revision": "20230717",
+  "revision": "20230806",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -6391,7 +6391,7 @@
           "type": "string"
         },
         "priceIncreaseType": {
-          "description": "Optional. The behavior the caller wants users to see if there is a price increase during migration. If left unset, the behavior defaults to PRICE_INCREASE_TYPE_OPT_IN.",
+          "description": "Optional. The behavior the caller wants users to see when there is a price increase during migration. If left unset, the behavior defaults to PRICE_INCREASE_TYPE_OPT_IN. Note that the first opt-out price increase migration for each app must be initiated in Play Console.",
           "enum": [
             "PRICE_INCREASE_TYPE_UNSPECIFIED",
             "PRICE_INCREASE_TYPE_OPT_IN",
