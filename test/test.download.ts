@@ -144,9 +144,7 @@ describe(__filename, () => {
             res.end(JSON.stringify(err));
             return;
           }
-          res.writeHead(200, {
-            'Content-Type': 'application/json',
-          });
+          res.writeHead(200);
           res.end(data);
         });
       })
