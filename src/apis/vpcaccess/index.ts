@@ -31,7 +31,7 @@ export function vpcaccess(
   options: vpcaccess_v1beta1.Options
 ): vpcaccess_v1beta1.Vpcaccess;
 export function vpcaccess<
-  T = vpcaccess_v1.Vpcaccess | vpcaccess_v1beta1.Vpcaccess
+  T = vpcaccess_v1.Vpcaccess | vpcaccess_v1beta1.Vpcaccess,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
