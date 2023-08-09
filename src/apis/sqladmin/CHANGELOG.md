@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v10.0.0...sqladmin-v10.1.0) (2023-08-09)
+
+
+### Features
+
+* **sqladmin:** update the API ([0c9f7b6](https://github.com/googleapis/google-api-nodejs-client/commit/0c9f7b666da6d51fd7174c76e5cf79335d48e1d0))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v9.1.0...sqladmin-v10.0.0) (2023-07-18)
 
 

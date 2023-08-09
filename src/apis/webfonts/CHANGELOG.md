@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/webfonts-v1.1.0...webfonts-v1.1.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **webfonts:** update the API ([f0a4421](https://github.com/googleapis/google-api-nodejs-client/commit/f0a44217601e0fb49d1f8627ea28035812830bb1))
+
 ## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/webfonts-v1.0.0...webfonts-v1.1.0) (2023-05-02)
 
 

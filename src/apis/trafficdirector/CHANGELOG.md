@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/trafficdirector-v1.0.0...trafficdirector-v1.1.0) (2023-08-09)
+
+
+### Features
+
+* **trafficdirector:** update the API ([d07ac95](https://github.com/googleapis/google-api-nodejs-client/commit/d07ac9564187261e66d864ebb42822efd3b03b9f))
+
 ## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/trafficdirector-v0.3.3...trafficdirector-v1.0.0) (2022-10-28)
 
 

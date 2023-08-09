@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v3.1.0...toolresults-v3.2.0) (2023-08-09)
+
+
+### Features
+
+* **toolresults:** update the API ([d07c878](https://github.com/googleapis/google-api-nodejs-client/commit/d07c8782d3a7f80696b468e712003997c3a48389))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v3.0.0...toolresults-v3.1.0) (2023-07-10)
 
 

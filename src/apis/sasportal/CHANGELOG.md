@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v9.0.0...sasportal-v9.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **sasportal:** update the API ([ca33e9c](https://github.com/googleapis/google-api-nodejs-client/commit/ca33e9c71f80e1b9f6e0dee395a120c33df5a134))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v8.0.0...sasportal-v9.0.0) (2023-07-10)
 
 

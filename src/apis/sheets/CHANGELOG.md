@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v5.0.1...sheets-v5.0.2) (2023-08-09)
+
+
+### Bug Fixes
+
+* **sheets:** update the API ([3333f83](https://github.com/googleapis/google-api-nodejs-client/commit/3333f834739bb1aad601b579c3eeae0dbecf7b21))
+
 ## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v5.0.0...sheets-v5.0.1) (2023-07-10)
 
 
