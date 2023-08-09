@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v10.0.0...healthcare-v10.1.0) (2023-08-09)
+
+
+### Features
+
+* **healthcare:** update the API ([1d0354c](https://github.com/googleapis/google-api-nodejs-client/commit/1d0354c855ab68bc9d654e2b8b7d52cb53246000))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v9.0.0...healthcare-v10.0.0) (2023-07-10)
 
 

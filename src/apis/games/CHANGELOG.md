@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v5.1.0...games-v5.2.0) (2023-08-09)
+
+
+### Features
+
+* **games:** update the API ([55fed7d](https://github.com/googleapis/google-api-nodejs-client/commit/55fed7d4ec12c70cba143039fdbb5e45b3fcd526))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v5.0.0...games-v5.1.0) (2023-03-22)
 
 

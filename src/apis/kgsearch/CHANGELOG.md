@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/kgsearch-v1.0.0...kgsearch-v1.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **kgsearch:** update the API ([9cee192](https://github.com/googleapis/google-api-nodejs-client/commit/9cee192c083e98dca098ba829f41eae6743abfaf))
+
 ## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/kgsearch-v0.3.2...kgsearch-v1.0.0) (2022-10-28)
 
 

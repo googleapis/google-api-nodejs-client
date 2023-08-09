@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/ideahub-v1.0.2...ideahub-v1.0.3) (2023-08-09)
+
+
+### Bug Fixes
+
+* **ideahub:** update the API ([1540d50](https://github.com/googleapis/google-api-nodejs-client/commit/1540d50df9a1b80c8a78dd89bae9922bac3fc122))
+
 ## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/ideahub-v1.0.1...ideahub-v1.0.2) (2023-02-24)
 
 

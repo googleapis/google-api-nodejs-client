@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v7.0.0...networkservices-v7.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([8133c74](https://github.com/googleapis/google-api-nodejs-client/commit/8133c7471ec23e36550fc655b8af3de4818e0649))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v6.0.0...networkservices-v7.0.0) (2023-07-10)
 
 
