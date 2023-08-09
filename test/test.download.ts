@@ -125,7 +125,7 @@ describe(__filename, () => {
     scopes.forEach(s => s.done());
   });
 
-  it.only('should be invokable from the CLI', async () => {
+  it('should be invokable from the CLI', async () => {
     const port = 3030;
     const server = http
       .createServer((req, res) => {
