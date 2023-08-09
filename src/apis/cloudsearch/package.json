@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudsearch",
-  "version": "14.1.0",
+  "version": "14.1.1",
   "description": "cloudsearch",
   "main": "build/index.js",
   "types": "build/index.d.ts",

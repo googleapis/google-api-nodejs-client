@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v8.0.0...drive-v8.1.0) (2023-08-09)
+
+
+### Features
+
+* **drive:** update the API ([2432651](https://github.com/googleapis/google-api-nodejs-client/commit/243265177fa7e8779436e48dd57357d6d9739be1))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v7.0.0...drive-v8.0.0) (2023-07-10)
 
 
