@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v12.0.0...admin-v12.1.0) (2023-08-09)
+
+
+### Features
+
+* **admin:** update the API ([1bc7f53](https://github.com/googleapis/google-api-nodejs-client/commit/1bc7f538577d1c6671c53e9ed4cfad24e2a1cf8f))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v11.0.0...admin-v12.0.0) (2023-07-10)
 
 

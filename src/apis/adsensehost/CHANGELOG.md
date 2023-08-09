@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/adsensehost-v5.0.0...adsensehost-v5.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **adsensehost:** update the API ([0a088ff](https://github.com/googleapis/google-api-nodejs-client/commit/0a088ff891f854ccacb78f75fc8d2dc854e522da))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsensehost-v4.0.0...adsensehost-v5.0.0) (2023-07-10)
 
 

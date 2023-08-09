@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/authorizedbuyersmarketplace-v4.0.0...authorizedbuyersmarketplace-v4.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **authorizedbuyersmarketplace:** update the API ([61d943b](https://github.com/googleapis/google-api-nodejs-client/commit/61d943be060a702f2c19d88115d5361acce74a55))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/authorizedbuyersmarketplace-v3.0.0...authorizedbuyersmarketplace-v4.0.0) (2023-07-10)
 
 

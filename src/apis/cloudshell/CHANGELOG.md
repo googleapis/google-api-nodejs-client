@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudshell-v2.0.0...cloudshell-v2.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **cloudshell:** update the API ([f098eb8](https://github.com/googleapis/google-api-nodejs-client/commit/f098eb8765ca5b1091695c123fa096aaef0d6cae))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudshell-v1.0.0...cloudshell-v2.0.0) (2023-04-08)
 
 

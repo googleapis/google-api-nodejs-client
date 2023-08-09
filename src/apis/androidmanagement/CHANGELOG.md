@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v9.1.0...androidmanagement-v10.0.0) (2023-08-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **androidmanagement:** This release has breaking changes.
+
+### Features
+
+* **androidmanagement:** update the API ([d885722](https://github.com/googleapis/google-api-nodejs-client/commit/d885722fa78010271e255b3dcae6c8156cca1c45))
+
 ## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v9.0.0...androidmanagement-v9.1.0) (2023-07-11)
 
 

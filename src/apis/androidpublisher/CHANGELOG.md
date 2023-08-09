@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v8.1.0...androidpublisher-v8.1.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **androidpublisher:** update the API ([8d35576](https://github.com/googleapis/google-api-nodejs-client/commit/8d3557604719a17a6c45e58b24fde8093f84ebc5))
+
 ## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v8.0.0...androidpublisher-v8.1.0) (2023-07-18)
 
 
