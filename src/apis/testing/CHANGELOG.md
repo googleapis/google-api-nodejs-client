@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v5.0.0...testing-v5.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **testing:** update the API ([fd787ed](https://github.com/googleapis/google-api-nodejs-client/commit/fd787ed8f22684691e8300fefafc1553ca545652))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v4.0.0...testing-v5.0.0) (2023-06-22)
 
 
