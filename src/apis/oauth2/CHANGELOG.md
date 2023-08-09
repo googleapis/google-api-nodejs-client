@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/oauth2-v1.0.0...oauth2-v1.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **oauth2:** update the API ([5097e00](https://github.com/googleapis/google-api-nodejs-client/commit/5097e00e9b496ad7e492726e0e1a55df0b715890))
+
 ## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/oauth2-v0.3.2...oauth2-v1.0.0) (2022-10-28)
 
 
