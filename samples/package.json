@@ -16,7 +16,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "@google-cloud/local-auth": "^2.0.0",
+    "@google-cloud/local-auth": "^3.0.0",
     "express": "^4.17.1",
     "googleapis": "^124.0.0",
     "googleapis-common": "^6.0.0",
