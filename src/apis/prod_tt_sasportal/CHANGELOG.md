@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v10.0.1...prod_tt_sasportal-v10.0.2) (2023-08-15)
+
+
+### Bug Fixes
+
+* **prod_tt_sasportal:** update the API ([cad4560](https://github.com/googleapis/google-api-nodejs-client/commit/cad45600a11cc3f9752607f1641c6c9ad6c73036))
+
 ## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v10.0.0...prod_tt_sasportal-v10.0.1) (2023-08-09)
 
 
