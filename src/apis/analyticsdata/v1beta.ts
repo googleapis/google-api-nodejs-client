@@ -319,7 +319,7 @@ export namespace analyticsdata_v1beta {
     dimensionNames?: string[] | null;
   }
   /**
-   * A contiguous set of days: startDate, startDate + 1, ..., endDate. Requests are allowed up to 4 date ranges.
+   * A contiguous set of days: `startDate`, `startDate + 1`, ..., `endDate`. Requests are allowed up to 4 date ranges.
    */
   export interface Schema$DateRange {
     /**
@@ -626,7 +626,7 @@ export namespace analyticsdata_v1beta {
     value?: string | null;
   }
   /**
-   * A contiguous set of minutes: startMinutesAgo, startMinutesAgo + 1, ..., endMinutesAgo. Requests are allowed up to 2 minute ranges.
+   * A contiguous set of minutes: `startMinutesAgo`, `startMinutesAgo + 1`, ..., `endMinutesAgo`. Requests are allowed up to 2 minute ranges.
    */
   export interface Schema$MinuteRange {
     /**
