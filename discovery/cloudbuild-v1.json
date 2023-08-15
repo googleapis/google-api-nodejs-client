@@ -2319,7 +2319,7 @@
       }
     }
   },
-  "revision": "20230801",
+  "revision": "20230811",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -3460,6 +3460,25 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "ConnectedRepository": {
+      "description": "Location of the source in a 2nd-gen Google Cloud Build repository resource.",
+      "id": "ConnectedRepository",
+      "properties": {
+        "dir": {
+          "description": "Directory, relative to the source root, in which to run the build.",
+          "type": "string"
+        },
+        "repository": {
+          "description": "Required. Name of the Google Cloud Build repository, formatted as `projects/*/locations/*/connections/*/repositories/*`.",
+          "type": "string"
+        },
+        "revision": {
+          "description": "The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "CreateBitbucketServerConfigOperationMetadata": {
@@ -4915,6 +4934,10 @@
       "description": "Location of the source in a supported storage service.",
       "id": "Source",
       "properties": {
+        "connectedRepository": {
+          "$ref": "ConnectedRepository",
+          "description": "Optional. If provided, get the source from this 2nd-gen Google Cloud Build repository resource."
+        },
         "gitSource": {
           "$ref": "GitSource",
           "description": "If provided, get the source from this Git repository."
