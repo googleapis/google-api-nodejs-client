@@ -1681,7 +1681,7 @@
       }
     }
   },
-  "revision": "20230715",
+  "revision": "20230805",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2185,6 +2185,28 @@
             "$ref": "BiEngineReason"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BigLakeConfiguration": {
+      "id": "BigLakeConfiguration",
+      "properties": {
+        "connectionId": {
+          "description": "[Required] Required and immutable. Credential reference for accessing external storage system. Normalized as project_id.location_id.connection_id.",
+          "type": "string"
+        },
+        "fileFormat": {
+          "description": "[Required] Required and immutable. Open source file format that the table data is stored in. Currently only PARQUET is supported.",
+          "type": "string"
+        },
+        "storageUri": {
+          "description": "[Required] Required and immutable. Fully qualified location prefix of the external folder where data is stored. Normalized to standard format: \"gs:////\". Starts with \"gs://\" rather than \"/bigstore/\". Ends with \"/\". Does not contain \"*\". See also BigLakeStorageMetadata on how it is used.",
+          "type": "string"
+        },
+        "tableFormat": {
+          "description": "[Required] Required and immutable. Open source file format that the table data is stored in. Currently only PARQUET is supported.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3816,7 +3838,7 @@
     "IndexUnusedReason": {
       "id": "IndexUnusedReason",
       "properties": {
-        "base_table": {
+        "baseTable": {
           "$ref": "TableReference",
           "description": "[Output-only] Specifies the base table involved in the reason that no search index was used."
         },
@@ -3825,7 +3847,7 @@
           "description": "[Output-only] Specifies the high-level reason for the scenario when no search index was used.",
           "type": "string"
         },
-        "index_name": {
+        "indexName": {
           "default": "$(reason.index_name)",
           "description": "[Output-only] Specifies the name of the unused search index, if available.",
           "type": "string"
@@ -4859,12 +4881,12 @@
     "JobStatistics5": {
       "id": "JobStatistics5",
       "properties": {
-        "copied_logical_bytes": {
+        "copiedLogicalBytes": {
           "description": "[Output-only] Number of logical bytes copied to the destination table.",
           "format": "int64",
           "type": "string"
         },
-        "copied_rows": {
+        "copiedRows": {
           "description": "[Output-only] Number of rows copied to the destination table.",
           "format": "int64",
           "type": "string"
@@ -4981,7 +5003,7 @@
     "MaterializedViewDefinition": {
       "id": "MaterializedViewDefinition",
       "properties": {
-        "allow_non_incremental_definition": {
+        "allowNonIncrementalDefinition": {
           "description": "[Optional] Allow non incremental materialized view definition. The default value is \"false\".",
           "type": "boolean"
         },
@@ -5294,7 +5316,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -5832,6 +5854,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "remoteModelVersion": {
+          "description": "Output only. The model version for LLM.",
+          "readOnly": true,
+          "type": "string"
+        },
         "remoteServiceType": {
           "description": "Output only. The remote service type for remote model.",
           "enum": [
@@ -5867,6 +5894,18 @@
           "description": "Output only. The time when this routine was created, in milliseconds since the epoch.",
           "format": "int64",
           "readOnly": true,
+          "type": "string"
+        },
+        "dataGovernanceType": {
+          "description": "Optional. Data governance specific option, if the value is DATA_MASKING, the function will be validated as masking functions.",
+          "enum": [
+            "DATA_GOVERNANCE_TYPE_UNSPECIFIED",
+            "DATA_MASKING"
+          ],
+          "enumDescriptions": [
+            "Unspecified data governance type.",
+            "The data governance type is data masking."
+          ],
           "type": "string"
         },
         "definitionBody": {
@@ -6128,7 +6167,7 @@
     "SearchStatistics": {
       "id": "SearchStatistics",
       "properties": {
-        "indexUnusedReason": {
+        "indexUnusedReasons": {
           "description": "When index_usage_mode is UNUSED or PARTIALLY_USED, this field explains why index was not used in all or part of the search query. If index_usage_mode is FULLLY_USED, this field is not populated.",
           "items": {
             "$ref": "IndexUnusedReason"
@@ -6269,15 +6308,15 @@
           "description": "[Output-only] Endpoints generated for the Spark job.",
           "type": "object"
         },
-        "logging_info": {
+        "loggingInfo": {
           "$ref": "SparkLoggingInfo",
           "description": "[Output-only] Logging info is used to generate a link to Cloud Logging."
         },
-        "spark_job_id": {
+        "sparkJobId": {
           "description": "[Output-only] Spark job id if a Spark job is created successfully.",
           "type": "string"
         },
-        "spark_job_location": {
+        "sparkJobLocation": {
           "description": "[Output-only] Location where the Spark job is executed.",
           "type": "string"
         }
@@ -6291,6 +6330,10 @@
         "arrayElementType": {
           "$ref": "StandardSqlDataType",
           "description": "The type of the array's elements, if type_kind = \"ARRAY\"."
+        },
+        "rangeElementType": {
+          "$ref": "StandardSqlDataType",
+          "description": "The type of the range's elements, if type_kind = \"RANGE\"."
         },
         "structType": {
           "$ref": "StandardSqlStructType",
@@ -6315,7 +6358,8 @@
             "BIGNUMERIC",
             "JSON",
             "ARRAY",
-            "STRUCT"
+            "STRUCT",
+            "RANGE"
           ],
           "enumDescriptions": [
             "Invalid type.",
@@ -6334,7 +6378,8 @@
             "Encoded as a decimal string.",
             "Encoded as a string.",
             "Encoded as a list with types matching Type.array_type.",
-            "Encoded as a list with fields of type Type.struct_type[i]. List is used because a JSON object cannot have duplicate field names."
+            "Encoded as a list with fields of type Type.struct_type[i]. List is used because a JSON object cannot have duplicate field names.",
+            "Encoded as a pair with types matching range_element_type. Pairs must begin with \"[\", end with \")\", and be separated by \", \"."
           ],
           "type": "string"
         }
@@ -6420,6 +6465,10 @@
     "Table": {
       "id": "Table",
       "properties": {
+        "biglakeConfiguration": {
+          "$ref": "BigLakeConfiguration",
+          "description": "[Optional] Specifies the configuration of a BigLake managed table."
+        },
         "cloneDefinition": {
           "$ref": "CloneDefinition",
           "description": "[Output-only] Clone definition."
@@ -7127,6 +7176,22 @@
           "description": "Whether or not p-value test should be computed for this model. Only available for linear and logistic regression models.",
           "type": "boolean"
         },
+        "categoryEncodingMethod": {
+          "description": "Categorical feature encoding method.",
+          "enum": [
+            "ENCODING_METHOD_UNSPECIFIED",
+            "ONE_HOT_ENCODING",
+            "LABEL_ENCODING",
+            "DUMMY_ENCODING"
+          ],
+          "enumDescriptions": [
+            "Unspecified encoding method.",
+            "Applies one-hot encoding.",
+            "Applies label encoding.",
+            "Applies dummy encoding."
+          ],
+          "type": "string"
+        },
         "cleanSpikesAndDips": {
           "description": "If true, clean spikes and dips in the input time series.",
           "type": "boolean"
@@ -7438,6 +7503,155 @@
           ],
           "type": "string"
         },
+        "holidayRegions": {
+          "description": "A list of geographical regions that are used for time series modeling.",
+          "items": {
+            "enum": [
+              "HOLIDAY_REGION_UNSPECIFIED",
+              "GLOBAL",
+              "NA",
+              "JAPAC",
+              "EMEA",
+              "LAC",
+              "AE",
+              "AR",
+              "AT",
+              "AU",
+              "BE",
+              "BR",
+              "CA",
+              "CH",
+              "CL",
+              "CN",
+              "CO",
+              "CS",
+              "CZ",
+              "DE",
+              "DK",
+              "DZ",
+              "EC",
+              "EE",
+              "EG",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "GR",
+              "HK",
+              "HU",
+              "ID",
+              "IE",
+              "IL",
+              "IN",
+              "IR",
+              "IT",
+              "JP",
+              "KR",
+              "LV",
+              "MA",
+              "MX",
+              "MY",
+              "NG",
+              "NL",
+              "NO",
+              "NZ",
+              "PE",
+              "PH",
+              "PK",
+              "PL",
+              "PT",
+              "RO",
+              "RS",
+              "RU",
+              "SA",
+              "SE",
+              "SG",
+              "SI",
+              "SK",
+              "TH",
+              "TR",
+              "TW",
+              "UA",
+              "US",
+              "VE",
+              "VN",
+              "ZA"
+            ],
+            "enumDescriptions": [
+              "Holiday region unspecified.",
+              "Global.",
+              "North America.",
+              "Japan and Asia Pacific: Korea, Greater China, India, Australia, and New Zealand.",
+              "Europe, the Middle East and Africa.",
+              "Latin America and the Caribbean.",
+              "United Arab Emirates",
+              "Argentina",
+              "Austria",
+              "Australia",
+              "Belgium",
+              "Brazil",
+              "Canada",
+              "Switzerland",
+              "Chile",
+              "China",
+              "Colombia",
+              "Czechoslovakia",
+              "Czech Republic",
+              "Germany",
+              "Denmark",
+              "Algeria",
+              "Ecuador",
+              "Estonia",
+              "Egypt",
+              "Spain",
+              "Finland",
+              "France",
+              "Great Britain (United Kingdom)",
+              "Greece",
+              "Hong Kong",
+              "Hungary",
+              "Indonesia",
+              "Ireland",
+              "Israel",
+              "India",
+              "Iran",
+              "Italy",
+              "Japan",
+              "Korea (South)",
+              "Latvia",
+              "Morocco",
+              "Mexico",
+              "Malaysia",
+              "Nigeria",
+              "Netherlands",
+              "Norway",
+              "New Zealand",
+              "Peru",
+              "Philippines",
+              "Pakistan",
+              "Poland",
+              "Portugal",
+              "Romania",
+              "Serbia",
+              "Russian Federation",
+              "Saudi Arabia",
+              "Sweden",
+              "Singapore",
+              "Slovenia",
+              "Slovakia",
+              "Thailand",
+              "Turkey",
+              "Taiwan",
+              "Ukraine",
+              "United States",
+              "Venezuela",
+              "Viet Nam",
+              "South Africa"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "horizon": {
           "description": "The number of periods ahead that need to be forecasted.",
           "format": "int64",
@@ -7604,7 +7818,7 @@
           "type": "string"
         },
         "maxTimeSeriesLength": {
-          "description": "Get truncated length by last n points in time series. Use separately from time_series_length_fraction and min_time_series_length.",
+          "description": "The maximum number of time points in a time series that can be used in modeling the trend component of the time series. Don't use this option with the `timeSeriesLengthFraction` or `minTimeSeriesLength` options.",
           "format": "int64",
           "type": "string"
         },
@@ -7624,7 +7838,7 @@
           "type": "number"
         },
         "minTimeSeriesLength": {
-          "description": "Set fast trend ARIMA_PLUS model minimum training length. Use in pair with time_series_length_fraction.",
+          "description": "The minimum number of time points in a time series that are used in modeling the trend component of the time series. If you use this option you must also set the `timeSeriesLengthFraction` option. This training option ensures that enough time points are available when you use `timeSeriesLengthFraction` in trend modeling. This is particularly important when forecasting multiple time series in a single query using `timeSeriesIdColumn`. If the total number of time points is less than the `minTimeSeriesLength` value, then the query uses all available time points.",
           "format": "int64",
           "type": "string"
         },
@@ -7755,7 +7969,7 @@
           "type": "array"
         },
         "timeSeriesLengthFraction": {
-          "description": "Get truncated length by fraction in time series.",
+          "description": "The fraction of the interpolated length of the time series that's used to model the time series trend component. All of the time points of the time series are used to model the non-trend component. This training option accelerates modeling training without sacrificing much forecasting accuracy. You can use this option with `minTimeSeriesLength` but not with `maxTimeSeriesLength`.",
           "format": "double",
           "type": "number"
         },
@@ -7782,7 +7996,7 @@
           "type": "string"
         },
         "trendSmoothingWindowSize": {
-          "description": "The smoothing window size for the trend component of the time series.",
+          "description": "Smoothing window size for the trend component. When a positive value is specified, a center moving average smoothing is applied on the history trend. When the smoothing window is out of the boundary at the beginning or the end of the trend, the first element or the last element is padded to fill the smoothing window before the average is applied.",
           "format": "int64",
           "type": "string"
         },

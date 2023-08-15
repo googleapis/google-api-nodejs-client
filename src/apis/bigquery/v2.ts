@@ -411,6 +411,24 @@ export namespace bigquery_v2 {
      */
     biEngineReasons?: Schema$BiEngineReason[];
   }
+  export interface Schema$BigLakeConfiguration {
+    /**
+     * [Required] Required and immutable. Credential reference for accessing external storage system. Normalized as project_id.location_id.connection_id.
+     */
+    connectionId?: string | null;
+    /**
+     * [Required] Required and immutable. Open source file format that the table data is stored in. Currently only PARQUET is supported.
+     */
+    fileFormat?: string | null;
+    /**
+     * [Required] Required and immutable. Fully qualified location prefix of the external folder where data is stored. Normalized to standard format: "gs:////". Starts with "gs://" rather than "/bigstore/". Ends with "/". Does not contain "*". See also BigLakeStorageMetadata on how it is used.
+     */
+    storageUri?: string | null;
+    /**
+     * [Required] Required and immutable. Open source file format that the table data is stored in. Currently only PARQUET is supported.
+     */
+    tableFormat?: string | null;
+  }
   export interface Schema$BigQueryModelTraining {
     /**
      * [Output-only, Beta] Index of current ML training iteration. Updated during create model query job to show job progress.
@@ -1589,7 +1607,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Specifies the base table involved in the reason that no search index was used.
      */
-    base_table?: Schema$TableReference;
+    baseTable?: Schema$TableReference;
     /**
      * [Output-only] Specifies the high-level reason for the scenario when no search index was used.
      */
@@ -1597,7 +1615,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Specifies the name of the unused search index, if available.
      */
-    index_name?: string | null;
+    indexName?: string | null;
     /**
      * [Output-only] Free form human-readable reason for the scenario when no search index was used.
      */
@@ -2370,11 +2388,11 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Number of logical bytes copied to the destination table.
      */
-    copied_logical_bytes?: string | null;
+    copiedLogicalBytes?: string | null;
     /**
      * [Output-only] Number of rows copied to the destination table.
      */
-    copied_rows?: string | null;
+    copiedRows?: string | null;
   }
   export interface Schema$JobStatus {
     /**
@@ -2447,7 +2465,7 @@ export namespace bigquery_v2 {
     /**
      * [Optional] Allow non incremental materialized view definition. The default value is "false".
      */
-    allow_non_incremental_definition?: boolean | null;
+    allowNonIncrementalDefinition?: boolean | null;
     /**
      * [Optional] [TrustedTester] Enable automatic refresh of the materialized view when the base table is updated. The default value is "true".
      */
@@ -2617,7 +2635,7 @@ export namespace bigquery_v2 {
     enumAsString?: boolean | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -2986,6 +3004,10 @@ export namespace bigquery_v2 {
      */
     maxBatchingRows?: string | null;
     /**
+     * Output only. The model version for LLM.
+     */
+    remoteModelVersion?: string | null;
+    /**
      * Output only. The remote service type for remote model.
      */
     remoteServiceType?: string | null;
@@ -3002,6 +3024,10 @@ export namespace bigquery_v2 {
      * Output only. The time when this routine was created, in milliseconds since the epoch.
      */
     creationTime?: string | null;
+    /**
+     * Optional. Data governance specific option, if the value is DATA_MASKING, the function will be validated as masking functions.
+     */
+    dataGovernanceType?: string | null;
     /**
      * Required. The body of the routine. For functions, this is the expression in the AS clause. If language=SQL, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement: `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, "\n", y))` The definition_body is `concat(x, "\n", y)` (\n is not replaced with linebreak). If language=JAVASCRIPT, it is the evaluated string in the AS clause. For example, for the function created with the following statement: `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return "\n";\n'` The definition_body is `return "\n";\n` Note that both \n are replaced with linebreaks.
      */
@@ -3175,7 +3201,7 @@ export namespace bigquery_v2 {
     /**
      * When index_usage_mode is UNUSED or PARTIALLY_USED, this field explains why index was not used in all or part of the search query. If index_usage_mode is FULLLY_USED, this field is not populated.
      */
-    indexUnusedReason?: Schema$IndexUnusedReason[];
+    indexUnusedReasons?: Schema$IndexUnusedReason[];
     /**
      * Specifies index usage mode for the query.
      */
@@ -3273,15 +3299,15 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Logging info is used to generate a link to Cloud Logging.
      */
-    logging_info?: Schema$SparkLoggingInfo;
+    loggingInfo?: Schema$SparkLoggingInfo;
     /**
      * [Output-only] Spark job id if a Spark job is created successfully.
      */
-    spark_job_id?: string | null;
+    sparkJobId?: string | null;
     /**
      * [Output-only] Location where the Spark job is executed.
      */
-    spark_job_location?: string | null;
+    sparkJobLocation?: string | null;
   }
   /**
    * The data type of a variable such as a function argument. Examples include: * INT64: `{"typeKind": "INT64"\}` * ARRAY: { "typeKind": "ARRAY", "arrayElementType": {"typeKind": "STRING"\} \} * STRUCT\>: { "typeKind": "STRUCT", "structType": { "fields": [ { "name": "x", "type": {"typeKind": "STRING"\} \}, { "name": "y", "type": { "typeKind": "ARRAY", "arrayElementType": {"typeKind": "DATE"\} \} \} ] \} \}
@@ -3291,6 +3317,10 @@ export namespace bigquery_v2 {
      * The type of the array's elements, if type_kind = "ARRAY".
      */
     arrayElementType?: Schema$StandardSqlDataType;
+    /**
+     * The type of the range's elements, if type_kind = "RANGE".
+     */
+    rangeElementType?: Schema$StandardSqlDataType;
     /**
      * The fields of this struct, in order, if type_kind = "STRUCT".
      */
@@ -3349,6 +3379,10 @@ export namespace bigquery_v2 {
     candidates?: string[] | null;
   }
   export interface Schema$Table {
+    /**
+     * [Optional] Specifies the configuration of a BigLake managed table.
+     */
+    biglakeConfiguration?: Schema$BigLakeConfiguration;
     /**
      * [Output-only] Clone definition.
      */
@@ -3790,6 +3824,10 @@ export namespace bigquery_v2 {
      */
     calculatePValues?: boolean | null;
     /**
+     * Categorical feature encoding method.
+     */
+    categoryEncodingMethod?: string | null;
+    /**
      * If true, clean spikes and dips in the input time series.
      */
     cleanSpikesAndDips?: boolean | null;
@@ -3865,6 +3903,10 @@ export namespace bigquery_v2 {
      * The geographical region based on which the holidays are considered in time series modeling. If a valid value is specified, then holiday effects modeling is enabled.
      */
     holidayRegion?: string | null;
+    /**
+     * A list of geographical regions that are used for time series modeling.
+     */
+    holidayRegions?: string[] | null;
     /**
      * The number of periods ahead that need to be forecasted.
      */
@@ -3942,7 +3984,7 @@ export namespace bigquery_v2 {
      */
     maxParallelTrials?: string | null;
     /**
-     * Get truncated length by last n points in time series. Use separately from time_series_length_fraction and min_time_series_length.
+     * The maximum number of time points in a time series that can be used in modeling the trend component of the time series. Don't use this option with the `timeSeriesLengthFraction` or `minTimeSeriesLength` options.
      */
     maxTimeSeriesLength?: string | null;
     /**
@@ -3958,7 +4000,7 @@ export namespace bigquery_v2 {
      */
     minSplitLoss?: number | null;
     /**
-     * Set fast trend ARIMA_PLUS model minimum training length. Use in pair with time_series_length_fraction.
+     * The minimum number of time points in a time series that are used in modeling the trend component of the time series. If you use this option you must also set the `timeSeriesLengthFraction` option. This training option ensures that enough time points are available when you use `timeSeriesLengthFraction` in trend modeling. This is particularly important when forecasting multiple time series in a single query using `timeSeriesIdColumn`. If the total number of time points is less than the `minTimeSeriesLength` value, then the query uses all available time points.
      */
     minTimeSeriesLength?: string | null;
     /**
@@ -4046,7 +4088,7 @@ export namespace bigquery_v2 {
      */
     timeSeriesIdColumns?: string[] | null;
     /**
-     * Get truncated length by fraction in time series.
+     * The fraction of the interpolated length of the time series that's used to model the time series trend component. All of the time points of the time series are used to model the non-trend component. This training option accelerates modeling training without sacrificing much forecasting accuracy. You can use this option with `minTimeSeriesLength` but not with `maxTimeSeriesLength`.
      */
     timeSeriesLengthFraction?: number | null;
     /**
@@ -4058,7 +4100,7 @@ export namespace bigquery_v2 {
      */
     treeMethod?: string | null;
     /**
-     * The smoothing window size for the trend component of the time series.
+     * Smoothing window size for the trend component. When a positive value is specified, a center moving average smoothing is applied on the history trend. When the smoothing window is out of the boundary at the beginning or the end of the trend, the first element or the last element is padded to fill the smoothing window before the average is applied.
      */
     trendSmoothingWindowSize?: string | null;
     /**
