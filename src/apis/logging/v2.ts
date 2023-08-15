@@ -332,7 +332,7 @@ export namespace logging_v2 {
    */
   export interface Schema$DeleteLinkRequest {
     /**
-     * Required. The full resource name of the link to delete."projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID"
+     * Required. The full resource name of the link to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string | null;
   }
@@ -1242,7 +1242,7 @@ export namespace logging_v2 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
     response?: {[key: string]: any} | null;
   }
@@ -3668,14 +3668,14 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Locations$Buckets$Links$Delete
     extends StandardParameters {
     /**
-     * Required. The full resource name of the link to delete."projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID"
+     * Required. The full resource name of the link to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
   export interface Params$Resource$Billingaccounts$Locations$Buckets$Links$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the link:"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID
+     * Required. The resource name of the link: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
@@ -3690,7 +3690,7 @@ export namespace logging_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource whose links are to be listed:"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/
+     * Required. The parent resource whose links are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      */
     parent?: string;
   }
@@ -3879,7 +3879,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets a view on a log bucket..
+     * Gets a view on a log bucket.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5355,7 +5355,7 @@ export namespace logging_v2 {
      */
     parent?: string;
     /**
-     * Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) used by the sinks with the same parent. For more information, see writer_identity in LogSink.
      */
     uniqueWriterIdentity?: boolean;
 
@@ -5404,7 +5404,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
     /**
-     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
+     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.
      */
     uniqueWriterIdentity?: boolean;
     /**
@@ -5428,7 +5428,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
     /**
-     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
+     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.
      */
     uniqueWriterIdentity?: boolean;
     /**
@@ -8506,14 +8506,14 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Locations$Buckets$Links$Delete
     extends StandardParameters {
     /**
-     * Required. The full resource name of the link to delete."projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID"
+     * Required. The full resource name of the link to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Locations$Buckets$Links$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the link:"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID
+     * Required. The resource name of the link: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
@@ -8528,7 +8528,7 @@ export namespace logging_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource whose links are to be listed:"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/
+     * Required. The parent resource whose links are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      */
     parent?: string;
   }
@@ -8715,7 +8715,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets a view on a log bucket..
+     * Gets a view on a log bucket.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10186,7 +10186,7 @@ export namespace logging_v2 {
      */
     parent?: string;
     /**
-     * Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) used by the sinks with the same parent. For more information, see writer_identity in LogSink.
      */
     uniqueWriterIdentity?: boolean;
 
@@ -10235,7 +10235,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
     /**
-     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
+     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.
      */
     uniqueWriterIdentity?: boolean;
     /**
@@ -10259,7 +10259,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
     /**
-     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
+     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.
      */
     uniqueWriterIdentity?: boolean;
     /**
@@ -11661,14 +11661,14 @@ export namespace logging_v2 {
   export interface Params$Resource$Locations$Buckets$Links$Delete
     extends StandardParameters {
     /**
-     * Required. The full resource name of the link to delete."projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID"
+     * Required. The full resource name of the link to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
   export interface Params$Resource$Locations$Buckets$Links$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the link:"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID
+     * Required. The resource name of the link: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
@@ -11683,7 +11683,7 @@ export namespace logging_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource whose links are to be listed:"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/
+     * Required. The parent resource whose links are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      */
     parent?: string;
   }
@@ -11866,7 +11866,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets a view on a log bucket..
+     * Gets a view on a log bucket.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15117,14 +15117,14 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Locations$Buckets$Links$Delete
     extends StandardParameters {
     /**
-     * Required. The full resource name of the link to delete."projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID"
+     * Required. The full resource name of the link to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Locations$Buckets$Links$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the link:"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID
+     * Required. The resource name of the link: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
@@ -15139,7 +15139,7 @@ export namespace logging_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource whose links are to be listed:"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/
+     * Required. The parent resource whose links are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      */
     parent?: string;
   }
@@ -15328,7 +15328,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets a view on a log bucket..
+     * Gets a view on a log bucket.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16803,7 +16803,7 @@ export namespace logging_v2 {
      */
     parent?: string;
     /**
-     * Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) used by the sinks with the same parent. For more information, see writer_identity in LogSink.
      */
     uniqueWriterIdentity?: boolean;
 
@@ -16852,7 +16852,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
     /**
-     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
+     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.
      */
     uniqueWriterIdentity?: boolean;
     /**
@@ -16876,7 +16876,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
     /**
-     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
+     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.
      */
     uniqueWriterIdentity?: boolean;
     /**
@@ -18986,14 +18986,14 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Locations$Buckets$Links$Delete
     extends StandardParameters {
     /**
-     * Required. The full resource name of the link to delete."projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID"
+     * Required. The full resource name of the link to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Buckets$Links$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the link:"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/LINK_ID
+     * Required. The resource name of the link: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
@@ -19008,7 +19008,7 @@ export namespace logging_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource whose links are to be listed:"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/links/" "organizations/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/
+     * Required. The parent resource whose links are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      */
     parent?: string;
   }
@@ -19195,7 +19195,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets a view on a log bucket..
+     * Gets a view on a log bucket.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21158,7 +21158,7 @@ export namespace logging_v2 {
      */
     parent?: string;
     /**
-     * Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) used by the sinks with the same parent. For more information, see writer_identity in LogSink.
      */
     uniqueWriterIdentity?: boolean;
 
@@ -21207,7 +21207,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
     /**
-     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
+     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.
      */
     uniqueWriterIdentity?: boolean;
     /**
@@ -21231,7 +21231,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
     /**
-     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
+     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.
      */
     uniqueWriterIdentity?: boolean;
     /**
@@ -21686,7 +21686,7 @@ export namespace logging_v2 {
      */
     parent?: string;
     /**
-     * Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) used by the sinks with the same parent. For more information, see writer_identity in LogSink.
      */
     uniqueWriterIdentity?: boolean;
 
@@ -21731,7 +21731,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
     /**
-     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
+     * Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a service agent (https://cloud.google.com/iam/docs/service-account-types#service-agents) owned by Cloud Logging. It is an error if the old value is true and the new value is set to false or defaulted to false.
      */
     uniqueWriterIdentity?: boolean;
     /**
