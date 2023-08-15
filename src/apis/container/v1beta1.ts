@@ -439,6 +439,10 @@ export namespace container_v1beta1 {
      * Mode of operation for binauthz policy evaluation. If unspecified, defaults to DISABLED.
      */
     evaluationMode?: string | null;
+    /**
+     * Optional. Binauthz policies that apply to this cluster.
+     */
+    policyBindings?: Schema$PolicyBinding[];
   }
   /**
    * Information relevant to blue-green upgrade.
@@ -2709,6 +2713,15 @@ export namespace container_v1beta1 {
      * Enable the PodSecurityPolicy controller for this cluster. If enabled, pods must be valid under a PodSecurityPolicy to be created.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * Binauthz policy that applies to this cluster.
+   */
+  export interface Schema$PolicyBinding {
+    /**
+     * The relative resource name of the binauthz platform policy to audit. GKE platform policies have the following format: `projects/{project_number\}/platforms/gke/policies/{policy_id\}`.
+     */
+    name?: string | null;
   }
   /**
    * Configuration options for private clusters.
