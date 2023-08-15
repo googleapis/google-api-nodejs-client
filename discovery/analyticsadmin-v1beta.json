@@ -742,6 +742,40 @@
                 "https://www.googleapis.com/auth/analytics.edit",
                 "https://www.googleapis.com/auth/analytics.readonly"
               ]
+            },
+            "patch": {
+              "description": "Updates a conversion event with the specified attributes.",
+              "flatPath": "v1beta/properties/{propertiesId}/conversionEvents/{conversionEventsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.conversionEvents.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this conversion event. Format: properties/{property}/conversionEvents/{conversion_event}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/conversionEvents/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1betaConversionEvent"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1betaConversionEvent"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
             }
           }
         },
@@ -1594,7 +1628,7 @@
       }
     }
   },
-  "revision": "20230808",
+  "revision": "20230814",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1betaAccessBetweenFilter": {
@@ -2182,6 +2216,20 @@
       "description": "A conversion event in a Google Analytics property.",
       "id": "GoogleAnalyticsAdminV1betaConversionEvent",
       "properties": {
+        "countingMethod": {
+          "description": "Optional. The method by which conversions will be counted across multiple events within a session. If this value is not provided, it will be set to `ONCE_PER_EVENT`.",
+          "enum": [
+            "CONVERSION_COUNTING_METHOD_UNSPECIFIED",
+            "ONCE_PER_EVENT",
+            "ONCE_PER_SESSION"
+          ],
+          "enumDescriptions": [
+            "Counting method not specified.",
+            "Each Event instance is considered a Conversion.",
+            "An Event instance is considered a Conversion at most once per session per user."
+          ],
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Time when this conversion event was created in the property.",
           "format": "google-datetime",

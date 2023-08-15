@@ -559,6 +559,10 @@ export namespace analyticsadmin_v1beta {
    */
   export interface Schema$GoogleAnalyticsAdminV1betaConversionEvent {
     /**
+     * Optional. The method by which conversions will be counted across multiple events within a session. If this value is not provided, it will be set to `ONCE_PER_EVENT`.
+     */
+    countingMethod?: string | null;
+    /**
      * Output only. Time when this conversion event was created in the property.
      */
     createTime?: string | null;
@@ -3510,6 +3514,100 @@ export namespace analyticsadmin_v1beta {
         );
       }
     }
+
+    /**
+     * Updates a conversion event with the specified attributes.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Conversionevents$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Conversionevents$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaConversionEvent>;
+    patch(
+      params: Params$Resource$Properties$Conversionevents$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Conversionevents$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaConversionEvent>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Conversionevents$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Conversionevents$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaConversionEvent>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Conversionevents$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Conversionevents$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1betaConversionEvent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1betaConversionEvent>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Properties$Conversionevents$Create
@@ -3552,6 +3650,22 @@ export namespace analyticsadmin_v1beta {
      * Required. The resource name of the parent property. Example: 'properties/123'
      */
     parent?: string;
+  }
+  export interface Params$Resource$Properties$Conversionevents$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of this conversion event. Format: properties/{property\}/conversionEvents/{conversion_event\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1betaConversionEvent;
   }
 
   export class Resource$Properties$Customdimensions {
