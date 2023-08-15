@@ -154,6 +154,15 @@ export namespace artifactregistry_v1 {
     packageType?: string | null;
   }
   /**
+   * Configuration for an Apt remote repository.
+   */
+  export interface Schema$AptRepository {
+    /**
+     * One of the publicly available Apt repositories supported by Artifact Registry.
+     */
+    publicRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository;
+  }
+  /**
    * The metadata of an LRO from deleting multiple versions.
    */
   export interface Schema$BatchDeleteVersionsMetadata {
@@ -409,6 +418,32 @@ export namespace artifactregistry_v1 {
      * Output only. The time when the File was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Publicly available Apt repositories constructed from a common repository base and a custom repository path.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository {
+    /**
+     * A common public repository base for Apt.
+     */
+    repositoryBase?: string | null;
+    /**
+     * A custom field to define a path to a specific repository from the base.
+     */
+    repositoryPath?: string | null;
+  }
+  /**
+   * Publicly available Yum repositories constructed from a common repository base and a custom repository path.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository {
+    /**
+     * A common public repository base for Yum.
+     */
+    repositoryBase?: string | null;
+    /**
+     * A custom field to define a path to a specific repository from the base.
+     */
+    repositoryPath?: string | null;
   }
   /**
    * A hash of file content.
@@ -963,6 +998,10 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$RemoteRepositoryConfig {
     /**
+     * Specific settings for an Apt remote repository.
+     */
+    aptRepository?: Schema$AptRepository;
+    /**
      * The description of the remote source.
      */
     description?: string | null;
@@ -982,6 +1021,10 @@ export namespace artifactregistry_v1 {
      * Specific settings for a Python remote repository.
      */
     pythonRepository?: Schema$PythonRepository;
+    /**
+     * Specific settings for a Yum remote repository.
+     */
+    yumRepository?: Schema$YumRepository;
   }
   /**
    * A Repository for storing artifacts with a specific format.
@@ -1335,6 +1378,15 @@ export namespace artifactregistry_v1 {
      * Output only. An artifact is a binary or source package.
      */
     packageType?: string | null;
+  }
+  /**
+   * Configuration for a Yum remote repository.
+   */
+  export interface Schema$YumRepository {
+    /**
+     * One of the publicly available Yum repositories supported by Artifact Registry.
+     */
+    publicRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository;
   }
 
   export class Resource$Projects {
