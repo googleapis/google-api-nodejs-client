@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/script-v3.0.1...script-v3.0.2) (2023-08-15)
+
+
+### Bug Fixes
+
+* **script:** update the API ([09d1558](https://github.com/googleapis/google-api-nodejs-client/commit/09d1558a81ecba58aab099623ff9b1264a734576))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/script-v3.0.0...script-v3.0.1) (2023-08-09)
 
 

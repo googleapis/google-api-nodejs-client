@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v10.0.0...androidmanagement-v10.0.1) (2023-08-15)
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([b6e3344](https://github.com/googleapis/google-api-nodejs-client/commit/b6e33442cb67aeedd83f16bfa398a1da2ff24adb))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v9.1.0...androidmanagement-v10.0.0) (2023-08-09)
 
 
