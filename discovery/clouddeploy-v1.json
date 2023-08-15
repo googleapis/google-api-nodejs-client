@@ -1451,7 +1451,7 @@
       }
     }
   },
-  "revision": "20230727",
+  "revision": "20230802",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -1652,11 +1652,11 @@
         },
         "postdeploy": {
           "$ref": "Postdeploy",
-          "description": "Optional. Configuration for the postdeploy job of the last phase. If this is not configured, postdeploy job will not be present."
+          "description": "Optional. Configuration for the postdeploy job of the last phase. If this is not configured, there will be no postdeploy job for this phase."
         },
         "predeploy": {
           "$ref": "Predeploy",
-          "description": "Optional. Configuration for the predeploy job of the first phase. If this is not configured, predeploy job will not be present."
+          "description": "Optional. Configuration for the predeploy job of the first phase. If this is not configured, there will be no predeploy job for this phase."
         },
         "verify": {
           "description": "Whether to run verify tests after each percentage deployment.",
@@ -2024,7 +2024,7 @@
             "No reason for failure is specified.",
             "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [Required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The deploy operation did not complete successfully; check Cloud Build logs.",
-            "The deploy build did not complete within the alloted time.",
+            "The deploy job run did not complete within the alloted time.",
             "There were missing resources in the runtime environment required for a canary deployment. Check the Cloud Build logs for more information.",
             "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
           ],
@@ -2088,12 +2088,12 @@
         },
         "postdeployJob": {
           "$ref": "Job",
-          "description": "Output only. The postdeploy Job. This is the postdeploy job in the phase. This is the last job of the phase.",
+          "description": "Output only. The postdeploy Job, which is the last job on the phase.",
           "readOnly": true
         },
         "predeployJob": {
           "$ref": "Job",
-          "description": "Output only. The predeploy Job. This is the predeploy job in the phase. This is the first job of the phase.",
+          "description": "Output only. The predeploy Job, which is the first job on the phase.",
           "readOnly": true
         },
         "verifyJob": {
@@ -2754,7 +2754,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -2891,11 +2891,11 @@
         },
         "postdeploy": {
           "$ref": "Postdeploy",
-          "description": "Optional. Configuration for the postdeploy job of this phase. If this is not configured, postdeploy job will not be present for this phase."
+          "description": "Optional. Configuration for the postdeploy job of this phase. If this is not configured, there will be no postdeploy job for this phase."
         },
         "predeploy": {
           "$ref": "Predeploy",
-          "description": "Optional. Configuration for the predeploy job of this phase. If this is not configured, predeploy job will not be present for this phase."
+          "description": "Optional. Configuration for the predeploy job of this phase. If this is not configured, there will be no predeploy job for this phase."
         },
         "profiles": {
           "description": "Skaffold profiles to use when rendering the manifest for this phase. These are in addition to the profiles list specified in the `DeliveryPipeline` stage.",
@@ -2947,7 +2947,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -2982,7 +2982,7 @@
       "id": "Postdeploy",
       "properties": {
         "actions": {
-          "description": "Optional. A sequence of skaffold custom actions to invoke during execution of the postdeploy job.",
+          "description": "Optional. A sequence of Skaffold custom actions to invoke during execution of the postdeploy job.",
           "items": {
             "type": "string"
           },
@@ -3028,7 +3028,7 @@
             "No reason for failure is specified.",
             "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The postdeploy operation did not complete successfully; check Cloud Build logs.",
-            "The postdeploy build did not complete within the alloted time.",
+            "The postdeploy job run did not complete within the alloted time.",
             "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
           ],
           "readOnly": true,
@@ -3047,7 +3047,7 @@
       "id": "Predeploy",
       "properties": {
         "actions": {
-          "description": "Optional. A sequence of skaffold custom actions to invoke during execution of the predeploy job.",
+          "description": "Optional. A sequence of Skaffold custom actions to invoke during execution of the predeploy job.",
           "items": {
             "type": "string"
           },
@@ -3093,7 +3093,7 @@
             "No reason for failure is specified.",
             "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The predeploy operation did not complete successfully; check Cloud Build logs.",
-            "The predeploy build did not complete within the alloted time.",
+            "The predeploy job run did not complete within the alloted time.",
             "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
           ],
           "readOnly": true,
@@ -4173,7 +4173,7 @@
             "No reason for failure is specified.",
             "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
             "The verify operation did not complete successfully; check Cloud Build logs.",
-            "The verify build did not complete within the alloted time.",
+            "The verify job run did not complete within the alloted time.",
             "No Skaffold verify configuration was found.",
             "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
           ],

@@ -266,11 +266,11 @@ export namespace clouddeploy_v1 {
      */
     percentages?: number[] | null;
     /**
-     * Optional. Configuration for the postdeploy job of the last phase. If this is not configured, postdeploy job will not be present.
+     * Optional. Configuration for the postdeploy job of the last phase. If this is not configured, there will be no postdeploy job for this phase.
      */
     postdeploy?: Schema$Postdeploy;
     /**
-     * Optional. Configuration for the predeploy job of the first phase. If this is not configured, predeploy job will not be present.
+     * Optional. Configuration for the predeploy job of the first phase. If this is not configured, there will be no predeploy job for this phase.
      */
     predeploy?: Schema$Predeploy;
     /**
@@ -546,11 +546,11 @@ export namespace clouddeploy_v1 {
      */
     deployJob?: Schema$Job;
     /**
-     * Output only. The postdeploy Job. This is the postdeploy job in the phase. This is the last job of the phase.
+     * Output only. The postdeploy Job, which is the last job on the phase.
      */
     postdeployJob?: Schema$Job;
     /**
-     * Output only. The predeploy Job. This is the predeploy job in the phase. This is the first job of the phase.
+     * Output only. The predeploy Job, which is the first job on the phase.
      */
     predeployJob?: Schema$Job;
     /**
@@ -1011,7 +1011,7 @@ export namespace clouddeploy_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1103,11 +1103,11 @@ export namespace clouddeploy_v1 {
      */
     phaseId?: string | null;
     /**
-     * Optional. Configuration for the postdeploy job of this phase. If this is not configured, postdeploy job will not be present for this phase.
+     * Optional. Configuration for the postdeploy job of this phase. If this is not configured, there will be no postdeploy job for this phase.
      */
     postdeploy?: Schema$Postdeploy;
     /**
-     * Optional. Configuration for the predeploy job of this phase. If this is not configured, predeploy job will not be present for this phase.
+     * Optional. Configuration for the predeploy job of this phase. If this is not configured, there will be no predeploy job for this phase.
      */
     predeploy?: Schema$Predeploy;
     /**
@@ -1150,7 +1150,7 @@ export namespace clouddeploy_v1 {
     updateTime?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -1175,7 +1175,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Postdeploy {
     /**
-     * Optional. A sequence of skaffold custom actions to invoke during execution of the postdeploy job.
+     * Optional. A sequence of Skaffold custom actions to invoke during execution of the postdeploy job.
      */
     actions?: string[] | null;
   }
@@ -1210,7 +1210,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Predeploy {
     /**
-     * Optional. A sequence of skaffold custom actions to invoke during execution of the predeploy job.
+     * Optional. A sequence of Skaffold custom actions to invoke during execution of the predeploy job.
      */
     actions?: string[] | null;
   }
