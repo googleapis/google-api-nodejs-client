@@ -917,6 +917,23 @@ export namespace migrationcenter_v1alpha1 {
     path?: string | null;
   }
   /**
+   * An insight about an asset (experimental insight)
+   */
+  export interface Schema$GenericInsight {
+    /**
+     * Output only. Additional information about the insight, each entry can be a logical entry and must make sense if it is displayed with line breaks between each entry. Text can contain md style links
+     */
+    additionalInformation?: string[] | null;
+    /**
+     * Output only. In case message_code is not yet known by the client default_message will be the message to be used instead. Text can contain md file style links.
+     */
+    defaultMessage?: string | null;
+    /**
+     * Output only. Represents a globally unique message id for this insight, can be used for localization purposes, in case message_code is not yet known by the client use default_message instead.
+     */
+    messageId?: string | null;
+  }
+  /**
    * Generic platform details.
    */
   export interface Schema$GenericPlatformDetails {
@@ -1222,6 +1239,10 @@ export namespace migrationcenter_v1alpha1 {
    * An insight about an asset.
    */
   export interface Schema$Insight {
+    /**
+     * Output only. A generic insight about an asset.
+     */
+    genericInsight?: Schema$GenericInsight;
     /**
      * Output only. An insight about potential migrations for an asset.
      */
@@ -1698,7 +1719,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
