@@ -504,7 +504,7 @@ export namespace advisorynotifications_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of notifications. Must be of the form "organizations/{organization\}/locations/{location\}".
+     * Required. The parent, which owns this collection of notifications. Must be of the form "organizations/{organization\}/locations/{location\}"
      */
     parent?: string;
     /**

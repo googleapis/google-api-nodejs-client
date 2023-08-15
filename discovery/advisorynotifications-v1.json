@@ -167,7 +167,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent, which owns this collection of notifications. Must be of the form \"organizations/{organization}/locations/{location}\".",
+                      "description": "Required. The parent, which owns this collection of notifications. Must be of the form \"organizations/{organization}/locations/{location}\"",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -204,7 +204,7 @@
       }
     }
   },
-  "revision": "20230729",
+  "revision": "20230806",
   "rootUrl": "https://advisorynotifications.googleapis.com/",
   "schemas": {
     "GoogleCloudAdvisorynotificationsV1Attachment": {
