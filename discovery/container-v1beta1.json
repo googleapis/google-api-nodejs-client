@@ -2565,7 +2565,7 @@
       }
     }
   },
-  "revision": "20230724",
+  "revision": "20230802",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2964,14 +2964,25 @@
           "enum": [
             "EVALUATION_MODE_UNSPECIFIED",
             "DISABLED",
-            "PROJECT_SINGLETON_POLICY_ENFORCE"
+            "PROJECT_SINGLETON_POLICY_ENFORCE",
+            "POLICY_BINDINGS",
+            "POLICY_BINDINGS_AND_PROJECT_SINGLETON_POLICY_ENFORCE"
           ],
           "enumDescriptions": [
             "Default value",
             "Disable BinaryAuthorization",
-            "Enforce Kubernetes admission requests with BinaryAuthorization using the project's singleton policy. This is equivalent to setting the enabled boolean to true."
+            "Enforce Kubernetes admission requests with BinaryAuthorization using the project's singleton policy. This is equivalent to setting the enabled boolean to true.",
+            "Use Binary Authorization with the policies specified in policy_bindings.",
+            "Use Binary Authorization with the policies specified in policy_bindings, and also with the project's singleton policy in enforcement mode."
           ],
           "type": "string"
+        },
+        "policyBindings": {
+          "description": "Optional. Binauthz policies that apply to this cluster.",
+          "items": {
+            "$ref": "PolicyBinding"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6187,6 +6198,17 @@
         "enabled": {
           "description": "Enable the PodSecurityPolicy controller for this cluster. If enabled, pods must be valid under a PodSecurityPolicy to be created.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyBinding": {
+      "description": "Binauthz policy that applies to this cluster.",
+      "id": "PolicyBinding",
+      "properties": {
+        "name": {
+          "description": "The relative resource name of the binauthz platform policy to audit. GKE platform policies have the following format: `projects/{project_number}/platforms/gke/policies/{policy_id}`.",
+          "type": "string"
         }
       },
       "type": "object"
