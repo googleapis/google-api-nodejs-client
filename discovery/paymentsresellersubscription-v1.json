@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230813",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -596,6 +596,18 @@
       },
       "type": "object"
     },
+    "GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails": {
+      "description": "Details for a subscriptiin line item with finite billing cycles.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails",
+      "properties": {
+        "billingCycleCountLimit": {
+          "description": "Required. The number of a subscription line item billing cycles after which billing will stop automatically.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload": {
       "description": "Payload specific to Google One products.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload",
@@ -703,6 +715,10 @@
       "description": "A Product resource that defines a subscription service that can be resold.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1Product",
       "properties": {
+        "finiteBillingCycleDetails": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails",
+          "description": "Optional. Details for a subscription line item with finite billing cycles. If unset, the line item will be charged indefinitely."
+        },
         "name": {
           "description": "Output only. Response only. Resource name of the product. It will have the format of \"partners/{partner_id}/products/{product_id}\"",
           "readOnly": true,
@@ -789,6 +805,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "finiteBillingCycleDetails": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails",
+          "description": "Optional. Details for a subscription line item with finite billing cycles. If unset, the line item will be charged indefinitely. Used only with PROMOTION_TYPE_REGULAR_REDUCTION."
+        },
         "freeTrialDuration": {
           "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Duration",
           "description": "Optional. Specifies the duration of the free trial of the subscription when promotion_type is PROMOTION_TYPE_FREE_TRIAL"
@@ -807,12 +827,14 @@
           "enum": [
             "PROMOTION_TYPE_UNSPECIFIED",
             "PROMOTION_TYPE_FREE_TRIAL",
-            "PROMOTION_TYPE_INTRODUCTORY_PRICING"
+            "PROMOTION_TYPE_INTRODUCTORY_PRICING",
+            "PROMOTION_TYPE_REGULAR_REDUCTION"
           ],
           "enumDescriptions": [
             "The promotion type is unspecified.",
             "The promotion is a free trial.",
-            "The promotion is a reduced introductory pricing."
+            "The promotion is a reduced introductory pricing.",
+            "The promotion is a reduced price."
           ],
           "readOnly": true,
           "type": "string"
@@ -1086,6 +1108,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "finiteBillingCycleDetails": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails",
+          "description": "Optional. Details for a subscription line item with finite billing cycles. If unset, the line item will be charged indefinitely. Used only with LINE_ITEM_RECURRENCE_TYPE_PERIODIC."
+        },
         "lineItemFreeTrialEndTime": {
           "description": "Output only. The free trial end time will be populated after the line item is successfully processed. End time of the line item free trial period, in ISO 8061 format. For example, \"2019-08-31T17:28:54.564Z\". It will be set the same as createTime if no free trial promotion is specified.",
           "format": "google-datetime",
@@ -1195,12 +1221,14 @@
           "enum": [
             "PROMOTION_TYPE_UNSPECIFIED",
             "PROMOTION_TYPE_FREE_TRIAL",
-            "PROMOTION_TYPE_INTRODUCTORY_PRICING"
+            "PROMOTION_TYPE_INTRODUCTORY_PRICING",
+            "PROMOTION_TYPE_REGULAR_REDUCTION"
           ],
           "enumDescriptions": [
             "The promotion type is unspecified.",
             "The promotion is a free trial.",
-            "The promotion is a reduced introductory pricing."
+            "The promotion is a reduced introductory pricing.",
+            "The promotion is a reduced price."
           ],
           "readOnly": true,
           "type": "string"
