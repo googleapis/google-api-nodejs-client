@@ -251,7 +251,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "If set, validate the request and preview the review, but do not actually apply it.",
+                      "description": "Optional. If set, validate the request and preview the review, but do not actually apply it.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -282,12 +282,12 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "If set, the request will be rejected if the latest version of the workstation cluster on the server does not have this ETag.",
+                      "description": "Optional. If set, the request will be rejected if the latest version of the workstation cluster on the server does not have this ETag.",
                       "location": "query",
                       "type": "string"
                     },
                     "force": {
-                      "description": "If set, any workstation configurations and workstations in the workstation cluster are also deleted. Otherwise, the request only works if the workstation cluster has no configurations or workstations.",
+                      "description": "Optional. If set, any workstation configurations and workstations in the workstation cluster are also deleted. Otherwise, the request only works if the workstation cluster has no configurations or workstations.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -299,7 +299,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "If set, validate the request and preview the review, but do not apply it.",
+                      "description": "Optional. If set, validate the request and preview the review, but do not apply it.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -347,13 +347,13 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Maximum number of items to return.",
+                      "description": "Optional. Maximum number of items to return.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "next_page_token value returned from a previous List request, if any.",
+                      "description": "Optional. next_page_token value returned from a previous List request, if any.",
                       "location": "query",
                       "type": "string"
                     },
@@ -383,12 +383,12 @@
                   ],
                   "parameters": {
                     "allowMissing": {
-                      "description": "If set, and the workstation cluster is not found, a new workstation cluster will be created. In this situation, update_mask is ignored.",
+                      "description": "Optional. If set, and the workstation cluster is not found, a new workstation cluster will be created. In this situation, update_mask is ignored.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Full name of this resource.",
+                      "description": "Full name of this workstation cluster.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workstationClusters/[^/]+$",
                       "required": true,
@@ -401,7 +401,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "If set, validate the request and preview the review, but do not actually apply it.",
+                      "description": "Optional. If set, validate the request and preview the review, but do not actually apply it.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -438,7 +438,7 @@
                           "type": "string"
                         },
                         "validateOnly": {
-                          "description": "If set, validate the request and preview the review, but do not actually apply it.",
+                          "description": "Optional. If set, validate the request and preview the review, but do not actually apply it.",
                           "location": "query",
                           "type": "boolean"
                         },
@@ -469,12 +469,12 @@
                       ],
                       "parameters": {
                         "etag": {
-                          "description": "If set, the request is rejected if the latest version of the workstation configuration on the server does not have this ETag.",
+                          "description": "Optional. If set, the request is rejected if the latest version of the workstation configuration on the server does not have this ETag.",
                           "location": "query",
                           "type": "string"
                         },
                         "force": {
-                          "description": "If set, any workstations in the workstation configuration are also deleted. Otherwise, the request works only if the workstation configuration has no workstations.",
+                          "description": "Optional. If set, any workstations in the workstation configuration are also deleted. Otherwise, the request works only if the workstation configuration has no workstations.",
                           "location": "query",
                           "type": "boolean"
                         },
@@ -486,7 +486,7 @@
                           "type": "string"
                         },
                         "validateOnly": {
-                          "description": "If set, validate the request and preview the review, but do not actually apply it.",
+                          "description": "Optional. If set, validate the request and preview the review, but do not actually apply it.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -565,13 +565,13 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "Maximum number of items to return.",
+                          "description": "Optional. Maximum number of items to return.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "next_page_token value returned from a previous List request, if any.",
+                          "description": "Optional. next_page_token value returned from a previous List request, if any.",
                           "location": "query",
                           "type": "string"
                         },
@@ -601,13 +601,13 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "Maximum number of items to return.",
+                          "description": "Optional. Maximum number of items to return.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "next_page_token value returned from a previous List request, if any.",
+                          "description": "Optional. next_page_token value returned from a previous List request, if any.",
                           "location": "query",
                           "type": "string"
                         },
@@ -637,12 +637,12 @@
                       ],
                       "parameters": {
                         "allowMissing": {
-                          "description": "If set and the workstation configuration is not found, a new workstation configuration will be created. In this situation, update_mask is ignored.",
+                          "description": "Optional. If set and the workstation configuration is not found, a new workstation configuration will be created. In this situation, update_mask is ignored.",
                           "location": "query",
                           "type": "boolean"
                         },
                         "name": {
-                          "description": "Full name of this resource.",
+                          "description": "Full name of this workstation configuration.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/workstationClusters/[^/]+/workstationConfigs/[^/]+$",
                           "required": true,
@@ -655,7 +655,7 @@
                           "type": "string"
                         },
                         "validateOnly": {
-                          "description": "If set, validate the request and preview the review, but do not actually apply it.",
+                          "description": "Optional. If set, validate the request and preview the review, but do not actually apply it.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -748,7 +748,7 @@
                               "type": "string"
                             },
                             "validateOnly": {
-                              "description": "If set, validate the request and preview the review, but do not actually apply it.",
+                              "description": "Optional. If set, validate the request and preview the review, but do not actually apply it.",
                               "location": "query",
                               "type": "boolean"
                             },
@@ -779,7 +779,7 @@
                           ],
                           "parameters": {
                             "etag": {
-                              "description": "If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
+                              "description": "Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
                               "location": "query",
                               "type": "string"
                             },
@@ -791,7 +791,7 @@
                               "type": "string"
                             },
                             "validateOnly": {
-                              "description": "If set, validate the request and preview the review, but do not actually apply it.",
+                              "description": "Optional. If set, validate the request and preview the review, but do not actually apply it.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -898,13 +898,13 @@
                           ],
                           "parameters": {
                             "pageSize": {
-                              "description": "Maximum number of items to return.",
+                              "description": "Optional. Maximum number of items to return.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "next_page_token value returned from a previous List request, if any.",
+                              "description": "Optional. next_page_token value returned from a previous List request, if any.",
                               "location": "query",
                               "type": "string"
                             },
@@ -934,13 +934,13 @@
                           ],
                           "parameters": {
                             "pageSize": {
-                              "description": "Maximum number of items to return.",
+                              "description": "Optional. Maximum number of items to return.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "next_page_token value returned from a previous List request, if any.",
+                              "description": "Optional. next_page_token value returned from a previous List request, if any.",
                               "location": "query",
                               "type": "string"
                             },
@@ -970,12 +970,12 @@
                           ],
                           "parameters": {
                             "allowMissing": {
-                              "description": "If set and the workstation configuration is not found, a new workstation configuration is created. In this situation, update_mask is ignored.",
+                              "description": "Optional. If set and the workstation configuration is not found, a new workstation configuration is created. In this situation, update_mask is ignored.",
                               "location": "query",
                               "type": "boolean"
                             },
                             "name": {
-                              "description": "Full name of this resource.",
+                              "description": "Full name of this workstation.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/workstationClusters/[^/]+/workstationConfigs/[^/]+/workstations/[^/]+$",
                               "required": true,
@@ -988,7 +988,7 @@
                               "type": "string"
                             },
                             "validateOnly": {
-                              "description": "If set, validate the request and preview the review, but do not actually apply it.",
+                              "description": "Optional. If set, validate the request and preview the review, but do not actually apply it.",
                               "location": "query",
                               "type": "boolean"
                             }
@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20230630",
+  "revision": "20230802",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1135,12 +1135,12 @@
       "id": "Accelerator",
       "properties": {
         "count": {
-          "description": "Number of accelerator cards exposed to the instance.",
+          "description": "Optional. Number of accelerator cards exposed to the instance.",
           "format": "int32",
           "type": "integer"
         },
         "type": {
-          "description": "Type of accelerator resource to attach to the instance, for example, \"nvidia-tesla-p100\".",
+          "description": "Optional. Type of accelerator resource to attach to the instance, for example, `\"nvidia-tesla-p100\"`.",
           "type": "string"
         }
       },
@@ -1227,14 +1227,14 @@
       "id": "Container",
       "properties": {
         "args": {
-          "description": "Arguments passed to the entrypoint.",
+          "description": "Optional. Arguments passed to the entrypoint.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "command": {
-          "description": "If set, overrides the default ENTRYPOINT specified by the image.",
+          "description": "Optional. If set, overrides the default ENTRYPOINT specified by the image.",
           "items": {
             "type": "string"
           },
@@ -1244,20 +1244,20 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Environment variables passed to the container's entrypoint.",
+          "description": "Optional. Environment variables passed to the container's entrypoint.",
           "type": "object"
         },
         "image": {
-          "description": "A Docker container image that defines a custom environment. Cloud Workstations provides a number of [preconfigured images](https://cloud.google.com/workstations/docs/preconfigured-base-images), but you can create your own [custom container images](https://cloud.google.com/workstations/docs/custom-container-images). If using a private image, the `host.gceInstance.serviceAccount` field must be specified in the workstation configuration and must have permission to pull the specified image. Otherwise, the image must be publicly accessible.",
+          "description": "Optional. A Docker container image that defines a custom environment. Cloud Workstations provides a number of [preconfigured images](https://cloud.google.com/workstations/docs/preconfigured-base-images), but you can create your own [custom container images](https://cloud.google.com/workstations/docs/custom-container-images). If using a private image, the `host.gceInstance.serviceAccount` field must be specified in the workstation configuration and must have permission to pull the specified image. Otherwise, the image must be publicly accessible.",
           "type": "string"
         },
         "runAsUser": {
-          "description": "If set, overrides the USER specified in the image with the given uid.",
+          "description": "Optional. If set, overrides the USER specified in the image with the given uid.",
           "format": "int32",
           "type": "integer"
         },
         "workingDir": {
-          "description": "If set, overrides the default DIR specified by the image.",
+          "description": "Optional. If set, overrides the default DIR specified by the image.",
           "type": "string"
         }
       },
@@ -1268,7 +1268,7 @@
       "id": "CustomerEncryptionKey",
       "properties": {
         "kmsKey": {
-          "description": "Immutable. The name of the Google Cloud KMS encryption key. For example, `projects/PROJECT_ID/locations/REGION/keyRings/KEY_RING/cryptoKeys/KEY_NAME`. The key must be in the same region as the workstation configuration.",
+          "description": "Immutable. The name of the Google Cloud KMS encryption key. For example, `\"projects/PROJECT_ID/locations/REGION/keyRings/KEY_RING/cryptoKeys/KEY_NAME\"`. The key must be in the same region as the workstation configuration.",
           "type": "string"
         },
         "kmsKeyServiceAccount": {
@@ -1306,7 +1306,7 @@
       "id": "GceConfidentialInstanceConfig",
       "properties": {
         "enableConfidentialCompute": {
-          "description": "Whether the instance has confidential compute enabled.",
+          "description": "Optional. Whether the instance has confidential compute enabled.",
           "type": "boolean"
         }
       },
@@ -1317,35 +1317,35 @@
       "id": "GceInstance",
       "properties": {
         "accelerators": {
-          "description": "A list of the type and count of accelerator cards attached to the instance.",
+          "description": "Optional. A list of the type and count of accelerator cards attached to the instance.",
           "items": {
             "$ref": "Accelerator"
           },
           "type": "array"
         },
         "bootDiskSizeGb": {
-          "description": "The size of the boot disk for the VM in gigabytes (GB). The minimum boot disk size is `30` GB. Defaults to `50` GB.",
+          "description": "Optional. The size of the boot disk for the VM in gigabytes (GB). The minimum boot disk size is `30` GB. Defaults to `50` GB.",
           "format": "int32",
           "type": "integer"
         },
         "confidentialInstanceConfig": {
           "$ref": "GceConfidentialInstanceConfig",
-          "description": "A set of Compute Engine Confidential VM instance options."
+          "description": "Optional. A set of Compute Engine Confidential VM instance options."
         },
         "disablePublicIpAddresses": {
-          "description": "When set to true, disables public IP addresses for VMs. If you disable public IP addresses, you must set up Private Google Access or Cloud NAT on your network. If you use Private Google Access and you use `private.googleapis.com` or `restricted.googleapis.com` for Container Registry and Artifact Registry, make sure that you set up DNS records for domains `*.gcr.io` and `*.pkg.dev`. Defaults to false (VMs have public IP addresses).",
+          "description": "Optional. When set to true, disables public IP addresses for VMs. If you disable public IP addresses, you must set up Private Google Access or Cloud NAT on your network. If you use Private Google Access and you use `private.googleapis.com` or `restricted.googleapis.com` for Container Registry and Artifact Registry, make sure that you set up DNS records for domains `*.gcr.io` and `*.pkg.dev`. Defaults to false (VMs have public IP addresses).",
           "type": "boolean"
         },
         "enableNestedVirtualization": {
-          "description": "Whether to enable nested virtualization on instances.",
+          "description": "Optional. Whether to enable nested virtualization on Cloud Workstations VMs created under this workstation configuration. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on workstation configurations that specify a machine_type in the N1 or N2 machine series. * **GPUs**: nested virtualization may not be enabled on workstation configurations with accelerators. * **Operating System**: Because [Container-Optimized OS](https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos) does not support nested virtualization, when nested virtualization is enabled, the underlying Compute Engine VM instances boot from an [Ubuntu LTS](https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts) image.",
           "type": "boolean"
         },
         "machineType": {
-          "description": "The type of machine to use for VM instances—for example, `e2-standard-4`. For more information about machine types that Cloud Workstations supports, see the list of [available machine types](https://cloud.google.com/workstations/docs/available-machine-types).",
+          "description": "Optional. The type of machine to use for VM instances—for example, `\"e2-standard-4\"`. For more information about machine types that Cloud Workstations supports, see the list of [available machine types](https://cloud.google.com/workstations/docs/available-machine-types).",
           "type": "string"
         },
         "poolSize": {
-          "description": "The number of VMs that the system should keep idle so that new workstations can be started quickly for new users. Defaults to `0` in the API.",
+          "description": "Optional. The number of VMs that the system should keep idle so that new workstations can be started quickly for new users. Defaults to `0` in the API.",
           "format": "int32",
           "type": "integer"
         },
@@ -1356,15 +1356,15 @@
           "type": "integer"
         },
         "serviceAccount": {
-          "description": "The email address of the service account for Cloud Workstations VMs created with this configuration. When specified, be sure that the service account has `logginglogEntries.create` permission on the project so it can write logs out to Cloud Logging. If using a custom container image, the service account must have permissions to pull the specified image. If you as the administrator want to be able to `ssh` into the underlying VM, you need to set this value to a service account for which you have the `iam.serviceAccounts.actAs` permission. Conversely, if you don't want anyone to be able to `ssh` into the underlying VM, use a service account where no one has that permission. If not set, VMs run with a service account provided by the Cloud Workstations service, and the image must be publicly accessible.",
+          "description": "Optional. The email address of the service account for Cloud Workstations VMs created with this configuration. When specified, be sure that the service account has `logginglogEntries.create` permission on the project so it can write logs out to Cloud Logging. If using a custom container image, the service account must have permissions to pull the specified image. If you as the administrator want to be able to `ssh` into the underlying VM, you need to set this value to a service account for which you have the `iam.serviceAccounts.actAs` permission. Conversely, if you don't want anyone to be able to `ssh` into the underlying VM, use a service account where no one has that permission. If not set, VMs run with a service account provided by the Cloud Workstations service, and the image must be publicly accessible.",
           "type": "string"
         },
         "shieldedInstanceConfig": {
           "$ref": "GceShieldedInstanceConfig",
-          "description": "A set of Compute Engine Shielded instance options."
+          "description": "Optional. A set of Compute Engine Shielded instance options."
         },
         "tags": {
-          "description": "Network tags to add to the Compute Engine machines backing the workstations. This option applies [network tags](https://cloud.google.com/vpc/docs/add-remove-network-tags) to VMs created with this configuration. These network tags enable the creation of [firewall rules](https://cloud.google.com/workstations/docs/configure-firewall-rules).",
+          "description": "Optional. Network tags to add to the Compute Engine VMs backing the workstations. This option applies [network tags](https://cloud.google.com/vpc/docs/add-remove-network-tags) to VMs created with this configuration. These network tags enable the creation of [firewall rules](https://cloud.google.com/workstations/docs/configure-firewall-rules).",
           "items": {
             "type": "string"
           },
@@ -1374,19 +1374,19 @@
       "type": "object"
     },
     "GceRegionalPersistentDisk": {
-      "description": "A PersistentDirectory backed by a Compute Engine regional persistent disk. The `persistentDirectories[]` field is repeated, but it may contain only one entry. It creates a [persistent disk](https://cloud.google.com/compute/docs/disks/persistent-disks) that mounts to the workstation VM at `/home` when the session starts and detaches when the session ends. If this field is empty, workstations created with this configuration do not have a persistent home directory.",
+      "description": "A PersistentDirectory backed by a Compute Engine regional persistent disk. The persistent_directories field is repeated, but it may contain only one entry. It creates a [persistent disk](https://cloud.google.com/compute/docs/disks/persistent-disks) that mounts to the workstation VM at `/home` when the session starts and detaches when the session ends. If this field is empty, workstations created with this configuration do not have a persistent home directory.",
       "id": "GceRegionalPersistentDisk",
       "properties": {
         "diskType": {
-          "description": "The [type of the persistent disk](https://cloud.google.com/compute/docs/disks#disk-types) for the home directory. Defaults to `pd-standard`.",
+          "description": "Optional. The [type of the persistent disk](https://cloud.google.com/compute/docs/disks#disk-types) for the home directory. Defaults to `\"pd-standard\"`.",
           "type": "string"
         },
         "fsType": {
-          "description": "Type of file system that the disk should be formatted with. The workstation image must support this file system type. Must be empty if source_snapshot is set. Defaults to `ext4`.",
+          "description": "Optional. Type of file system that the disk should be formatted with. The workstation image must support this file system type. Must be empty if source_snapshot is set. Defaults to `\"ext4\"`.",
           "type": "string"
         },
         "reclaimPolicy": {
-          "description": "Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.",
+          "description": "Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.",
           "enum": [
             "RECLAIM_POLICY_UNSPECIFIED",
             "DELETE",
@@ -1400,12 +1400,12 @@
           "type": "string"
         },
         "sizeGb": {
-          "description": "The GB capacity of a persistent home directory for each workstation created with this configuration. Must be empty if `source_snapshot` is set. Valid values are `10`, `50`, `100`, `200`, `500`, or `1000`. Defaults to `200`. If less than `200` GB, the `diskType` must be `pd-balanced` or `pd-ssd`.",
+          "description": "Optional. The GB capacity of a persistent home directory for each workstation created with this configuration. Must be empty if source_snapshot is set. Valid values are `10`, `50`, `100`, `200`, `500`, or `1000`. Defaults to `200`. If less than `200` GB, the disk_type must be `\"pd-balanced\"` or `\"pd-ssd\"`.",
           "format": "int32",
           "type": "integer"
         },
         "sourceSnapshot": {
-          "description": "Name of the snapshot to use as the source for the disk. If set, size_gb and fs_type must be empty.",
+          "description": "Optional. Name of the snapshot to use as the source for the disk. If set, size_gb and fs_type must be empty.",
           "type": "string"
         }
       },
@@ -1416,15 +1416,15 @@
       "id": "GceShieldedInstanceConfig",
       "properties": {
         "enableIntegrityMonitoring": {
-          "description": "Whether the instance has integrity monitoring enabled.",
+          "description": "Optional. Whether the instance has integrity monitoring enabled.",
           "type": "boolean"
         },
         "enableSecureBoot": {
-          "description": "Whether the instance has Secure Boot enabled.",
+          "description": "Optional. Whether the instance has Secure Boot enabled.",
           "type": "boolean"
         },
         "enableVtpm": {
-          "description": "Whether the instance has the vTPM enabled.",
+          "description": "Optional. Whether the instance has the vTPM enabled.",
           "type": "boolean"
         }
       },
@@ -1603,11 +1603,11 @@
       "id": "ListWorkstationsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "description": "Optional. Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
         "unreachable": {
-          "description": "Unreachable resources.",
+          "description": "Optional. Unreachable resources.",
           "items": {
             "type": "string"
           },
@@ -1652,7 +1652,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -1711,14 +1711,14 @@
           "description": "A PersistentDirectory backed by a Compute Engine persistent disk."
         },
         "mountPath": {
-          "description": "Location of this directory in the running workstation.",
+          "description": "Optional. Location of this directory in the running workstation.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -1749,18 +1749,18 @@
       "type": "object"
     },
     "PrivateClusterConfig": {
-      "description": "Configuration options for private clusters.",
+      "description": "Configuration options for private workstation clusters.",
       "id": "PrivateClusterConfig",
       "properties": {
         "allowedProjects": {
-          "description": "Additional projects that are allowed to attach to the workstation cluster's service attachment. By default, the workstation cluster's project and the VPC host project (if different) are allowed.",
+          "description": "Optional. Additional projects that are allowed to attach to the workstation cluster's service attachment. By default, the workstation cluster's project and the VPC host project (if different) are allowed.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "clusterHostname": {
-          "description": "Output only. Hostname for the workstation cluster. This field will be populated only when private endpoint is enabled. To access workstations in the cluster, create a new DNS zone mapping this domain name to an internal IP address and a forwarding rule mapping that address to the service attachment.",
+          "description": "Output only. Hostname for the workstation cluster. This field will be populated only when private endpoint is enabled. To access workstations in the workstation cluster, create a new DNS zone mapping this domain name to an internal IP address and a forwarding rule mapping that address to the service attachment.",
           "readOnly": true,
           "type": "string"
         },
@@ -1769,7 +1769,7 @@
           "type": "boolean"
         },
         "serviceAttachmentUri": {
-          "description": "Output only. Service attachment URI for the workstation cluster. The service attachemnt is created when private endpoint is enabled. To access workstations in the cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).",
+          "description": "Output only. Service attachment URI for the workstation cluster. The service attachemnt is created when private endpoint is enabled. To access workstations in the workstation cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).",
           "readOnly": true,
           "type": "string"
         }
@@ -1781,11 +1781,11 @@
       "id": "ReadinessCheck",
       "properties": {
         "path": {
-          "description": "Path to which the request should be sent.",
+          "description": "Optional. Path to which the request should be sent.",
           "type": "string"
         },
         "port": {
-          "description": "Port to which the request should be sent.",
+          "description": "Optional. Port to which the request should be sent.",
           "format": "int32",
           "type": "integer"
         }
@@ -1813,11 +1813,11 @@
       "id": "StartWorkstationRequest",
       "properties": {
         "etag": {
-          "description": "If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
+          "description": "Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
           "type": "string"
         },
         "validateOnly": {
-          "description": "If set, validate the request and preview the review, but do not actually apply it.",
+          "description": "Optional. If set, validate the request and preview the review, but do not actually apply it.",
           "type": "boolean"
         }
       },
@@ -1855,11 +1855,11 @@
       "id": "StopWorkstationRequest",
       "properties": {
         "etag": {
-          "description": "If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
+          "description": "Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
           "type": "string"
         },
         "validateOnly": {
-          "description": "If set, validate the request and preview the review, but do not actually apply it.",
+          "description": "Optional. If set, validate the request and preview the review, but do not actually apply it.",
           "type": "boolean"
         }
       },
@@ -1901,34 +1901,34 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Client-specified annotations.",
+          "description": "Optional. Client-specified annotations.",
           "type": "object"
         },
         "createTime": {
-          "description": "Output only. Time when this resource was created.",
+          "description": "Output only. Time when this workstation was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "deleteTime": {
-          "description": "Output only. Time when this resource was soft-deleted.",
+          "description": "Output only. Time when this workstation was soft-deleted.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "displayName": {
-          "description": "Human-readable name for this resource.",
+          "description": "Optional. Human-readable name for this workstation.",
           "type": "string"
         },
         "env": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Environment variables passed to the workstation container's entrypoint.",
+          "description": "Optional. Environment variables passed to the workstation container's entrypoint.",
           "type": "object"
         },
         "etag": {
-          "description": "Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.",
+          "description": "Optional. Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "host": {
@@ -1940,15 +1940,15 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Client-specified labels that are applied to the resource and that are also propagated to the underlying Compute Engine resources.",
+          "description": "Optional. [Labels](https://cloud.google.com/workstations/docs/label-resources) that are applied to the workstation and that are also propagated to the underlying Compute Engine resources.",
           "type": "object"
         },
         "name": {
-          "description": "Full name of this resource.",
+          "description": "Full name of this workstation.",
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. Indicates whether this resource is currently being updated to match its intended state.",
+          "description": "Output only. Indicates whether this workstation is currently being updated to match its intended state.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -1972,12 +1972,12 @@
           "type": "string"
         },
         "uid": {
-          "description": "Output only. A system-assigned unique identifier for this resource.",
+          "description": "Output only. A system-assigned unique identifier for this workstation.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. Time when this resource was most recently updated.",
+          "description": "Output only. Time when this workstation was most recently updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1986,18 +1986,18 @@
       "type": "object"
     },
     "WorkstationCluster": {
-      "description": "A grouping of workstation configurations and the associated workstations in that region.",
+      "description": "A workstation cluster resource in the Cloud Workstations API. Defines a group of workstations in a particular region and the VPC network they're attached to.",
       "id": "WorkstationCluster",
       "properties": {
         "annotations": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Client-specified annotations.",
+          "description": "Optional. Client-specified annotations.",
           "type": "object"
         },
         "conditions": {
-          "description": "Output only. Status conditions describing the current resource state.",
+          "description": "Output only. Status conditions describing the workstation cluster's current state.",
           "items": {
             "$ref": "Status"
           },
@@ -2005,70 +2005,70 @@
           "type": "array"
         },
         "controlPlaneIp": {
-          "description": "Output only. The private IP address of the control plane for this cluster. Workstation VMs need access to this IP address to work with the service, so make sure that your firewall rules allow egress from the workstation VMs to this address.",
+          "description": "Output only. The private IP address of the control plane for this workstation cluster. Workstation VMs need access to this IP address to work with the service, so make sure that your firewall rules allow egress from the workstation VMs to this address.",
           "readOnly": true,
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. Time when this resource was created.",
+          "description": "Output only. Time when this workstation cluster was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "degraded": {
-          "description": "Output only. Whether this resource is in degraded mode, in which case it may require user action to restore full functionality. Details can be found in the `conditions` field.",
+          "description": "Output only. Whether this workstation cluster is in degraded mode, in which case it may require user action to restore full functionality. Details can be found in conditions.",
           "readOnly": true,
           "type": "boolean"
         },
         "deleteTime": {
-          "description": "Output only. Time when this resource was soft-deleted.",
+          "description": "Output only. Time when this workstation cluster was soft-deleted.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "displayName": {
-          "description": "Human-readable name for this resource.",
+          "description": "Optional. Human-readable name for this workstation cluster.",
           "type": "string"
         },
         "etag": {
-          "description": "Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.",
+          "description": "Optional. Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Client-specified labels that are applied to the resource and that are also propagated to the underlying Compute Engine resources.",
+          "description": "Optional. [Labels](https://cloud.google.com/workstations/docs/label-resources) that are applied to the workstation cluster and that are also propagated to the underlying Compute Engine resources.",
           "type": "object"
         },
         "name": {
-          "description": "Full name of this resource.",
+          "description": "Full name of this workstation cluster.",
           "type": "string"
         },
         "network": {
-          "description": "Immutable. Name of the Compute Engine network in which instances associated with this cluster will be created.",
+          "description": "Immutable. Name of the Compute Engine network in which instances associated with this workstation cluster will be created.",
           "type": "string"
         },
         "privateClusterConfig": {
           "$ref": "PrivateClusterConfig",
-          "description": "Configuration for private cluster."
+          "description": "Optional. Configuration for private workstation cluster."
         },
         "reconciling": {
-          "description": "Output only. Indicates whether this resource is currently being updated to match its intended state.",
+          "description": "Output only. Indicates whether this workstation cluster is currently being updated to match its intended state.",
           "readOnly": true,
           "type": "boolean"
         },
         "subnetwork": {
-          "description": "Immutable. Name of the Compute Engine subnetwork in which instances associated with this cluster will be created. Must be part of the subnetwork specified for this cluster.",
+          "description": "Immutable. Name of the Compute Engine subnetwork in which instances associated with this workstation cluster will be created. Must be part of the subnetwork specified for this workstation cluster.",
           "type": "string"
         },
         "uid": {
-          "description": "Output only. A system-assigned unique identifier for this resource.",
+          "description": "Output only. A system-assigned unique identifier for this workstation cluster.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. Time when this resource was most recently updated.",
+          "description": "Output only. Time when this workstation cluster was most recently updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2077,14 +2077,14 @@
       "type": "object"
     },
     "WorkstationConfig": {
-      "description": "A set of configuration options that describe how a workstation runs. Workstation configurations are intended to be shared across multiple workstations.",
+      "description": "A workstation configuration resource in the Cloud Workstations API. Workstation configurations act as templates for workstations. The workstation configuration defines details such as the workstation virtual machine (VM) instance type, persistent storage, container image defining environment, which IDE or Code Editor to use, and more. Administrators and platform teams can also use [Identity and Access Management (IAM)](https://cloud.google.com/iam/docs/overview) rules to grant access to teams or to individual developers.",
       "id": "WorkstationConfig",
       "properties": {
         "annotations": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Client-specified annotations.",
+          "description": "Optional. Client-specified annotations.",
           "type": "object"
         },
         "conditions": {
@@ -2097,31 +2097,31 @@
         },
         "container": {
           "$ref": "Container",
-          "description": "Container that runs upon startup for each workstation using this workstation configuration."
+          "description": "Optional. Container that runs upon startup for each workstation using this workstation configuration."
         },
         "createTime": {
-          "description": "Output only. Time when this resource was created.",
+          "description": "Output only. Time when this workstation configuration was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "degraded": {
-          "description": "Output only. Whether this resource is degraded, in which case it may require user action to restore full functionality. See also the `conditions` field.",
+          "description": "Output only. Whether this resource is degraded, in which case it may require user action to restore full functionality. See also the conditions field.",
           "readOnly": true,
           "type": "boolean"
         },
         "deleteTime": {
-          "description": "Output only. Time when this resource was soft-deleted.",
+          "description": "Output only. Time when this workstation configuration was soft-deleted.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "displayName": {
-          "description": "Human-readable name for this resource.",
+          "description": "Optional. Human-readable name for this workstation configuration.",
           "type": "string"
         },
         "enableAuditAgent": {
-          "description": "Whether to enable Linux `auditd` logging on the workstation. When enabled, a service account must also be specified that has `logging.buckets.write` permission on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging).",
+          "description": "Optional. Whether to enable Linux `auditd` logging on the workstation. When enabled, a service account must also be specified that has `logging.buckets.write` permission on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging).",
           "type": "boolean"
         },
         "encryptionKey": {
@@ -2129,15 +2129,15 @@
           "description": "Immutable. Encrypts resources of this workstation configuration using a customer-managed encryption key (CMEK). If specified, the boot disk of the Compute Engine instance and the persistent disk are encrypted using this encryption key. If this field is not set, the disks are encrypted using a generated key. Customer-managed encryption keys do not protect disk metadata. If the customer-managed encryption key is rotated, when the workstation instance is stopped, the system attempts to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk might be lost. If the encryption key is revoked, the workstation session automatically stops within 7 hours. Immutable after the workstation configuration is created."
         },
         "etag": {
-          "description": "Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.",
+          "description": "Optional. Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "host": {
           "$ref": "Host",
-          "description": "Runtime host for the workstation."
+          "description": "Optional. Runtime host for the workstation."
         },
         "idleTimeout": {
-          "description": "Number of seconds to wait before automatically stopping a workstation after it last received user traffic. A value of `0s` indicates that Cloud Workstations VMs created with this configuration should never time out due to idleness. Provide [duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) terminated by `s` for seconds—for example, `7200s` (2 hours). The default is `1200s` (20 minutes).",
+          "description": "Optional. Number of seconds to wait before automatically stopping a workstation after it last received user traffic. A value of `\"0s\"` indicates that Cloud Workstations VMs created with this configuration should never time out due to idleness. Provide [duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) terminated by `s` for seconds—for example, `\"7200s\"` (2 hours). The default is `\"1200s\"` (20 minutes).",
           "format": "google-duration",
           "type": "string"
         },
@@ -2145,44 +2145,44 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Client-specified labels that are applied to the resource and that are also propagated to the underlying Compute Engine resources.",
+          "description": "Optional. [Labels](https://cloud.google.com/workstations/docs/label-resources) that are applied to the workstation configuration and that are also propagated to the underlying Compute Engine resources.",
           "type": "object"
         },
         "name": {
-          "description": "Full name of this resource.",
+          "description": "Full name of this workstation configuration.",
           "type": "string"
         },
         "persistentDirectories": {
-          "description": "Directories to persist across workstation sessions.",
+          "description": "Optional. Directories to persist across workstation sessions.",
           "items": {
             "$ref": "PersistentDirectory"
           },
           "type": "array"
         },
         "readinessChecks": {
-          "description": "Readiness checks to perform when starting a workstation using this workstation configuration. Mark a workstation as running only after all specified readiness checks return 200 status codes.",
+          "description": "Optional. Readiness checks to perform when starting a workstation using this workstation configuration. Mark a workstation as running only after all specified readiness checks return 200 status codes.",
           "items": {
             "$ref": "ReadinessCheck"
           },
           "type": "array"
         },
         "reconciling": {
-          "description": "Output only. Indicates whether this resource is currently being updated to match its intended state.",
+          "description": "Output only. Indicates whether this workstation configuration is currently being updated to match its intended state.",
           "readOnly": true,
           "type": "boolean"
         },
         "runningTimeout": {
-          "description": "Number of seconds that a workstation can run until it is automatically shut down. We recommend that workstations be shut down daily to reduce costs and so that security updates can be applied upon restart. The `idleTimeout` and `runningTimeout` parameters are independent of each other. Note that the `runningTimeout` parameter shuts down VMs after the specified time, regardless of whether or not the VMs are idle. Provide duration terminated by `s` for seconds—for example, `54000s` (15 hours). Defaults to `43200s` (12 hours). A value of `0` indicates that workstations using this configuration should never time out. If `encryption_key` is set, it must be greater than `0` and less than `86400s` (24 hours). Warning: A value of `0s` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates.",
+          "description": "Optional. Number of seconds that a workstation can run until it is automatically shut down. We recommend that workstations be shut down daily to reduce costs and so that security updates can be applied upon restart. The idle_timeout and running_timeout fields are independent of each other. Note that the running_timeout field shuts down VMs after the specified time, regardless of whether or not the VMs are idle. Provide duration terminated by `s` for seconds—for example, `\"54000s\"` (15 hours). Defaults to `\"43200s\"` (12 hours). A value of `\"0s\"` indicates that workstations using this configuration should never time out. If encryption_key is set, it must be greater than `\"0s\"` and less than `\"86400s\"` (24 hours). Warning: A value of `\"0s\"` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates.",
           "format": "google-duration",
           "type": "string"
         },
         "uid": {
-          "description": "Output only. A system-assigned unique identifier for this resource.",
+          "description": "Output only. A system-assigned unique identifier for this workstation configuration.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. Time when this resource was most recently updated.",
+          "description": "Output only. Time when this workstation configuration was most recently updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
