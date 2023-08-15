@@ -548,6 +548,10 @@ export namespace dataform_v1beta1 {
      */
     defaultBranch?: string | null;
     /**
+     * Optional. Authentication fields for remote uris using SSH protocol.
+     */
+    sshAuthenticationConfig?: Schema$SshAuthenticationConfig;
+    /**
      * Output only. Deprecated: The field does not contain any token status information. Instead use https://cloud.google.com/dataform/reference/rest/v1beta1/projects.locations.repositories/computeAccessTokenStatus
      */
     tokenStatus?: string | null;
@@ -1214,6 +1218,19 @@ export namespace dataform_v1beta1 {
      * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
+  }
+  /**
+   * Configures fields for performing SSH authentication.
+   */
+  export interface Schema$SshAuthenticationConfig {
+    /**
+     * Required. Content of a public SSH key to verify an identity of a remote Git host.
+     */
+    hostPublicKey?: string | null;
+    /**
+     * Required. The name of the Secret Manager secret version to use as a ssh private key for Git operations. Must be in the format `projects/x/secrets/x/versions/x`.
+     */
+    userPrivateKeySecretVersion?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
