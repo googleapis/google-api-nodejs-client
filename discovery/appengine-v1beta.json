@@ -1010,6 +1010,60 @@
             }
           }
         },
+        "runtimes": {
+          "methods": {
+            "list": {
+              "description": "Lists all the available runtimes for the application.",
+              "flatPath": "v1beta/apps/{appsId}/runtimes",
+              "httpMethod": "GET",
+              "id": "appengine.apps.runtimes.list",
+              "parameterOrder": [
+                "appsId"
+              ],
+              "parameters": {
+                "appsId": {
+                  "description": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "environment": {
+                  "description": "Optional. The environment of the Application.",
+                  "enum": [
+                    "ENVIRONMENT_UNSPECIFIED",
+                    "STANDARD",
+                    "FLEXIBLE"
+                  ],
+                  "enumDescriptions": [
+                    "Default value.",
+                    "App Engine Standard.",
+                    "App Engine Flexible"
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Maximum results to return per page.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Continuation token for fetching the next page of results.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/apps/{appsId}/runtimes",
+              "response": {
+                "$ref": "ListRuntimesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "services": {
           "methods": {
             "delete": {
@@ -1773,7 +1827,7 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20230807",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -2875,6 +2929,24 @@
       },
       "type": "object"
     },
+    "ListRuntimesResponse": {
+      "description": "Response message for Applications.ListRuntimes.",
+      "id": "ListRuntimesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Continuation token for fetching the next page of results.",
+          "type": "string"
+        },
+        "runtimes": {
+          "description": "The runtimes available to the requested application.",
+          "items": {
+            "$ref": "Runtime"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListServicesResponse": {
       "description": "Response message for Services.ListServices.",
       "id": "ListServicesResponse",
@@ -3174,7 +3246,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.",
           "type": "object"
         }
       },
@@ -3629,6 +3701,60 @@
           "description": "User specified volumes.",
           "items": {
             "$ref": "Volume"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Runtime": {
+      "description": "Runtime versions for App Engine.",
+      "id": "Runtime",
+      "properties": {
+        "environment": {
+          "description": "The environment of the runtime.",
+          "enum": [
+            "ENVIRONMENT_UNSPECIFIED",
+            "STANDARD",
+            "FLEXIBLE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "App Engine Standard.",
+            "App Engine Flexible"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the runtime, e.g., 'go113', 'nodejs12', etc.",
+          "type": "string"
+        },
+        "stage": {
+          "description": "The stage of life this runtime is in, e.g., BETA, GA, etc.",
+          "enum": [
+            "RUNTIME_STAGE_UNSPECIFIED",
+            "DEVELOPMENT",
+            "ALPHA",
+            "BETA",
+            "GA",
+            "DEPRECATED",
+            "DECOMMISSIONED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The runtime is in development.",
+            "The runtime is in the Alpha stage.",
+            "The runtime is in the Beta stage.",
+            "The runtime is generally available.",
+            "The runtime is deprecated.",
+            "The runtime is no longer supported."
+          ],
+          "type": "string"
+        },
+        "warnings": {
+          "description": "Warning messages, e.g., a deprecation warning.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
