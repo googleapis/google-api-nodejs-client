@@ -2417,7 +2417,7 @@ export namespace script_v1 {
 
   export interface Params$Resource$Scripts$Run extends StandardParameters {
     /**
-     * The script ID of the script to be executed. Find the script ID on the **Project settings** page under "IDs."
+     * The script ID of the script to be executed. Find the script ID on the **Project settings** page under "IDs." As multiple executable APIs can be deployed in new IDE for same script, this field should be populated with DeploymentID generated while deploying in new IDE instead of script ID.
      */
     scriptId?: string;
 
