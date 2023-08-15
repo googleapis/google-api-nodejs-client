@@ -244,6 +244,15 @@ export namespace paymentsresellersubscription_v1 {
     promotions?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Promotion[];
   }
   /**
+   * Details for a subscriptiin line item with finite billing cycles.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails {
+    /**
+     * Required. The number of a subscription line item billing cycles after which billing will stop automatically.
+     */
+    billingCycleCountLimit?: string | null;
+  }
+  /**
    * Payload specific to Google One products.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload {
@@ -301,6 +310,10 @@ export namespace paymentsresellersubscription_v1 {
    * A Product resource that defines a subscription service that can be resold.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Product {
+    /**
+     * Optional. Details for a subscription line item with finite billing cycles. If unset, the line item will be charged indefinitely.
+     */
+    finiteBillingCycleDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails;
     /**
      * Output only. Response only. Resource name of the product. It will have the format of "partners/{partner_id\}/products/{product_id\}"
      */
@@ -360,6 +373,10 @@ export namespace paymentsresellersubscription_v1 {
      * Optional. Specifies the end time (exclusive) of the period that the promotion is available in. If unset, the promotion is available indefinitely.
      */
     endTime?: string | null;
+    /**
+     * Optional. Details for a subscription line item with finite billing cycles. If unset, the line item will be charged indefinitely. Used only with PROMOTION_TYPE_REGULAR_REDUCTION.
+     */
+    finiteBillingCycleDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails;
     /**
      * Optional. Specifies the duration of the free trial of the subscription when promotion_type is PROMOTION_TYPE_FREE_TRIAL
      */
@@ -530,6 +547,10 @@ export namespace paymentsresellersubscription_v1 {
      * Output only. Description of this line item.
      */
     description?: string | null;
+    /**
+     * Optional. Details for a subscription line item with finite billing cycles. If unset, the line item will be charged indefinitely. Used only with LINE_ITEM_RECURRENCE_TYPE_PERIODIC.
+     */
+    finiteBillingCycleDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails;
     /**
      * Output only. The free trial end time will be populated after the line item is successfully processed. End time of the line item free trial period, in ISO 8061 format. For example, "2019-08-31T17:28:54.564Z". It will be set the same as createTime if no free trial promotion is specified.
      */
