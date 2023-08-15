@@ -917,6 +917,19 @@ export namespace appengine_v1beta {
     operations?: Schema$Operation[];
   }
   /**
+   * Response message for Applications.ListRuntimes.
+   */
+  export interface Schema$ListRuntimesResponse {
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The runtimes available to the requested application.
+     */
+    runtimes?: Schema$Runtime[];
+  }
+  /**
    * Response message for Services.ListServices.
    */
   export interface Schema$ListServicesResponse {
@@ -1119,7 +1132,7 @@ export namespace appengine_v1beta {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1394,6 +1407,27 @@ export namespace appengine_v1beta {
      * User specified volumes.
      */
     volumes?: Schema$Volume[];
+  }
+  /**
+   * Runtime versions for App Engine.
+   */
+  export interface Schema$Runtime {
+    /**
+     * The environment of the runtime.
+     */
+    environment?: string | null;
+    /**
+     * The name of the runtime, e.g., 'go113', 'nodejs12', etc.
+     */
+    name?: string | null;
+    /**
+     * The stage of life this runtime is in, e.g., BETA, GA, etc.
+     */
+    stage?: string | null;
+    /**
+     * Warning messages, e.g., a deprecation warning.
+     */
+    warnings?: string[] | null;
   }
   /**
    * Executes a script to handle the request that matches the URL pattern.
@@ -1805,6 +1839,7 @@ export namespace appengine_v1beta {
     firewall: Resource$Apps$Firewall;
     locations: Resource$Apps$Locations;
     operations: Resource$Apps$Operations;
+    runtimes: Resource$Apps$Runtimes;
     services: Resource$Apps$Services;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -1818,6 +1853,7 @@ export namespace appengine_v1beta {
       this.firewall = new Resource$Apps$Firewall(this.context);
       this.locations = new Resource$Apps$Locations(this.context);
       this.operations = new Resource$Apps$Operations(this.context);
+      this.runtimes = new Resource$Apps$Runtimes(this.context);
       this.services = new Resource$Apps$Services(this.context);
     }
 
@@ -4450,6 +4486,125 @@ export namespace appengine_v1beta {
     pageSize?: number;
     /**
      * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Apps$Runtimes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all the available runtimes for the application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Apps$Runtimes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Apps$Runtimes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRuntimesResponse>;
+    list(
+      params: Params$Resource$Apps$Runtimes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Apps$Runtimes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRuntimesResponse>,
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Apps$Runtimes$List,
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRuntimesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Runtimes$List
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRuntimesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Runtimes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Runtimes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/apps/{appsId}/runtimes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['appsId'],
+        pathParams: ['appsId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRuntimesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRuntimesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Apps$Runtimes$List
+    extends StandardParameters {
+    /**
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
+     */
+    appsId?: string;
+    /**
+     * Optional. The environment of the Application.
+     */
+    environment?: string;
+    /**
+     * Optional. Maximum results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Continuation token for fetching the next page of results.
      */
     pageToken?: string;
   }
