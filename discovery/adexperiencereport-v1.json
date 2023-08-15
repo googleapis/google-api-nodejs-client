@@ -139,7 +139,7 @@
       }
     }
   },
-  "revision": "20230403",
+  "revision": "20230807",
   "rootUrl": "https://adexperiencereport.googleapis.com/",
   "schemas": {
     "PlatformSummary": {
@@ -153,6 +153,12 @@
             "PASSING",
             "WARNING",
             "FAILING"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false
           ],
           "enumDescriptions": [
             "Not reviewed.",
@@ -191,6 +197,7 @@
           "type": "string"
         },
         "region": {
+          "deprecated": true,
           "description": "The site's regions on this platform. No longer populated, because there is no longer any semantic difference between sites in different regions.",
           "items": {
             "enum": [
