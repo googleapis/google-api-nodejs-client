@@ -436,9 +436,17 @@ export namespace discoveryengine_v1beta {
      */
     exactMatch?: boolean | null;
     /**
+     * Output only. Failure reason.
+     */
+    failureReason?: Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReason;
+    /**
      * Output only. This is system-generated based on the provided_uri_pattern.
      */
     generatedUriPattern?: string | null;
+    /**
+     * Output only. Indexing status.
+     */
+    indexingStatus?: string | null;
     /**
      * Output only. The fully qualified resource name of the target site. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}` The `target_site_id` is system-generated.
      */
@@ -459,6 +467,21 @@ export namespace discoveryengine_v1beta {
      * Output only. The target site's last updated time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Site search indexing failure reasons.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReason {
+    /**
+     * Failed due to insufficient quota.
+     */
+    quotaFailure?: Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure;
+  }
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure {
+    /**
+     * This number is an estimation on how much total quota this project needs to successfully complete indexing.
+     */
+    totalRequiredQuota?: string | null;
   }
   /**
    * BigQuery source import data from.
