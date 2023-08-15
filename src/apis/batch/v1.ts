@@ -524,7 +524,7 @@ export namespace batch_v1 {
      */
     diskInterface?: string | null;
     /**
-     * Name of an image used as the data source. For example, the following are all valid URLs: * Specify the image by its family name: projects/project/global/images/family/image_family * Specify the image version: projects/project/global/images/image_version You can also use Batch customized image in short names. The following image values are supported for a boot disk: * `batch-debian`: use Batch Debian images. * `batch-centos`: use Batch CentOS images. * `batch-cos`: use Batch Container-Optimized images. * `batch-hpc-centos`: use Batch HPC CentOS images.
+     * URL for a VM image to use as the data source for this disk. For example, the following are all valid URLs: * Specify the image by its family name: projects/{project\}/global/images/family/{image_family\} * Specify the image version: projects/{project\}/global/images/{image_version\} You can also use Batch customized image in short names. The following image values are supported for a boot disk: * `batch-debian`: use Batch Debian images. * `batch-centos`: use Batch CentOS images. * `batch-cos`: use Batch Container-Optimized images. * `batch-hpc-centos`: use Batch HPC CentOS images.
      */
     image?: string | null;
     /**
@@ -583,7 +583,7 @@ export namespace batch_v1 {
      */
     bootDisk?: Schema$Disk;
     /**
-     * Non-boot disks to be attached for each VM created by this InstancePolicy. New disks will be deleted when the VM is deleted. A non bootable disk is a disk that can be of a device with a file system or a raw storage drive that is not ready for data storage and accessing.
+     * Non-boot disks to be attached for each VM created by this InstancePolicy. New disks will be deleted when the VM is deleted. A non-boot disk is a disk that can be of a device with a file system or a raw storage drive that is not ready for data storage and accessing.
      */
     disks?: Schema$AttachedDisk[];
     /**
@@ -869,7 +869,7 @@ export namespace batch_v1 {
    */
   export interface Schema$NetworkInterface {
     /**
-     * The URL of an existing network resource. You can specify the network as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/project/global/networks/network projects/project/global/networks/network global/networks/network
+     * The URL of an existing network resource. You can specify the network as a full or partial URL. For example, the following are all valid URLs: * https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\} * projects/{project\}/global/networks/{network\} * global/networks/{network\}
      */
     network?: string | null;
     /**
@@ -877,7 +877,7 @@ export namespace batch_v1 {
      */
     noExternalIpAddress?: boolean | null;
     /**
-     * The URL of an existing subnetwork resource in the network. You can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork projects/project/regions/region/subnetworks/subnetwork regions/region/subnetworks/subnetwork
+     * The URL of an existing subnetwork resource in the network. You can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: * https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} * projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} * regions/{region\}/subnetworks/{subnetwork\}
      */
     subnetwork?: string | null;
   }
@@ -924,7 +924,7 @@ export namespace batch_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
