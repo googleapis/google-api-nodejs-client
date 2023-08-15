@@ -1961,7 +1961,7 @@
       }
     }
   },
-  "revision": "20230805",
+  "revision": "20230812",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2498,6 +2498,10 @@
         "defaultBranch": {
           "description": "Required. The Git remote's default branch name.",
           "type": "string"
+        },
+        "sshAuthenticationConfig": {
+          "$ref": "SshAuthenticationConfig",
+          "description": "Optional. Authentication fields for remote uris using SSH protocol."
         },
         "tokenStatus": {
           "deprecated": true,
@@ -3412,6 +3416,21 @@
         "policy": {
           "$ref": "Policy",
           "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
+        }
+      },
+      "type": "object"
+    },
+    "SshAuthenticationConfig": {
+      "description": "Configures fields for performing SSH authentication.",
+      "id": "SshAuthenticationConfig",
+      "properties": {
+        "hostPublicKey": {
+          "description": "Required. Content of a public SSH key to verify an identity of a remote Git host.",
+          "type": "string"
+        },
+        "userPrivateKeySecretVersion": {
+          "description": "Required. The name of the Secret Manager secret version to use as a ssh private key for Git operations. Must be in the format `projects/*/secrets/*/versions/*`.",
+          "type": "string"
         }
       },
       "type": "object"
