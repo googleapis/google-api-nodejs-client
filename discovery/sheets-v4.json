@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20230711",
+  "revision": "20230808",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -6925,7 +6925,7 @@
           "description": "The format of this run. Absent values inherit the cell's format."
         },
         "startIndex": {
-          "description": "The character index where this run starts.",
+          "description": "The zero-based character index where this run starts, in UTF-16 code units.",
           "format": "int32",
           "type": "integer"
         }
