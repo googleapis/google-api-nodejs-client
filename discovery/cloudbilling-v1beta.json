@@ -664,7 +664,7 @@
       }
     }
   },
-  "revision": "20230803",
+  "revision": "20230811",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "CacheFillRegions": {
@@ -684,14 +684,14 @@
             "CACHE_FILL_DESTINATION_REGION_OTHERS"
           ],
           "enumDescriptions": [
-            "Not specified.",
-            "Asia Pacific.",
+            "Not specified",
+            "Asia Pacific",
             "Europe",
-            "North America.",
-            "Oceania.",
-            "South America.",
-            "China.",
-            "Others."
+            "North America",
+            "Oceania",
+            "South America",
+            "China",
+            "Others"
           ],
           "type": "string"
         },
@@ -706,12 +706,12 @@
             "CACHE_FILL_SOURCE_REGION_SOUTH_AMERICA"
           ],
           "enumDescriptions": [
-            "Not specified.",
-            "Asia Pacific.",
+            "Not specified",
+            "Asia Pacific",
             "Europe",
-            "North America.",
-            "Oceania.",
-            "South America."
+            "North America",
+            "Oceania",
+            "South America"
           ],
           "type": "string"
         }
@@ -829,16 +829,16 @@
           "type": "array"
         },
         "interconnectType": {
-          "description": "Vlan attachment type.",
+          "description": "VLAN attachment type",
           "enum": [
             "INTERCONNECT_TYPE_UNSPECIFIED",
             "INTERCONNECT_TYPE_DEDICATED",
             "INTERCONNECT_TYPE_PARTNER"
           ],
           "enumDescriptions": [
-            "Unspecified.",
-            "Type is dedicated.",
-            "Type is partner."
+            "Unspecified",
+            "Type is dedicated",
+            "Type is partner"
           ],
           "type": "string"
         },
@@ -850,9 +850,9 @@
             "LINK_TYPE_ETHERNET_100G_LR"
           ],
           "enumDescriptions": [
-            "Unspecified.",
-            "Link type is 10 gbps.",
-            "Link type is 100 gbps."
+            "Unspecified",
+            "Link type is 10 Gbps.",
+            "Link type is 100 Gbps."
           ],
           "type": "string"
         },
@@ -2558,7 +2558,7 @@
       "type": "object"
     },
     "VlanAttachment": {
-      "description": "VLAN attachment for cloud interconnect.",
+      "description": "VLAN attachment for Cloud Interconnect.",
       "id": "VlanAttachment",
       "properties": {
         "bandwidth": {
@@ -2579,7 +2579,7 @@
             "BANDWIDTH_BPS_50G"
           ],
           "enumDescriptions": [
-            "Unspecified.",
+            "Unspecified",
             "50 Mbit/s",
             "100 Mbit/s",
             "200 Mbit/s",

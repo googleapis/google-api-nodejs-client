@@ -199,7 +199,7 @@ export namespace cloudbilling_v1beta {
      */
     interconnectAttachments?: Schema$VlanAttachment[];
     /**
-     * Vlan attachment type.
+     * VLAN attachment type
      */
     interconnectType?: string | null;
     /**
@@ -1481,7 +1481,7 @@ export namespace cloudbilling_v1beta {
     usageRate?: number | null;
   }
   /**
-   * VLAN attachment for cloud interconnect.
+   * VLAN attachment for Cloud Interconnect.
    */
   export interface Schema$VlanAttachment {
     /**
