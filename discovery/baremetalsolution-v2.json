@@ -847,6 +847,46 @@
                 }
               }
             },
+            "osImages": {
+              "methods": {
+                "list": {
+                  "description": "Retrieves the list of OS images which are currently approved.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/osImages",
+                  "httpMethod": "GET",
+                  "id": "baremetalsolution.projects.locations.osImages.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Requested page size. The server might return fewer items than requested. If unspecified, server will pick an appropriate default. Notice that page_size field is not supported and won't be respected in the API request for now, will be updated when pagination is supported.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results from the server.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListProvisioningQuotasRequest.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/osImages",
+                  "response": {
+                    "$ref": "ListOSImagesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "provisioningConfigs": {
               "methods": {
                 "create": {
@@ -1548,7 +1588,7 @@
       }
     }
   },
-  "revision": "20230710",
+  "revision": "20230807",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1623,6 +1663,12 @@
       "properties": {},
       "type": "object"
     },
+    "DisableInteractiveSerialConsoleResponse": {
+      "description": "Message for response of DisableInteractiveSerialConsole.",
+      "id": "DisableInteractiveSerialConsoleResponse",
+      "properties": {},
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -1632,6 +1678,12 @@
     "EnableInteractiveSerialConsoleRequest": {
       "description": "Message for enabling the interactive serial console on an instance.",
       "id": "EnableInteractiveSerialConsoleRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "EnableInteractiveSerialConsoleResponse": {
+      "description": "Message for response of EnableInteractiveSerialConsole.",
+      "id": "EnableInteractiveSerialConsoleResponse",
       "properties": {},
       "type": "object"
     },
@@ -1666,6 +1718,35 @@
         },
         "name": {
           "description": "Interface name. This is of syntax or and forms part of the network template name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface": {
+      "description": "Logical interface.",
+      "id": "GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface",
+      "properties": {
+        "name": {
+          "description": "Interface name. This is not a globally unique identifier. Name is unique only inside the ServerNetworkTemplate. This is of syntax or and forms part of the network template name.",
+          "type": "string"
+        },
+        "required": {
+          "description": "If true, interface must have network connected.",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "Interface type.",
+          "enum": [
+            "INTERFACE_TYPE_UNSPECIFIED",
+            "BOND",
+            "NIC"
+          ],
+          "enumDescriptions": [
+            "Unspecified value.",
+            "Bond interface type.",
+            "NIC interface type."
+          ],
           "type": "string"
         }
       },
@@ -2058,6 +2139,24 @@
           "description": "Locations that could not be reached.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListOSImagesResponse": {
+      "description": "Request for getting all available OS images.",
+      "id": "ListOSImagesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "osImages": {
+          "description": "The OS images available.",
+          "items": {
+            "$ref": "OSImage"
           },
           "type": "array"
         }
@@ -2740,6 +2839,40 @@
       },
       "type": "object"
     },
+    "OSImage": {
+      "description": "Operation System image.",
+      "id": "OSImage",
+      "properties": {
+        "applicableInstanceTypes": {
+          "description": "Instance types this image is applicable to. [Available types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "code": {
+          "description": "OS Image code.",
+          "type": "string"
+        },
+        "description": {
+          "description": "OS Image description.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. OS Image's unique name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "supportedNetworkTemplates": {
+          "description": "Network templates that can be used with this OS Image.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -2769,7 +2902,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -3030,6 +3163,32 @@
         },
         "publicKey": {
           "description": "The public SSH key. This must be in OpenSSH .authorized_keys format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServerNetworkTemplate": {
+      "description": "Network template.",
+      "id": "ServerNetworkTemplate",
+      "properties": {
+        "applicableInstanceTypes": {
+          "description": "Instance types this template is applicable to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "logicalInterfaces": {
+          "description": "Logical interfaces.",
+          "items": {
+            "$ref": "GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Template's unique name. The full resource name follows the pattern: `projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}` Generally, the {server_network_template} follows the syntax of \"bond\" or \"nic\".",
+          "readOnly": true,
           "type": "string"
         }
       },

@@ -3257,7 +3257,7 @@
       }
     }
   },
-  "revision": "20230713",
+  "revision": "20230809",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -8183,7 +8183,7 @@
           "description": "Optional. Node configuration for the connection."
         },
         "serviceAccount": {
-          "description": "Optional. Service account needed for runtime plane to access GCP resources.",
+          "description": "Optional. Service account needed for runtime plane to access Google Cloud resources.",
           "type": "string"
         },
         "serviceDirectory": {
@@ -8271,6 +8271,12 @@
       "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
       "id": "GoogleCloudConnectorsV1ConnectorVersionInfraConfig",
       "properties": {
+        "internalclientRatelimitThreshold": {
+          "description": "Output only. Max QPS supported for internal requests originating from Connd.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "ratelimitThreshold": {
           "description": "Output only. Max QPS supported by the connector version before throttling of requests.",
           "format": "int64",
@@ -8817,7 +8823,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Name of the certificate",
+          "description": "Required. Name of the certificate",
           "type": "string"
         },
         "name": {

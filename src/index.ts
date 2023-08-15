@@ -298,6 +298,7 @@ export {kmsinventory_v1} from './apis/kmsinventory/v1';
 export {language_v1} from './apis/language/v1';
 export {language_v1beta1} from './apis/language/v1beta1';
 export {language_v1beta2} from './apis/language/v1beta2';
+export {language_v2} from './apis/language/v2';
 export {libraryagent_v1} from './apis/libraryagent/v1';
 export {licensing_v1} from './apis/licensing/v1';
 export {lifesciences_v2beta} from './apis/lifesciences/v2beta';
