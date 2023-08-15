@@ -2066,7 +2066,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The flow to create an TransitionRouteGroup for. Format: `projects//locations//agents//flows/`.",
+                              "description": "Required. The flow to create an TransitionRouteGroup for. Format: `projects//locations//agents//flows/` or `projects//locations//agents/` for agent-level groups.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/flows/[^/]+$",
                               "required": true,
@@ -2100,7 +2100,7 @@
                               "type": "boolean"
                             },
                             "name": {
-                              "description": "Required. The name of the TransitionRouteGroup to delete. Format: `projects//locations//agents//flows//transitionRouteGroups/`.",
+                              "description": "Required. The name of the TransitionRouteGroup to delete. Format: `projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/flows/[^/]+/transitionRouteGroups/[^/]+$",
                               "required": true,
@@ -2131,7 +2131,7 @@
                               "type": "string"
                             },
                             "name": {
-                              "description": "Required. The name of the TransitionRouteGroup. Format: `projects//locations//agents//flows//transitionRouteGroups/`.",
+                              "description": "Required. The name of the TransitionRouteGroup. Format: `projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/flows/[^/]+/transitionRouteGroups/[^/]+$",
                               "required": true,
@@ -2173,7 +2173,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The flow to list all transition route groups for. Format: `projects//locations//agents//flows/`.",
+                              "description": "Required. The flow to list all transition route groups for. Format: `projects//locations//agents//flows/` or `projects//locations//agents/.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/flows/[^/]+$",
                               "required": true,
@@ -2204,7 +2204,7 @@
                               "type": "string"
                             },
                             "name": {
-                              "description": "The unique identifier of the transition route group. TransitionRouteGroups.CreateTransitionRouteGroup populates the name automatically. Format: `projects//locations//agents//flows//transitionRouteGroups/`.",
+                              "description": "The unique identifier of the transition route group. TransitionRouteGroups.CreateTransitionRouteGroup populates the name automatically. Format: `projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/flows/[^/]+/transitionRouteGroups/[^/]+$",
                               "required": true,
@@ -3298,6 +3298,188 @@
                     }
                   }
                 },
+                "transitionRouteGroups": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates an TransitionRouteGroup in the specified flow. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/transitionRouteGroups",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.transitionRouteGroups.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "languageCode": {
+                          "description": "The language of the following fields in `TransitionRouteGroup`: * `TransitionRouteGroup.transition_routes.trigger_fulfillment.messages` * `TransitionRouteGroup.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The flow to create an TransitionRouteGroup for. Format: `projects//locations//agents//flows/` or `projects//locations//agents/` for agent-level groups.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+parent}/transitionRouteGroups",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1TransitionRouteGroup"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1TransitionRouteGroup"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes the specified TransitionRouteGroup. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/transitionRouteGroups/{transitionRouteGroupsId}",
+                      "httpMethod": "DELETE",
+                      "id": "dialogflow.projects.locations.agents.transitionRouteGroups.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "force": {
+                          "description": "This field has no effect for transition route group that no page is using. If the transition route group is referenced by any page: * If `force` is set to false, an error will be returned with message indicating pages that reference the transition route group. * If `force` is set to true, Dialogflow will remove the transition route group, as well as any reference to it.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "description": "Required. The name of the TransitionRouteGroup to delete. Format: `projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/transitionRouteGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "get": {
+                      "description": "Retrieves the specified TransitionRouteGroup.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/transitionRouteGroups/{transitionRouteGroupsId}",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.agents.transitionRouteGroups.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "languageCode": {
+                          "description": "The language to retrieve the transition route group for. The following fields are language dependent: * `TransitionRouteGroup.transition_routes.trigger_fulfillment.messages` * `TransitionRouteGroup.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The name of the TransitionRouteGroup. Format: `projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/transitionRouteGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1TransitionRouteGroup"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "list": {
+                      "description": "Returns the list of all transition route groups in the specified flow.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/transitionRouteGroups",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.agents.transitionRouteGroups.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "languageCode": {
+                          "description": "The language to list transition route groups for. The following fields are language dependent: * `TransitionRouteGroup.transition_routes.trigger_fulfillment.messages` * `TransitionRouteGroup.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The next_page_token value returned from a previous list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The flow to list all transition route groups for. Format: `projects//locations//agents//flows/` or `projects//locations//agents/.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+parent}/transitionRouteGroups",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the specified TransitionRouteGroup. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/transitionRouteGroups/{transitionRouteGroupsId}",
+                      "httpMethod": "PATCH",
+                      "id": "dialogflow.projects.locations.agents.transitionRouteGroups.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "languageCode": {
+                          "description": "The language of the following fields in `TransitionRouteGroup`: * `TransitionRouteGroup.transition_routes.trigger_fulfillment.messages` * `TransitionRouteGroup.transition_routes.trigger_fulfillment.conditional_cases` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/cx/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The unique identifier of the transition route group. TransitionRouteGroups.CreateTransitionRouteGroup populates the name automatically. Format: `projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/transitionRouteGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "The mask to control which fields get updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1TransitionRouteGroup"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1TransitionRouteGroup"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    }
+                  }
+                },
                 "webhooks": {
                   "methods": {
                     "create": {
@@ -3820,7 +4002,7 @@
       }
     }
   },
-  "revision": "20230730",
+  "revision": "20230811",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -4745,7 +4927,7 @@
           "type": "string"
         },
         "transitionRouteGroups": {
-          "description": "Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -> page's transition route group -> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/`.",
+          "description": "Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -> page's transition route group -> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.",
           "items": {
             "type": "string"
           },
@@ -5802,7 +5984,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1Agent": {
-      "description": "Agents are best described as Natural Language Understanding (NLU) modules that transform user requests into actionable data. You can include agents in your app, product, or service to determine user intent and respond to the user in a natural way. After you create an agent, you can add Intents, Entity Types, Flows, Fulfillments, Webhooks, and so on to manage the conversation flows..",
+      "description": "Agents are best described as Natural Language Understanding (NLU) modules that transform user requests into actionable data. You can include agents in your app, product, or service to determine user intent and respond to the user in a natural way. After you create an agent, you can add Intents, Entity Types, Flows, Fulfillments, Webhooks, TransitionRouteGroups and so on to manage the conversation flows.",
       "id": "GoogleCloudDialogflowCxV3beta1Agent",
       "properties": {
         "advancedSettings": {
@@ -7089,7 +7271,7 @@
           "description": "NLU related settings of the flow."
         },
         "transitionRouteGroups": {
-          "description": "A flow's transition route group serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition route groups. Transition route groups defined in the page have higher priority than those defined in the flow. Format:`projects//locations//agents//flows//transitionRouteGroups/`.",
+          "description": "A flow's transition route group serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition route groups. Transition route groups defined in the page have higher priority than those defined in the flow. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.",
           "items": {
             "type": "string"
           },
@@ -7101,6 +7283,33 @@
             "$ref": "GoogleCloudDialogflowCxV3beta1TransitionRoute"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1FlowImportStrategy": {
+      "description": "The flow import strategy used for resource conflict resolution associated with an ImportFlowRequest.",
+      "id": "GoogleCloudDialogflowCxV3beta1FlowImportStrategy",
+      "properties": {
+        "globalImportStrategy": {
+          "description": "Optional. Global flow import strategy for resource conflict resolution. The import Import strategy for resource conflict resolution, applied globally throughout the flow. It will be applied for all display name conflicts in the imported content. If not specified, 'CREATE_NEW' is assumed.",
+          "enum": [
+            "IMPORT_STRATEGY_UNSPECIFIED",
+            "IMPORT_STRATEGY_CREATE_NEW",
+            "IMPORT_STRATEGY_REPLACE",
+            "IMPORT_STRATEGY_KEEP",
+            "IMPORT_STRATEGY_MERGE",
+            "IMPORT_STRATEGY_THROW_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Treated as 'CREATE_NEW'.",
+            "Create a new resource with a numeric suffix appended to the end of the existing display name.",
+            "Replace existing resource with incoming resource in the content to be imported.",
+            "Keep existing resource and discard incoming resource in the content to be imported.",
+            "Combine existing and incoming resources when a conflict is encountered.",
+            "Throw error if a conflict is encountered."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -7408,6 +7617,10 @@
           "description": "Uncompressed raw byte content for flow.",
           "format": "byte",
           "type": "string"
+        },
+        "flowImportStrategy": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1FlowImportStrategy",
+          "description": "Optional. Specifies the import strategy used when resolving resource conflicts."
         },
         "flowUri": {
           "description": "The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to import flow from. The format of this URI must be `gs:///`. Dialogflow performs a read operation for the Cloud Storage object on the caller's behalf, so your request authentication must have read permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).",
@@ -8257,7 +8470,7 @@
           "type": "string"
         },
         "transitionRouteGroups": {
-          "description": "Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -> page's transition route group -> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/`.",
+          "description": "Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -> page's transition route group -> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.",
           "items": {
             "type": "string"
           },
@@ -9478,7 +9691,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1TransitionRouteGroup": {
-      "description": "An TransitionRouteGroup represents a group of `TransitionRoutes` to be used by a Page.",
+      "description": "A TransitionRouteGroup represents a group of `TransitionRoutes` to be used by a Page.",
       "id": "GoogleCloudDialogflowCxV3beta1TransitionRouteGroup",
       "properties": {
         "displayName": {
@@ -9486,7 +9699,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The unique identifier of the transition route group. TransitionRouteGroups.CreateTransitionRouteGroup populates the name automatically. Format: `projects//locations//agents//flows//transitionRouteGroups/`.",
+          "description": "The unique identifier of the transition route group. TransitionRouteGroups.CreateTransitionRouteGroup populates the name automatically. Format: `projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.",
           "type": "string"
         },
         "transitionRoutes": {
@@ -14872,7 +15085,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
