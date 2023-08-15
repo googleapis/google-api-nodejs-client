@@ -891,6 +891,23 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Location of the source in a 2nd-gen Google Cloud Build repository resource.
+   */
+  export interface Schema$ConnectedRepository {
+    /**
+     * Directory, relative to the source root, in which to run the build.
+     */
+    dir?: string | null;
+    /**
+     * Required. Name of the Google Cloud Build repository, formatted as `projects/x/locations/x/connections/x/repositories/x`.
+     */
+    repository?: string | null;
+    /**
+     * The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.
+     */
+    revision?: string | null;
+  }
+  /**
    * Metadata for `CreateBitbucketServerConfig` operation.
    */
   export interface Schema$CreateBitbucketServerConfigOperationMetadata {
@@ -1985,6 +2002,10 @@ export namespace cloudbuild_v1 {
    * Location of the source in a supported storage service.
    */
   export interface Schema$Source {
+    /**
+     * Optional. If provided, get the source from this 2nd-gen Google Cloud Build repository resource.
+     */
+    connectedRepository?: Schema$ConnectedRepository;
     /**
      * If provided, get the source from this Git repository.
      */
