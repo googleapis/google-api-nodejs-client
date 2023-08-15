@@ -244,6 +244,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "enableResourceMonitoring": {
+                  "description": "Enable resource violation monitoring for a workload.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}:enableResourceMonitoring",
+                  "httpMethod": "POST",
+                  "id": "assuredworkloads.organizations.locations.workloads.enableResourceMonitoring",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the workload. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:enableResourceMonitoring",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets Assured Workload associated with a CRM Node",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}",
@@ -374,56 +399,6 @@
                 }
               },
               "resources": {
-                "organizations": {
-                  "resources": {
-                    "locations": {
-                      "resources": {
-                        "workloads": {
-                          "methods": {
-                            "analyzeWorkloadMove": {
-                              "description": "Analyzes a hypothetical move of a source project to a target (destination) folder-based workload.",
-                              "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}/organizations/{organizationsId1}/locations/{locationsId1}/workloads/{workloadsId1}:analyzeWorkloadMove",
-                              "httpMethod": "GET",
-                              "id": "assuredworkloads.organizations.locations.workloads.organizations.locations.workloads.analyzeWorkloadMove",
-                              "parameterOrder": [
-                                "source",
-                                "target"
-                              ],
-                              "parameters": {
-                                "project": {
-                                  "description": "The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: \"projects/{PROJECT_NUMBER}\" or \"projects/{PROJECT_ID}\" For example: \"projects/951040570662\" when specifying a project number, or \"projects/my-project-123\" when specifying a project ID.",
-                                  "location": "query",
-                                  "type": "string"
-                                },
-                                "source": {
-                                  "description": "The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: \"organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}\" For example: \"organizations/123/locations/us-east1/workloads/assured-workload-1\" This option is now deprecated",
-                                  "location": "path",
-                                  "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
-                                  "required": true,
-                                  "type": "string"
-                                },
-                                "target": {
-                                  "description": "Required. The resource ID of the folder-based destination workload. This workload is where the source project will hypothetically be moved to. Specify the workload's relative resource name, formatted as: \"organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}\" For example: \"organizations/123/locations/us-east1/workloads/assured-workload-2\"",
-                                  "location": "path",
-                                  "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
-                                  "required": true,
-                                  "type": "string"
-                                }
-                              },
-                              "path": "v1beta1/{+source}/{+target}:analyzeWorkloadMove",
-                              "response": {
-                                "$ref": "GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse"
-                              },
-                              "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
-                              ]
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
                 "violations": {
                   "methods": {
                     "acknowledge": {
@@ -549,7 +524,7 @@
                 "workloads": {
                   "methods": {
                     "analyzeWorkloadMove": {
-                      "description": "Analyzes a hypothetical move of a source project to a target (destination) folder-based workload.",
+                      "description": "Analyzes a hypothetical move of a source resource to a target(destination) folder-based workload to surface compliance risks.",
                       "flatPath": "v1beta1/projects/{projectsId}/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}:analyzeWorkloadMove",
                       "httpMethod": "GET",
                       "id": "assuredworkloads.projects.organizations.locations.workloads.analyzeWorkloadMove",
@@ -558,6 +533,22 @@
                         "target"
                       ],
                       "parameters": {
+                        "analyzeChildAssets": {
+                          "description": "Optional. Indicates if all child assets of the source resource should also be analyzed in addition to the source.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Page size. If a value is not specified, the default value of 10 is used.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The page token from the previous response. It needs to be passed in the second and following requests.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "project": {
                           "description": "The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: \"projects/{PROJECT_NUMBER}\" or \"projects/{PROJECT_ID}\" For example: \"projects/951040570662\" when specifying a project number, or \"projects/my-project-123\" when specifying a project ID.",
                           "location": "path",
@@ -567,12 +558,12 @@
                         },
                         "source": {
                           "deprecated": true,
-                          "description": "The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: \"organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}\" For example: \"organizations/123/locations/us-east1/workloads/assured-workload-1\" This option is now deprecated",
+                          "description": "The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: \"organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}\" For example: \"organizations/123/locations/us-east1/workloads/assured-workload-1\" This option is now deprecated.",
                           "location": "query",
                           "type": "string"
                         },
                         "target": {
-                          "description": "Required. The resource ID of the folder-based destination workload. This workload is where the source project will hypothetically be moved to. Specify the workload's relative resource name, formatted as: \"organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}\" For example: \"organizations/123/locations/us-east1/workloads/assured-workload-2\"",
+                          "description": "Required. The resource ID of the folder-based destination workload. This workload is where the source resource will hypothetically be moved to. Specify the workload's relative resource name, formatted as: \"organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}\" For example: \"organizations/123/locations/us-east1/workloads/assured-workload-2\"",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
                           "required": true,
@@ -596,13 +587,27 @@
       }
     }
   },
-  "revision": "20230731",
+  "revision": "20230804",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
       "description": "Request for acknowledging the violation Next Id: 5",
       "id": "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest",
       "properties": {
+        "acknowledgeType": {
+          "description": "Optional. Acknowledge type of specified violation.",
+          "enum": [
+            "ACKNOWLEDGE_TYPE_UNSPECIFIED",
+            "SINGLE_VIOLATION",
+            "EXISTING_CHILD_RESOURCE_VIOLATIONS"
+          ],
+          "enumDescriptions": [
+            "Acknowledge type unspecified.",
+            "Acknowledge only the specific violation.",
+            "Acknowledge specified orgPolicy violation and also associated resource violations."
+          ],
+          "type": "string"
+        },
         "comment": {
           "description": "Required. Business justification explaining the need for violation acknowledgement",
           "type": "string"
@@ -622,15 +627,49 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse": {
-      "description": "A response that includes the analysis of the hypothetical resource move.",
+      "description": "Response containing the analysis results for the hypothetical resource move.",
       "id": "GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse",
       "properties": {
+        "assetMoveAnalyses": {
+          "description": "List of analysis results for each asset in scope.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis"
+          },
+          "type": "array"
+        },
         "blockers": {
-          "description": "A list of blockers that should be addressed before moving the source project or project-based workload to the destination folder-based workload.",
+          "deprecated": true,
+          "description": "A list of blockers that should be addressed before moving the source project or project-based workload to the destination folder-based workload. This field is now deprecated.",
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The next page token. Is empty if the last page is reached.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis": {
+      "description": "Represents move analysis results for an asset.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis",
+      "properties": {
+        "analysisGroups": {
+          "description": "List of eligible analyses performed for the asset.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1MoveAnalysisGroup"
+          },
+          "type": "array"
+        },
+        "asset": {
+          "description": "The full resource name of the asset being analyzed. Example: //compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1",
+          "type": "string"
+        },
+        "assetType": {
+          "description": "Type of the asset being analyzed. Possible values will be among the ones listed [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -704,6 +743,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse": {
+      "description": "Response for EnableResourceMonitoring endpoint.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse": {
       "description": "Response of ListViolations endpoint.",
       "id": "GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse",
@@ -736,6 +781,57 @@
             "$ref": "GoogleCloudAssuredworkloadsV1beta1Workload"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1MoveAnalysisGroup": {
+      "description": "Represents a logical group of checks performed for an asset. If successful, the group contains the analysis result, otherwise it contains an error with the failure reason.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1MoveAnalysisGroup",
+      "properties": {
+        "analysisResult": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1MoveAnalysisResult",
+          "description": "Result of a successful analysis."
+        },
+        "displayName": {
+          "description": "Name of the analysis group.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Error details for a failed analysis."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1MoveAnalysisResult": {
+      "description": "Represents the successful move analysis results for a group.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1MoveAnalysisResult",
+      "properties": {
+        "blockers": {
+          "description": "List of blockers. If not resolved, these will result in compliance violations in the target.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1MoveImpact"
+          },
+          "type": "array"
+        },
+        "warnings": {
+          "description": "List of warnings. These are risks that may or may not result in compliance violations.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1MoveImpact"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1MoveImpact": {
+      "description": "Represents the impact of moving the asset to the target.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1MoveImpact",
+      "properties": {
+        "detail": {
+          "description": "Explanation of the impact.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -780,6 +876,11 @@
         "acknowledgementTime": {
           "description": "Optional. Timestamp when this violation was acknowledged first. Check exception_contexts to find the last time the violation was acknowledged when there are more than one violations. This field will be absent when acknowledged field is marked as false.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "associatedOrgPolicyViolationId": {
+          "description": "Optional. Output only. Violation Id of the org-policy violation due to which the resource violation is caused. Empty for org-policy violations.",
+          "readOnly": true,
           "type": "string"
         },
         "auditLogLink": {
@@ -832,6 +933,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "parentProjectNumber": {
+          "description": "Optional. Output only. Parent project number where resource is present. Empty for org-policy violations.",
+          "readOnly": true,
+          "type": "string"
+        },
         "remediation": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1ViolationRemediation",
           "description": "Output only. Compliance violation remediation",
@@ -840,6 +946,16 @@
         "resolveTime": {
           "description": "Output only. Time of the event which fixed the Violation. If the violation is ACTIVE this will be empty.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Optional. Output only. Name of the resource like //storage.googleapis.com/myprojectxyz-testbucket. Empty for org-policy violations.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "Optional. Output only. Type of the resource like compute.googleapis.com/Disk, etc. Empty for org-policy violations.",
           "readOnly": true,
           "type": "string"
         },
@@ -863,6 +979,21 @@
         "updateTime": {
           "description": "Output only. The last time when the Violation record was updated.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "violationType": {
+          "description": "Output only. Type of the violation",
+          "enum": [
+            "VIOLATION_TYPE_UNSPECIFIED",
+            "ORG_POLICY",
+            "RESOURCE"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Org Policy Violation.",
+            "Resource Violation."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -1161,6 +1292,11 @@
           "description": "Input only. The parent resource for the resources managed by this Assured Workload. May be either empty or a folder resource which is a child of the Workload parent. If not specified all resources are created under the parent organization. Format: folders/{folder_id}",
           "type": "string"
         },
+        "resourceMonitoringEnabled": {
+          "description": "Output only. Indicates whether resource monitoring is enabled for workload or not. It is true when Resource feed is subscribed to AWM topic and AWM Service Agent Role is binded to AW Service Account for resource Assured workload.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "resourceSettings": {
           "description": "Input only. Resource properties that are used to customize workload resources. These properties (such as custom project id) will be used to create workload resources if possible. This field is optional.",
           "items": {
@@ -1204,8 +1340,18 @@
       "description": "Represents the Compliance Status of this workload",
       "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus",
       "properties": {
+        "acknowledgedResourceViolationCount": {
+          "description": "Number of current resource violations which are not acknowledged.",
+          "format": "int32",
+          "type": "integer"
+        },
         "acknowledgedViolationCount": {
           "description": "Number of current orgPolicy violations which are acknowledged.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "activeResourceViolationCount": {
+          "description": "Number of current resource violations which are acknowledged.",
           "format": "int32",
           "type": "integer"
         },
@@ -1236,7 +1382,7 @@
             "Error but domain is unspecified.",
             "Internal logic breaks within provisioning code.",
             "Error occurred with the customer not granting permission/creating resource.",
-            "Error occurred within the partner’s provisioning cluster.",
+            "Error occurred within the partner's provisioning cluster.",
             "Resource wasn't provisioned in the required 7 day time period"
           ],
           "type": "string"
@@ -1515,7 +1661,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },

@@ -131,6 +131,10 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest {
     /**
+     * Optional. Acknowledge type of specified violation.
+     */
+    acknowledgeType?: string | null;
+    /**
      * Required. Business justification explaining the need for violation acknowledgement
      */
     comment?: string | null;
@@ -144,13 +148,38 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse {}
   /**
-   * A response that includes the analysis of the hypothetical resource move.
+   * Response containing the analysis results for the hypothetical resource move.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse {
     /**
-     * A list of blockers that should be addressed before moving the source project or project-based workload to the destination folder-based workload.
+     * List of analysis results for each asset in scope.
+     */
+    assetMoveAnalyses?: Schema$GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis[];
+    /**
+     * A list of blockers that should be addressed before moving the source project or project-based workload to the destination folder-based workload. This field is now deprecated.
      */
     blockers?: string[] | null;
+    /**
+     * The next page token. Is empty if the last page is reached.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Represents move analysis results for an asset.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis {
+    /**
+     * List of eligible analyses performed for the asset.
+     */
+    analysisGroups?: Schema$GoogleCloudAssuredworkloadsV1beta1MoveAnalysisGroup[];
+    /**
+     * The full resource name of the asset being analyzed. Example: //compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1
+     */
+    asset?: string | null;
+    /**
+     * Type of the asset being analyzed. Possible values will be among the ones listed [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     */
+    assetType?: string | null;
   }
   /**
    * Operation metadata to give request details of CreateWorkload.
@@ -178,6 +207,10 @@ export namespace assuredworkloads_v1beta1 {
     resourceSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings[];
   }
   /**
+   * Response for EnableResourceMonitoring endpoint.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse {}
+  /**
    * Response of ListViolations endpoint.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse {
@@ -204,6 +237,45 @@ export namespace assuredworkloads_v1beta1 {
     workloads?: Schema$GoogleCloudAssuredworkloadsV1beta1Workload[];
   }
   /**
+   * Represents a logical group of checks performed for an asset. If successful, the group contains the analysis result, otherwise it contains an error with the failure reason.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1MoveAnalysisGroup {
+    /**
+     * Result of a successful analysis.
+     */
+    analysisResult?: Schema$GoogleCloudAssuredworkloadsV1beta1MoveAnalysisResult;
+    /**
+     * Name of the analysis group.
+     */
+    displayName?: string | null;
+    /**
+     * Error details for a failed analysis.
+     */
+    error?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * Represents the successful move analysis results for a group.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1MoveAnalysisResult {
+    /**
+     * List of blockers. If not resolved, these will result in compliance violations in the target.
+     */
+    blockers?: Schema$GoogleCloudAssuredworkloadsV1beta1MoveImpact[];
+    /**
+     * List of warnings. These are risks that may or may not result in compliance violations.
+     */
+    warnings?: Schema$GoogleCloudAssuredworkloadsV1beta1MoveImpact[];
+  }
+  /**
+   * Represents the impact of moving the asset to the target.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1MoveImpact {
+    /**
+     * Explanation of the impact.
+     */
+    detail?: string | null;
+  }
+  /**
    * Request for restricting list of available resources in Workload environment.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest {
@@ -228,6 +300,10 @@ export namespace assuredworkloads_v1beta1 {
      * Optional. Timestamp when this violation was acknowledged first. Check exception_contexts to find the last time the violation was acknowledged when there are more than one violations. This field will be absent when acknowledged field is marked as false.
      */
     acknowledgementTime?: string | null;
+    /**
+     * Optional. Output only. Violation Id of the org-policy violation due to which the resource violation is caused. Empty for org-policy violations.
+     */
+    associatedOrgPolicyViolationId?: string | null;
     /**
      * Output only. Immutable. Audit Log Link for violated resource Format: https://console.cloud.google.com/logs/query;query={logName\}{protoPayload.resourceName\}{timeRange\}{folder\}
      */
@@ -265,6 +341,10 @@ export namespace assuredworkloads_v1beta1 {
      */
     orgPolicyConstraint?: string | null;
     /**
+     * Optional. Output only. Parent project number where resource is present. Empty for org-policy violations.
+     */
+    parentProjectNumber?: string | null;
+    /**
      * Output only. Compliance violation remediation
      */
     remediation?: Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediation;
@@ -273,6 +353,14 @@ export namespace assuredworkloads_v1beta1 {
      */
     resolveTime?: string | null;
     /**
+     * Optional. Output only. Name of the resource like //storage.googleapis.com/myprojectxyz-testbucket. Empty for org-policy violations.
+     */
+    resourceName?: string | null;
+    /**
+     * Optional. Output only. Type of the resource like compute.googleapis.com/Disk, etc. Empty for org-policy violations.
+     */
+    resourceType?: string | null;
+    /**
      * Output only. State of the violation
      */
     state?: string | null;
@@ -280,6 +368,10 @@ export namespace assuredworkloads_v1beta1 {
      * Output only. The last time when the Violation record was updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. Type of the violation
+     */
+    violationType?: string | null;
   }
   /**
    * Violation exception detail. Next Id: 6
@@ -447,6 +539,10 @@ export namespace assuredworkloads_v1beta1 {
      */
     provisionedResourcesParent?: string | null;
     /**
+     * Output only. Indicates whether resource monitoring is enabled for workload or not. It is true when Resource feed is subscribed to AWM topic and AWM Service Agent Role is binded to AW Service Account for resource Assured workload.
+     */
+    resourceMonitoringEnabled?: boolean | null;
+    /**
      * Output only. The resources associated with this workload. These resources will be created when creating the workload. If any of the projects already exist, the workload creation will fail. Always read only.
      */
     resources?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo[];
@@ -477,9 +573,17 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus {
     /**
+     * Number of current resource violations which are not acknowledged.
+     */
+    acknowledgedResourceViolationCount?: number | null;
+    /**
      * Number of current orgPolicy violations which are acknowledged.
      */
     acknowledgedViolationCount?: number | null;
+    /**
+     * Number of current resource violations which are acknowledged.
+     */
+    activeResourceViolationCount?: number | null;
     /**
      * Number of current orgPolicy violations which are not acknowledged.
      */
@@ -636,7 +740,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -911,14 +1015,9 @@ export namespace assuredworkloads_v1beta1 {
 
   export class Resource$Organizations$Locations$Workloads {
     context: APIRequestContext;
-    organizations: Resource$Organizations$Locations$Workloads$Organizations;
     violations: Resource$Organizations$Locations$Workloads$Violations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.organizations =
-        new Resource$Organizations$Locations$Workloads$Organizations(
-          this.context
-        );
       this.violations =
         new Resource$Organizations$Locations$Workloads$Violations(this.context);
     }
@@ -1103,6 +1202,103 @@ export namespace assuredworkloads_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Enable resource violation monitoring for a workload.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enableResourceMonitoring(
+      params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enableResourceMonitoring(
+      params?: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>;
+    enableResourceMonitoring(
+      params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enableResourceMonitoring(
+      params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+    ): void;
+    enableResourceMonitoring(
+      params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+    ): void;
+    enableResourceMonitoring(
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+    ): void;
+    enableResourceMonitoring(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+name}:enableResourceMonitoring'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>(
+          parameters
+        );
       }
     }
 
@@ -1516,6 +1712,13 @@ export namespace assuredworkloads_v1beta1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring
+    extends StandardParameters {
+    /**
+     * Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Organizations$Locations$Workloads$Get
     extends StandardParameters {
     /**
@@ -1569,150 +1772,6 @@ export namespace assuredworkloads_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest;
-  }
-
-  export class Resource$Organizations$Locations$Workloads$Organizations {
-    context: APIRequestContext;
-    locations: Resource$Organizations$Locations$Workloads$Organizations$Locations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.locations =
-        new Resource$Organizations$Locations$Workloads$Organizations$Locations(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Organizations$Locations$Workloads$Organizations$Locations {
-    context: APIRequestContext;
-    workloads: Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.workloads =
-        new Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Analyzes a hypothetical move of a source project to a target (destination) folder-based workload.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    analyzeWorkloadMove(
-      params: Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    analyzeWorkloadMove(
-      params?: Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>;
-    analyzeWorkloadMove(
-      params: Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    analyzeWorkloadMove(
-      params: Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-    ): void;
-    analyzeWorkloadMove(
-      params: Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-    ): void;
-    analyzeWorkloadMove(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-    ): void;
-    analyzeWorkloadMove(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1beta1/{+source}/{+target}:analyzeWorkloadMove'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['source', 'target'],
-        pathParams: ['source', 'target'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove
-    extends StandardParameters {
-    /**
-     * The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
-     */
-    project?: string;
-    /**
-     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1" This option is now deprecated
-     */
-    source?: string;
-    /**
-     * Required. The resource ID of the folder-based destination workload. This workload is where the source project will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
-     */
-    target?: string;
   }
 
   export class Resource$Organizations$Locations$Workloads$Violations {
@@ -2098,7 +2157,7 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * Analyzes a hypothetical move of a source project to a target (destination) folder-based workload.
+     * Analyzes a hypothetical move of a source resource to a target(destination) folder-based workload to surface compliance risks.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2198,15 +2257,27 @@ export namespace assuredworkloads_v1beta1 {
   export interface Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove
     extends StandardParameters {
     /**
+     * Optional. Indicates if all child assets of the source resource should also be analyzed in addition to the source.
+     */
+    analyzeChildAssets?: boolean;
+    /**
+     * Optional. Page size. If a value is not specified, the default value of 10 is used.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token from the previous response. It needs to be passed in the second and following requests.
+     */
+    pageToken?: string;
+    /**
      * The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
      */
     project?: string;
     /**
-     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1" This option is now deprecated
+     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1" This option is now deprecated.
      */
     source?: string;
     /**
-     * Required. The resource ID of the folder-based destination workload. This workload is where the source project will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
+     * Required. The resource ID of the folder-based destination workload. This workload is where the source resource will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
      */
     target?: string;
   }
