@@ -4205,7 +4205,7 @@ export namespace sheets_v4 {
      */
     format?: Schema$TextFormat;
     /**
-     * The character index where this run starts.
+     * The zero-based character index where this run starts, in UTF-16 code units.
      */
     startIndex?: number | null;
   }
