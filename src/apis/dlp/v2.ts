@@ -273,7 +273,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryOptions {
     /**
-     * References to fields excluded from scanning. This allows you to skip inspection of entire columns which you know have no findings.
+     * References to fields excluded from scanning. This allows you to skip inspection of entire columns which you know have no findings. When inspecting a table, we recommend that you inspect all columns. Otherwise, findings might be impacted because hints from excluded columns will not be used.
      */
     excludedFields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
@@ -281,7 +281,7 @@ export namespace dlp_v2 {
      */
     identifyingFields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
-     * Limit scanning only to these fields.
+     * Limit scanning only to these fields. When inspecting a table, we recommend that you inspect all columns. Otherwise, findings might be impacted because hints from excluded columns will not be used.
      */
     includedFields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
