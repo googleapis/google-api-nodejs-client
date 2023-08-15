@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20230727",
+  "revision": "20230803",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2204,6 +2204,24 @@
             "The firmware is BIOS."
           ],
           "type": "string"
+        },
+        "vmCapabilities": {
+          "description": "Output only. Unordered list. List of VM certain capabilities needed for some Compute Engine features.",
+          "items": {
+            "enum": [
+              "VM_CAPABILITY_UNSPECIFIED",
+              "VM_CAPABILITY_NVME_STORAGE_ACCESS",
+              "VM_CAPABILITY_GVNIC_NETWORK_INTERFACE"
+            ],
+            "enumDescriptions": [
+              "Unknown capability.",
+              "NVMe driver install and the VM can use NVMe PD or local SSD.",
+              "gVNIC virtual NIC driver supported."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -3825,7 +3843,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
