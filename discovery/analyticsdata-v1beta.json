@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20230711",
+  "revision": "20230812",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "ActiveMetricRestriction": {
@@ -608,7 +608,7 @@
       "type": "object"
     },
     "DateRange": {
-      "description": "A contiguous set of days: startDate, startDate + 1, ..., endDate. Requests are allowed up to 4 date ranges.",
+      "description": "A contiguous set of days: `startDate`, `startDate + 1`, ..., `endDate`. Requests are allowed up to 4 date ranges.",
       "id": "DateRange",
       "properties": {
         "endDate": {
@@ -1076,7 +1076,7 @@
       "type": "object"
     },
     "MinuteRange": {
-      "description": "A contiguous set of minutes: startMinutesAgo, startMinutesAgo + 1, ..., endMinutesAgo. Requests are allowed up to 2 minute ranges.",
+      "description": "A contiguous set of minutes: `startMinutesAgo`, `startMinutesAgo + 1`, ..., `endMinutesAgo`. Requests are allowed up to 2 minute ranges.",
       "id": "MinuteRange",
       "properties": {
         "endMinutesAgo": {
