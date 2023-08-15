@@ -2414,7 +2414,7 @@
       }
     }
   },
-  "revision": "20230728",
+  "revision": "20230804",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -2666,13 +2666,6 @@
           },
           "type": "array"
         },
-        "state": {
-          "description": "Scope-level upgrade state.",
-          "items": {
-            "$ref": "ClusterUpgradeScopeGKEUpgradeState"
-          },
-          "type": "array"
-        },
         "upgradeState": {
           "description": "Upgrade state. It will eventually replace `state`.",
           "items": {
@@ -2785,29 +2778,6 @@
           "description": "Required. Amount of time to \"soak\" after a rollout has been finished before marking it COMPLETE. Cannot exceed 30 days. Required.",
           "format": "google-duration",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ClusterUpgradeScopeGKEUpgradeState": {
-      "description": "ScopeGKEUpgradeState is a GKEUpgrade and its state at the scope level.",
-      "id": "ClusterUpgradeScopeGKEUpgradeState",
-      "properties": {
-        "stats": {
-          "additionalProperties": {
-            "format": "int64",
-            "type": "string"
-          },
-          "description": "Number of GKE clusters in each status code.",
-          "type": "object"
-        },
-        "status": {
-          "$ref": "ClusterUpgradeUpgradeStatus",
-          "description": "Status of the upgrade."
-        },
-        "upgrade": {
-          "$ref": "ClusterUpgradeGKEUpgrade",
-          "description": "Which upgrade to track the state."
         }
       },
       "type": "object"
@@ -3792,12 +3762,12 @@
             "UNREACHABLE"
           ],
           "enumDescriptions": [
-            "ACM cannot determine a sync code",
-            "ACM successfully synced the git Repo with the cluster",
-            "ACM is in the progress of syncing a new change",
-            "Indicates an error configuring ACM, and user action is required",
-            "ACM has been installed (operator manifest deployed), but not configured.",
-            "ACM has not been installed (no operator pod found)",
+            "Config Sync cannot determine a sync code",
+            "Config Sync successfully synced the git Repo with the cluster",
+            "Config Sync is in the progress of syncing a new change",
+            "Indicates an error configuring Config Sync, and user action is required",
+            "Config Sync has been installed but not configured",
+            "Config Sync has not been installed",
             "Error authorizing with the cluster",
             "Cluster could not be reached"
           ],
@@ -4402,6 +4372,10 @@
         },
         "tenant": {
           "description": "Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.",
+          "type": "string"
+        },
+        "userClaim": {
+          "description": "Optional. Claim in the AzureAD ID Token that holds the user details.",
           "type": "string"
         }
       },
@@ -5450,7 +5424,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -5522,7 +5496,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
