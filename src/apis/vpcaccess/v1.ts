@@ -145,7 +145,7 @@ export namespace vpcaccess_v1 {
      */
     maxInstances?: number | null;
     /**
-     * Maximum throughput of the connector in Mbps. Default is 300, max is 1000.
+     * Maximum throughput of the connector in Mbps. Default is 300, max is 1000. If both max-throughput and max-instances are provided, max-instances takes precedence over max-throughput.
      */
     maxThroughput?: number | null;
     /**
@@ -153,7 +153,7 @@ export namespace vpcaccess_v1 {
      */
     minInstances?: number | null;
     /**
-     * Minimum throughput of the connector in Mbps. Default and min is 200.
+     * Minimum throughput of the connector in Mbps. Default and min is 200. If both min-throughput and min-instances are provided, min-instances takes precedence over min-throughput.
      */
     minThroughput?: number | null;
     /**
@@ -258,7 +258,7 @@ export namespace vpcaccess_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -937,7 +937,7 @@ export namespace vpcaccess_v1 {
      */
     connectorId?: string;
     /**
-     * Required. The project and location in which the configuration should be created, specified in the format `projects/x/locations/x`.
+     * Required. The project id and location in which the configuration should be created, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
 
