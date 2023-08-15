@@ -428,6 +428,161 @@
             }
           }
         },
+        "platforms": {
+          "resources": {
+            "policies": {
+              "methods": {
+                "create": {
+                  "description": "Creates a platform policy, and returns a copy of it. Returns NOT_FOUND if the project or platform doesn't exist, INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the policy already exists, and INVALID_ARGUMENT if the policy contains a platform-specific policy that does not match the platform value specified in the URL.",
+                  "flatPath": "v1/projects/{projectsId}/platforms/{platformsId}/policies",
+                  "httpMethod": "POST",
+                  "id": "binaryauthorization.projects.platforms.policies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent of this platform policy.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/platforms/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "policyId": {
+                      "description": "Required. The platform policy ID.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/policies",
+                  "request": {
+                    "$ref": "PlatformPolicy"
+                  },
+                  "response": {
+                    "$ref": "PlatformPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a platform policy. Returns NOT_FOUND if the policy doesn't exist.",
+                  "flatPath": "v1/projects/{projectsId}/platforms/{platformsId}/policies/{policiesId}",
+                  "httpMethod": "DELETE",
+                  "id": "binaryauthorization.projects.platforms.policies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the platform policy to delete, in the format `projects/*/platforms/*/policies/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/platforms/[^/]+/policies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a platform policy. Returns NOT_FOUND if the policy doesn't exist.",
+                  "flatPath": "v1/projects/{projectsId}/platforms/{platformsId}/policies/{policiesId}",
+                  "httpMethod": "GET",
+                  "id": "binaryauthorization.projects.platforms.policies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the platform policy to retrieve in the format `projects/*/platforms/*/policies/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/platforms/[^/]+/policies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "PlatformPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists platform policies owned by a project in the specified platform. Returns INVALID_ARGUMENT if the project or the platform doesn't exist.",
+                  "flatPath": "v1/projects/{projectsId}/platforms/{platformsId}/policies",
+                  "httpMethod": "GET",
+                  "id": "binaryauthorization.projects.platforms.policies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Requested page size. The server may return fewer results than requested. If unspecified, the server picks an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return. Typically, this is the value of ListPlatformPoliciesResponse.next_page_token returned from the previous call to the `ListPlatformPolicies` method.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the platform associated with the platform policies using the format `projects/*/platforms/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/platforms/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/policies",
+                  "response": {
+                    "$ref": "ListPlatformPoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "replacePlatformPolicy": {
+                  "description": "Replaces a platform policy. Returns NOT_FOUND if the policy doesn't exist.",
+                  "flatPath": "v1/projects/{projectsId}/platforms/{platformsId}/policies/{policiesId}",
+                  "httpMethod": "PUT",
+                  "id": "binaryauthorization.projects.platforms.policies.replacePlatformPolicy",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The relative resource name of the BinAuthz platform policy, in the form of `projects/*/platforms/*/policies/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/platforms/[^/]+/policies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "PlatformPolicy"
+                  },
+                  "response": {
+                    "$ref": "PlatformPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "policy": {
           "methods": {
             "getIamPolicy": {
@@ -551,7 +706,7 @@
       }
     }
   },
-  "revision": "20230127",
+  "revision": "20230804",
   "rootUrl": "https://binaryauthorization.googleapis.com/",
   "schemas": {
     "AdmissionRule": {
@@ -609,6 +764,21 @@
       },
       "type": "object"
     },
+    "AttestationAuthenticator": {
+      "description": "An attestation authenticator that will be used to verify attestations. Typically this is just a set of public keys. Conceptually, an authenticator can be treated as always returning either \"authenticated\" or \"not authenticated\" when presented with a signed attestation (almost always assumed to be a [DSSE](https://github.com/secure-systems-lab/dsse) attestation). The details of how an authenticator makes this decision are specific to the type of 'authenticator' that this message wraps.",
+      "id": "AttestationAuthenticator",
+      "properties": {
+        "displayName": {
+          "description": "Optional. A user-provided name for this AttestationAuthenticator. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.",
+          "type": "string"
+        },
+        "pkixPublicKeySet": {
+          "$ref": "PkixPublicKeySet",
+          "description": "Optional. A set of raw PKIX SubjectPublicKeyInfo format public keys. If any public key in the set validates the attestation signature, then the signature is considered authenticated (i.e. any one key is sufficient to authenticate)."
+        }
+      },
+      "type": "object"
+    },
     "AttestationOccurrence": {
       "description": "Occurrence that represents a single \"attestation\". The authenticity of an attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the authority to which this attestation is attached is primarily useful for lookup (how to find this attestation if you already know the authority and artifact to be verified) and intent (for which authority this attestation was intended to sign.",
       "id": "AttestationOccurrence",
@@ -629,6 +799,20 @@
           "description": "One or more signatures over `serialized_payload`. Verifier implementations should consider this attestation message verified if at least one `signature` verifies `serialized_payload`. See `Signature` in common.proto for more details on signature structure and verification.",
           "items": {
             "$ref": "Signature"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AttestationSource": {
+      "description": "Specifies the locations for fetching the provenance attestations.",
+      "id": "AttestationSource",
+      "properties": {
+        "containerAnalysisAttestationProjects": {
+          "description": "The ids of the GCP projects storing the SLSA attestations as container analysis Occurrences.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -709,6 +893,71 @@
       },
       "type": "object"
     },
+    "Check": {
+      "description": "A single check to perform against a Pod. Checks are grouped into CheckSets, which are defined by the top-level policy.",
+      "id": "Check",
+      "properties": {
+        "alwaysDeny": {
+          "description": "Optional. A special-case check that always denies. Note that this still only applies when the scope of the CheckSet applies and the image isn't exempted by an image allowlist. This check is primarily useful for testing, or to set the default behavior for all unmatched scopes to \"deny\".",
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "Optional. A user-provided name for this Check. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.",
+          "type": "string"
+        },
+        "imageAllowlist": {
+          "$ref": "ImageAllowlist",
+          "description": "Optional. Images exempted from this Check. If any of the patterns match the image url, the check will not be evaluated."
+        },
+        "imageFreshnessCheck": {
+          "$ref": "ImageFreshnessCheck",
+          "description": "Optional. Require that an image is no older than a configured expiration time. Image age is determined by its upload time."
+        },
+        "simpleSigningAttestationCheck": {
+          "$ref": "SimpleSigningAttestationCheck",
+          "description": "Optional. Require a SimpleSigning-type attestation for every image in the deployment."
+        },
+        "slsaCheck": {
+          "$ref": "SlsaCheck",
+          "description": "Optional. Require that an image was built by a trusted builder (such as Google Cloud Build or GitHub), meets requirements for Supply chain Levels for Software Artifacts (SLSA), and was built from a trusted source code repostitory."
+        },
+        "trustedDirectoryCheck": {
+          "$ref": "TrustedDirectoryCheck",
+          "description": "Optional. Require that an image lives in a trusted directory."
+        },
+        "vulnerabilityCheck": {
+          "$ref": "VulnerabilityCheck",
+          "description": "Optional. Require that an image does not contain vulnerabilities that violate the configured rules, such as based on severity levels."
+        }
+      },
+      "type": "object"
+    },
+    "CheckSet": {
+      "description": "A conjunction of policy checks, scoped to a particular namespace or Kubernetes service account. In order for evaluation of a CheckSet to return \"allowed\" for a given image in a given Pod, one of the following conditions must be satisfied: * The image is explicitly exempted by an entry in `image_allowlist`, OR * ALL of the `checks` evaluate to \"allowed\".",
+      "id": "CheckSet",
+      "properties": {
+        "checks": {
+          "description": "Optional. The checks to apply. The ultimate result of evaluating the check set will be \"allow\" if and only if every check in 'checks' evaluates to \"allow\". If `checks` is empty, the default behavior is \"always allow\".",
+          "items": {
+            "$ref": "Check"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Optional. A user-provided name for this CheckSet. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.",
+          "type": "string"
+        },
+        "imageAllowlist": {
+          "$ref": "ImageAllowlist",
+          "description": "Optional. Images exempted from this CheckSet. If any of the patterns match the image being evaluated, no checks in the CheckSet will be evaluated."
+        },
+        "scope": {
+          "$ref": "Scope",
+          "description": "Optional. The scope to which this CheckSet applies. If unset or an empty string (the default), applies to all namespaces and service accounts. See the Scope message documentation for details on scoping rules."
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -738,8 +987,26 @@
       },
       "type": "object"
     },
+    "GkePolicy": {
+      "description": "A Binary Authorization policy for a GKE cluster. This is one type of policy that can occur as a `PlatformPolicy`.",
+      "id": "GkePolicy",
+      "properties": {
+        "checkSets": {
+          "description": "Optional. The CheckSets to apply, scoped by namespace or namespace and service account. Exactly one CheckSet will be evaluated for a given Pod (unless the list is empty, in which case the behavior is \"always allow\"). If multiple CheckSets have scopes that match the namespace and service account of the Pod being evaluated, only the CheckSet with the MOST SPECIFIC scope will match. CheckSets must be listed in order of decreasing specificity, i.e. if a scope matches a given service account (which must include the namespace), it must come before a CheckSet with a scope matching just that namespace. This property is enforced by server-side validation. The purpose of this restriction is to ensure that if more than one CheckSet matches a given Pod, the CheckSet that will be evaluated will always be the first in the list to match (because if any other matches, it must be less specific). If `check_sets` is empty, the default behavior is to allow all images. If `check_sets` is non-empty, the last `check_sets` entry must always be a CheckSet with no scope set, i.e. a catchall to handle any situation not caught by the preceding CheckSets.",
+          "items": {
+            "$ref": "CheckSet"
+          },
+          "type": "array"
+        },
+        "imageAllowlist": {
+          "$ref": "ImageAllowlist",
+          "description": "Optional. Images exempted from this policy. If any of the patterns match the image being evaluated, the rest of the policy will not be evaluated."
+        }
+      },
+      "type": "object"
+    },
     "IamPolicy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "IamPolicy",
       "properties": {
         "bindings": {
@@ -756,6 +1023,32 @@
         },
         "version": {
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ImageAllowlist": {
+      "description": "Images that are exempted from normal checks based on name pattern only.",
+      "id": "ImageAllowlist",
+      "properties": {
+        "allowPattern": {
+          "description": "Required. A disjunction of image patterns to allow. If any of these patterns match, then the image is considered exempted by this allowlist.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ImageFreshnessCheck": {
+      "description": "An image freshness check, which rejects images that were uploaded before the set number of days ago to the supported repositories.",
+      "id": "ImageFreshnessCheck",
+      "properties": {
+        "maxUploadAgeDays": {
+          "description": "Required. The max number of days that is allowed since the image was uploaded. Must be greater than zero.",
           "format": "int32",
           "type": "integer"
         }
@@ -786,6 +1079,24 @@
         "nextPageToken": {
           "description": "A token to retrieve the next page of results. Pass this value in the ListAttestorsRequest.page_token field in the subsequent call to the `ListAttestors` method to retrieve the next page of results.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListPlatformPoliciesResponse": {
+      "description": "Response message for PlatformPolicyManagementService.ListPlatformPolicies.",
+      "id": "ListPlatformPoliciesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the ListPlatformPoliciesRequest.page_token field in the subsequent call to the `ListPlatformPolicies` method to retrieve the next page of results.",
+          "type": "string"
+        },
+        "platformPolicies": {
+          "description": "The list of platform policies.",
+          "items": {
+            "$ref": "PlatformPolicy"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -842,6 +1153,46 @@
             "ECDSA on the NIST P-521 curve with a SHA512 digest.",
             "ECDSA on the NIST P-521 curve with a SHA512 digest."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PkixPublicKeySet": {
+      "description": "A bundle of PKIX public keys, used to authenticate attestation signatures. Generally, a signature is considered to be authenticated by a PkixPublicKeySet if any of the public keys verify it (i.e. it is an \"OR\" of the keys).",
+      "id": "PkixPublicKeySet",
+      "properties": {
+        "pkixPublicKeys": {
+          "description": "Required. `pkix_public_keys` must have at least one entry.",
+          "items": {
+            "$ref": "PkixPublicKey"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PlatformPolicy": {
+      "description": "A Binary Authorization platform policy for deployments on various platforms.",
+      "id": "PlatformPolicy",
+      "properties": {
+        "description": {
+          "description": "Optional. A description comment about the policy.",
+          "type": "string"
+        },
+        "gkePolicy": {
+          "$ref": "GkePolicy",
+          "description": "Optional. GKE platform-specific policy."
+        },
+        "name": {
+          "description": "Output only. The relative resource name of the BinAuthz platform policy, in the form of `projects/*/platforms/*/policies/*`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when the policy was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -926,6 +1277,21 @@
       },
       "type": "object"
     },
+    "Scope": {
+      "description": "A scope specifier for CheckSets.",
+      "id": "Scope",
+      "properties": {
+        "kubernetesNamespace": {
+          "description": "Optional. Matches all Kubernetes service accounts in the provided namespace, unless a more specific `kubernetes_service_account` scope already matched.",
+          "type": "string"
+        },
+        "kubernetesServiceAccount": {
+          "description": "Optional. Matches a single Kubernetes service account, e.g. 'my-namespace:my-service-account'. `kubernetes_service_account` scope is always more specific than `kubernetes_namespace` scope for the same namespace.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -953,6 +1319,41 @@
       },
       "type": "object"
     },
+    "SimpleSigningAttestationCheck": {
+      "description": "Require a signed [DSSE](https://github.com/secure-systems-lab/dsse) attestation with type SimpleSigning.",
+      "id": "SimpleSigningAttestationCheck",
+      "properties": {
+        "attestationAuthenticators": {
+          "description": "Required. The authenticators required by this check to verify an attestation. Typically this is one or more PKIX public keys for signature verification. Only one authenticator needs to consider an attestation verified in order for an attestation to be considered fully authenticated. In otherwords, this list of authenticators is an \"OR\" of the authenticator results. At least one authenticator is required.",
+          "items": {
+            "$ref": "AttestationAuthenticator"
+          },
+          "type": "array"
+        },
+        "containerAnalysisAttestationProjects": {
+          "description": "Optional. The projects where attestations are stored as Container Analysis Occurrences. Only one attestation needs to successfully verify an image for this check to pass, so a single verified attestation found in any of `container_analysis_attestation_projects` is sufficient for the check to pass. When fetching Occurrences from Container Analysis, only 'AttestationOccurrence' kinds are considered. In the future, additional Occurrence kinds may be added to the query.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SlsaCheck": {
+      "description": "A SLSA provenance attestation check, which ensures that images are built by a trusted builder using source code from its trusted repositories only.",
+      "id": "SlsaCheck",
+      "properties": {
+        "rules": {
+          "description": "Specifies a list of verification rules for the SLSA attestations. An image is considered compliant with the SlsaCheck if any of the rules are satisfied.",
+          "items": {
+            "$ref": "VerificationRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "TestIamPermissionsRequest": {
       "description": "Request message for `TestIamPermissions` method.",
       "id": "TestIamPermissionsRequest",
@@ -973,6 +1374,20 @@
       "properties": {
         "permissions": {
           "description": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TrustedDirectoryCheck": {
+      "description": "A trusted directory check, which rejects images that do not come from the set of user-configured trusted directories.",
+      "id": "TrustedDirectoryCheck",
+      "properties": {
+        "trustedDirPatterns": {
+          "description": "Required. List of trusted directory patterns. A pattern is in the form \"registry/path/to/directory\". The registry domain part is defined as two or more dot-separated words, e.g., us.pkg.dev, or gcr.io. Additionally, * can be used in three ways as wildcards: 1. leading * to match varying prefixes in registry subdomain (useful for location prefixes); 2. trailing * after registry/ to match varying endings; 3. trailing ** after registry/ to match \"/\" as well. For example: -- gcr.io/my-project/my-repo is valid to match a single directory -- *-docker.pkg.dev/my-project/my-repo or *.gcr.io/my-project are valid to match varying prefixes -- gcr.io/my-project/* will match all direct directories in my-project -- gcr.io/my-project/** would match all directories in my-project -- gcr.i* is not allowed since the registry is not completely specified -- sub*domain.gcr.io/nginx is not valid because only leading * or trailing * are allowed. -- *pkg.dev/my-project/my-repo is not valid because leading * can only match subdomain -- **-docker.pkg.dev is not valid because one leading * is allowed, and that it cannot match \"/\"",
           "items": {
             "type": "string"
           },
@@ -1042,6 +1457,116 @@
             "Unspecified.",
             "The Attestation was able to verified by the Attestor.",
             "The Attestation was not able to verified by the Attestor."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VerificationRule": {
+      "description": "Specifies verification rules for evaluating the SLSA attestations including: which builders to trust, where to fetch the SLSA attestations generated by those builders, and other builder-specific evaluation rules such as which source repositories are trusted. An image is considered verified by the rule if any of the fetched SLSA attestations is verified.",
+      "id": "VerificationRule",
+      "properties": {
+        "attestationSource": {
+          "$ref": "AttestationSource",
+          "description": "Specifies where to fetch the provenances attestations generated by the builder (group)."
+        },
+        "configBasedBuildRequired": {
+          "description": "If true, require the image to be built from a top-level configuration. trusted_source_repo patterns specifies the repositories containing this configuration.",
+          "type": "boolean"
+        },
+        "trustedBuilder": {
+          "description": "Each verification rule is used for evaluation against provenances generated by a specific builder (group). For some of the builders, such as the Google Cloud Build, users don't need to explicitly specify their roots of trust in the policy since the evaluation service can automatically fetch them based on the builder (group).",
+          "enum": [
+            "BUILDER_UNSPECIFIED",
+            "GOOGLE_CLOUD_BUILD"
+          ],
+          "enumDescriptions": [
+            "Should never happen.",
+            "The whole Google Cloud Build (GCB) builder group, including all GCB builder types."
+          ],
+          "type": "string"
+        },
+        "trustedSourceRepoPatterns": {
+          "description": "List of trusted source code repository URL patterns. These patterns match the full repository URL without its scheme (e.g. \"https://\"). The patterns must not include schemes. For example, the pattern \"source.cloud.google.com/my-project/my-repo-name\" matches the following URLs: - \"source.cloud.google.com/my-project/my-repo-name\" - \"git+ssh://source.cloud.google.com/my-project/my-repo-name\" - \"https://source.cloud.google.com/my-project/my-repo-name\" A pattern matches a URL either exactly or with * wildcards. * can be used in only two ways: 1. trailing * after hosturi/ to match varying endings; 2. trailing ** after hosturi/ to match \"/\" as well. * and ** can only be used as wildcards and can only occur at the end of the pattern after a /. (So it's not possible to match a URL that contains literal *.) For example: - \"github.com/my-project/my-repo\" is valid to match a single repo - \"github.com/my-project/*\" will match all direct repos in my-project - \"github.com/**\" matches all repos in GitHub",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VulnerabilityCheck": {
+      "description": "An image vulnerability check, which rejects images that violate the configured vulnerability rules.",
+      "id": "VulnerabilityCheck",
+      "properties": {
+        "allowedCves": {
+          "description": "Optional. A list of specific CVEs to ignore even if the vulnerability level violates maximumUnfixableSeverity or maximumFixableSeverity. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will allow vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "blockedCves": {
+          "description": "Optional. A list of specific CVEs to always raise warnings about even if the vulnerability level meets maximumUnfixableSeverity or maximumFixableSeverity. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will block vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "containerAnalysisVulnerabilityProjects": {
+          "description": "Optional. The projects where vulnerabilities are stored as Container Analysis Occurrences. Each project is expressed in the resource format of `projects/[PROJECT_ID]`, e.g., projects/my-gcp-project. An attempt will be made for each project to fetch vulnerabilities, and all valid vulnerabilities will be used to check against the vulnerability policy. If no valid scan is found in all projects configured here, an error will be returned for the check.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "maximumFixableSeverity": {
+          "description": "Required. The threshold for severity for which a fix is currently available. This field is required and must be set.",
+          "enum": [
+            "MAXIMUM_ALLOWED_SEVERITY_UNSPECIFIED",
+            "BLOCK_ALL",
+            "MINIMAL",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL",
+            "ALLOW_ALL"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Block any vulnerability.",
+            "Allow only minimal severity.",
+            "Allow only low severity and lower.",
+            "Allow medium severity and lower.",
+            "Allow high severity and lower.",
+            "Allow critical severity and lower.",
+            "Allow all severity, even vulnerability with unspecified severity."
+          ],
+          "type": "string"
+        },
+        "maximumUnfixableSeverity": {
+          "description": "Required. The threshold for severity for which a fix isn't currently available. This field is required and must be set.",
+          "enum": [
+            "MAXIMUM_ALLOWED_SEVERITY_UNSPECIFIED",
+            "BLOCK_ALL",
+            "MINIMAL",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL",
+            "ALLOW_ALL"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Block any vulnerability.",
+            "Allow only minimal severity.",
+            "Allow only low severity and lower.",
+            "Allow medium severity and lower.",
+            "Allow high severity and lower.",
+            "Allow critical severity and lower.",
+            "Allow all severity, even vulnerability with unspecified severity."
           ],
           "type": "string"
         }
