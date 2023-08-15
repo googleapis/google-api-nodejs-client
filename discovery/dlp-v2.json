@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20230702",
+  "revision": "20230806",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3580,7 +3580,7 @@
       "id": "GooglePrivacyDlpV2BigQueryOptions",
       "properties": {
         "excludedFields": {
-          "description": "References to fields excluded from scanning. This allows you to skip inspection of entire columns which you know have no findings.",
+          "description": "References to fields excluded from scanning. This allows you to skip inspection of entire columns which you know have no findings. When inspecting a table, we recommend that you inspect all columns. Otherwise, findings might be impacted because hints from excluded columns will not be used.",
           "items": {
             "$ref": "GooglePrivacyDlpV2FieldId"
           },
@@ -3594,7 +3594,7 @@
           "type": "array"
         },
         "includedFields": {
-          "description": "Limit scanning only to these fields.",
+          "description": "Limit scanning only to these fields. When inspecting a table, we recommend that you inspect all columns. Otherwise, findings might be impacted because hints from excluded columns will not be used.",
           "items": {
             "$ref": "GooglePrivacyDlpV2FieldId"
           },
