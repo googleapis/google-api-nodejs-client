@@ -1661,7 +1661,7 @@
       }
     }
   },
-  "revision": "20230803",
+  "revision": "20230809",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1708,6 +1708,17 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AptRepository": {
+      "description": "Configuration for an Apt remote repository.",
+      "id": "AptRepository",
+      "properties": {
+        "publicRepository": {
+          "$ref": "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository",
+          "description": "One of the publicly available Apt repositories supported by Artifact Registry."
         }
       },
       "type": "object"
@@ -2073,6 +2084,64 @@
           "description": "Output only. The time when the File was last updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository": {
+      "description": "Publicly available Apt repositories constructed from a common repository base and a custom repository path.",
+      "id": "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository",
+      "properties": {
+        "repositoryBase": {
+          "description": "A common public repository base for Apt.",
+          "enum": [
+            "REPOSITORY_BASE_UNSPECIFIED",
+            "DEBIAN",
+            "UBUNTU"
+          ],
+          "enumDescriptions": [
+            "Unspecified repository base.",
+            "Debian.",
+            "Ubuntu LTS/Pro."
+          ],
+          "type": "string"
+        },
+        "repositoryPath": {
+          "description": "A custom field to define a path to a specific repository from the base.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository": {
+      "description": "Publicly available Yum repositories constructed from a common repository base and a custom repository path.",
+      "id": "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository",
+      "properties": {
+        "repositoryBase": {
+          "description": "A common public repository base for Yum.",
+          "enum": [
+            "REPOSITORY_BASE_UNSPECIFIED",
+            "CENTOS",
+            "CENTOS_DEBUG",
+            "CENTOS_VAULT",
+            "CENTOS_STREAM",
+            "ROCKY",
+            "EPEL"
+          ],
+          "enumDescriptions": [
+            "Unspecified repository base.",
+            "CentOS.",
+            "CentOS Debug.",
+            "CentOS Vault.",
+            "CentOS Stream.",
+            "Rocky.",
+            "Fedora Extra Packages for Enterprise Linux (EPEL)."
+          ],
+          "type": "string"
+        },
+        "repositoryPath": {
+          "description": "A custom field to define a path to a specific repository from the base.",
           "type": "string"
         }
       },
@@ -2868,6 +2937,10 @@
       "description": "Remote repository configuration.",
       "id": "RemoteRepositoryConfig",
       "properties": {
+        "aptRepository": {
+          "$ref": "AptRepository",
+          "description": "Specific settings for an Apt remote repository."
+        },
         "description": {
           "description": "The description of the remote source.",
           "type": "string"
@@ -2887,6 +2960,10 @@
         "pythonRepository": {
           "$ref": "PythonRepository",
           "description": "Specific settings for a Python remote repository."
+        },
+        "yumRepository": {
+          "$ref": "YumRepository",
+          "description": "Specific settings for a Yum remote repository."
         }
       },
       "type": "object"
@@ -3425,6 +3502,17 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "YumRepository": {
+      "description": "Configuration for a Yum remote repository.",
+      "id": "YumRepository",
+      "properties": {
+        "publicRepository": {
+          "$ref": "GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository",
+          "description": "One of the publicly available Yum repositories supported by Artifact Registry."
         }
       },
       "type": "object"
