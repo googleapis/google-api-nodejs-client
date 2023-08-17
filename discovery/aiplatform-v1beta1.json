@@ -3844,6 +3844,266 @@
                 }
               }
             },
+            "featureGroups": {
+              "resources": {
+                "features": {
+                  "resources": {
+                    "operations": {
+                      "methods": {
+                        "delete": {
+                          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/features/{featuresId}/operations/{operationsId}",
+                          "httpMethod": "DELETE",
+                          "id": "aiplatform.projects.locations.featureGroups.features.operations.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to be deleted.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+/features/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/features/{featuresId}/operations/{operationsId}",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.featureGroups.features.operations.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+/features/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/features/{featuresId}/operations",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.featureGroups.features.operations.list",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "The standard list filter.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the operation's parent resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+/features/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The standard list page size.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "The standard list page token.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}/operations",
+                          "response": {
+                            "$ref": "GoogleLongrunningListOperationsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "wait": {
+                          "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/features/{featuresId}/operations/{operationsId}:wait",
+                          "httpMethod": "POST",
+                          "id": "aiplatform.projects.locations.featureGroups.features.operations.wait",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to wait on.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+/features/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "timeout": {
+                              "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                              "format": "google-duration",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}:wait",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "operations": {
+                  "methods": {
+                    "delete": {
+                      "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/operations/{operationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.featureGroups.operations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be deleted.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.featureGroups.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/operations",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.featureGroups.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}/operations",
+                      "response": {
+                        "$ref": "GoogleLongrunningListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "wait": {
+                      "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/operations/{operationsId}:wait",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureGroups.operations.wait",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to wait on.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "timeout": {
+                          "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                          "format": "google-duration",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:wait",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "featureOnlineStores": {
               "resources": {
                 "featureViews": {
@@ -14489,7 +14749,7 @@
       }
     }
   },
-  "revision": "20230727",
+  "revision": "20230809",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -15951,6 +16211,28 @@
         "genericMetadata": {
           "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
           "description": "Operation metadata for EntityType."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1CreateExtensionControllerOperationMetadata": {
+      "description": "Details of ExtensionControllerService.CreateExtensionController operation.",
+      "id": "GoogleCloudAiplatformV1beta1CreateExtensionControllerOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "The common part of the operation metadata."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1CreateExtensionDeploymentOperationMetadata": {
+      "description": "Details of ExtensionRegistryService.CreateExtensionDeployment operation.",
+      "id": "GoogleCloudAiplatformV1beta1CreateExtensionDeploymentOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "The common part of the operation metadata."
         }
       },
       "type": "object"
@@ -19279,6 +19561,17 @@
       "description": "Response message for DatasetService.ImportData.",
       "id": "GoogleCloudAiplatformV1beta1ImportDataResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ImportExtensionOperationMetadata": {
+      "description": "Details of ExtensionRegistryService.ImportExtension operation.",
+      "id": "GoogleCloudAiplatformV1beta1ImportExtensionOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "The common part of the operation metadata."
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1ImportFeatureValuesOperationMetadata": {
@@ -22665,6 +22958,12 @@
           "description": "Required. The display name of the NotebookRuntime. The name can be up to 128 characters long and can consist of any UTF-8 characters.",
           "type": "string"
         },
+        "expirationTime": {
+          "description": "Output only. Timestamp when this NotebookRuntime will be expired: 1. System Predefined NotebookRuntime: 24 hours after creation. After expiration, system predifined runtime will be deleted. 2. User created NotebookRuntime: 6 months after last upgrade. After expiration, user created runtime will be stopped and allowed for upgrade.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "healthState": {
           "description": "Output only. The health state of the NotebookRuntime.",
           "enum": [
@@ -23008,6 +23307,11 @@
         "runtimeConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfig",
           "description": "Runtime config of the pipeline."
+        },
+        "scheduleName": {
+          "description": "Output only. The schedule resource name. Only returned if the Pipeline is created by Schedule API.",
+          "readOnly": true,
+          "type": "string"
         },
         "serviceAccount": {
           "description": "The service account that the pipeline workload runs as. If not specified, the Compute Engine default service account in the project will be used. See https://cloud.google.com/compute/docs/access/service-accounts#default_service_account Users starting the pipeline must have the `iam.serviceAccounts.actAs` permission on this service account.",
@@ -23688,6 +23992,10 @@
         "deploy": {
           "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy",
           "description": "Optional. Deploy the PublisherModel to Vertex Endpoint."
+        },
+        "openEvaluationPipeline": {
+          "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences",
+          "description": "Optional. Open evaluation pipeline of the PublisherModel."
         },
         "openFineTuningPipeline": {
           "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences",
@@ -24375,14 +24683,7 @@
           "description": "Optional. Disk spec for the machine in this node pool."
         },
         "id": {
-          "description": "Optional. The unique ID in a PersistentResource to refer the this resource pool. User can specify it if need to use it, otherwise we will generate it automatically.",
-          "type": "string"
-        },
-        "idleReplicaCount": {
-          "deprecated": true,
-          "description": "Output only. The number of machines currently not in use by training jobs for this resource pool. Deprecated. Use `used_replica_count` instead.",
-          "format": "int64",
-          "readOnly": true,
+          "description": "Immutable. The unique ID in a PersistentResource to refer the this resource pool. User can specify it if need to use it, otherwise we will generate it automatically.",
           "type": "string"
         },
         "machineSpec": {
@@ -30568,7 +30869,7 @@
       "type": "object"
     },
     "GoogleIamV1Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "GoogleIamV1Policy",
       "properties": {
         "bindings": {
@@ -30677,7 +30978,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
