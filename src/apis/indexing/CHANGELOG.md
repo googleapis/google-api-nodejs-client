@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/indexing-v1.0.2...indexing-v1.0.3) (2023-08-17)
+
+
+### Bug Fixes
+
+* **indexing:** update the API ([782806a](https://github.com/googleapis/google-api-nodejs-client/commit/782806a470f64d95772a18ff575ab149cf87a964))
+
 ## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/indexing-v1.0.1...indexing-v1.0.2) (2023-08-17)
 
 
