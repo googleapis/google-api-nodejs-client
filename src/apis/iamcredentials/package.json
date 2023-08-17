@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/iamcredentials",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "iamcredentials",
   "main": "build/index.js",
   "types": "build/index.d.ts",
