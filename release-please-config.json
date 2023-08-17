@@ -1,4 +1,5 @@
 {
+  "initial-version": "0.1.0",
   "bootstrap-sha": "6e61af34c0bfdfc3d6f973bffcd6a7e2420590d2",
   "packages": {
     "src/apis/abusiveexperiencereport": {},
