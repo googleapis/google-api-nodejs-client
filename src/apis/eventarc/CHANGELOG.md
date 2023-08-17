@@ -1,5 +1,21 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v5.0.0...eventarc-v5.1.0) (2023-08-17)
+
+
+### Features
+
+* regenerate index files ([751227d](https://github.com/googleapis/google-api-nodejs-client/commit/751227d3926c946b5db5edb58f0086e074a61169))
+* regenerate index files ([46817cf](https://github.com/googleapis/google-api-nodejs-client/commit/46817cfbbdb7030ef55c89dcd5dd54b85d14da5b))
+
+
+### Bug Fixes
+
+* **eventarc:** update the API ([b7a0e5a](https://github.com/googleapis/google-api-nodejs-client/commit/b7a0e5a26eabdd757468ae12c6b1ba444f3a10dd))
+* **eventarc:** update the API ([2a475fa](https://github.com/googleapis/google-api-nodejs-client/commit/2a475faaef31b3ee3024c89c338179a23b9c42c6))
+* **eventarc:** update the API ([d615c48](https://github.com/googleapis/google-api-nodejs-client/commit/d615c488127e634d8da848b5e398b89e8a9c0714))
+* **eventarc:** update the API ([10ada5b](https://github.com/googleapis/google-api-nodejs-client/commit/10ada5b6f06e2f5c5a7826e5705cf44a9fca575d))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v4.0.1...eventarc-v5.0.0) (2022-10-28)
 
 

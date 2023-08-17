@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudiot",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "cloudiot",
   "main": "build/index.js",
   "types": "build/index.d.ts",
