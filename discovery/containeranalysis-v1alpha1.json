@@ -1233,7 +1233,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230811",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -2863,6 +2863,25 @@
       },
       "type": "object"
     },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository": {
+      "description": "Location of the source in a 2nd-gen Google Cloud Build repository resource.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository",
+      "properties": {
+        "dir": {
+          "description": "Directory, relative to the source root, in which to run the build.",
+          "type": "string"
+        },
+        "repository": {
+          "description": "Required. Name of the Google Cloud Build repository, formatted as `projects/*/locations/*/connections/*/repositories/*`.",
+          "type": "string"
+        },
+        "revision": {
+          "description": "The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes": {
       "description": "Container message for hashes of byte content of files, used in SourceProvenance messages to verify integrity of source input to the build.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes",
@@ -3107,6 +3126,10 @@
       "description": "Location of the source in a supported storage service.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1Source",
       "properties": {
+        "connectedRepository": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository",
+          "description": "Optional. If provided, get the source from this 2nd-gen Google Cloud Build repository resource."
+        },
         "gitSource": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource",
           "description": "If provided, get the source from this Git repository."
