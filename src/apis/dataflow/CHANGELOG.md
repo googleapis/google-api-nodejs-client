@@ -1,5 +1,20 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v5.0.0...dataflow-v6.0.0) (2023-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataflow:** This release has breaking changes.
+
+### Features
+
+* **dataflow:** update the API ([a62940f](https://github.com/googleapis/google-api-nodejs-client/commit/a62940fdc1c55c25448655c0b30d6e4d6f648d60))
+* **dataflow:** update the API ([f4c83e3](https://github.com/googleapis/google-api-nodejs-client/commit/f4c83e3580745202893c90e9ea576021894eb88a))
+* **dataflow:** update the API ([39beb14](https://github.com/googleapis/google-api-nodejs-client/commit/39beb14869cd9d20b8b622b0cbccb218e0079cfc))
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+* regenerate index files ([4216892](https://github.com/googleapis/google-api-nodejs-client/commit/42168925208e087c952d1fc8267847731d05ae9f))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v4.1.1...dataflow-v5.0.0) (2022-10-28)
 
 
