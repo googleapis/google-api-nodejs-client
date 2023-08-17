@@ -3068,36 +3068,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "gameservices:v1beta",
-      "name": "gameservices",
-      "version": "v1beta",
-      "title": "Game Services API",
-      "description": "Deploy and manage infrastructure for global multiplayer gaming experiences.",
-      "discoveryRestUrl": "https://gameservices.googleapis.com/$discovery/rest?version=v1beta",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/solutions/gaming/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "gameservices:v1",
-      "name": "gameservices",
-      "version": "v1",
-      "title": "Game Services API",
-      "description": "Deploy and manage infrastructure for global multiplayer gaming experiences.",
-      "discoveryRestUrl": "https://gameservices.googleapis.com/$discovery/rest?version=v1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/solutions/gaming/",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "gkebackup:v1",
       "name": "gkebackup",
       "version": "v1",
