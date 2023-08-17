@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v4.0.1...iap-v4.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **iap:** update the API ([8b998a0](https://github.com/googleapis/google-api-nodejs-client/commit/8b998a091490393ba012e31bd61d1478e20be039))
+
 ## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v4.0.0...iap-v4.0.1) (2023-08-17)
 
 
