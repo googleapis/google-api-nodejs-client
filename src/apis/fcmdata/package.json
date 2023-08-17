@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/fcmdata",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "fcmdata",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/androiddeviceprovisioning",
-  "version": "6.0.2",
+  "version": "6.0.3",
   "description": "androiddeviceprovisioning",
   "main": "build/index.js",
   "types": "build/index.d.ts",

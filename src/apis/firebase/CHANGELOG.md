@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v6.2.0...firebase-v6.3.0) (2023-08-17)
+
+
+### Features
+
+* **firebase:** update the API ([fdafcaa](https://github.com/googleapis/google-api-nodejs-client/commit/fdafcaa9692d6829a4bb67fa98a796a182d700c3))
+
 ## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v6.1.0...firebase-v6.2.0) (2023-08-17)
 
 

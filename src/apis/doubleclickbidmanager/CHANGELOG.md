@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclickbidmanager-v8.0.2...doubleclickbidmanager-v8.0.3) (2023-08-17)
+
+
+### Bug Fixes
+
+* **doubleclickbidmanager:** update the API ([73d0bed](https://github.com/googleapis/google-api-nodejs-client/commit/73d0bedb16c982cba7008a259404541790d3605e))
+
 ## [8.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclickbidmanager-v8.0.1...doubleclickbidmanager-v8.0.2) (2023-08-17)
 
 
