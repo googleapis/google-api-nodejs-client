@@ -4510,7 +4510,7 @@
           ],
           "parameters": {
             "maxResults": {
-              "description": "The maximum number of products to return in the response, used for paging.",
+              "description": "The maximum number of products to return in the response, used for paging. The default value is 25. The maximum value is 250.",
               "format": "uint32",
               "location": "query",
               "type": "integer"
@@ -4653,7 +4653,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of product statuses to return in the response, used for paging.",
+              "description": "The maximum number of product statuses to return in the response, used for paging. The default value is 25. The maximum value is 250.",
               "format": "uint32",
               "location": "query",
               "type": "integer"
@@ -6352,7 +6352,7 @@
       }
     }
   },
-  "revision": "20230803",
+  "revision": "20230811",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
