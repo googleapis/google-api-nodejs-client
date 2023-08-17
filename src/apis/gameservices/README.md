@@ -2,7 +2,7 @@
 
 # gameservices
 
-> Deploy and manage infrastructure for global multiplayer gaming experiences.
+> 
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
