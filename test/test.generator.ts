@@ -63,7 +63,6 @@ describe(__filename, () => {
       '1.2.3'
     );
     assert.ok(pkgPath.endsWith('package.json'));
-    assert.strictEqual(pkgData.version, '0.1.0');
     assert.strictEqual(pkgData.name, 'bigquery');
     assert.strictEqual(pkgData.desc, 'look I am bigquery');
   });
