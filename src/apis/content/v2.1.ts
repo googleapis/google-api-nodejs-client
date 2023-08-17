@@ -22573,7 +22573,7 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Products$List extends StandardParameters {
     /**
-     * The maximum number of products to return in the response, used for paging.
+     * The maximum number of products to return in the response, used for paging. The default value is 25. The maximum value is 250.
      */
     maxResults?: number;
     /**
@@ -22923,7 +22923,7 @@ export namespace content_v2_1 {
      */
     destinations?: string[];
     /**
-     * The maximum number of product statuses to return in the response, used for paging.
+     * The maximum number of product statuses to return in the response, used for paging. The default value is 25. The maximum value is 250.
      */
     maxResults?: number;
     /**
