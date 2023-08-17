@@ -822,6 +822,23 @@ export namespace testing_v1 {
     tags?: string[] | null;
   }
   /**
+   * A test that explores an iOS application on an iOS device.
+   */
+  export interface Schema$IosRoboTest {
+    /**
+     * The bundle ID for the app-under-test. This is determined by examining the application's "Info.plist" file.
+     */
+    appBundleId?: string | null;
+    /**
+     * Required. The ipa stored at this file should be used to run the test.
+     */
+    appIpa?: Schema$FileReference;
+    /**
+     * An optional Roboscript to customize the crawl. See https://firebase.google.com/docs/test-lab/android/robo-scripts-reference for more information about Roboscripts.
+     */
+    roboScript?: Schema$FileReference;
+  }
+  /**
    * iOS configuration that can be selected at the time a test is run.
    */
   export interface Schema$IosRuntimeConfiguration {
@@ -1415,6 +1432,10 @@ export namespace testing_v1 {
      * Disables video recording. May reduce test latency.
      */
     disableVideoRecording?: boolean | null;
+    /**
+     * An iOS Robo test.
+     */
+    iosRoboTest?: Schema$IosRoboTest;
     /**
      * An iOS application with a test loop.
      */
