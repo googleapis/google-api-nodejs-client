@@ -1813,6 +1813,10 @@ export namespace serviceconsumermanagement_v1beta1 {
      * Producer override on this quota bucket.
      */
     producerOverride?: Schema$V1Beta1QuotaOverride;
+    /**
+     * Producer policy inherited from the closet ancestor of the current consumer.
+     */
+    producerQuotaPolicy?: Schema$V1Beta1ProducerQuotaPolicy;
   }
   /**
    * A quota override

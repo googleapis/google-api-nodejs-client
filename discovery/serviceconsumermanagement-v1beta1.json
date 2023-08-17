@@ -500,7 +500,7 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20230815",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "Api": {
@@ -2857,6 +2857,10 @@
         "producerOverride": {
           "$ref": "V1Beta1QuotaOverride",
           "description": "Producer override on this quota bucket."
+        },
+        "producerQuotaPolicy": {
+          "$ref": "V1Beta1ProducerQuotaPolicy",
+          "description": "Producer policy inherited from the closet ancestor of the current consumer."
         }
       },
       "type": "object"
