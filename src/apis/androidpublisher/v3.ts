@@ -1458,6 +1458,10 @@ export namespace androidpublisher_v3 {
      */
     eeaWithdrawalRightType?: string | null;
     /**
+     * Whether this in-app product is declared as a product representing a tokenized digital asset.
+     */
+    isTokenizedDigitalAsset?: boolean | null;
+    /**
      * A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's "CLDR".
      */
     taxRateInfoByRegionCode?: {
@@ -2537,6 +2541,10 @@ export namespace androidpublisher_v3 {
      * Digital content or service classification for products distributed to users in the European Economic Area (EEA). The withdrawal regime under EEA consumer laws depends on this classification. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/10463498) for more information.
      */
     eeaWithdrawalRightType?: string | null;
+    /**
+     * Whether this subscription is declared as a product representing a tokenized digital asset.
+     */
+    isTokenizedDigitalAsset?: boolean | null;
     /**
      * A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's "CLDR".
      */
