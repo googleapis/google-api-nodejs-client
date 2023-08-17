@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/admob",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "admob",
   "main": "build/index.js",
   "types": "build/index.d.ts",

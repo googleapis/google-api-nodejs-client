@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/drivelabels-v5.1.0...drivelabels-v5.2.0) (2023-08-17)
+
+
+### Features
+
+* **drivelabels:** update the API ([5ef5d03](https://github.com/googleapis/google-api-nodejs-client/commit/5ef5d030b1358500fb188cc5f22f7bdbfa08aeac))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/drivelabels-v5.0.0...drivelabels-v5.1.0) (2023-08-09)
 
 

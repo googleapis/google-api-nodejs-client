@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v8.0.1...cloudtasks-v8.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **cloudtasks:** update the API ([12a7fe1](https://github.com/googleapis/google-api-nodejs-client/commit/12a7fe1b93bc28f30a380e7ecffda2126eb49e71))
+
 ## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v8.0.0...cloudtasks-v8.0.1) (2023-08-09)
 
 
