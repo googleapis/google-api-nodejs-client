@@ -8170,7 +8170,7 @@ export namespace contentwarehouse_v1 {
     assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
   }
   /**
-   * Features to be passed from Media GP to HGR. Next ID: 16
+   * Features to be passed from Media GP to HGR. Next ID: 17
    */
   export interface Schema$AssistantGroundingRankerMediaGroundingProviderFeatures {
     /**
@@ -8181,6 +8181,10 @@ export namespace contentwarehouse_v1 {
      * Temporary ambiguity classifier signals.
      */
     ambiguityClassifier?: string | null;
+    /**
+     * Mid of the media item. This is currently only used in manual rules.
+     */
+    entityMid?: string | null;
     /**
      * True if the argument's type was explicitly mentioned in the query.
      */
@@ -8976,7 +8980,7 @@ export namespace contentwarehouse_v1 {
     isGrounded?: boolean | null;
   }
   /**
-   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 61
+   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 62
    */
   export interface Schema$AssistantPrefulfillmentRankerPrefulfillmentSignals {
     /**
@@ -9051,6 +9055,10 @@ export namespace contentwarehouse_v1 {
      * Intent level Pauis User Interaction Score.
      */
     intentNamePauis?: number | null;
+    /**
+     * intent_type differentiates between intents that share the top level intent name. For eg: for TV_FALLBACK_SEARCH_INTENT, the top level intent name must be "Find_media" and the media_object argument within it must be of type "Media_unspecified".
+     */
+    intentType?: string | null;
     /**
      * Feasibility of fulfilling the binding set. Eg: For PlayMedia, this is equivalent to playability. More details: go/hgr-feasibility-feature.
      */
@@ -9179,9 +9187,6 @@ export namespace contentwarehouse_v1 {
      * SmartHome intent metadata used for the SmartHome business-rules twiddler.
      */
     smarthomeIntentMetadata?: Schema$AssistantPfrSmartHomeIntentMetadata;
-    /**
-     * sub_intent_type differentiates between intents that share the top level intent name. For eg: for TV_FALLBACK_SEARCH_INTENT, the top level intent name must be "Find_media" and the media_object argument within it must be of type "Media_unspecified".
-     */
     subIntentType?: string | null;
     /**
      * Average of per-word confidence for top speech recognition hypothesis. The value is from RecognizerHypothesisLog: http://google3/logs/proto/speech/service/recognizer_log.proto?l=848&rcl=281400256
@@ -9474,7 +9479,7 @@ export namespace contentwarehouse_v1 {
     matchedItemValue?: string[] | null;
   }
   /**
-   * Next ID: 44
+   * Next ID: 45
    */
   export interface Schema$AssistantVerticalsHomeautomationProtoHomeAutomation_MetaData {
     /**
@@ -9506,7 +9511,7 @@ export namespace contentwarehouse_v1 {
      */
     deviceModelId?: string | null;
     /**
-     * GCM address for cloud execution across google cloud messaging rather than 3p cloud; for future use.
+     * GCM address for cloud execution across google cloud messaging rather than 3p cloud.
      */
     gcmExecutionAddress?: string | null;
     /**
@@ -9577,6 +9582,10 @@ export namespace contentwarehouse_v1 {
      * Which of the values was the original, user-provided name -- or our disambiguated, cleaned-up version of it. This is what we use in TTS when we need to identify an object that wasn't just spoken uniquely by the user -- in disambiguation dialogue, or in response to a collective interrogative (e.g. "what lights are on in the kitchen?")
      */
     primaryName?: string | null;
+    /**
+     * Whether device report state is out of sync with Query response.
+     */
+    reportStateStatus?: string | null;
     /**
      * User's role information for this device. This will be used in Home Automation server to decide if user has authority to fulfill its request.
      */
@@ -10057,13 +10066,6 @@ export namespace contentwarehouse_v1 {
      * When used as a user ID, it's the phone number of the sender. When used as a session ID: For group conversation, it is the group ID. For 1 to 1, it is the receiver or sender phone number. For 1 to bot, it is the receiver phone number or empty.
      */
     id?: Schema$GoogleInternalCommunicationsInstantmessagingV1Id;
-  }
-  /**
-   * Per-URL porn scores for the URLs associated with the corresponding image.
-   */
-  export interface Schema$ClassifierPornAggregatedUrlPornScores {
-    averageUrlPornScore?: number | null;
-    urlCount?: number | null;
   }
   /**
    * Next ID: 6
@@ -21777,7 +21779,7 @@ export namespace contentwarehouse_v1 {
     url?: string | null;
   }
   /**
-   * Next id: 54
+   * Next id: 54 Font and text decorations:
    */
   export interface Schema$HtmlrenderWebkitHeadlessProtoStyle {
     backgroundAttachment?: string | null;
@@ -21823,7 +21825,7 @@ export namespace contentwarehouse_v1 {
     direction?: string | null;
     display?: string | null;
     /**
-     * Font and text decorations:
+     * `font_family` is the `font-family` computed style, not necessarily the actual font. https://developer.mozilla.org/en-US/docs/Web/CSS/font-family. Note that it may contain multiple font families, not just one.
      */
     fontFamily?: string | null;
     fontSize?: number | null;
@@ -24394,7 +24396,7 @@ export namespace contentwarehouse_v1 {
     extraMessage?: Schema$Proto2BridgeMessageSet;
   }
   /**
-   * DataVersion tracks the version of data in CompositeDoc. The notion of "data" here is loose and people can define the name of their own. For example, a signal generated by Index Signals or an annotation generated by Goldmine (and other components) can all be considered as data here. Each field in this proto represents the human readable version string and the timestamp of one particular data. We choose to explicitly list out all of the data here for better understanding about which data are tracked. NOTE that human_readable_version is not intended for comparison, use timestamp_micros. In addition, we have an annotation about the field paths of each data. With proto reflection (using google3/net/proto2/util/public/field_path.h), downstream systems can take advantage of this annotation to automatically handle newly introduced data without modifying their code. Please also see the comment of FieldProjector above. There are also some fields in DataInfo that annotate who generates the data, the Index Signals or Goldmine annotator name. Next ID: 538
+   * DataVersion tracks the version of data in CompositeDoc. The notion of "data" here is loose and people can define the name of their own. For example, a signal generated by Index Signals or an annotation generated by Goldmine (and other components) can all be considered as data here. Each field in this proto represents the human readable version string and the timestamp of one particular data. We choose to explicitly list out all of the data here for better understanding about which data are tracked. NOTE that human_readable_version is not intended for comparison, use timestamp_micros. In addition, we have an annotation about the field paths of each data. With proto reflection (using google3/net/proto2/util/public/field_path.h), downstream systems can take advantage of this annotation to automatically handle newly introduced data without modifying their code. Please also see the comment of FieldProjector above. There are also some fields in DataInfo that annotate who generates the data, the Index Signals or Goldmine annotator name for the fields already onboarded or being onboarded to FDP. Fields without annotation of signal_names or goldmine_annotator_names are not onboarded. Next ID: 538
    */
   export interface Schema$IndexingDocjoinerDataVersion {
     acceleratedShoppingSignal?: Schema$IndexingDocjoinerDataVersionVersionInfo;
@@ -26873,7 +26875,7 @@ export namespace contentwarehouse_v1 {
     unexplainedTokens?: Schema$KnowledgeAnswersIntentQueryTokens[];
   }
   /**
-   * Next ID: 36
+   * Next ID: 37
    */
   export interface Schema$KnowledgeAnswersIntentQueryFunctionCallSignals {
     /**
@@ -26992,6 +26994,10 @@ export namespace contentwarehouse_v1 {
      * Additional intents to be used for intent scoring. This field must only be populated when we cannot find a single unified intent. For example, when we compute signals for a LocalEntities function call, this means we could not find a unified intent to capture all the local results. In this case, we add a fallback intent for each local result (e.g. GeoSchool, GeoRestaurant, and GeoBank if those are the results we show).
      */
     signalsFallbackIntents?: Schema$KnowledgeAnswersIntentQuerySignalComputationFallbackIntent[];
+    /**
+     * Identifies whether this intent intends to be scored and pruned by the prefulfillment ranker after intent-generation.
+     */
+    usesPrefulfillmentRanker?: boolean | null;
   }
   /**
    * Grounding-related signals to be propagated down stream. Next ID: 14
@@ -36068,10 +36074,6 @@ export namespace contentwarehouse_v1 {
      * url of the image
      */
     url?: string | null;
-    /**
-     * Information about the URL porn scores for image URLs associated with this image. IMPORTANT: This signal is not populated from June 2023. Refer to b/209748384 for more information.
-     */
-    urlPornScores?: Schema$ClassifierPornAggregatedUrlPornScores;
   }
   /**
    * Next free ID: 32
@@ -37615,7 +37617,7 @@ export namespace contentwarehouse_v1 {
     versionId?: number | null;
   }
   /**
-   * Next id: 17
+   * Next id: 18
    */
   export interface Schema$QualityNsrPQData {
     /**
@@ -37633,6 +37635,10 @@ export namespace contentwarehouse_v1 {
      * Total deltaNSR adjustment based on subchunks. This is a page-level adjustment (subchunks are retrieved based on the page classification).
      */
     deltaSubchunkAdjustment?: number | null;
+    /**
+     * Keto score.
+     */
+    keto?: Schema$QualityNsrVersionedFloatSignal[];
     linkIncoming?: number | null;
     linkOutgoing?: number | null;
     /**
@@ -38872,10 +38878,10 @@ export namespace contentwarehouse_v1 {
   /**
    * Unreliable dates signals per URL. go/unreliable-dates-dd
    */
-  export interface Schema$QualityTimebasedDateReliability {
-    petacatScores?: Schema$QualityTimebasedPetacatDateReliability[];
+  export interface Schema$QualityTimebasedDateUnreliability {
+    petacatScores?: Schema$QualityTimebasedPetacatDateUnreliability[];
     /**
-     * max(petacat.unreliable_dates_score)
+     * If scores are missing, the date is reliable by default. max(petacat.unreliable_dates_score)
      */
     unreliableDatesScore?: number | null;
     /**
@@ -38892,7 +38898,7 @@ export namespace contentwarehouse_v1 {
      * LastSignificantUpdate as UNIX timestamp in seconds. This is the new signal (go/lsu-dd) from LSU Selector V2 (once that is enabled, see b/171879888 for status), falling back to the legacy V1 signal if the HIGH_PRECISION signal does not exist. Please use the 'source' field to determine where the value comes from.
      */
     date?: string | null;
-    dateReliabilityInfo?: Schema$QualityTimebasedDateReliability;
+    dateUnreliabilityInfo?: Schema$QualityTimebasedDateUnreliability;
     /**
      * The source the signal comes from.
      */
@@ -38935,9 +38941,9 @@ export namespace contentwarehouse_v1 {
     isQnaPage?: boolean | null;
   }
   /**
-   * Unreliable dates signals per Domain+Petacat. go/unreliable-dates-dd
+   * Unreliable dates signals per Domain+Petacat. go/unreliable-dates-dd NOTE(tomwesolowski): As of now, we can safely keep up to 8 4-bytes fields in this proto due to Laelaps constraint of max. 50k bytes per single value. We keep all the petacats categories for a domain under the same key. The largest sites (Youtube, Wikipedia, Facebook) have up to 1.5k different petacat verticals. 1500 * 4 * 8 / 1024 bytes = 46.9k bytes
    */
-  export interface Schema$QualityTimebasedPetacatDateReliability {
+  export interface Schema$QualityTimebasedPetacatDateUnreliability {
     contentageReliability?: number | null;
     dateExposure?: number | null;
     /**
@@ -39462,10 +39468,6 @@ export namespace contentwarehouse_v1 {
      */
     debugString?: string | null;
     /**
-     * Listiness score of the category.
-     */
-    listiness?: number | null;
-    /**
      * The mid of the entity representing the category.
      */
     mid?: string | null;
@@ -39783,7 +39785,7 @@ export namespace contentwarehouse_v1 {
     index?: number | null;
   }
   /**
-   * Metadata proto to be stored in concept tables. Note: Name table only stores name_type_mask for better performance. Remember to change NameToConceptEntry if you add a field to this proto.
+   * Metadata proto to be stored in concept tables. Note: Name table only stores name_type_mask for better performance. Remember to change NameToConceptEntry if you add a field to this proto. Note: in the annotator output only URL and PHONE_NUMBER are populated.
    */
   export interface Schema$RepositoryWebrefConceptNameMetadata {
     /**
@@ -40215,10 +40217,6 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$RepositoryWebrefEntityScores {
     /**
-     * Probability that any given name of this entity is fully capitalized.
-     */
-    allCapsProb?: number | null;
-    /**
      * This field is only for debugging and link weight experiments. It stores the entity's idf from the alpha model. Alpha idfs are used for link weight computations and available during model omega building via enricher_current_entity_idf_for_link_direction.
      */
     alphaEntityIdf?: number | null;
@@ -40231,7 +40229,7 @@ export namespace contentwarehouse_v1 {
      */
     entityIdf?: number | null;
     /**
-     * The following fields are deprecated and should eventually be removed. They use data and rules that have not been refreshed for ~10y and KG has changed a lot in the meantime.
+     * The following field is deprecated and should eventually be removed. It uses data and rules that have not been refreshed for ~10y and KG has changed a lot in the meantime.
      */
     nameCapitalizationProb?: number | null;
   }
