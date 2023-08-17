@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v7.0.1...firebasehosting-v7.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **firebasehosting:** update the API ([c23f76b](https://github.com/googleapis/google-api-nodejs-client/commit/c23f76bf5ef6974eaef995cbf62819539fc5f74d))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v7.0.0...firebasehosting-v7.0.1) (2023-08-09)
 
 
