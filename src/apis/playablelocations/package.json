@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/playablelocations",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "playablelocations",
   "main": "build/index.js",
   "types": "build/index.d.ts",
