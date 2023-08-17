@@ -3908,7 +3908,13 @@
           "httpMethod": "POST",
           "id": "directory.users.insert",
           "parameterOrder": [],
-          "parameters": {},
+          "parameters": {
+            "resolveConflictAccount": {
+              "description": "Optional. If set to `true`, the option selected for [handling unmanaged user accounts](https://support.google.com/a/answer/11112794) will apply. Default: `false`",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
           "path": "admin/directory/v1/users",
           "request": {
             "$ref": "User"
@@ -4637,7 +4643,7 @@
       }
     }
   },
-  "revision": "20230802",
+  "revision": "20230815",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {

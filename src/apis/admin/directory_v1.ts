@@ -14277,6 +14277,11 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Insert extends StandardParameters {
     /**
+     * Optional. If set to `true`, the option selected for [handling unmanaged user accounts](https://support.google.com/a/answer/11112794) will apply. Default: `false`
+     */
+    resolveConflictAccount?: boolean;
+
+    /**
      * Request body metadata
      */
     requestBody?: Schema$User;
