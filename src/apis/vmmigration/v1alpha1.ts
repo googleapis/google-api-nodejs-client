@@ -284,10 +284,6 @@ export namespace vmmigration_v1alpha1 {
      * The firmware type of the source VM.
      */
     firmware?: string | null;
-    /**
-     * Output only. Unordered list. List of VM certain capabilities needed for some Compute Engine features.
-     */
-    vmCapabilities?: string[] | null;
   }
   /**
    * AwsVmDetails describes a VM in AWS.
