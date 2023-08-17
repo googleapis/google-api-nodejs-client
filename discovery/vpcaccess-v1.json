@@ -169,7 +169,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The project id and location in which the configuration should be created, specified in the format `projects/*/locations/*`.",
+                      "description": "Required. The project and location in which the configuration should be created, specified in the format `projects/*/locations/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -384,7 +384,7 @@
       }
     }
   },
-  "revision": "20230810",
+  "revision": "20230727",
   "rootUrl": "https://vpcaccess.googleapis.com/",
   "schemas": {
     "Connector": {
@@ -413,7 +413,7 @@
           "type": "integer"
         },
         "maxThroughput": {
-          "description": "Maximum throughput of the connector in Mbps. Default is 300, max is 1000. If both max-throughput and max-instances are provided, max-instances takes precedence over max-throughput.",
+          "description": "Maximum throughput of the connector in Mbps. Default is 300, max is 1000.",
           "format": "int32",
           "type": "integer"
         },
@@ -423,7 +423,7 @@
           "type": "integer"
         },
         "minThroughput": {
-          "description": "Minimum throughput of the connector in Mbps. Default and min is 200. If both min-throughput and min-instances are provided, min-instances takes precedence over min-throughput.",
+          "description": "Minimum throughput of the connector in Mbps. Default and min is 200.",
           "format": "int32",
           "type": "integer"
         },
@@ -580,7 +580,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
