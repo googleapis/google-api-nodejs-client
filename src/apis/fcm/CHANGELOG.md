@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/fcm-v5.0.1...fcm-v5.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **fcm:** update the API ([e099c42](https://github.com/googleapis/google-api-nodejs-client/commit/e099c4299348393590f6b3a5a1e1ba1dd549fe33))
+
 ## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/fcm-v5.0.0...fcm-v5.0.1) (2023-08-09)
 
 

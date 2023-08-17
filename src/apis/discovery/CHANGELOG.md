@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/discovery-v1.2.0...discovery-v1.3.0) (2023-08-17)
+
+
+### Features
+
+* **discovery:** update the API ([c82eebd](https://github.com/googleapis/google-api-nodejs-client/commit/c82eebd5f1a47d886c5da95a2659b38f6fe65974))
+* **discovery:** update the API ([3f2ee9e](https://github.com/googleapis/google-api-nodejs-client/commit/3f2ee9eb8e66e7b847551472f7b660cc743d65d0))
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/discovery-v1.1.0...discovery-v1.2.0) (2023-08-09)
 
 

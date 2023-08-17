@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/civicinfo",
-  "version": "9.0.1",
+  "version": "10.0.0",
   "description": "civicinfo",
   "main": "build/index.js",
   "types": "build/index.d.ts",

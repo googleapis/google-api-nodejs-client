@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v1.1.1...blogger-v1.1.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **blogger:** update the API ([975da3e](https://github.com/googleapis/google-api-nodejs-client/commit/975da3e0ed4604f3951eac2abd3a39623958a496))
+
 ## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v1.1.0...blogger-v1.1.1) (2023-08-09)
 
 
