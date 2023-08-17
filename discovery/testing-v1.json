@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20230704",
+  "revision": "20230815",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1273,6 +1273,25 @@
       },
       "type": "object"
     },
+    "IosRoboTest": {
+      "description": "A test that explores an iOS application on an iOS device.",
+      "id": "IosRoboTest",
+      "properties": {
+        "appBundleId": {
+          "description": "The bundle ID for the app-under-test. This is determined by examining the application's \"Info.plist\" file.",
+          "type": "string"
+        },
+        "appIpa": {
+          "$ref": "FileReference",
+          "description": "Required. The ipa stored at this file should be used to run the test."
+        },
+        "roboScript": {
+          "$ref": "FileReference",
+          "description": "An optional Roboscript to customize the crawl. See https://firebase.google.com/docs/test-lab/android/robo-scripts-reference for more information about Roboscripts."
+        }
+      },
+      "type": "object"
+    },
     "IosRuntimeConfiguration": {
       "description": "iOS configuration that can be selected at the time a test is run.",
       "id": "IosRuntimeConfiguration",
@@ -2246,6 +2265,10 @@
         "disableVideoRecording": {
           "description": "Disables video recording. May reduce test latency.",
           "type": "boolean"
+        },
+        "iosRoboTest": {
+          "$ref": "IosRoboTest",
+          "description": "An iOS Robo test."
         },
         "iosTestLoop": {
           "$ref": "IosTestLoop",
