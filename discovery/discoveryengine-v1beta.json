@@ -112,6 +112,53 @@
             "collections": {
               "resources": {
                 "dataStores": {
+                  "methods": {
+                    "completeQuery": {
+                      "description": "Completes the specified user input with keyword suggestions.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:completeQuery",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.completeQuery",
+                      "parameterOrder": [
+                        "dataStore"
+                      ],
+                      "parameters": {
+                        "dataStore": {
+                          "description": "Required. The parent data store resource name for which the completion is performed, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "includeTailSuggestions": {
+                          "description": "Indicates if tail suggestions should be returned if there are no suggestions that match the full query. Even if set to true, if there are suggestions that match the full query, those are returned and no tail suggestions are returned.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "query": {
+                          "description": "Required. The typeahead input used to fetch suggestions. Maximum length is 128 characters.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "queryModel": {
+                          "description": "Selects data model of query suggestions for serving. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for IndustryVertical.SITE_SEARCH dataStores.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "userPseudoId": {
+                          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+dataStore}:completeQuery",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaCompleteQueryResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
                   "resources": {
                     "branches": {
                       "resources": {
@@ -399,6 +446,196 @@
                         }
                       }
                     },
+                    "conversations": {
+                      "methods": {
+                        "converse": {
+                          "description": "Converses a conversation.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/conversations/{conversationsId}:converse",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.conversations.converse",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}:converse",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConverseConversationRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConverseConversationResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "create": {
+                          "description": "Creates a Conversation. If the Conversation to create already exists, an ALREADY_EXISTS error is returned.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/conversations",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.conversations.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/conversations",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a Conversation. If the Conversation to delete does not exist, a NOT_FOUND error is returned.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/conversations/{conversationsId}",
+                          "httpMethod": "DELETE",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.conversations.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Conversation to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets a Conversation.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/conversations/{conversationsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.conversations.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists all Conversations by their parent DataStore.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/conversations",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.conversations.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: \"user_pseudo_id = some_id\"",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `conversation_name` Example: \"update_time desc\" \"create_time\"",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token, received from a previous `ListConversations` call. Provide this to retrieve the subsequent page.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/conversations",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaListConversationsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates a Conversation. Conversation action type cannot be changed. If the Conversation to update does not exist, a NOT_FOUND error is returned.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/conversations/{conversationsId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.conversations.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Indicates which fields in the provided Conversation to update. The following are NOT supported: * conversation.name If not set or empty, all supported fields are updated.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
                     "models": {
                       "resources": {
                         "operations": {
@@ -544,6 +781,160 @@
                       }
                     },
                     "schemas": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a Schema.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/schemas",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.schemas.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent data store resource name, in the format of `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "schemaId": {
+                              "description": "Required. The ID to use for the Schema, which will become the final component of the Schema.name. This field should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/schemas",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaSchema"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a Schema.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/schemas/{schemasId}",
+                          "httpMethod": "DELETE",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.schemas.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The full resource name of the schema, in the format of `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/schemas/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets a Schema.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/schemas/{schemasId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.schemas.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The full resource name of the schema, in the format of `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/schemas/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaSchema"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Gets a list of Schemas.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/schemas",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.schemas.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "The maximum number of Schemas to return. The service may return fewer than this value. If unspecified, at most 100 Schemas will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token, received from a previous SchemaService.ListSchemas call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to SchemaService.ListSchemas must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent data store resource name, in the format of `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/schemas",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaListSchemasResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates a Schema.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/schemas/{schemasId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.schemas.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "allowMissing": {
+                              "description": "If set to true, and the Schema is not found, a new Schema will be created. In this situation, `update_mask` is ignored.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "name": {
+                              "description": "Immutable. The full resource name of the schema, in the format of `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/schemas/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaSchema"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      },
                       "resources": {
                         "operations": {
                           "methods": {
@@ -642,6 +1033,34 @@
                           },
                           "response": {
                             "$ref": "GoogleCloudDiscoveryengineV1betaRecommendResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "search": {
+                          "description": "Performs a search.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}:search",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.servingConfigs.search",
+                          "parameterOrder": [
+                            "servingConfig"
+                          ],
+                          "parameters": {
+                            "servingConfig": {
+                              "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+servingConfig}:search",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -1047,6 +1466,53 @@
               }
             },
             "dataStores": {
+              "methods": {
+                "completeQuery": {
+                  "description": "Completes the specified user input with keyword suggestions.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}:completeQuery",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.dataStores.completeQuery",
+                  "parameterOrder": [
+                    "dataStore"
+                  ],
+                  "parameters": {
+                    "dataStore": {
+                      "description": "Required. The parent data store resource name for which the completion is performed, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "includeTailSuggestions": {
+                      "description": "Indicates if tail suggestions should be returned if there are no suggestions that match the full query. Even if set to true, if there are suggestions that match the full query, those are returned and no tail suggestions are returned.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "query": {
+                      "description": "Required. The typeahead input used to fetch suggestions. Maximum length is 128 characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "queryModel": {
+                      "description": "Selects data model of query suggestions for serving. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for IndustryVertical.SITE_SEARCH dataStores.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "userPseudoId": {
+                      "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+dataStore}:completeQuery",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1betaCompleteQueryResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "branches": {
                   "resources": {
@@ -1334,6 +1800,196 @@
                     }
                   }
                 },
+                "conversations": {
+                  "methods": {
+                    "converse": {
+                      "description": "Converses a conversation.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/conversations/{conversationsId}:converse",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.conversations.converse",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}:converse",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaConverseConversationRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaConverseConversationResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "create": {
+                      "description": "Creates a Conversation. If the Conversation to create already exists, an ALREADY_EXISTS error is returned.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/conversations",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.conversations.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/conversations",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a Conversation. If the Conversation to delete does not exist, a NOT_FOUND error is returned.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/conversations/{conversationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "discoveryengine.projects.locations.dataStores.conversations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Conversation to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a Conversation.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/conversations/{conversationsId}",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.dataStores.conversations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all Conversations by their parent DataStore.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/conversations",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.dataStores.conversations.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: \"user_pseudo_id = some_id\"",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `conversation_name` Example: \"update_time desc\" \"create_time\"",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous `ListConversations` call. Provide this to retrieve the subsequent page.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/conversations",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaListConversationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a Conversation. Conversation action type cannot be changed. If the Conversation to update does not exist, a NOT_FOUND error is returned.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/conversations/{conversationsId}",
+                      "httpMethod": "PATCH",
+                      "id": "discoveryengine.projects.locations.dataStores.conversations.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Indicates which fields in the provided Conversation to update. The following are NOT supported: * conversation.name If not set or empty, all supported fields are updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "models": {
                   "resources": {
                     "operations": {
@@ -1478,6 +2134,162 @@
                     }
                   }
                 },
+                "schemas": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a Schema.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/schemas",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.schemas.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent data store resource name, in the format of `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "schemaId": {
+                          "description": "Required. The ID to use for the Schema, which will become the final component of the Schema.name. This field should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/schemas",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaSchema"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a Schema.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/schemas/{schemasId}",
+                      "httpMethod": "DELETE",
+                      "id": "discoveryengine.projects.locations.dataStores.schemas.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The full resource name of the schema, in the format of `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/schemas/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a Schema.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/schemas/{schemasId}",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.dataStores.schemas.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The full resource name of the schema, in the format of `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/schemas/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaSchema"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Gets a list of Schemas.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/schemas",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.dataStores.schemas.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of Schemas to return. The service may return fewer than this value. If unspecified, at most 100 Schemas will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous SchemaService.ListSchemas call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to SchemaService.ListSchemas must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent data store resource name, in the format of `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/schemas",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaListSchemasResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a Schema.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/schemas/{schemasId}",
+                      "httpMethod": "PATCH",
+                      "id": "discoveryengine.projects.locations.dataStores.schemas.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "allowMissing": {
+                          "description": "If set to true, and the Schema is not found, a new Schema will be created. In this situation, `update_mask` is ignored.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "description": "Immutable. The full resource name of the schema, in the format of `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/schemas/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaSchema"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "servingConfigs": {
                   "methods": {
                     "recommend": {
@@ -1503,6 +2315,34 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1betaRecommendResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "search": {
+                      "description": "Performs a search.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}:search",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.servingConfigs.search",
+                      "parameterOrder": [
+                        "servingConfig"
+                      ],
+                      "parameters": {
+                        "servingConfig": {
+                          "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+servingConfig}:search",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1758,7 +2598,7 @@
       }
     }
   },
-  "revision": "20230811",
+  "revision": "20230814",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1902,6 +2742,40 @@
       "properties": {
         "functionName": {
           "description": "Human-readable name of a function or method—for example, `google.cloud.discoveryengine.v1alpha.RecommendationService.Recommend`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1CreateSchemaMetadata": {
+      "description": "Metadata for Create Schema LRO.",
+      "id": "GoogleCloudDiscoveryengineV1CreateSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DeleteSchemaMetadata": {
+      "description": "Metadata for DeleteSchema LRO.",
+      "id": "GoogleCloudDiscoveryengineV1DeleteSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -2087,6 +2961,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1UpdateSchemaMetadata": {
+      "description": "Metadata for UpdateSchema LRO.",
+      "id": "GoogleCloudDiscoveryengineV1UpdateSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesResponse": {
       "description": "Response message for SiteSearchEngineService.BatchCreateTargetSites method.",
       "id": "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesResponse",
@@ -2097,6 +2988,161 @@
             "$ref": "GoogleCloudDiscoveryengineV1alphaTargetSite"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCreateSchemaMetadata": {
+      "description": "Metadata for Create Schema LRO.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCreateSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDeleteSchemaMetadata": {
+      "description": "Metadata for DeleteSchema LRO.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaFieldConfig": {
+      "description": "Configurations for fields of a schema. For example, configuring a field is indexable, or searchable.",
+      "id": "GoogleCloudDiscoveryengineV1alphaFieldConfig",
+      "properties": {
+        "completableOption": {
+          "description": "If completable_option is COMPLETABLE_ENABLED, field values are directly used and returned as suggestions for Autocomplete in CompletionService.CompleteQuery. If completable_option is unset, the server behavior defaults to COMPLETABLE_DISABLED for fields that support setting completable options, which are just `string` fields. For those fields that do not support setting completable options, the server will skip completable option setting, and setting completable_option for those fields will throw `INVALID_ARGUMENT` error.",
+          "enum": [
+            "COMPLETABLE_OPTION_UNSPECIFIED",
+            "COMPLETABLE_ENABLED",
+            "COMPLETABLE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "Completable option enabled for a schema field.",
+            "Completable option disabled for a schema field."
+          ],
+          "type": "string"
+        },
+        "dynamicFacetableOption": {
+          "description": "If dynamic_facetable_option is DYNAMIC_FACETABLE_ENABLED, field values are available for dynamic facet. Could only be DYNAMIC_FACETABLE_DISABLED if FieldConfig.indexable_option is INDEXABLE_DISABLED. Otherwise, an `INVALID_ARGUMENT` error will be returned. If dynamic_facetable_option is unset, the server behavior defaults to DYNAMIC_FACETABLE_DISABLED for fields that support setting dynamic facetable options. For those fields that do not support setting dynamic facetable options, such as `object` and `boolean`, the server will skip dynamic facetable option setting, and setting dynamic_facetable_option for those fields will throw `INVALID_ARGUMENT` error.",
+          "enum": [
+            "DYNAMIC_FACETABLE_OPTION_UNSPECIFIED",
+            "DYNAMIC_FACETABLE_ENABLED",
+            "DYNAMIC_FACETABLE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "Dynamic facetable option enabled for a schema field.",
+            "Dynamic facetable option disabled for a schema field."
+          ],
+          "type": "string"
+        },
+        "fieldPath": {
+          "description": "Required. Field path of the schema field. For example: `title`, `description`, `release_info.release_year`.",
+          "type": "string"
+        },
+        "fieldType": {
+          "description": "Output only. Raw type of the field.",
+          "enum": [
+            "FIELD_TYPE_UNSPECIFIED",
+            "OBJECT",
+            "STRING",
+            "NUMBER",
+            "INTEGER",
+            "BOOLEAN"
+          ],
+          "enumDescriptions": [
+            "Field type is unspecified.",
+            "Field value type is Object.",
+            "Field value type is String.",
+            "Field value type is Number.",
+            "Field value type is Integer.",
+            "Field value type is Boolean."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "indexableOption": {
+          "description": "If indexable_option is INDEXABLE_ENABLED, field values are indexed so that it can be filtered or faceted in SearchService.Search. If indexable_option is unset, the server behavior defaults to INDEXABLE_DISABLED for fields that support setting indexable options. For those fields that do not support setting indexable options, such as `object` and `boolean` and key properties, the server will skip indexable_option setting, and setting indexable_option for those fields will throw `INVALID_ARGUMENT` error.",
+          "enum": [
+            "INDEXABLE_OPTION_UNSPECIFIED",
+            "INDEXABLE_ENABLED",
+            "INDEXABLE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "Indexable option enabled for a schema field.",
+            "Indexable option disabled for a schema field."
+          ],
+          "type": "string"
+        },
+        "keyPropertyType": {
+          "description": "Output only. Type of the key property that this field is mapped to. Empty string if this is not annotated as mapped to a key property. Example types are `title`, `description`. Full list is defined by `keyPropertyMapping` in the schema field annotation. If the schema field has a `KeyPropertyMapping` annotation, `indexable_option` and `searchable_option` of this field cannot be modified.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "recsFilterableOption": {
+          "description": "If recs_filterable_option is FILTERABLE_ENABLED, field values are filterable by filter expression in RecommendationService.Recommend. If FILTERABLE_ENABLED but the field type is numerical, field values are not filterable by text queries in RecommendationService.Recommend. Only textual fields are supported. If recs_filterable_option is unset, the default setting is FILTERABLE_DISABLED for fields that support setting filterable options. When a field set to [FILTERABLE_DISABLED] is filtered, a warning is generated and an empty result is returned.",
+          "enum": [
+            "FILTERABLE_OPTION_UNSPECIFIED",
+            "FILTERABLE_ENABLED",
+            "FILTERABLE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "Filterable option enabled for a schema field.",
+            "Filterable option disabled for a schema field."
+          ],
+          "type": "string"
+        },
+        "retrievableOption": {
+          "description": "If retrievable_option is RETRIEVABLE_ENABLED, field values are included in the search results. If retrievable_option is unset, the server behavior defaults to RETRIEVABLE_DISABLED for fields that support setting retrievable options. For those fields that do not support setting retrievable options, such as `object` and `boolean`, the server will skip retrievable option setting, and setting retrievable_option for those fields will throw `INVALID_ARGUMENT` error.",
+          "enum": [
+            "RETRIEVABLE_OPTION_UNSPECIFIED",
+            "RETRIEVABLE_ENABLED",
+            "RETRIEVABLE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "Retrievable option enabled for a schema field.",
+            "Retrievable option disabled for a schema field."
+          ],
+          "type": "string"
+        },
+        "searchableOption": {
+          "description": "If searchable_option is SEARCHABLE_ENABLED, field values are searchable by text queries in SearchService.Search. If SEARCHABLE_ENABLED but field type is numerical, field values will not be searchable by text queries in SearchService.Search, as there are no text values associated to numerical fields. If searchable_option is unset, the server behavior defaults to SEARCHABLE_DISABLED for fields that support setting searchable options. Only `string` fields that have no key property mapping support setting searchable_option. For those fields that do not support setting searchable options, the server will skip searchable option setting, and setting searchable_option for those fields will throw `INVALID_ARGUMENT` error.",
+          "enum": [
+            "SEARCHABLE_OPTION_UNSPECIFIED",
+            "SEARCHABLE_ENABLED",
+            "SEARCHABLE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset.",
+            "Searchable option enabled for a schema field.",
+            "Searchable option disabled for a schema field."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2301,6 +3347,14 @@
       "description": "Defines the structure and layout of a type of document data.",
       "id": "GoogleCloudDiscoveryengineV1alphaSchema",
       "properties": {
+        "fieldConfigs": {
+          "description": "Output only. Configurations for fields of the schema.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaFieldConfig"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "jsonSchema": {
           "description": "The JSON representation of the schema.",
           "type": "string"
@@ -2444,6 +3498,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaUpdateSchemaMetadata": {
+      "description": "Metadata for UpdateSchema LRO.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUpdateSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaBigQuerySource": {
       "description": "BigQuery source import data from.",
       "id": "GoogleCloudDiscoveryengineV1betaBigQuerySource",
@@ -2475,6 +3546,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaCompleteQueryResponse": {
+      "description": "Response message for CompletionService.CompleteQuery method.",
+      "id": "GoogleCloudDiscoveryengineV1betaCompleteQueryResponse",
+      "properties": {
+        "querySuggestions": {
+          "description": "Results of the matched query suggestions. The result list is ordered and the first result is a top suggestion.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaCompleteQueryResponseQuerySuggestion"
+          },
+          "type": "array"
+        },
+        "tailMatchTriggered": {
+          "description": "True if the returned suggestions are all tail suggestions. For tail matching to be triggered, include_tail_suggestions in the request must be true and there must be no suggestions that match the full query.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaCompleteQueryResponseQuerySuggestion": {
+      "description": "Suggestions as search queries.",
+      "id": "GoogleCloudDiscoveryengineV1betaCompleteQueryResponseQuerySuggestion",
+      "properties": {
+        "completableFieldPath": {
+          "description": "The unique document field paths that serve as the source of this suggestion if it was generated from completable fields. This field is only populated for the document-completable model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "suggestion": {
+          "description": "The suggestion for the query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaCompletionInfo": {
       "description": "Detailed completion information including completion attribution token and clicked completion info.",
       "id": "GoogleCloudDiscoveryengineV1betaCompletionInfo",
@@ -2486,6 +3593,169 @@
         },
         "selectedSuggestion": {
           "description": "End user selected CompleteQueryResponse.QuerySuggestion.suggestion.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaConversation": {
+      "description": "External conversation proto definition.",
+      "id": "GoogleCloudDiscoveryengineV1betaConversation",
+      "properties": {
+        "endTime": {
+          "description": "Output only. The time the conversation finished.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "messages": {
+          "description": "Conversation messages.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaConversationMessage"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Immutable. Fully qualified name `project/*/locations/global/collections/{collection}/dataStore/*/conversations/*`",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. The time the conversation started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the Conversation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "COMPLETED"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Conversation is currently open.",
+            "Conversation has been completed."
+          ],
+          "type": "string"
+        },
+        "userPseudoId": {
+          "description": "A unique identifier for tracking users.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaConversationContext": {
+      "description": "Defines context of the conversation",
+      "id": "GoogleCloudDiscoveryengineV1betaConversationContext",
+      "properties": {
+        "activeDocument": {
+          "description": "The current active document the user opened. It contains the document resource reference.",
+          "type": "string"
+        },
+        "contextDocuments": {
+          "description": "The current list of documents the user is seeing. It contains the document resource references.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaConversationMessage": {
+      "description": "Defines a conversation message.",
+      "id": "GoogleCloudDiscoveryengineV1betaConversationMessage",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Message creation timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reply": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaReply",
+          "description": "Search reply."
+        },
+        "userInput": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaTextInput",
+          "description": "User text input."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaConverseConversationRequest": {
+      "description": "Request message for ConversationalSearchService.ConverseConversation method.",
+      "id": "GoogleCloudDiscoveryengineV1betaConverseConversationRequest",
+      "properties": {
+        "conversation": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaConversation",
+          "description": "The conversation to be used by auto session only. The name field will be ignored as we automatically assign new name for the conversation in auto session."
+        },
+        "query": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaTextInput",
+          "description": "Required. Current user input."
+        },
+        "safeSearch": {
+          "description": "Whether to turn on safe search.",
+          "type": "boolean"
+        },
+        "servingConfig": {
+          "description": "The resource name of the Serving Config to use. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}` If this is not set, the default serving config will be used.",
+          "type": "string"
+        },
+        "userLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaConverseConversationResponse": {
+      "description": "Response message for ConversationalSearchService.ConverseConversation method.",
+      "id": "GoogleCloudDiscoveryengineV1betaConverseConversationResponse",
+      "properties": {
+        "conversation": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaConversation",
+          "description": "Updated conversation including the answer."
+        },
+        "relatedQuestions": {
+          "description": "Suggested related questions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reply": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaReply",
+          "description": "Answer to the current query."
+        },
+        "searchResults": {
+          "description": "Search Results.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSearchResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaCreateSchemaMetadata": {
+      "description": "Metadata for Create Schema LRO.",
+      "id": "GoogleCloudDiscoveryengineV1betaCreateSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -2513,10 +3783,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaDeleteSchemaMetadata": {
+      "description": "Metadata for DeleteSchema LRO.",
+      "id": "GoogleCloudDiscoveryengineV1betaDeleteSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaDocument": {
       "description": "Document captures all raw metadata information of items to be recommended or searched.",
       "id": "GoogleCloudDiscoveryengineV1betaDocument",
       "properties": {
+        "content": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentContent",
+          "description": "The unstructured data linked to this document. Content must be set if this document is under a `CONTENT_REQUIRED` data store."
+        },
+        "derivedStructData": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. This field is OUTPUT_ONLY. It contains derived data that are not in the original input document.",
+          "readOnly": true,
+          "type": "object"
+        },
         "id": {
           "description": "Immutable. The identifier of the document. Id should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.",
           "type": "string"
@@ -2548,6 +3848,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaDocumentContent": {
+      "description": "Unstructured data linked to this document.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentContent",
+      "properties": {
+        "mimeType": {
+          "description": "The MIME type of the content. Supported types: * `application/pdf` (PDF, only native PDFs are supported for now) * `text/html` (HTML) * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX) * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX) * `text/plain` (TXT) See https://www.iana.org/assignments/media-types/media-types.xhtml.",
+          "type": "string"
+        },
+        "rawBytes": {
+          "description": "The content represented as a stream of bytes. The maximum length is 1,000,000 bytes (1 MB / ~0.95 MiB). Note: As with all `bytes` fields, this field is represented as pure binary in Protocol Buffers and base64-encoded string in JSON. For example, `abc123!?$*&()'-=@~` should be represented as `YWJjMTIzIT8kKiYoKSctPUB+` in JSON. See https://developers.google.com/protocol-buffers/docs/proto3#json.",
+          "format": "byte",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URI of the content. Only Cloud Storage URIs (e.g. `gs://bucket-name/path/to/file`) are supported. The maximum file size is 100 MB.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaDocumentInfo": {
       "description": "Detailed document information associated with a user event.",
       "id": "GoogleCloudDiscoveryengineV1betaDocumentInfo",
@@ -2575,6 +3895,21 @@
         "uri": {
           "description": "The Document URI - only allowed for website data stores.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDoubleList": {
+      "description": "Double list.",
+      "id": "GoogleCloudDiscoveryengineV1betaDoubleList",
+      "properties": {
+        "values": {
+          "description": "Double values.",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2804,6 +4139,51 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaInterval": {
+      "description": "A floating point interval.",
+      "id": "GoogleCloudDiscoveryengineV1betaInterval",
+      "properties": {
+        "exclusiveMaximum": {
+          "description": "Exclusive upper bound.",
+          "format": "double",
+          "type": "number"
+        },
+        "exclusiveMinimum": {
+          "description": "Exclusive lower bound.",
+          "format": "double",
+          "type": "number"
+        },
+        "maximum": {
+          "description": "Inclusive upper bound.",
+          "format": "double",
+          "type": "number"
+        },
+        "minimum": {
+          "description": "Inclusive lower bound.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaListConversationsResponse": {
+      "description": "Response for ListConversations method.",
+      "id": "GoogleCloudDiscoveryengineV1betaListConversationsResponse",
+      "properties": {
+        "conversations": {
+          "description": "All the Conversations for a given data store.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Pagination token, if not returned indicates the last page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaListDocumentsResponse": {
       "description": "Response message for DocumentService.ListDocuments method.",
       "id": "GoogleCloudDiscoveryengineV1betaListDocumentsResponse",
@@ -2818,6 +4198,24 @@
         "nextPageToken": {
           "description": "A token that can be sent as ListDocumentsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaListSchemasResponse": {
+      "description": "Response message for SchemaService.ListSchemas method.",
+      "id": "GoogleCloudDiscoveryengineV1betaListSchemasResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as ListSchemasRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "schemas": {
+          "description": "The Schemas.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSchema"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3037,6 +4435,56 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaReply": {
+      "description": "Defines a reply message to user.",
+      "id": "GoogleCloudDiscoveryengineV1betaReply",
+      "properties": {
+        "references": {
+          "deprecated": true,
+          "description": "References in the reply.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaReplyReference"
+          },
+          "type": "array"
+        },
+        "reply": {
+          "deprecated": true,
+          "description": "DEPRECATED: use `summary` instead. Text reply.",
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSummary",
+          "description": "Summary based on search results."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaReplyReference": {
+      "deprecated": true,
+      "description": "Defines reference in reply.",
+      "id": "GoogleCloudDiscoveryengineV1betaReplyReference",
+      "properties": {
+        "anchorText": {
+          "description": "Anchor text.",
+          "type": "string"
+        },
+        "end": {
+          "description": "Anchor text end index.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "start": {
+          "description": "Anchor text start index.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "uri": {
+          "description": "URI link reference.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaSchema": {
       "description": "Defines the structure and layout of a type of document data.",
       "id": "GoogleCloudDiscoveryengineV1betaSchema",
@@ -3080,6 +4528,610 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaSearchRequest": {
+      "description": "Request message for SearchService.Search method.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequest",
+      "properties": {
+        "boostSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec",
+          "description": "Boost specification to boost certain documents."
+        },
+        "branch": {
+          "description": "The branch resource name, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/branches/0`. Use `default_branch` as the branch ID or leave this field empty, to search documents under the default branch.",
+          "type": "string"
+        },
+        "contentSearchSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec",
+          "description": "A specification for configuring the behavior of content search."
+        },
+        "embeddingSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpec",
+          "description": "Uses the provided embedding to do additional semantic document retrieval. The retrieval is based on the dot product of SearchRequest.embedding_spec.embedding_vectors.vector and the document embedding that is provided in SearchRequest.embedding_spec.embedding_vectors.field_path. If SearchRequest.embedding_spec.embedding_vectors.field_path is not provided, it will use ServingConfig.embedding_config.field_paths."
+        },
+        "facetSpecs": {
+          "description": "Facet specifications for faceted search. If empty, no facets are returned. A maximum of 100 values are allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestFacetSpec"
+          },
+          "type": "array"
+        },
+        "filter": {
+          "description": "The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.",
+          "type": "string"
+        },
+        "imageQuery": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestImageQuery",
+          "description": "Raw image query."
+        },
+        "offset": {
+          "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "orderBy": {
+          "description": "The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.",
+          "type": "string"
+        },
+        "pageSize": {
+          "description": "Maximum number of Documents to return. If unspecified, defaults to a reasonable value. The maximum allowed value is 100. Values above 100 are coerced to 100. If this field is negative, an `INVALID_ARGUMENT` is returned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "A page token received from a previous SearchService.Search call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to SearchService.Search must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": {
+            "type": "any"
+          },
+          "description": "Additional search parameters. For public website search only, supported values are: * `user_country_code`: string. Default empty. If set to non-empty, results are restricted or boosted based on the location provided. * `search_type`: double. Default empty. Enables non-webpage searching depending on the value. The only valid non-default value is 1, which enables image searching.",
+          "type": "object"
+        },
+        "query": {
+          "description": "Raw search query.",
+          "type": "string"
+        },
+        "queryExpansionSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec",
+          "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
+        },
+        "rankingExpression": {
+          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The ranking expression is a single function or multiple functions that are joint by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: `relevance_score`: pre-defined keywords, used for measure relevance between query and document. `embedding_field_path`: the document embedding field used with query embedding vector. `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.",
+          "type": "string"
+        },
+        "safeSearch": {
+          "description": "Whether to turn on safe search. This is only supported for website search.",
+          "type": "boolean"
+        },
+        "spellCorrectionSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestSpellCorrectionSpec",
+          "description": "The spell correction specification that specifies the mode under which spell correction takes effect."
+        },
+        "userInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaUserInfo",
+          "description": "Information about the end user. Highly recommended for analytics. UserInfo.user_agent is used to deduce `device_type` for analytics."
+        },
+        "userLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.",
+          "type": "object"
+        },
+        "userPseudoId": {
+          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec": {
+      "description": "Boost specification to boost certain documents.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec",
+      "properties": {
+        "conditionBoostSpecs": {
+          "description": "Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpec"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpec": {
+      "description": "Boost applies to documents which match a condition.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpec",
+      "properties": {
+        "boost": {
+          "description": "Strength of the condition boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the document a big promotion. However, it does not necessarily mean that the boosted document will be the top result at all times, nor that other documents will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant documents. Setting to -1.0 gives the document a big demotion. However, results that are deeply relevant might still be shown. The document will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored.",
+          "format": "float",
+          "type": "number"
+        },
+        "condition": {
+          "description": "An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID \"doc_1\" or \"doc_2\", and color \"Red\" or \"Blue\": * (id: ANY(\"doc_1\", \"doc_2\")) AND (color: ANY(\"Red\",\"Blue\"))",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec": {
+      "description": "A specification for configuring the behavior of content search.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec",
+      "properties": {
+        "extractiveContentSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecExtractiveContentSpec",
+          "description": "If there is no extractive_content_spec provided, there will be no extractive answer in the search response."
+        },
+        "snippetSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSnippetSpec",
+          "description": "If `snippetSpec` is not specified, snippets are not included in the search response."
+        },
+        "summarySpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpec",
+          "description": "If `summarySpec` is not specified, summaries are not included in the search response."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecExtractiveContentSpec": {
+      "description": "A specification for configuring the extractive content in a search response.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecExtractiveContentSpec",
+      "properties": {
+        "maxExtractiveAnswerCount": {
+          "description": "The maximum number of extractive answers returned in each search result. An extractive answer is a verbatim answer extracted from the original document, which provides a precise and contextually relevant answer to the search query. If the number of matching answers is less than the `max_extractive_answer_count`, return all of the answers. Otherwise, return the `max_extractive_answer_count`. At most one answer is returned for each SearchResult.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxExtractiveSegmentCount": {
+          "description": "The max number of extractive segments returned in each search result. Only applied if the DataStore is set to DataStore.ContentConfig.CONTENT_REQUIRED or DataStore.solution_types is SOLUTION_TYPE_CHAT. An extractive segment is a text segment extracted from the original document that is relevant to the search query, and, in general, more verbose than an extractive answer. The segment could then be used as input for LLMs to generate summaries and answers. If the number of matching segments is less than `max_extractive_segment_count`, return all of the segments. Otherwise, return the `max_extractive_segment_count`.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "returnExtractiveSegmentScore": {
+          "description": "Specifies whether to return the confidence score from the extractive segments in each search result. The default value is `false`.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSnippetSpec": {
+      "description": "A specification for configuring snippets in a search response.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSnippetSpec",
+      "properties": {
+        "maxSnippetCount": {
+          "deprecated": true,
+          "description": "[DEPRECATED] This field is deprecated. To control snippet return, use `return_snippet` field. For backwards compatibility, we will return snippet if max_snippet_count > 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "referenceOnly": {
+          "deprecated": true,
+          "description": "[DEPRECATED] This field is deprecated and will have no affect on the snippet.",
+          "type": "boolean"
+        },
+        "returnSnippet": {
+          "description": "If `true`, then return snippet. If no snippet can be generated, we return \"No snippet is available for this page.\" A `snippet_status` with `SUCCESS` or `NO_SNIPPET_AVAILABLE` will also be returned.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpec": {
+      "description": "A specification for configuring a summary returned in a search response.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpec",
+      "properties": {
+        "ignoreAdversarialQuery": {
+          "description": "Specifies whether to filter out adversarial queries. The default value is `false`. Google employs search-query classification to detect adversarial queries. No summary is returned if the search query is classified as an adversarial query. For example, a user might ask a question regarding negative comments about the company or submit a query designed to generate unsafe, policy-violating output. If this field is set to `true`, we skip generating summaries for adversarial queries and return fallback messages instead.",
+          "type": "boolean"
+        },
+        "ignoreNonSummarySeekingQuery": {
+          "description": "Specifies whether to filter out queries that are not summary-seeking. The default value is `false`. Google employs search-query classification to detect summary-seeking queries. No summary is returned if the search query is classified as a non-summary seeking query. For example, `why is the sky blue` and `Who is the best soccer player in the world?` are summary-seeking queries, but `SFO airport` and `world cup 2026` are not. They are most likely navigational queries. If this field is set to `true`, we skip generating summaries for non-summary seeking queries and return fallback messages instead.",
+          "type": "boolean"
+        },
+        "includeCitations": {
+          "description": "Specifies whether to include citations in the summary. The default value is `false`. When this field is set to `true`, summaries include in-line citation numbers. Example summary including citations: BigQuery is Google Cloud's fully managed and completely serverless enterprise data warehouse [1]. BigQuery supports all data types, works across clouds, and has built-in machine learning and business intelligence, all within a unified platform [2, 3]. The citation numbers refer to the returned search results and are 1-indexed. For example, [1] means that the sentence is attributed to the first search result. [2, 3] means that the sentence is attributed to both the second and third search results.",
+          "type": "boolean"
+        },
+        "languageCode": {
+          "description": "Language code for Summary. Use language tags defined by BCP47.",
+          "type": "string"
+        },
+        "summaryResultCount": {
+          "description": "The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most five results can be used to generate a summary.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpec": {
+      "description": "The specification that uses customized query embedding vector to do semantic document retrieval.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpec",
+      "properties": {
+        "embeddingVectors": {
+          "description": "The embedding vector used for retrieval. Limit to 1.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpecEmbeddingVector"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpecEmbeddingVector": {
+      "description": "Embedding vector.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpecEmbeddingVector",
+      "properties": {
+        "fieldPath": {
+          "description": "Embedding field path in schema.",
+          "type": "string"
+        },
+        "vector": {
+          "description": "Query embedding vector.",
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestFacetSpec": {
+      "description": "A facet specification to perform faceted search.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestFacetSpec",
+      "properties": {
+        "enableDynamicPosition": {
+          "description": "Enables dynamic position for this facet. If set to true, the position of this facet among all facets in the response is determined automatically. If dynamic facets are enabled, it is ordered together. If set to false, the position of this facet in the response is the same as in the request, and it is ranked before the facets with dynamic position enable and all dynamic facets. For example, you may always want to have rating facet returned in the response, but it's not necessarily to always display the rating facet at the top. In that case, you can set enable_dynamic_position to true so that the position of rating facet in response is determined automatically. Another example, assuming you have the following facets in the request: * \"rating\", enable_dynamic_position = true * \"price\", enable_dynamic_position = false * \"brands\", enable_dynamic_position = false And also you have a dynamic facets enabled, which generates a facet `gender`. Then the final order of the facets in the response can be (\"price\", \"brands\", \"rating\", \"gender\") or (\"price\", \"brands\", \"gender\", \"rating\") depends on how API orders \"gender\" and \"rating\" facets. However, notice that \"price\" and \"brands\" are always ranked at first and second position because their enable_dynamic_position is false.",
+          "type": "boolean"
+        },
+        "excludedFilterKeys": {
+          "description": "List of keys to exclude when faceting. By default, FacetKey.key is not excluded from the filter unless it is listed in this field. Listing a facet key in this field allows its values to appear as facet results, even when they are filtered out of search results. Using this field does not affect what search results are returned. For example, suppose there are 100 documents with the color facet \"Red\" and 200 documents with the color facet \"Blue\". A query containing the filter \"color:ANY(\"Red\")\" and having \"color\" as FacetKey.key would by default return only \"Red\" documents in the search results, and also return \"Red\" with count 100 as the only color facet. Although there are also blue documents available, \"Blue\" would not be shown as an available facet value. If \"color\" is listed in \"excludedFilterKeys\", then the query returns the facet values \"Red\" with count 100 and \"Blue\" with count 200, because the \"color\" key is now excluded from the filter. Because this field doesn't affect search results, the search results are still correctly filtered to return only \"Red\" documents. A maximum of 100 values are allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "facetKey": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestFacetSpecFacetKey",
+          "description": "Required. The facet key specification."
+        },
+        "limit": {
+          "description": "Maximum of facet values that should be returned for this facet. If unspecified, defaults to 20. The maximum allowed value is 300. Values above 300 are coerced to 300. If this field is negative, an `INVALID_ARGUMENT` is returned.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestFacetSpecFacetKey": {
+      "description": "Specifies how a facet is computed.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestFacetSpecFacetKey",
+      "properties": {
+        "caseInsensitive": {
+          "description": "True to make facet keys case insensitive when getting faceting values with prefixes or contains; false otherwise.",
+          "type": "boolean"
+        },
+        "contains": {
+          "description": "Only get facet values that contains the given strings. For example, suppose \"category\" has three values \"Action > 2022\", \"Action > 2021\" and \"Sci-Fi > 2022\". If set \"contains\" to \"2022\", the \"category\" facet only contains \"Action > 2022\" and \"Sci-Fi > 2022\". Only supported on textual fields. Maximum is 10.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "intervals": {
+          "description": "Set only if values should be bucketed into intervals. Must be set for facets with numerical values. Must not be set for facet with text values. Maximum number of intervals is 30.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaInterval"
+          },
+          "type": "array"
+        },
+        "key": {
+          "description": "Required. Supported textual and numerical facet keys in Document object, over which the facet values are computed. Facet key is case-sensitive.",
+          "type": "string"
+        },
+        "orderBy": {
+          "description": "The order in which documents are returned. Allowed values are: * \"count desc\", which means order by SearchResponse.Facet.values.count descending. * \"value desc\", which means order by SearchResponse.Facet.values.value descending. Only applies to textual facets. If not set, textual values are sorted in [natural order](https://en.wikipedia.org/wiki/Natural_sort_order); numerical intervals are sorted in the order given by FacetSpec.FacetKey.intervals.",
+          "type": "string"
+        },
+        "prefixes": {
+          "description": "Only get facet values that start with the given string prefix. For example, suppose \"category\" has three values \"Action > 2022\", \"Action > 2021\" and \"Sci-Fi > 2022\". If set \"prefixes\" to \"Action\", the \"category\" facet only contains \"Action > 2022\" and \"Action > 2021\". Only supported on textual fields. Maximum is 10.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "restrictedValues": {
+          "description": "Only get facet for the given restricted values. Only supported on textual fields. For example, suppose \"category\" has three values \"Action > 2022\", \"Action > 2021\" and \"Sci-Fi > 2022\". If set \"restricted_values\" to \"Action > 2022\", the \"category\" facet only contains \"Action > 2022\". Only supported on textual fields. Maximum is 10.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestImageQuery": {
+      "description": "Specifies the image query input.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestImageQuery",
+      "properties": {
+        "imageBytes": {
+          "description": "Base64 encoded image bytes. Supported image formats: JPEG, PNG, and BMP.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec": {
+      "description": "Specification to determine under which conditions query expansion should occur.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec",
+      "properties": {
+        "condition": {
+          "description": "The condition under which query expansion should occur. Default to Condition.DISABLED.",
+          "enum": [
+            "CONDITION_UNSPECIFIED",
+            "DISABLED",
+            "AUTO"
+          ],
+          "enumDescriptions": [
+            "Unspecified query expansion condition. In this case, server behavior defaults to Condition.DISABLED.",
+            "Disabled query expansion. Only the exact search query is used, even if SearchResponse.total_size is zero.",
+            "Automatic query expansion built by the Search API."
+          ],
+          "type": "string"
+        },
+        "pinUnexpandedResults": {
+          "description": "Whether to pin unexpanded results. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestSpellCorrectionSpec": {
+      "description": "The specification for query spell correction.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestSpellCorrectionSpec",
+      "properties": {
+        "mode": {
+          "description": "The mode under which spell correction should take effect to replace the original search query. Default to Mode.AUTO.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "SUGGESTION_ONLY",
+            "AUTO"
+          ],
+          "enumDescriptions": [
+            "Unspecified spell correction mode. In this case, server behavior defaults to Mode.AUTO.",
+            "Search API will try to find a spell suggestion if there is any and put in the SearchResponse.corrected_query. The spell suggestion will not be used as the search query.",
+            "Automatic spell correction built by the Search API. Search will be based on the corrected query if found."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponse": {
+      "description": "Response message for SearchService.Search method.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponse",
+      "properties": {
+        "appliedControls": {
+          "description": "Controls applied as part of the Control service.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "attributionToken": {
+          "description": "A unique search token. This should be included in the UserEvent logs resulting from this search, which enables accurate attribution of search model performance.",
+          "type": "string"
+        },
+        "correctedQuery": {
+          "description": "Contains the spell corrected query, if found. If the spell correction type is AUTOMATIC, then the search results are based on corrected_query. Otherwise the original query is used for search.",
+          "type": "string"
+        },
+        "facets": {
+          "description": "Results of facets requested by user.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseFacet"
+          },
+          "type": "array"
+        },
+        "guidedSearchResult": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseGuidedSearchResult",
+          "description": "Guided search result."
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as SearchRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "queryExpansionInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseQueryExpansionInfo",
+          "description": "Query expansion information for the returned results."
+        },
+        "redirectUri": {
+          "description": "The URI of a customer-defined redirect page. If redirect action is triggered, no search is performed, and only redirect_uri and attribution_token are set in the response.",
+          "type": "string"
+        },
+        "results": {
+          "description": "A list of matched documents. The order represents the ranking.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSearchResult"
+          },
+          "type": "array"
+        },
+        "summary": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSummary",
+          "description": "A summary as part of the search results. This field is only returned if SearchRequest.ContentSearchSpec.summary_spec is set."
+        },
+        "totalSize": {
+          "description": "The estimated total count of matched items irrespective of pagination. The count of results returned by pagination may be less than the total_size that matches.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseFacet": {
+      "description": "A facet result.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseFacet",
+      "properties": {
+        "dynamicFacet": {
+          "description": "Whether the facet is dynamically generated.",
+          "type": "boolean"
+        },
+        "key": {
+          "description": "The key for this facet. E.g., \"colors\" or \"price\". It matches SearchRequest.FacetSpec.FacetKey.key.",
+          "type": "string"
+        },
+        "values": {
+          "description": "The facet values for this field.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseFacetFacetValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseFacetFacetValue": {
+      "description": "A facet value which contains value names and their count.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseFacetFacetValue",
+      "properties": {
+        "count": {
+          "description": "Number of items that have this facet value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaInterval",
+          "description": "Interval value for a facet, such as 10, 20) for facet \"price\". It matches [SearchRequest.FacetSpec.FacetKey.intervals."
+        },
+        "value": {
+          "description": "Text value of a facet, such as \"Black\" for facet \"colors\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseGuidedSearchResult": {
+      "description": "Guided search result. The guided search helps user to refine the search results and narrow down to the real needs from a broaded search results.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseGuidedSearchResult",
+      "properties": {
+        "followUpQuestions": {
+          "description": "Suggested follow-up questions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "refinementAttributes": {
+          "description": "A list of ranked refinement attributes.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseGuidedSearchResultRefinementAttribute"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseGuidedSearchResultRefinementAttribute": {
+      "description": "Useful attribute for search result refinements.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseGuidedSearchResultRefinementAttribute",
+      "properties": {
+        "attributeKey": {
+          "description": "Attribute key used to refine the results e.g. 'movie_type'.",
+          "type": "string"
+        },
+        "attributeValue": {
+          "description": "Attribute value used to refine the results e.g. 'drama'.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseQueryExpansionInfo": {
+      "description": "Information describing query expansion including whether expansion has occurred.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseQueryExpansionInfo",
+      "properties": {
+        "expandedQuery": {
+          "description": "Bool describing whether query expansion has occurred.",
+          "type": "boolean"
+        },
+        "pinnedResultCount": {
+          "description": "Number of pinned results. This field will only be set when expansion happens and SearchRequest.QueryExpansionSpec.pin_unexpanded_results is set to true.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseSearchResult": {
+      "description": "Represents the search results.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseSearchResult",
+      "properties": {
+        "document": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocument",
+          "description": "The document data snippet in the search response. Only fields that are marked as retrievable are populated."
+        },
+        "id": {
+          "description": "Document.id of the searched Document.",
+          "type": "string"
+        },
+        "modelScores": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaDoubleList"
+          },
+          "description": "Google provided available scores.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseSummary": {
+      "description": "Summary of the top N search result specified by the summary spec.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseSummary",
+      "properties": {
+        "summarySkippedReasons": {
+          "description": "Additional summary-skipped reasons. This provides the reason for ignored cases. If nothing is skipped, this field is not set.",
+          "items": {
+            "enum": [
+              "SUMMARY_SKIPPED_REASON_UNSPECIFIED",
+              "ADVERSARIAL_QUERY_IGNORED",
+              "NON_SUMMARY_SEEKING_QUERY_IGNORED",
+              "OUT_OF_DOMAIN_QUERY_IGNORED"
+            ],
+            "enumDescriptions": [
+              "Default value. The summary skipped reason is not specified.",
+              "The adversarial query ignored case. Only populated when SummarySpec.ignore_adversarial_query is set to `true`.",
+              "The non-summary seeking query ignored case. Only populated when SummarySpec.ignore_non_summary_seeking_query is set to `true`.",
+              "The out-of-domain query ignored case. Google skips the summary if there are no high-relevance search results. For example, the data store contains facts about company A but the user query is asking questions about company B."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "summaryText": {
+          "description": "The summary content.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaTextInput": {
+      "description": "Defines text input.",
+      "id": "GoogleCloudDiscoveryengineV1betaTextInput",
+      "properties": {
+        "context": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaConversationContext",
+          "description": "Conversation context of the input."
+        },
+        "input": {
+          "description": "Text input.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaTransactionInfo": {
       "description": "A transaction represents the entire purchase transaction.",
       "id": "GoogleCloudDiscoveryengineV1betaTransactionInfo",
@@ -3111,6 +5163,23 @@
           "description": "Required. Total non-zero value associated with the transaction. This value may include shipping, tax, or other adjustments to the total value that you want to include.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaUpdateSchemaMetadata": {
+      "description": "Metadata for UpdateSchema LRO.",
+      "id": "GoogleCloudDiscoveryengineV1betaUpdateSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
