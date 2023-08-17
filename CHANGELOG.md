@@ -4,6 +4,46 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [126.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v125.0.0...googleapis-v126.0.0) (2023-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **vmmigration:** This release has breaking changes.
+* **contentwarehouse:** This release has breaking changes.
+* **assuredworkloads:** This release has breaking changes.
+* **aiplatform:** This release has breaking changes.
+
+### Features
+
+* **admin:** update the API ([ebfb777](https://github.com/googleapis/google-api-nodejs-client/commit/ebfb7776843472e0d7ebda50cfdf4532aedfddc1))
+* **aiplatform:** update the API ([146712c](https://github.com/googleapis/google-api-nodejs-client/commit/146712c48eada981c15b6fff9b07040a7575d47c))
+* **androidpublisher:** update the API ([2d7c2b4](https://github.com/googleapis/google-api-nodejs-client/commit/2d7c2b424776c93c6d423fe9b3f3a01eeeaa9d1f))
+* **assuredworkloads:** update the API ([6547ea1](https://github.com/googleapis/google-api-nodejs-client/commit/6547ea1ef1dfa62352e276d4f394350cb7521f68))
+* **contactcenterinsights:** update the API ([1f2e6eb](https://github.com/googleapis/google-api-nodejs-client/commit/1f2e6eb4ab01a7ce17c7891988da4654d5f2e6a6))
+* **containeranalysis:** update the API ([7acf09f](https://github.com/googleapis/google-api-nodejs-client/commit/7acf09fc5393dfeaa6e6f068f3e1dd6b36dd293c))
+* **contentwarehouse:** update the API ([c44aeaf](https://github.com/googleapis/google-api-nodejs-client/commit/c44aeafdd35f1b80e919cd1e8d176bea2b63e5ca))
+* **discoveryengine:** update the API ([bca2665](https://github.com/googleapis/google-api-nodejs-client/commit/bca26655ef4a6eaaf8a827cfdc69c8c1f6214928))
+* regenerate index files ([751227d](https://github.com/googleapis/google-api-nodejs-client/commit/751227d3926c946b5db5edb58f0086e074a61169))
+* **serviceconsumermanagement:** update the API ([336b645](https://github.com/googleapis/google-api-nodejs-client/commit/336b645dbb2e745c45dd56dce74ba6e0dac2d2c0))
+* **serviceusage:** update the API ([6f08362](https://github.com/googleapis/google-api-nodejs-client/commit/6f0836293aaeb2da119c41fe6c1f5782d8087e25))
+* **testing:** update the API ([9c06a45](https://github.com/googleapis/google-api-nodejs-client/commit/9c06a45890548f296edcf35d6858651a1ad334cd))
+* **vmmigration:** update the API ([75cbb15](https://github.com/googleapis/google-api-nodejs-client/commit/75cbb1513e9ea7b1d69b82c2fb24d8fbdde69554))
+
+
+### Bug Fixes
+
+* **contactcenteraiplatform:** update the API ([e4bfff0](https://github.com/googleapis/google-api-nodejs-client/commit/e4bfff0b61696b2744eef4a97f9e22ee2338d46c))
+* **content:** update the API ([6e9f31f](https://github.com/googleapis/google-api-nodejs-client/commit/6e9f31fdffc1c1993ca77ef3d3dd408d887478d8))
+* **dns:** update the API ([2e49df0](https://github.com/googleapis/google-api-nodejs-client/commit/2e49df07079fa5e0281341361a28542cb07551cc))
+* **eventarc:** update the API ([b7a0e5a](https://github.com/googleapis/google-api-nodejs-client/commit/b7a0e5a26eabdd757468ae12c6b1ba444f3a10dd))
+* **gameservices:** update the API ([8733a48](https://github.com/googleapis/google-api-nodejs-client/commit/8733a48c00fdc2488e9b9804f156384ed24ed5bb))
+* **metastore:** update the API ([26f97a2](https://github.com/googleapis/google-api-nodejs-client/commit/26f97a259edb0a04efd068f29e0d7f561ad84560))
+* **privateca:** update the API ([b50c176](https://github.com/googleapis/google-api-nodejs-client/commit/b50c1766564ba321cbea8b7d3970620528820562))
+* **recommendationengine:** update the API ([fd203b4](https://github.com/googleapis/google-api-nodejs-client/commit/fd203b411fbe838ab69ab21c141b4e7162c85eeb))
+* **vision:** update the API ([2593341](https://github.com/googleapis/google-api-nodejs-client/commit/2593341f5bd65213067e4d23f834ce26442a3633))
+* **vpcaccess:** update the API ([b740cac](https://github.com/googleapis/google-api-nodejs-client/commit/b740cacf6fc152ed22fb20d9ab35919f8206c3c1))
+
 ## [125.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v124.0.0...googleapis-v125.0.0) (2023-08-15)
 
 

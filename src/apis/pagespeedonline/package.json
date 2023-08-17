@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/pagespeedonline",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "pagespeedonline",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v3.0.3...genomics-v3.0.4) (2023-08-17)
+
+
+### Bug Fixes
+
+* **genomics:** update the API ([c64bc84](https://github.com/googleapis/google-api-nodejs-client/commit/c64bc848cbdb14bc01ab7622ba433ede797b6cc1))
+
 ## [3.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v3.0.2...genomics-v3.0.3) (2023-08-09)
 
 
