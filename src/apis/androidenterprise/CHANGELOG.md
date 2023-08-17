@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v5.2.0...androidenterprise-v5.3.0) (2023-08-17)
+
+
+### Features
+
+* **androidenterprise:** update the API ([ff76150](https://github.com/googleapis/google-api-nodejs-client/commit/ff76150ea586830e42350537edbe5d50f4db974b))
+* regenerate index files ([46817cf](https://github.com/googleapis/google-api-nodejs-client/commit/46817cfbbdb7030ef55c89dcd5dd54b85d14da5b))
+
+
+### Bug Fixes
+
+* **androidenterprise:** update the API ([93f7c0c](https://github.com/googleapis/google-api-nodejs-client/commit/93f7c0c99965074abe256132100290de43933246))
+
 ## [5.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v5.1.1...androidenterprise-v5.2.0) (2023-08-17)
 
 

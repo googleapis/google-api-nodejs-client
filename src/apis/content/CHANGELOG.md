@@ -1,5 +1,20 @@
 # Changelog
 
+## [14.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v14.3.0...content-v14.4.0) (2023-08-17)
+
+
+### Features
+
+* **content:** update the API ([b5af676](https://github.com/googleapis/google-api-nodejs-client/commit/b5af676bbbbcbdb75555800fa06b53c75d6d6ee6))
+* **content:** update the API ([c3fa716](https://github.com/googleapis/google-api-nodejs-client/commit/c3fa7166f3732a9057e44ad630acabe2aef85533))
+* regenerate index files ([751227d](https://github.com/googleapis/google-api-nodejs-client/commit/751227d3926c946b5db5edb58f0086e074a61169))
+* regenerate index files ([46817cf](https://github.com/googleapis/google-api-nodejs-client/commit/46817cfbbdb7030ef55c89dcd5dd54b85d14da5b))
+
+
+### Bug Fixes
+
+* **content:** update the API ([6e9f31f](https://github.com/googleapis/google-api-nodejs-client/commit/6e9f31fdffc1c1993ca77ef3d3dd408d887478d8))
+
 ## [14.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v14.2.0...content-v14.3.0) (2023-08-17)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.3](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v9.1.2...alertcenter-v9.1.3) (2023-08-17)
+
+
+### Bug Fixes
+
+* **alertcenter:** update the API ([a073124](https://github.com/googleapis/google-api-nodejs-client/commit/a07312469e2bd646474d64ee3eda2db3cb784651))
+
 ## [9.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v9.1.1...alertcenter-v9.1.2) (2023-08-17)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/datapipelines",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "datapipelines",
   "main": "build/index.js",
   "types": "build/index.d.ts",
