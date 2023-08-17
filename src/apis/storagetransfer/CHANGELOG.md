@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v4.0.1...storagetransfer-v4.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **storagetransfer:** update the API ([29b6593](https://github.com/googleapis/google-api-nodejs-client/commit/29b6593955478b2a17600718054eed981056e72f))
+* **storagetransfer:** update the API ([d4e4820](https://github.com/googleapis/google-api-nodejs-client/commit/d4e48203dd485cd434a96746df57a8c5e1fc8d26))
+
 ## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v4.0.0...storagetransfer-v4.0.1) (2023-08-17)
 
 
