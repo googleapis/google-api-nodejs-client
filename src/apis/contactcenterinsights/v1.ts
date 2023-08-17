@@ -946,6 +946,10 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponse {}
   /**
+   * Response from export issue model
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelResponse {}
+  /**
    * Agent Assist frequently-asked-question answer data.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1FaqAnswerData {
@@ -991,6 +995,10 @@ export namespace contactcenterinsights_v1 {
    * The data for a hold annotation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1HoldData {}
+  /**
+   * Response from import issue model
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelResponse {}
   /**
    * The metadata for an IngestConversations operation.
    */
@@ -2367,6 +2375,10 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ExportInsightsDataResponse {}
   /**
+   * Response from export issue model
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelResponse {}
+  /**
    * Agent Assist frequently-asked-question answer data.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1FaqAnswerData {
@@ -2412,6 +2424,10 @@ export namespace contactcenterinsights_v1 {
    * The data for a hold annotation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1HoldData {}
+  /**
+   * Response from import issue model
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ImportIssueModelResponse {}
   /**
    * The metadata for an IngestConversations operation.
    */
