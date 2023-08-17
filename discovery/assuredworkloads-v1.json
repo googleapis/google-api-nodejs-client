@@ -519,7 +519,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230811",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest": {
@@ -692,7 +692,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1Violation": {
-      "description": "Workload monitoring Violation. Next Id: 27",
+      "description": "Workload monitoring Violation. Next Id: 28",
       "id": "GoogleCloudAssuredworkloadsV1Violation",
       "properties": {
         "acknowledged": {

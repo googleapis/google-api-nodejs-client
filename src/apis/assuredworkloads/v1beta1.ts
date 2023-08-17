@@ -113,7 +113,6 @@ export namespace assuredworkloads_v1beta1 {
   export class Assuredworkloads {
     context: APIRequestContext;
     organizations: Resource$Organizations;
-    projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -122,7 +121,6 @@ export namespace assuredworkloads_v1beta1 {
       };
 
       this.organizations = new Resource$Organizations(this.context);
-      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -289,7 +287,7 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse {}
   /**
-   * Workload monitoring Violation. Next Id: 27
+   * Workload monitoring Violation. Next Id: 28
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1Violation {
     /**
@@ -1023,6 +1021,104 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
+     * Analyzes a hypothetical move of a source resource to a target(destination) folder-based workload to surface compliance risks.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    analyzeWorkloadMove(
+      params: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeWorkloadMove(
+      params?: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>;
+    analyzeWorkloadMove(
+      params: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    analyzeWorkloadMove(
+      params: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+    ): void;
+    analyzeWorkloadMove(
+      params: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+    ): void;
+    analyzeWorkloadMove(
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+    ): void;
+    analyzeWorkloadMove(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+target}:analyzeWorkloadMove').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['target'],
+        pathParams: ['target'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Creates Assured Workload.
      *
      * @param params - Parameters for request
@@ -1685,6 +1781,33 @@ export namespace assuredworkloads_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove
+    extends StandardParameters {
+    /**
+     * Optional. Indicates if all child assets of the source resource should also be analyzed in addition to the source.
+     */
+    analyzeChildAssets?: boolean;
+    /**
+     * Optional. Page size. If a value is not specified, the default value of 10 is used.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token from the previous response. It needs to be passed in the second and following requests.
+     */
+    pageToken?: string;
+    /**
+     * The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
+     */
+    project?: string;
+    /**
+     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1" This option is now deprecated.
+     */
+    source?: string;
+    /**
+     * Required. The resource ID of the folder-based destination workload. This workload is where the source resource will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
+     */
+    target?: string;
+  }
   export interface Params$Resource$Organizations$Locations$Workloads$Create
     extends StandardParameters {
     /**
@@ -2117,168 +2240,5 @@ export namespace assuredworkloads_v1beta1 {
      * Required. The Workload name. Format `organizations/{org_id\}/locations/{location\}/workloads/{workload\}`.
      */
     parent?: string;
-  }
-
-  export class Resource$Projects {
-    context: APIRequestContext;
-    organizations: Resource$Projects$Organizations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.organizations = new Resource$Projects$Organizations(this.context);
-    }
-  }
-
-  export class Resource$Projects$Organizations {
-    context: APIRequestContext;
-    locations: Resource$Projects$Organizations$Locations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.locations = new Resource$Projects$Organizations$Locations(
-        this.context
-      );
-    }
-  }
-
-  export class Resource$Projects$Organizations$Locations {
-    context: APIRequestContext;
-    workloads: Resource$Projects$Organizations$Locations$Workloads;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.workloads = new Resource$Projects$Organizations$Locations$Workloads(
-        this.context
-      );
-    }
-  }
-
-  export class Resource$Projects$Organizations$Locations$Workloads {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Analyzes a hypothetical move of a source resource to a target(destination) folder-based workload to surface compliance risks.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    analyzeWorkloadMove(
-      params: Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    analyzeWorkloadMove(
-      params?: Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>;
-    analyzeWorkloadMove(
-      params: Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    analyzeWorkloadMove(
-      params: Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-    ): void;
-    analyzeWorkloadMove(
-      params: Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-    ): void;
-    analyzeWorkloadMove(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-    ): void;
-    analyzeWorkloadMove(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1beta1/{+project}/{+target}:analyzeWorkloadMove'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['project', 'target'],
-        pathParams: ['project', 'target'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove
-    extends StandardParameters {
-    /**
-     * Optional. Indicates if all child assets of the source resource should also be analyzed in addition to the source.
-     */
-    analyzeChildAssets?: boolean;
-    /**
-     * Optional. Page size. If a value is not specified, the default value of 10 is used.
-     */
-    pageSize?: number;
-    /**
-     * Optional. The page token from the previous response. It needs to be passed in the second and following requests.
-     */
-    pageToken?: string;
-    /**
-     * The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
-     */
-    project?: string;
-    /**
-     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1" This option is now deprecated.
-     */
-    source?: string;
-    /**
-     * Required. The resource ID of the folder-based destination workload. This workload is where the source resource will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
-     */
-    target?: string;
   }
 }
